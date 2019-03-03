@@ -1,0 +1,97 @@
+$font-url: '../fonts/';
+$font-family-muller:  'Muller', sans-sarif;
+
+//@mixin muller-weight($weight) {
+//  font-family: $font-family-muller;
+//  font-weight: $weight;
+//}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Thin'), local('MullerThin'),
+  url('#{font-url}MullerThin.woff2') format('woff2'),
+  url('#{font-url}MullerThin.woff') format('woff'),
+  url('#{font-url}MullerThin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller UltraLight'), local('MullerUltraLight'),
+  url('#{font-url}MullerUltraLight.woff2') format('woff2'),
+  url('#{font-url}MullerUltraLight.woff') format('woff'),
+  url('#{font-url}MullerUltraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Light'), local('MullerLight'),
+  url('#{font-url}MullerLight.woff2') format('woff2'),
+  url('#{font-url}MullerLight.woff') format('woff'),
+  url('#{font-url}MullerLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Regular'), local('MullerRegular'),
+  url('#{font-url}MullerRegular.woff2') format('woff2'),
+  url('#{font-url}MullerRegular.woff') format('woff'),
+  url('#{font-url}MullerRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Medium'), local('MullerMedium'),
+  url('#{font-url}MullerMedium.woff2') format('woff2'),
+  url('#{font-url}MullerMedium.woff') format('woff'),
+  url('#{font-url}MullerMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Bold'), local('MullerBold'),
+  url('#{font-url}MullerBold.woff2') format('woff2'),
+  url('#{font-url}MullerBold.woff') format('woff'),
+  url('#{font-url}MullerBold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller ExtraBold'), local('MullerExtraBold'),
+  url('#{font-url}MullerExtraBold.woff2') format('woff2'),
+  url('#{font-url}MullerExtraBold.woff') format('woff'),
+  url('#{font-url}MullerExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Muller';
+  src: local('Muller Black'), local('MullerBlack'),
+  url('#{font-url}MullerBlack.woff2') format('woff2'),
+  url('#{font-url}MullerBlack.woff') format('woff'),
+  url('#{font-url}MullerBlack.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+//@font-face {
+//  font-family: 'Muller';
+//  src: local('Muller Heavy'), local('MullerHeavy'),
+//  url('#{font-url}MullerHeavy.woff2') format('woff2'),
+//  url('#{font-url}MullerHeavy.woff') format('woff'),
+//  url('#{font-url}MullerHeavy.ttf') format('truetype');
+//  font-weight: 900;
+//  font-style: normal;
+//}

@@ -1,0 +1,101 @@
+$font-url: '../fonts/' !default;
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 100 Italic'), local('MuseoCyrl-100Italic'),
+  url('#{$font-url}MuseoCyrl-100Italic.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-100Italic.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-100Italic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 100'), local('MuseoCyrl-100'),
+  url('#{$font-url}MuseoCyrl-100.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-100.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-100.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 300'), local('MuseoCyrl-300'),
+  url('#{$font-url}MuseoCyrl-300.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-300.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-300.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 300 Italic'), local('MuseoCyrl-300Italic'),
+  url('#{$font-url}MuseoCyrl-300Italic.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-300Italic.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-300Italic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 500'), local('MuseoCyrl-500'),
+  url('#{$font-url}MuseoCyrl-500.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-500.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-500.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 500 Italic'), local('MuseoCyrl-500Italic'),
+  url('#{$font-url}MuseoCyrl-500Italic.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-500Italic.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-500Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 700'), local('MuseoCyrl-700'),
+  url('#{$font-url}MuseoCyrl-700.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-700.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-700.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 700 Italic'), local('MuseoCyrl-700Italic'),
+  url('#{$font-url}MuseoCyrl-700Italic.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-700Italic.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-700Italic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 900'), local('MuseoCyrl-900'),
+  url('#{$font-url}MuseoCyrl-900.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-900.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-900.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Museo Cyrl';
+  src: local('Museo Cyrl 900 Italic'), local('MuseoCyrl-900Italic'),
+  url('#{$font-url}MuseoCyrl-900Italic.woff2') format('woff2'),
+  url('#{$font-url}MuseoCyrl-900Italic.woff') format('woff'),
+  url('#{$font-url}MuseoCyrl-900Italic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}

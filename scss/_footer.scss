@@ -1,0 +1,89 @@
+.footer {
+  @include font-size(14px);
+  background-color: #ECECEC;
+  &__logo {
+    display: block;
+    width: 150px;
+    height: 45px;
+    margin-bottom: 70px;
+  }
+  &__top {
+    padding-top: 44px;
+    padding-bottom: 65px;
+  }
+  &__bottom {
+    background-color: #F5F5F5;
+    height: 87px;
+  }
+  &__inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__copyright {
+    color: rgba(black, .6);
+    margin-right: 33px;
+  }
+  &__doc {
+    color: rgba(black, .6);
+    margin-right: 33px;
+  }
+  &__dev {
+    color: rgba(black, .4);
+    display: block;
+    width: 151px;
+    height: 25px;
+    //opacity: .4;
+    margin-left: auto;
+  }
+}
+
+.footer-nav {
+  &__title {
+    @extend %title;
+    @include font-size(18px);
+
+    line-height: 22px;
+    margin-bottom: 39px;
+  }
+  &__list {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+  }
+  &__item {
+    color: rgba(black, 0.6);
+
+    &:not(:last-child) {
+      margin-bottom: 28px;
+    }
+
+    &_select {
+      font-weight: 600;
+      color: $main-color;
+    }
+  }
+}
+
+.footer-contacts {
+  &__title {
+    @extend %title;
+    @include font-size(18px);
+
+    line-height: 22px;
+    margin-bottom: 36px;
+  }
+  &__social {
+    display: flex;
+  }
+  &__social-item {
+    //display: block;
+    height: 60px;
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+    &:hover {
+      opacity: .6;
+    }
+  }
+}

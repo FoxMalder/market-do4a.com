@@ -1,0 +1,30 @@
+$font-path: '../fonts/' !default;
+$font-url-bender: $font-path + 'bender/';
+
+
+// Зачем?
+//
+@mixin fonts($name, $local-name, $file-name, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $name;
+    src: local($local-name),
+    url($font-url-bender + $file-name + '.woff2') format('woff2'),
+    url($font-url-bender + $file-name + '.woff') format('woff'),
+    url($font-url-bender + $file-name + '.ttf') format('truetype');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+
+@include fonts('Bender', 'Bender', 'Bender', normal);
+@include fonts('Bender', 'Bender-Italic', 'Bender-Italic', normal, italic);
+
+@include fonts('Bender', 'Bender-Bold', 'Bender-Bold', bold);
+@include fonts('Bender', 'Bender-BoldItalic', 'Bender-BoldItalic', bold, italic);
+
+@include fonts('Bender', 'Bender-Black', 'Bender-Black', 900);
+@include fonts('Bender', 'Bender-BlackItalic', 'Bender-BlackItalic', 900, italic);
+
+@include fonts('Bender', 'Bender-Light', 'Bender-Light', 300);
+@include fonts('Bender', 'Bender-LightItalic', 'Bender-LightItalic', 300, italic);
