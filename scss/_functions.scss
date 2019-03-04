@@ -136,3 +136,11 @@
     letter-spacing: unquote(($unit * $base) / 1000 + 'px');
   }
 }
+
+@mixin dev () {
+  $dev-mode: false !default;
+
+  @if $dev-mode {
+    @content;
+  }
+}

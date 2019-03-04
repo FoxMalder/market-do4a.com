@@ -18,6 +18,13 @@
   cursor: pointer;
 }
 
+body {
+  font-size: 0.875rem;
+  @include media-breakpoint-up(xl) {
+    font-size: 1rem;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -37,8 +44,17 @@ button {
 //  transition: $animation;
 //}
 
-a {
-  transition: all .2s ease;
+//a {
+//  transition: all .2s ease;
+//}
+p {
+  line-height: 22px;
+  font-size: 14px;
+
+  @include media-breakpoint-up(xl) {
+    line-height: 25px;
+    font-size: 16px;
+  }
 }
 
 svg,
@@ -57,11 +73,23 @@ h4,
 h5,
 h6 {
   @extend %title;
+
+  @include font-size(24px);
+  line-height: 30px;
 }
 
 h1 {
-  line-height: normal;
-  margin-bottom: 48px;
+
+  @include media-breakpoint-up(md) {
+    @include font-size(36px);
+    line-height: 46px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    @include font-size(60px);
+    line-height: 69px;
+    margin-bottom: 48px;
+  }
 }
 
 ::selection {
@@ -78,11 +106,11 @@ h1 {
 }
 
 .skew {
-  transform: skew($transform-skew-deg);
+  transform: $skew;
 }
 
 .skew-reverse {
-  transform: skew(-$transform-skew-deg);
+  transform: $skew-reverse;
 }
 
 //@mixin mre-btn($map) {

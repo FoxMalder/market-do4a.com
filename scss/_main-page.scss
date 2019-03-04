@@ -1,26 +1,87 @@
-//body {
-//  background: url("../img/rm/1920.png") center top no-repeat;
-//}
+body {
+
+  @include dev() {
+    //background: url("../img/rm/1920.png") center top no-repeat;
+    background: url("../img/rm/320.png") center 1px no-repeat;
+
+    > * {
+      opacity: .5;
+    }
+  ;
+
+    @include media-breakpoint-up(md) {
+      background-image: url("../img/rm/768.png");
+      background-position: center top;
+    }
+
+    @include media-breakpoint-up(xl) {
+      background-image: url("../img/rm/1920.png");
+
+    }
+  }
+}
 
 .main-hero {
-  height: 600px;
   background-color: #1B1B1B;
   position: relative;
+
+  height: 236px;
+
+  @include dev() {
+    opacity: .5; // Dev
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 438px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 600px;
+  }
   &__slider {
 
   }
   &__control {
     position: absolute;
     width: 100%;
-    bottom: 38px;
     left: 0;
+
+    bottom: 20px;
+
+    @include media-breakpoint-up(md) {
+      bottom: 32px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      bottom: 38px;
+    }
   }
+}
+
+$section-padding-top: 38px;
+$section-padding-bottom: 30px;
+
+@function p-t ($i) {
+  @return $section-padding-top - (38px - $i);
+}
+
+@function p-b ($i) {
+  @return $section-padding-bottom - (30px - $i);
 }
 
 .section {
   overflow: hidden;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: $section-padding-top; // 40
+  padding-bottom: $section-padding-bottom;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
   .container {
     transform: translateZ(0);
   }
@@ -103,9 +164,44 @@
 }
 
 .benefits {
+  overflow: hidden;
   //background: url("../img/rm/benefits-and-subscribe.png") center no-repeat;
-  padding: 75px 0;
   background-color: #F5F5F5;
+
+  @include dev() {
+    opacity: .5; // Dev
+  }
+
+  padding: 40px 0;
+  @include media-breakpoint-up(md) {
+    padding: 75px 0;
+  }
+
+  &_first {
+    @include media-breakpoint-down(md) {
+      padding: 10px 0;
+
+      @include dev() {
+        height: 319px;
+      }
+      .benefits__item {
+        height: 133px;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        &::before {
+          display: none;
+        }
+      }
+      .benefits__icon {
+        height: 70px;
+      }
+
+      .benefits__title {
+        font-size: 13px;
+        line-height: 16px;
+      }
+    }
+  }
   &__item {
     height: 210px;
 
@@ -176,13 +272,16 @@
 //
 .brands {
   position: relative;
-  padding-top: 100px;
-  overflow: hidden;
-  padding-bottom: 114px;
+  padding-top: p-t(28px);
+  padding-bottom: p-b(19px);
 
   background-color: #E4E4E4;
 
   //background: url("../img/rm/brands.png") center top no-repeat;
+
+  @include media-breakpoint-up(md) {
+    padding-bottom: 114px;
+  }
   &::before {
     content: '';
     position: absolute;
@@ -190,6 +289,7 @@
     top: 0;
     width: 300px;
     background-color: #ECECEC;
+    pointer-events: none;
 
     @extend .skew;
     //display: none;
@@ -202,25 +302,42 @@
 
   &__list {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    @extend .skew;
 
-    width: 100%;
+    @include media-breakpoint-up(md) {
 
-    margin-top: 68px;
-    margin-bottom: 14px;
-    margin-left: -88px;
+      //@include .skew;
+      transform: $skew;
+
+      flex-wrap: wrap;
+      width: 100%;
+
+      margin-top: 68px;
+      margin-bottom: 14px;
+      margin-left: -88px;
+    }
+    @include media-breakpoint-up(xl) {
+
+      margin-top: 68px;
+      margin-bottom: 14px;
+      margin-left: -88px;
+    }
   }
   &__col {
-    height: 186px;
-    flex: 0 0 25%;
-    max-width: 25%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-    @extend .skew-reverse;
+
+    height: 160px;
+    flex: 0 0 auto;
+
+    @include media-breakpoint-up(md) {
+      transform: $skew-reverse;
+
+      height: 186px;
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
   }
   &__item {
     opacity: .5;
@@ -234,10 +351,14 @@
   }
 
   &__button {
-    display: block;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   @include media-breakpoint-up(xl) {
@@ -270,19 +391,72 @@
 // "Спортивное питание в наличии"
 //
 .catalog {
-  padding-top: 140px;
-  padding-bottom: 10px;
+  //padding-top: 38px;
+  padding-bottom: 0;
   &__title {
-    margin-bottom: 70px;
+    margin-bottom: 20px;
+  }
+  &__inner {
+
+    @include make-container(0);
+    @include make-container-max-widths();
+
+    @include media-breakpoint-up(sm) {
+      @extend %container-padding-sm;
+    }
+    @include media-breakpoint-up(xl) {
+      @extend %container-padding-xl;
+    }
+
+    margin-bottom: -5px;
+  }
+  &__item {
+    height: 90px;
+    margin-bottom: 5px;
+    &_xl {
+      @include media-breakpoint-down(md) {
+        display: none;
+      }
+    }
+    &_md {
+      @include media-breakpoint-down(xs) {
+        display: none;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &__inner {
+      margin-bottom: map_get($grid-gutter-width-map, md) * -1;
+    }
+    &__item {
+      height: (map_get($container-max-widths, md) / 2) - map_get($grid-gutter-width-map, md);
+      margin-bottom: map_get($grid-gutter-width-map, md);
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 140px;
+    padding-bottom: 30px;
+    &__inner {
+      margin-bottom: map_get($grid-gutter-width-map, xl) * -1;
+    }
+    &__title {
+      margin-bottom: 70px;
+    }
+    &__item {
+      //margin-bottom: 20px;
+      height: (map_get($container-max-widths, xl) / 3) - map_get($grid-gutter-width-map, xl);
+      margin-bottom: map_get($grid-gutter-width-map, xl);
+    }
   }
 }
 
 %product-card {
   display: block;
-  height: 380px;
+  height: 100%;
   overflow: hidden;
   position: relative;
-  margin-bottom: 20px;
   color: white;
 }
 
@@ -296,6 +470,7 @@
   &::before {
     content: '';
     position: absolute;
+    pointer-events: none;
 
     width: 450px;
     height: 100%;
@@ -402,12 +577,17 @@
   }
 }
 
+//
+//
 .arnold {
   position: relative;
-
-  height: 500px;
-  width: 405px;
   @extend .skew;
+  display: none;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+
   &__img {
     position: absolute;
     height: 100%;
@@ -429,7 +609,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    transform: translate(47px, 34px);
+    //transform: translate(47px, 34px);
   }
 }
 
@@ -438,13 +618,13 @@
 //
 .cashback {
   position: relative;
-  padding: 100px 0 150px;
+  padding-bottom: p-b(34px);
+  //padding: 100px 0 150px;
   &__text {
-    max-width: 560px;
-    margin: 56px 0 138px;
+    margin: 26px 0;
   }
   &__button {
-    width: 336px;
+    width: 100%;
   }
   &__arnold {
     position: absolute;
@@ -453,6 +633,26 @@
     top: 30px;
     right: calc(50% - 600px);
     transform-origin: right top;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__text {
+      margin-top: 40px;
+      margin-bottom: 53px;
+      max-width: 330px;
+    }
+    &__button {
+      width: 336px;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: 100px;
+    padding-bottom: 150px;
+    &__text {
+      max-width: 560px;
+      margin-top: 56px;
+      margin-bottom: 138px;
+    }
   }
 }
 
@@ -463,25 +663,24 @@
   background: url("../img/individual-selection-bg.jpg") center top no-repeat;
   background-size: cover;
   color: white;
-  padding-top: 72px;
-  padding-bottom: 74px;
+  padding-top: p-t(18px);
+  padding-bottom: p-b(34px);
 
   &__title {
-    color: white;
+    //line-height: 32px;
   }
   &__text {
-    max-width: 455px;
-    margin: 40px 0 176px;
+    display: none;
   }
   &__bottom {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
+    margin-top: 58px;
   }
   &__button {
-    width: 240px;
+    width: 100%;
   }
   &__note {
+    display: none;
+
     width: 200px;
     font-weight: 500;
     line-height: 25px;
@@ -492,28 +691,51 @@
 
     opacity: 0.6;
   }
+  @include media-breakpoint-up(xl) {
+    &__text,
+    &__note {
+      display: block;
+    }
+    &__bottom {
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+      margin-top: 40px;
+    }
+    &__button {
+      width: 240px;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: 72px;
+    padding-bottom: 74px;
+    &__title {
+      max-width: 550px;
+    }
+    &__text {
+      max-width: 455px;
+      margin-top: 40px;
+    }
+  }
 }
 
 //
 // "Нас выбирают лучшие"
 //
 .stars {
-  padding-top: 140px;
-  overflow: hidden;
+  padding-bottom: 0;
+  //padding-top: 140px;
 
   //margin-top: 115px;
   //margin-bottom: 220px;
   &__text {
+    margin-top: 27px; // > 0
+
     max-width: 550px;
   }
   &__slider {
-    @extend .skew;
-    transform-origin: center calc(100% - 320px);
-
-    display: flex;
-    margin-top: 115px;
-    //margin-bottom: 220px;
-
+    height: 407px;
+    margin-top: 35px;
   }
   &__col {
     flex: 0 0 380px;
@@ -529,6 +751,26 @@
       }
     }
   }
+
+  @include media-breakpoint-up(md) {
+    padding-top: 140px;
+    padding-bottom: 100px;
+
+    &__slider {
+      transform: $skew;
+      transform-origin: center calc(100% - 320px);
+
+      display: flex;
+      margin-top: 115px;
+      height: auto;
+      //margin-bottom: 220px;
+
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 140px;
+  }
 }
 
 .star-card {
@@ -539,19 +781,10 @@
       opacity: 1;
     }
   }
-  &__header {
-    @extend .skew-reverse;
-    //transform-origin: bottom;
-    margin-bottom: 17px;
-  }
-  &__bottom {
-    @extend .skew-reverse;
-    margin-top: 18px;
-    //transform-origin: top;
-  }
+
   &__name {
+    font-size: 16px;
     @extend %title;
-    @include font-size(23px);
   }
   &__link {
 
@@ -568,14 +801,10 @@
     height: 460px;
   }
   &__img {
+    width: 100%;
     height: 100%;
-    width: calc(100% + 80px);
-    max-width: none;
-    max-height: none;
-    margin-left: -40px;
-    margin-right: -40px;
+
     object-fit: cover;
-    @extend .skew-reverse;
   }
   &__text {
     position: absolute;
@@ -592,7 +821,176 @@
 
   }
   &__note {
-    @extend .skew-reverse;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__bottom,
+    &__header,
+    &__note,
+    &__img {
+      transform: $skew-reverse;
+    }
+
+    &__header {
+      margin-bottom: 17px;
+    }
+    &__bottom {
+      margin-top: 18px;
+    }
+    &__name {
+      font-size: 23px;
+    }
+    &__img {
+
+      width: calc(100% + 80px);
+      max-width: none;
+      max-height: none;
+      margin-left: -40px;
+      margin-right: -40px;
+    }
+    &__note {
+
+    }
+  }
+}
+
+//
+// "MARKETDO4A в таком-то городе"
+//
+.sets {
+  &__info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 192px;
+  }
+}
+
+.set-block {
+  //background-color: white;
+  height: 460px;
+  &__banner {
+    position: relative;
+
+    //
+    height: 179px;
+    //&::before {
+    //  content: '';
+    //  position: absolute;
+    //  bottom: 0;
+    //  left: 0;
+    //  width: 100%;
+    //  height: 120px;
+    //
+    //  opacity: 0.6;
+    //}
+  }
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+  }
+  &__title {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+
+    @extend %title;
+    color: white;
+
+    //
+    padding: 33px (map_get($grid-gutter-width-map, xs) / 2) 16px;
+    font-size: 20px;
+    line-height: 25px;
+
+    //line-height: 35px;
+    //font-size: 28px;
+    //
+    //line-height: 50px;
+    //font-size: 40px;
+  }
+  &__slider {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+}
+
+.set-item {
+
+  //
+  height: 396px;
+  background-color: white;
+
+  &__title {
+    @extend %title;
+    opacity: .4;
+
+    //
+    padding: 0 20px;
+    font-size: 16px;
+
+    //padding: 0 30px;
+    //font-size: 20px;
+
+    //padding: 0 28px;
+  }
+  &__img {
+
+  }
+  &__info {
+
+  }
+  &__name {
+    @extend %title;
+
+    //
+    padding: 0 20px;
+    line-height: 20px;
+    font-size: 16px;
+
+    //font-size: 19px;
+    //line-height: 24px;
+
+    //padding-left: 28px;
+    //padding-right: 105px;
+  }
+  &__price {
+    opacity: .4;
+
+    //
+    padding: 0 20px;
+    font-size: 14px;
+
+    //padding-left: 28px;
+    //padding-right: 105px;
+
+    span {
+      @extend %title;
+      font-size: 20px;
+    }
+  }
+  &__control {
+    display: flex;
+  }
+  &__button {
+    flex: 0 0 50%;
+    width: 50%;
+    height: 57px;
+  }
+
+
+  @include media-breakpoint-up(md) {
+    &__button {
+      flex: 0 0 77px;
+      width: 77px;
+      height: 77px;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+
   }
 }
 
