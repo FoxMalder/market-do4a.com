@@ -11,19 +11,13 @@
   //}
 
   @include media-breakpoint-up(sm) {
-    %container-padding-sm {
-      padding-left: map_get($grid-gutter-width-map, sm) / 2; // 20
-      padding-right: map_get($grid-gutter-width-map, sm) / 2; // 20
-    }
-    @extend %container-padding-sm;
+    padding-left: map_get($grid-gutter-width-map, sm) / 2; // 20
+    padding-right: map_get($grid-gutter-width-map, sm) / 2; // 20
   }
-  @include media-breakpoint-up(xl) {
-    %container-padding-xl {
-      padding-left: map_get($grid-gutter-width-map, xl) / 2; // 24
-      padding-right: map_get($grid-gutter-width-map, xl) / 2; // 24
-    }
-    @extend %container-padding-xl;
-  }
+  //@include media-breakpoint-up(xl) {
+  //  padding-left: map_get($grid-gutter-width-map, xl) / 2; // 24
+  //  padding-right: map_get($grid-gutter-width-map, xl) / 2; // 24
+  //}
 }
 
 // Fluid container
@@ -41,22 +35,29 @@
 //
 // Rows contain and clear the floats of your columns.
 
-@if $enable-grid-classes {
-  .row {
-    @include make-row();
+.row {
+  @include make-row();
+
+  //@include media-breakpoint-up(sm) {
+  //  margin-left: map_get($grid-gutter-width-map, sm) / -2; // 20
+  //  margin-right: map_get($grid-gutter-width-map, sm) / -2; // 20
+  //}
+  @include media-breakpoint-up(xl) {
+    margin-left: map_get($grid-gutter-width-map, xl) / -2; // 24
+    margin-right: map_get($grid-gutter-width-map, xl) / -2; // 24
   }
+}
 
-  // Remove the negative margin from default .row, then the horizontal padding
-  // from all immediate children columns (to prevent runaway style inheritance).
-  .no-gutters {
-    margin-right: 0;
-    margin-left: 0;
+// Remove the negative margin from default .row, then the horizontal padding
+// from all immediate children columns (to prevent runaway style inheritance).
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
 
-    > .col,
-    > [class*="col-"] {
-      padding-right: 0;
-      padding-left: 0;
-    }
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
@@ -78,6 +79,9 @@
     padding-right: $grid-gutter-width-xl / 2;
     padding-left: $grid-gutter-width-xl / 2;
   }
+  .container {
+    @extend %grid-column-xl;
+  }
 
   @each $breakpoint in map-keys($breakpoints) {
     $infix: breakpoint-infix($breakpoint, $breakpoints);
@@ -91,6 +95,27 @@
     .col#{$infix},
     .col#{$infix}-auto {
       @extend %grid-column-xl;
+    }
+  }
+}
+
+
+.container-no-padding {
+  @extend .container;
+
+  @include media-breakpoint-down(xs) {
+    padding-left: 0;
+    padding-right: 0;
+
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+
+      > .col,
+      > [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+      }
     }
   }
 }

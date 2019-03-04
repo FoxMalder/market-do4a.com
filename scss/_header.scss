@@ -126,6 +126,10 @@
       width: 22px;
       height: 10px;
     }
+
+    @include media-breakpoint-up(xl) {
+      display: none;
+    }
   }
   &__logo {
     width: 104px;
@@ -338,7 +342,7 @@ button.search-fild__loupe {
     text-align: center;
     white-space: nowrap;
 
-    @include mre-height-block(15px, 50px, 20px, rem);
+    @include mre-height-block(15px, 50px, 20px);
     @extend .skew;
 
     &.active,

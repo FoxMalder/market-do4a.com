@@ -166,9 +166,9 @@ h6 {
   padding-left: $input-padding-x;
   padding-right: $input-padding-x;
 
-  @include mre-height-block($input-font-size, ($input-height - $input-border-width), $input-line-height, rem);
+  @include mre-height-block($input-font-size, ($input-height - $input-border-width), $input-line-height);
   @include media-breakpoint-up(xl) {
-    @include mre-height-block($input-font-size, ($input-height-xl - $input-border-width), $input-line-height, rem);
+    @include mre-height-block($input-font-size, ($input-height-xl - $input-border-width), $input-line-height);
   }
 
   @include box-shadow($input-box-shadow);
@@ -309,7 +309,7 @@ textarea.form-control {
   $btn-padding-x: 10px;
   $btn-font-size: 18px;
   $btn-line-height: 1.5;
-  $btn-border-width: 0;
+  $btn-border-width: 3px;
 
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -330,9 +330,9 @@ textarea.form-control {
   padding-left: $btn-padding-x;
   padding-right: $btn-padding-x;
 
-  @include mre-height-block(16px, 60px);
+  @include mre-height-block(16px, 60px, 1.5, $btn-border-width);
   @include media-breakpoint-up(xl) {
-    @include mre-height-block(18px, 70px, 1.5, rem);
+    @include mre-height-block(18px, 70px, 1.5, $btn-border-width);
     //@include mre-height-block($btn-font-size, $btn-height, $btn-line-height, rem);
   }
 
@@ -375,18 +375,67 @@ textarea.form-control {
 }
 
 .btn-skew {
-  @extend .skew;
+  transform-origin: center bottom;
+  transform: $skew;
 
   &__revers {
     display: inline-block;
-    @extend .skew-reverse;
+    transform: $skew-reverse;
   }
 }
 
 .btn-red {
-  @include button-variant($main-color, $main-color, #1B1B1B, #1B1B1B, #1B1B1B, #1B1B1B);
+  @include button-variant($main-color, $main-color, #1B1B1B, #1B1B1B);
 }
 
 .btn-black {
   @include button-variant(#101010, #101010, #1B1B1B, #1B1B1B, #1B1B1B, #1B1B1B);
+}
+
+.btn-gray {
+  @include button-variant(#F5F5F5, #F5F5F5, $main-color, $main-color);
+  color: $main-color;
+}
+.btn-border-red {
+  //color: #101010;
+  //border-color: #DD3F30;
+  @include button-outline-variant(#DD3F30, #FFFFFF);
+  //color: $main-color;
+}
+
+.slider-nav {
+
+  &.disabled {
+    display: none;
+  }
+  &__button {
+    position: absolute;
+    top: 50%;
+    margin-top: -30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    @extend .btn-red;
+
+    &_left {
+      left: 0;
+      margin-left: -30px;
+    }
+    &_right {
+      right: 0;
+      margin-right: -30px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-top: -40px;
+      width: 80px;
+      height: 80px;
+      &_left {
+        margin-left: -40px;
+      }
+      &_right {
+        margin-right: -40px;
+      }
+    }
+  }
 }
