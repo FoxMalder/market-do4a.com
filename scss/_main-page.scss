@@ -863,45 +863,71 @@ $section-padding-bottom: 30px;
     margin-bottom: 20px;
     height: 192px;
   }
+  &__inner {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    //map_get($grid-gutter-width-map, xs)
+    @include media-breakpoint-up(md) {
+      //max-width: map_get($container-max-widths, md);
+      max-width: 688px;
+    }
+    @include media-breakpoint-up(xl) {
+      max-width: map_get($container-max-widths, xl);
+    }
+  }
 }
 
 .set-block {
   //background-color: white;
-  height: 460px;
+  margin-bottom: 30px;
+
+  @include media-breakpoint-up(xl) {
+    height: 460px;
+    margin-bottom: 60px;
+  }
   &__banner {
     position: relative;
+    @include responsive-ratio(320, 180);
+    //max-height: 298px;
 
-    //
-    height: 179px;
-    //&::before {
-    //  content: '';
-    //  position: absolute;
-    //  bottom: 0;
-    //  left: 0;
-    //  width: 100%;
-    //  height: 120px;
-    //
-    //  opacity: 0.6;
-    //}
+    background: #101010 center no-repeat;
+    background-size: cover;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 55%;
+
+      opacity: 0.6;
+      background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+    }
   }
   &__img {
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
 
   }
   &__title {
     position: absolute;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 280px;
     left: 0;
     bottom: 0;
-    background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+    //background: linear-gradient(0deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
 
     @extend %title;
     color: white;
 
     //
     padding: 33px (map_get($grid-gutter-width-map, xs) / 2) 16px;
+
     font-size: 20px;
     line-height: 25px;
 
@@ -913,31 +939,27 @@ $section-padding-bottom: 30px;
   }
   &__slider {
     margin-top: 10px;
-    margin-bottom: 30px;
   }
 }
 
 .set-item {
+  background-color: white;
 
   //
-  height: 396px;
-  background-color: white;
+  width: 280px;
+  //height: 396px;
+  padding-top: 14px;
 
   &__title {
     @extend %title;
     opacity: .4;
 
-    //
+    // 0
     padding: 0 20px;
     font-size: 16px;
-
-    //padding: 0 30px;
-    //font-size: 20px;
-
-    //padding: 0 28px;
   }
   &__img {
-
+    height: 205px; // dev???
   }
   &__info {
 
@@ -945,26 +967,20 @@ $section-padding-bottom: 30px;
   &__name {
     @extend %title;
 
-    //
+    // 0
     padding: 0 20px;
     line-height: 20px;
     font-size: 16px;
 
-    //font-size: 19px;
-    //line-height: 24px;
-
-    //padding-left: 28px;
-    //padding-right: 105px;
   }
   &__price {
     opacity: .4;
 
-    //
-    padding: 0 20px;
+    // 0
+    padding: 0 20px 19px;
     font-size: 14px;
-
-    //padding-left: 28px;
-    //padding-right: 105px;
+    line-height: 20px;
+    margin-top: 14px;
 
     span {
       @extend %title;
@@ -980,17 +996,42 @@ $section-padding-bottom: 30px;
     height: 57px;
   }
 
-
   @include media-breakpoint-up(md) {
+    &__title {
+      padding: 0 30px;
+      font-size: 20px;
+    }
+    &__name {
+      font-size: 19px;
+      line-height: 24px;
+      padding-left: 0;
+    }
     &__button {
       flex: 0 0 77px;
       width: 77px;
       height: 77px;
     }
+    &__price {
+      padding-left: 0;
+      font-size: 16px;
+      span {
+        font-size: 26px;
+      }
+    }
   }
 
   @include media-breakpoint-up(xl) {
-
+    &__title {
+      padding: 0 28px;
+    }
+    &__name {
+      padding-left: 28px;
+      padding-right: 105px;
+    }
+    &__price {
+      padding-left: 28px;
+      padding-right: 105px;
+    }
   }
 }
 
@@ -998,43 +1039,39 @@ $section-padding-bottom: 30px;
 // "MARKETDO4A в таком-то городе"
 //
 .shops {
-  padding-top: 100px;
-  padding-bottom: 113px;
+  padding-top: 37px;
+  padding-bottom: 26px;
 
   //background: url("../img/rm/store.png") top center no-repeat;
   //color: white;
   &__title {
+    margin-right: -20px;
+    margin-bottom: 27px;
+
     .normal {
       font-weight: normal;
     }
   }
-  &__inner {
+  &__text {
     max-width: 610px;
-    margin-bottom: 78px;
-  }
-  &__description {
-    margin-bottom: 82px;
+    margin-bottom: 47px;
 
-    font-weight: 500;
-    line-height: 25px;
-    font-size: 16px;
-    letter-spacing: -0.01em;
   }
   &__row {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 71px;
-  }
-  &__col {
-    flex: 0 0 50%;
-    max-width: 280px;
+    max-width: 610px;
   }
   &__advantages {
-    @extend %title;
-    @include font-size(18px);
+    font-weight: bold;
+    font-size: 18px;
+    font-family: $font-family-bender;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-style: italic;
     line-height: 36px;
-    margin-bottom: 69px;
+    margin-bottom: 35px;
 
     .large {
       font-weight: 900;
@@ -1042,10 +1079,10 @@ $section-padding-bottom: 30px;
     }
   }
   &__info {
-    line-height: 25px;
-    @include font-size(16x);
-
-    color: #101010;
+    margin-bottom: 21px; // xs
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     a {
       color: $main-color;
@@ -1054,56 +1091,116 @@ $section-padding-bottom: 30px;
       white-space: nowrap;
     }
   }
+  &__button {
+    display: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    &__button {
+      display: inline-block;
+    }
+    &__row {
+      margin-bottom: 71px;
+    }
+    &__col {
+      flex: 0 0 50%;
+      max-width: 280px;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: 100px;
+    padding-bottom: 150px;
+    &__row {
+      margin-bottom: 71px;
+    }
+    &__text {
+      margin-bottom: 82px;
+    }
+    &__advantages {
+      margin-bottom: 69px;
+    }
+  }
+}
+
+.shop-gallery {
+  @include media-breakpoint-up(xl) {
+    display: none;
+  }
+  &__item {
+    //position: relative;
+    display: block;
+    height: 260px;
+    @include media-breakpoint-up(md) {
+      height: 400px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
 
 //
 // "Франшиза DO4A"
 //
 .franchise {
-  overflow: hidden;
   position: relative;
   background-color: $main-color;
-  padding-top: 100px;
+
+  padding-top: 28px;
+  padding-bottom: 45px;
+
+  //padding-top: 100px;
 
   .selection {
     color: white;
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    top: 0;
-    width: 50%;
-    background-color: #E93B28;
 
-    //left: calc(50% - 150px);
-    //transform-origin: center calc(100% - #{114px + 70 / 2});
-    @extend .skew;
+  background: url("../img/rm/franchise.png") top center no-repeat;
+  > * {
+    opacity: 0.5;
   }
-
-  //background: url("../img/rm/franchise.png") top center no-repeat;
   //color: white;
-  &__inner {
-    transform: translateZ(0);
-  }
   &__title {
-    margin-bottom: 72px;
+    margin-bottom: 33px;
   }
-  &__col {
+  &__list {
+    margin-bottom: 32px;
     max-width: 640px;
-    //margin-bottom: 78px;
+    position: relative;
   }
-  &__description {
-    margin-top: 78px;
-    margin-bottom: 60px;
+  &__advantages {
+    margin-bottom: 20px;
+    //width: 300px;
+  }
+  &__value {
+    @extend %title;
+    @include font-size(20px);
+    line-height: 1;
+    margin-bottom: 6px;
+    span {
+      @include font-size(60px);
+      margin-right: 7px;
+    }
+  }
+  &__caption {
     font-weight: 500;
-    line-height: 25px;
     font-size: 16px;
     letter-spacing: -0.01em;
+    padding-left: 5px;
+  }
+  &__text {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 29px;
+    max-width: 650px;
   }
   &__button {
     //width: $button-width;
+    width: 100%;
   }
   &__arnold {
     height: 613px;
@@ -1116,6 +1213,48 @@ $section-padding-bottom: 30px;
     }
   }
 
+  @include media-breakpoint-up(md) {
+    &::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      top: 0;
+      width: 50%;
+      background-color: #E93B28;
+
+      //left: calc(50% - 150px);
+      //transform-origin: center calc(100% - #{114px + 70 / 2});
+      transform: $skew;
+
+      @include dev() {
+        display: none;
+      }
+    }
+    &__button {
+
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: 100px;
+    &__text {
+      margin-bottom: 60px;
+    }
+    &__title {
+      margin-bottom: 72px;
+    }
+    &__list {
+      margin-bottom: 70px;
+    }
+    &__advantages {
+      margin-bottom: 40px;
+      width: 300px;
+      &:last-child {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+  }
   @include media-breakpoint-up(xl) {
     $button-width: 330px;
     $button-height: 70px; // Global
@@ -1134,82 +1273,60 @@ $section-padding-bottom: 30px;
   }
 }
 
-.franchise-advantages {
-  //display: flex;
-  position: relative;
-  &__item {
-
-    margin-bottom: 40px;
-    width: 300px;
-    &:last-child {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
-  &__title {
-    @extend %title;
-    @include font-size(20px);
-    line-height: 1;
-    margin-bottom: 6px;
-    span {
-      @include font-size(60px);
-      margin-right: 7px;
-    }
-  }
-  &__subtitle {
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: -0.01em;
-    padding-left: 5px;
-  }
-}
-
 //
 // "Наш блог - подбоорки"
 //
-.our-blog {
-  overflow: hidden;
-  padding-top: 100px;
+.best-articles {
+  //overflow: hidden;
+  &__title {
+    margin-bottom: 60px;
+  }
+  &__slider {
+    margin-bottom: 20px;
+
+    //&:not(.owl-loaded) {
+    //  display: flex;
+    //}
+
+    .owl-stage-outer {
+      overflow: visible;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+    padding-top: 100px;
+    &__title {
+      margin-bottom: 60px;
+    }
+
+    &__slider {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 .article-preview {
-  margin-top: 60px;
-  margin-bottom: 20px;
+  //transition: $animation;
+  transition: background-color .3s;
+  background-color: white;
 
-  //&:not(.owl-loaded) {
-  //  display: flex;
-  //}
+  max-width: 384px;
+  display: block;
+  position: relative;
 
-  .owl-stage-outer {
-    overflow: visible;
-  }
+  &.active,
+  &:hover {
+    background-color: #1B1B1B;
 
-  &__item {
-
-    //transition: $animation;
-    transition: background-color .3s;
-    background-color: white;
-
-    max-width: 384px;
-    display: block;
-    position: relative;
-
-    &.active,
-    &:hover {
-      background-color: #1B1B1B;
-
-      &,
-      .article-preview__tags,
-      .article-preview__title {
-        color: white;
-      }
-      .article-preview__title {
-        text-decoration: underline;
-      }
-      .article-preview__img img {
-        transform: scale(1.1);
-      }
+    &,
+    .article-preview__tags,
+    .article-preview__title {
+      color: white;
+    }
+    .article-preview__title {
+      text-decoration: underline;
+    }
+    .article-preview__img img {
+      transform: scale(1.1);
     }
   }
   &__img {
