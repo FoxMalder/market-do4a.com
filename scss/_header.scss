@@ -28,6 +28,13 @@
   }
 
   @include media-breakpoint-up(xl) {
+    &__city-list {
+      background-color: #1B1B1B;
+      //background: url("../img/rm/change-city.png") center top no-repeat;
+      overflow: hidden;
+      transition: height .7s ease-in-out;
+    }
+
     &__nav-top {
       display: block;
       border-bottom: 1px solid #E3E3E3;
@@ -389,6 +396,7 @@ button.search-fild__loupe {
     z-index: 99;
   }
 }
+
 .hidden-nav {
   display: flex;
   flex-direction: column;
@@ -402,7 +410,6 @@ button.search-fild__loupe {
   //background: url("../img/rm/hidden-nav.png") left top no-repeat;
   //background-size: auto;
   &__block {
-
 
   }
   &__title {
@@ -426,5 +433,63 @@ button.search-fild__loupe {
   }
   &__link {
 
+  }
+}
+
+.change-city {
+  color: white;
+  padding-top: 30px;
+  padding-bottom: 58px;
+  &__header {
+    height: 45px;
+    margin-bottom: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__title {
+    @extend %title;
+    font-size: 20px;
+  }
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 410px;
+    margin-bottom: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__item {
+    margin-bottom: 21px;
+    font-size: 14px;
+    line-height: normal;
+
+    position: relative;
+    &::before {
+      content: attr(data-letter);
+
+      @extend %title;
+      font-size: 20px;
+      color: $main-color;
+      position: absolute;
+      left: -30px;
+      top: -5px;
+    }
+  }
+  &__note {
+    margin-top: 52px;
+    max-width: 455px;
+
+
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 20px;
+    font-size: 14px;
+
+    b {
+      color: white;
+    }
   }
 }
