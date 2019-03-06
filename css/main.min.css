@@ -1508,7 +1508,7 @@ a.text-dark:hover, a.text-dark:focus { color: #121416 !important; }
 
 .icon-vk { background-image: url("../img/vk-logo.svg"); }
 
-h1, h2, h3, h4, h5, h6, .header__message, .header-control__notifications, .footer-nav__title, .footer-contacts__title, .hero-control__title, .benefits__title, .product__title, .catalog-promotion__title, .catalog-promotion__subtitle-top, .catalog-promotion__subtitle-bottom, .star-card__name, .set-block__title, .set-item__title, .set-item__name, .set-item__price span, .franchise__value, .article-preview__title, .seo-text__title, .seo-text__more { font-family: "Bender", sans-serif; font-style: italic; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
+h1, h2, h3, h4, h5, h6, .header__message, .header-control__notifications, .hidden-nav__title, .footer-nav__title, .footer-contacts__title, .hero-control__title, .benefits__title, .product__title, .catalog-promotion__title, .catalog-promotion__subtitle-top, .catalog-promotion__subtitle-bottom, .star-card__name, .set-block__title, .set-item__title, .set-item__name, .set-item__price span, .franchise__value, .article-preview__title, .seo-text__title, .seo-text__more { font-family: "Bender", sans-serif; font-style: italic; font-weight: 900; letter-spacing: 0.02em; text-transform: uppercase; }
 
 .header-control__menu-btn, button.search-fild__loupe { border: 0; padding: 0; font: inherit; color: inherit; background-color: transparent; cursor: pointer; }
 
@@ -1539,7 +1539,7 @@ h1, h2, h3, h4, h5, h6 { font-size: 1.5rem; line-height: 30px; }
 
 .nowrap { white-space: nowrap; }
 
-.skew, .search-fild__input, .header-nav-bottom__link, .hero-control__loader, .benefits__item::before, .brands::before, .arnold, .banner__block::before { transform: skew(-9deg); }
+.skew, .search-fild__input, .hero-control__loader, .benefits__item::before, .brands::before, .arnold, .banner__block::before { transform: skew(-9deg); }
 
 .skew-reverse, .arnold__img img { transform: skew(9deg); }
 
@@ -1748,11 +1748,27 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active { outline: non
 
 .button-cart__price { font-family: "Inter UI", sans-serif; font-weight: 500; font-size: 15px; color: #FFFFFF; opacity: 0.7; display: block; }
 
-.header-nav-bottom { display: flex; justify-content: space-between; align-items: center; height: 50px; margin-left: -20px; }
+.header-nav-bottom__list { position: relative; display: flex; justify-content: space-between; align-items: center; height: 50px; padding-left: 0; list-style: none; margin: 0; }
 
-.header-nav-bottom__link { font-family: "Bender", sans-serif; letter-spacing: 0.02em; text-transform: uppercase; color: white; font-weight: 900; flex: 1 0 auto; text-align: center; white-space: nowrap; font-size: 15px; line-height: 1.334; padding-bottom: 15px; padding-top: 15px; }
+.header-nav-bottom__item { flex: 1 0 auto; }
 
-.header-nav-bottom__link.active, .header-nav-bottom__link:hover { color: white; background-color: #2D2D2D; }
+.header-nav-bottom__item:hover .header-nav-bottom__link { color: white; background-color: #2D2D2D; }
+
+.header-nav-bottom__item:hover .header-nav-bottom__hidden { display: block; }
+
+.header-nav-bottom__link { display: block; width: 100%; font-family: "Bender", sans-serif; letter-spacing: 0.02em; text-transform: uppercase; color: white; font-weight: 900; text-align: center; white-space: nowrap; font-size: 15px; line-height: 1.334; padding-bottom: 15px; padding-top: 15px; transform: skew(-9deg); transform-origin: bottom; }
+
+.header-nav-bottom__hidden { display: none; position: absolute; width: 100%; background-color: #2D2D2D; top: 100%; left: 0; z-index: 99; }
+
+.hidden-nav { display: flex; flex-direction: column; flex-wrap: wrap; width: 100%; height: 620px; justify-content: space-between; padding: 28px 36px 46px; }
+
+.hidden-nav__title { margin-bottom: 26px; font-size: 16px; line-height: normal; }
+
+.hidden-nav__list { list-style: none; padding-left: 0; }
+
+.hidden-nav__item { color: rgba(255, 255, 255, 0.5); font-size: 14px; line-height: 17px; }
+
+.hidden-nav__item:not(:last-child) { margin-bottom: 16px; }
 
 .footer { font-size: 12px; line-height: 17px; background-color: #ECECEC; }
 
