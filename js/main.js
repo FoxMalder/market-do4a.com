@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    var $brandsList = $('.brands__list');
     var $starSlider = $('.stars__slider');
     var starSliderInited = false;
 
@@ -7,6 +8,8 @@ $(document).ready(function () {
         if ( $(window).width() < 768 && !starSliderInited ) {
             starSliderInited = true;
             $starSlider.addClass('owl-carousel');
+            $brandsList.addClass('owl-carousel');
+
             $starSlider.owlCarousel({
                 loop: true,
                 items: 1,
@@ -17,9 +20,22 @@ $(document).ready(function () {
                 autoHeight: true,
                 center: true,
             });
+            $brandsList.owlCarousel({
+                loop: false,
+                items: 1,
+                nav: false,
+                dots: false,
+                margin: 10,
+                autoWidth: true,
+                autoHeight: true,
+                // center: true,
+            });
+
         } else if ( $(window).width() >= 768 && starSliderInited ) {
             $starSlider.trigger('destroy.owl.carousel');
+            $brandsList.trigger('destroy.owl.carousel');
             $starSlider.removeClass('owl-carousel');
+            $brandsList.removeClass('owl-carousel');
             starSliderInited = false;
         }
     }
@@ -28,20 +44,31 @@ $(document).ready(function () {
     $(window).resize(sliderInit);
 
 
-
     $('.header-control__menu-btn').on('click', function () {
         $('.mobile-menu').toggleClass('opened');
     });
 
-    var $heroSliderLink = $('.hero-slider-control__item');
+    // var $heroSliderLink = $('.hero-slider-control__item');
+    //
+    // $heroSliderLink.on('click', function () {
+    //     $heroSliderLink.removeClass('active');
+    //     $(this).addClass('active');
+    //
+    //     $('.hero-slider__slide').removeClass('active');
+    //     $('.hero-slider__slide[data-slide="' + $(this).data('slide') + '"]').addClass('active');
+    // });
 
-    $heroSliderLink.on('click', function () {
-        $heroSliderLink.removeClass('active');
-        $(this).addClass('active');
-
-        $('.hero-slider__slide').removeClass('active');
-        $('.hero-slider__slide[data-slide="' + $(this).data('slide') + '"]').addClass('active');
+    $('.hero-slider__sliders').owlCarousel({
+        // animateOut: 'slideOutDown',
+        // animateIn: 'flipInX',
+        animateOut: 'fadeOut',
+        loop: true,
+        items: 1,
+        smartSpeed: 450,
+        // autoplay: true,
+        // autoplayTimeout: 1000,
     });
+
 
     $('.best-articles__slider').owlCarousel({
         loop: false,

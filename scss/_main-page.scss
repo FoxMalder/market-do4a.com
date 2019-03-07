@@ -20,7 +20,6 @@ body {
   }
 }
 
-
 $section-padding-top: 38px;
 $section-padding-bottom: 30px;
 
@@ -53,44 +52,45 @@ $section-padding-bottom: 30px;
   }
 }
 
-.hero {
-
-  color: white;
-  background-color: #1B1B1B;
-}
 .hero-slider {
   //position: relative;
 
+  color: white;
+  background-color: #1B1B1B;
   position: relative;
 
-  height: 236px;
-
-  @include media-breakpoint-up(md) {
-    height: 438px;
-  }
-
-  @include media-breakpoint-up(xl) {
-    height: 600px;
-  }
-  &::before {
-    content: '';
-    position: absolute;
-    width: 200px;
-    background-color: $main-color;
-    //height: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    transform: $skew;
-    transform-origin: top;
-  }
+  //&::before {
+  //  content: '';
+  //  position: absolute;
+  //  width: 200px;
+  //  background-color: $main-color;
+  //  //height: 0;
+  //  top: 0;
+  //  bottom: 0;
+  //  right: 0;
+  //  transform: $skew;
+  //  transform-origin: top;
+  //}
+  //&__sliders {
+  //  height: 100%;
+  //}
   &__slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+    //position: absolute;
+    //width: 100%;
+    //height: 100%;
+    //left: 0;
+    //top: 0;
     padding-top: 45px;
+
+    height: 236px;
+
+    @include media-breakpoint-up(md) {
+      height: 438px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      height: 600px;
+    }
     &.active {
       .hero-slider__title {
         transform: translateX(0);
@@ -104,22 +104,28 @@ $section-padding-bottom: 30px;
   }
   &__title {
     @extend %title;
-    font-size: 70px;
+    font-size: 30px;
 
     transition: all .3s ease-in-out;
 
-    transform: translateX(-500px);
-    opacity: 0;
+    //transform: translateX(-500px);
+    //opacity: 0;
+    @include media-breakpoint-up(xl) {
+      font-size: 70px;
+    }
   }
   &__subtitle {
     @extend %title;
-    font-size: 27px;
+    font-size: 15px;
     font-weight: bold;
 
     transition: all .3s ease-in-out;
 
-    transform: translateX(-500px);
-    opacity: 0;
+    //transform: translateX(-500px);
+    //opacity: 0;
+    @include media-breakpoint-up(xl) {
+      font-size: 27px;
+    }
   }
 }
 
@@ -207,6 +213,50 @@ $section-padding-bottom: 30px;
     &__item {
       padding: 0 41px;
     }
+  }
+}
+
+/* Feel free to change duration  */
+.animated {
+  -webkit-animation-duration: 1000ms;
+  animation-duration: 1000ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/* .owl-animated-out - only for current item */
+/* This is very important class. Use z-index if you want move Out item above In item */
+.owl-animated-out {
+  z-index: 1
+}
+
+/* .owl-animated-in - only for upcoming item
+/* This is very important class. Use z-index if you want move In item above Out item */
+.owl-animated-in {
+  z-index: 0
+}
+
+/* .fadeOut is style taken from Animation.css and this is how it looks in owl.carousel.css:  */
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -1710,6 +1760,11 @@ $section-padding-bottom: 30px;
   right: 0;
   overflow: hidden;
   //transform-origin: bottom;
+
+  display: none;
+  @include media-breakpoint-up(xl) {
+    display: block;
+  }
   &__map {
     position: absolute;
     //background: green;
@@ -2147,30 +2202,40 @@ $section-padding-bottom: 30px;
       }
     }
 
-    &::before {
-      content: '';
-      width: 205px;
-      height: 100%;
-      background-color: $main-color;
-      @extend .skew;
-      position: absolute;
-      top: 0;
-      right: 64px+31px;
+    @include media-breakpoint-up(xl) {
+      &::before {
+        content: '';
+        width: 205px;
+        height: 100%;
+        background-color: $main-color;
+        transform: $skew;
+        position: absolute;
+        top: 0;
+        right: 64px+31px;
+      }
     }
     &::after {
       content: '';
       position: absolute;
       background: url("../img/box.png") no-repeat;
       background-size: contain;
-      width: 893px;
-      height: 500px;
+      width: 893px*0.4;
+      height: 500px*0.4;
 
-      right: -153px;
-      bottom: -160px;
+      right: -153px*0.3;
+      bottom: -160px*0.3;
       transform-origin: right bottom;
 
       transition: all 1s cubic-bezier(0, 0.05, 0.13, 1);
       z-index: 0;
+
+      @include media-breakpoint-up(xl) {
+        width: 893px;
+        height: 500px;
+
+        right: -153px;
+        bottom: -160px;
+      }
     }
 
     @include media-breakpoint-up(md) {
