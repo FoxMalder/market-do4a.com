@@ -1,3 +1,15 @@
+@import url('https://rsms.me/inter/inter.css');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+@supports (font-variation-settings: normal) {
+  body {
+    font-family: 'Inter var', sans-serif;
+  }
+}
+
 %title {
   font: {
     family: $font-family-bender;
@@ -44,9 +56,9 @@ button {
 //  transition: $animation;
 //}
 
-//a {
-//  transition: all .2s ease;
-//}
+a {
+  transition: color .2s ease;
+}
 p {
   line-height: 22px;
   font-size: 14px;
@@ -396,6 +408,7 @@ textarea.form-control {
   @include button-variant(#F5F5F5, #F5F5F5, $main-color, $main-color);
   color: $main-color;
 }
+
 .btn-border-red {
   //color: #101010;
   //border-color: #DD3F30;
@@ -437,5 +450,30 @@ textarea.form-control {
         margin-right: -40px;
       }
     }
+  }
+}
+
+.btn-close {
+  @include button-variant($main-color, $main-color, #1B1B1B, #1B1B1B);
+  border-radius: 50%;
+
+  width: 61px;
+  height: 61px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 17px;
+    height: 3px;
+    background: white;
+    top: 50%;
+    left: 50%;
+  }
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 }
