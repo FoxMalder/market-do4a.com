@@ -1,3 +1,6 @@
+import svg4everybody from "svg4everybody";
+svg4everybody();
+
 $(document).ready(function () {
 
     var $brandsList = $('.brands__list');

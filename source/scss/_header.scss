@@ -103,11 +103,19 @@
   &__row {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
+    //margin-top: 15px;
   }
   &__nav {
     padding: 20px 20px;
   }
+
+  &__city-list {
+    background-color: #1B1B1B;
+    //background: url("../img/rm/change-city.png") center top no-repeat;
+    overflow: hidden;
+    transition: height .7s ease-in-out;
+  }
+
 }
 
 .header {
@@ -656,14 +664,20 @@ button.search-fild__loupe {
 
 .change-city {
   color: white;
-  padding-top: 30px;
-  padding-bottom: 58px;
+  padding: 20px 0 20px 50px;
+  @include media-breakpoint-up(xl) {
+    padding: 30px 0 58px;
+  }
   &__header {
     height: 45px;
     margin-bottom: 45px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    display: none;
+    @include media-breakpoint-up(xl) {
+
+      display: flex;
+    }
   }
   &__title {
     @extend %title;
@@ -697,13 +711,16 @@ button.search-fild__loupe {
   &__list {
     list-style: none;
     padding-left: 0;
-    max-height: 410px;
     margin-bottom: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-content: space-between;
-    flex-wrap: wrap;
+
+    @include media-breakpoint-up(xl) {
+      max-height: 410px;
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+      flex-wrap: wrap;
+    }
   }
   &__item {
     margin-bottom: 21px;
@@ -729,6 +746,10 @@ button.search-fild__loupe {
     color: rgba(255, 255, 255, 0.5);
     line-height: 20px;
     font-size: 14px;
+    display: none;
+    @include media-breakpoint-up(xl) {
+      display: block;
+    }
 
     b {
       color: white;

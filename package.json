@@ -1,0 +1,12 @@
+{
+  "name": "market-do4a.com",
+  "version": "0.9",
+  "main": "source/js/main.js",
+  "sass": "source/scss/main.scss",
+  "repository": "https://github.com/Staremang/market-do4a.com.git",
+  "author": "Мещеряков Роман <staremang@ya.ru>",
+  "license": "MIT",
+  "dependencies": {
+    "svg4everybody": "^2.1.9"
+  }
+}
