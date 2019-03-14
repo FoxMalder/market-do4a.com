@@ -1,17 +1,41 @@
 import svg4everybody from "svg4everybody";
 svg4everybody();
 
+import mreSlider from './slider';
+
 $(document).ready(function () {
+
 
     var $brandsList = $('.brands__list');
     var $starSlider = $('.stars__slider');
+    var $bestArticles = $('.best-articles__slider');
     var starSliderInited = false;
 
     function sliderInit() {
-        if ( $(window).width() < 768 && !starSliderInited ) {
+        if ( $(window).width() < 768 && !starSliderInited) {
             starSliderInited = true;
             $starSlider.addClass('owl-carousel');
             $brandsList.addClass('owl-carousel');
+
+            $bestArticles.owlCarousel({
+                loop: false,
+                items: 1,
+                nav: false,
+                dots: false,
+                // center: true,
+                margin: 10,
+                autoWidth: true,
+                responsive: {
+                    768: {
+                        center: false,
+                        margin: 24,
+                    },
+                    1240: {
+                        autoWidth: false,
+                        items: 3,
+                    },
+                },
+            });
 
             $starSlider.owlCarousel({
                 loop: true,
@@ -34,12 +58,18 @@ $(document).ready(function () {
                 // center: true,
             });
 
-        } else if ( $(window).width() >= 768 && starSliderInited ) {
+        } else if ( $(window).width() >= 768 ) {
+            $bestArticles.trigger('destroy.owl.carousel');
             $starSlider.trigger('destroy.owl.carousel');
             $brandsList.trigger('destroy.owl.carousel');
+            $bestArticles.removeClass('owl-carousel');
             $starSlider.removeClass('owl-carousel');
             $brandsList.removeClass('owl-carousel');
             starSliderInited = false;
+
+            new mreSlider(document.getElementById('best-articles'));
+            new mreSlider(document.getElementById('stars-slider'));
+
         }
     }
 
@@ -73,25 +103,25 @@ $(document).ready(function () {
     });
 
 
-    $('.best-articles__slider').owlCarousel({
-        loop: false,
-        items: 1,
-        nav: false,
-        dots: false,
-        // center: true,
-        margin: 10,
-        autoWidth: true,
-        responsive: {
-            768: {
-                center: false,
-                margin: 24,
-            },
-            1240: {
-                autoWidth: false,
-                items: 3,
-            },
-        },
-    });
+    // $('.best-articles__slider').owlCarousel({
+    //     loop: false,
+    //     items: 1,
+    //     nav: false,
+    //     dots: false,
+    //     // center: true,
+    //     margin: 10,
+    //     autoWidth: true,
+    //     responsive: {
+    //         768: {
+    //             center: false,
+    //             margin: 24,
+    //         },
+    //         1240: {
+    //             autoWidth: false,
+    //             items: 3,
+    //         },
+    //     },
+    // });
     $('.set-block__slider').owlCarousel({
         loop: true,
         items: 1,

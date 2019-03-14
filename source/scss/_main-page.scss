@@ -58,6 +58,7 @@ $section-padding-bottom: 30px;
   color: white;
   background-color: #1B1B1B;
   position: relative;
+  overflow: hidden;
 
   //&::before {
   //  content: '';
@@ -1110,11 +1111,13 @@ $section-padding-bottom: 30px;
     &__text {
       margin-bottom: 0;
     }
+    &__inner {
+      margin-top: -212px;
+    }
     &__slider {
       display: flex;
       height: auto;
       transform: $skew;
-      margin-top: -212px;
       //margin-top: -254px;
       padding-top: (460px - 78px);
       padding-bottom: (380px + 40px);
@@ -1149,8 +1152,11 @@ $section-padding-bottom: 30px;
     &__title {
       margin-bottom: 44px;
     }
-    &__slider {
+    &__inner {
+
       margin-top: -254px;
+    }
+    &__slider {
 
       //margin-top: -290px;
       padding-top: 460px;
@@ -1995,6 +2001,11 @@ $section-padding-bottom: 30px;
 
     &__slider {
       margin-bottom: 20px;
+
+      display: flex;
+      //overflow: scroll hidden;
+      padding: 0 calc(50% - 600px);
+      overflow: scroll hidden;
     }
   }
 }
@@ -2089,6 +2100,11 @@ $section-padding-bottom: 30px;
       font-size: 16px;
       line-height: 25px;
     }
+  }
+
+  @include media-breakpoint-up(xl) {
+    flex: 0 0 384px; // 1/3
+    margin-right: 20px;
   }
 }
 

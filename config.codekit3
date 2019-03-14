@@ -39,9 +39,20 @@
 		},
 	"/node_modules": {
 		"ft": 65536,
-		"oA": 2,
+		"oA": 1,
 		"oAP": "/build/node_modules",
-		"oF": 0
+		"oF": 1
+		},
+	"/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
 		},
 	"/node_modules/svg4everybody/dist/svg4everybody.js": {
 		"bF": 0,
@@ -664,33 +675,27 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/1920.png": {
-		"ft": 32768,
-		"iS": 9844076,
+	"/source/img/rm/.1920.png.icloud": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
 		"oA": 0,
-		"oAP": "/build/img/rm/1920.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 1,
-		"oT": 1,
-		"q": 100
+		"oAP": "/build/img/rm/.1920.png.icloud",
+		"oF": 0
+		},
+	"/source/img/rm/.768.png.icloud": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/img/rm/.768.png.icloud",
+		"oF": 0
 		},
 	"/source/img/rm/320.png": {
 		"ft": 32768,
 		"iS": 1499713,
 		"oA": 0,
 		"oAP": "/build/img/rm/320.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 1,
-		"oT": 1,
-		"q": 100
-		},
-	"/source/img/rm/768.png": {
-		"ft": 32768,
-		"iS": 5468894,
-		"oA": 0,
-		"oAP": "/build/img/rm/768.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 1,
@@ -834,12 +839,23 @@
 		"tS": 0
 		},
 	"/source/js/main.js": {
-		"bF": 4,
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/js/main.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/source/js/slider.js": {
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
-		"oA": 0,
-		"oAP": "/build/js/main.min.js",
+		"oA": 1,
+		"oAP": "/build/js/slider.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -997,6 +1013,19 @@
 		"ma": 1,
 		"oA": 1,
 		"oAP": "/build/css/_modal.min.css",
+		"oF": 0,
+		"oS": 3,
+		"uL": 1
+		},
+	"/source/scss/_slider.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "/build/css/_slider.min.css",
 		"oF": 0,
 		"oS": 3,
 		"uL": 1
@@ -2419,11 +2448,11 @@
 	"animateCSSInjections": 1,
 	"autoBuildNewItems": 1,
 	"autoprefixerEnableIEGrid": 0,
-	"babel7PresetType": 1,
-	"babelAllowRCFiles": 0,
+	"babel7PresetType": 0,
+	"babelAllowRCFiles": 1,
 	"babelAuxiliaryCommentAfter": "",
 	"babelAuxiliaryCommentBefore": "",
-	"babelConfigType": 0,
+	"babelConfigType": 1,
 	"babelCustomPluginsList": "",
 	"babelCustomPresetsList": "",
 	"babelInsertModuleIDs": 0,
@@ -2446,10 +2475,10 @@
 			"active": 0
 			},
 		"class-properties": {
-			"active": 0
+			"active": 1
 			},
 		"classes": {
-			"active": 0
+			"active": 1
 			},
 		"computed-properties": {
 			"active": 0
@@ -2473,10 +2502,10 @@
 			"active": 0
 			},
 		"export-default-from": {
-			"active": 0
+			"active": 1
 			},
 		"export-namespace-from": {
-			"active": 0
+			"active": 1
 			},
 		"external-helpers": {
 			"active": 0
@@ -2488,13 +2517,13 @@
 			"active": 0
 			},
 		"function-bind": {
-			"active": 0
+			"active": 1
 			},
 		"function-name": {
 			"active": 0
 			},
 		"function-sent": {
-			"active": 0
+			"active": 1
 			},
 		"inline-consecutive-adds": {
 			"active": 0

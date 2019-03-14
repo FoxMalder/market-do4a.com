@@ -1,3 +1,4 @@
 .DS_Store
 .idea
 prepros-6.config
+node_modules/*

@@ -1,0 +1,63 @@
+.slider {
+  position: relative;
+  display: block;
+  overflow: visible;
+  &__wrapper {
+    margin-bottom: 20px;
+  }
+  &__content {
+    display: flex;
+    //overflow: auto;
+
+    //width: 1596px;
+    transition: $animation;
+  }
+
+  //&__scrollbar {
+  &__track {
+    position: relative;
+    height: 80px;
+    width: 100%;
+    //pointer-events: none;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 40px;
+      right: 40px;
+      top: 50%;
+
+      height: 8px;
+      margin-top: -4px;
+      border-radius: 4px;
+
+      background-color: white;
+    }
+  }
+  //&__track {
+  &__scrollbar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: $main-color;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    //transition: $animation;
+    cursor: grab;
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 10px;
+      width: 24px;
+    }
+    &:hover {
+      background-color: #1B1B1B;
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
