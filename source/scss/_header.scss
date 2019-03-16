@@ -37,10 +37,10 @@
       left: 0;
       right: 0;
       top: 0;
-      z-index: 999;
+      z-index: 1000;
 
       + .header {
-        margin-top: 40px;
+        padding-top: 40px;
         &_fixed {
           .header__fixed-block {
             top: 40px;
@@ -145,6 +145,7 @@
         left: 0;
         right: 0;
         z-index: 999;
+        animation: header .3s ease;
       }
       .header-control {
         height: 73px;
@@ -175,6 +176,15 @@
       background-color: #101010;
       color: white;
     }
+  }
+}
+
+@keyframes header {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -305,12 +315,49 @@
 
   &__menu-btn {
     @extend %button-reset;
-    padding: 10px;
+    //padding: 10px;
+    position: relative;
     margin-left: -10px;
     margin-right: 27px;
-    svg {
-      width: 22px;
-      height: 10px;
+    width: 40px;
+    height: 40px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      height: 3px;
+      width: 20px;
+      background: black;
+      top: 50%;
+      margin-top: -1px;
+      left: 50%;
+      margin-left: -10px;
+      transition: transform .3s ease;
+    }
+    &::before {
+      //top: ;
+      transform: translate(1px, -4px) $skew;
+    }
+    &::after {
+      transform: translate(0, 3px) $skew;
+    }
+    //svg {
+    //  width: 22px;
+    //  height: 10px;
+    //}
+
+    &.active {
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
     }
 
     @include media-breakpoint-up(xl) {
@@ -459,6 +506,8 @@ button.search-fild__loupe {
 .button-cart {
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
 
   //padding: 23.5px 25px;
   padding: 10px 25px;
@@ -582,6 +631,7 @@ button.search-fild__loupe {
 
       text-align: center;
       white-space: nowrap;
+      font-style: normal;
 
       @include mre-height-block(15px, 50px, 20px);
       height: 100%;
@@ -712,7 +762,6 @@ button.search-fild__loupe {
     list-style: none;
     padding-left: 0;
     margin-bottom: 0;
-
 
     @include media-breakpoint-up(xl) {
       max-height: 410px;

@@ -9,6 +9,14 @@
 	],
 "creatorBuild": "29156",
 "files": {
+	"/.eslintrc.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "/build/.eslintrc-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
 	"/.gitattributes": {
 		"cB": 0,
 		"ft": 8192,
@@ -39,9 +47,9 @@
 		},
 	"/node_modules": {
 		"ft": 65536,
-		"oA": 1,
+		"oA": 2,
 		"oAP": "/build/node_modules",
-		"oF": 1
+		"oF": 0
 		},
 	"/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js": {
 		"bF": 0,
@@ -72,14 +80,6 @@
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
-		},
-	"/prepros-6.config": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/build/prepros-6.config",
-		"oF": 1
 		},
 	"/source/fonts/bender/Bender-Black.ttf": {
 		"cB": 0,
@@ -339,6 +339,17 @@
 		"opt": 1,
 		"q": 100
 		},
+	"/source/images/bar.png": {
+		"ft": 32768,
+		"iS": 192045,
+		"oA": 0,
+		"oAP": "/build/images/bar.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/images/bcaa.png": {
 		"ft": 32768,
 		"iS": 76252,
@@ -383,6 +394,28 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/images/creatine.png": {
+		"ft": 32768,
+		"iS": 141122,
+		"oA": 0,
+		"oAP": "/build/images/creatine.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/images/diet.png": {
+		"ft": 32768,
+		"iS": 91952,
+		"oA": 0,
+		"oAP": "/build/images/diet.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/images/do4a-accessories-logo-vertical.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -402,6 +435,17 @@
 		"opt": 0,
 		"plM": 3758088159,
 		"prP": 0
+		},
+	"/source/images/drink.png": {
+		"ft": 32768,
+		"iS": 136352,
+		"oA": 0,
+		"oAP": "/build/images/drink.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
 		},
 	"/source/images/e-korshina.jpg": {
 		"ft": 16384,
@@ -447,6 +491,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/images/man-girl.png": {
+		"ft": 32768,
+		"iS": 329261,
+		"oA": 0,
+		"oAP": "/build/images/man-girl.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/images/maxler.png": {
 		"ft": 32768,
 		"iS": 16802,
@@ -469,6 +524,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/images/no-xplode.png": {
+		"ft": 32768,
+		"iS": 155467,
+		"oA": 0,
+		"oAP": "/build/images/no-xplode.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/images/now-logo.png": {
 		"ft": 32768,
 		"iS": 8946,
@@ -480,11 +546,33 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/images/omega3.png": {
+		"ft": 32768,
+		"iS": 101294,
+		"oA": 0,
+		"oAP": "/build/images/omega3.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/images/on-logo.png": {
 		"ft": 32768,
 		"iS": 4242,
 		"oA": 0,
 		"oAP": "/build/images/on-logo.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/images/pasta.png": {
+		"ft": 32768,
+		"iS": 104903,
+		"oA": 0,
+		"oAP": "/build/images/pasta.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 1,
@@ -600,6 +688,17 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
+	"/source/images/termo-speed.png": {
+		"ft": 32768,
+		"iS": 169805,
+		"oA": 0,
+		"oAP": "/build/images/termo-speed.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/images/ultimate-nutrition-logo.png": {
 		"ft": 32768,
 		"iS": 3277,
@@ -643,6 +742,17 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
+	"/source/img/footer-map-icon.png": {
+		"ft": 32768,
+		"iS": 24049,
+		"oA": 0,
+		"oAP": "/build/img/footer-map-icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/img/individual-selection-bg.jpg": {
 		"ft": 16384,
 		"iS": 1495723,
@@ -675,21 +785,16 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/.1920.png.icloud": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
+	"/source/img/rm/1920.png": {
+		"ft": 32768,
+		"iS": 9844076,
 		"oA": 0,
-		"oAP": "/build/img/rm/.1920.png.icloud",
-		"oF": 0
-		},
-	"/source/img/rm/.768.png.icloud": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/build/img/rm/.768.png.icloud",
-		"oF": 0
+		"oAP": "/build/img/rm/1920.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
 		},
 	"/source/img/rm/320.png": {
 		"ft": 32768,
@@ -699,6 +804,17 @@
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/img/rm/768.png": {
+		"ft": 32768,
+		"iS": 5468894,
+		"oA": 0,
+		"oAP": "/build/img/rm/768.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
 		"oT": 1,
 		"q": 100
 		},
@@ -849,13 +965,13 @@
 		"sC": 0,
 		"tS": 1
 		},
-	"/source/js/slider.js": {
+	"/source/js/mre.slider.js": {
 		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "/build/js/slider.min.js",
+		"oAP": "/build/js/mre.slider.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -2870,7 +2986,7 @@
 		},
 	"esLintConfigFileHandlingType": 0,
 	"esLintECMAVersion": 7,
-	"esLintEnvironmentsMask": 1,
+	"esLintEnvironmentsMask": 8193,
 	"esLintRules": {
 		"accessor-pairs": {
 			"active": 0,

@@ -1,156 +1,235 @@
-import svg4everybody from "svg4everybody";
+import svg4everybody from 'svg4everybody';
+
+import MreSlider from './mre.slider';
+
 svg4everybody();
 
-import mreSlider from './slider';
+function mainSlider() {
+  const $controlItem = $('.hero-slider-control__item');
 
-$(document).ready(function () {
+  function slideTo(count) {
+    // $('.hero-slider__slide.last').removeClass('last');
+    // $('.hero-slider__slide.active').addClass('last');
 
+    $('.hero-slider-control__item').removeClass('active');
+    $('.hero-slider-control__item').removeClass('animate');
+    $(`.hero-slider-control__item[data-slide=${count}]`).addClass('active');
 
-    var $brandsList = $('.brands__list');
-    var $starSlider = $('.stars__slider');
-    var $bestArticles = $('.best-articles__slider');
-    var starSliderInited = false;
+    $('.hero-slider__slide').removeClass('active');
+    $('.hero-slider__slide').removeClass('animate');
+    $(`.hero-slider__slide[data-slide=${count}]`).addClass('active');
 
-    function sliderInit() {
-        if ( $(window).width() < 768 && !starSliderInited) {
-            starSliderInited = true;
-            $starSlider.addClass('owl-carousel');
-            $brandsList.addClass('owl-carousel');
+    setTimeout(() => {
+      $(`.hero-slider-control__item[data-slide=${count}]`).addClass('animate');
+      $(`.hero-slider__slide[data-slide=${count}]`).addClass('animate');
+    }, 1000);
+  }
 
-            $bestArticles.owlCarousel({
-                loop: false,
-                items: 1,
-                nav: false,
-                dots: false,
-                // center: true,
-                margin: 10,
-                autoWidth: true,
-                responsive: {
-                    768: {
-                        center: false,
-                        margin: 24,
-                    },
-                    1240: {
-                        autoWidth: false,
-                        items: 3,
-                    },
-                },
-            });
+  $controlItem.on('click', function () {
+    slideTo($(this).data('slide'));
+  });
+}
 
-            $starSlider.owlCarousel({
-                loop: true,
-                items: 1,
-                nav: false,
-                dots: false,
-                margin: 10,
-                autoWidth: true,
-                autoHeight: true,
-                center: true,
-            });
-            $brandsList.owlCarousel({
-                loop: false,
-                items: 1,
-                nav: false,
-                dots: false,
-                margin: 10,
-                autoWidth: true,
-                autoHeight: true,
-                // center: true,
-            });
+// TODO: Переделать
+function initHeader() {
+  const headerEl = document.querySelector('.header');
+  const fixedHeaderEl = headerEl.querySelector('.header__fixed-block');
+  const menuButtonEl = headerEl.querySelector('.header-control__menu-btn');
+  const mobileMenuEl = document.querySelector('.mobile-menu');
+  const wrapperEl = document.querySelector('.wrapper');
+  const controlPanelEl = document.querySelector('.control-panel');
 
-        } else if ( $(window).width() >= 768 ) {
-            $bestArticles.trigger('destroy.owl.carousel');
-            $starSlider.trigger('destroy.owl.carousel');
-            $brandsList.trigger('destroy.owl.carousel');
-            $bestArticles.removeClass('owl-carousel');
-            $starSlider.removeClass('owl-carousel');
-            $brandsList.removeClass('owl-carousel');
-            starSliderInited = false;
+  let isFixed = false;
+  let headerOffset = 0;
 
-            new mreSlider(document.getElementById('best-articles'));
-            new mreSlider(document.getElementById('stars-slider'));
+  function toggleMenu() {
+    mobileMenuEl.classList.toggle('opened');
+    menuButtonEl.classList.toggle('active');
+  }
 
-        }
+  function fixHeader() {
+    if (!isFixed) {
+      if (fixedHeaderEl.getBoundingClientRect().top > -300) {
+        return;
+      }
+
+      headerEl.classList.add('header_fixed');
+      headerOffset = window.pageYOffset;
+      isFixed = true;
+    } else if (window.pageYOffset < headerOffset) {
+      headerEl.classList.remove('header_fixed');
+      isFixed = false;
     }
+  }
 
-    sliderInit();
-    $(window).resize(sliderInit);
+  function initMobile() {
+    wrapperEl.style.paddingTop = `${controlPanelEl.getBoundingClientRect().height}px`;
+    mobileMenuEl.style.top = `${controlPanelEl.getBoundingClientRect().height}px`;
+
+    menuButtonEl.addEventListener('click', toggleMenu);
+  }
+
+  function initDesktop() {
+    document.addEventListener('scroll', fixHeader);
+  }
+
+  if (document.documentElement.clientWidth < 1240) {
+    initMobile();
+  } else {
+    initDesktop();
+  }
+}
+
+function initMain() {
+  let createdForMobile = $(window).width() >= 768;
+
+  const $brandsList = $('.brands__list');
+  const $starSlider = document.getElementById('stars-slider');
+  const $bestArticles = document.getElementById('best-articles');
+
+  let starSlider;
+  let articlesSlider;
 
 
-    $('.header-control__menu-btn').on('click', function () {
-        $('.mobile-menu').toggleClass('opened');
+  function initMobile() {
+    if (starSlider) starSlider.destroy();
+    if (articlesSlider) articlesSlider.destroy();
+
+    $brandsList.addClass('owl-carousel');
+    $($starSlider).addClass('owl-carousel');
+    $($bestArticles).addClass('owl-carousel');
+
+    $($bestArticles).owlCarousel({
+      loop: false,
+      items: 1,
+      nav: false,
+      dots: false,
+      // center: true,
+      margin: 10,
+      autoWidth: true,
     });
 
-    // var $heroSliderLink = $('.hero-slider-control__item');
-    //
-    // $heroSliderLink.on('click', function () {
-    //     $heroSliderLink.removeClass('active');
-    //     $(this).addClass('active');
-    //
-    //     $('.hero-slider__slide').removeClass('active');
-    //     $('.hero-slider__slide[data-slide="' + $(this).data('slide') + '"]').addClass('active');
-    // });
-
-    $('.hero-slider__sliders').owlCarousel({
-        // animateOut: 'slideOutDown',
-        // animateIn: 'flipInX',
-        animateOut: 'fadeOut',
-        loop: true,
-        items: 1,
-        smartSpeed: 450,
-        // autoplay: true,
-        // autoplayTimeout: 1000,
+    $($starSlider).owlCarousel({
+      loop: true,
+      items: 1,
+      nav: false,
+      dots: false,
+      margin: 10,
+      autoWidth: true,
+      autoHeight: true,
+      center: true,
     });
 
-
-    // $('.best-articles__slider').owlCarousel({
-    //     loop: false,
-    //     items: 1,
-    //     nav: false,
-    //     dots: false,
-    //     // center: true,
-    //     margin: 10,
-    //     autoWidth: true,
-    //     responsive: {
-    //         768: {
-    //             center: false,
-    //             margin: 24,
-    //         },
-    //         1240: {
-    //             autoWidth: false,
-    //             items: 3,
-    //         },
-    //     },
-    // });
-    $('.set-block__slider').owlCarousel({
-        loop: true,
-        items: 1,
-        center: true,
-        autoWidth: true,
-        // stagePadding: 10,
-        nav: false,
-        dots: false,
-        margin: 10,
-        navContainerClass: 'slider-nav',
-        navText: [
-            '<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">\n' +
-            '<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 5.96968L7.5 5.96968L7.5 9.5498L0 5.21968L7.5 0.88955L7.5 4.46968L16.5 4.46968L16.5 5.96968Z"/>\n' +
-            '</svg>',
-            '<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">\n' +
-            '<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M0.5 3.96978L9.5 3.96978L9.5 0.389649L17 4.71978L9.5 9.0499L9.5 5.46978L0.5 5.46978L0.5 3.96978Z"/>\n' +
-            '</svg>',
-        ],
-        navClass: [
-            'btn slider-nav__button slider-nav__button_left',
-            'btn slider-nav__button slider-nav__button_right',
-        ],
-        responsive: {
-            768: {
-                autoWidth: false,
-                center: false,
-                margin: 0,
-                nav: true,
-            },
-        },
+    $brandsList.owlCarousel({
+      loop: false,
+      items: 1,
+      nav: false,
+      dots: false,
+      margin: 10,
+      autoWidth: true,
+      autoHeight: true,
+      // center: true,
     });
+  }
+
+  function initDesktop() {
+    $($bestArticles).trigger('destroy.owl.carousel');
+    $($starSlider).trigger('destroy.owl.carousel');
+    $brandsList.trigger('destroy.owl.carousel');
+    $($bestArticles).removeClass('owl-carousel');
+    $($starSlider).removeClass('owl-carousel');
+    $brandsList.removeClass('owl-carousel');
+
+    starSlider = new MreSlider($starSlider);
+    articlesSlider = new MreSlider($bestArticles);
+  }
+
+  function init() {
+    if ($(window).width() < 768 && !createdForMobile) {
+      initMobile();
+      createdForMobile = true;
+    } else if ($(window).width() >= 768 && createdForMobile) {
+      initDesktop();
+      createdForMobile = false;
+    }
+  }
+
+  init();
+  $(window).on('resize', init);
+  mainSlider();
+
+
+  // $('.hero-slider__sliders').addClass('owl-carousel');
+  // $('.hero-slider__sliders').owlCarousel({
+  //   // animateOut: 'slideOutDown',
+  //   // animateIn: 'flipInX',
+  //   animateOut: 'fadeOut',
+  //   loop: true,
+  //   items: 1,
+  //   smartSpeed: 450,
+  //   // autoplay: true,
+  //   // autoplayTimeout: 1000,
+  // });
+
+
+  $('.set-block__slider').owlCarousel({
+    loop: true,
+    items: 1,
+    center: true,
+    autoWidth: true,
+    // stagePadding: 10,
+    nav: false,
+    dots: false,
+    margin: 10,
+    navContainerClass: 'slider-nav',
+    navText: [
+      '<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">\n'
+      + '<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 5.96968L7.5 5.96968L7.5 9.5498L0 5.21968L7.5 0.88955L7.5 4.46968L16.5 4.46968L16.5 5.96968Z"/>\n'
+      + '</svg>',
+      '<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">\n'
+      + '<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M0.5 3.96978L9.5 3.96978L9.5 0.389649L17 4.71978L9.5 9.0499L9.5 5.46978L0.5 5.46978L0.5 3.96978Z"/>\n'
+      + '</svg>',
+    ],
+    navClass: [
+      'btn slider-nav__button slider-nav__button_left',
+      'btn slider-nav__button slider-nav__button_right',
+    ],
+    responsive: {
+      768: {
+        autoWidth: false,
+        center: false,
+        margin: 0,
+        nav: true,
+      },
+    },
+  });
+}
+
+
+$(document).ready(() => {
+  initHeader();
+  initMain();
+
+
+  const $input = $('.input-field__input');
+
+  $input.on('focus', function () {
+    $(this).parent().addClass('active');
+  });
+
+  $input.on('blur', function () {
+    if ($(this).val() === '') {
+      $(this).parent().removeClass('active');
+    }
+  });
+
+  // var $heroSliderLink = $('.hero-slider-control__item');
+  //
+  // $heroSliderLink.on('click', function () {
+  //     $heroSliderLink.removeClass('active');
+  //     $(this).addClass('active');
+  //
+  //     $('.hero-slider__slide').removeClass('active');
+  //     $('.hero-slider__slide[data-slide="' + $(this).data('slide') + '"]').addClass('active');
+  // });
 });
