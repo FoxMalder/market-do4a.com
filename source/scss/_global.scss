@@ -117,6 +117,14 @@ h6 {
   color: $main-color;
 }
 
+.red {
+  color: $main-color;
+}
+
+.green {
+  color: #80C627;
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -461,6 +469,11 @@ textarea.form-control {
   color: $main-color;
 }
 
+.btn-gray-2 {
+  @include button-variant(#E7E7E7, #E7E7E7);
+  color: rgba(#101010, 0.4);
+}
+
 .btn-border-red {
   //color: #101010;
   //border-color: #DD3F30;
@@ -538,5 +551,40 @@ textarea.form-control {
 
   @include media-breakpoint-up(xl) {
     padding-top: 0;
+  }
+}
+
+.page-header {
+  padding-top: 34px;
+  padding-bottom: 30px;
+}
+
+.page-title {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.breadcumps {
+  font-family: $font-family-bender;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  &__link {
+
+  }
+  &__page {
+    color: rgba(#101010, 0.4);
+  }
+  &__delimiter {
+
+    //color: $main-color;
+    width: 2px;
+    height: 11px;
+    display: inline-block;
+    transform: skewX(-12deg);
+    background-color: $main-color;
+    margin: 0 5px -1px;
   }
 }

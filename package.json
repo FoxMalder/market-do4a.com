@@ -1,15 +1,44 @@
 {
   "name": "market-do4a.com",
-  "version": "0.9",
+  "version": "0.9.0",
   "main": "source/js/main.js",
   "sass": "source/scss/main.scss",
   "repository": "https://github.com/Staremang/market-do4a.com.git",
   "author": "Мещеряков Роман <staremang@ya.ru>",
   "license": "MIT",
+  "scripts": {
+    "build": "npm-run-all --parallel css js",
+    "css": "npm-run-all css-compile css-prefix css-minify",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 source/scss/main.scss build/css/main.css",
+    "css-minify": "cleancss --level 1 --format breaksWith=lf --source-map --source-map-inline-sources --output build/css/main.min.css build/css/main.css",
+    "css-prefix": "postcss --replace \"build/css/*.css\" \"!build/css/*.min.css\"",
+    "js": "npm-run-all js-compile",
+    "js-compile": "rollup --config rollup.config.js --sourcemap"
+  },
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
     "lodash.debounce": "latest",
     "lodash.throttle": "latest",
+    "popper.js": "^1.14.7",
     "resize-observer-polyfill": "latest",
     "svg4everybody": "^2.1.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/preset-env": "^7.3.1",
+    "autoprefixer": "^9.5.0",
+    "clean-css-cli": "^4.2.1",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^6.1.1",
+    "rollup": "^1.6.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-uglify": "^6.0.2"
   }
 }

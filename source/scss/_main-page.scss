@@ -335,6 +335,7 @@ $section-padding-bottom: 30px;
       //}
       .benefits__item {
         height: 133px;
+        padding-left: 0;
         padding-bottom: 0;
         margin-bottom: 0;
         &::before {
@@ -373,9 +374,11 @@ $section-padding-bottom: 30px;
 
     @include media-breakpoint-up(md) {
       margin-bottom: 47px;
+      padding-left: 46px;
     }
     @include media-breakpoint-up(xl) {
       margin-bottom: 0;
+      padding-left: 0;
     }
 
     &::before {
@@ -450,15 +453,15 @@ $section-padding-bottom: 30px;
   }
 
   @include media-breakpoint-up(md) {
-    padding-top: 40px;
-    padding-bottom: 114px;
+    padding-top: 37px;
+    padding-bottom: 61px;
   }
 
   @include media-breakpoint-up(xl) {
     //@extend %section-padding-xl;
 
     padding-top: 100px;
-    //padding-bottom: 114px;
+    padding-bottom: 114px;
   }
 
   &::before {
@@ -491,8 +494,8 @@ $section-padding-bottom: 30px;
       flex-wrap: wrap;
       width: 100%;
 
-      margin-top: 68px;
-      margin-bottom: 14px;
+      margin-top: 46px;
+      margin-bottom: 26px;
     }
     @include media-breakpoint-up(xl) {
 
@@ -510,11 +513,14 @@ $section-padding-bottom: 30px;
     flex: 0 0 auto;
 
     @include media-breakpoint-up(md) {
+      height: 114px;
       transform: $skew-reverse;
-
-      height: 186px;
       flex: 0 0 25%;
       max-width: 25%;
+    }
+    @include media-breakpoint-up(xl) {
+
+      height: 186px;
     }
   }
   &__item {
@@ -525,6 +531,12 @@ $section-padding-bottom: 30px;
     &:hover {
       opacity: 1;
       filter: none;
+    }
+    @include media-breakpoint-up(md) {
+      transform: scale(0.6);
+    }
+    @include media-breakpoint-up(xl) {
+      transform: none;
     }
   }
 
@@ -568,53 +580,57 @@ $section-padding-bottom: 30px;
 //////////////////////////////////////////////////////////////////////
 // "Спортивное питание в наличии"
 //
-// .catalog (finished)
+// .m-catalog (finished)
 // |
-// \_ <-- .product (finished)
-// \_ <-- .catalog-promotion (finished)
+// \_ <-- .m-product (finished)
+// \_ <-- .m-catalog-promotion (finished)
 //
-.catalog {
+.m-catalog {
   //padding-top: 38px;
   padding-bottom: 0;
   &__title {
     margin-bottom: 20px;
   }
   &__inner {
+    @include make-container(0);
+    @include make-row(0);
     margin-bottom: -5px;
 
-    @extend .container;
+    //@include make-container-max-widths();
 
-    @include media-breakpoint-down(xs) {
-      padding-left: 0;
-      padding-right: 0;
-
-      .row {
-        margin-right: 0;
-        margin-left: 0;
-
-        > .col,
-        > [class*="col-"] {
-          padding-right: 0;
-          padding-left: 0;
-        }
-      }
-    }
+    //@extend .container;
+    //
+    //@include media-breakpoint-down(xs) {
+    //  padding-left: 0;
+    //  padding-right: 0;
+    //
+    //  .row {
+    //    margin-right: 0;
+    //    margin-left: 0;
+    //
+    //    > .col,
+    //    > [class*="col-"] {
+    //      padding-right: 0;
+    //      padding-left: 0;
+    //    }
+    //  }
+    //}
   }
   &__item {
+    @include make-col-ready(0);
     height: 90px;
     margin-bottom: 5px;
-    &_xl {
-      @include media-breakpoint-down(md) {
-        display: none;
-      }
-    }
-    &_md {
-      @include media-breakpoint-down(xs) {
-        display: none;
-      }
-    }
   }
 
+  @include media-breakpoint-up(sm) {
+    &__inner {
+      max-width: map_get($container-max-widths, sm);
+    }
+    &__item {
+      padding-left: map_get($grid-gutter-width-map, sm) / 2;
+      padding-right: map_get($grid-gutter-width-map, sm) / 2;
+    }
+  }
   @include media-breakpoint-up(md) {
     padding-top: 57px;
     &__title {
@@ -622,10 +638,20 @@ $section-padding-bottom: 30px;
     }
     &__inner {
       margin-bottom: map_get($grid-gutter-width-map, md) * -1;
+      max-width: map_get($container-max-widths, md);
     }
     &__item {
+      @include make-col(6);
       height: (map_get($container-max-widths, md) / 2) - map_get($grid-gutter-width-map, md);
       margin-bottom: map_get($grid-gutter-width-map, md);
+      &_banner {
+        @include make-col(12);
+      }
+    }
+  }
+  @include media-breakpoint-only(md) {
+    &__item_open-catalog {
+      @include make-col(12);
     }
   }
 
@@ -636,12 +662,19 @@ $section-padding-bottom: 30px;
       margin-bottom: 70px;
     }
     &__inner {
+      max-width: map_get($container-max-widths, xl);
       margin-bottom: map_get($grid-gutter-width-map, xl) * -1;
     }
     &__item {
+      @include make-col(4);
       height: (map_get($container-max-widths, xl) / 3) - map_get($grid-gutter-width-map, xl);
       margin-bottom: map_get($grid-gutter-width-map, xl);
+      padding-left: map_get($grid-gutter-width-map, xl) / 2;
+      padding-right: map_get($grid-gutter-width-map, xl) / 2;
 
+      &_banner {
+        @include make-col(8);
+      }
       @include dev() {
         height: 380px;
         margin-bottom: 20px;
@@ -650,7 +683,7 @@ $section-padding-bottom: 30px;
   }
 }
 
-.product {
+.m-product {
   display: block;
   height: 100%;
   overflow: hidden;
@@ -683,7 +716,7 @@ $section-padding-bottom: 30px;
       opacity: 0;
     }
 
-    .product__icon {
+    .m-product__icon {
       position: absolute;
       right: 22px;
       bottom: 16px;
@@ -694,12 +727,12 @@ $section-padding-bottom: 30px;
       color: white;
     }
     @include media-breakpoint-up(md) {
-      .product__title {
+      .m-product__title {
         font-size: 30px;
         max-width: 100px;
       }
 
-      .product__icon {
+      .m-product__icon {
         right: 34px;
         bottom: 34px;
 
@@ -709,7 +742,7 @@ $section-padding-bottom: 30px;
     }
 
     @include media-breakpoint-up(xl) {
-      .product__title {
+      .m-product__title {
         font-size: 36px;
       }
     }
@@ -731,10 +764,10 @@ $section-padding-bottom: 30px;
       opacity: 1;
     }
 
-    .product__title {
+    .m-product__title {
       border-bottom: 2px solid rgb(255, 255, 255)
     }
-    .product__img {
+    .m-product__img {
       transform: map_get($product-img-transform, xs) $product-img-transform-hover;
 
       @include media-breakpoint-up(md) {
@@ -807,7 +840,7 @@ $section-padding-bottom: 30px;
   }
 }
 
-.catalog-promotion {
+.m-catalog-promotion {
   display: block;
   height: 100%;
   overflow: hidden;
@@ -821,7 +854,7 @@ $section-padding-bottom: 30px;
     &::before {
       opacity: 0.5;
     }
-    .catalog-promotion__img {
+    .m-catalog-promotion__img {
       transform: scale(1.1);
     }
   }
@@ -965,10 +998,6 @@ $section-padding-bottom: 30px;
   }
   &__arnold {
     position: absolute;
-    height: 500px;
-    width: 405px;
-    top: 30px;
-    right: calc(50% - 600px);
     transform-origin: right top;
   }
 
@@ -985,6 +1014,12 @@ $section-padding-bottom: 30px;
     &__button {
       width: 286px;
     }
+    &__arnold {
+      width: 258px;
+      height: 319px;
+      top: 40px;
+      right: calc(50% - 370px);
+    }
   }
 
   @include media-breakpoint-up(xl) {
@@ -999,6 +1034,12 @@ $section-padding-bottom: 30px;
     }
     &__button {
       width: 336px;
+    }
+    &__arnold {
+      height: 500px;
+      width: 405px;
+      top: 30px;
+      right: calc(50% - 600px);
     }
   }
 }
@@ -1148,9 +1189,25 @@ $section-padding-bottom: 30px;
   &__col {
     width: map_get($star-width, sm);
   }
+  &__control-info-desktop,
+  &__control-info-tablet {
+    display: none;
+  }
   @include media-breakpoint-up(md) {
     padding-top: 47px;
     padding-bottom: 49px;
+
+    .slider__track {
+      position: absolute;
+      top: 910px;
+      width: 50%;
+      left: 50%;
+      transform: $skew-reverse;
+      &::before {
+        opacity: 0;
+      }
+    }
+
     &__info {
       max-width: 350px;
     }
@@ -1159,6 +1216,7 @@ $section-padding-bottom: 30px;
     }
     &__text {
       margin-bottom: 0;
+      display: block;
     }
     &__inner {
       margin-top: -212px;
@@ -1189,6 +1247,22 @@ $section-padding-bottom: 30px;
         }
       }
     }
+    &__control-info-tablet {
+      display: block;
+      position: absolute;
+      width: 200px;
+
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 20px;
+      letter-spacing: -0.01em;
+
+      color: #101010;
+
+      opacity: 0.4;
+      top: 947px;
+      left: 130px;
+    }
   }
 
   @include media-breakpoint-up(xl) {
@@ -1205,7 +1279,11 @@ $section-padding-bottom: 30px;
         opacity: 0;
       }
     }
-    &__control-info {
+
+    &__control-info-tablet {
+      display: none;
+    }
+    &__control-info-desktop {
       position: absolute;
       text-align: right;
       width: 150px;
@@ -2184,8 +2262,8 @@ $section-padding-bottom: 30px;
   }
 
   //@include media-breakpoint-up(xl) {
-    //flex: 0 0 384px; // 1/3
-    //margin-right: 20px;
+  //flex: 0 0 384px; // 1/3
+  //margin-right: 20px;
   //}
 }
 
@@ -2276,6 +2354,7 @@ $section-padding-bottom: 30px;
   //@include responsive-ratio(16, 9);
   //@include css-triangle(red, down);
   &__block {
+    @include make-container(0);
     //height: 260px;
     background-color: white;
     position: relative;
@@ -2289,6 +2368,7 @@ $section-padding-bottom: 30px;
     padding: 18px 20px 34px;
     height: 259px;
 
+
     &.active,
     &:hover {
       background-color: #1B1B1B;
@@ -2296,19 +2376,6 @@ $section-padding-bottom: 30px;
 
       &::after {
         transform: scale(1.05);
-      }
-    }
-
-    @include media-breakpoint-up(xl) {
-      &::before {
-        content: '';
-        width: 205px;
-        height: 100%;
-        background-color: $main-color;
-        transform: $skew;
-        position: absolute;
-        top: 0;
-        right: 64px+31px;
       }
     }
     &::after {
@@ -2325,19 +2392,39 @@ $section-padding-bottom: 30px;
 
       transition: all 1s cubic-bezier(0, 0.05, 0.13, 1);
       z-index: 0;
+    }
 
-      @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(md) {
+      height: 380px;
+      padding: 29px 40px 50px;
+      &::before {
+        content: '';
+        width: 205px;
+        height: 100%;
+        background-color: $main-color;
+        transform: $skew;
+        position: absolute;
+        top: 0;
+        right: 64px+31px;
+      }
+      &::after {
+        width: 893px*0.6;
+        height: 500px*0.6;
+
+        right: -153px;
+        bottom: 0px;
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      max-width: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl));
+      padding: 40px 40px 50px;
+      &::after {
         width: 893px;
         height: 500px;
 
         right: -153px;
         bottom: -160px;
       }
-    }
-
-    @include media-breakpoint-up(md) {
-      height: 380px;
-      padding: 40px 40px 50px;
     }
   }
 

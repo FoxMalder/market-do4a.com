@@ -1,6 +1,8 @@
 import svg4everybody from 'svg4everybody';
 
 import MreSlider from './mre.slider';
+import 'bootstrap/js/dist/util';
+import 'bootstrap/js/dist/collapse';
 
 svg4everybody();
 
@@ -204,6 +206,8 @@ function initMain() {
     },
   });
 }
+
+initHeader();
 
 
 $(document).ready(() => {

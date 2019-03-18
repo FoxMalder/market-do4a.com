@@ -1,0 +1,318 @@
+.catalog-banner {
+  background: #141414;
+  font-family: $font-family-bender;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 45px 0;
+  //font-style: italic;
+  color: #FFFFFF;
+  line-height: 1;
+
+  //background: red url("../img/rm/banner-bg.png") center top no-repeat;
+
+  &__container {
+    @include make-container();
+    @include make-container-max-widths();
+    @include make-row(0);
+    justify-content: space-between;
+  }
+  &__sale {
+    font-style: italic;
+
+  }
+  &__sale-value {
+    font-weight: 900;
+    font-size: 100px;
+    color: $main-color;
+    margin-bottom: 16px;
+  }
+  &__sale-text {
+    font-weight: bold;
+    font-size: 27px;
+  }
+
+  &__promocode {
+    border: 3px dashed rgba(#FFFFFF, 0.4);
+    text-align: center;
+    transform: $skew;
+    padding: 18px 70px;
+    margin-right: 58px;
+    height: 160px;
+  }
+
+  &__promocode-text {
+    color: rgba(#FFFFFF, 0.5);
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  &__promocode-value {
+    color: white;
+    font-weight: 900;
+    font-size: 52px;
+  }
+}
+
+.catalog-description {
+  background: #FFFFFF;
+  padding: 60px 0;
+  //font-size: 15px;
+  //line-height: 23px;
+}
+
+.catalog {
+  &__item {
+    //position: relative;
+  }
+}
+
+.filter {
+  &__top {
+    background-color: #FFFFFF;
+  }
+}
+
+.filter-list {
+  display: flex;
+  flex-wrap: wrap;
+  color: black;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  &__item {
+    position: relative;
+    padding: 5px 10px;
+    &.show {
+      background: #F2F2F2;
+    }
+  }
+  &__label {
+    opacity: 0.4;
+  }
+  &__button {
+    @extend %button-reset;
+    &::after {
+      display: inline-block;
+      margin-left: .255em;
+      vertical-align: .255em;
+      content: "";
+      border-top: .3em solid;
+      border-right: .3em solid transparent;
+      border-bottom: 0;
+      border-left: .3em solid transparent;
+    }
+  }
+  &__clear {
+    @extend %button-reset;
+    color: #9B9B9B;
+    //@include text-hide;
+
+    font: 0/0 a;
+    &::before {
+      content: '';
+      //font-size: ;
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      color: #9B9B9B;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 18 19' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.17823 4.45922L3.82219 5.81514L7.644 9.63728L3.82198 13.4593L5.17796 14.8153L8.99993 10.9933L12.8217 14.8154L14.1777 13.4594L10.3559 9.63734L14.1778 5.81544L12.8218 4.45945L8.99999 8.2813L5.17823 4.45922Z' fill='%239B9B9B'/%3E%3C/svg%3E");
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      //width: ;
+    }
+  }
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    z-index: $zindex-dropdown;
+    background: #F2F2F2;
+    &.show {
+      display: block;
+    }
+  }
+}
+
+.sorting {
+
+}
+
+.product-card {
+  position: relative;
+  &:hover {
+    .product-card__wrapper {
+      box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    }
+    .product-card__controls {
+      transform: translateY(100%);
+    }
+  }
+  &__wrapper {
+    background-color: #FFFFFF;
+    transition: box-shadow .3s ease;
+    position: relative;
+    z-index: 1;
+    padding: 0 20px 22px;
+  }
+  &__controls {
+    position: absolute;
+    bottom: 0;
+    //top: 100%;
+    left: 0;
+    right: 0;
+
+    //height: 54px;
+    transition: transform .3s ease;
+    z-index: 0;
+    //background-color: red;
+    display: flex;
+  }
+  &__button {
+    @include make-col(6);
+    @include mre-height-block(14px, 54px);
+    border-width: 0;
+  }
+  &__favorites {
+    @extend %button-reset;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    color: $main-color;
+    &:focus {
+      outline: none;
+    }
+    > svg {
+      width: 31px;
+      height: 27px;
+    }
+  }
+  &__img {
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  &__title {
+    @extend %title;
+    font-weight: bold;
+
+    font-size: 19px;
+    line-height: 24px;
+
+    overflow: hidden;
+    height: 48px;
+    text-overflow: ellipsis;
+
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    margin-bottom: 8px;
+  }
+  &__description {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: -0.01em;
+    color: rgba(black, 0.4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    //max-height: 16px;
+    white-space: nowrap;
+  }
+  &__price-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    font-family: $font-family-bender;
+    font-style: italic;
+    text-transform: uppercase;
+    font-weight: 900;
+    height: 65px;
+    line-height: 1;
+  }
+  &__price {
+    font-size: 28px;
+    &::before {
+      font-size: 18px;
+      content: attr(data-price-text);
+      margin-right: 9px;
+    }
+    &::after {
+      content: attr(data-price-unit);
+      font-family: $font-family-inter-ui;
+      margin-left: 12px;
+    }
+  }
+  &__sale {
+    text-align: right;
+    margin-left: auto;
+    font-size: 20px;
+    color: $main-color;
+    position: relative;
+    &::before {
+      content: attr(data-sale-text);
+      font-size: 12px;
+      display: block;
+      color: #101010;
+      margin-bottom: 3px;
+      //position: absolute;
+      //top: -5px;
+      //right: 0;
+    }
+    &::after {
+      content: attr(data-sale-unit);
+      font-family: $font-family-inter-ui;
+      margin-left: 9px;
+    }
+  }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  &__reviews {
+    color: $main-color;
+    font-weight: 500;
+    font-size: 13px;
+
+  }
+  &__stock {
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(black, 0.4);
+    text-align: right;
+  }
+  &__stock-title {
+    margin-bottom: 3px;
+  }
+  &__sticker {
+    background-color: $main-color;
+    position: absolute;
+    left: 0;
+    top: 17px;
+    transform-origin: top left;
+    color: #FFFFFF;
+    font-family: $font-family-bender;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 11px;
+    line-height: 13px;
+    padding: 5px 4px 4px 9px;
+    transform: $skew;
+  }
+}

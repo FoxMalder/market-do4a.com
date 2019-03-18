@@ -45,6 +45,24 @@
 		"oAP": "/build/build",
 		"oF": 0
 		},
+	"/dist/css/main.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/build/dist/css/main-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/dist/css/main.css.map": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/css/main.css.map",
+		"oF": 0
+		},
 	"/node_modules": {
 		"ft": 65536,
 		"oA": 2,
@@ -80,6 +98,14 @@
 		"oF": 0,
 		"oO": 0,
 		"oS": 1
+		},
+	"/source/catalog.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/catalog.html",
+		"oF": 0
 		},
 	"/source/fonts/bender/Bender-Black.ttf": {
 		"cB": 0,
@@ -818,6 +844,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/img/rm/banner-bg.png": {
+		"ft": 32768,
+		"iS": 152939,
+		"oA": 0,
+		"oAP": "/build/img/rm/banner-bg.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/img/rm/benefits-and-subscribe.png": {
 		"ft": 32768,
 		"iS": 28669,
@@ -867,6 +904,17 @@
 		"iS": 60962,
 		"oA": 0,
 		"oAP": "/build/img/rm/hidden-nav.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/img/rm/product-card.png": {
+		"ft": 32768,
+		"iS": 45662,
+		"oA": 0,
+		"oAP": "/build/img/rm/product-card.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 1,
@@ -1025,6 +1073,19 @@
 		"ma": 1,
 		"oA": 1,
 		"oAP": "/build/css/_carousel-theme.min.css",
+		"oF": 0,
+		"oS": 3,
+		"uL": 1
+		},
+	"/source/scss/_catalog.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "/build/css/_catalog.min.css",
 		"oF": 0,
 		"oS": 3,
 		"uL": 1
@@ -2536,6 +2597,14 @@
 		"oF": 0,
 		"oS": 3,
 		"uL": 1
+		},
+	"/yarn-error.log": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/yarn-error.log",
+		"oF": 0
 		},
 	"/yarn.lock": {
 		"cB": 0,
