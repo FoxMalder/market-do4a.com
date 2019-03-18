@@ -6,7 +6,7 @@ import { uglify } from 'rollup-plugin-uglify';
 
 
 // // let fileDest  = 'main.min.js'
-// const external = ['jquery', 'popper.js']
+// const external = ['jquery', 'popper.js'];
 // // const external = ['svg4everybody']
 // const plugins = [
 //   babel({
@@ -25,8 +25,8 @@ import { uglify } from 'rollup-plugin-uglify';
 // ]
 // const globals = {
 //   jquery: 'jQuery', // Ensure we use jQuery which is always available even in noConflict mode
-//   'popper.js': 'Popper'
-// }
+//   'popper.js': 'Popper',
+// };
 
 // module.exports = {
 //   input: path.resolve(__dirname, 'source/js/main.js'),
@@ -49,17 +49,17 @@ export default [
     output: {
       name: 'main',
       file: 'build/js/main.min.js',
-      format: 'umd'
+      format: 'umd',
     },
     plugins: [
       babel({
-        exclude: ['node_modules/**']
+        exclude: ['node_modules/**'],
       }),
       resolve(), // so Rollup can find dependencies
       commonjs(), // so Rollup can convert dependencies to an ES module
       uglify(),
       // license(licence)
-    ]
+    ],
   },
   // browser-friendly, non-minified UMD build
   {
@@ -67,15 +67,15 @@ export default [
     output: {
       name: 'main',
       file: 'build/js/main.js',
-      format: 'umd'
+      format: 'umd',
     },
     plugins: [
       babel({
-        exclude: ['node_modules/**']
+        exclude: ['node_modules/**'],
       }),
       resolve(), // so Rollup can find dependencies
       commonjs(), // so Rollup can convert dependencies to an ES module
       // license(licence)
-    ]
+    ],
   },
-]
+];

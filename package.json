@@ -16,10 +16,12 @@
     "js-compile": "rollup --config rollup.config.js --sourcemap"
   },
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.7",
     "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
     "lodash.debounce": "latest",
     "lodash.throttle": "latest",
+    "owl.carousel": "^2.3.4",
     "popper.js": "^1.14.7",
     "resize-observer-polyfill": "latest",
     "svg4everybody": "^2.1.9"
