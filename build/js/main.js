@@ -22226,6 +22226,7 @@
     timeout: 1000
   });
 
+  /* eslint-disable import/no-named-as-default,import/no-named-as-default-member */
   svg4everybody();
 
   function mainSlider() {

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default,import/no-named-as-default-member */
 import '@fancyapps/fancybox';
 import 'owl.carousel';
 import 'bootstrap/js/dist/util';

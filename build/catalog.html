@@ -856,7 +856,7 @@
           <div class="filter-list__item show"> <!-- dropdown container -->
             <button class="filter-list__button">Бренд</button> <!-- dropdown button -->
             <button class="filter-list__clear">Сбросить</button>
-            <div class="filter-list__dropdown show"> <!-- dropdown  -->
+            <div class="filter-list__dropdown"> <!-- dropdown  -->
               <div class="p-3">dropdown</div>
               <div class="p-3">dropdown</div>
               <div class="p-3">dropdown</div>
@@ -869,13 +869,64 @@
               <div class="p-1">dropdown</div>
             </div>
           </div>
+  
+          <div class="filter-list__item"> <!-- dropdown container -->
+            <button class="filter-list__button">Объём, кг</button> <!-- dropdown button -->
+            <div class="filter-list__dropdown"> <!-- dropdown  -->
+              <div class="p-1">dropdown</div>
+            </div>
+          </div>
+  
+          <div class="filter-list__item"> <!-- dropdown container -->
+            <button class="filter-list__button">Порции</button> <!-- dropdown button -->
+            <div class="filter-list__dropdown"> <!-- dropdown  -->
+              <div class="p-1">dropdown</div>
+            </div>
+          </div>
+  
+          <div class="filter-list__item"> <!-- dropdown container -->
+            <button class="filter-list__button">% Белка</button> <!-- dropdown button -->
+            <div class="filter-list__dropdown"> <!-- dropdown  -->
+              <div class="p-1">dropdown</div>
+            </div>
+          </div>
+  
+          <div class="filter-list__item"> <!-- dropdown container -->
+            <button class="filter-list__button">Время приёма</button> <!-- dropdown button -->
+            <div class="filter-list__dropdown"> <!-- dropdown  -->
+              <div class="p-1">dropdown</div>
+            </div>
+          </div>
+  
+          <div class="filter-list__item"> <!-- dropdown container -->
+            <button class="filter-list__button">Цена</button> <!-- dropdown button -->
+            <div class="filter-list__dropdown"> <!-- dropdown  -->
+              <div class="p-1">dropdown</div>
+            </div>
+          </div>
           
         </div>
+        <button class="filter__reset">Сбросить</button>
       </div>
     </div>
     <div class="filter__sort">
-      <div class="filter__container">
-        <div class="filter__label">Найдено:</div>
+      <div class="filter__container container">
+        <div class="filter-list">
+    
+          <div class="filter-list__item"> <!-- dropdown -->
+            <span class="filter-list__label">Найдено:</span>
+            <div class="filter-list__value">12 товаров</div>
+          </div>
+          
+          <div class="filter-list__item"> <!-- dropdown -->
+            <button class="filter-list__button">Сначала дешевые</button>
+            <div class="filter-list__dropdown">
+              <div class="p-1">dropdown</div>
+            </div>
+          </div>
+    
+  
+        </div>
       </div>
     </div>
     <div class="container"></div>
@@ -918,6 +969,45 @@
             </button>
           </div>
         </div>
+        <div class="catalog__item col-xl-3">
+          <div class="product-card">
+            <div class="product-card__wrapper">
+              <div class="product-card__img"></div>
+              <div class="product-card__title">
+                Название
+              </div>
+              <div class="product-card__description">
+              
+              </div>
+              <div class="product-card__price-info">
+                <div class="product-card__price" data-price-text="от" data-price-unit="₽">1 750</div>
+                <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
+              </div>
+              <div class="product-card__row">
+                <a href="#" class="product-card__reviews">31 отзыв</a>
+                <div class="product-card__stock">
+                  <!--<div class="product-card__stock-title red">В наличии</div>-->
+                  <div class="product-card__stock-title green">В наличии</div>
+                  <div class="product-card__stock-value">6 фасовок</div>
+                </div>
+              </div>
+              <div class="product-card__sticker">доставка <br>1 день</div>
+            </div>
+            <div class="product-card__controls">
+              <button class="btn btn-red product-card__button">Подробнее</button>
+              <button class="btn btn-gray-2 product-card__button">К сравнению</button>
+            </div>
+            <button class="product-card__favorites">
+              <svg>
+                <use xlink:href="images/sprite.svg#heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="catalog__more">
+        <button class="catalog__more-link">Показать еще</button>
+        <div class="catalog__more-value">Показано 24 из 170</div>
       </div>
     </div>
   </div>
