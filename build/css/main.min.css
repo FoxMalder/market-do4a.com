@@ -5227,6 +5227,10 @@ a.text-dark:hover, a.text-dark:focus {
   background-image: url("../img/vk-logo.svg");
 }
 
+.icon-vk {
+  background-image: url("../img/ok-logo.svg");
+}
+
 body {
   font-family: 'Inter', sans-serif;
 }
