@@ -17,16 +17,13 @@
 	],
 "creatorBuild": "29156",
 "files": {
-	"/.babelrc.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/.babelrc.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
+	"/.babelrc": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/.babelrc",
+		"oF": 0
 		},
 	"/.browserslistrc": {
 		"cB": 0,
@@ -100,17 +97,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
 	"/node_modules/estree-walker/dist/estree-walker.es.js": {
 		"bF": 0,
 		"ft": 64,
@@ -140,17 +126,6 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "/build/node_modules/micromatch/index.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/owl.carousel/./dist/owl.carousel.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/owl.carousel/./dist/owl.carousel.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -1073,6 +1048,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/img/rm/cart.png": {
+		"ft": 32768,
+		"iS": 40989,
+		"oA": 0,
+		"oAP": "/build/img/rm/cart.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/img/rm/catalog-1920.png": {
 		"ft": 32768,
 		"iS": 1428866,
@@ -1169,7 +1155,7 @@
 		"tS": 0
 		},
 	"/source/js/main.js": {
-		"bF": 6,
+		"bF": 4,
 		"ft": 64,
 		"ma": 0,
 		"mi": 0,
@@ -1179,13 +1165,35 @@
 		"sC": 0,
 		"tS": 1
 		},
-	"/source/js/mre.slider.js": {
+	"/source/js/modules/Header.js": {
 		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "/build/js/mre.slider.min.js",
+		"oAP": "/build/js/modules/Header.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/js/modules/Input.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/modules/Input.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/js/modules/MreSlider.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/modules/MreSlider.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -3320,7 +3328,7 @@
 	"babelAllowRCFiles": 1,
 	"babelAuxiliaryCommentAfter": "",
 	"babelAuxiliaryCommentBefore": "",
-	"babelConfigType": 1,
+	"babelConfigType": 2,
 	"babelCustomPluginsList": "",
 	"babelCustomPresetsList": "",
 	"babelInsertModuleIDs": 0,
@@ -3737,7 +3745,7 @@
 			}
 		},
 	"esLintConfigFileHandlingType": 0,
-	"esLintECMAVersion": 7,
+	"esLintECMAVersion": 0,
 	"esLintEnvironmentsMask": 8193,
 	"esLintRules": {
 		"accessor-pairs": {

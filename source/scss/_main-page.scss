@@ -9,13 +9,11 @@ body {
     }
 
     @include media-breakpoint-up(md) {
-      background-image: url("../img/rm/768.png");
-      background-position: center top;
+      background: url("../img/rm/768.png") center top no-repeat;
     }
 
     @include media-breakpoint-up(xl) {
-      background-image: url("../img/rm/1920.png");
-
+      background: url("../img/rm/1920.png") center top no-repeat;
     }
   }
 }
@@ -469,12 +467,14 @@ $section-padding-bottom: 30px;
     position: absolute;
     height: 100%;
     top: 0;
-    width: 300px;
+    width: 100%;
+    right: 50%;
     background-color: #ECECEC;
     pointer-events: none;
 
-    @extend .skew;
+    transform: $skew;
     //display: none;
+
   }
 
   &__inner {
@@ -501,7 +501,7 @@ $section-padding-bottom: 30px;
 
       margin-top: 68px;
       margin-bottom: 17px;
-      margin-left: -88px;
+      margin-left: 52px;
     }
   }
   &__col {
@@ -568,11 +568,11 @@ $section-padding-bottom: 30px;
       );
 
       width: $button-width;
-      right: calc(50% - #{$button-width / 2});
+      right: calc(50% - #{$button-width});
       transform-origin: center calc(100% - #{$padding-bottom});
     }
     &__button {
-      width: $button-width;
+      width: $button-width * 2;
     }
   }
 }
@@ -652,6 +652,7 @@ $section-padding-bottom: 30px;
   @include media-breakpoint-only(md) {
     &__item_open-catalog {
       @include make-col(12);
+      height: (((map_get($container-max-widths, md) / 2) - map_get($grid-gutter-width-map, md)) / 2);
     }
   }
 

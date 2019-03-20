@@ -143,6 +143,14 @@ h6 {
   font-family: "Inter UI", sans-serif;
 }
 
+.price {
+  &::after {
+    content: '₽';
+    margin-left: 0.25em;
+    font-family: "Inter UI", sans-serif;
+  }
+}
+
 .skew {
   transform: $skew;
 }
@@ -179,7 +187,7 @@ $input-height-xl: 60px;
 $input-font-size: 16px;
 $input-font-size-xl: 16px;
 
-$input-padding-x: 10px;
+$input-padding-x: 16px;
 $input-line-height: 1.5;
 $input-border-width: 3px;
 
@@ -222,14 +230,14 @@ $input-border-width: 3px;
 
 .input-text {
 
-  $input-height: 60px;
-  $input-height-xl: 60px;
-  $input-font-size: 16px;
-  $input-font-size-xl: 16px;
+  $input-height: 60px !default;
+  $input-height-xl: 60px !default;
+  $input-font-size: 16px !default;
+  $input-font-size-xl: 16px !default;
 
-  $input-padding-x: 10px;
-  $input-line-height: 1.5;
-  $input-border-width: 3px;
+  $input-padding-x: 20px !default;
+  $input-line-height: 1.5 !default;
+  $input-border-width: 3px !default;
 
   letter-spacing: 0.02em;
 
@@ -596,5 +604,18 @@ textarea.form-control {
     transform: skewX(-12deg);
     background-color: $main-color;
     margin: 0 5px -1px;
+  }
+}
+
+.input-counter {
+  font-family: $font-family-bender;
+  font-style: italic;
+  &__up {
+    @extend %button-reset;
+    color: $main-color;
+  }
+  &__down {
+    @extend %button-reset;
+    color: $main-color;
   }
 }

@@ -118,6 +118,12 @@ body {
     display: flex;
     justify-content: space-between;
   }
+  &__reset {
+    @extend %button-reset;
+    @include title;
+    color: $main-color;
+    font-size: 16px;
+  }
 }
 
 .filter-list {
@@ -127,31 +133,33 @@ body {
   font-weight: 500;
   font-size: 16px;
   letter-spacing: -0.01em;
-  //margin-left: -16px;
+  margin-left: -16px;
   margin-right: -16px;
-  &__item {
-    position: relative;
-    padding: 5px 12px 5px 16px;
-    height: 58px;
-    display: flex;
-    align-items: center;
-    margin-right: 2px;
+}
 
-    &:first-child {
-      padding-left: 0;
-    }
-    &.show {
-      background: #F2F2F2;
-    }
+.multifilter {
+  position: relative;
+  padding: 5px 12px 5px 16px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  margin-right: 2px;
+
+  &.show {
+    background: #F2F2F2;
   }
   &__label {
-    opacity: 0.4;
+    color: rgba(black, 0.4);
     margin-right: 8px;
+  }
+  &__value {
+    font-weight: 500;
   }
   &__button {
     @extend %button-reset;
     letter-spacing: -0.01em;
     position: relative;
+    font-weight: normal;
     &::after {
       //position: absolute;
       content: "";
@@ -163,9 +171,10 @@ body {
       border-left: 4px solid transparent;
     }
   }
-  &__clear {
+  &__btn-clear {
     @extend %button-reset;
     color: #9B9B9B;
+    margin-left: 6px;
     //@include text-hide;
 
     font: 0/0 a;

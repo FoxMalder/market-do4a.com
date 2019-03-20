@@ -18,4 +18,21 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     }
+//    "overrides": [
+//        {
+//            "files": [
+//                "**/*.test?(.*).js"
+//            ],
+//            "env": {
+//                "jest": true,
+//                "jest/globals": true
+//            },
+//            "globals": {
+//                "page": true
+//            },
+//            "plugins": [
+//                "jest"
+//            ]
+//        }
+//    ]
 }
