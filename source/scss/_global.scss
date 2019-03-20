@@ -610,6 +610,11 @@ textarea.form-control {
 .input-counter {
   font-family: $font-family-bender;
   font-style: italic;
+  font-weight: 900;
+  font-size: 20px;
+  margin-top: 6px;
+  text-align: right;
+  padding-right: 11px;
   &__up {
     @extend %button-reset;
     color: $main-color;
@@ -617,5 +622,9 @@ textarea.form-control {
   &__down {
     @extend %button-reset;
     color: $main-color;
+  }
+  &__count {
+
+    margin: 0 8px;
   }
 }

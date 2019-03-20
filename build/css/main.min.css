@@ -5250,7 +5250,7 @@ h6, .header-control__notifications, .hidden-nav__title, .change-city__title, .ch
   text-transform: uppercase;
 }
 
-.input-counter__up, .input-counter__down, .header-control__menu-btn, button.search-fild__loupe, .catalog__more-link, .filter__reset, .multifilter__button, .multifilter__btn-clear, .product-card__favorites {
+.input-counter__up, .input-counter__down, .header-control__menu-btn, button.search-fild__loupe, .header-cart__btn-clear, .h-product-item__remove, .catalog__more-link, .filter__reset, .multifilter__button, .multifilter__btn-clear, .product-card__favorites {
   border: 0;
   padding: 0;
   font: inherit;
@@ -5815,6 +5815,11 @@ textarea.form-control {
 .input-counter {
   font-family: "Bender", sans-serif;
   font-style: italic;
+  font-weight: 900;
+  font-size: 20px;
+  margin-top: 6px;
+  text-align: right;
+  padding-right: 11px;
 }
 
 .input-counter__up {
@@ -5823,6 +5828,10 @@ textarea.form-control {
 
 .input-counter__down {
   color: #F4412D;
+}
+
+.input-counter__count {
+  margin: 0 8px;
 }
 
 .mobile-menu {
@@ -6209,6 +6218,10 @@ textarea.form-control {
   width: 195px;
   margin-right: 7px;
   position: relative;
+}
+
+.header-control__cart:hover .header-cart {
+  display: block;
 }
 
 .header-control__search, .header-control__cart {
@@ -6620,9 +6633,11 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   top: 100%;
   right: 0;
   width: 430px;
+  max-height: 400px;
+  overflow: auto;
   color: white;
   z-index: 1040;
-  background: url("../img/rm/cart.png") center top no-repeat;
+  display: none;
 }
 
 .header-cart__wrapper {
@@ -6645,10 +6660,28 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   font-size: 20px;
 }
 
+.header-cart__btn-clear {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.header-cart__btn-clear > svg {
+  display: inline-block;
+  width: 14px;
+  height: 16px;
+  vertical-align: -3px;
+  margin-right: 3px;
+}
+
+.header-cart__btn-clear:hover {
+  color: #FFFFFF;
+}
+
 .h-product-item {
   display: flex;
   justify-content: space-between;
-  padding: 11px 0;
+  padding: 6px 0;
+  margin-bottom: 2px;
 }
 
 .h-product-item__img {
@@ -6657,6 +6690,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 
 .h-product-item__info {
   flex-grow: 1;
+  padding: 5px 0;
 }
 
 .h-product-item__name {
@@ -6686,6 +6720,25 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-size: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.h-product-item__remove {
+  color: #F4412D;
+  display: inline-block;
+  width: 14px;
+  height: 16px;
+}
+
+.h-product-item__remove > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.h-product-item__remove:hover {
+  color: white;
 }
 
 .footer {
@@ -7020,10 +7073,6 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   top: 0;
   padding-top: 45px;
   background-color: #1B1B1B;
-  transform: translateX(-100%);
-  opacity: 0;
-  transition-delay: 1s;
-  visibility: hidden;
 }
 
 .hero-slider__slide::before {
@@ -7039,12 +7088,25 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 }
 
 .hero-slider__slide.active {
-  visibility: visible;
-  opacity: 1;
-  transform: none;
-  transition: all 1s ease;
-  transition-delay: 0s;
-  z-index: 1;
+  animation-name: slideInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 0s;
+}
+
+.hero-slider__slide.active:before {
+  animation-name: fadeInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: .2s;
+}
+
+.hero-slider__slide.active .hero-slider__title,
+.hero-slider__slide.active .hero-slider__subtitle {
+  animation-name: scaleFadeInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: .2s;
 }
 
 .hero-slider__title {
@@ -7079,6 +7141,38 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   background-size: auto 100%;
   background-position: 90% 0;
   background-repeat: no-repeat;
+}
+
+@keyframes scaleFadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10%, 0, 0) scale(2.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .hero-slider-control {

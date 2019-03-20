@@ -154,5 +154,9 @@ function initMain() {
 $(document).ready(() => {
   Header();
   Input();
-  // initMain();
+
+  const bodyClass = document.body.classList;
+  if (bodyClass.contains('main')) {
+    initMain();
+  }
 });
