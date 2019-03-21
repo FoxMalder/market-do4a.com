@@ -1,25 +1,251 @@
-.slider {
-  position: relative;
-  display: block;
-  overflow: visible;
-  &__wrapper {
-    //margin-bottom: 20px;
-  }
-  &__content {
-    display: flex;
-    //overflow: auto;
+//.slider {
+//  position: relative;
+//  display: block;
+//  overflow: visible;
+//
+//  margin: 0 auto;
+//  list-style: none;
+//  padding: 0;
+//  /* Fix of Webkit flickering */
+//  z-index: 1;
+//  &__wrapper {
+//    //margin-bottom: 20px;
+//
+//    position: relative;
+//    width: 100%;
+//    height: 100%;
+//    z-index: 1;
+//    display: flex;
+//    flex-direction: column;
+//    transition-property: transform;
+//    box-sizing: content-box;
+//
+//    transform: translate3d(0px, 0, 0);
+//    //IE10 Windows Phone 8 Fixes
+//    touch-action: pan-x;
+//  }
+//  &__content {
+//    display: flex;
+//    //overflow: auto;
+//
+//    //width: 1596px;
+//    transition: $animation;
+//  }
+//  &__slide {
+//    flex-shrink: 0;
+//    width: 100%;
+//    height: 100%;
+//    position: relative;
+//    transition-property: transform;
+//  }
+//
+//  //&__scrollbar {
+//  &__track {
+//    position: relative;
+//    height: 80px;
+//    width: 100%;
+//    margin-top: 20px;
+//    //pointer-events: none;
+//    &:before {
+//      content: '';
+//      position: absolute;
+//      left: 40px;
+//      right: 40px;
+//      top: 50%;
+//
+//      height: 8px;
+//      margin-top: -4px;
+//      border-radius: 4px;
+//
+//      background-color: white;
+//    }
+//  }
+//  //&__track {
+//  &__scrollbar {
+//    width: 80px;
+//    height: 80px;
+//    border-radius: 50%;
+//    background-color: $main-color;
+//    color: white;
+//    position: absolute;
+//    top: 0;
+//    left: 0;
+//    //transition: $animation;
+//    cursor: grab;
+//    svg {
+//      position: absolute;
+//      top: 50%;
+//      left: 50%;
+//      transform: translate(-50%, -50%);
+//      height: 10px;
+//      width: 24px;
+//    }
+//    &:hover {
+//      background-color: #1B1B1B;
+//    }
+//    &:active {
+//      cursor: grabbing;
+//    }
+//  }
+//}
 
-    //width: 1596px;
-    transition: $animation;
+.slider {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  /* Fix of Webkit flickering */
+  z-index: 1;
+
+  &:not(.slider_initialized) {
+    .slider__wrapper {
+      overflow: auto;
+    }
+    .slider__explanation-tablet,
+    .slider__explanation-desktop,
+    .slider__scrollbar {
+      visibility: hidden;
+    }
+  }
+
+  &_fade {
+    &.slider_free-mode {
+      .slider__slide {
+        transition-timing-function: ease-out;
+      }
+    }
+    .slider__slide {
+      pointer-events: none;
+      transition-property: opacity;
+      .slider__slide {
+        pointer-events: none;
+      }
+    }
+    .slider__slide_active {
+      &,
+      & .slider__slide_active {
+        pointer-events: auto;
+      }
+    }
+  }
+
+  &_wp8-horizontal {
+    touch-action: pan-y;
+    .swiper__wrapper {
+      touch-action: pan-y;
+    }
+  }
+
+  &_autoheight {
+    height: auto;
+
+    .swiper__slide {
+      height: auto;
+    }
+    .swiper__wrapper {
+      align-items: flex-start;
+      transition-property: transform, height;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+
+    .slider_vertical > & {
+      flex-direction: column;
+    }
+
+    .swiper_no-flexbox > & {
+      float: left;
+    }
+
+    &,
+    .swiper_android > & {
+      transform: translate3d(0px, 0, 0);
+    }
+
+    .swiper_multirow > & {
+      flex-wrap: wrap;
+    }
+    .swiper_free-mode > & {
+      transition-timing-function: ease-out;
+      margin: 0 auto;
+    }
+  }
+
+  &__slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+    &_invisible-blank {
+      visibility: hidden;
+    }
   }
 
   //&__scrollbar {
-  &__track {
+  ////&__track {
+  //  position: relative;
+  //  height: 80px;
+  //  width: 100%;
+  //  margin-top: 20px;
+  //  //pointer-events: none;
+  //  &:before {
+  //    content: '';
+  //    position: absolute;
+  //    left: 40px;
+  //    right: 40px;
+  //    top: 50%;
+  //
+  //    height: 8px;
+  //    margin-top: -4px;
+  //    border-radius: 4px;
+  //
+  //    background-color: white;
+  //  }
+  //}
+  //&__track {
+  ////&__scrollbar {
+  //  width: 80px;
+  //  height: 80px;
+  //  min-width: 80px;
+  //  border-radius: 50%;
+  //  background-color: $main-color;
+  //  color: white;
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  //transition: $animation;
+  //  cursor: grab;
+  //  svg {
+  //    position: absolute;
+  //    top: 50%;
+  //    left: 50%;
+  //    transform: translate(-50%, -50%);
+  //    height: 10px;
+  //    width: 24px;
+  //  }
+  //  &:hover {
+  //    background-color: #1B1B1B;
+  //  }
+  //  &:active {
+  //    cursor: grabbing;
+  //  }
+  //}
+  &__scrollbar {
     position: relative;
     height: 80px;
     width: 100%;
-    margin-top: 20px;
     //pointer-events: none;
+    margin-top: 20px;
     &:before {
       content: '';
       position: absolute;
@@ -34,17 +260,18 @@
       background-color: white;
     }
   }
-  //&__track {
-  &__scrollbar {
+  &__track {
+    @extend %button-reset;
     width: 80px;
     height: 80px;
+    min-width: 80px;
     border-radius: 50%;
     background-color: $main-color;
     color: white;
     position: absolute;
     top: 0;
     left: 0;
-    //transition: $animation;
+    transition: $animation;
     cursor: grab;
     svg {
       position: absolute;
@@ -59,6 +286,41 @@
     }
     &:active {
       cursor: grabbing;
+    }
+  }
+
+  &__explanation {
+    display: none;
+    align-items: center;
+
+    //width: 200px;
+
+    font-weight: 500;
+    line-height: 20px;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+
+    color: rgba(#101010, .4);
+
+    //position: relative;
+    margin-top: 18px;
+    > svg {
+      //position: absolute;
+      display: block;
+    }
+    > p {
+      margin-bottom: 0;
+      margin-left: 13px;
+    }
+    &_tablet {
+      @include media-breakpoint-only(md) {
+        display: flex;
+      }
+    }
+    &_desktop {
+      @include media-breakpoint-up(xl) {
+        display: flex;
+      }
     }
   }
 }

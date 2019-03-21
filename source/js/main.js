@@ -6,9 +6,22 @@ import 'bootstrap/js/dist/collapse';
 
 import svg4everybody from 'svg4everybody';
 
-import MreSlider from './modules/MreSlider';
+// import MreSlider from './modules/MreSlider';
+import anime from 'animejs/lib/anime.es';
+
+import {
+  Swiper, Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual,
+} from 'swiper/dist/js/swiper.esm';
+
 import Header from './modules/Header';
 import Input from './modules/Input';
+// import Parallax from './modules/Parallax';
+
+
+Swiper.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual]);
+
+window.Swiper = Swiper;
+window.anime = anime;
 
 svg4everybody();
 
@@ -99,8 +112,8 @@ function initMain() {
     $($starSlider).removeClass('owl-carousel');
     $brandsList.removeClass('owl-carousel');
 
-    starSlider = new MreSlider($starSlider);
-    articlesSlider = new MreSlider($bestArticles);
+    // starSlider = new MreSlider($starSlider);
+    // articlesSlider = new MreSlider($bestArticles);
   }
 
   function init() {
@@ -146,6 +159,437 @@ function initMain() {
         center: false,
         margin: 0,
         nav: true,
+      },
+    },
+  });
+
+
+  // .add({
+  //   targets: image,
+  //   translateX: {
+  //     value: 112,
+  //     easing: 'linear',
+  //   },
+  //   duration: 11420,
+  // });
+
+  const heroSlider = new Swiper('.hero-slider', {
+    slidesPerView: 1,
+    slidesPerColumn: 1,
+    slidesPerGroup: 1,
+    watchSlidesProgress: true,
+    spaceBetween: 0,
+    virtualTranslate: true,
+    // effect: 'fade',
+    runCallbacksOnInit: false,
+    // watchSlidesVisibility: true,
+    resistance: false,
+    // loop: true,
+
+
+    // autoplay: {
+    //   delay: 5000,
+    //   disableOnInteraction: false,
+    //   waitForTransition: false,
+    // },
+
+    containerModifierClass: 'slider_',
+    slideClass: 'slider__slide',
+    slideBlankClass: 'slider__slide_invisible-blank',
+    slideActiveClass: 'slider__slide_active',
+    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+    slideVisibleClass: 'slider__slide_visible',
+    slideDuplicateClass: 'slider__slide_duplicate',
+    slideNextClass: 'slider__slide_next',
+    slideDuplicateNextClass: 'slider__slide_duplicate-next',
+    slidePrevClass: 'slider__slide_prev',
+    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+    wrapperClass: 'slider__wrapper',
+
+
+    pagination: {
+      el: '.hero-slider-control',
+      clickable: true,
+      bulletClass: 'hero-slider-control__item',
+      bulletActiveClass: 'active',
+
+      renderBullet(index, className) {
+        return `
+            <div class="${className}">
+              <div class="hero-slider-control__title">Комбо-наборы</div>
+              <div class="hero-slider-control__loader">
+                <div class="hero-slider-control__loader-line"></div>
+              </div>
+            </div>`;
+      },
+    },
+
+    on: {
+      beforeInit() {
+        const swiper = this;
+        // if (swiper.params.effect !== 'fade') return;
+        swiper.classNames.push(`${swiper.params.containerModifierClass}fade`);
+      },
+      init() {
+        const swiper = this;
+        const { slides } = swiper;
+
+        this.animateSlide = [];
+
+        for (let i = 0; i < slides.length; i += 1) {
+          const $slideEl = swiper.slides.eq(i);
+
+          const slide = $slideEl[0].querySelector('.hero-slider__slide');
+
+          const leftLine = slide.querySelector('.hero-slider__left-line');
+          const rightLine = slide.querySelector('.hero-slider__right-line');
+          const image = slide.querySelector('.hero-slider__img');
+          const text = slide.querySelector('.hero-slider__inner');
+
+          // console.log(slide);
+
+          const transformStyle = window.getComputedStyle(leftLine).transform;
+
+          leftLine.style.transform = transformStyle;
+          rightLine.style.transform = transformStyle;
+
+
+          const slideAnimation = anime.timeline({
+            autoplay: false,
+            complete(anim) {
+              anim.reset();
+              // console.log(anim);
+              if (!swiper.isEnd) {
+                swiper.slideNext();
+              } else {
+                swiper.slideTo(0);
+              }
+            },
+          });
+
+          slideAnimation
+            .add({
+              targets: slide,
+              translateX: {
+                value: [-1579, 0],
+                easing: 'spring(1, 100, 20, 0)',
+              },
+              opacity: {
+                value: [0, 1],
+                easing: 'cubicBezier(.25, .1, .25, 1)',
+                duration: 400,
+              },
+            })
+            .add({ // Заголовки
+              targets: text,
+              translateX: [-160, 0],
+              scale: [1.3, 1],
+              easing: 'spring(1, 100, 20, 0)',
+            }, 200)
+            .add({ // Правая полоска
+              targets: rightLine,
+              translateX: {
+                value: [-670, 0],
+                easing: 'spring(1, 100, 20, 0)',
+              },
+              opacity: {
+                value: [0, 1],
+                easing: 'cubicBezier(.25, .1, .25, 1)',
+                duration: 300,
+              },
+            }, 300)
+            .add({ // Левая полоска
+              targets: leftLine,
+              translateX: {
+                value: [-670, 0],
+                easing: 'spring(1, 100, 20, 0)',
+              },
+              opacity: {
+                value: [0, 1],
+                easing: 'cubicBezier(.25, .1, .25, 1)',
+                duration: 300,
+              },
+            }, 400)
+            .add({
+              targets: image,
+              translateX: {
+                value: [-110, 0],
+                easing: 'spring(1, 100, 20, 0)',
+              },
+              opacity: {
+                value: [0, 1],
+                easing: 'cubicBezier(.25, .1, .25, 1)',
+                duration: 300,
+              },
+            }, 800)
+            .add({
+              targets: image,
+              translateX: {
+                value: 112,
+                easing: 'linear',
+              },
+              duration: 11142,
+            });
+
+          // slideAnimation.finished.then(function () {
+          //   console.log('конец', i)
+          //   if (!swiper.isEnd) {
+          //     swiper.slideNext();
+          //   } else {
+          //     swiper.slideTo(0);
+          //   }
+          // });
+
+          // slideAnimation.add({
+          //   targets: image,
+          //   translateX: {
+          //     value: 112,
+          //     easing: 'linear',
+          //   },
+          //   duration: 11420,
+          // });
+          //
+          // slideAnimation.finished.then(function () {
+          //   console.log('Вот сейчас прям совсем все');
+          //   if (!swiper.isEnd) {
+          //     swiper.slideNext(swiper.params.speed, true, true);
+          //     // swiper.emit('autoplay');
+          //   } else if (!swiper.params.autoplay.stopOnLastSlide) {
+          //     swiper.slideTo(0, swiper.params.speed, true, true);
+          //     // swiper.emit('autoplay');
+          //   }
+          // });
+          //
+          swiper.animateSlide[i] = slideAnimation;
+        }
+
+        swiper.animateSlide[0].play();
+      },
+      // slideChange() {
+      //   // console.log('slideChange');
+      //   this.animateSlide[this.activeIndex].play();
+      // },
+      // transitionEnd() {
+      //   console.log('transitionEnd');
+      // },
+      // progress(arg) {
+      //   console.log(arg);
+      // },
+      slideChangeTransitionStart() {
+        console.log('slideChangeTransitionStart', this.activeIndex);
+        this.animateSlide[this.activeIndex].play();
+      },
+      // slideChangeTransitionEnd() {
+      //   console.log('slideChangeTransitionEnd');
+      // },
+      setTranslate() {
+        const swiper = this;
+        const { slides } = swiper;
+
+        for (let i = 0; i < slides.length; i += 1) {
+          const $slideEl = swiper.slides.eq(i);
+          const offset = $slideEl[0].swiperSlideOffset;
+          let tx = -offset;
+          if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+          let ty = 0;
+          if (!swiper.isHorizontal()) {
+            ty = tx;
+            tx = 0;
+          }
+
+          const slideOpacity = swiper.params.fadeEffect.crossFade
+            ? Math.max(1 - Math.abs($slideEl[0].progress), 0)
+            : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+
+          // console.log(i, slideOpacity);
+
+          // if (this.animateSlide) {
+          //   this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
+          // }
+
+          $slideEl
+          // .css({
+          //   opacity: slideOpacity,
+          // })
+            .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
+        }
+      },
+    },
+  });
+
+  function startHeroSlideAnimation(slide) {
+    const leftLine = slide.querySelector('.hero-slider__left-line');
+    const rightLine = slide.querySelector('.hero-slider__right-line');
+    const image = slide.querySelector('.hero-slider__img');
+    const text = slide.querySelector('.hero-slider__inner');
+
+    const transformStyle = window.getComputedStyle(leftLine).transform;
+
+    leftLine.style.transform = transformStyle;
+    rightLine.style.transform = transformStyle;
+
+
+    const animation = anime.timeline();
+
+    animation
+      .add({
+        targets: slide,
+        translateX: {
+          value: [-1579, 0],
+          easing: 'spring(1, 100, 20, 0)',
+        },
+        opacity: {
+          value: [0, 1],
+          easing: 'cubicBezier(.25, .1, .25, 1)',
+          duration: 400,
+        },
+      })
+      .add({ // Заголовки
+        targets: text,
+        translateX: [-160, 0],
+        scale: [1.3, 1],
+        easing: 'spring(1, 100, 20, 0)',
+      }, 200)
+      .add({ // Правая полоска
+        targets: rightLine,
+        translateX: {
+          value: [-670, 0],
+          easing: 'spring(1, 100, 20, 0)',
+        },
+        opacity: {
+          value: [0, 1],
+          easing: 'cubicBezier(.25, .1, .25, 1)',
+          duration: 300,
+        },
+      }, 300)
+      .add({ // Левая полоска
+        targets: leftLine,
+        translateX: {
+          value: [-670, 0],
+          easing: 'spring(1, 100, 20, 0)',
+        },
+        opacity: {
+          value: [0, 1],
+          easing: 'cubicBezier(.25, .1, .25, 1)',
+          duration: 300,
+        },
+      }, 400)
+      .add({
+        targets: image,
+        translateX: {
+          value: [-110, 0],
+          easing: 'spring(1, 100, 20, 0)',
+        },
+        opacity: {
+          value: [0, 1],
+          easing: 'cubicBezier(.25, .1, .25, 1)',
+          duration: 300,
+        },
+      }, 800)
+      .add({
+        targets: image,
+        translateX: {
+          value: 112,
+          easing: 'linear',
+        },
+        duration: 11420,
+      });
+
+    return animation;
+  }
+
+  const starsSlider = new Swiper('#stars-slider', {
+    slidesPerView: 'auto',
+    freeMode: true,
+    freeModeMomentum: false,
+    // freeModeSticky: false,
+
+    touchEventsTarget: 'wrapper',
+
+    containerModifierClass: 'slider_',
+    slideClass: 'slider__slide',
+    slideBlankClass: 'slider__slide_invisible-blank',
+    slideActiveClass: 'slider__slide_active',
+    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+    slideVisibleClass: 'slider__slide_visible',
+    slideDuplicateClass: 'slider__slide_duplicate',
+    slideNextClass: 'slider__slide_next',
+    slideDuplicateNextClass: 'slider__slide_duplicate-next',
+    slidePrevClass: 'slider__slide_prev',
+    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+    wrapperClass: 'slider__wrapper',
+
+    scrollbar: {
+      el: '.slider__scrollbar',
+      hide: false,
+      draggable: true,
+      dragSize: 80,
+      dragClass: 'slider__track',
+      snapOnRelease: false,
+    },
+    on: {
+      setTranslate(arg) {
+        arg = (arg / 90) + 1;
+        if (arg < 0) arg = 0;
+        if (arg > 1) arg = 1;
+
+        document.querySelector('.stars__info').style.opacity = arg;
+        this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+        this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+      },
+      touchEnd() {
+        this.slideTo(0, 1000);
+      },
+      scrollbarDragEnd() {
+        this.slideTo(0, 1000);
+      },
+    },
+  });
+
+  const bestArticlesSlider = new Swiper('.best-articles__slider', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+
+    touchEventsTarget: 'wrapper',
+
+    containerModifierClass: 'slider_',
+    slideClass: 'slider__slide',
+    slideBlankClass: 'slider__slide_invisible-blank',
+    slideActiveClass: 'slider__slide_active',
+    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+    slideVisibleClass: 'slider__slide_visible',
+    slideDuplicateClass: 'slider__slide_duplicate',
+    slideNextClass: 'slider__slide_next',
+    slideDuplicateNextClass: 'slider__slide_duplicate-next',
+    slidePrevClass: 'slider__slide_prev',
+    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+    wrapperClass: 'slider__wrapper',
+
+
+    mousewheel: {
+      forceToAxis: true,
+      invert: true,
+      releaseOnEdges: true,
+    },
+
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.slider__scrollbar',
+      // hide: false,
+      draggable: true,
+      dragSize: 80,
+      dragClass: 'slider__track',
+      // snapOnRelease: false,
+    },
+
+    on: {
+      setTranslate(arg) {
+        arg = (arg / 90) + 1;
+        if (arg < 0) arg = 0;
+        if (arg > 1) arg = 1;
+
+        this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+        this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
       },
     },
   });
