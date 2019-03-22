@@ -53,7 +53,7 @@ function mainSlider() {
 
 
 function initMain() {
-  let createdForMobile = $(window).width() >= 768;
+  const createdForMobile = $(window).width() >= 768;
 
   const $brandsList = $('.brands__list');
   const $starSlider = document.getElementById('stars-slider');
@@ -116,19 +116,19 @@ function initMain() {
     // articlesSlider = new MreSlider($bestArticles);
   }
 
-  function init() {
-    if ($(window).width() < 768 && !createdForMobile) {
-      initMobile();
-      createdForMobile = true;
-    } else if ($(window).width() >= 768 && createdForMobile) {
-      initDesktop();
-      createdForMobile = false;
-    }
-  }
+  // function init() {
+  //   if ($(window).width() < 768 && !createdForMobile) {
+  //     initMobile();
+  //     createdForMobile = true;
+  //   } else if ($(window).width() >= 768 && createdForMobile) {
+  //     initDesktop();
+  //     createdForMobile = false;
+  //   }
+  // }
 
-  init();
-  $(window).on('resize', init);
-  mainSlider();
+  // init();
+  // $(window).on('resize', init);
+  // mainSlider();
 
 
   $('.set-block__slider').owlCarousel({
@@ -414,6 +414,7 @@ function initMain() {
             .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
         }
       },
+
     },
   });
 
@@ -498,7 +499,7 @@ function initMain() {
     return animation;
   }
 
-  const starsSlider = new Swiper('#stars-slider', {
+  new Swiper('#stars-slider', {
     slidesPerView: 'auto',
     freeMode: true,
     freeModeMomentum: false,
@@ -519,6 +520,12 @@ function initMain() {
     slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
     wrapperClass: 'slider__wrapper',
 
+    mousewheel: {
+      forceToAxis: true,
+      invert: true,
+      releaseOnEdges: true,
+    },
+
     scrollbar: {
       el: '.slider__scrollbar',
       hide: false,
@@ -527,28 +534,40 @@ function initMain() {
       dragClass: 'slider__track',
       snapOnRelease: false,
     },
+
     on: {
       setTranslate(arg) {
-        arg = (arg / 90) + 1;
-        if (arg < 0) arg = 0;
-        if (arg > 1) arg = 1;
+        if (document.documentElement.clientWidth > 768) {
+          arg = (arg / 90) + 1;
+          if (arg < 0) arg = 0;
+          if (arg > 1) arg = 1;
 
-        document.querySelector('.stars__info').style.opacity = arg;
-        this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-        this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+          document.querySelector('.stars__info').style.opacity = arg;
+          this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+          this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+        }
       },
+
+      touchStart() {
+        this.scrollbar.el.classList.add('active');
+      },
+      scrollbarDragStart() {
+        this.scrollbar.el.classList.add('active');
+      },
+
       touchEnd() {
-        this.slideTo(0, 1000);
+        this.scrollbar.el.classList.remove('active');
       },
       scrollbarDragEnd() {
-        this.slideTo(0, 1000);
+        this.scrollbar.el.classList.remove('active');
       },
     },
   });
-
-  const bestArticlesSlider = new Swiper('.best-articles__slider', {
+  new Swiper('.best-articles__slider', {
     slidesPerView: 'auto',
-    spaceBetween: 24,
+    freeMode: true,
+    freeModeMomentum: false,
+    // spaceBetween: 24,
 
     touchEventsTarget: 'wrapper',
 
@@ -572,24 +591,42 @@ function initMain() {
       releaseOnEdges: true,
     },
 
-    // And if we need scrollbar
     scrollbar: {
       el: '.slider__scrollbar',
-      // hide: false,
+      hide: false,
       draggable: true,
       dragSize: 80,
       dragClass: 'slider__track',
-      // snapOnRelease: false,
+      snapOnRelease: false,
     },
 
-    on: {
-      setTranslate(arg) {
-        arg = (arg / 90) + 1;
-        if (arg < 0) arg = 0;
-        if (arg > 1) arg = 1;
+    breakpointsInverse: true,
+    breakpoints: {
+      on: {
+        setTranslate(arg) {
+          if (document.documentElement.clientWidth > 768) {
+            arg = (arg / 90) + 1;
+            if (arg < 0) arg = 0;
+            if (arg > 1) arg = 1;
 
-        this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-        this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+            this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+            this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+          }
+        },
+
+        touchStart() {
+          this.scrollbar.el.classList.add('active');
+        },
+        scrollbarDragStart() {
+          this.scrollbar.el.classList.add('active');
+        },
+
+        touchEnd() {
+          this.scrollbar.el.classList.remove('active');
+        },
+        scrollbarDragEnd() {
+          this.scrollbar.el.classList.remove('active');
+        },
       },
     },
   });
