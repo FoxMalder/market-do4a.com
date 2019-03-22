@@ -7321,10 +7321,28 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   }
 }
 
+.hero-slider .slider__slide {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.hero-slider .slider__slide_active {
+  z-index: 1;
+}
+
 .hero-slider__slide {
   padding-top: 45px;
   background-color: #1B1B1B;
   height: 100%;
+  z-index: 0;
+}
+
+.slider__slide_active .hero-slider__slide {
+  z-index: 1;
 }
 
 .hero-slider__left-line {

@@ -68,10 +68,30 @@ $section-padding-bottom: 30px;
     height: 600px;
   }
 
+  .slider__wrapper {
+
+  }
+  .slider__slide {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    z-index: 0;
+    &_active {
+      z-index: 1;
+    }
+  }
+
   &__slide {
     padding-top: 45px;
     background-color: #1B1B1B;
     height: 100%;
+    z-index: 0;
+    .slider__slide_active & {
+      z-index: 1;
+    }
   }
 
   &__left-line {
