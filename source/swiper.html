@@ -926,32 +926,7 @@
         </div>
       </div>
     </div>
-    <div class="hero-slider-control">
-      <div class="hero-slider-control__item active" data-slide="1">
-        <div class="hero-slider-control__title">Комбо-наборы</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-      <div class="hero-slider-control__item" data-slide="2">
-        <div class="hero-slider-control__title">Баллы за покупки</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-      <div class="hero-slider-control__item" data-slide="3">
-        <div class="hero-slider-control__title">-50% на протеины</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-      <div class="hero-slider-control__item" data-slide="4">
-        <div class="hero-slider-control__title">Зарабатывай с do4a</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-    </div>
+    <div class="hero-slider-control"></div>
   </div>
   <!--section-->
   <section class="section stars">
@@ -1249,13 +1224,14 @@
 <!-- Пока в разработке - так -->
 <!--<script src="js/jquery-3.3.1.min.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>-->
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>-->
 
+<script src="js/vendor.min.js"></script>
 <script src="js/main.min.js"></script>
 
 <script>
@@ -1269,17 +1245,66 @@
   //   duration: 11420,
   // });
 
+  // const HeroSlideEffect = {
+  //   test(swiper) {
+  //     // const swiper = this;
+  //     console.log(swiper);
+  //   },
+  //   setTranslate() {
+  //     const swiper = this;
+  //     const { slides } = swiper;
+  //     for (let i = 0; i < slides.length; i += 1) {
+  //       const $slideEl = swiper.slides.eq(i);
+  //       const offset = $slideEl[0].swiperSlideOffset;
+  //       let tx = -offset;
+  //       if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+  //       let ty = 0;
+  //       if (!swiper.isHorizontal()) {
+  //         ty = tx;
+  //         tx = 0;
+  //       }
+  //       const slideOpacity = swiper.params.fadeEffect.crossFade
+  //         ? Math.max(1 - Math.abs($slideEl[0].progress), 0)
+  //         : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+  //       $slideEl
+  //         .css({
+  //           opacity: slideOpacity,
+  //         })
+  //         .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
+  //     }
+  //   },
+  //   setTransition(duration) {
+  //     const swiper = this;
+  //     const { slides, $wrapperEl } = swiper;
+  //     slides.transition(duration);
+  //     if (swiper.params.virtualTranslate && duration !== 0) {
+  //       let eventTriggered = false;
+  //       slides.transitionEnd(() => {
+  //         if (eventTriggered) return;
+  //         if (!swiper || swiper.destroyed) return;
+  //         eventTriggered = true;
+  //         swiper.animating = false;
+  //         const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
+  //         for (let i = 0; i < triggerEvents.length; i += 1) {
+  //           $wrapperEl.trigger(triggerEvents[i]);
+  //         }
+  //       });
+  //     }
+  //   },
+  // };
+
   var heroSlider = new Swiper('.hero-slider', {
-    slidesPerView: 1,
-    slidesPerColumn: 1,
-    slidesPerGroup: 1,
-    watchSlidesProgress: true,
-    spaceBetween: 0,
-    virtualTranslate: true,
-    // effect: 'fade',
+    // slidesPerView: 1,
+    // slidesPerColumn: 1,
+    // slidesPerGroup: 1,
+    // watchSlidesProgress: true,
+    // spaceBetween: 0,
+    // virtualTranslate: true,
+    touchEventsTarget: 'wrapper',
+    effect: 'hero-slider',
     // runCallbacksOnInit: false,
     // watchSlidesVisibility: true,
-    resistance: false,
+    // resistance: false,
     // loop: true,
     // speed: 0,
 
@@ -1303,6 +1328,9 @@
     wrapperClass: 'slider__wrapper',
 
 
+    // heroSliderEffect: {
+    //   duration: 1000,
+    // },
     pagination: {
       el: '.hero-slider-control',
       clickable: true,
@@ -1312,7 +1340,7 @@
       renderBullet: function (index, className) {
         return `
             <div class="${className}">
-              <div class="hero-slider-control__title">Комбо-наборы</div>
+              <div class="hero-slider-control__title">${this.slides[index].querySelector('.hero-slider__title').innerHTML}</div>
               <div class="hero-slider-control__loader">
                 <div class="hero-slider-control__loader-line"></div>
               </div>
@@ -1320,248 +1348,175 @@
       },
     },
 
-    on: {
-      // beforeInit() {
-      //   const swiper = this;
-      //   // if (swiper.params.effect !== 'fade') return;
-      //   swiper.classNames.push(`${swiper.params.containerModifierClass}fade`);
-      // },
-      init() {
-        const swiper = this;
-        const { slides } = swiper;
+    // heroSliderEffect: {
+    //   test: HeroSlideEffect.test.bind(this),
+    //   setTranslate: HeroSlideEffect.setTranslate.bind(this),
+    //   setTransition: HeroSlideEffect.setTransition.bind(this),
+    // },
 
-        this.animateSlide = [];
-
-        for (let i = 0; i < slides.length; i += 1) {
-          const $slideEl = swiper.slides.eq(i);
-          const slide = $slideEl[0].querySelector('.hero-slider__slide');
-          swiper.animateSlide[i] = startHeroSlideAnimation(slide);
-        }
-
-        // swiper.animateSlide[0].play();
-      },
-      // transitionStart() {
-      //   console.log('Start anim');
-      // },
-      // transitionEnd() {
-      //   console.log('End anim');
-      // },
-      // slideChange() {
-      //   // console.log('slideChange');
-      //   this.animateSlide[this.activeIndex].play();
-      // },
-      // transitionEnd() {
-      //   console.log('transitionEnd');
-      // },
-      // progress(arg) {
-      //   console.log(arg);
-      // },
-      // slideChange() {
-      //   console.log('change');
-      // },
-      slideChangeTransitionStart() {
-        console.log(`slideChangeTransitionStart, active:${this.activeIndex}, prev: ${this.previousIndex}`);
-        // this.animateSlide[this.activeIndex].play();
-        const swiper = this;
-        const { slides } = swiper;
-        for (let i = 0; i < slides.length; i += 1) {
-          if (this.animateSlide) {
-            // this.animateSlide[i].reset();
-            this.animateSlide[i].seek(0);
-
-            if (i === swiper.activeIndex) {
-              this.animateSlide[i].play();
-              // this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
-            } else if (i === swiper.previousIndex) {
-              this.animateSlide[i].seek(this.animateSlide[i].duration);
-            }
-          }
-        }
-      },
-      slideChangeTransitionEnd() {
-        console.log('slideChangeTransitionEnd');
-      },
-      setTranslate() {
-
-        console.log(`setTranslate, active:${this.activeIndex}, prev: ${this.previousIndex}`);
-        const swiper = this;
-        const { slides } = swiper;
-        // console.log(`setTranslate, active:${this.activeIndex}, prev: ${this.previousIndex}`);
-        for (let i = 0; i < slides.length; i += 1) {
-          // const slideOpacity = swiper.params.fadeEffect.crossFade
-          //   ? Math.max(1 - Math.abs($slideEl[0].progress), 0)
-          //   : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
-          //
-          // console.log($slideEl[0].progress, slideOpacity);
-          // if (this.animateSlide) {
-          //   this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
-          // }
-
-          // if (this.animateSlide) {
-          //   // this.animateSlide[i].reset();
-          //   this.animateSlide[i].seek(0);
-          //
-          //   if (i === swiper.activeIndex) {
-          //     this.animateSlide[i].play();
-          //     // this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
-          //   } else if (i === swiper.previousIndex) {
-          //     this.animateSlide[i].seek(1);
-          //   }
-          // }
-
-          // $slideEl
-          //   // .css({
-          //   //   opacity: slideOpacity,
-          //   //   // zIndex: sliderZIndex,
-          //   // })
-          //   .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
-        }
-
-        // for (let i = 0; i < slides.length; i += 1) {
-        //   const $slideEl = swiper.slides.eq(i);
-        //   const offset = $slideEl[0].swiperSlideOffset;
-        //   let tx = -offset;
-        //   if (!swiper.params.virtualTranslate) tx -= swiper.translate;
-        //   let ty = 0;
-        //   if (!swiper.isHorizontal()) {
-        //     ty = tx;
-        //     tx = 0;
-        //   }
-        //
-        //   const slideOpacity = swiper.params.fadeEffect.crossFade
-        //     ? Math.max(1 - Math.abs($slideEl[0].progress), 0)
-        //     : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
-        //
-        //   // console.log('setTranslate', i, slideOpacity);
-        //
-        //   if (this.animateSlide) {
-        //     this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
-        //   }
-        //
-        //   // console.log($slideEl[0].progress);
-        //   // const sliderZIndex = $slideEl[0].progress ? 0 : 1;
-        //   $slideEl
-        //     .css({
-        //       opacity: slideOpacity,
-        //       // zIndex: sliderZIndex,
-        //     })
-        //     .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
-        //   // console.log($slideEl);
-        //
-        // }
-      },
-      setTransition(duration) {
-        console.log(`setTransition, active:${this.activeIndex}, prev: ${this.previousIndex}`);
-      //   console.log('setTransition');
-      //   const swiper = this;
-      //   const { slides, $wrapperEl } = swiper;
-      //   slides.transition(duration);
-      //   if (swiper.params.virtualTranslate && duration !== 0) {
-      //     let eventTriggered = false;
-      //     slides.transitionEnd(() => {
-      //       if (eventTriggered) return;
-      //       if (!swiper || swiper.destroyed) return;
-      //       eventTriggered = true;
-      //       swiper.animating = false;
-      //       const triggerEvents = ['webkitTransitionEnd', 'transitionend'];
-      //       for (let i = 0; i < triggerEvents.length; i += 1) {
-      //         $wrapperEl.trigger(triggerEvents[i]);
-      //       }
-      //     });
-      //   }
-      },
-      update() {
-        console.log('update');
-      }
-
-    },
+    // on: {
+    //   init() {
+    //     console.log('sdfdsf');
+    //     HeroSlideEffect.test(this);
+    //     // this.heroSliderEffect.test();
+    //     // swiper.fadeEffect.setTranslate();
+    //   //   const swiper = this;
+    //   //   // if (swiper.params.effect !== 'fade') return;
+    //   //   swiper.classNames.push(`${swiper.params.containerModifierClass}fade`);
+    //   },
+    //   // init() {
+    //   //   const swiper = this;
+    //   //   const { slides } = swiper;
+    //   //
+    //   //   this.animateSlide = [];
+    //   //
+    //   //   for (let i = 0; i < slides.length; i += 1) {
+    //   //     const $slideEl = swiper.slides.eq(i);
+    //   //     const slide = $slideEl[0].querySelector('.hero-slider__slide');
+    //   //     swiper.animateSlide[i] = startHeroSlideAnimation(slide);
+    //   //   }
+    //   //
+    //   //   // swiper.animateSlide[0].play();
+    //   // },
+    //   // transitionStart() {
+    //   //   console.log('Start anim');
+    //   // },
+    //   // transitionEnd() {
+    //   //   console.log('End anim');
+    //   // },
+    //   // slideChange() {
+    //   //   // console.log('slideChange');
+    //   //   this.animateSlide[this.activeIndex].play();
+    //   // },
+    //   // transitionEnd() {
+    //   //   console.log('transitionEnd');
+    //   // },
+    //   // progress(arg) {
+    //   //   console.log(arg);
+    //   // },
+    //   // slideChange() {
+    //   //   console.log('change');
+    //   // },
+    //   // slideChangeTransitionStart() {
+    //   //   console.log(`slideChangeTransitionStart, active:${this.activeIndex}, prev: ${this.previousIndex}`);
+    //   //   // this.animateSlide[this.activeIndex].play();
+    //   //   const swiper = this;
+    //   //   const { slides } = swiper;
+    //   //   for (let i = 0; i < slides.length; i += 1) {
+    //   //     if (this.animateSlide) {
+    //   //       // this.animateSlide[i].reset();
+    //   //       this.animateSlide[i].seek(0);
+    //   //
+    //   //       if (i === swiper.activeIndex) {
+    //   //         this.animateSlide[i].play();
+    //   //         // this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
+    //   //       } else if (i === swiper.previousIndex) {
+    //   //         this.animateSlide[i].seek(this.animateSlide[i].duration);
+    //   //       }
+    //   //     }
+    //   //   }
+    //   // },
+    //   slideChangeTransitionEnd() {
+    //     console.log('slideChangeTransitionEnd');
+    //   },
+    //   setTranslate() {
+    //     // this.heroSliderEffect.test();
+    //   }
+    //   //
+    //   //   console.log(`setTranslate, active:${this.activeIndex}, prev: ${this.previousIndex}`);
+    //   //
+    //   //   const swiper = this;
+    //   //   const { slides } = swiper;
+    //   //
+    //   //   for (let i = 0; i < slides.length; i += 1) {
+    //   //     const $slideEl = swiper.slides.eq(i);
+    //   //
+    //   //     const slideOpacity = swiper.params.fadeEffect.crossFade
+    //   //       ? Math.max(1 - Math.abs($slideEl[0].progress), 0)
+    //   //       : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+    //   //
+    //   //     console.log($slideEl[0].progress, slideOpacity);
+    //   //     if (this.animateSlide) {
+    //   //       this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
+    //   //     }
+    //   //
+    //   //     // if (this.animateSlide) {
+    //   //     //   // this.animateSlide[i].reset();
+    //   //     //   this.animateSlide[i].seek(0);
+    //   //     //
+    //   //     //   if (i === swiper.activeIndex) {
+    //   //     //     this.animateSlide[i].play();
+    //   //     //     // this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
+    //   //     //   } else if (i === swiper.previousIndex) {
+    //   //     //     this.animateSlide[i].seek(1);
+    //   //     //   }
+    //   //     // }
+    //   //
+    //   //     // $slideEl
+    //   //     //   // .css({
+    //   //     //   //   opacity: slideOpacity,
+    //   //     //   //   // zIndex: sliderZIndex,
+    //   //     //   // })
+    //   //     //   .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
+    //   //   }
+    //   //
+    //   //   // for (let i = 0; i < slides.length; i += 1) {
+    //   //   //   const $slideEl = swiper.slides.eq(i);
+    //   //   //   const offset = $slideEl[0].swiperSlideOffset;
+    //   //   //   let tx = -offset;
+    //   //   //   if (!swiper.params.virtualTranslate) tx -= swiper.translate;
+    //   //   //   let ty = 0;
+    //   //   //   if (!swiper.isHorizontal()) {
+    //   //   //     ty = tx;
+    //   //   //     tx = 0;
+    //   //   //   }
+    //   //   //
+    //   //   //   const slideOpacity = swiper.params.fadeEffect.crossFade
+    //   //   //     ? Math.max(1 - Math.abs($slideEl[0].progress), 0)
+    //   //   //     : 1 + Math.min(Math.max($slideEl[0].progress, -1), 0);
+    //   //   //
+    //   //   //   // console.log('setTranslate', i, slideOpacity);
+    //   //   //
+    //   //   //   if (this.animateSlide) {
+    //   //   //     this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
+    //   //   //   }
+    //   //   //
+    //   //   //   // console.log($slideEl[0].progress);
+    //   //   //   // const sliderZIndex = $slideEl[0].progress ? 0 : 1;
+    //   //   //   $slideEl
+    //   //   //     .css({
+    //   //   //       opacity: slideOpacity,
+    //   //   //       // zIndex: sliderZIndex,
+    //   //   //     })
+    //   //   //     .transform(`translate3d(${tx}px, ${ty}px, 0px)`);
+    //   //   //   // console.log($slideEl);
+    //   //   //
+    //   //   // }
+    //   // },
+    //   // setTransition(duration) {
+    //   //   console.log(`setTransition, active:${this.activeIndex}, prev: ${this.previousIndex}`);
+    //   //   // this.animateSlide[this.activeIndex].play();
+    //   //   const swiper = this;
+    //   //   const { slides } = swiper;
+    //   //   for (let i = 0; i < slides.length; i += 1) {
+    //   //     if (this.animateSlide) {
+    //   //       // this.animateSlide[i].reset();
+    //   //       this.animateSlide[i].seek(0);
+    //   //
+    //   //       if (i === swiper.activeIndex) {
+    //   //         this.animateSlide[i].play();
+    //   //         // this.animateSlide[i].seek(this.animateSlide[i].duration * slideOpacity);
+    //   //       } else if (i === swiper.previousIndex) {
+    //   //         this.animateSlide[i].seek(this.animateSlide[i].duration);
+    //   //       }
+    //   //     }
+    //   //   }
+    //   //
+    //   // },
+    //
+    // },
   });
 
-  function startHeroSlideAnimation(slide, func) {
-    const leftLine = slide.querySelector('.hero-slider__left-line');
-    const rightLine = slide.querySelector('.hero-slider__right-line');
-    const image = slide.querySelector('.hero-slider__img');
-    const text = slide.querySelector('.hero-slider__inner');
-
-    const transformStyle = window.getComputedStyle(leftLine).transform;
-
-    leftLine.style.transform = transformStyle;
-    rightLine.style.transform = transformStyle;
-
-
-    let animation = anime.timeline({
-      autoplay: false,
-      complete: func,
-    });
-
-    animation
-      .add({
-        targets: slide,
-        translateX: {
-          value: [-1579, 0],
-          easing: 'spring(1, 100, 20, 0)',
-        },
-        opacity: {
-          value: [0, 1],
-          easing: 'cubicBezier(.25, .1, .25, 1)',
-          duration: 400,
-        },
-      })
-      .add({ // Заголовки
-        targets: text,
-        translateX: [-160, 0],
-        scale: [1.3, 1],
-        easing: 'spring(1, 100, 20, 0)',
-      }, 200)
-      .add({ // Правая полоска
-        targets: rightLine,
-        translateX: {
-          value: [-670, 0],
-          easing: 'spring(1, 100, 20, 0)',
-        },
-        opacity: {
-          value: [0, 1],
-          easing: 'cubicBezier(.25, .1, .25, 1)',
-          duration: 300,
-        },
-      }, 300)
-      .add({ // Левая полоска
-        targets: leftLine,
-        translateX: {
-          value: [-670, 0],
-          easing: 'spring(1, 100, 20, 0)',
-        },
-        opacity: {
-          value: [0, 1],
-          easing: 'cubicBezier(.25, .1, .25, 1)',
-          duration: 300,
-        },
-      }, 400)
-      .add({
-        targets: image,
-        translateX: {
-          value: [-110, 0],
-          easing: 'spring(1, 100, 20, 0)',
-        },
-        opacity: {
-          value: [0, 1],
-          easing: 'cubicBezier(.25, .1, .25, 1)',
-          duration: 300,
-        },
-      }, 800);
-
-    // animation
-    //   .add({
-    //     targets: image,
-    //     translateX: {
-    //       value: 112,
-    //       easing: 'linear',
-    //     },
-    //     duration: 11420,
-    //   });
-
-    return animation;
-  }
 
   var starsSlider = new Swiper('#stars-slider', {
     slidesPerView: 'auto',

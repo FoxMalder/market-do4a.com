@@ -7,9 +7,9 @@
   <title>Market</title>
   
   <link rel="stylesheet" href="css/main.min.css">
-  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-  
-  
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&mode=debug"></script>
+
+
 </head>
 <body class="main">
 <header class="header">
@@ -340,10 +340,10 @@
                       </div>
                       <input type="number" class="input-counter" min="1" max="100" value="2">
                       <!--<div class="input-counter">-->
-                        <!--<button class="input-counter__down">-</button>-->
-                        <!--<span class="input-counter__count">2</span>-->
-                        <!--<button class="input-counter__up">+</button>-->
-                        <!--<input type="hidden" class="input-counter" value="2">-->
+                      <!--<button class="input-counter__down">-</button>-->
+                      <!--<span class="input-counter__count">2</span>-->
+                      <!--<button class="input-counter__up">+</button>-->
+                      <!--<input type="hidden" class="input-counter" value="2">-->
                       <!--</div>-->
                     </div>
                   </div>
@@ -366,10 +366,10 @@
                       </div>
                       <input type="number" class="input-counter" min="1" max="100" value="2">
                       <!--<div class="input-counter">-->
-                        <!--<button class="input-counter__down">-</button>-->
-                        <!--<span class="input-counter__count">2</span>-->
-                        <!--<button class="input-counter__up">+</button>-->
-                        <!--<input type="hidden" class="input-counter" value="2">-->
+                      <!--<button class="input-counter__down">-</button>-->
+                      <!--<span class="input-counter__count">2</span>-->
+                      <!--<button class="input-counter__up">+</button>-->
+                      <!--<input type="hidden" class="input-counter" value="2">-->
                       <!--</div>-->
                     </div>
                   </div>
@@ -926,32 +926,7 @@
         </div>
       </div>
     </div>
-    <div class="hero-slider-control">
-      <div class="hero-slider-control__item active" data-slide="1">
-        <div class="hero-slider-control__title">Комбо-наборы</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-      <div class="hero-slider-control__item" data-slide="2">
-        <div class="hero-slider-control__title">Баллы за покупки</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-      <div class="hero-slider-control__item" data-slide="3">
-        <div class="hero-slider-control__title">-50% на протеины</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-      <div class="hero-slider-control__item" data-slide="4">
-        <div class="hero-slider-control__title">Зарабатывай с do4a</div>
-        <div class="hero-slider-control__loader">
-          <div class="hero-slider-control__loader-line" style="transition-duration: 5s"></div>
-        </div>
-      </div>
-    </div>
+    <div class="hero-slider-control"></div>
   </div>
   
   <div class="benefits benefits_first">
@@ -1972,6 +1947,7 @@
   </div>
 </footer>
 
+
 <form class="auth" id="sign-in" style="display: none">
   <div class="auth__title">Войти на сайт</div>
   <div class="auth__link auth__link_no-account">
@@ -2050,25 +2026,222 @@
 <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">-->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>-->
 
+
+<script src="js/vendor.min.js"></script> 
 <script src="js/main.min.js"></script>
 <script>
   // Функция ymaps.ready() будет вызвана, когда
   // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+
   ymaps.ready(init);
 
   function init() {
     // Создание карты.
-    var myMap = new ymaps.Map('map', {
-      // Координаты центра карты.
-      // Порядок по умолчанию: «широта, долгота».
-      // Чтобы не определять координаты центра карты вручную,
-      // воспользуйтесь инструментом Определение координат.
+    const mainPageMap = new ymaps.Map('map', {
       center: [55.76, 37.64],
-      // Уровень масштабирования. Допустимые значения:
-      // от 0 (весь мир) до 19.
       zoom: 7,
       controls: [],
     });
+
+    const objectManager = new ymaps.ObjectManager({
+      // Чтобы метки начали кластеризоваться, выставляем опцию.
+      clusterize: true,
+      // ObjectManager принимает те же опции, что и кластеризатор.
+      gridSize: 32,
+      clusterDisableClickZoom: true,
+    });
+
+    // var t = myPieChart = new ymaps.Placemark([55.76, 37.64]);
+    // mainPageMap.geoObjects
+    //   .add(myPieChart);
+
+    const template = `
+      <div class="map-balloon">
+        <div class="map-balloon__inner">
+          <div class="map-balloon__address">{{ properties.address }}</div>
+          <div class="map-balloon__tel">{{ properties.tel }}</div>
+          <div class="map-balloon__scheme">{{ properties.link }}</div>
+        </div>
+      </div>`;
+
+    const balloonLayout = ymaps.templateLayoutFactory.createClass(`
+      <div class="map-balloon ">
+        <div class="map-balloon__inner">
+          $[[options.contentLayout observeSize]]
+        </div>
+      </div>`, {
+        /**
+         * Строит экземпляр макета на основе шаблона и добавляет его в родительский HTML-элемент.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#build
+         * @function
+         * @name build
+         */
+        build: function () {
+          this.constructor.superclass.build.call(this);
+
+          this._$element = $('.map-balloon', this.getParentElement());
+
+          this.applyElementOffset();
+
+          // this._$element.find('.close')
+          //   .on('click', $.proxy(this.onCloseClick, this));
+        },
+
+        /**
+         * Удаляет содержимое макета из DOM.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/layout.templateBased.Base.xml#clear
+         * @function
+         * @name clear
+         */
+        clear: function () {
+          // this._$element.find('.close')
+          //   .off('click');
+
+          this.constructor.superclass.clear.call(this);
+        },
+
+        /**
+         * Метод будет вызван системой шаблонов АПИ при изменении размеров вложенного макета.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+         * @function
+         * @name onSublayoutSizeChange
+         */
+        onSublayoutSizeChange: function () {
+          balloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
+
+          if (!this._isElement(this._$element)) {
+            return;
+          }
+
+          this.applyElementOffset();
+
+          this.events.fire('shapechange');
+        },
+
+        /**
+         * Сдвигаем балун, чтобы "хвостик" указывал на точку привязки.
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+         * @function
+         * @name applyElementOffset
+         */
+        applyElementOffset: function () {
+          this._$element.css({
+            left: -(this._$element[0].offsetWidth / 2),
+            // top: -(this._$element[0].offsetHeight),
+            // top: -(this._$element[0].offsetHeight / 2),
+          });
+        },
+
+        // /**
+        //  * Закрывает балун при клике на крестик, кидая событие "userclose" на макете.
+        //  * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/IBalloonLayout.xml#event-userclose
+        //  * @function
+        //  * @name onCloseClick
+        //  */
+        // onCloseClick: function (e) {
+        //   e.preventDefault();
+        //
+        //   this.events.fire('userclose');
+        // },
+
+        /**
+         * Используется для автопозиционирования (balloonAutoPan).
+         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ILayout.xml#getClientBounds
+         * @function
+         * @name getClientBounds
+         * @returns {Number[][]} Координаты левого верхнего и правого нижнего углов шаблона относительно точки привязки.
+         */
+        getShape: function () {
+          if (!this._isElement(this._$element)) {
+            return balloonLayout.superclass.getShape.call(this);
+          }
+
+          var position = this._$element.position();
+
+          return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+            [position.left, position.top], [
+              position.left + this._$element[0].offsetWidth,
+              // position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight,
+              0,
+            ],
+          ]));
+        },
+
+        /**
+         * Проверяем наличие элемента (в ИЕ и Опере его еще может не быть).
+         * @function
+         * @private
+         * @name _isElement
+         * @param {jQuery} [element] Элемент.
+         * @returns {Boolean} Флаг наличия.
+         */
+        _isElement: function (element) {
+          return element && element[0];
+        },
+      },
+    );
+
+    const balloonContentLayout = ymaps.templateLayoutFactory.createClass(`
+          <div class="map-balloon__address">{{ properties.address }}</div>
+          <div class="map-balloon__tel">{{ properties.tel }}</div>
+          <div class="map-balloon__scheme">{{ properties.link }}</div>`,
+    );
+
+    objectManager.objects.options
+      .set({
+        // Опции.
+        // Необходимо указать данный тип макета.
+        iconLayout: 'default#image',
+        // Своё изображение иконки метки.
+        iconImageHref: 'img/marker.svg',
+        // Размеры метки.
+        iconImageSize: [58, 74],
+        // Смещение левого верхнего угла иконки относительно
+        // её "ножки" (точки привязки).
+        iconImageOffset: [-29, -74],
+
+        balloonShadow: false,
+        balloonLayout: balloonLayout,
+        balloonContentLayout: balloonContentLayout,
+        balloonPanelMaxMapArea: 0,
+        // balloonContentLayout: balloonLayout
+        // Не скрываем иконку при открытом балуне.
+        hideIconOnBalloonOpen: false,
+        // И дополнительно смещаем балун, для открытия над иконкой.
+        balloonOffset: [40, 15],
+      });
+
+    objectManager.objects.events
+      .add('mouseenter', function (e) {
+        e.get('target').options.set('iconImageHref', 'img/marker-selected.svg');
+      })
+      .add('mouseleave', function (e) {
+        e.get('target').options.set('iconImageHref', 'img/marker.svg');
+      });
+
+    mainPageMap.geoObjects
+      .add(objectManager);
+
+
+    let currentId = 0;
+
+    const data = {
+      type: 'Feature',
+      id: currentId++,
+      geometry: {
+        type: 'Point',
+        coordinates: [55.76, 37.64],
+      },
+      properties: {
+        address: 'ул. Невзоровых, 64к2',
+        tel: '8 (920) 028-20-44',
+        link: 'Схема проезда',
+      },
+    };
+
+
+    objectManager.add(data);
+
   }
 </script>
 </body>
