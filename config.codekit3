@@ -240,6 +240,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/node_modules/ymaps/dist/ymaps.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/node_modules/ymaps/dist/ymaps.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/package.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -1521,7 +1532,7 @@
 		"bF": 6,
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "/build/js/main.min.js",
 		"oF": 0,
@@ -1557,6 +1568,17 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "/build/js/modules/Input.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"/source/js/modules/Maps.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/js/modules/Maps.min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
@@ -3148,7 +3170,7 @@
 		"uL": 1
 		},
 	"/source/scss/main.scss": {
-		"aP": 1,
+		"aP": 0,
 		"bl": 0,
 		"dP": 10,
 		"dS": 0,
@@ -3157,7 +3179,7 @@
 		"oA": 0,
 		"oAP": "/build/css/main.min.css",
 		"oF": 0,
-		"oS": 3,
+		"oS": 1,
 		"uL": 1
 		},
 	"/source/scss/promocode.scss": {

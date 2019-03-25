@@ -26,7 +26,8 @@
     "popper.js": "^1.14.7",
     "resize-observer-polyfill": "latest",
     "svg4everybody": "^2.1.9",
-    "swiper": "^4.5.0"
+    "swiper": "^4.5.0",
+    "ymaps": "^0.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

@@ -8,21 +8,23 @@ import {
   Virtual,
   Scrollbar,
 } from 'swiper/dist/js/swiper.esm';
+
 import Header from './modules/Header';
 import Input from './modules/Input';
 import HeaderSlider from './modules/HeaderSlider';
 
+import './modules/Maps';
+
 Swiper.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual]);
 Swiper.use([HeaderSlider]);
 
-
 function initMain() {
-  const $heroSlider = document.querySelector('.hero-slider');
-  const $starSlider = document.querySelector('#stars-slider');
-  const $bestArticles = document.querySelector('.best-articles__slider');
+  const mainHeroSliderEl = document.querySelector('.hero-slider');
+  const mainStarSliderEl = document.querySelector('#stars-slider');
+  const mainBestArticlesEl = document.querySelector('.best-articles__slider');
+  const $mainSetSliderEl = $('.set-block__slider');
 
-
-  $('.set-block__slider').owlCarousel({
+  $mainSetSliderEl.owlCarousel({
     loop: true,
     items: 1,
     center: true,
@@ -33,12 +35,12 @@ function initMain() {
     margin: 10,
     navContainerClass: 'slider-nav',
     navText: [
-      '<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">\n'
-      + '<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 5.96968L7.5 5.96968L7.5 9.5498L0 5.21968L7.5 0.88955L7.5 4.46968L16.5 4.46968L16.5 5.96968Z"/>\n'
-      + '</svg>',
-      '<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">\n'
-      + '<path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M0.5 3.96978L9.5 3.96978L9.5 0.389649L17 4.71978L9.5 9.0499L9.5 5.46978L0.5 5.46978L0.5 3.96978Z"/>\n'
-      + '</svg>',
+      `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 5.96968L7.5 5.96968L7.5 9.5498L0 5.21968L7.5 0.88955L7.5 4.46968L16.5 4.46968L16.5 5.96968Z"/>
+      </svg>`,
+      `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
+        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M0.5 3.96978L9.5 3.96978L9.5 0.389649L17 4.71978L9.5 9.0499L9.5 5.46978L0.5 5.46978L0.5 3.96978Z"/>
+      </svg>`,
     ],
     navClass: [
       'btn slider-nav__button slider-nav__button_left',
@@ -55,7 +57,7 @@ function initMain() {
   });
 
 
-  new Swiper($heroSlider, {
+  const mainHeroSlider = new Swiper(mainHeroSliderEl, {
     touchEventsTarget: 'wrapper',
     effect: 'hero-slider',
     // runCallbacksOnInit: false,
@@ -104,7 +106,7 @@ function initMain() {
       },
     },
   });
-  new Swiper($starSlider, {
+  const mainStarSlider = new Swiper(mainStarSliderEl, {
     slidesPerView: 'auto',
     freeMode: true,
     freeModeMomentum: false,
@@ -168,7 +170,7 @@ function initMain() {
       },
     },
   });
-  new Swiper($bestArticles, {
+  const mainBestArticles = new Swiper(mainBestArticlesEl, {
     slidesPerView: 'auto',
     freeMode: true,
     freeModeMomentum: false,
