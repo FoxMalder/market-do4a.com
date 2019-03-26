@@ -330,13 +330,16 @@
                           </svg>
                         </button>
                       </div>
-                      <input class="input-counter" max="100" min="1" type="number" value="2">
-                      <!--<div class="input-counter">-->
-                      <!--<button class="input-counter__down">-</button>-->
-                      <!--<span class="input-counter__count">2</span>-->
-                      <!--<button class="input-counter__up">+</button>-->
-                      <!--<input type="hidden" class="input-counter" value="2">-->
-                      <!--</div>-->
+                      <!-- Prod -->
+                      <!--<input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      
+                      <!-- Dev -->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
                     </div>
                   </div>
                   <div class="h-product-item">
@@ -356,13 +359,16 @@
                           </svg>
                         </button>
                       </div>
-                      <input class="input-counter" max="100" min="1" type="number" value="2">
-                      <!--<div class="input-counter">-->
-                      <!--<button class="input-counter__down">-</button>-->
-                      <!--<span class="input-counter__count">2</span>-->
-                      <!--<button class="input-counter__up">+</button>-->
-                      <!--<input type="hidden" class="input-counter" value="2">-->
-                      <!--</div>-->
+                      <!-- Prod -->
+                      <!--<input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      
+                      <!-- dev -->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1135,7 +1141,7 @@
       <!-- /.stars__info -->
     </div>
     <div class="stars__inner ">
-      <div class="stars__slider slider" id="stars-slider">
+      <div class="stars__slider slider" data-sticky-container id="stars-slider">
         <div class="slider__wrapper">
           <div class="slider__slide stars__col star-card">
             <div class="star-card__header">
@@ -1264,20 +1270,23 @@
             </div>
           </div>
         </div>
-        <div class="slider__scrollbar">
-          <button class="slider__track">
-            <svg>
-              <use xlink:href="images/sprite.svg#track-icon"></use>
-            </svg>
-          </button>
-        </div>
         
-        <div class="slider__explanation slider__explanation_tablet">
-          Задержи пальцем и <br>тащи, чтобы увидеть <br>больше звёзд.
-        </div>
-        
-        <div class="slider__explanation slider__explanation_desktop">
-          Задержи мышкой и <br>тащи, чтобы увидеть <br>больше звёзд.
+        <div class="slider__controls" data-margin-top="150" data-sticky-class="is-sticky">
+          <div class="slider__scrollbar">
+            <button class="slider__track">
+              <svg>
+                <use xlink:href="images/sprite.svg#track-icon"></use>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="slider__explanation slider__explanation_tablet">
+            Задержи пальцем и <br>тащи, чтобы увидеть <br>больше звёзд.
+          </div>
+          
+          <div class="slider__explanation slider__explanation_desktop">
+            Задержи мышкой и <br>тащи, чтобы увидеть <br>больше звёзд.
+          </div>
         </div>
       </div>
     </div>
@@ -1670,27 +1679,27 @@
       </div>
       
       
-        <div class="slider__scrollbar">
-          <button class="slider__track">
-            <svg>
-              <use xlink:href="images/sprite.svg#track-icon"></use>
-            </svg>
-          </button>
-        </div>
-        
-        <div class="slider__explanation slider__explanation_tablet">
-          <svg height="31px" width="20px">
-            <use xlink:href="images/sprite.svg#mouse"></use>
+      <div class="slider__scrollbar">
+        <button class="slider__track">
+          <svg>
+            <use xlink:href="images/sprite.svg#track-icon"></use>
           </svg>
-          <p>Задержи пальцем и тащи, <br>чтобы увидеть больше.</p>
-        </div>
-        
-        <div class="slider__explanation slider__explanation_desktop">
-          <svg height="31px" width="20px">
-            <use xlink:href="images/sprite.svg#mouse"></use>
-          </svg>
-          <p>Задержи мышкой и тащи, <br>чтобы увидеть больше.</p>
-        </div>
+        </button>
+      </div>
+      
+      <div class="slider__explanation slider__explanation_tablet">
+        <svg height="31px" width="20px">
+          <use xlink:href="images/sprite.svg#mouse"></use>
+        </svg>
+        <p>Задержи пальцем и тащи, <br>чтобы увидеть больше.</p>
+      </div>
+      
+      <div class="slider__explanation slider__explanation_desktop">
+        <svg height="31px" width="20px">
+          <use xlink:href="images/sprite.svg#mouse"></use>
+        </svg>
+        <p>Задержи мышкой и тащи, <br>чтобы увидеть больше.</p>
+      </div>
     </div>
   </section>
   

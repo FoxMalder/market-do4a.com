@@ -3518,6 +3518,11 @@ stdout-stream@^1.4.0:
   dependencies:
     readable-stream "^2.0.1"
 
+sticky-js@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/sticky-js/-/sticky-js-1.2.0.tgz#da54ece034cc906646fca8c36bc7b5f48eec55e2"
+  integrity sha1-2lTs4DTMkGZG/KjDa8e19I7sVeI=
+
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"

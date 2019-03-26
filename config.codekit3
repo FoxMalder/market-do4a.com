@@ -229,6 +229,17 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"/node_modules/sticky-js/index.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/build/node_modules/sticky-js/index.min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/node_modules/svg4everybody/dist/svg4everybody.js": {
 		"bF": 0,
 		"ft": 64,

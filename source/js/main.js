@@ -9,6 +9,8 @@ import {
   Scrollbar,
 } from 'swiper/dist/js/swiper.esm';
 
+
+import Sticky from 'sticky-js';
 import Header from './modules/Header';
 import Input from './modules/Input';
 import HeaderSlider from './modules/HeaderSlider';
@@ -25,10 +27,6 @@ function initMain() {
   const $mainSetSliderEl = $('.set-block__slider');
 
 
-  const mainStarSliderScrollbarEl = mainStarSliderEl.querySelector('.slider__scrollbar');
-
-  let mainStarSliderScrollbarFixed = false;
-
   // document.addEventListener('scroll', () => {
   //   const mainStarSliderScrollbarRect = mainStarSliderScrollbarEl.getBoundingClientRect();
   //
@@ -44,10 +42,33 @@ function initMain() {
   //       mainStarSliderScrollbarEl.style.position = '';
   //       mainStarSliderScrollbarEl.style.left = '';
   //       mainStarSliderScrollbarEl.style.top = '';
-  //       mainStarSliderScrollbarFixed = false
+  //       mainStarSliderScrollbarFixed = false;
   //     }
   //   }
   // });
+
+
+  const mainStarSliderScrollbarEl = mainStarSliderEl.querySelector('.slider__scrollbar');
+
+  // let mainStarSliderScrollbarFixed = false;
+  // const menu = document.querySelector('.menu');
+  const menuPosition = mainStarSliderScrollbarEl.getBoundingClientRect();
+
+  // window.addEventListener('scroll', () => {
+  //   if (window.pageYOffset >= menuPosition.top) {
+  //     mainStarSliderScrollbarEl.style.position = 'fixed';
+  //     mainStarSliderScrollbarEl.style.top = '300px';
+  //     mainStarSliderScrollbarEl.style.left = `${ menuPosition.left }px`;
+  //   } else {
+  //     mainStarSliderScrollbarEl.style.position = '';
+  //     mainStarSliderScrollbarEl.style.top = '';
+  //     mainStarSliderScrollbarEl.style.left = '';
+  //   }
+  // });
+
+  const sticky = new Sticky('#stars-slider .slider__controls');
+  // const sticky = new Sticky('#stars-slider .slider__scrollbar');
+
 
   $mainSetSliderEl.owlCarousel({
     loop: true,
