@@ -290,7 +290,7 @@ function initMain() {
 
 $(document).ready(() => {
   $('[data-fancybox]').fancybox({
-    closeExisting: false,
+    closeExisting: true,
   });
 
   Header();
