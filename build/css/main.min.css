@@ -5747,6 +5747,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Bender", sans-serif;
   background-color: white;
   background-clip: padding-box;
+  box-shadow: none;
   border: 3px solid black;
   height: 60px;
   padding-left: 16px;
@@ -8368,7 +8369,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   }
   .brands__button {
     width: 600px;
-    transform: translateX(-80px) skew(-9deg);
+    transform: skew(-9deg);
   }
 }
 

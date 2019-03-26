@@ -256,6 +256,7 @@ $input-border-width: 3px;
   font-family: $font-family-bender;
   background-color: white;
   background-clip: padding-box;
+  box-shadow: none;
 
   border: $input-border-width solid black;
 
