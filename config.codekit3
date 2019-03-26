@@ -1376,14 +1376,6 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/.768.png.icloud": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 0,
-		"oAP": "/build/img/rm/.768.png.icloud",
-		"oF": 0
-		},
 	"/source/img/rm/1920.png": {
 		"ft": 32768,
 		"iS": 9844076,
@@ -1400,6 +1392,17 @@
 		"iS": 1499713,
 		"oA": 0,
 		"oAP": "/build/img/rm/320.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
+	"/source/img/rm/768.png": {
+		"ft": 32768,
+		"iS": 5468894,
+		"oA": 0,
+		"oAP": "/build/img/rm/768.png",
 		"oF": 0,
 		"oIPL": 0,
 		"opt": 1,

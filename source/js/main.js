@@ -171,15 +171,15 @@ function initMain() {
 
       on: {
         setTranslate(arg) {
-          if (document.documentElement.clientWidth > 768) {
-            arg = (arg / 90) + 1;
-            if (arg < 0) arg = 0;
-            if (arg > 1) arg = 1;
+          // if (document.documentElement.clientWidth > 768) {
+          arg = (arg / 90) + 1;
+          if (arg < 0) arg = 0;
+          if (arg > 1) arg = 1;
 
-            document.querySelector('.stars__info').style.opacity = arg;
-            this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-            this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
-          }
+          document.querySelector('.stars__info').style.opacity = arg;
+          this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+          this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+          // }
         },
 
         touchStart() {
@@ -238,14 +238,14 @@ function initMain() {
       breakpoints: {
         on: {
           setTranslate(arg) {
-            if (document.documentElement.clientWidth > 768) {
-              arg = (arg / 90) + 1;
-              if (arg < 0) arg = 0;
-              if (arg > 1) arg = 1;
+            // if (document.documentElement.clientWidth > 768) {
+            arg = (arg / 90) + 1;
+            if (arg < 0) arg = 0;
+            if (arg > 1) arg = 1;
 
-              this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-              this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
-            }
+            this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+            this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+            // }
           },
 
           touchStart() {

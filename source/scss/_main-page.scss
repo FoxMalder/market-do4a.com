@@ -57,8 +57,13 @@ $section-padding-bottom: 30px;
   background-color: #1B1B1B;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity .5s ease;
 
   height: 236px;
+  &.slider_initialized {
+    opacity: 1;
+  }
 
   @include media-breakpoint-up(md) {
     height: 438px;
@@ -1318,6 +1323,7 @@ $section-padding-bottom: 30px;
         width: 50%;
         right: 0;
         z-index: 900;
+        //display: block;
         //&::before {
         //  opacity: 0;
         //}

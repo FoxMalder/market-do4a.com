@@ -7808,7 +7808,13 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   background-color: #1B1B1B;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity .5s ease;
   height: 236px;
+}
+
+.hero-slider.slider_initialized {
+  opacity: 1;
 }
 
 @media (min-width: 768px) {

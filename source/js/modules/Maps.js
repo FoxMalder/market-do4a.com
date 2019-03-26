@@ -158,10 +158,10 @@ function initMap(el, param, data) {
       });
 
     objectManager.objects.events
-      .add('mouseenter', (e) => {
+      .add('balloonopen', (e) => {
         e.get('target').options.set('iconImageHref', 'img/marker-selected.svg');
       })
-      .add('mouseleave', (e) => {
+      .add('balloonclose', (e) => {
         e.get('target').options.set('iconImageHref', 'img/marker.svg');
       });
 
