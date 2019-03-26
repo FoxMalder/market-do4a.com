@@ -6798,6 +6798,7 @@ textarea.form-control {
   .search-fild__loupe {
     width: 24px;
     height: 26px;
+    margin-top: -13px;
   }
 }
 
