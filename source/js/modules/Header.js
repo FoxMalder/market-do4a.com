@@ -1,3 +1,4 @@
+// TODO: Объединить в один класс
 class MobileMenu {
   constructor() {
     this.el = document.querySelector('.mobile-menu');
@@ -10,6 +11,13 @@ class MobileMenu {
   toggleMenu = () => {
     this.el.classList.toggle('opened');
     this.menuControlBtn.classList.toggle('active');
+
+    // Временно
+    const searchEl = document.querySelector('.header-control__search');
+    const searchControlBtn = document.querySelector('.header-control__button_search');
+
+    searchEl.classList.remove('active');
+    searchControlBtn.classList.remove('active');
 
     if (document.body.style.overflow) {
       document.body.style.overflow = '';
@@ -38,6 +46,8 @@ export default function Header() {
   const wrapperEl = document.querySelector('.wrapper');
   const menuEl = document.querySelector('.mobile-menu');
   const fixedHeaderEl = headerEl.querySelector('.header__fixed-block');
+  const searchEl = headerEl.querySelector('.header-control__search');
+  const searchControlBtn = headerEl.querySelector('.header-control__button_search');
 
   let isFixed = false;
   let headerOffset = 0;
@@ -62,6 +72,12 @@ export default function Header() {
 
     wrapperEl.style.paddingTop = `${headerEl.getBoundingClientRect().height}px`;
     menuEl.style.top = `${headerEl.getBoundingClientRect().height}px`;
+
+    searchControlBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchEl.classList.toggle('active');
+      searchControlBtn.classList.toggle('active');
+    });
   }
 
   function initDesktop() {

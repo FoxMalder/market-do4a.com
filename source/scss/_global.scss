@@ -1,15 +1,5 @@
 //@import url('https://rsms.me/inter/inter.css');
 
-body {
-  font-family: 'Inter', sans-serif;
-}
-
-@supports (font-variation-settings: normal) {
-  body {
-    font-family: 'Inter var', sans-serif;
-  }
-}
-
 %title {
   font: {
     family: $font-family-bender;
@@ -31,6 +21,13 @@ body {
   text-transform: uppercase;
 }
 
+@mixin make-font-inter {
+  font-family: $font-family-inter-ui;
+  @supports (font-variation-settings: normal) {
+    font-family: $font-family-inter-ui-var;
+  }
+}
+
 %button-reset {
   border: 0;
   padding: 0;
@@ -42,8 +39,13 @@ body {
 
 body {
   font-size: 0.875rem;
+
   @include media-breakpoint-up(xl) {
     font-size: 1rem;
+  }
+
+  @supports (font-variation-settings: normal) {
+    font-family: $font-family-inter-ui-var;
   }
 }
 
@@ -140,23 +142,25 @@ h6 {
 }
 
 .inter-ui {
-  font-family: "Inter UI", sans-serif;
+  @include make-font-inter;
 }
 
 .price {
   &::after {
     content: '₽';
     margin-left: 0.25em;
-    font-family: "Inter UI", sans-serif;
+    @include make-font-inter;
   }
 }
 
-.skew {
-  transform: $skew;
-}
+@include media-breakpoint-up(md) {
+  .skew {
+    transform: $skew;
+  }
 
-.skew-reverse {
-  transform: $skew-reverse;
+  .skew-reverse {
+    transform: $skew-reverse;
+  }
 }
 
 //@mixin mre-btn($map) {
@@ -200,11 +204,13 @@ $input-border-width: 3px;
   letter-spacing: 0.02em;
   font-weight: 900;
   color: #1A1A1A;
+
   &.active {
     .input-field {
       &__label {
         transform: translateY(-50%) translateY(-16px) scale(0.625);
       }
+
       &__input {
 
       }
@@ -223,6 +229,7 @@ $input-border-width: 3px;
     transform-origin: left;
 
   }
+
   &__input {
     @extend .input-text;
   }
@@ -273,6 +280,7 @@ $input-border-width: 3px;
   &:hover {
     border-color: $main-color;
   }
+
   // Customize the `:focus` state to imitate native WebKit styles.
   &:focus {
     //color: $input-focus-color;
@@ -504,6 +512,7 @@ textarea.form-control {
   &.disabled {
     display: none;
   }
+
   &__button {
     position: absolute;
     top: 50%;
@@ -517,6 +526,7 @@ textarea.form-control {
       left: 0;
       margin-left: -30px;
     }
+
     &_right {
       right: 0;
       margin-right: -30px;
@@ -553,9 +563,11 @@ textarea.form-control {
     top: 50%;
     left: 50%;
   }
+
   &::before {
     transform: translate(-50%, -50%) rotate(45deg);
   }
+
   &::after {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
@@ -589,12 +601,15 @@ textarea.form-control {
   font-size: 12px;
   letter-spacing: 0.02em;
   text-transform: uppercase;
+
   &__link {
 
   }
+
   &__page {
     color: rgba(#101010, 0.4);
   }
+
   &__delimiter {
 
     //color: $main-color;
@@ -615,14 +630,17 @@ textarea.form-control {
   margin-top: 6px;
   text-align: right;
   padding-right: 11px;
+
   &__up {
     @extend %button-reset;
     color: $main-color;
   }
+
   &__down {
     @extend %button-reset;
     color: $main-color;
   }
+
   &__count {
 
     margin: 0 8px;
@@ -664,15 +682,18 @@ textarea.form-control {
     //margin-bottom: 30px;
     //margin-right: 50px;
   }
+
   &__address {
     transform: $skew-reverse;
     margin-bottom: 8px;
   }
+
   &__tel {
     transform: $skew-reverse;
     font-weight: 600;
     margin-bottom: 8px;
   }
+
   &__scheme {
     transform: $skew-reverse;
     font-weight: 600;

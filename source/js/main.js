@@ -24,6 +24,31 @@ function initMain() {
   const mainBestArticlesEl = document.querySelector('.best-articles__slider');
   const $mainSetSliderEl = $('.set-block__slider');
 
+
+  const mainStarSliderScrollbarEl = mainStarSliderEl.querySelector('.slider__scrollbar');
+
+  let mainStarSliderScrollbarFixed = false;
+
+  // document.addEventListener('scroll', () => {
+  //   const mainStarSliderScrollbarRect = mainStarSliderScrollbarEl.getBoundingClientRect();
+  //
+  //   if (mainStarSliderScrollbarRect.top < 300) {
+  //     if (!mainStarSliderScrollbarFixed) {
+  //       mainStarSliderScrollbarEl.style.position = 'fixed';
+  //       mainStarSliderScrollbarEl.style.left = `${ mainStarSliderScrollbarRect.left }px`;
+  //       mainStarSliderScrollbarEl.style.top = `${ mainStarSliderScrollbarRect.top }px`;
+  //       mainStarSliderScrollbarFixed = true;
+  //     }
+  //   } else {
+  //     if (mainStarSliderScrollbarFixed) {
+  //       mainStarSliderScrollbarEl.style.position = '';
+  //       mainStarSliderScrollbarEl.style.left = '';
+  //       mainStarSliderScrollbarEl.style.top = '';
+  //       mainStarSliderScrollbarFixed = false
+  //     }
+  //   }
+  // });
+
   $mainSetSliderEl.owlCarousel({
     loop: true,
     items: 1,
@@ -97,8 +122,8 @@ function initMain() {
 
       renderBullet(index, className) {
         return `
-            <div class="${className}">
-              <div class="hero-slider-control__title">${this.slides[index].querySelector('.hero-slider__title').innerHTML}</div>
+            <div class="${ className }">
+              <div class="hero-slider-control__title">${ this.slides[index].querySelector('.hero-slider__title').innerHTML }</div>
               <div class="hero-slider-control__loader">
                 <div class="hero-slider-control__loader-line"></div>
               </div>
@@ -106,109 +131,44 @@ function initMain() {
       },
     },
   });
-  const mainStarSlider = new Swiper(mainStarSliderEl, {
-    slidesPerView: 'auto',
-    freeMode: true,
-    freeModeMomentum: false,
-    // freeModeSticky: false,
 
-    touchEventsTarget: 'wrapper',
+  if (document.documentElement.clientWidth >= 768) {
+    const mainStarSlider = new Swiper(mainStarSliderEl, {
+      slidesPerView: 'auto',
+      freeMode: true,
+      // freeModeMomentum: false,
+      // freeModeSticky: false,
 
-    containerModifierClass: 'slider_',
-    slideClass: 'slider__slide',
-    slideBlankClass: 'slider__slide_invisible-blank',
-    slideActiveClass: 'slider__slide_active',
-    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
-    slideVisibleClass: 'slider__slide_visible',
-    slideDuplicateClass: 'slider__slide_duplicate',
-    slideNextClass: 'slider__slide_next',
-    slideDuplicateNextClass: 'slider__slide_duplicate-next',
-    slidePrevClass: 'slider__slide_prev',
-    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
-    wrapperClass: 'slider__wrapper',
+      touchEventsTarget: 'wrapper',
 
-    mousewheel: {
-      forceToAxis: true,
-      invert: true,
-      releaseOnEdges: true,
-    },
+      containerModifierClass: 'slider_',
+      slideClass: 'slider__slide',
+      slideBlankClass: 'slider__slide_invisible-blank',
+      slideActiveClass: 'slider__slide_active',
+      slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+      slideVisibleClass: 'slider__slide_visible',
+      slideDuplicateClass: 'slider__slide_duplicate',
+      slideNextClass: 'slider__slide_next',
+      slideDuplicateNextClass: 'slider__slide_duplicate-next',
+      slidePrevClass: 'slider__slide_prev',
+      slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+      wrapperClass: 'slider__wrapper',
 
-    scrollbar: {
-      el: '.slider__scrollbar',
-      hide: false,
-      draggable: true,
-      dragSize: 80,
-      dragClass: 'slider__track',
-      snapOnRelease: false,
-    },
-
-    on: {
-      setTranslate(arg) {
-        if (document.documentElement.clientWidth > 768) {
-          arg = (arg / 90) + 1;
-          if (arg < 0) arg = 0;
-          if (arg > 1) arg = 1;
-
-          document.querySelector('.stars__info').style.opacity = arg;
-          this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-          this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
-        }
+      mousewheel: {
+        forceToAxis: true,
+        invert: true,
+        releaseOnEdges: true,
       },
 
-      touchStart() {
-        this.scrollbar.el.classList.add('active');
+      scrollbar: {
+        el: '.slider__scrollbar',
+        hide: false,
+        draggable: true,
+        dragSize: 80,
+        dragClass: 'slider__track',
+        snapOnRelease: false,
       },
-      scrollbarDragStart() {
-        this.scrollbar.el.classList.add('active');
-      },
 
-      touchEnd() {
-        this.scrollbar.el.classList.remove('active');
-      },
-      scrollbarDragEnd() {
-        this.scrollbar.el.classList.remove('active');
-      },
-    },
-  });
-  const mainBestArticles = new Swiper(mainBestArticlesEl, {
-    slidesPerView: 'auto',
-    freeMode: true,
-    freeModeMomentum: false,
-    // spaceBetween: 24,
-
-    touchEventsTarget: 'wrapper',
-
-    containerModifierClass: 'slider_',
-    slideClass: 'slider__slide',
-    slideBlankClass: 'slider__slide_invisible-blank',
-    slideActiveClass: 'slider__slide_active',
-    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
-    slideVisibleClass: 'slider__slide_visible',
-    slideDuplicateClass: 'slider__slide_duplicate',
-    slideNextClass: 'slider__slide_next',
-    slideDuplicateNextClass: 'slider__slide_duplicate-next',
-    slidePrevClass: 'slider__slide_prev',
-    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
-    wrapperClass: 'slider__wrapper',
-
-
-    mousewheel: {
-      forceToAxis: true,
-      invert: true,
-      releaseOnEdges: true,
-    },
-
-    scrollbar: {
-      el: '.slider__scrollbar',
-      hide: false,
-      draggable: true,
-      dragSize: 80,
-      dragClass: 'slider__track',
-      snapOnRelease: false,
-    },
-
-    breakpointsInverse: true,
-    breakpoints: {
       on: {
         setTranslate(arg) {
           if (document.documentElement.clientWidth > 768) {
@@ -216,6 +176,7 @@ function initMain() {
             if (arg < 0) arg = 0;
             if (arg > 1) arg = 1;
 
+            document.querySelector('.stars__info').style.opacity = arg;
             this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
             this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
           }
@@ -235,11 +196,82 @@ function initMain() {
           this.scrollbar.el.classList.remove('active');
         },
       },
-    },
-  });
+    });
+    const mainBestArticles = new Swiper(mainBestArticlesEl, {
+      slidesPerView: 'auto',
+      freeMode: true,
+      // freeModeMomentum: false,
+      // spaceBetween: 24,
+
+      touchEventsTarget: 'wrapper',
+
+      containerModifierClass: 'slider_',
+      slideClass: 'slider__slide',
+      slideBlankClass: 'slider__slide_invisible-blank',
+      slideActiveClass: 'slider__slide_active',
+      slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+      slideVisibleClass: 'slider__slide_visible',
+      slideDuplicateClass: 'slider__slide_duplicate',
+      slideNextClass: 'slider__slide_next',
+      slideDuplicateNextClass: 'slider__slide_duplicate-next',
+      slidePrevClass: 'slider__slide_prev',
+      slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+      wrapperClass: 'slider__wrapper',
+
+
+      mousewheel: {
+        forceToAxis: true,
+        invert: true,
+        releaseOnEdges: true,
+      },
+
+      scrollbar: {
+        el: '.slider__scrollbar',
+        hide: false,
+        draggable: true,
+        dragSize: 80,
+        dragClass: 'slider__track',
+        snapOnRelease: false,
+      },
+
+      breakpointsInverse: true,
+      breakpoints: {
+        on: {
+          setTranslate(arg) {
+            if (document.documentElement.clientWidth > 768) {
+              arg = (arg / 90) + 1;
+              if (arg < 0) arg = 0;
+              if (arg > 1) arg = 1;
+
+              this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
+              this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
+            }
+          },
+
+          touchStart() {
+            this.scrollbar.el.classList.add('active');
+          },
+          scrollbarDragStart() {
+            this.scrollbar.el.classList.add('active');
+          },
+
+          touchEnd() {
+            this.scrollbar.el.classList.remove('active');
+          },
+          scrollbarDragEnd() {
+            this.scrollbar.el.classList.remove('active');
+          },
+        },
+      },
+    });
+  }
 }
 
 $(document).ready(() => {
+  $('[data-fancybox]').fancybox({
+    closeExisting: false,
+  });
+
   Header();
   Input();
 
