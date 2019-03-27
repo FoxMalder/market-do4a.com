@@ -50,18 +50,15 @@ export default function Header() {
   const searchControlBtn = headerEl.querySelector('.header-control__button_search');
 
   let isFixed = false;
-  let headerOffset = 0;
+  let headerOffsetBreakpoints = headerEl.getBoundingClientRect().bottom + 300;
 
   function fixHeader() {
-    if (!isFixed) {
-      if (fixedHeaderEl.getBoundingClientRect().bottom > -300) {
-        return;
-      }
+    headerOffsetBreakpoints = headerEl.getBoundingClientRect().bottom + 300;
 
+    if (window.pageYOffset >= headerOffsetBreakpoints && !isFixed) {
       fixedHeaderEl.classList.add('fixed');
-      headerOffset = window.pageYOffset;
       isFixed = true;
-    } else if (window.pageYOffset < headerOffset) {
+    } else if (window.pageYOffset < headerOffsetBreakpoints && isFixed) {
       fixedHeaderEl.classList.remove('fixed');
       isFixed = false;
     }
@@ -70,8 +67,8 @@ export default function Header() {
   function initMobile() {
     new MobileMenu();
 
-    wrapperEl.style.paddingTop = `${headerEl.getBoundingClientRect().height}px`;
-    menuEl.style.top = `${headerEl.getBoundingClientRect().height}px`;
+    wrapperEl.style.paddingTop = `${ headerEl.getBoundingClientRect().height }px`;
+    menuEl.style.top = `${ headerEl.getBoundingClientRect().height }px`;
 
     searchControlBtn.addEventListener('click', (e) => {
       e.preventDefault();
