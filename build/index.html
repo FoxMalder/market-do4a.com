@@ -283,99 +283,105 @@
             </svg>
             <span class="header-control__notifications">2</span>
           </a>
-          <a class="header-control__button header-control__button_cart" href="#">
-            <svg>
-              <use xlink:href="images/sprite.svg#cart"></use>
-            </svg>
-            <span class="header-control__notifications">2</span>
-          </a>
-          <!-- /.header-control__button -->
           
-          <div class="header-control__cart">
-            <div class="button-cart btn btn-red btn-skew">
-              <div class="btn-skew__revers button-cart__inner">
-                <div class="button-cart__num">5</div>
-                <div class="button-cart__block">
-                  <div class="button-cart__title">Корзина</div>
-                  <div class="button-cart__price">12 245 ₽</div>
-                </div>
-              </div>
-            </div>
-            <div class="header-cart">
-              <div class="header-cart__wrapper">
-                <div class="header-cart__header">
-                  <div class="header-cart__title">Товары в корзине</div>
-                  <button class="header-cart__btn-clear">
-                    <svg>
-                      <use xlink:href="images/sprite.svg#trash"></use>
-                    </svg>
-                    Очистить
-                  </button>
-                </div>
-                <div class="header-cart__item">
-                  <div class="h-product-item">
-                    <div class="h-product-item__img">
-                      <img alt="" src="images/cart-product-1.png">
-                    </div>
-                    <div class="h-product-item__info">
-                      <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
-                      <div class="h-product-item__description">900 г.</div>
-                    </div>
-                    <div class="h-product-item__controls">
-                      <div class="h-product-item__price-block">
-                        <span class="h-product-item__price price">1 750</span>
-                        <button class="h-product-item__remove">
-                          <svg>
-                            <use xlink:href="images/sprite.svg#trash"></use>
-                          </svg>
-                        </button>
-                      </div>
-                      <!-- Prod -->
-                      <!--<input class="input-counter" max="100" min="1" type="number" value="2">-->
-                      
-                      <!-- Dev -->
-                      <div class="input-counter">
-                        <button class="input-counter__down">-</button>
-                        <span class="input-counter__count">2</span>
-                        <button class="input-counter__up">+</button>
-                        <input class="input-counter" type="hidden" value="2">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="h-product-item">
-                    <div class="h-product-item__img">
-                      <img alt="" src="images/cart-product-1.png">
-                    </div>
-                    <div class="h-product-item__info">
-                      <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
-                      <div class="h-product-item__description">900 г.</div>
-                    </div>
-                    <div class="h-product-item__controls">
-                      <div class="h-product-item__price-block">
-                        <span class="h-product-item__price price">1 750</span>
-                        <button class="h-product-item__remove">
-                          <svg>
-                            <use xlink:href="images/sprite.svg#trash"></use>
-                          </svg>
-                        </button>
-                      </div>
-                      <!-- Prod -->
-                      <!--<input class="input-counter" max="100" min="1" type="number" value="2">-->
-                      
-                      <!-- dev -->
-                      <div class="input-counter">
-                        <button class="input-counter__down">-</button>
-                        <span class="input-counter__count">2</span>
-                        <button class="input-counter__up">+</button>
-                        <input class="input-counter" type="hidden" value="2">
-                      </div>
-                    </div>
+          
+          <div class="header-control__cart-container">
+            
+            <!-- Кнопка корзины для мобилок -->
+            <a class="header-control__button header-control__button_cart" href="#">
+              <svg>
+                <use xlink:href="images/sprite.svg#cart"></use>
+              </svg>
+              <span class="header-control__notifications">2</span>
+            </a>
+            
+            <!-- Кнопка корзины для десктопа -->
+            <div class="header-control__cart">
+              <div class="button-cart btn btn-red btn-skew">
+                <div class="btn-skew__revers button-cart__inner">
+                  <div class="button-cart__num">5</div>
+                  <div class="button-cart__block">
+                    <div class="button-cart__title">Корзина</div>
+                    <div class="button-cart__price">12 245 ₽</div>
                   </div>
                 </div>
               </div>
+              <div class="header-cart">
+                <div class="header-cart__wrapper">
+                  <div class="header-cart__header">
+                    <div class="header-cart__title">Товары в корзине</div>
+                    <button class="header-cart__btn-clear">
+                      <svg>
+                        <use xlink:href="images/sprite.svg#trash"></use>
+                      </svg>
+                      Очистить
+                    </button>
+                  </div>
+                  <div class="header-cart__item">
+                    <div class="h-product-item">
+                      <div class="h-product-item__img">
+                        <img alt="" src="images/cart-product-1.png">
+                      </div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block">
+                          <span class="h-product-item__price price">1 750</span>
+                          <button class="h-product-item__remove">
+                            <svg>
+                              <use xlink:href="images/sprite.svg#trash"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <!-- Prod -->
+                        <!--<input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        
+                        <!-- Dev -->
+                        <div class="input-counter">
+                          <button class="input-counter__down">-</button>
+                          <span class="input-counter__count">2</span>
+                          <button class="input-counter__up">+</button>
+                          <input class="input-counter" type="hidden" value="2">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="h-product-item">
+                      <div class="h-product-item__img">
+                        <img alt="" src="images/cart-product-1.png">
+                      </div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block">
+                          <span class="h-product-item__price price">1 750</span>
+                          <button class="h-product-item__remove">
+                            <svg>
+                              <use xlink:href="images/sprite.svg#trash"></use>
+                            </svg>
+                          </button>
+                        </div>
+                        <!-- Prod -->
+                        <!--<input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        
+                        <!-- dev -->
+                        <div class="input-counter">
+                          <button class="input-counter__down">-</button>
+                          <span class="input-counter__count">2</span>
+                          <button class="input-counter__up">+</button>
+                          <input class="input-counter" type="hidden" value="2">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          
           </div>
-          <!-- /.header-control__cart -->
         </div>
       </div>
     </div>

@@ -452,6 +452,9 @@
     }
   }
 
+  &__cart-container {
+    height: 100%;
+  }
   &__cart {
     display: none;
 
@@ -470,6 +473,7 @@
       display: block;
     }
   }
+
 
   &__button {
 
