@@ -294,10 +294,16 @@
 .select-city {
   font-weight: 500;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  //margin: -10px 0;
 
   @include media-breakpoint-up(xl) {
+    //justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
     justify-content: flex-start;
+    margin: 0;
   }
 
   &__icon {
@@ -308,16 +314,17 @@
 
   &__link {
     //@include caret(down);
-    margin-right: 16px;
     position: relative;
 
 
     white-space: nowrap;
     text-overflow: ellipsis;
-    max-width: 150px;
     overflow: hidden;
 
-    padding-right: 10px;
+    padding-right: 15px;
+    max-width: 100%;
+
+    //margin: 10px 0;
 
     &::after {
       //display: inline-block;
@@ -337,6 +344,12 @@
 
     &:not(.collapsed) {
       color: $main-color;
+    }
+
+    @include media-breakpoint-up(xl) {
+      max-width: 150px;
+      //margin: 0 16px 0 0;
+      margin-right: 16px;
     }
   }
 
@@ -979,7 +992,7 @@ button.search-fild__loupe {
 
 .change-store {
   color: white;
-  padding: 20px 0 20px 50px;
+  padding: 21px 0;
   //background: url("../img/rm/change-store.png") center top no-repeat;
   @include media-breakpoint-up(xl) {
     padding: 49px 0 58px;
@@ -1034,27 +1047,31 @@ button.search-fild__loupe {
     list-style: none;
     padding-left: 0;
     margin-bottom: 0;
-    transform: $skew;
 
-    margin-bottom: 77px;
-    margin-left: -14px;
     @include media-breakpoint-up(xl) {
       //max-height: 410px;
       display: flex;
       flex-wrap: wrap;
+      margin-bottom: 77px;
+      transform: $skew;
+      margin-left: -14px;
     }
   }
 
   &__note {
-    margin-top: 52px;
-    max-width: 455px;
 
     color: rgba(255, 255, 255, 0.5);
-    line-height: 20px;
-    font-size: 14px;
-    display: none;
+    //display: none;
+    font-size: 12px;
+    line-height: 17px;
+    padding: 12px 20px 0;
     @include media-breakpoint-up(xl) {
-      display: block;
+    //  display: block;
+      margin-top: 52px;
+      max-width: 455px;
+      line-height: 20px;
+      font-size: 14px;
+      padding: 0;
     }
 
     b {
@@ -1063,11 +1080,14 @@ button.search-fild__loupe {
   }
 
   &__item {
-    @include make-col(4);
-    padding: 0 10px;
-    &_right {
-      margin-left: auto;
-      margin-bottom: -163px;
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(4);
+      padding: 0 10px;
+      &_right {
+        margin-left: auto;
+        margin-bottom: -163px;
+      }
     }
   }
 
@@ -1079,62 +1099,86 @@ button.search-fild__loupe {
     position: relative;
 
     background: #292929;
-    height: 130px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     //margin: 0 0px 33px;
-    padding: 20px 20px;
-    margin-bottom: 33px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
 
     //flex: 0 0 3;
-
-    &_icon {
-      padding-left: 60px;
-    }
 
     &_active,
     &.active {
       box-shadow: 0 0 0 3px $main-color inset;
       //border: 3px solid #F4412D;
     }
+    @include media-breakpoint-up(xl) {
+      height: 130px;
+      margin-bottom: 33px;
+      padding: 20px 20px;
 
-    &:hover {
-      box-shadow: 0 0 0 1px $main-color inset;
-      //border: 1px solid #F4412D;
+
+      &_icon {
+        padding-left: 60px;
+      }
+      &:hover {
+        box-shadow: 0 0 0 1px $main-color inset;
+        //border: 1px solid #F4412D;
+      }
     }
   }
 
   &__item-icon {
     position: absolute;
-    width: 105px;
-    height: 77px;
-    top: 50%;
-    left: 0;
-    transform: $skew-reverse translate(-60px, -50%);
+    width: 58px;
+    height: 42px;
+    bottom: 15px;
+    right: 20px;
+    @include media-breakpoint-up(xl) {
+      width: 105px;
+      height: 77px;
+      top: 50%;
+      left: 0;
+      right: auto;
+      bottom: auto;
+      transform: $skew-reverse translate(-60px, -50%);
+    }
   }
 
   &__item-name {
     @include title;
-    font-size: 18px;
+    font-size: 14px;
     line-height: normal;
     margin-bottom: 7px;
-    transform: $skew-reverse;
+    @include media-breakpoint-up(xl) {
+      font-size: 18px;
+      transform: $skew-reverse;
+    }
   }
 
   &__item-subtitle {
-    font-size: 15px;
+    font-size: 13px;
     line-height: normal;
-    transform: $skew-reverse;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 15px;
+      transform: $skew-reverse;
+    }
   }
 
   &__item-note {
 
-    font-size: 15px;
+    font-size: 12px;
     line-height: normal;
 
     color: rgba(white, 0.5);
     margin-top: auto;
-    transform: $skew-reverse;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 15px;
+      transform: $skew-reverse;
+    }
   }
 }
 

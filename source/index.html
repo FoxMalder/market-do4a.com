@@ -62,7 +62,7 @@
       </div>
     </div>
   </div>
-  <div class="header__city-list collapse" id="change-city">
+  <div class="header__city-list collapse" data-parent=".header" id="change-city">
     <div class="container">
       <div class="change-city">
         <div class="change-city__header">
@@ -234,12 +234,12 @@
       <!-- /.city-list -->
     </div>
   </div>
-  <div class="header__city-list collapse" id="change-store">
+  <div class="header__city-list collapse" data-parent=".header" id="change-store">
     <div class="container">
       <div class="change-store">
         <div class="change-store__header">
           <span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН <br>в <span class="selected">нижнем новгороде</span></span>
-          <button class="btn change-store__btn-close" data-target="#change-city" data-toggle="collapse"></button>
+          <button class="btn change-store__btn-close" data-target="#change-store" data-toggle="collapse"></button>
         </div>
         <ul class="change-store__list">
           <li class="change-store__item">
@@ -300,7 +300,6 @@
         </div>
         <!-- /.change-city__note -->
       </div>
-      <!-- /.city-list -->
     </div>
   </div>
   <div class="header__fixed-block">
@@ -598,8 +597,6 @@
   <div class="mobile-menu__overlay"></div>
   <div class="mobile-menu__wrapper">
     <div class="mobile-menu__header">
-      
-      <!-- Copy -->
       <div class="select-city">
         <a class="select-city__link collapsed" data-toggle="collapse" href="#change-city-m">
           <svg class="select-city__icon">
@@ -607,10 +604,9 @@
           </svg>
           Нижний Новгород
         </a>
-        <span class="select-city__value">2 магазина</span>
       </div>
     </div>
-    <div class="mobile-menu__city-list collapse" id="change-city-m">
+    <div class="mobile-menu__city-list collapse" data-parent=".mobile-menu" id="change-city-m">
       <div class="change-city">
         <div class="change-city__header">
           <span class="change-city__title">Города в которых есть marketdo4a</span>
@@ -779,18 +775,94 @@
         <!-- /.change-city__note -->
       </div>
     </div>
+  
+    <div class="mobile-menu__header">
+      <div class="select-city">
+        <a class="select-city__link collapsed" data-toggle="collapse" href="#change-store-m">
+          ул. Невзоровых, д. 64к2
+        </a>
+      </div>
+    </div>
+    <div class="mobile-menu__city-list collapse" data-parent=".mobile-menu" id="change-store-m">
+      
+      <!-- Скопировано без изменений -->
+      <div class="change-store">
+        <div class="change-store__header">
+          <span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН <br>в <span class="selected">нижнем новгороде</span></span>
+          <button class="btn change-store__btn-close" data-target="#change-city" data-toggle="collapse"></button>
+        </div>
+        <ul class="change-store__list">
+          <li class="change-store__item">
+            <a class="change-store__link active" href="#">
+              <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+              <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
+              <div class="change-store__item-note">Курьер и самовывоз</div>
+            </a>
+          </li>
+          <li class="change-store__item">
+            <a class="change-store__link" href="#">
+              <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+              <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
+              <div class="change-store__item-note">Курьер и самовывоз</div>
+            </a>
+          </li>
+          <li class="change-store__item">
+            <a class="change-store__link" href="#">
+              <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+              <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
+              <div class="change-store__item-note">Курьер и самовывоз</div>
+            </a>
+          </li>
+          <li class="change-store__item">
+            <a class="change-store__link active" href="#">
+              <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+              <div class="change-store__item-subtitle">Курьер и самовывоз</div>
+              <div class="change-store__item-note">Курьер и самовывоз</div>
+            </a>
+          </li>
+          <li class="change-store__item">
+            <a class="change-store__link" href="#">
+              <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+              <div class="change-store__item-subtitle">Курьер и самовывоз</div>
+              <div class="change-store__item-note">Курьер и самовывоз</div>
+            </a>
+          </li>
+          <li class="change-store__item">
+            <a class="change-store__link" href="#">
+              <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+              <div class="change-store__item-subtitle">Курьер и самовывоз</div>
+              <div class="change-store__item-note">Курьер и самовывоз</div>
+            </a>
+          </li>
+          <li class="change-store__item change-store__item_right">
+            <a class="change-store__link change-store__link_icon change-store__link_last" href="#">
+              <svg class="change-store__item-icon">
+                <use xlink:href="images/sprite.svg#change-store-stock-icon"></use>
+              </svg>
+              <div class="change-store__item-name">Отправлять почтой <br>с центрального склада</div>
+              <div class="change-store__item-note">Срок от 5 дней</div>
+            </a>
+          </li>
+        </ul>
+        <div class="change-store__note">
+          <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией.
+          Доставка от 250 ₽. Отправка на следующий рабочий день.
+        </div>
+        <!-- /.change-city__note -->
+      </div>
+    </div>
     <div class="mobile-menu__header">
       <div class="mobile-menu__row">
-        
-        <!-- Copy -->
+  
+        <!-- Скопировано без изменений -->
         <a class="header-number" href="#">
           <svg>
             <use xlink:href="images/sprite.svg#phone"></use>
           </svg>
           +7 (920) 024-33-14
         </a>
-        
-        <!-- Copy -->
+  
+        <!-- Скопировано без изменений -->
         <a class="header-login" data-fancybox data-src="#sign-in" href="javascript:;">
           <svg>
             <use xlink:href="images/sprite.svg#person"></use>
