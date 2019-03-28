@@ -58,15 +58,19 @@
   transition-property: visibility;
   transition-duration: .3s;
   color: white;
+
   &.opened {
     visibility: visible;
+
     .mobile-menu__overlay {
       opacity: 0.8;
     }
+
     .mobile-menu__wrapper {
       transform: translateX(0)
     }
   }
+
   &__overlay {
     position: absolute;
     top: 0;
@@ -79,6 +83,7 @@
     //opacity: 0.8;
     transition: opacity .3s ease;
   }
+
   &__wrapper {
     position: absolute;
     top: 0;
@@ -90,15 +95,18 @@
     transition: transform .3s ease;
     overflow: auto;
   }
+
   &__header {
     padding: 20px 20px;
     background: #2B2B2B;
   }
+
   &__row {
     display: flex;
     justify-content: space-between;
     //margin-top: 15px;
   }
+
   &__nav {
     padding: 20px 20px;
   }
@@ -167,6 +175,7 @@
         position: fixed;
         top: 0;
         transform: translateY(0);
+
         .header-control {
           height: 74px;
         }
@@ -246,6 +255,7 @@
   &__menu {
     font-family: $font-family-inter-ui;
   }
+
   &__link {
     opacity: 0.5;
     padding: 0 12px;
@@ -258,6 +268,7 @@
 
 .header-login {
   font-weight: 500;
+
   svg {
     vertical-align: -1px;
     width: 8px;
@@ -271,6 +282,7 @@
   font-weight: bold;
   line-height: normal;
   font-size: 16px;
+
   svg {
     margin-right: 4px;
     vertical-align: 0;
@@ -293,13 +305,29 @@
     height: 15px;
     margin-right: 5px;
   }
+
   &__link {
     //@include caret(down);
-    margin-right: 7px;
+    margin-right: 16px;
+    position: relative;
+
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+
+    padding-right: 10px;
+
     &::after {
-      display: inline-block;
-      margin-left: 1px;
-      vertical-align: middle;
+      //display: inline-block;
+      display: block;
+      position: absolute;
+      right: 0px;
+      top: 8px;
+
+      //margin-left: 1px;
+      //vertical-align: middle;
       content: "";
       border-top: 0.3em solid;
       border-right: 0.3em solid transparent;
@@ -367,13 +395,16 @@
       margin-left: -10px;
       transition: transform .3s ease;
     }
+
     &::before {
       //top: ;
       transform: translate(1px, -4px) $skew;
     }
+
     &::after {
       transform: translate(0, 3px) $skew;
     }
+
     //svg {
     //  width: 22px;
     //  height: 10px;
@@ -383,10 +414,12 @@
       &::before {
         transform: rotate(45deg);
       }
+
       &::after {
         transform: rotate(-45deg);
       }
     }
+
     @include media-breakpoint-up(md) {
       width: 54px;
       margin-right: 16px;
@@ -396,6 +429,7 @@
       display: none;
     }
   }
+
   &__logo {
     display: block;
     background: url("../img/logo-only-icon.svg") no-repeat;
@@ -455,6 +489,7 @@
   &__cart-container {
     height: 100%;
   }
+
   &__cart {
     display: none;
 
@@ -484,14 +519,17 @@
     margin-left: 7px;
     width: 44px;
     height: 100%;
+
     &_search svg {
       width: 17px;
       height: 18px;
     }
+
     &_favorites svg {
       width: 22px;
       height: 19px;
     }
+
     &_cart svg {
       width: 20px;
       height: 22px;
@@ -511,6 +549,7 @@
       &_favorites {
         margin-right: 52px;
         margin-left: 43px;
+
         svg {
           width: 37px;
           height: 32px;
@@ -522,6 +561,7 @@
       }
     }
   }
+
   &__notifications {
     @include title;
     position: absolute;
@@ -562,6 +602,7 @@
   @include media-breakpoint-up(xl) {
     height: 100%;
   }
+
   &__input {
     height: 100%;
     width: 100%;
@@ -582,6 +623,7 @@
       font-style: normal;
     }
   }
+
   &__loupe {
     position: absolute;
     top: 50%;
@@ -602,9 +644,11 @@ button.search-fild__loupe {
   @extend %button-reset;
   color: #BABABA;
   transition: color .3s ease;
+
   &:hover {
     color: $main-color;
   }
+
   &:focus,
   &:active {
     outline: none;
@@ -640,10 +684,12 @@ button.search-fild__loupe {
     background: #FFFFFF;
     display: inline-block;
   }
+
   &__block {
     text-align: left;
     margin-left: 12px;
   }
+
   &__title {
     font-style: italic;
     font-weight: 900;
@@ -653,6 +699,7 @@ button.search-fild__loupe {
     text-transform: uppercase;
     display: block;
   }
+
   &__price {
 
     font-family: $font-family-inter-ui;
@@ -692,6 +739,7 @@ button.search-fild__loupe {
     &:not(:last-child) {
       margin-bottom: 30px;
     }
+
     //height: 100%;
 
     //.header-nav-bottom__hidden {
@@ -721,6 +769,7 @@ button.search-fild__loupe {
       }
     }
   }
+
   &__link {
 
     font-family: $font-family-bender;
@@ -766,6 +815,7 @@ button.search-fild__loupe {
     //  background-color: #2D2D2D;
     //}
   }
+
   &__hidden {
     //display: none;
     position: absolute;
@@ -796,16 +846,19 @@ button.search-fild__loupe {
   &__block {
 
   }
+
   &__title {
     @extend %title;
     margin-bottom: 26px;
     font-size: 16px;
     line-height: normal;
   }
+
   &__list {
     list-style: none;
     padding-left: 0;
   }
+
   &__item {
     color: rgba(white, 0.5);
     font-size: 14px;
@@ -815,6 +868,7 @@ button.search-fild__loupe {
       margin-bottom: 16px;
     }
   }
+
   &__link {
 
   }
@@ -826,6 +880,7 @@ button.search-fild__loupe {
   @include media-breakpoint-up(xl) {
     padding: 30px 0 58px;
   }
+
   &__header {
     height: 45px;
     margin-bottom: 45px;
@@ -837,10 +892,12 @@ button.search-fild__loupe {
       display: flex;
     }
   }
+
   &__title {
     @extend %title;
     font-size: 20px;
   }
+
   &__btn-close {
     @include button-variant($main-color, $main-color, #FFF, #FFF);
     border-radius: 50%;
@@ -859,13 +916,16 @@ button.search-fild__loupe {
       top: 50%;
       left: 50%;
     }
+
     &::before {
       transform: translate(-50%, -50%) rotate(45deg);
     }
+
     &::after {
       transform: translate(-50%, -50%) rotate(-45deg);
     }
   }
+
   &__list {
     list-style: none;
     padding-left: 0;
@@ -879,12 +939,14 @@ button.search-fild__loupe {
       flex-wrap: wrap;
     }
   }
+
   &__item {
     margin-bottom: 21px;
     font-size: 14px;
     line-height: normal;
 
     position: relative;
+
     &::before {
       content: attr(data-letter);
 
@@ -896,6 +958,7 @@ button.search-fild__loupe {
       top: -5px;
     }
   }
+
   &__note {
     margin-top: 52px;
     max-width: 455px;
@@ -911,6 +974,167 @@ button.search-fild__loupe {
     b {
       color: white;
     }
+  }
+}
+
+.change-store {
+  color: white;
+  padding: 20px 0 20px 50px;
+  //background: url("../img/rm/change-store.png") center top no-repeat;
+  @include media-breakpoint-up(xl) {
+    padding: 49px 0 58px;
+  }
+
+  &__header {
+    //height: 45px;
+    margin-bottom: 53px;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: none;
+    @include media-breakpoint-up(xl) {
+      display: flex;
+    }
+  }
+
+  &__title {
+    @include title;
+    font-size: 30px;
+    line-height: 37px;
+  }
+
+  &__btn-close {
+    @include button-variant($main-color, $main-color, #FFF, #FFF);
+    border-radius: 50%;
+
+    width: 33px;
+    height: 33px;
+    padding: 0;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      background: currentColor;
+      top: 50%;
+      left: 50%;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    transform: $skew;
+
+    margin-bottom: 77px;
+    margin-left: -14px;
+    @include media-breakpoint-up(xl) {
+      //max-height: 410px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__note {
+    margin-top: 52px;
+    max-width: 455px;
+
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 20px;
+    font-size: 14px;
+    display: none;
+    @include media-breakpoint-up(xl) {
+      display: block;
+    }
+
+    b {
+      color: white;
+    }
+  }
+
+  &__item {
+    @include make-col(4);
+    padding: 0 10px;
+    &_right {
+      margin-left: auto;
+      margin-bottom: -163px;
+    }
+  }
+
+  &__link {
+
+    font-size: 14px;
+    line-height: normal;
+
+    position: relative;
+
+    background: #292929;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    //margin: 0 0px 33px;
+    padding: 20px 20px;
+    margin-bottom: 33px;
+
+    //flex: 0 0 3;
+
+    &_icon {
+      padding-left: 60px;
+    }
+
+    &_active,
+    &.active {
+      box-shadow: 0 0 0 3px $main-color inset;
+      //border: 3px solid #F4412D;
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 1px $main-color inset;
+      //border: 1px solid #F4412D;
+    }
+  }
+
+  &__item-icon {
+    position: absolute;
+    width: 105px;
+    height: 77px;
+    top: 50%;
+    left: 0;
+    transform: $skew-reverse translate(-60px, -50%);
+  }
+
+  &__item-name {
+    @include title;
+    font-size: 18px;
+    line-height: normal;
+    margin-bottom: 7px;
+    transform: $skew-reverse;
+  }
+
+  &__item-subtitle {
+    font-size: 15px;
+    line-height: normal;
+    transform: $skew-reverse;
+  }
+
+  &__item-note {
+
+    font-size: 15px;
+    line-height: normal;
+
+    color: rgba(white, 0.5);
+    margin-top: auto;
+    transform: $skew-reverse;
   }
 }
 
@@ -932,20 +1156,24 @@ button.search-fild__loupe {
   &__wrapper {
     padding: 0 23px;
   }
+
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 23px 0;
   }
+
   &__title {
     @include title;
     font-size: 20px;
   }
+
   &__btn-clear {
     @extend %button-reset;
     font-size: 14px;
     color: rgba(white, 0.5);
+
     > svg {
       display: inline-block;
       width: 14px;
@@ -953,6 +1181,7 @@ button.search-fild__loupe {
       vertical-align: -3px;
       margin-right: 3px;
     }
+
     &:hover {
       color: #FFFFFF;
     }
@@ -965,15 +1194,18 @@ button.search-fild__loupe {
 
   padding: 6px 0;
   margin-bottom: 2px;
+
   &__img {
     flex: 0 0 71px;
   }
+
   &__info {
     //flex: 0 0 auto;
     //max-width: 200px;
     flex-grow: 1;
     padding: 5px 0;
   }
+
   &__name {
     font-family: $font-family-bender;
     text-transform: uppercase;
@@ -984,19 +1216,23 @@ button.search-fild__loupe {
     letter-spacing: 0.02em;
     margin-bottom: 9px;
   }
+
   &__description {
     font-size: 14px;
     color: rgba(white, 0.5);
   }
+
   &__controls {
     flex: 0 0 auto;
   }
+
   &__price {
     @include title;
     font-size: 20px;
     display: inline-block;
     margin-right: 10px;
   }
+
   &__remove {
     @extend %button-reset;
     color: $main-color;

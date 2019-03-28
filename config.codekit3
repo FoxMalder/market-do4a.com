@@ -1486,6 +1486,17 @@
 		"oT": 1,
 		"q": 100
 		},
+	"/source/img/rm/change-store.png": {
+		"ft": 32768,
+		"iS": 60101,
+		"oA": 0,
+		"oAP": "/build/img/rm/change-store.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 1,
+		"oT": 1,
+		"q": 100
+		},
 	"/source/img/rm/franchise.png": {
 		"ft": 32768,
 		"iS": 464811,
