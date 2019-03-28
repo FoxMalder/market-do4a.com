@@ -2042,8 +2042,12 @@ $section-padding-bottom: 30px;
     a {
       color: $main-color;
       font-weight: bold;
-      border-bottom: 1px dashed rgba($main-color, 0.5);
+      //border-bottom: 1px dashed rgba($main-color, 0.5);
       white-space: nowrap;
+      text-decoration: underline;
+      &:hover {
+        color: #101010;
+      }
     }
   }
 
@@ -2101,7 +2105,7 @@ $section-padding-bottom: 30px;
   position: absolute;
 
   height: 763px;
-  width: 800px;
+  width: calc(50% - 100px);
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
   bottom: 0;
   right: 0;

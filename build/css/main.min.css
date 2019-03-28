@@ -9866,8 +9866,12 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 .shops__info a {
   color: #F4412D;
   font-weight: bold;
-  border-bottom: 1px dashed rgba(244, 65, 45, 0.5);
   white-space: nowrap;
+  text-decoration: underline;
+}
+
+.shops__info a:hover {
+  color: #101010;
 }
 
 .shops__button {
@@ -9926,7 +9930,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 .shops-map {
   position: absolute;
   height: 763px;
-  width: 800px;
+  width: calc(50% - 100px);
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
   bottom: 0;
   right: 0;
