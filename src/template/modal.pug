@@ -1,0 +1,51 @@
+form#sign-in.auth(style='display: none')
+    .auth__title Войти на сайт
+    .auth__link.auth__link_no-account
+        a(data-fancybox='', data-src='#registrations', href='javascript:;') У меня еще нет аккаунта
+    .auth__form
+        .auth__input-field.input-field
+            label.input-field__label(for='login-1') Твой Логин
+            input#login-1.input-field__input(name='', required='', type='text')
+        .auth__input-field.input-field
+            label.input-field__label(for='pass-1') И пароль
+            input#pass-1.input-field__input(name='', required='', type='password')
+    .auth__link.auth__link_forget
+        a(href='#') Забыли пароль?
+    .auth__button-block
+        button.btn.btn-red.btn-block(type='submit') Войти
+    .auth__subtitle Войти через соц. сети:
+    .auth__social
+        span
+            i.icon.icon-vk Вконтакте
+        span
+            i.icon.icon-fb Facebook
+        span
+            i.icon.icon-inst Instagram
+        span
+            i.icon.icon-ok Одноклассники
+
+
+form#registrations.auth(style='display: none')
+    .auth__title Регистрация
+    .auth__link.auth__link_no-account
+        a(data-fancybox='', data-src='#sign-in', href='javascript:;') У меня уже есть аккаунт
+    .auth__form
+        .auth__input-field.input-field
+            label.input-field__label(for='reg-login') Логин
+            input#reg-login.input-field__input(name='', required='', type='text')
+        .auth__input-field.input-field
+            label.input-field__label(for='reg-pass') Пароль
+            input#reg-pass.input-field__input(name='', required='', type='password')
+        .auth__input-field.input-field
+            label.input-field__label(for='reg-email') Email
+            input#reg-email.input-field__input(name='', required='', type='email')
+    .auth__button-block
+        button.btn.btn-red.btn-block(type='submit') Зарегистрироваться
+    .auth__subtitle Или войти через соц. сети:
+    .auth__social
+        span
+            i.icon.icon-vk Вконтакте
+        span
+            i.icon.icon-fb Facebook
+        span
+            i.icon.icon-ok Одноклассники

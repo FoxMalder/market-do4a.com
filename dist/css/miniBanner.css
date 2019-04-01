@@ -1,0 +1,26 @@
+.mini-banner {
+  background-color: #F4412D;
+  font-family: "Bender", sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1;
+  padding-bottom: 4.5px;
+  padding-top: 4.5px; }
+  @media (min-width: 768px) {
+    .mini-banner {
+      font-size: 14px;
+      line-height: 1.5;
+      padding-bottom: 2.5px;
+      padding-top: 2.5px; } }
+  @media (min-width: 1240px) {
+    .mini-banner {
+      font-size: 18px;
+      line-height: 1.5;
+      padding-bottom: 6.5px;
+      padding-top: 6.5px; } }
+

@@ -1,0 +1,680 @@
+header.header
+    .header__mini-banner
+        | Бесплатная доставка при заказе от
+        span.price 2 990
+    .header__nav-top
+        .container
+            .header-nav-top
+                .header-nav-top__city
+                    .select-city
+                        a.select-city__link.collapsed(data-toggle='collapse', href='#change-city')
+                            svg.select-city__icon
+                                use(xlink:href=require('./../images/sprite.svg') + '#shield')
+                            |               Нижний Новгород
+                        a.select-city__link.collapsed(data-toggle='collapse', href='#change-store')
+                            | ул. Невзоровых, д. 64к2
+                        // <span class="select-city__value">2 магазина</span>
+                nav.header-nav-top__menu
+                    ul.page-nav
+                        li.page-nav__item
+                            a.page-nav__link(href='#') Программа бонусов
+                        li.page-nav__item
+                            a.page-nav__link(href='#') Доставка и оплата
+                        li.page-nav__item
+                            a.page-nav__link(href='#') Франшиза
+                        li.page-nav__item
+                            a.page-nav__link(href='#') Для оптовиков
+                        li.page-nav__item
+                            a.page-nav__link(href='#') Контакты
+                a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
+                    svg
+                        use(xlink:href=require('./../images/sprite.svg') + '#person')
+                    |           Войти
+                a.header-number(href='#')
+                    svg
+                        use(xlink:href=require('./../images/sprite.svg') + '#phone')
+                    |           +7 (920) 024-33-14
+    #change-city.header__city-list.collapse(data-parent='.header')
+        .container
+            .change-city
+                .change-city__header
+                    span.change-city__title Города в которых есть marketdo4a
+                    button.btn.change-city__btn-close(data-target='#change-city', data-toggle='collapse')
+                ul.change-city__list
+                    li.change-city__item(data-letter='А')
+                        a.change-city__link(href='#') Ангарск
+                    li.change-city__item
+                        a.change-city__link(href='#') Астана
+                    li.change-city__item(data-letter='Б')
+                        a.change-city__link(href='#') Барнаул
+                    li.change-city__item
+                        a.change-city__link(href='#') Белорецк
+                    li.change-city__item
+                        a.change-city__link(href='#') Бердск
+                    li.change-city__item
+                        a.change-city__link(href='#') Березники
+                    li.change-city__item
+                        a.change-city__link(href='#') Березовский
+                    li.change-city__item(data-letter='В')
+                        a.change-city__link(href='#') Великий Новгород
+                    li.change-city__item
+                        a.change-city__link(href='#') Владивосток
+                    li.change-city__item
+                        a.change-city__link(href='#') Владимир
+                    li.change-city__item
+                        a.change-city__link(href='#') Волгоград
+                    li.change-city__item
+                        a.change-city__link(href='#') Воронеж
+                    li.change-city__item(data-letter='E')
+                        a.change-city__link(href='#') Екатеринбург
+                    li.change-city__item
+                        a.change-city__link(href='#') Иркутск
+                    li.change-city__item
+                        a.change-city__link(href='#') Казань
+                    li.change-city__item
+                        a.change-city__link(href='#') Калуга
+                    li.change-city__item
+                        a.change-city__link(href='#') Кемерово
+                    li.change-city__item
+                        a.change-city__link(href='#') Комсомольск-на-Амуре
+                    li.change-city__item
+                        a.change-city__link(href='#') Кострома
+                    li.change-city__item
+                        a.change-city__link(href='#') Краснодар
+                    li.change-city__item
+                        a.change-city__link(href='#') Красноярск
+                    li.change-city__item
+                        a.change-city__link(href='#') Магадан
+                    li.change-city__item
+                        a.change-city__link(href='#') Майкоп
+                    li.change-city__item
+                        a.change-city__link(href='#') Москва
+                    li.change-city__item
+                        a.change-city__link(href='#') Нижневартовск
+                    li.change-city__item
+                        a.change-city__link(href='#') Нижний Новгород
+                    li.change-city__item
+                        a.change-city__link(href='#') Новокузнецк
+                    li.change-city__item
+                        a.change-city__link(href='#') Новороссийск
+                    li.change-city__item
+                        a.change-city__link(href='#') Новосибирск
+                    li.change-city__item
+                        a.change-city__link(href='#') Новочеркасск
+                    li.change-city__item
+                        a.change-city__link(href='#') Новый Уренгой
+                    li.change-city__item
+                        a.change-city__link(href='#') Оренбург
+                    li.change-city__item
+                        a.change-city__link(href='#') Павлодар
+                    li.change-city__item
+                        a.change-city__link(href='#') Пермь
+                    li.change-city__item
+                        a.change-city__link(href='#') Ростов-на-Дону
+                    li.change-city__item
+                        a.change-city__link(href='#') Самара
+                    li.change-city__item
+                        a.change-city__link(href='#') Санкт-Петербург
+                    li.change-city__item
+                        a.change-city__link(href='#') Симферополь
+                    li.change-city__item
+                        a.change-city__link(href='#') Сочи
+                    li.change-city__item
+                        a.change-city__link(href='#') Сургут
+                    li.change-city__item
+                        a.change-city__link(href='#') Томск
+                    li.change-city__item
+                        a.change-city__link(href='#') Тюмень
+                    li.change-city__item
+                        a.change-city__link(href='#') Ульяновск
+                    li.change-city__item
+                        a.change-city__link(href='#') Уссурийск
+                    li.change-city__item
+                        a.change-city__link(href='#') Уфа
+                    li.change-city__item
+                        a.change-city__link(href='#') Хабаровск
+                    li.change-city__item
+                        a.change-city__link(href='#') Челябинск
+                    li.change-city__item
+                        a.change-city__link(href='#') Чита
+                    li.change-city__item
+                        a.change-city__link(href='#') Южно-Сахалинск
+                    li.change-city__item
+                        a.change-city__link(href='#') Якутск
+                .change-city__note
+                    | #[b Не нашли магазина в вашем городе?]
+                    | Отправим с центрального склада почтой или транспортной компанией.
+                    | Доставка от 250 ₽. Отправка на следующий рабочий день.
+    #change-store.header__city-list.collapse(data-parent='.header')
+        .container
+            .change-store
+                .change-store__header
+                    span.change-store__title
+                        | ВЫБЕРИТЕ МАГАЗИН
+                        br
+                        | в
+                        span.selected нижнем новгороде
+                    button.btn.change-store__btn-close(data-target='#change-store', data-toggle='collapse')
+                ul.change-store__list
+                    li.change-store__item
+                        a.change-store__link.active(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle За ТЦ «Этажи»
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle За ТЦ «Этажи»
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle За ТЦ «Этажи»
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link.active(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle Курьер и самовывоз
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle Курьер и самовывоз
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle Курьер и самовывоз
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item.change-store__item_right
+                        a.change-store__link.change-store__link_icon.change-store__link_last(href='#')
+                            svg.change-store__item-icon
+                                use(xlink:href=require('./../images/sprite.svg') + '#change-store-stock-icon')
+                            .change-store__item-name
+                                | Отправлять почтой
+                                br
+                                | с центрального склада
+                            .change-store__item-note Срок от 5 дней
+                .change-store__note
+                    b Не нашли нужный товар?
+                    | Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
+                // /.change-city__note
+    .header__fixed-block
+        .header__nav-center
+            .container
+                .header-control
+                    button.header-control__menu-btn
+                    a.header-control__logo(href='/')
+                    // /.header-control__logo
+                    .header-control__search
+                        // Варианты использования
+                        // Иконка лупы - часть label
+                        //
+                          <label class="search-fild">
+                          <input class="search-fild__input input-text" type="text" placeholder="Поиск в каталоге">
+                          <svg class="search-fild__loupe">
+                          <use xlink:href="images/sprite.svg#loupe"></use>
+                          </svg>
+                          </label>
+                          <div class="search-fild">
+                          <input class="search-fild__input input-text" id="search" type="text" placeholder="Поиск в каталоге">
+                          <label class="search-fild__loupe" for="search">
+                          <svg>
+                          <use xlink:href="images/sprite.svg#loupe"></use>
+                          </svg>
+                          </label>
+                          </div>
+                        // Иконка лупы - кнопка
+                        form.search-fild
+                            input.search-fild__input.input-text(placeholder='Поиск в каталоге', type='text')
+                            button.search-fild__loupe(type='submit')
+                                svg
+                                    use(xlink:href=require('./../images/sprite.svg') + '#loupe')
+                    // /.header-control__search
+                    a.header-control__button.header-control__button_search(href='#')
+                        svg
+                            use(xlink:href=require('./../images/sprite.svg') + '#loupe')
+                    a.header-control__button.header-control__button_favorites(href='#')
+                        svg
+                            use(xlink:href=require('./../images/sprite.svg') + '#heart')
+                        span.header-control__notifications 2
+                    .header-control__cart-container
+                        //Кнопка корзины для мобилок
+                        a.header-control__button.header-control__button_cart(href='#')
+                            svg
+                                use(xlink:href=require('./../images/sprite.svg') + '#cart')
+                            span.header-control__notifications 2
+                        // Кнопка корзины для десктопа
+                        .header-control__cart
+                            .button-cart.btn.btn-red.btn-skew
+                                .btn-skew__revers.button-cart__inner
+                                    .button-cart__num 5
+                                    .button-cart__block
+                                        .button-cart__title Корзина
+                                        .button-cart__price 12 245 ₽
+                            .header-cart
+                                .header-cart__wrapper
+                                    .header-cart__header
+                                        .header-cart__title Товары в корзине
+                                        button.header-cart__btn-clear
+                                            svg
+                                                use(xlink:href=require('./../images/sprite.svg') + '#trash')
+                                            |                       Очистить
+                                    .header-cart__item
+                                        .h-product-item
+                                            .h-product-item__img
+                                                img(alt='', src=require('./../images/cart-product-1.png'))
+                                            .h-product-item__info
+                                                .h-product-item__name
+                                                    | Optimum nutrition gold standart whey
+                                                .h-product-item__description 900 г.
+                                            .h-product-item__controls
+                                                .h-product-item__price-block
+                                                    span.h-product-item__price.price 1 750
+                                                    button.h-product-item__remove
+                                                        svg
+                                                            use(xlink:href=require('./../images/sprite.svg') + '#trash')
+                                                // Prod
+                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                                // Dev
+                                                .input-counter
+                                                    button.input-counter__down -
+                                                    span.input-counter__count 2
+                                                    button.input-counter__up +
+                                                    input.input-counter(type='hidden', value='2')
+                                        .h-product-item
+                                            .h-product-item__img
+                                                img(alt='', src=require('./../images/cart-product-1.png'))
+                                            .h-product-item__info
+                                                .h-product-item__name
+                                                    | Optimum nutrition gold standart whey
+                                                .h-product-item__description 900 г.
+                                            .h-product-item__controls
+                                                .h-product-item__price-block
+                                                    span.h-product-item__price.price 1 750
+                                                    button.h-product-item__remove
+                                                        svg
+                                                            use(xlink:href=require('./../images/sprite.svg') + '#trash')
+                                                // Prod
+                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                                // dev
+                                                .input-counter
+                                                    button.input-counter__down -
+                                                    span.input-counter__count 2
+                                                    button.input-counter__up +
+                                                    input.input-counter(type='hidden', value='2')
+        nav.header__category
+            .container
+                ul.header-category
+                    li.header-category__item
+                        a.header-category__link(href='#') Питание
+                        .header-category__hidden
+                            .hidden-nav
+                                .hidden-nav__block
+                                    .hidden-nav__title
+                                        a.hidden-nav__link(href='#') Протеин
+                                    ul.hidden-nav__list
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                .hidden-nav__block
+                                    .hidden-nav__title
+                                        a.hidden-nav__link(href='#') Батончики, напитки, закуски
+                                    ul.hidden-nav__list
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Напитки
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#')
+                                                | Низкокалорийные Соусы и Джемы
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Ореховые пасты
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Правильное питание
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сахарозаменители
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#')
+                                                | Батончики и другие закуски
+                                .hidden-nav__block
+                                    .hidden-nav__title
+                                        a.hidden-nav__link(href='#') Протеин
+                                    ul.hidden-nav__list
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                .hidden-nav__block
+                                    .hidden-nav__title
+                                        a.hidden-nav__link(href='#') Протеин
+                                    ul.hidden-nav__list
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                                        li.hidden-nav__item
+                                            a.hidden-nav__item__link(href='#') Сывороточный
+                            // /.hidden-nav
+                    li.header-category__item
+                        a.header-category__link(href='#') Для похудения
+                    li.header-category__item
+                        a.header-category__link(href='#') Для массы
+                    li.header-category__item
+                        a.header-category__link(href='#') Для выносливости
+                    li.header-category__item
+                        a.header-category__link(href='#') Аксессуары
+                    li.header-category__item
+                        a.header-category__link(href='#') Одежда
+                    li.header-category__item
+                        a.header-category__link(href='#') Распродажа
+                    li.header-category__item
+                        a.header-category__link(href='#') О нас
+                    li.header-category__item
+                        a.header-category__link(href='#') Бренды
+.mobile-menu
+    .mobile-menu__overlay
+    .mobile-menu__wrapper
+        .mobile-menu__header
+            .select-city
+                a.select-city__link.collapsed(data-toggle='collapse', href='#change-city-m')
+                    svg.select-city__icon
+                        use(xlink:href=require('./../images/sprite.svg') + '#shield')
+                    |           Нижний Новгород
+        #change-city-m.mobile-menu__city-list.collapse(data-parent='.mobile-menu')
+            .change-city
+                .change-city__header
+                    span.change-city__title Города в которых есть marketdo4a
+                    button.btn.change-city__btn-close(data-target='#change-city', data-toggle='collapse')
+                ul.change-city__list
+                    li.change-city__item(data-letter='А')
+                        a.change-city__link(href='#') Ангарск
+                    li.change-city__item
+                        a.change-city__link(href='#') Астана
+                    li.change-city__item(data-letter='Б')
+                        a.change-city__link(href='#') Барнаул
+                    li.change-city__item
+                        a.change-city__link(href='#') Белорецк
+                    li.change-city__item
+                        a.change-city__link(href='#') Бердск
+                    li.change-city__item
+                        a.change-city__link(href='#') Березники
+                    li.change-city__item
+                        a.change-city__link(href='#') Березовский
+                    li.change-city__item(data-letter='В')
+                        a.change-city__link(href='#') Великий Новгород
+                    li.change-city__item
+                        a.change-city__link(href='#') Владивосток
+                    li.change-city__item
+                        a.change-city__link(href='#') Владимир
+                    li.change-city__item
+                        a.change-city__link(href='#') Волгоград
+                    li.change-city__item
+                        a.change-city__link(href='#') Воронеж
+                    li.change-city__item(data-letter='E')
+                        a.change-city__link(href='#') Екатеринбург
+                    li.change-city__item
+                        a.change-city__link(href='#') Иркутск
+                    li.change-city__item
+                        a.change-city__link(href='#') Казань
+                    li.change-city__item
+                        a.change-city__link(href='#') Калуга
+                    li.change-city__item
+                        a.change-city__link(href='#') Кемерово
+                    li.change-city__item
+                        a.change-city__link(href='#') Комсомольск-на-Амуре
+                    li.change-city__item
+                        a.change-city__link(href='#') Кострома
+                    li.change-city__item
+                        a.change-city__link(href='#') Краснодар
+                    li.change-city__item
+                        a.change-city__link(href='#') Красноярск
+                    li.change-city__item
+                        a.change-city__link(href='#') Магадан
+                    li.change-city__item
+                        a.change-city__link(href='#') Майкоп
+                    li.change-city__item
+                        a.change-city__link(href='#') Москва
+                    li.change-city__item
+                        a.change-city__link(href='#') Нижневартовск
+                    li.change-city__item
+                        a.change-city__link(href='#') Нижний Новгород
+                    li.change-city__item
+                        a.change-city__link(href='#') Новокузнецк
+                    li.change-city__item
+                        a.change-city__link(href='#') Новороссийск
+                    li.change-city__item
+                        a.change-city__link(href='#') Новосибирск
+                    li.change-city__item
+                        a.change-city__link(href='#') Новочеркасск
+                    li.change-city__item
+                        a.change-city__link(href='#') Новый Уренгой
+                    li.change-city__item
+                        a.change-city__link(href='#') Оренбург
+                    li.change-city__item
+                        a.change-city__link(href='#') Павлодар
+                    li.change-city__item
+                        a.change-city__link(href='#') Пермь
+                    li.change-city__item
+                        a.change-city__link(href='#') Ростов-на-Дону
+                    li.change-city__item
+                        a.change-city__link(href='#') Самара
+                    li.change-city__item
+                        a.change-city__link(href='#') Санкт-Петербург
+                    li.change-city__item
+                        a.change-city__link(href='#') Симферополь
+                    li.change-city__item
+                        a.change-city__link(href='#') Сочи
+                    li.change-city__item
+                        a.change-city__link(href='#') Сургут
+                    li.change-city__item
+                        a.change-city__link(href='#') Томск
+                    li.change-city__item
+                        a.change-city__link(href='#') Тюмень
+                    li.change-city__item
+                        a.change-city__link(href='#') Ульяновск
+                    li.change-city__item
+                        a.change-city__link(href='#') Уссурийск
+                    li.change-city__item
+                        a.change-city__link(href='#') Уфа
+                    li.change-city__item
+                        a.change-city__link(href='#') Хабаровск
+                    li.change-city__item
+                        a.change-city__link(href='#') Челябинск
+                    li.change-city__item
+                        a.change-city__link(href='#') Чита
+                    li.change-city__item
+                        a.change-city__link(href='#') Южно-Сахалинск
+                    li.change-city__item
+                        a.change-city__link(href='#') Якутск
+                .change-city__note
+                    b Не нашли магазина в вашем городе?
+                    |  Отправим с центрального склада почтой или транспортной компанией.
+                    |           Доставка от 250 ₽. Отправка на следующий рабочий день.
+                // /.change-city__note
+        .mobile-menu__header
+            .select-city
+                a.select-city__link.collapsed(data-toggle='collapse', href='#change-store-m')
+                    | ул. Невзоровых, д. 64к2
+        #change-store-m.mobile-menu__city-list.collapse(data-parent='.mobile-menu')
+            // Скопировано без изменений
+            .change-store
+                .change-store__header
+                    span.change-store__title
+                        | ВЫБЕРИТЕ МАГАЗИН
+                        br
+                        | в
+                        span.selected нижнем новгороде
+                    button.btn.change-store__btn-close(data-target='#change-city', data-toggle='collapse')
+                ul.change-store__list
+                    li.change-store__item
+                        a.change-store__link.active(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle За ТЦ «Этажи»
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle За ТЦ «Этажи»
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle За ТЦ «Этажи»
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link.active(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle Курьер и самовывоз
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle Курьер и самовывоз
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item
+                        a.change-store__link(href='#')
+                            .change-store__item-name ул. Невзоровых, д. 64к2
+                            .change-store__item-subtitle Курьер и самовывоз
+                            .change-store__item-note Курьер и самовывоз
+                    li.change-store__item.change-store__item_right
+                        a.change-store__link.change-store__link_icon.change-store__link_last(href='#')
+                            svg.change-store__item-icon
+                                use(xlink:href=require('./../images/sprite.svg') + '#change-store-stock-icon')
+                            .change-store__item-name
+                                | Отправлять почтой
+                                br
+                                | с центрального склада
+                            .change-store__item-note Срок от 5 дней
+                .change-store__note
+                    b Не нашли нужный товар?
+                    |  Отправим с центрального склада почтой или транспортной компанией. Доставка от
+                    |           250 ₽. Отправка на следующий рабочий день.
+                // /.change-city__note
+        .mobile-menu__header
+            .mobile-menu__row
+                // Скопировано без изменений
+                a.header-number(href='#')
+                    svg
+                        use(xlink:href=require('./../images/sprite.svg') + '#phone')
+                    |           +7 (920) 024-33-14
+                // Скопировано без изменений
+                a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
+                    svg
+                        use(xlink:href=require('./../images/sprite.svg') + '#person')
+                    |           Войти
+        nav.mobile-menu__nav
+            // Copy
+            ul.header-category
+                li.header-category__item
+                    a.header-category__link(href='#') Питание
+                    .header-category__hidden
+                        .hidden-nav
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Протеин
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Батончики, напитки, закуски
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Напитки
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#')
+                                            | Низкокалорийные Соусы и Джемы
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Ореховые пасты
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Правильное питание
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сахарозаменители
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#')
+                                            | Батончики и другие закуски
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Протеин
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Протеин
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                        // /.hidden-nav
+                li.header-category__item
+                    a.header-category__link(href='#') Для похудения
+                li.header-category__item
+                    a.header-category__link(href='#') Для массы
+                li.header-category__item
+                    a.header-category__link(href='#') Для выносливости
+                li.header-category__item
+                    a.header-category__link(href='#') Аксессуары
+                li.header-category__item
+                    a.header-category__link(href='#') Одежда
+                li.header-category__item
+                    a.header-category__link(href='#') Распродажа
+                li.header-category__item
+                    a.header-category__link(href='#') О нас
+                li.header-category__item
+                    a.header-category__link(href='#') Бренды
+            // Copy
+            ul.page-nav
+                li.page-nav__item
+                    a.page-nav__link(href='#') Программа бонусов
+                li.page-nav__item
+                    a.page-nav__link(href='#') Доставка и оплата
+                li.page-nav__item
+                    a.page-nav__link(href='#') Франшиза
+                li.page-nav__item
+                    a.page-nav__link(href='#') Для оптовиков
+                li.page-nav__item
+                    a.page-nav__link(href='#') Контакты

@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'functions';
+//@import 'bootstrap/mixins/breakpoints';
+
+.mini-banner {
+  background-color: $main-color;
+  font: {
+    family: $font-family-bender;
+    style: italic;
+    weight: 900;
+  }
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+
+  @include mre-height-block(11px, 20px, 1);
+
+  @media (min-width: map_get($grid-breakpoints, md)) {
+    @include mre-height-block(14px, 26px);
+  }
+  @media (min-width: map_get($grid-breakpoints, xl)) {
+    @include mre-height-block(18px, 40px);
+  }
+}

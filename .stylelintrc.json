@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-twbs-bootstrap/scss",
+  "rules": {
+    "string-quotes": "single",
+    "selector-class-pattern": null
+  }
+}

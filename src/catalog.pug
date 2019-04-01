@@ -1,0 +1,247 @@
+doctype html
+html(lang='ru')
+    head
+        title= htmlWebpackPlugin.options.title
+    body
+        block header
+            include template/header
+        .wrapper
+            .page-header
+                .container
+                    .breadcumps
+                        a.breadcumps__link.red(href='#') Главная
+                        span.breadcumps__delimiter
+                        a.breadcumps__link(href='#') Каталог
+                        span.breadcumps__delimiter
+                        a.breadcumps__link(href='#') Протеины
+                        span.breadcumps__delimiter
+                        a.breadcumps__link(href='#') Комплексный протеин
+                        span.breadcumps__delimiter
+                        span.breadcumps__page BSN Syntha-6
+                    h1.page-title протеины
+            .catalog-banner
+                .catalog-banner__container
+                    .catalog-banner__sale
+                        .catalog-banner__sale-value -15%
+                        .catalog-banner__sale-text На все протеины
+                    .catalog-banner__promocode
+                        .catalog-banner__promocode-text Промокод
+                        .catalog-banner__promocode-value Muscle
+            .filter
+                .filter__container.container
+                    .filter-list
+                        .multifilter
+                            // dropdown
+                            span.multifilter__label Категория:
+                            button.multifilter__button
+                                span.multifilter__value Казеин и мол...
+                            .multifilter__dropdown
+                                .p-1 dropdown
+                        .multifilter.show
+                            // dropdown container
+                            button.multifilter__button Бренд
+                            // dropdown button
+                            button.multifilter__btn-clear Сбросить
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Страна
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Объём, кг
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Порции
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button % Белка
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Время приёма
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Цена
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Порции
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button % Белка
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Время приёма
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                        .multifilter
+                            // dropdown container
+                            button.multifilter__button Цена
+                            // dropdown button
+                            .multifilter__dropdown
+                                // dropdown
+                                .p-1 dropdown
+                    button.filter__reset Сбросить
+            .sorting
+                .sorting__container.container
+                    .sorting__list
+                        .multifilter
+                            // dropdown
+                            span.multifilter__label Найдено:
+                            .multifilter__value 12 товаров
+                        .multifilter
+                            // dropdown
+                            button.multifilter__button Сначала дешевые
+                            .multifilter__dropdown
+                                .p-1 dropdown
+                    .sorting__check-list
+            .catalog
+                .container
+                    .row
+                        .catalog__item.col-xl-3
+                            .product-card
+                                .product-card__wrapper
+                                    .product-card__img
+                                    .product-card__title
+                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, recusandae?
+                                    .product-card__description
+                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, optio.
+                                    .product-card__price-info
+                                        .product-card__price(data-price-text='от', data-price-unit='₽') 1 750
+                                        .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') 600
+                                    .product-card__row
+                                        a.product-card__reviews(href='#') 31 отзыв
+                                        .product-card__stock
+                                            // <div class="product-card__stock-title red">В наличии</div>
+                                            .product-card__stock-title.green В наличии
+                                            .product-card__stock-value 6 фасовок
+                                    .product-card__sticker
+                                        | доставка 
+                                        br
+                                        | 1 день
+                                .product-card__controls
+                                    button.btn.btn-red.product-card__button Подробнее
+                                    button.btn.btn-gray-2.product-card__button К сравнению
+                                button.product-card__favorites
+                                    svg
+                                        use(xlink:href=require('./images/sprite.svg') + '#heart')
+                        .catalog__item.col-xl-3
+                            .product-card
+                                .product-card__wrapper
+                                    .product-card__img
+                                    .product-card__title
+                                        | Название
+                                    .product-card__description
+                                    .product-card__price-info
+                                        .product-card__price(data-price-text='от', data-price-unit='₽') 1 750
+                                        .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') 600
+                                    .product-card__row
+                                        a.product-card__reviews(href='#') 31 отзыв
+                                        .product-card__stock
+                                            // <div class="product-card__stock-title red">В наличии</div>
+                                            .product-card__stock-title.green В наличии
+                                            .product-card__stock-value 6 фасовок
+                                    .product-card__sticker
+                                        | доставка 
+                                        br
+                                        | 1 день
+                                .product-card__controls
+                                    button.btn.btn-red.product-card__button Подробнее
+                                    button.btn.btn-gray-2.product-card__button К сравнению
+                                button.product-card__favorites
+                                    svg
+                                        use(xlink:href=require('./images/sprite.svg') + '#heart')
+                    .catalog__more
+                        button.catalog__more-link Показать еще
+                        .catalog__more-value Показано 24 из 170
+            .catalog-description
+                .container
+                    p
+                        | Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
+                        | для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
+                        | человека.
+                    p
+                        | Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
+                        | необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
+                        | роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
+                        | максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
+                        | коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.
+                    p
+                        | Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
+                        | порошок или коктейль.
+            .benefits
+                .container
+                    .row
+                        .col-md-6.col-xl-3
+                            .benefits__item
+                                .benefits__icon
+                                    svg(width='91', height='62')
+                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-cup')
+                                .benefits__title
+                                    | Профессиональная 
+                                    br
+                                    | консультация
+                        .col-md-6.col-xl-3
+                            .benefits__item
+                                .benefits__icon
+                                    svg(width='86', height='87')
+                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-hand')
+                                .benefits__title
+                                    | Официальная 
+                                    br
+                                    | продукция
+                        .col-xl-6
+                            .benefits__item
+                                .benefits__icon
+                                    svg(width='68', height='69')
+                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-mail')
+                                .benefits__title
+                                    | Подписаться 
+                                    br
+                                    | на новости
+                                form.benefits__form
+                                    .input-field
+                                        label.input-field__label(for='email-1') Твой e-mail
+                                        input#email-1.input-field__input(type='email')
+                                    button.btn.btn-block.btn-red Подписаться
+
+        block footer
+            include template/footer
+        block modal
+            include template/modal

@@ -17,14 +17,6 @@
 	],
 "creatorBuild": "29156",
 "files": {
-	"/.babelrc": {
-		"cB": 0,
-		"ft": 8192,
-		"hM": 0,
-		"oA": 1,
-		"oAP": "/build/.babelrc",
-		"oF": 1
-		},
 	"/.browserslistrc": {
 		"cB": 0,
 		"ft": 8192,
@@ -63,11 +55,1063 @@
 		"oAP": "/build/.idea",
 		"oF": 0
 		},
+	"/.stylelintrc.json": {
+		"ft": 524288,
+		"oA": 1,
+		"oAP": "/build/.stylelintrc-min.json",
+		"oF": 0,
+		"oO": 0,
+		"oS": 1
+		},
+	"/babel.config.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/babel.config.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
 	"/build": {
 		"ft": 65536,
 		"oA": 1,
 		"oAP": "/build/build",
 		"oF": 0
+		},
+	"/dist/catalog.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/catalog.html",
+		"oF": 0
+		},
+	"/dist/css/index.css": {
+		"aP": 1,
+		"bl": 0,
+		"ft": 16,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "/build/dist/css/index-min.css",
+		"oF": 0,
+		"oS": 3
+		},
+	"/dist/fonts/Bender-Black.00b5e1a8af559f416f1c3683bafe59ba.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Black.00b5e1a8af559f416f1c3683bafe59ba.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Black.e9c53ac629a006d68b2ff03eaa6d4a84.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Black.e9c53ac629a006d68b2ff03eaa6d4a84.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Black.fdca6405aed35b56e0c091c3938d68a2.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Black.fdca6405aed35b56e0c091c3938d68a2.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-BlackItalic.6bb2163b1113425342be764e4cf9edae.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-BlackItalic.6bb2163b1113425342be764e4cf9edae.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-BlackItalic.a61b5783fbcc5db118b317c8d7d045f6.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-BlackItalic.a61b5783fbcc5db118b317c8d7d045f6.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-BlackItalic.b2471ff3939becad5fa94726d58bb957.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-BlackItalic.b2471ff3939becad5fa94726d58bb957.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Bold.12475bb60ade9306b98f8ce96e1fd1b2.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Bold.12475bb60ade9306b98f8ce96e1fd1b2.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Bold.91f43f8ad99bfc7aa50ae2f7ce0bf623.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Bold.91f43f8ad99bfc7aa50ae2f7ce0bf623.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Bold.b553212352b1f70056942978d7a5673e.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Bold.b553212352b1f70056942978d7a5673e.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-BoldItalic.20b4ccb6e090642924635a6d333f6458.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-BoldItalic.20b4ccb6e090642924635a6d333f6458.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-BoldItalic.800e69bb64fab1d1534bd2a0f6c9c5d1.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-BoldItalic.800e69bb64fab1d1534bd2a0f6c9c5d1.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-BoldItalic.a28576ed5f8e92c79c3d43fabe6d9638.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-BoldItalic.a28576ed5f8e92c79c3d43fabe6d9638.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Italic.863c8c712eaca40e7a0cea7780a5b2a0.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Italic.863c8c712eaca40e7a0cea7780a5b2a0.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Italic.9733a135b1c186c3891b56c4cd522c77.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Italic.9733a135b1c186c3891b56c4cd522c77.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Italic.df9d2ea2ffe06b144f0081e53d24eae0.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Italic.df9d2ea2ffe06b144f0081e53d24eae0.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Light.1e988892c988fac624a6c6b21d9da24b.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Light.1e988892c988fac624a6c6b21d9da24b.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Light.3e310bba7936dbaa2c527f8d2b27f848.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Light.3e310bba7936dbaa2c527f8d2b27f848.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-Light.c9acdb1a594048b8c0d1cbd8ce4f5fb5.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-Light.c9acdb1a594048b8c0d1cbd8ce4f5fb5.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-LightItalic.396d12da99d4d555f70b724d530d85e0.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-LightItalic.396d12da99d4d555f70b724d530d85e0.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-LightItalic.9bfbff45875d10ef043c07b3a43334d2.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-LightItalic.9bfbff45875d10ef043c07b3a43334d2.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Bender-LightItalic.cda40bbe85a0855ca82870535d2f0de1.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender-LightItalic.cda40bbe85a0855ca82870535d2f0de1.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender.5bc44e104cb4519ba1d2a006d52bf098.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender.5bc44e104cb4519ba1d2a006d52bf098.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Bender.b46e2e0fae587d969225095ab5deb6bf.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender.b46e2e0fae587d969225095ab5deb6bf.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Bender.f0006940eea299e6b6b2ef6f9a0c6acd.ttf": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Bender.f0006940eea299e6b6b2ef6f9a0c6acd.ttf",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Black.a4502329af9283216c363fb4d09b393e.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Black.a4502329af9283216c363fb4d09b393e.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Black.c7a3bad189581d8c262882f9bea97486.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Black.c7a3bad189581d8c262882f9bea97486.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-BlackItalic.094751f4ef58c94b676390526b5df51b.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-BlackItalic.094751f4ef58c94b676390526b5df51b.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-BlackItalic.d000d76edb6507c3f11df32559cdb380.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-BlackItalic.d000d76edb6507c3f11df32559cdb380.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Bold.34356f6bf3d0f6de82656cca908803cf.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Bold.34356f6bf3d0f6de82656cca908803cf.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Bold.61c493e3af34ba077777c6bb54862837.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Bold.61c493e3af34ba077777c6bb54862837.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-BoldItalic.57acb4797f14814f3f3d8b5ff0dc92f5.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-BoldItalic.57acb4797f14814f3f3d8b5ff0dc92f5.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-BoldItalic.6fbcf86a8d4a8411d22ed510f1d72be8.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-BoldItalic.6fbcf86a8d4a8411d22ed510f1d72be8.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraBold.0b03428a6dce0f51e820b76cdd53d7ec.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraBold.0b03428a6dce0f51e820b76cdd53d7ec.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraBold.a627e2ce6bb323480c7423c587e5faca.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraBold.a627e2ce6bb323480c7423c587e5faca.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraBoldItalic.137fcd98298729474c2c9d4443915679.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraBoldItalic.137fcd98298729474c2c9d4443915679.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraBoldItalic.b95f0df1c3be008c1ef3d7aaac116b1b.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraBoldItalic.b95f0df1c3be008c1ef3d7aaac116b1b.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraLight-BETA.3e86dd6bb8806f2b1567d8821f10d46b.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraLight-BETA.3e86dd6bb8806f2b1567d8821f10d46b.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraLight-BETA.7410d5373a896ff636cbb81f6cb05f6b.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraLight-BETA.7410d5373a896ff636cbb81f6cb05f6b.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraLightItalic-BETA.233a2dea7b689ca3a05150e4c56bf14b.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraLightItalic-BETA.233a2dea7b689ca3a05150e4c56bf14b.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ExtraLightItalic-BETA.2ab0bd663beb00d3424cdea5d21989b3.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ExtraLightItalic-BETA.2ab0bd663beb00d3424cdea5d21989b3.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Italic.35cf8109301be9e5b147a09c9f103bc4.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Italic.35cf8109301be9e5b147a09c9f103bc4.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Italic.381444ec5c7d26b672bebaca791d0640.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Italic.381444ec5c7d26b672bebaca791d0640.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-italic.var.7457830229b0c7d2df2fa19a778b065c.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-italic.var.7457830229b0c7d2df2fa19a778b065c.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Light-BETA.235041efc07faa8126288ec912358690.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Light-BETA.235041efc07faa8126288ec912358690.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Light-BETA.42922cef6c883e28417cfc6733f581f4.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Light-BETA.42922cef6c883e28417cfc6733f581f4.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-LightItalic-BETA.7547f5c17624d09fd6a74ef1b39ef52f.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-LightItalic-BETA.7547f5c17624d09fd6a74ef1b39ef52f.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-LightItalic-BETA.ba0b2a0c4ad90106207185d38ca13d44.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-LightItalic-BETA.ba0b2a0c4ad90106207185d38ca13d44.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Medium.2e5e0884f40cc3929881d89710fa432e.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Medium.2e5e0884f40cc3929881d89710fa432e.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Medium.c09fb3891c96d467a92d9d898e4a931a.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Medium.c09fb3891c96d467a92d9d898e4a931a.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-MediumItalic.7a7fd73559e43715c0db3f6ff13fa108.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-MediumItalic.7a7fd73559e43715c0db3f6ff13fa108.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-MediumItalic.ad6e093cdbdede112459e8a6a1ad9563.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-MediumItalic.ad6e093cdbdede112459e8a6a1ad9563.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Regular.aebfbb3c9c7d49053fce8cadbc6e6735.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Regular.aebfbb3c9c7d49053fce8cadbc6e6735.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Regular.bffaed793493dc46bf0789e2275909ac.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Regular.bffaed793493dc46bf0789e2275909ac.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-SemiBold.acc6eebdcdac6e62d128cc4421d0f11a.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-SemiBold.acc6eebdcdac6e62d128cc4421d0f11a.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-SemiBold.cd04cacdf531638687dd675e1d35c153.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-SemiBold.cd04cacdf531638687dd675e1d35c153.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-SemiBoldItalic.569061c24342148e9b7b06484f18effc.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-SemiBoldItalic.569061c24342148e9b7b06484f18effc.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-SemiBoldItalic.57262d35e7da89546edf8741946d7ce4.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-SemiBoldItalic.57262d35e7da89546edf8741946d7ce4.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Thin-BETA.95dcd9833440639fb058f2fd5597cf8b.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Thin-BETA.95dcd9833440639fb058f2fd5597cf8b.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-Thin-BETA.993430a02687d7531d7e95cf1ffdf74a.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-Thin-BETA.993430a02687d7531d7e95cf1ffdf74a.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ThinItalic-BETA.03aaefeac4f93cdeb1334312d8af7f0b.woff": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ThinItalic-BETA.03aaefeac4f93cdeb1334312d8af7f0b.woff",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-ThinItalic-BETA.bab091cd421510dcc7a40ddae5f8e5f1.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-ThinItalic-BETA.bab091cd421510dcc7a40ddae5f8e5f1.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter-upright.var.dc162a64e0ec970871fb62b274cd447d.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter-upright.var.dc162a64e0ec970871fb62b274cd447d.woff2",
+		"oF": 0
+		},
+	"/dist/fonts/Inter.var.6f521bf650c7bf6c92e1d6b1b9e127a6.woff2": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/fonts/Inter.var.6f521bf650c7bf6c92e1d6b1b9e127a6.woff2",
+		"oF": 0
+		},
+	"/dist/images/a-anderson.a2275987c9f171f86b5fc85a70ba43e1.jpg": {
+		"ft": 16384,
+		"iS": 21094,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/a-anderson.a2275987c9f171f86b5fc85a70ba43e1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/amino.2fd266ca6a5e7e0cc6d2f53201c7b37a.png": {
+		"ft": 32768,
+		"iS": 38157,
+		"oA": 0,
+		"oAP": "/build/dist/images/amino.2fd266ca6a5e7e0cc6d2f53201c7b37a.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/arnold-1.e0fe1077aa18d59cb985f172440a60de.jpg": {
+		"ft": 16384,
+		"iS": 42938,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/arnold-1.e0fe1077aa18d59cb985f172440a60de.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/arnold-2.48ee0c0c7371c517e43857de3c24bb2d.jpg": {
+		"ft": 16384,
+		"iS": 64228,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/arnold-2.48ee0c0c7371c517e43857de3c24bb2d.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/artem-tarasov.e19f5cb03482763b9dafcdcdd1c706e8.jpg": {
+		"ft": 16384,
+		"iS": 17599,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/artem-tarasov.e19f5cb03482763b9dafcdcdd1c706e8.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/article-preview-1.4e40fdfe36975f255d1812f502c9410c.jpg": {
+		"ft": 16384,
+		"iS": 31169,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/article-preview-1.4e40fdfe36975f255d1812f502c9410c.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/bar.0cfe19dc93c4e7252f628e7f1b174f8e.png": {
+		"ft": 32768,
+		"iS": 54392,
+		"oA": 0,
+		"oAP": "/build/dist/images/bar.0cfe19dc93c4e7252f628e7f1b174f8e.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/bcaa.d36aa873a0517e3261a8228463b6668a.png": {
+		"ft": 32768,
+		"iS": 37475,
+		"oA": 0,
+		"oAP": "/build/dist/images/bcaa.d36aa873a0517e3261a8228463b6668a.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/bsn-logo.6af5ba367ee252b6dbb2641e2de11457.png": {
+		"ft": 32768,
+		"iS": 5267,
+		"oA": 0,
+		"oAP": "/build/dist/images/bsn-logo.6af5ba367ee252b6dbb2641e2de11457.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/cart-product-1.b099685fa08363afe3f9d420276d42be.png": {
+		"ft": 32768,
+		"iS": 2755,
+		"oA": 0,
+		"oAP": "/build/dist/images/cart-product-1.b099685fa08363afe3f9d420276d42be.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/catalog-promotion-bg.1c562e58a655abc25b119b76407b065f.jpg": {
+		"ft": 16384,
+		"iS": 20955,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/catalog-promotion-bg.1c562e58a655abc25b119b76407b065f.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/cmtech-logo.af886d71c6184ec1406627ee1a6d454e.png": {
+		"ft": 32768,
+		"iS": 2717,
+		"oA": 0,
+		"oAP": "/build/dist/images/cmtech-logo.af886d71c6184ec1406627ee1a6d454e.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/creatine.94e56dfae4907a84a46b0edff619de95.png": {
+		"ft": 32768,
+		"iS": 46833,
+		"oA": 0,
+		"oAP": "/build/dist/images/creatine.94e56dfae4907a84a46b0edff619de95.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/diet.b9ed73f4ce36fe6771a71c8c04fa79fd.png": {
+		"ft": 32768,
+		"iS": 28527,
+		"oA": 0,
+		"oAP": "/build/dist/images/diet.b9ed73f4ce36fe6771a71c8c04fa79fd.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/do4a-accessories-logo-vertical.eecb636505767378583ffc681d8cee02.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/dist/images/do4a-accessories-logo-vertical.eecb636505767378583ffc681d8cee02.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/dist/images/do4a-logo-vertical.cbced8f09dd1362819c59b08ed822167.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/dist/images/do4a-logo-vertical.cbced8f09dd1362819c59b08ed822167.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/dist/images/drink.97a864441681fdb1d631b2a16c6ff9c9.png": {
+		"ft": 32768,
+		"iS": 35164,
+		"oA": 0,
+		"oAP": "/build/dist/images/drink.97a864441681fdb1d631b2a16c6ff9c9.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/e-korshina.10e5e0c42a884c26e0d4291232a233dc.jpg": {
+		"ft": 16384,
+		"iS": 27122,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/e-korshina.10e5e0c42a884c26e0d4291232a233dc.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/geiner.1baac97265768ad267a6c1fb1a503d72.png": {
+		"ft": 32768,
+		"iS": 45363,
+		"oA": 0,
+		"oAP": "/build/dist/images/geiner.1baac97265768ad267a6c1fb1a503d72.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/m-markina.20615beb349fcc339eee8a04e0116974.jpg": {
+		"ft": 16384,
+		"iS": 22496,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/m-markina.20615beb349fcc339eee8a04e0116974.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/madmax-logo.b6be3e924b6f1e02888af429de61ca3e.png": {
+		"ft": 32768,
+		"iS": 8315,
+		"oA": 0,
+		"oAP": "/build/dist/images/madmax-logo.b6be3e924b6f1e02888af429de61ca3e.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/man-girl.7d8ce6ff213b9544a4f43d97f38e602a.png": {
+		"ft": 32768,
+		"iS": 253676,
+		"oA": 0,
+		"oAP": "/build/dist/images/man-girl.7d8ce6ff213b9544a4f43d97f38e602a.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/maxler.bf392e644c6bf22e3efcf46b15e49c19.png": {
+		"ft": 32768,
+		"iS": 6461,
+		"oA": 0,
+		"oAP": "/build/dist/images/maxler.bf392e644c6bf22e3efcf46b15e49c19.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/natrol-logo.435db22ddf78d81e5b50abf5e8748148.png": {
+		"ft": 32768,
+		"iS": 4056,
+		"oA": 0,
+		"oAP": "/build/dist/images/natrol-logo.435db22ddf78d81e5b50abf5e8748148.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/no-xplode.07825333d8baa4a103d3996bf73f01bc.png": {
+		"ft": 32768,
+		"iS": 39541,
+		"oA": 0,
+		"oAP": "/build/dist/images/no-xplode.07825333d8baa4a103d3996bf73f01bc.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/now-logo.1512b5f9cb0ff72036ba537be7a3bdf9.png": {
+		"ft": 32768,
+		"iS": 3690,
+		"oA": 0,
+		"oAP": "/build/dist/images/now-logo.1512b5f9cb0ff72036ba537be7a3bdf9.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/omega3.72c916c52a9086c44929599ec1f5c466.png": {
+		"ft": 32768,
+		"iS": 29486,
+		"oA": 0,
+		"oAP": "/build/dist/images/omega3.72c916c52a9086c44929599ec1f5c466.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/on-logo.cc824c6dda4b03e64fa51f97ad66f03a.png": {
+		"ft": 32768,
+		"iS": 3488,
+		"oA": 0,
+		"oAP": "/build/dist/images/on-logo.cc824c6dda4b03e64fa51f97ad66f03a.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/pasta.30bb8093ef473ba7a574ba8a940f0582.png": {
+		"ft": 32768,
+		"iS": 32714,
+		"oA": 0,
+		"oAP": "/build/dist/images/pasta.30bb8093ef473ba7a574ba8a940f0582.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/protein.86f4371e3b0d955e1901fd2ee739490d.png": {
+		"ft": 32768,
+		"iS": 38782,
+		"oA": 0,
+		"oAP": "/build/dist/images/protein.86f4371e3b0d955e1901fd2ee739490d.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/sabo-logo.2c14e15e03b069112c645bfd432be778.png": {
+		"ft": 32768,
+		"iS": 4731,
+		"oA": 0,
+		"oAP": "/build/dist/images/sabo-logo.2c14e15e03b069112c645bfd432be778.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/set-1-baner.04aa7c687aa8eed986ba0c1d6a21e834.jpg": {
+		"ft": 16384,
+		"iS": 45647,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/set-1-baner.04aa7c687aa8eed986ba0c1d6a21e834.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/set-1.502ad8513a9d388b1a0c16f6a7f9fd01.png": {
+		"ft": 32768,
+		"iS": 24838,
+		"oA": 0,
+		"oAP": "/build/dist/images/set-1.502ad8513a9d388b1a0c16f6a7f9fd01.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/set-2-baner.e4b0dec0776092c4b7da23e6ad2fe531.jpg": {
+		"ft": 16384,
+		"iS": 34112,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/set-2-baner.e4b0dec0776092c4b7da23e6ad2fe531.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/set-3-baner.da2b5d89d77a90ab9e03ba1e9caf3deb.jpg": {
+		"ft": 16384,
+		"iS": 53348,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/set-3-baner.da2b5d89d77a90ab9e03ba1e9caf3deb.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/shop-photo-1.75723d269cd13db143d74275454e65a2.jpg": {
+		"ft": 16384,
+		"iS": 68871,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/images/shop-photo-1.75723d269cd13db143d74275454e65a2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/images/sprite.2ce3b050cb1116e156daf3a1964d91e1.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/build/dist/images/sprite.2ce3b050cb1116e156daf3a1964d91e1.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"/dist/images/termo-speed.3c65d82950314732a5bb923b308ae59d.png": {
+		"ft": 32768,
+		"iS": 41738,
+		"oA": 0,
+		"oAP": "/build/dist/images/termo-speed.3c65d82950314732a5bb923b308ae59d.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/ultimate-nutrition-logo.34cdee6fa14b54919ae49c2967ac1fd8.png": {
+		"ft": 32768,
+		"iS": 2751,
+		"oA": 0,
+		"oAP": "/build/dist/images/ultimate-nutrition-logo.34cdee6fa14b54919ae49c2967ac1fd8.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/images/wellfit-logo.6011ec6b2875cbca7c4a9f710b7eb292.png": {
+		"ft": 32768,
+		"iS": 5024,
+		"oA": 0,
+		"oAP": "/build/dist/images/wellfit-logo.6011ec6b2875cbca7c4a9f710b7eb292.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/img/box.90a02f76bd714b20891445dba01cb429.png": {
+		"ft": 32768,
+		"iS": 180968,
+		"oA": 0,
+		"oAP": "/build/dist/img/box.90a02f76bd714b20891445dba01cb429.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/dist/img/individual-selection-bg.8328a7e6d2439127c3034a91a97f89e2.jpg": {
+		"ft": 16384,
+		"iS": 141204,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/build/dist/img/individual-selection-bg.8328a7e6d2439127c3034a91a97f89e2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/dist/index.html": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/dist/index.html",
+		"oF": 0
+		},
+	"/dist/js/3.bundle.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/dist/js/3.bundle.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/dist/js/index.bundle.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/dist/js/index.bundle.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/dist/js/runtime.bundle.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/dist/js/runtime.bundle.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/dist/js/vendors.bundle.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/dist/js/vendors.bundle.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
 		},
 	"/node_modules": {
 		"ft": 65536,
@@ -75,192 +1119,82 @@
 		"oAP": "/build/node_modules",
 		"oF": 1
 		},
-	"/node_modules/@babel/core/lib/index.js": {
-		"bF": 0,
+	"/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js": {
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
+		"ma": 0,
+		"mi": 0,
 		"oA": 1,
-		"oAP": "/build/node_modules/@babel/core/lib/index.min.js",
+		"oAP": "/build/node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
-	"/node_modules/@babel/helper-module-imports/lib/index.js": {
-		"bF": 0,
+	"/node_modules/jquery/dist/jquery.js": {
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
+		"ma": 0,
+		"mi": 0,
 		"oA": 1,
-		"oAP": "/build/node_modules/@babel/helper-module-imports/lib/index.min.js",
+		"oAP": "/build/node_modules/jquery/dist/jquery.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
-	"/node_modules/estree-walker/dist/estree-walker.es.js": {
-		"bF": 0,
+	"/node_modules/owl.carousel/./dist/owl.carousel.js": {
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
+		"ma": 0,
+		"mi": 0,
 		"oA": 1,
-		"oAP": "/build/node_modules/estree-walker/dist/estree-walker.es.min.js",
+		"oAP": "/build/node_modules/owl.carousel/./dist/owl.carousel.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/magic-string/dist/magic-string.es.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/magic-string/dist/magic-string.es.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/micromatch/index.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/micromatch/index.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
 	"/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js": {
-		"bF": 0,
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.min.js",
+		"ma": 0,
+		"mi": 0,
+		"oA": 2,
+		"oAP": "/build/node_modules/resize-observer-polyfill/dist/ResizeObserver.es.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/resolve/index.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/resolve/index.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/rollup-plugin-babel/dist/rollup-plugin-babel.esm.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/rollup-plugin-babel/dist/rollup-plugin-babel.esm.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/rollup-plugin-commonjs/dist/rollup-plugin-commonjs.es.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/rollup-plugin-commonjs/dist/rollup-plugin-commonjs.es.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/rollup-plugin-node-resolve/dist/rollup-plugin-node-resolve.es.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/rollup-plugin-node-resolve/dist/rollup-plugin-node-resolve.es.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/rollup-plugin-uglify/index.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/rollup-plugin-uglify/index.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/rollup-pluginutils/dist/pluginutils.es.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/rollup-pluginutils/dist/pluginutils.es.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/rollup-pluginutils/node_modules/estree-walker/src/estree-walker.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/rollup-pluginutils/node_modules/estree-walker/src/estree-walker.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/node_modules/sourcemap-codec/dist/sourcemap-codec.es.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/sourcemap-codec/dist/sourcemap-codec.es.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
 	"/node_modules/sticky-js/index.js": {
-		"bF": 0,
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
+		"ma": 0,
+		"mi": 0,
 		"oA": 1,
-		"oAP": "/build/node_modules/sticky-js/index.min.js",
+		"oAP": "/build/node_modules/sticky-js/index.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
 	"/node_modules/svg4everybody/dist/svg4everybody.js": {
-		"bF": 0,
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
+		"ma": 0,
+		"mi": 0,
 		"oA": 1,
-		"oAP": "/build/node_modules/svg4everybody/dist/svg4everybody.min.js",
+		"oAP": "/build/node_modules/svg4everybody/dist/svg4everybody.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
 	"/node_modules/ymaps/dist/ymaps.js": {
-		"bF": 0,
+		"bF": 6,
 		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/node_modules/ymaps/dist/ymaps.min.js",
+		"ma": 0,
+		"mi": 0,
+		"oA": 2,
+		"oAP": "/build/node_modules/ymaps/dist/ymaps.js",
 		"oF": 0,
 		"sC": 0,
-		"tS": 0
+		"tS": 1
 		},
 	"/package.json": {
 		"ft": 524288,
@@ -270,29 +1204,7 @@
 		"oO": 0,
 		"oS": 1
 		},
-	"/postcss.config.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/postcss.config.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/rollup.config.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/rollup.config.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/catalog.html": {
+	"/src/catalog.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -300,7 +1212,17 @@
 		"oAP": "/build/catalog.html",
 		"oF": 0
 		},
-	"/source/fonts/bender/Bender-Black.ttf": {
+	"/src/catalog.pug": {
+		"cB": 0,
+		"cOD": 1,
+		"ft": 512,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/catalog.html",
+		"oF": 0,
+		"oS": 0
+		},
+	"/src/fonts/bender/Bender-Black.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -308,7 +1230,7 @@
 		"oAP": "/build/fonts/bender/Bender-Black.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Black.woff": {
+	"/src/fonts/bender/Bender-Black.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -316,7 +1238,7 @@
 		"oAP": "/build/fonts/bender/Bender-Black.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Black.woff2": {
+	"/src/fonts/bender/Bender-Black.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -324,7 +1246,7 @@
 		"oAP": "/build/fonts/bender/Bender-Black.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-BlackItalic.ttf": {
+	"/src/fonts/bender/Bender-BlackItalic.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -332,7 +1254,7 @@
 		"oAP": "/build/fonts/bender/Bender-BlackItalic.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-BlackItalic.woff": {
+	"/src/fonts/bender/Bender-BlackItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -340,7 +1262,7 @@
 		"oAP": "/build/fonts/bender/Bender-BlackItalic.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-BlackItalic.woff2": {
+	"/src/fonts/bender/Bender-BlackItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -348,7 +1270,7 @@
 		"oAP": "/build/fonts/bender/Bender-BlackItalic.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Bold.ttf": {
+	"/src/fonts/bender/Bender-Bold.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -356,7 +1278,7 @@
 		"oAP": "/build/fonts/bender/Bender-Bold.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Bold.woff": {
+	"/src/fonts/bender/Bender-Bold.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -364,7 +1286,7 @@
 		"oAP": "/build/fonts/bender/Bender-Bold.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Bold.woff2": {
+	"/src/fonts/bender/Bender-Bold.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -372,7 +1294,7 @@
 		"oAP": "/build/fonts/bender/Bender-Bold.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-BoldItalic.ttf": {
+	"/src/fonts/bender/Bender-BoldItalic.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -380,7 +1302,7 @@
 		"oAP": "/build/fonts/bender/Bender-BoldItalic.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-BoldItalic.woff": {
+	"/src/fonts/bender/Bender-BoldItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -388,7 +1310,7 @@
 		"oAP": "/build/fonts/bender/Bender-BoldItalic.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-BoldItalic.woff2": {
+	"/src/fonts/bender/Bender-BoldItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -396,7 +1318,7 @@
 		"oAP": "/build/fonts/bender/Bender-BoldItalic.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Italic.ttf": {
+	"/src/fonts/bender/Bender-Italic.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -404,7 +1326,7 @@
 		"oAP": "/build/fonts/bender/Bender-Italic.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Italic.woff": {
+	"/src/fonts/bender/Bender-Italic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -412,7 +1334,7 @@
 		"oAP": "/build/fonts/bender/Bender-Italic.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Italic.woff2": {
+	"/src/fonts/bender/Bender-Italic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -420,7 +1342,7 @@
 		"oAP": "/build/fonts/bender/Bender-Italic.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Light.ttf": {
+	"/src/fonts/bender/Bender-Light.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -428,7 +1350,7 @@
 		"oAP": "/build/fonts/bender/Bender-Light.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Light.woff": {
+	"/src/fonts/bender/Bender-Light.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -436,7 +1358,7 @@
 		"oAP": "/build/fonts/bender/Bender-Light.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-Light.woff2": {
+	"/src/fonts/bender/Bender-Light.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -444,7 +1366,7 @@
 		"oAP": "/build/fonts/bender/Bender-Light.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-LightItalic.ttf": {
+	"/src/fonts/bender/Bender-LightItalic.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -452,7 +1374,7 @@
 		"oAP": "/build/fonts/bender/Bender-LightItalic.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-LightItalic.woff": {
+	"/src/fonts/bender/Bender-LightItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -460,7 +1382,7 @@
 		"oAP": "/build/fonts/bender/Bender-LightItalic.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender-LightItalic.woff2": {
+	"/src/fonts/bender/Bender-LightItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -468,7 +1390,7 @@
 		"oAP": "/build/fonts/bender/Bender-LightItalic.woff2",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender.ttf": {
+	"/src/fonts/bender/Bender.ttf": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -476,7 +1398,7 @@
 		"oAP": "/build/fonts/bender/Bender.ttf",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender.woff": {
+	"/src/fonts/bender/Bender.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -484,7 +1406,7 @@
 		"oAP": "/build/fonts/bender/Bender.woff",
 		"oF": 1
 		},
-	"/source/fonts/bender/Bender.woff2": {
+	"/src/fonts/bender/Bender.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -492,7 +1414,7 @@
 		"oAP": "/build/fonts/bender/Bender.woff2",
 		"oF": 1
 		},
-	"/source/fonts/inter/Inter-Black.woff": {
+	"/src/fonts/inter/Inter-Black.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -500,7 +1422,7 @@
 		"oAP": "/build/fonts/inter/Inter-Black.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Black.woff2": {
+	"/src/fonts/inter/Inter-Black.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -508,7 +1430,7 @@
 		"oAP": "/build/fonts/inter/Inter-Black.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-BlackItalic.woff": {
+	"/src/fonts/inter/Inter-BlackItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -516,7 +1438,7 @@
 		"oAP": "/build/fonts/inter/Inter-BlackItalic.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-BlackItalic.woff2": {
+	"/src/fonts/inter/Inter-BlackItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -524,7 +1446,7 @@
 		"oAP": "/build/fonts/inter/Inter-BlackItalic.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Bold.woff": {
+	"/src/fonts/inter/Inter-Bold.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -532,7 +1454,7 @@
 		"oAP": "/build/fonts/inter/Inter-Bold.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Bold.woff2": {
+	"/src/fonts/inter/Inter-Bold.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -540,7 +1462,7 @@
 		"oAP": "/build/fonts/inter/Inter-Bold.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-BoldItalic.woff": {
+	"/src/fonts/inter/Inter-BoldItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -548,7 +1470,7 @@
 		"oAP": "/build/fonts/inter/Inter-BoldItalic.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-BoldItalic.woff2": {
+	"/src/fonts/inter/Inter-BoldItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -556,7 +1478,7 @@
 		"oAP": "/build/fonts/inter/Inter-BoldItalic.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraBold.woff": {
+	"/src/fonts/inter/Inter-ExtraBold.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -564,7 +1486,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraBold.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraBold.woff2": {
+	"/src/fonts/inter/Inter-ExtraBold.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -572,7 +1494,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraBold.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraBoldItalic.woff": {
+	"/src/fonts/inter/Inter-ExtraBoldItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -580,7 +1502,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraBoldItalic.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraBoldItalic.woff2": {
+	"/src/fonts/inter/Inter-ExtraBoldItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -588,7 +1510,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraBoldItalic.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraLight-BETA.woff": {
+	"/src/fonts/inter/Inter-ExtraLight-BETA.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -596,7 +1518,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraLight-BETA.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraLight-BETA.woff2": {
+	"/src/fonts/inter/Inter-ExtraLight-BETA.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -604,7 +1526,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraLight-BETA.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraLightItalic-BETA.woff": {
+	"/src/fonts/inter/Inter-ExtraLightItalic-BETA.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -612,7 +1534,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraLightItalic-BETA.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ExtraLightItalic-BETA.woff2": {
+	"/src/fonts/inter/Inter-ExtraLightItalic-BETA.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -620,7 +1542,7 @@
 		"oAP": "/build/fonts/inter/Inter-ExtraLightItalic-BETA.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-italic.var.woff2": {
+	"/src/fonts/inter/Inter-italic.var.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -628,7 +1550,7 @@
 		"oAP": "/build/fonts/inter/Inter-italic.var.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Italic.woff": {
+	"/src/fonts/inter/Inter-Italic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -636,7 +1558,7 @@
 		"oAP": "/build/fonts/inter/Inter-Italic.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Italic.woff2": {
+	"/src/fonts/inter/Inter-Italic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -644,7 +1566,7 @@
 		"oAP": "/build/fonts/inter/Inter-Italic.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Light-BETA.woff": {
+	"/src/fonts/inter/Inter-Light-BETA.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -652,7 +1574,7 @@
 		"oAP": "/build/fonts/inter/Inter-Light-BETA.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Light-BETA.woff2": {
+	"/src/fonts/inter/Inter-Light-BETA.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -660,7 +1582,7 @@
 		"oAP": "/build/fonts/inter/Inter-Light-BETA.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-LightItalic-BETA.woff": {
+	"/src/fonts/inter/Inter-LightItalic-BETA.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -668,7 +1590,7 @@
 		"oAP": "/build/fonts/inter/Inter-LightItalic-BETA.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-LightItalic-BETA.woff2": {
+	"/src/fonts/inter/Inter-LightItalic-BETA.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -676,7 +1598,7 @@
 		"oAP": "/build/fonts/inter/Inter-LightItalic-BETA.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Medium.woff": {
+	"/src/fonts/inter/Inter-Medium.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -684,7 +1606,7 @@
 		"oAP": "/build/fonts/inter/Inter-Medium.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Medium.woff2": {
+	"/src/fonts/inter/Inter-Medium.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -692,7 +1614,7 @@
 		"oAP": "/build/fonts/inter/Inter-Medium.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-MediumItalic.woff": {
+	"/src/fonts/inter/Inter-MediumItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -700,7 +1622,7 @@
 		"oAP": "/build/fonts/inter/Inter-MediumItalic.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-MediumItalic.woff2": {
+	"/src/fonts/inter/Inter-MediumItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -708,7 +1630,7 @@
 		"oAP": "/build/fonts/inter/Inter-MediumItalic.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Regular.woff": {
+	"/src/fonts/inter/Inter-Regular.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -716,7 +1638,7 @@
 		"oAP": "/build/fonts/inter/Inter-Regular.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Regular.woff2": {
+	"/src/fonts/inter/Inter-Regular.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -724,7 +1646,7 @@
 		"oAP": "/build/fonts/inter/Inter-Regular.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-SemiBold.woff": {
+	"/src/fonts/inter/Inter-SemiBold.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -732,7 +1654,7 @@
 		"oAP": "/build/fonts/inter/Inter-SemiBold.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-SemiBold.woff2": {
+	"/src/fonts/inter/Inter-SemiBold.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -740,7 +1662,7 @@
 		"oAP": "/build/fonts/inter/Inter-SemiBold.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-SemiBoldItalic.woff": {
+	"/src/fonts/inter/Inter-SemiBoldItalic.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -748,7 +1670,7 @@
 		"oAP": "/build/fonts/inter/Inter-SemiBoldItalic.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-SemiBoldItalic.woff2": {
+	"/src/fonts/inter/Inter-SemiBoldItalic.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -756,7 +1678,7 @@
 		"oAP": "/build/fonts/inter/Inter-SemiBoldItalic.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Thin-BETA.woff": {
+	"/src/fonts/inter/Inter-Thin-BETA.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -764,7 +1686,7 @@
 		"oAP": "/build/fonts/inter/Inter-Thin-BETA.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-Thin-BETA.woff2": {
+	"/src/fonts/inter/Inter-Thin-BETA.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -772,7 +1694,7 @@
 		"oAP": "/build/fonts/inter/Inter-Thin-BETA.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ThinItalic-BETA.woff": {
+	"/src/fonts/inter/Inter-ThinItalic-BETA.woff": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -780,7 +1702,7 @@
 		"oAP": "/build/fonts/inter/Inter-ThinItalic-BETA.woff",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-ThinItalic-BETA.woff2": {
+	"/src/fonts/inter/Inter-ThinItalic-BETA.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -788,7 +1710,7 @@
 		"oAP": "/build/fonts/inter/Inter-ThinItalic-BETA.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/Inter-upright.var.woff2": {
+	"/src/fonts/inter/Inter-upright.var.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -796,7 +1718,7 @@
 		"oAP": "/build/fonts/inter/Inter-upright.var.woff2",
 		"oF": 0
 		},
-	"/source/fonts/inter/inter.css": {
+	"/src/fonts/inter/inter.css": {
 		"aP": 1,
 		"bl": 0,
 		"ft": 16,
@@ -806,7 +1728,7 @@
 		"oF": 0,
 		"oS": 3
 		},
-	"/source/fonts/inter/Inter.var.woff2": {
+	"/src/fonts/inter/Inter.var.woff2": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -814,7 +1736,7 @@
 		"oAP": "/build/fonts/inter/Inter.var.woff2",
 		"oF": 0
 		},
-	"/source/images/a-anderson.jpg": {
+	"/src/images/a-anderson.jpg": {
 		"ft": 16384,
 		"iS": 145827,
 		"jF": 0,
@@ -825,7 +1747,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/amino.png": {
+	"/src/images/amino.png": {
 		"ft": 32768,
 		"iS": 120797,
 		"oA": 0,
@@ -836,7 +1758,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/arnold-1.jpg": {
+	"/src/images/arnold-1.jpg": {
 		"ft": 16384,
 		"iS": 345509,
 		"jF": 0,
@@ -847,7 +1769,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/arnold-2.jpg": {
+	"/src/images/arnold-2.jpg": {
 		"ft": 16384,
 		"iS": 422989,
 		"jF": 0,
@@ -858,7 +1780,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/artem-tarasov.jpg": {
+	"/src/images/artem-tarasov.jpg": {
 		"ft": 16384,
 		"iS": 142074,
 		"jF": 0,
@@ -869,7 +1791,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/article-preview-1.jpg": {
+	"/src/images/article-preview-1.jpg": {
 		"ft": 16384,
 		"iS": 323672,
 		"jF": 0,
@@ -880,7 +1802,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/bar.png": {
+	"/src/images/bar.png": {
 		"ft": 32768,
 		"iS": 192045,
 		"oA": 0,
@@ -891,7 +1813,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/bcaa.png": {
+	"/src/images/bcaa.png": {
 		"ft": 32768,
 		"iS": 76252,
 		"oA": 0,
@@ -902,7 +1824,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/bsn-logo.png": {
+	"/src/images/bsn-logo.png": {
 		"ft": 32768,
 		"iS": 14273,
 		"oA": 0,
@@ -913,7 +1835,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/cart-product-1.png": {
+	"/src/images/cart-product-1.png": {
 		"ft": 32768,
 		"iS": 5632,
 		"oA": 0,
@@ -924,7 +1846,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/catalog-promotion-bg.jpg": {
+	"/src/images/catalog-promotion-bg.jpg": {
 		"ft": 16384,
 		"iS": 231951,
 		"jF": 0,
@@ -935,7 +1857,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/cmtech-logo.png": {
+	"/src/images/cmtech-logo.png": {
 		"ft": 32768,
 		"iS": 4826,
 		"oA": 0,
@@ -946,7 +1868,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/creatine.png": {
+	"/src/images/creatine.png": {
 		"ft": 32768,
 		"iS": 141122,
 		"oA": 0,
@@ -957,7 +1879,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/diet.png": {
+	"/src/images/diet.png": {
 		"ft": 32768,
 		"iS": 91952,
 		"oA": 0,
@@ -968,7 +1890,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/do4a-accessories-logo-vertical.svg": {
+	"/src/images/do4a-accessories-logo-vertical.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -978,7 +1900,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/images/do4a-logo-vertical.svg": {
+	"/src/images/do4a-logo-vertical.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -988,7 +1910,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/images/drink.png": {
+	"/src/images/drink.png": {
 		"ft": 32768,
 		"iS": 136352,
 		"oA": 0,
@@ -999,7 +1921,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/e-korshina.jpg": {
+	"/src/images/e-korshina.jpg": {
 		"ft": 16384,
 		"iS": 231667,
 		"jF": 0,
@@ -1010,7 +1932,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/geiner.png": {
+	"/src/images/geiner.png": {
 		"ft": 32768,
 		"iS": 153929,
 		"oA": 0,
@@ -1021,7 +1943,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/m-markina.jpg": {
+	"/src/images/m-markina.jpg": {
 		"ft": 16384,
 		"iS": 209979,
 		"jF": 0,
@@ -1032,7 +1954,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/madmax-logo.png": {
+	"/src/images/madmax-logo.png": {
 		"ft": 32768,
 		"iS": 19616,
 		"oA": 0,
@@ -1043,7 +1965,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/man-girl.png": {
+	"/src/images/man-girl.png": {
 		"ft": 32768,
 		"iS": 329261,
 		"oA": 0,
@@ -1054,7 +1976,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/maxler.png": {
+	"/src/images/maxler.png": {
 		"ft": 32768,
 		"iS": 16802,
 		"oA": 0,
@@ -1065,7 +1987,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/natrol-logo.png": {
+	"/src/images/natrol-logo.png": {
 		"ft": 32768,
 		"iS": 8520,
 		"oA": 0,
@@ -1076,7 +1998,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/no-xplode.png": {
+	"/src/images/no-xplode.png": {
 		"ft": 32768,
 		"iS": 155467,
 		"oA": 0,
@@ -1087,7 +2009,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/now-logo.png": {
+	"/src/images/now-logo.png": {
 		"ft": 32768,
 		"iS": 8946,
 		"oA": 0,
@@ -1098,7 +2020,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/omega3.png": {
+	"/src/images/omega3.png": {
 		"ft": 32768,
 		"iS": 101294,
 		"oA": 0,
@@ -1109,7 +2031,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/on-logo.png": {
+	"/src/images/on-logo.png": {
 		"ft": 32768,
 		"iS": 4242,
 		"oA": 0,
@@ -1120,7 +2042,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/pasta.png": {
+	"/src/images/pasta.png": {
 		"ft": 32768,
 		"iS": 104903,
 		"oA": 0,
@@ -1131,7 +2053,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/protein.png": {
+	"/src/images/protein.png": {
 		"ft": 32768,
 		"iS": 137712,
 		"oA": 0,
@@ -1142,7 +2064,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/sabo-logo.png": {
+	"/src/images/sabo-logo.png": {
 		"ft": 32768,
 		"iS": 9801,
 		"oA": 0,
@@ -1153,7 +2075,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/set-1-baner.jpg": {
+	"/src/images/set-1-baner.jpg": {
 		"ft": 16384,
 		"iS": 445674,
 		"jF": 0,
@@ -1164,7 +2086,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/set-1.png": {
+	"/src/images/set-1.png": {
 		"ft": 32768,
 		"iS": 79203,
 		"oA": 0,
@@ -1175,7 +2097,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/set-2-baner.jpg": {
+	"/src/images/set-2-baner.jpg": {
 		"ft": 16384,
 		"iS": 236356,
 		"jF": 0,
@@ -1186,7 +2108,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/set-2.png": {
+	"/src/images/set-2.png": {
 		"ft": 32768,
 		"iS": 68296,
 		"oA": 0,
@@ -1197,7 +2119,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/set-3-baner.jpg": {
+	"/src/images/set-3-baner.jpg": {
 		"ft": 16384,
 		"iS": 393540,
 		"jF": 0,
@@ -1208,7 +2130,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/set-3.png": {
+	"/src/images/set-3.png": {
 		"ft": 32768,
 		"iS": 72174,
 		"oA": 0,
@@ -1219,7 +2141,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/shop-photo-1.jpg": {
+	"/src/images/shop-photo-1.jpg": {
 		"ft": 16384,
 		"iS": 419501,
 		"jF": 0,
@@ -1230,7 +2152,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/images/sprite.svg": {
+	"/src/images/sprite.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1240,7 +2162,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/images/termo-speed.png": {
+	"/src/images/termo-speed.png": {
 		"ft": 32768,
 		"iS": 169805,
 		"oA": 0,
@@ -1251,7 +2173,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/ultimate-nutrition-logo.png": {
+	"/src/images/ultimate-nutrition-logo.png": {
 		"ft": 32768,
 		"iS": 3277,
 		"oA": 0,
@@ -1262,7 +2184,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/images/wellfit-logo.png": {
+	"/src/images/wellfit-logo.png": {
 		"ft": 32768,
 		"iS": 12603,
 		"oA": 0,
@@ -1273,7 +2195,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/box.png": {
+	"/src/img/box.png": {
 		"ft": 32768,
 		"iS": 217084,
 		"oA": 0,
@@ -1284,7 +2206,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/fb-logo.svg": {
+	"/src/img/fb-logo.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1294,7 +2216,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/img/footer-map-icon.png": {
+	"/src/img/footer-map-icon.png": {
 		"ft": 32768,
 		"iS": 24049,
 		"oA": 0,
@@ -1305,7 +2227,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/individual-selection-bg.jpg": {
+	"/src/img/individual-selection-bg.jpg": {
 		"ft": 16384,
 		"iS": 1495723,
 		"jF": 0,
@@ -1316,7 +2238,7 @@
 		"opt": 1,
 		"q": 100
 		},
-	"/source/img/inst-logo.svg": {
+	"/src/img/inst-logo.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1326,7 +2248,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/img/logo-only-icon.svg": {
+	"/src/img/logo-only-icon.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 0,
@@ -1336,7 +2258,7 @@
 		"plM": 20937965567,
 		"prP": 0
 		},
-	"/source/img/logo.svg": {
+	"/src/img/logo.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 0,
@@ -1346,7 +2268,7 @@
 		"plM": 20937957375,
 		"prP": 0
 		},
-	"/source/img/marker-selected.svg": {
+	"/src/img/marker-selected.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1356,7 +2278,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/img/marker.svg": {
+	"/src/img/marker.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1366,7 +2288,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/img/ok-logo.svg": {
+	"/src/img/ok-logo.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1376,7 +2298,7 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/img/product-card.png": {
+	"/src/img/product-card.png": {
 		"ft": 32768,
 		"iS": 187171,
 		"oA": 0,
@@ -1387,7 +2309,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/1920.png": {
+	"/src/img/rm/1920.png": {
 		"ft": 32768,
 		"iS": 9844076,
 		"oA": 0,
@@ -1398,7 +2320,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/320.png": {
+	"/src/img/rm/320.png": {
 		"ft": 32768,
 		"iS": 1499713,
 		"oA": 0,
@@ -1409,7 +2331,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/768.png": {
+	"/src/img/rm/768.png": {
 		"ft": 32768,
 		"iS": 5468894,
 		"oA": 0,
@@ -1420,7 +2342,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/banner-bg.png": {
+	"/src/img/rm/banner-bg.png": {
 		"ft": 32768,
 		"iS": 152939,
 		"oA": 0,
@@ -1431,7 +2353,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/benefits-and-subscribe.png": {
+	"/src/img/rm/benefits-and-subscribe.png": {
 		"ft": 32768,
 		"iS": 28669,
 		"oA": 0,
@@ -1442,7 +2364,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/brands.png": {
+	"/src/img/rm/brands.png": {
 		"ft": 32768,
 		"iS": 108042,
 		"oA": 0,
@@ -1453,7 +2375,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/cart.png": {
+	"/src/img/rm/cart.png": {
 		"ft": 32768,
 		"iS": 40989,
 		"oA": 0,
@@ -1464,7 +2386,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/catalog-1920.png": {
+	"/src/img/rm/catalog-1920.png": {
 		"ft": 32768,
 		"iS": 1428866,
 		"oA": 0,
@@ -1475,7 +2397,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/change-city.png": {
+	"/src/img/rm/change-city.png": {
 		"ft": 32768,
 		"iS": 60458,
 		"oA": 0,
@@ -1486,7 +2408,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/change-store.png": {
+	"/src/img/rm/change-store.png": {
 		"ft": 32768,
 		"iS": 60101,
 		"oA": 0,
@@ -1497,7 +2419,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/franchise.png": {
+	"/src/img/rm/franchise.png": {
 		"ft": 32768,
 		"iS": 464811,
 		"oA": 0,
@@ -1508,7 +2430,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/hidden-nav.png": {
+	"/src/img/rm/hidden-nav.png": {
 		"ft": 32768,
 		"iS": 60962,
 		"oA": 0,
@@ -1519,7 +2441,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/product-card.png": {
+	"/src/img/rm/product-card.png": {
 		"ft": 32768,
 		"iS": 45662,
 		"oA": 0,
@@ -1530,7 +2452,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/rm/store.png": {
+	"/src/img/rm/store.png": {
 		"ft": 32768,
 		"iS": 523847,
 		"oA": 0,
@@ -1541,7 +2463,7 @@
 		"oT": 1,
 		"q": 100
 		},
-	"/source/img/vk-logo.svg": {
+	"/src/img/vk-logo.svg": {
 		"ft": 2097152,
 		"miP": 0,
 		"oA": 2,
@@ -1551,125 +2473,135 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
-	"/source/index.html": {
+	"/src/index.ejs": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
-		"oAP": "/build/index.html",
+		"oAP": "/build/index.ejs",
 		"oF": 0
 		},
-	"/source/js/jquery-3.3.1.min.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 2,
-		"oAP": "/build/js/jquery-3.3.1.min.js",
-		"oF": 3,
-		"sC": 0,
-		"tS": 0
+	"/src/index.pug": {
+		"cB": 0,
+		"cOD": 1,
+		"ft": 512,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/index.html",
+		"oF": 0,
+		"oS": 0
 		},
-	"/source/js/main.js": {
+	"/src/js/index.js": {
 		"bF": 6,
 		"ft": 64,
 		"ma": 0,
 		"mi": 0,
 		"oA": 0,
-		"oAP": "/build/js/main.min.js",
+		"oAP": "/build/js/index.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 1
 		},
-	"/source/js/modules/Header.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/modules/Header.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/modules/HeaderSlider.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/modules/HeaderSlider.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/modules/Input.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/modules/Input.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/modules/Maps.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/modules/Maps.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/modules/MreSlider.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/modules/MreSlider.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/modules/Parallax.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/modules/Parallax.min.js",
-		"oF": 1,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/utils/utils.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "/build/js/utils/utils.min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"/source/js/vendor.js": {
+	"/src/js/main.js": {
 		"bF": 6,
 		"ft": 64,
 		"ma": 0,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
-		"oAP": "/build/js/vendor.min.js",
+		"oAP": "/build/js/main.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 1
 		},
-	"/source/promocode-old.html": {
+	"/src/js/modules/Header.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/js/modules/Header.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/modules/HeaderSlider.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/js/modules/HeaderSlider.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/modules/Input.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/js/modules/Input.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/modules/Maps.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/js/modules/Maps.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/modules/MreSlider.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/js/modules/MreSlider.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/modules/Parallax.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/js/modules/Parallax.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/utils/utils.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/js/utils/utils.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/js/vendor.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "/build/js/vendor.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 1
+		},
+	"/src/promocode-old.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
@@ -1677,7 +2609,7 @@
 		"oAP": "/build/promocode-old.html",
 		"oF": 0
 		},
-	"/source/scss/_bootstrap.scss": {
+	"/src/scss/_bootstrap.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1690,7 +2622,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_carousel-theme.scss": {
+	"/src/scss/_carousel-theme.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1703,7 +2635,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_catalog.scss": {
+	"/src/scss/_catalog.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1716,7 +2648,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_custom-grid.scss": {
+	"/src/scss/_custom-grid.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1729,7 +2661,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_footer.scss": {
+	"/src/scss/_footer.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1742,7 +2674,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_functions.scss": {
+	"/src/scss/_functions.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1755,7 +2687,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_global.scss": {
+	"/src/scss/_global.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1768,7 +2700,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_header.scss": {
+	"/src/scss/_header.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1781,7 +2713,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_icon.scss": {
+	"/src/scss/_icon.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1794,7 +2726,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_main-page.scss": {
+	"/src/scss/_main-page.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1807,7 +2739,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_modal.scss": {
+	"/src/scss/_modal.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1820,7 +2752,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_slider.scss": {
+	"/src/scss/_slider.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1833,7 +2765,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/_variables.scss": {
+	"/src/scss/_variables.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1846,7 +2778,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_alert.scss": {
+	"/src/scss/bootstrap/_alert.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1859,7 +2791,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_badge.scss": {
+	"/src/scss/bootstrap/_badge.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1872,7 +2804,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_breadcrumb.scss": {
+	"/src/scss/bootstrap/_breadcrumb.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1885,7 +2817,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_button-group.scss": {
+	"/src/scss/bootstrap/_button-group.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1898,7 +2830,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_buttons.scss": {
+	"/src/scss/bootstrap/_buttons.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1911,7 +2843,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_card.scss": {
+	"/src/scss/bootstrap/_card.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1924,7 +2856,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_carousel.scss": {
+	"/src/scss/bootstrap/_carousel.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1937,7 +2869,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_close.scss": {
+	"/src/scss/bootstrap/_close.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1950,7 +2882,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_code.scss": {
+	"/src/scss/bootstrap/_code.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1963,7 +2895,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_custom-forms.scss": {
+	"/src/scss/bootstrap/_custom-forms.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1976,7 +2908,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_dropdown.scss": {
+	"/src/scss/bootstrap/_dropdown.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -1989,7 +2921,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_forms.scss": {
+	"/src/scss/bootstrap/_forms.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2002,7 +2934,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_functions.scss": {
+	"/src/scss/bootstrap/_functions.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2015,7 +2947,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_grid.scss": {
+	"/src/scss/bootstrap/_grid.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2028,7 +2960,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_images.scss": {
+	"/src/scss/bootstrap/_images.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2041,7 +2973,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_input-group.scss": {
+	"/src/scss/bootstrap/_input-group.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2054,7 +2986,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_jumbotron.scss": {
+	"/src/scss/bootstrap/_jumbotron.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2067,7 +2999,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_list-group.scss": {
+	"/src/scss/bootstrap/_list-group.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2080,7 +3012,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_media.scss": {
+	"/src/scss/bootstrap/_media.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2093,7 +3025,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_mixins.scss": {
+	"/src/scss/bootstrap/_mixins.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2106,7 +3038,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_modal.scss": {
+	"/src/scss/bootstrap/_modal.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2119,7 +3051,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_nav.scss": {
+	"/src/scss/bootstrap/_nav.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2132,7 +3064,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_navbar.scss": {
+	"/src/scss/bootstrap/_navbar.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2145,7 +3077,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_pagination.scss": {
+	"/src/scss/bootstrap/_pagination.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2158,7 +3090,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_popover.scss": {
+	"/src/scss/bootstrap/_popover.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2171,7 +3103,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_print.scss": {
+	"/src/scss/bootstrap/_print.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2184,7 +3116,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_progress.scss": {
+	"/src/scss/bootstrap/_progress.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2197,7 +3129,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_reboot.scss": {
+	"/src/scss/bootstrap/_reboot.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2210,7 +3142,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_root.scss": {
+	"/src/scss/bootstrap/_root.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2223,7 +3155,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_spinners.scss": {
+	"/src/scss/bootstrap/_spinners.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2236,7 +3168,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_tables.scss": {
+	"/src/scss/bootstrap/_tables.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2249,7 +3181,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_toasts.scss": {
+	"/src/scss/bootstrap/_toasts.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2262,7 +3194,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_tooltip.scss": {
+	"/src/scss/bootstrap/_tooltip.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2275,7 +3207,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_transitions.scss": {
+	"/src/scss/bootstrap/_transitions.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2288,7 +3220,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_type.scss": {
+	"/src/scss/bootstrap/_type.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2301,7 +3233,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_utilities.scss": {
+	"/src/scss/bootstrap/_utilities.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2314,7 +3246,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/_variables.scss": {
+	"/src/scss/bootstrap/_variables.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2327,7 +3259,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_alert.scss": {
+	"/src/scss/bootstrap/mixins/_alert.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2340,7 +3272,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_background-variant.scss": {
+	"/src/scss/bootstrap/mixins/_background-variant.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2353,7 +3285,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_badge.scss": {
+	"/src/scss/bootstrap/mixins/_badge.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2366,7 +3298,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_border-radius.scss": {
+	"/src/scss/bootstrap/mixins/_border-radius.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2379,7 +3311,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_box-shadow.scss": {
+	"/src/scss/bootstrap/mixins/_box-shadow.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2392,7 +3324,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_breakpoints.scss": {
+	"/src/scss/bootstrap/mixins/_breakpoints.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2405,7 +3337,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_buttons.scss": {
+	"/src/scss/bootstrap/mixins/_buttons.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2418,7 +3350,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_caret.scss": {
+	"/src/scss/bootstrap/mixins/_caret.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2431,7 +3363,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_clearfix.scss": {
+	"/src/scss/bootstrap/mixins/_clearfix.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2444,7 +3376,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_deprecate.scss": {
+	"/src/scss/bootstrap/mixins/_deprecate.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2457,7 +3389,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_float.scss": {
+	"/src/scss/bootstrap/mixins/_float.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2470,7 +3402,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_forms.scss": {
+	"/src/scss/bootstrap/mixins/_forms.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2483,7 +3415,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_gradients.scss": {
+	"/src/scss/bootstrap/mixins/_gradients.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2496,7 +3428,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_grid-framework.scss": {
+	"/src/scss/bootstrap/mixins/_grid-framework.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2509,7 +3441,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_grid.scss": {
+	"/src/scss/bootstrap/mixins/_grid.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2522,7 +3454,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_hover.scss": {
+	"/src/scss/bootstrap/mixins/_hover.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2535,7 +3467,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_image.scss": {
+	"/src/scss/bootstrap/mixins/_image.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2548,7 +3480,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_list-group.scss": {
+	"/src/scss/bootstrap/mixins/_list-group.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2561,7 +3493,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_lists.scss": {
+	"/src/scss/bootstrap/mixins/_lists.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2574,7 +3506,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_nav-divider.scss": {
+	"/src/scss/bootstrap/mixins/_nav-divider.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2587,7 +3519,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_pagination.scss": {
+	"/src/scss/bootstrap/mixins/_pagination.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2600,7 +3532,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_reset-text.scss": {
+	"/src/scss/bootstrap/mixins/_reset-text.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2613,7 +3545,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_resize.scss": {
+	"/src/scss/bootstrap/mixins/_resize.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2626,7 +3558,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_screen-reader.scss": {
+	"/src/scss/bootstrap/mixins/_screen-reader.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2639,7 +3571,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_size.scss": {
+	"/src/scss/bootstrap/mixins/_size.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2652,7 +3584,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_table-row.scss": {
+	"/src/scss/bootstrap/mixins/_table-row.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2665,7 +3597,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_text-emphasis.scss": {
+	"/src/scss/bootstrap/mixins/_text-emphasis.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2678,7 +3610,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_text-hide.scss": {
+	"/src/scss/bootstrap/mixins/_text-hide.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2691,7 +3623,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_text-truncate.scss": {
+	"/src/scss/bootstrap/mixins/_text-truncate.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2704,7 +3636,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_transition.scss": {
+	"/src/scss/bootstrap/mixins/_transition.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2717,7 +3649,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/mixins/_visibility.scss": {
+	"/src/scss/bootstrap/mixins/_visibility.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2730,7 +3662,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_align.scss": {
+	"/src/scss/bootstrap/utilities/_align.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2743,7 +3675,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_background.scss": {
+	"/src/scss/bootstrap/utilities/_background.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2756,7 +3688,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_borders.scss": {
+	"/src/scss/bootstrap/utilities/_borders.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2769,7 +3701,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_clearfix.scss": {
+	"/src/scss/bootstrap/utilities/_clearfix.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2782,7 +3714,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_display.scss": {
+	"/src/scss/bootstrap/utilities/_display.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2795,7 +3727,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_embed.scss": {
+	"/src/scss/bootstrap/utilities/_embed.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2808,7 +3740,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_flex.scss": {
+	"/src/scss/bootstrap/utilities/_flex.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2821,7 +3753,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_float.scss": {
+	"/src/scss/bootstrap/utilities/_float.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2834,7 +3766,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_overflow.scss": {
+	"/src/scss/bootstrap/utilities/_overflow.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2847,7 +3779,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_position.scss": {
+	"/src/scss/bootstrap/utilities/_position.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2860,7 +3792,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_screenreaders.scss": {
+	"/src/scss/bootstrap/utilities/_screenreaders.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2873,7 +3805,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_shadows.scss": {
+	"/src/scss/bootstrap/utilities/_shadows.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2886,7 +3818,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_sizing.scss": {
+	"/src/scss/bootstrap/utilities/_sizing.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2899,7 +3831,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_spacing.scss": {
+	"/src/scss/bootstrap/utilities/_spacing.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2912,7 +3844,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_stretched-link.scss": {
+	"/src/scss/bootstrap/utilities/_stretched-link.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2925,7 +3857,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_text.scss": {
+	"/src/scss/bootstrap/utilities/_text.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2938,7 +3870,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/utilities/_visibility.scss": {
+	"/src/scss/bootstrap/utilities/_visibility.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2951,7 +3883,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/bootstrap/vendor/_rfs.scss": {
+	"/src/scss/bootstrap/vendor/_rfs.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2964,7 +3896,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_bender.scss": {
+	"/src/scss/fonts/_bender.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2977,7 +3909,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_gotham-pro.scss": {
+	"/src/scss/fonts/_gotham-pro.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -2990,7 +3922,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_inter.scss": {
+	"/src/scss/fonts/_inter.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3003,7 +3935,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_muler.scss": {
+	"/src/scss/fonts/_muler.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3016,7 +3948,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_museo-cyrl.scss": {
+	"/src/scss/fonts/_museo-cyrl.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3029,7 +3961,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_museo-sans-cyrl.scss": {
+	"/src/scss/fonts/_museo-sans-cyrl.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3042,7 +3974,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/fonts/_stem.scss": {
+	"/src/scss/fonts/_stem.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3055,7 +3987,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/_jquery.fancybox.scss": {
+	"/src/scss/libs/_jquery.fancybox.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3068,7 +4000,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_animate.scss": {
+	"/src/scss/libs/owl-carousel/_animate.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3081,7 +4013,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_autoheight.scss": {
+	"/src/scss/libs/owl-carousel/_autoheight.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3094,7 +4026,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_core.scss": {
+	"/src/scss/libs/owl-carousel/_core.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3107,7 +4039,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_lazyload.scss": {
+	"/src/scss/libs/owl-carousel/_lazyload.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3120,7 +4052,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_theme.default.scss": {
+	"/src/scss/libs/owl-carousel/_theme.default.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3133,7 +4065,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_theme.green.scss": {
+	"/src/scss/libs/owl-carousel/_theme.green.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3146,7 +4078,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_theme.scss": {
+	"/src/scss/libs/owl-carousel/_theme.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3159,7 +4091,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/_video.scss": {
+	"/src/scss/libs/owl-carousel/_video.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3172,7 +4104,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/owl.carousel.scss": {
+	"/src/scss/libs/owl-carousel/owl.carousel.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3185,7 +4117,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/owl.theme.default.scss": {
+	"/src/scss/libs/owl-carousel/owl.theme.default.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3198,7 +4130,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/libs/owl-carousel/owl.theme.green.scss": {
+	"/src/scss/libs/owl-carousel/owl.theme.green.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3211,7 +4143,7 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/scss/main.scss": {
+	"/src/scss/main.scss": {
 		"aP": 0,
 		"bl": 0,
 		"dP": 10,
@@ -3220,11 +4152,11 @@
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/build/css/main.min.css",
-		"oF": 0,
+		"oF": 2,
 		"oS": 1,
 		"uL": 1
 		},
-	"/source/scss/promocode.scss": {
+	"/src/scss/promocode.scss": {
 		"aP": 1,
 		"bl": 0,
 		"dP": 10,
@@ -3233,17 +4165,68 @@
 		"ma": 1,
 		"oA": 0,
 		"oAP": "/build/css/promocode.min.css",
-		"oF": 0,
+		"oF": 2,
 		"oS": 3,
 		"uL": 1
 		},
-	"/source/swiper.html": {
+	"/src/swiper.html": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/build/swiper.html",
 		"oF": 0
+		},
+	"/src/template/footer.pug": {
+		"cB": 0,
+		"cOD": 1,
+		"ft": 512,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/build/template/footer.html",
+		"oF": 0,
+		"oS": 0
+		},
+	"/src/template/header.pug": {
+		"cB": 0,
+		"cOD": 1,
+		"ft": 512,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/build/template/header.html",
+		"oF": 0,
+		"oS": 0
+		},
+	"/src/template/modal.pug": {
+		"cB": 0,
+		"cOD": 1,
+		"ft": 512,
+		"hM": 0,
+		"oA": 1,
+		"oAP": "/build/template/modal.html",
+		"oF": 0,
+		"oS": 0
+		},
+	"/src/template/template.pug": {
+		"cB": 0,
+		"cOD": 1,
+		"ft": 512,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/build/template/template.html",
+		"oF": 0,
+		"oS": 0
+		},
+	"/webpack.config.js": {
+		"bF": 6,
+		"ft": 64,
+		"ma": 0,
+		"mi": 0,
+		"oA": 1,
+		"oAP": "/build/webpack.config.js",
+		"oF": 1,
+		"sC": 0,
+		"tS": 1
 		},
 	"/yarn.lock": {
 		"cB": 0,
@@ -5131,16 +6114,16 @@
 		},
 	"languageDefaultsJS": {
 		"autoOutputAction": 0,
-		"autoOutputPathFilenamePattern": "*.min.js",
+		"autoOutputPathFilenamePattern": "*.js",
 		"autoOutputPathRelativePath": "/min",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
 		"autoOutputPathStyle": 0,
-		"bundleFormat": 0,
-		"createSourceMap": 1,
-		"minifyOutput": 1,
+		"bundleFormat": 6,
+		"createSourceMap": 0,
+		"minifyOutput": 0,
 		"syntaxCheckerStyle": 0,
-		"transpilerStyle": 0
+		"transpilerStyle": 1
 		},
 	"languageDefaultsJSON": {
 		"autoOutputAction": 1,
@@ -5307,8 +6290,8 @@
 		],
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
-	"skippedFoldersString": "log, _logs, logs, _cache, cache, .idea, /storage/framework/sessions, node_modules",
-	"sourceFolderName": "source",
+	"skippedFoldersString": "log, _logs, logs, _cache, cache, .idea, /storage/framework/sessions, node_modules, /.babel_cache",
+	"sourceFolderName": "src",
 	"susyVersion": 3,
 	"tsAllowSyntheticDefaultImports": 0,
 	"tsAllowUnreachableCode": 0,
