@@ -26,14 +26,6 @@ module.exports = merge(common, {
     // new HtmlWebpackHarddiskPlugin({
     //   outputPath: path.resolve(__dirname, 'dist'),
     // }),
-    new HtmlWebpackPlugin({
-      title: 'Главная',
-      filename: 'index.html',
-      template: path.resolve(__dirname, 'src/index.pug'),
-      minify: false,
-      meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      // alwaysWriteToDisk: true,
-    }),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),

@@ -35,6 +35,11 @@
   color: inherit;
   background-color: transparent;
   cursor: pointer;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
 }
 
 body {

@@ -143,7 +143,7 @@
 }
 
 @mixin letter-spacing($unit, $return: 'em', $base: '16') {
-  @if $return = 'em' {
+  @if $return == 'em' {
     letter-spacing: unquote(($unit) / 1000 + 'em');
   } @else {
     letter-spacing: unquote(($unit * $base) / 1000 + 'px');

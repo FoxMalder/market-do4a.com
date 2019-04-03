@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const distPath = path.resolve(__dirname, 'dist');
 
@@ -110,7 +111,24 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.AutomaticPrefetchPlugin(),
+    new CleanWebpackPlugin(),
+    // new webpack.AutomaticPrefetchPlugin(),
+
+    new HtmlWebpackPlugin({
+      title: 'Главная',
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'src/index.pug'),
+      minify: false,
+      meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Каталог',
+      filename: 'catalog.html',
+      template: path.resolve(__dirname, 'src/catalog.pug'),
+      minify: false,
+      meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+    }),
 
     new HtmlWebpackPlugin({
       title: 'Мини-банер',

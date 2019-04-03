@@ -43,6 +43,10 @@ Swiper.use([HeaderSlider]);
 //   import('./main');
 // }
 
+// if (module.hot) {
+//   module.hot.accept('./../catalog.pug');
+// }
+
 $(document).ready(() => {
   $('[data-fancybox]').fancybox({
     closeExisting: true,
@@ -55,4 +59,5 @@ $(document).ready(() => {
   // if (bodyClass.contains('main')) {
   //   initMain();
   // }
+  // console.log('sdfg ');
 });

@@ -2,6 +2,7 @@ doctype html
 html(lang='ru')
     head
         title= htmlWebpackPlugin.options.title
+        //title Catalog
     body
         block header
             include template/header
@@ -30,16 +31,22 @@ html(lang='ru')
             .filter
                 .filter__container.container
                     .filter-list
+                        // .multifilter.active || .multifilter_active - (Когда выбраны значения) ? Показывается кнопка "Сбросить"
+                        // .multifilter.view [bootstrap dropdown] - (Когда открыт dropdown) ? Применяем фон к кнопке
                         .multifilter
-                            // dropdown
+                            // (optional)
                             span.multifilter__label Категория:
                             button.multifilter__button
-                                span.multifilter__value Казеин и мол...
+                                span.multifilter__value Казеин и молоко
+                                span.multifilter__total 2
+                            button.multifilter__btn-clear Сбросить
+                            // .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown
                             .multifilter__dropdown
                                 .p-1 dropdown
-                        .multifilter.show
+                        .multifilter
                             // dropdown container
-                            button.multifilter__button Бренд
+                            button.multifilter__button
+                                span.multifilter__value Бренд
                             // dropdown button
                             button.multifilter__btn-clear Сбросить
                             .multifilter__dropdown
@@ -47,72 +54,83 @@ html(lang='ru')
                                 .p-3 dropdown
                                 .p-3 dropdown
                                 .p-3 dropdown
-                        .multifilter
+                        .multifilter.active
                             // dropdown container
-                            button.multifilter__button Страна
+                            button.multifilter__button
+                                span.multifilter__value Страна
+                            button.multifilter__btn-clear Сбросить
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Объём, кг
+                            button.multifilter__button
+                                span.multifilter__value Объём, кг
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Порции
+                            button.multifilter__button
+                                span.multifilter__value Порции
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button % Белка
+                            button.multifilter__button
+                                span.multifilter__value % Белка
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Время приёма
+                            button.multifilter__button
+                                span.multifilter__value Время приёма
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Цена
+                            button.multifilter__button
+                                span.multifilter__value Цена
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Порции
+                            button.multifilter__button
+                                span.multifilter__value Порции
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button % Белка
+                            button.multifilter__button
+                                span.multifilter__value % Белка
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Время приёма
+                            button.multifilter__button
+                                span.multifilter__value Время приёма
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
-                            button.multifilter__button Цена
+                            button.multifilter__button
+                                span.multifilter__value Цена
                             // dropdown button
                             .multifilter__dropdown
                                 // dropdown
@@ -134,59 +152,73 @@ html(lang='ru')
             .catalog
                 .container
                     .row
-                        .catalog__item.col-xl-3
-                            .product-card
-                                .product-card__wrapper
-                                    .product-card__img
-                                    .product-card__title
-                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, recusandae?
-                                    .product-card__description
-                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, optio.
-                                    .product-card__price-info
-                                        .product-card__price(data-price-text='от', data-price-unit='₽') 1 750
-                                        .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') 600
-                                    .product-card__row
-                                        a.product-card__reviews(href='#') 31 отзыв
-                                        .product-card__stock
-                                            // <div class="product-card__stock-title red">В наличии</div>
-                                            .product-card__stock-title.green В наличии
-                                            .product-card__stock-value 6 фасовок
-                                    .product-card__sticker
-                                        | доставка 
-                                        br
-                                        | 1 день
-                                .product-card__controls
-                                    button.btn.btn-red.product-card__button Подробнее
-                                    button.btn.btn-gray-2.product-card__button К сравнению
-                                button.product-card__favorites
-                                    svg
-                                        use(xlink:href=require('./images/sprite.svg') + '#heart')
-                        .catalog__item.col-xl-3
-                            .product-card
-                                .product-card__wrapper
-                                    .product-card__img
-                                    .product-card__title
-                                        | Название
-                                    .product-card__description
-                                    .product-card__price-info
-                                        .product-card__price(data-price-text='от', data-price-unit='₽') 1 750
-                                        .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') 600
-                                    .product-card__row
-                                        a.product-card__reviews(href='#') 31 отзыв
-                                        .product-card__stock
-                                            // <div class="product-card__stock-title red">В наличии</div>
-                                            .product-card__stock-title.green В наличии
-                                            .product-card__stock-value 6 фасовок
-                                    .product-card__sticker
-                                        | доставка 
-                                        br
-                                        | 1 день
-                                .product-card__controls
-                                    button.btn.btn-red.product-card__button Подробнее
-                                    button.btn.btn-gray-2.product-card__button К сравнению
-                                button.product-card__favorites
-                                    svg
-                                        use(xlink:href=require('./images/sprite.svg') + '#heart')
+                        -
+                            const productCards = [
+                            {
+                            title: 'Optimum nutrition gold standart whey',
+                            description: 'Комплексный протеин',
+                            price: '1 750',
+                            sale: '600',
+                            },{
+                            title: 'Optimum nutrition gold standart whey',
+                            price: '1 750',
+                            sale: '600',
+                            },{
+                            price: '1 750',
+                            sale: '600',
+                            stickers: ['yellow','green','red']
+                            },{
+                            price: '1 750',
+                            sale: '600',
+                            },{
+                            price: '1 750',
+                            sale: '600',
+                            },{
+                            price: '1 750',
+                            sale: '600',
+                            },{
+                            price: '1 750',
+                            sale: '600',
+                            },{
+                            price: '1 750',
+                            sale: '600',
+                            },
+                            ]
+                        each card in productCards
+                            .catalog__item.col-md-6.col-xl-3
+                                .product-card
+                                    .product-card__wrapper
+                                        .product-card__img
+                                        .product-card__title #{card.title || 'Заголовок'}
+                                        .product-card__description #{card.description || 'Комплексный протеин'}
+                                        .product-card__price-info
+                                            .product-card__price(data-price-text='от', data-price-unit='₽') #{card.price || '1 750'}
+                                            .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') #{card.sale || '300'}
+                                        .product-card__row
+                                            a.product-card__reviews(href='#') 31 отзыв
+                                            .product-card__stock
+                                                .product-card__stock-title.green В наличии
+                                                .product-card__stock-value 6 фасовок
+                                        .product-card__stickers
+                                            //.product-card__sticker
+                                            //    | доставка
+                                            //    br
+                                            //    | 1 день
+                                            if card.stickers
+                                                each sticker in card.stickers
+                                                    if sticker === 'yellow'
+                                                        .product-card__sticker.product-card__sticker_yellow
+                                                            | Рекомендуем
+                                                    else if sticker === 'green'
+                                                        .product-card__sticker.product-card__sticker_green
+                                                            | Новинка
+                                                    else if sticker === 'red'
+                                                        .product-card__sticker.product-card__sticker_red
+                                                            | Хит!
+                                    .product-card__controls
+                                        button.btn.btn-red.product-card__button Подробнее
+                                        button.btn.btn-gray-2.product-card__button К сравнению
+                                    button.product-card__favorites
                     .catalog__more
                         button.catalog__more-link Показать еще
                         .catalog__more-value Показано 24 из 170
