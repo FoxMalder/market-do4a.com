@@ -2421,7 +2421,8 @@ $section-padding-bottom: 30px;
 
   @include media-breakpoint-up(xl) {
     padding-top: 94px;
-    padding-bottom: 81px;
+    //padding-bottom: 81px;
+    padding-bottom: 41px;
 
     &__title {
       //margin-bottom: 60px;
@@ -2666,7 +2667,7 @@ $section-padding-bottom: 30px;
   }
 
   @include media-breakpoint-up(xl) {
-    padding-top: 0;
+    padding-top: 40px;
     padding-bottom: 50px;
   }
 }

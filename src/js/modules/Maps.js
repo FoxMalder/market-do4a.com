@@ -1,5 +1,8 @@
 import ymaps from 'ymaps';
 
+import icon from '../../img/marker.svg';
+import iconSelected from '../../img/marker-selected.svg';
+
 function initMap(el, param, data) {
   if (!el || el === '') return;
 
@@ -139,7 +142,7 @@ function initMap(el, param, data) {
       .set({
         iconLayout: 'default#image',
         // Своё изображение иконки метки.
-        iconImageHref: 'img/marker.svg',
+        iconImageHref: icon,
         // Размеры метки.
         iconImageSize: [58, 74],
         // Смещение левого верхнего угла иконки относительно
@@ -159,10 +162,10 @@ function initMap(el, param, data) {
 
     objectManager.objects.events
       .add('balloonopen', (e) => {
-        e.get('target').options.set('iconImageHref', 'img/marker-selected.svg');
+        e.get('target').options.set('iconImageHref', iconSelected);
       })
       .add('balloonclose', (e) => {
-        e.get('target').options.set('iconImageHref', 'img/marker.svg');
+        e.get('target').options.set('iconImageHref', icon);
       });
 
     mainPageMap.geoObjects.add(objectManager);

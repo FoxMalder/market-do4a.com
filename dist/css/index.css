@@ -10664,7 +10664,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 @media (min-width: 1240px) {
   .best-articles {
     padding-top: 94px;
-    padding-bottom: 81px;
+    padding-bottom: 41px;
   }
   .best-articles__title {
     margin-bottom: 56px;
@@ -10879,7 +10879,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 }
 @media (min-width: 1240px) {
   .banner {
-    padding-top: 0;
+    padding-top: 40px;
     padding-bottom: 50px;
   }
 }
