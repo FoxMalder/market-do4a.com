@@ -125,6 +125,7 @@ body {
 
   &__container {
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
   }
 
@@ -133,6 +134,24 @@ body {
     @include title;
     font-size: 16px;
     color: $main-color;
+    position: relative;
+    //white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    height: 58px;
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+      //position: absolute;
+      //lef
+
+      @include sprite('close', (
+          color: $main-color,
+      ));
+    }
   }
 }
 
@@ -160,6 +179,10 @@ body {
       padding-right: 40px;
     }
 
+    .multifilter__total {
+      right: (19px + 25px);
+    }
+
     .multifilter__btn-clear {
       display: block;
     }
@@ -170,7 +193,7 @@ body {
   //}
 
   &__label {
-    margin-right: 8px;
+    margin-right: 2px;
     color: rgba(black, .4);
   }
 
@@ -180,19 +203,18 @@ body {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    max-width: 120px;
+    max-width: 140px;
     display: inline-block;
     padding-right: 18px;
 
     &::after {
       position: absolute;
       right: 0;
-      top: 8px;
-      display: inline-block;
-      margin-left: 6px;
+      top: 9px;
+      display: block;
       //position: absolute;
       content: '';
-      border-top: 8px solid;
+      border-top: 6px solid #101010;
       border-right: 4px solid transparent;
       border-bottom: 0;
       border-left: 4px solid transparent;
@@ -223,7 +245,7 @@ body {
     position: relative;
     font-weight: $font-weight-normal;
     letter-spacing: -.01em;
-    padding: 5px 12px 5px 16px;
+    padding: 5px 15px 5px;
     height: 58px;
     display: inline-flex;
 

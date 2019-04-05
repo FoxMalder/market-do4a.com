@@ -11045,6 +11045,8 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 .filter__container {
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-align: end;
+      align-items: flex-end;
   -ms-flex-pack: justify;
       justify-content: space-between;
 }
@@ -11056,6 +11058,20 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   text-transform: uppercase;
   font-size: 16px;
   color: #F4412D;
+  position: relative;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 58px;
+}
+.filter__reset::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 19'%3e%3cpath clip-rule='evenodd' d='M5.178 4.46L3.822 5.814l3.822 3.822-3.822 3.822 1.356 1.356L9 10.993l3.822 3.822 1.356-1.356-3.822-3.822 3.822-3.822-1.356-1.356L9 8.281 5.178 4.46z' fill='%23F4412D'/%3e%3c/svg%3e") center no-repeat;
 }
 
 .filter-list {
@@ -11082,11 +11098,14 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 .multifilter_active .multifilter__button, .multifilter.active .multifilter__button {
   padding-right: 40px;
 }
+.multifilter_active .multifilter__total, .multifilter.active .multifilter__total {
+  right: 44px;
+}
 .multifilter_active .multifilter__btn-clear, .multifilter.active .multifilter__btn-clear {
   display: block;
 }
 .multifilter__label {
-  margin-right: 8px;
+  margin-right: 2px;
   color: rgba(0, 0, 0, 0.4);
 }
 .multifilter__value {
@@ -11094,18 +11113,17 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  max-width: 120px;
+  max-width: 140px;
   display: inline-block;
   padding-right: 18px;
 }
 .multifilter__value::after {
   position: absolute;
   right: 0;
-  top: 8px;
-  display: inline-block;
-  margin-left: 6px;
+  top: 9px;
+  display: block;
   content: "";
-  border-top: 8px solid;
+  border-top: 6px solid #101010;
   border-right: 4px solid transparent;
   border-bottom: 0;
   border-left: 4px solid transparent;
@@ -11133,7 +11151,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   position: relative;
   font-weight: 400;
   letter-spacing: -0.01em;
-  padding: 5px 12px 5px 16px;
+  padding: 5px 15px 5px;
   height: 58px;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -11161,7 +11179,7 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   height: 18px;
   color: #9b9b9b;
   content: "";
-  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 19'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M5.178 4.46L3.822 5.814l3.822 3.822-3.822 3.822 1.356 1.356L9 10.993l3.822 3.822 1.356-1.356-3.822-3.822 3.822-3.822-1.356-1.356L9 8.281 5.178 4.46z' fill='%239B9B9B'/%3e%3c/svg%3e") center no-repeat;
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 19'%3e%3cpath clip-rule='evenodd' d='M5.178 4.46L3.822 5.814l3.822 3.822-3.822 3.822 1.356 1.356L9 10.993l3.822 3.822 1.356-1.356-3.822-3.822 3.822-3.822-1.356-1.356L9 8.281 5.178 4.46z' fill='%239B9B9B'/%3e%3c/svg%3e") center no-repeat;
 }
 .multifilter__dropdown {
   position: absolute;
