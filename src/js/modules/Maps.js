@@ -3,6 +3,7 @@ import ymaps from 'ymaps';
 import icon from '../../img/marker.svg';
 import iconSelected from '../../img/marker-selected.svg';
 
+
 function initMap(el, param, data) {
   if (!el || el === '') return;
 
@@ -162,10 +163,14 @@ function initMap(el, param, data) {
 
     objectManager.objects.events
       .add('balloonopen', (e) => {
-        e.get('target').options.set('iconImageHref', iconSelected);
+        objectManager.objects.setObjectOptions(e.get('objectId'), {
+          iconImageHref: iconSelected,
+        });
       })
       .add('balloonclose', (e) => {
-        e.get('target').options.set('iconImageHref', icon);
+        objectManager.objects.setObjectOptions(e.get('objectId'), {
+          iconImageHref: icon,
+        });
       });
 
     mainPageMap.geoObjects.add(objectManager);
@@ -177,23 +182,32 @@ function initMap(el, param, data) {
     .catch(error => console.log('Failed to load Yandex Maps', error));
 }
 
-
 initMap(
   document.querySelector('#map'), {
     center: [55.76, 37.64],
     zoom: 7,
     controls: [],
   }, {
-    type: 'Feature',
-    id: 0,
-    geometry: {
-      type: 'Point',
-      coordinates: [55.76, 37.64],
-    },
-    properties: {
-      address: 'ул. Невзоровых, 64к2',
-      tel: '8 (920) 028-20-44',
-      link: 'Схема проезда',
-    },
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        id: 0,
+        geometry: { type: 'Point', coordinates: [55.844708, 37.74887] },
+        properties: { address: 'ул. Невзоровых, 64к2', tel: '8 (920) 028-20-44', link: 'Схема проезда' },
+      },
+      {
+        type: 'Feature',
+        id: 1,
+        geometry: { type: 'Point', coordinates: [55.723123, 37.406067] },
+        properties: { address: 'ул. Невзоровых, 64к2', tel: '8 (920) 028-20-44', link: 'Схема проезда' },
+      },
+      {
+        type: 'Feature',
+        id: 2,
+        geometry: { type: 'Point', coordinates: [55.858585, 37.48498] },
+        properties: { address: 'ул. Невзоровых, 64к2', tel: '8 (920) 028-20-44', link: 'Схема проезда' },
+      },
+    ],
   },
 );

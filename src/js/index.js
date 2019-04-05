@@ -7,6 +7,7 @@ import 'owl.carousel';
 
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/collapse';
+import 'bootstrap/js/dist/dropdown';
 
 // import Sticky from 'sticky-js';
 
@@ -27,6 +28,7 @@ svg4everybody();
 // if (module.hot) {
 //   module.hot.accept('./../catalog.pug');
 // }
+
 
 $(document).ready(() => {
   $('[data-fancybox]').fancybox({

@@ -120,9 +120,6 @@ body {
 .filter {
   background-color: #fff;
 
-  &__top {
-  }
-
   &__container {
     display: flex;
     align-items: flex-end;
@@ -193,7 +190,7 @@ body {
   //}
 
   &__label {
-    margin-right: 2px;
+    margin-right: 7px;
     color: rgba(black, .4);
   }
 
@@ -298,6 +295,8 @@ body {
     z-index: $zindex-dropdown;
     display: none;
     background: #f2f2f2;
+    min-width: 316px;
+    overflow: auto;
 
     &.show {
       display: block;
@@ -305,6 +304,13 @@ body {
   }
 }
 
+.sorting {
+  &__container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
 .sorting-list {
   display: flex;
   padding-top: 22px;

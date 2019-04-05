@@ -41,6 +41,14 @@ class MobileMenu {
   }
 }
 
+// function ready(fn) {
+//   if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+//     fn();
+//   } else {
+//     document.addEventListener('DOMContentLoaded', fn);
+//   }
+// }
+
 export default function Header() {
   const headerEl = document.querySelector('.header');
   const wrapperEl = document.querySelector('.wrapper');
@@ -67,8 +75,9 @@ export default function Header() {
   function initMobile() {
     new MobileMenu();
 
-    wrapperEl.style.paddingTop = `${ headerEl.getBoundingClientRect().height }px`;
-    menuEl.style.top = `${ headerEl.getBoundingClientRect().height }px`;
+
+    // wrapperEl.style.paddingTop = `${headerEl.getBoundingClientRect().height}px`;
+    // menuEl.style.top = `${headerEl.getBoundingClientRect().height}px`;
 
     searchControlBtn.addEventListener('click', (e) => {
       e.preventDefault();
