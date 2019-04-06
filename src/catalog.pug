@@ -50,8 +50,17 @@ html(lang='ru')
                                 span.multifilter__total 2
                             // dropdown button
                             button.multifilter__btn-clear Сбросить
-                            .multifilter__dropdown.dropdown-menu.show
+                            .multifilter__dropdown.dropdown-menu.show(data-simplebar data-simplebar-auto-hide="false")
                                 // dropdown
+                                input.multifilter__search(type="text" placeholder="Поиск по брендам")
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
+                                .p-3 dropdown
                                 .p-3 dropdown
                                 .p-3 dropdown
                                 .p-3 dropdown
@@ -106,7 +115,15 @@ html(lang='ru')
                             // dropdown button
                             .multifilter__dropdown.dropdown-menu
                                 // dropdown
-                                .p-1 dropdown
+                                .multifilter-price
+                                    .multifilter-price__title
+                                        span.multifilter-price__start От
+                                        span.multifilter-price__end До
+                                    .multifilter-price__range
+                                        .input-range
+                                    .multifilter-price__num
+                                        span.multifilter-price__start 50 ₽
+                                        span.multifilter-price__end 10 000 ₽
                         .multifilter
                             // dropdown container
                             button.multifilter__button(data-toggle="dropdown")

@@ -242,6 +242,10 @@ module.exports = (env, args) => {
         },
         replace: [' type="text/javascript"'],
       }),
+
+      new webpack.ProvidePlugin({
+        noUiSlider: 'nouislider',
+      }),
     ],
 
 

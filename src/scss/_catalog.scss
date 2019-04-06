@@ -136,6 +136,7 @@ body {
     display: inline-flex;
     align-items: center;
     height: 58px;
+
     &::before {
       content: '';
       display: inline-block;
@@ -146,7 +147,7 @@ body {
       //lef
 
       @include sprite('close', (
-          color: $main-color,
+              color: $main-color,
       ));
     }
   }
@@ -294,14 +295,92 @@ body {
     left: 0;
     z-index: $zindex-dropdown;
     display: none;
-    background: #f2f2f2;
-    min-width: 316px;
+    background: #EFEFEF;
     overflow: auto;
+    padding: 22px;
+
+    &[data-simplebar] {
+      width: 316px;
+      max-height: 446px;
+
+      .simplebar-track {
+        background-color: #D2D2D2;
+
+        .simplebar-scrollbar.simplebar-visible::before {
+          opacity: 1;
+        }
+
+        &.simplebar-vertical {
+          width: 7px;
+
+          .simplebar-scrollbar::before {
+            top: 0;
+            bottom: 0;
+          }
+        }
+      }
+
+      .simplebar-scrollbar {
+        right: 0;
+        width: 100%;
+
+        &::before {
+          background: $main-color;
+          border-radius: 0;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
 
     &.show {
       display: block;
     }
   }
+
+  &__search {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: 0;
+    padding: 0 17px;
+    font-weight: 500;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.multifilter-price {
+  width: 327px;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(black, 0.4);
+  }
+
+  &__range {
+    .noUi-target {
+
+    }
+
+    .noUi-base {
+
+    }
+  }
+
+  &__num {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__touch-area {
+
+  }
+
+
 }
 
 .sorting {
@@ -311,6 +390,7 @@ body {
     justify-content: space-between;
   }
 }
+
 .sorting-list {
   display: flex;
   padding-top: 22px;

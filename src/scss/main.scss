@@ -1,29 +1,34 @@
 
 
-@import "variables";
-@import "libs/jquery.fancybox";
-@import "libs/owl-carousel/owl.carousel";
-@import "carousel-theme";
+@import 'variables';
+//@import 'libs/jquery.fancybox';
+@import 'libs/owl-carousel/owl.carousel';
+@import '~@fancyapps/fancybox/dist/jquery.fancybox.css';
+@import '~simplebar/dist/simplebar.css';
+@import '~nouislider/distribute/nouislider.css';
+//@import 'libs/simplebar';
 
-//@import "fonts/muler";
-//@import "fonts/museo-cyrl";
-//@import "fonts/stem";
+@import 'carousel-theme';
 
-@import "fonts/bender";
-@import "fonts/inter";
+//@import 'fonts/muler';
+//@import 'fonts/museo-cyrl';
+//@import 'fonts/stem';
 
-@import "bootstrap"; // 4.3.1
+@import 'fonts/bender';
+@import 'fonts/inter';
 
-@import "functions";
-@import "custom-grid";
+@import 'bootstrap'; // 4.3.1
+
+@import 'functions';
+@import 'custom-grid';
 @import 'sprites';
 
-@import "icon";
+@import 'icon';
 @import 'global';
-@import "header";
-@import "footer";
-@import "slider";
-@import "modal";
+@import 'header';
+@import 'footer';
+@import 'slider';
+@import 'modal';
 
-@import "main-page";
-@import "catalog";
+@import 'main-page';
+@import 'catalog';
