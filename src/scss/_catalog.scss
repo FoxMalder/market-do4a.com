@@ -246,6 +246,9 @@ body {
     display: block;
   }
 
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
 
   &__container {
     max-height: 100%;
