@@ -182,32 +182,22 @@ function initMap(el, param, data) {
     .catch(error => console.log('Failed to load Yandex Maps', error));
 }
 
+const data = {
+  type: 'FeatureCollection',
+  features: [],
+};
+
+data.features = app.storeManagerData.stores.map((item, i) => ({
+  type: 'Feature',
+  id: i,
+  geometry: { type: 'Point', coordinates: item.coords },
+  properties: { address: item.name, tel: item.phone[0], link: 'Схема проезда' },
+}));
+
 initMap(
   document.querySelector('#map'), {
     center: [55.76, 37.64],
     zoom: 7,
     controls: [],
-  }, {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        id: 0,
-        geometry: { type: 'Point', coordinates: [55.844708, 37.74887] },
-        properties: { address: 'ул. Невзоровых, 64к2', tel: '8 (920) 028-20-44', link: 'Схема проезда' },
-      },
-      {
-        type: 'Feature',
-        id: 1,
-        geometry: { type: 'Point', coordinates: [55.723123, 37.406067] },
-        properties: { address: 'ул. Невзоровых, 64к2', tel: '8 (920) 028-20-44', link: 'Схема проезда' },
-      },
-      {
-        type: 'Feature',
-        id: 2,
-        geometry: { type: 'Point', coordinates: [55.858585, 37.48498] },
-        properties: { address: 'ул. Невзоровых, 64к2', tel: '8 (920) 028-20-44', link: 'Схема проезда' },
-      },
-    ],
-  },
+  }, data,
 );

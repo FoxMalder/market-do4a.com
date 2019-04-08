@@ -5,7 +5,7 @@ import './modules/Maps';
 import './global';
 
 import './main';
-import './catalog';
+// import './catalog';
 
 
 $(document).ready(() => {

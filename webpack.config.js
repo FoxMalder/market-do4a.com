@@ -33,7 +33,7 @@ module.exports = (env, args) => ({
   entry: {
     index: './src/js/index.js',
 
-    catalog: './src/catalog.pug',
+    // catalog: './src/catalog.pug',
   },
   output: {
     path: distPath,
@@ -253,20 +253,20 @@ module.exports = (env, args) => ({
     // historyApiFallback: true,
   },
 
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
-
-    // minimizer: [
-    //   args.mode === 'production' ? new OptimizeCSSAssetsPlugin({}) : {},
-    // ],
-  },
+  // optimization: {
+  //   runtimeChunk: 'single',
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: 'vendors',
+  //         chunks: 'all',
+  //       },
+  //     },
+  //   },
+  //
+  //   // minimizer: [
+  //   //   args.mode === 'production' ? new OptimizeCSSAssetsPlugin({}) : {},
+  //   // ],
+  // },
 });
