@@ -3,16 +3,16 @@
 //@import 'bootstrap/mixins/breakpoints';
 
 .mini-banner {
+  color: white;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .02em;
   background-color: $main-color;
   font: {
     family: $font-family-bender;
     style: italic;
     weight: 900;
   }
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: white;
-  text-align: center;
 
   @include mre-height-block(11px, 20px, 1);
 

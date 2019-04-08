@@ -11,8 +11,8 @@
   //}
 
   @include media-breakpoint-up(sm) {
-    padding-left: map_get($grid-gutter-width-map, sm) / 2; // 20
     padding-right: map_get($grid-gutter-width-map, sm) / 2; // 20
+    padding-left: map_get($grid-gutter-width-map, sm) / 2; // 20
   }
   //@include media-breakpoint-up(xl) {
   //  padding-left: map_get($grid-gutter-width-map, xl) / 2; // 24
@@ -47,8 +47,8 @@
   //  margin-right: map_get($grid-gutter-width-map, sm) / -2; // 20
   //}
   @include media-breakpoint-up(xl) {
-    margin-left: map_get($grid-gutter-width-map, xl) / -2; // 24
     margin-right: map_get($grid-gutter-width-map, xl) / -2; // 24
+    margin-left: map_get($grid-gutter-width-map, xl) / -2; // 24
   }
 }
 
@@ -59,7 +59,7 @@
   margin-left: 0;
 
   > .col,
-  > [class*="col-"] {
+  > [class*='col-'] {
     padding-right: 0;
     padding-left: 0;
   }
@@ -108,15 +108,15 @@
   @extend .container;
 
   @include media-breakpoint-down(xs) {
-    padding-left: 0;
     padding-right: 0;
+    padding-left: 0;
 
     .row {
       margin-right: 0;
       margin-left: 0;
 
       > .col,
-      > [class*="col-"] {
+      > [class*='col-'] {
         padding-right: 0;
         padding-left: 0;
       }

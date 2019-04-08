@@ -1,7 +1,7 @@
 //$dev-mode: true;
 
 // Цвета
-$color-red: #F4412D;
+$color-red: #f4412d;
 //$color-red: #00f;
 
 // Основной цвет страницы
@@ -30,7 +30,7 @@ $h1-font-size: 60px;
 $h2-font-size: 40px;
 
 // Настройки Body _reboot
-$body-bg: #F7F7F7;
+$body-bg: #f7f7f7;
 $body-color: #101010;
 
 // Настройки ссылок _reboot
@@ -44,25 +44,25 @@ $grid-gutter-width-xl: 24px;
 $container-max-widths-xl: 1200px + $grid-gutter-width-xl;
 
 $grid-gutter-width-map: (
-        xs: 40px,
-        sm: 20px,
-        md: 20px,
-        xl: 24px,
+  xs: 40px,
+  sm: 20px,
+  md: 20px,
+  xl: 24px,
 );
 // Точки перехода
 $grid-breakpoints: (
-        xs: 0,
-        sm: 576px,
-        md: 768px,
-  //lg: 1040px,
-        xl: 1240px,
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  /*lg: 1040px,*/
+  xl: 1240px,
 );
 
 $container-max-widths: (
-        sm: 540px,
-        md: 728px,
-  //lg: 1020px,
-        xl: 1224px,
+  sm: 540px,
+  md: 728px,
+  /*lg: 1020px,*/
+  xl: 1224px,
 );
 
 $font-path: '../fonts/';

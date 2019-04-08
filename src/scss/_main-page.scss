@@ -592,12 +592,7 @@ $section-padding-bottom: 30px;
       width: $button-width;
       box-shadow:
         (
-          $button-width * 2 * -3 0 0 #ececec,
-          $button-width * 2 * -2 0 0 #ececec,
-          $button-width * 2 * -1 0 0 #ececec,
-          $button-width * 2 * 1 0 0 #ececec,
-          $button-width * 2 * 2 0 0 #ececec,
-          $button-width * 2 * 3 0 0 #ececec
+          $button-width * 2 * -3 0 0 #ececec, $button-width * 2 * -2 0 0 #ececec, $button-width * 2 * -1 0 0 #ececec, $button-width * 2 * 1 0 0 #ececec, $button-width * 2 * 2 0 0 #ececec, $button-width * 2 * 3 0 0 #ececec
         );
       transform: translateX(-80px) $skew;
       transform-origin: center calc(100% - #{$padding-bottom});

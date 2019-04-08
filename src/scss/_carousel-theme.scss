@@ -1,24 +1,24 @@
-$owl-color-base:			#869791 !default;
-$owl-color-white:			#FFF !default;
-$owl-color-gray:			#D6D6D6 !default;
+$owl-color-base: 			#869791 !default;
+$owl-color-white: 			#fff !default;
+$owl-color-gray: 			#d6d6d6 !default;
 
 //nav
 
 $owl-nav-color: 			#fff;
-$owl-nav-color-hover:		$main-color;
-$owl-nav-disabled-opacity: 	0.5;
+$owl-nav-color-hover: 		$main-color;
+$owl-nav-disabled-opacity: 	.5;
 $owl-nav-animation:         $animation;
 $owl-nav-width:             28px;
 $owl-nav-height:            41px;
 
 //dots
 
-$owl-dot-width:				13px;
-$owl-dot-height:			13px;
-$owl-dot-rounded:			50%;
+$owl-dot-width: 				13px;
+$owl-dot-height: 			13px;
+$owl-dot-rounded: 			50%;
 $owl-dot-margin: 			5px 13px;
-$owl-dot-background:		$owl-color-gray !default;
-$owl-dot-background-active:	$owl-color-base !default;
+$owl-dot-background: 		$owl-color-gray !default;
+$owl-dot-background-active: 	$owl-color-base !default;
 
 
 
@@ -28,9 +28,9 @@ $owl-dot-background-active:	$owl-color-base !default;
     //display: none;
     //text-align: center;
     position: absolute;
-    left: -(40px + $owl-nav-width);
-    right: -(40px + $owl-nav-width);
     top: 50%;
+    right: -(40px + $owl-nav-width);
+    left: -(40px + $owl-nav-width);
     height: 0;
     -webkit-tap-highlight-color: transparent;
 
@@ -54,8 +54,8 @@ $owl-dot-background-active:	$owl-color-base !default;
       float: left;
     }
     .disabled {
-      opacity: $owl-nav-disabled-opacity;
       cursor: default;
+      opacity: $owl-nav-disabled-opacity;
     }
   }
 
@@ -65,32 +65,32 @@ $owl-dot-background-active:	$owl-color-base !default;
   }
 
   .owl-dots {
-    text-align: center;
-    -webkit-tap-highlight-color: transparent;
-    transform: translate3d(0, 0, 0);
+    right: 0;
 
     //		position: absolute;
     left: 0;
-    right: 0;
 
     margin: 4px auto;
+    text-align: center;
+    transform: translate3d(0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
     .owl-dot {
       display: inline-block;
-      zoom: 1;
       *display: inline;
+      zoom: 1;
 
       span {
+        display: block;
         width: $owl-dot-width;
         height: $owl-dot-height;
         margin: $owl-dot-margin;
+
+        //				background: black;
+        border: 1px solid #7a7784;
         //background: $owl-dot-background;
         //display: block;
         //transition: opacity 200ms ease;
         border-radius: $owl-dot-rounded;
-
-        //				background: black;
-        border: 1px solid #7A7784;
-        display: block;
         -webkit-backface-visibility: visible;
       }
 
@@ -98,8 +98,8 @@ $owl-dot-background-active:	$owl-color-base !default;
       &:hover {
         span {
           //background: $owl-dot-background-active;
-          background: #83A7CA;
-          border-color: #83A7CA;
+          background: #83a7ca;
+          border-color: #83a7ca;
         }
       }
     }

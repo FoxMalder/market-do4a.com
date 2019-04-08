@@ -15,6 +15,8 @@ import HeaderSlider from './modules/HeaderSlider';
 Swiper.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual]);
 Swiper.use([HeaderSlider]);
 
+window.Sticky = Sticky;
+
 const mainHeroSliderEl = document.querySelector('.hero-slider');
 const mainStarSliderEl = document.querySelector('#stars-slider');
 const mainBestArticlesEl = document.querySelector('.best-articles__slider');

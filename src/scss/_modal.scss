@@ -1,28 +1,28 @@
 .auth {
+  padding: 30px;
   text-align: center;
-  padding: 30px 30px;
 
   @include media-breakpoint-up(md) {
+    width: 465px;
 
     padding: 45px 72px;
     transform: $skew;
-    width: 465px;
   }
   &__title {
     @include title;
-    font-size: 24px;
     margin-bottom: 20px;
+    font-size: 24px;
     @include media-breakpoint-up(md) {
-      font-size: 36px;
       margin-bottom: 34px;
+      font-size: 36px;
       transform: $skew-reverse;
     }
   }
   &__subtitle {
     @include title;
-    line-height: 24px;
-    font-size: 19px;
     margin-bottom: 26px;
+    font-size: 19px;
+    line-height: 24px;
     @include media-breakpoint-up(md) {
       transform: $skew-reverse;
     }

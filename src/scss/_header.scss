@@ -50,35 +50,35 @@
   //top: ;
   //height: 100%;
   top: 65px;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
   z-index: 999;
-  visibility: hidden;
-  transition-property: visibility;
-  transition-duration: .3s;
   color: white;
+  visibility: hidden;
+  transition-duration: .3s;
+  transition-property: visibility;
 
   &.opened {
     visibility: visible;
 
     .mobile-menu__overlay {
-      opacity: 0.8;
+      opacity: .8;
     }
 
     .mobile-menu__wrapper {
-      transform: translateX(0)
+      transform: translateX(0);
     }
   }
 
   &__overlay {
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
 
-    background: #1B1B1B;
+    background: #1b1b1b;
     opacity: 0;
     //opacity: 0.8;
     transition: opacity .3s ease;
@@ -87,18 +87,18 @@
   &__wrapper {
     position: absolute;
     top: 0;
-    left: 0;
     bottom: 0;
+    left: 0;
     width: 300px;
-    background: #1B1B1B;
-    transform: translateX(-100%);
-    transition: transform .3s ease;
     overflow: auto;
+    background: #1b1b1b;
+    transition: transform .3s ease;
+    transform: translateX(-100%);
   }
 
   &__header {
-    padding: 20px 20px;
-    background: #2B2B2B;
+    padding: 20px;
+    background: #2b2b2b;
   }
 
   &__row {
@@ -108,38 +108,38 @@
   }
 
   &__nav {
-    padding: 20px 20px;
+    padding: 20px;
   }
 
   &__city-list {
-    background-color: #1B1B1B;
     //background: url("../img/rm/change-city.png") center top no-repeat;
     overflow: hidden;
+    background-color: #1b1b1b;
     transition: height .7s ease-in-out;
   }
 
 }
 
 .header {
-  //opacity: .5;
-  background-color: white;
 
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   z-index: $zindex-fixed;
-  border-bottom: 1px solid #E3E3E3;
+  //opacity: .5;
+  background-color: white;
+  border-bottom: 1px solid #e3e3e3;
 
   @include media-breakpoint-up(xl) {
-    padding-bottom: 140px;
     position: relative;
+    padding-bottom: 140px;
     border-bottom: 0;
   }
 
   &__nav-top {
     display: none;
-    border-bottom: 1px solid #E3E3E3;
+    border-bottom: 1px solid #e3e3e3;
   }
 
   &__nav-center {
@@ -147,16 +147,16 @@
   }
 
   &__city-list {
-    background-color: #1B1B1B;
     //background: url("../img/rm/change-city.png") center top no-repeat;
     overflow: hidden;
+    background-color: #1b1b1b;
     transition: height .7s ease-in-out;
   }
 
   &__category {
     display: none;
-    background-color: #101010;
     color: white;
+    background-color: #101010;
   }
 
   &__fixed-block {
@@ -166,11 +166,11 @@
       //background: white;
       position: absolute;
       top: 100%;
-      left: 0;
       right: 0;
-      transform: translateY(-100%);
-      transition: transform .3s ease;
+      left: 0;
       z-index: $zindex-fixed;
+      transition: transform .3s ease;
+      transform: translateY(-100%);
       &.fixed {
         position: fixed;
         top: 0;
@@ -184,10 +184,10 @@
   }
 
   &__mini-banner {
-    background-color: $main-color;
-    @include title;
     color: white;
     text-align: center;
+    background-color: $main-color;
+    @include title;
 
     @include mre-height-block(11px, 20px, 1);
 
@@ -219,11 +219,11 @@
 }
 
 .page-nav {
-  color: rgba(#F5F5F5, 0.5);
 
   // List
   padding-left: 0;
   margin-bottom: 0;
+  color: rgba(#f5f5f5, .5);
   list-style: none;
 
   &__item {
@@ -231,11 +231,11 @@
   }
 
   @include media-breakpoint-up(xl) {
-    color: rgba(#000000, 0.5);
     display: flex;
+    color: rgba(#000, .5);
     &__item {
-      margin-bottom: 0;
       padding: 0 11px;
+      margin-bottom: 0;
     }
   }
 }
@@ -245,11 +245,11 @@
 //
 .header-nav-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  height: 50px;
 
   padding-right: 10px;
-  height: 50px;
   @include font-size(14px);
 
   &__menu {
@@ -257,8 +257,8 @@
   }
 
   &__link {
-    opacity: 0.5;
     padding: 0 12px;
+    opacity: .5;
 
     &:hover {
       opacity: 1;
@@ -270,32 +270,32 @@
   font-weight: 500;
 
   svg {
-    vertical-align: -1px;
     width: 8px;
     height: 12px;
+    vertical-align: -1px;
   }
 }
 
 .header-number {
   font-family: $font-family-bender;
+  font-size: 16px;
   font-style: normal;
   font-weight: bold;
   line-height: normal;
-  font-size: 16px;
 
   svg {
-    margin-right: 4px;
-    vertical-align: 0;
     width: 11px;
     height: 11px;
+    margin-right: 4px;
+    vertical-align: 0;
   }
 }
 
 .select-city {
-  font-weight: 500;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  font-weight: 500;
   //margin: -10px 0;
 
   @include media-breakpoint-up(xl) {
@@ -315,31 +315,31 @@
   &__link {
     //@include caret(down);
     position: relative;
+    max-width: 100%;
+
+    padding-right: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
 
     white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-
-    padding-right: 15px;
-    max-width: 100%;
 
     //margin: 10px 0;
 
     &::after {
+      position: absolute;
+      top: 8px;
+      right: 0;
       //display: inline-block;
       display: block;
-      position: absolute;
-      right: 0px;
-      top: 8px;
 
       //margin-left: 1px;
       //vertical-align: middle;
-      content: "";
-      border-top: 0.3em solid;
-      border-right: 0.3em solid transparent;
+      content: '';
+      border-top: .3em solid;
+      border-right: .3em solid transparent;
       border-bottom: 0;
-      border-left: 0.3em solid transparent;
+      border-left: .3em solid transparent;
     }
 
     &:not(.collapsed) {
@@ -355,7 +355,7 @@
 
   &__value {
     //color: rgba(black, .5);
-    opacity: 0.5;
+    opacity: .5;
   }
 }
 
@@ -365,19 +365,19 @@
 .header-control {
   display: flex;
   align-items: center;
-  margin-left: -12px;
-  margin-right: -12px;
 
   height: 44px;
+  margin-right: -12px;
+  margin-left: -12px;
   @include media-breakpoint-up(md) {
     height: 54px;
   }
   @include media-breakpoint-up(xl) {
     justify-content: space-between;
     height: 90px;
+    margin-right: 0;
 
     margin-left: 0;
-    margin-right: 0;
   }
 
   &__menu-btn {
@@ -385,11 +385,11 @@
 
     //padding: 10px;
     position: relative;
-    margin-right: 4px;
     //margin-right: 27px;
     width: 44px;
     //height: 40px;
     height: 100%;
+    margin-right: 4px;
 
     &:focus {
       outline: none;
@@ -397,15 +397,15 @@
 
     &::before,
     &::after {
-      content: '';
       position: absolute;
-      height: 3px;
-      width: 20px;
-      background: black;
       top: 50%;
-      margin-top: -1px;
       left: 50%;
+      width: 20px;
+      height: 3px;
+      margin-top: -1px;
       margin-left: -10px;
+      content: '';
+      background: black;
       transition: transform .3s ease;
     }
 
@@ -445,17 +445,17 @@
 
   &__logo {
     display: block;
-    background: url("../img/logo-only-icon.svg") no-repeat;
-    background-size: contain;
 
     width: 24px;
     height: 28px;
     margin-right: auto;
+    background: url('../img/logo-only-icon.svg') no-repeat;
+    background-size: contain;
 
     @include media-breakpoint-up(md) {
-      background-image: url("../img/logo.svg");
       width: 104px;
       height: 31px;
+      background-image: url('../img/logo.svg');
       svg {
         width: 100%;
         height: 100%;
@@ -476,9 +476,9 @@
     left: 0;
 
     z-index: -1;
+    transition: transform .3s ease;
 
     transform: translateY(-100%);
-    transition: transform .3s ease;
 
     &.active,
     &_active {
@@ -489,12 +489,12 @@
     @include media-breakpoint-up(xl) {
       position: relative;
       top: 0;
-      left: auto;
       right: auto;
-      height: 100%;
-      flex: 1 0;
-      margin: 0;
+      left: auto;
       z-index: auto;
+      flex: 1 0;
+      height: 100%;
+      margin: 0;
       transform: translateY(0);
     }
   }
@@ -504,12 +504,12 @@
   }
 
   &__cart {
+    position: relative;
     display: none;
+    width: 195px;
 
     height: 100%;
-    width: 195px;
     margin-right: 7px;
-    position: relative;
 
     &:hover {
       .header-cart {
@@ -524,14 +524,14 @@
 
 
   &__button {
+    position: relative;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    margin-left: 7px;
     width: 44px;
     height: 100%;
+    margin-left: 7px;
 
     &_search svg {
       width: 17px;
@@ -550,7 +550,7 @@
 
     &.active,
     &_active {
-      background-color: #EEEEEE;
+      background-color: #eee;
     }
 
     @include media-breakpoint-up(md) {
@@ -578,73 +578,73 @@
   &__notifications {
     @include title;
     position: absolute;
-    background-color: $main-color;
 
     top: 50%;
     right: 50%;
-    transform: translate(50%, -50%) translate(10px, -10px);
-
-    color: white;
-    text-align: center;
 
     min-width: 13px;
     height: 13px;
-
-    border-radius: 7px;
+    padding: 2px 2px 1px;
     font-size: 10px;
     line-height: 10px;
-    padding: 2px 2px 1px;
+
+    color: white;
+    text-align: center;
+    background-color: $main-color;
+
+    border-radius: 7px;
+    transform: translate(50%, -50%) translate(10px, -10px);
 
     @include media-breakpoint-up(xl) {
       min-width: 26px;
       height: 26px;
-
-      border-radius: 13px;
+      padding: 3px 5px;
       font-size: 15px;
       line-height: 20px;
-      padding: 3px 5px;
+
+      border-radius: 13px;
       transform: translate(50%, -50%) translate(18px, -16px);
     }
   }
 }
 
 .search-fild {
-  height: 54px;
-  width: 100%;
   position: relative;
+  width: 100%;
+  height: 54px;
   @include media-breakpoint-up(xl) {
     height: 100%;
   }
 
   &__input {
-    height: 100%;
     width: 100%;
-
-    padding-left: 20px;
+    height: 100%;
     padding-right: 75px;
 
-    background-color: #EEEEEE;
-    border-color: #EEEEEE;
+    padding-left: 20px;
 
     font-size: 13px;
     font-style: italic;
+
+    background-color: #eee;
+    border-color: #eee;
     @include media-breakpoint-up(xl) {
-      padding-left: 35px;
       padding-right: 75px;
-      transform: $skew;
+      padding-left: 35px;
       font-size: 17px;
       font-style: normal;
+      transform: $skew;
     }
   }
 
   &__loupe {
     position: absolute;
     top: 50%;
-    margin-top: -9px;
     right: 20px;
     width: 17px;
     height: 18px;
-    color: #BABABA;
+    margin-top: -9px;
+    color: #bababa;
     @include media-breakpoint-up(xl) {
       width: 24px;
       height: 26px;
@@ -655,7 +655,7 @@
 
 button.search-fild__loupe {
   @extend %button-reset;
-  color: #BABABA;
+  color: #bababa;
   transition: color .3s ease;
 
   &:hover {
@@ -669,10 +669,10 @@ button.search-fild__loupe {
 }
 
 .button-cart {
-  height: 100%;
-  width: 100%;
   display: flex;
   align-items: center;
+  width: 100%;
+  height: 100%;
 
   //padding: 23.5px 25px;
   padding: 10px 25px;
@@ -683,46 +683,46 @@ button.search-fild__loupe {
   }
 
   &__num {
-    font-style: italic;
-    font-weight: 900;
-    font-size: 20px;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-
-    line-height: 30px;
+    display: inline-block;
     min-width: 44px;
     padding: 7px 10px;
-    border-radius: 22px;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 900;
+
+    line-height: 30px;
     color: black;
-    background: #FFFFFF;
-    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    background: #fff;
+    border-radius: 22px;
   }
 
   &__block {
-    text-align: left;
     margin-left: 12px;
+    text-align: left;
   }
 
   &__title {
+    display: block;
+    font-size: 18px;
     font-style: italic;
     font-weight: 900;
     line-height: normal;
-    font-size: 18px;
-    letter-spacing: 0.02em;
     text-transform: uppercase;
-    display: block;
+    letter-spacing: .02em;
   }
 
   &__price {
+    display: block;
 
     font-family: $font-family-inter-ui;
-    font-weight: 500;
     font-size: 15px;
+    font-weight: 500;
 
-    color: #FFFFFF;
+    color: #fff;
 
-    opacity: 0.7;
-    display: block;
+    opacity: .7;
   }
 }
 
@@ -736,16 +736,16 @@ button.search-fild__loupe {
   position: relative;
   //margin-left: -20px;
   padding-left: 0;
-  list-style: none;
   margin-bottom: 40px;
+  list-style: none;
 
   @include media-breakpoint-up(xl) {
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin: 0 4px 0 -25px;
+    justify-content: space-between;
     height: 100%;
+    margin: 0 4px 0 -25px;
   }
   //}
   &__item {
@@ -769,7 +769,7 @@ button.search-fild__loupe {
         .header-category__link {
 
           color: white;
-          background-color: #2D2D2D;
+          background-color: #2d2d2d;
           //&::before {
           //  transform: translate3d(0, 0, 0);
           //}
@@ -786,28 +786,28 @@ button.search-fild__loupe {
   &__link {
 
     font-family: $font-family-bender;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-style: italic;
     font-size: 14px;
+    font-style: italic;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: .02em;
 
     @include media-breakpoint-up(xl) {
 
       display: block;
       width: 100%;
+      height: 100%;
+      font-style: normal;
 
       color: white;
 
       text-align: center;
       white-space: nowrap;
-      font-style: normal;
-
-      @include mre-height-block(15px, 50px, 20px);
-      height: 100%;
+      transition: background-color .3s ease;
       transform: $skew;
       transform-origin: bottom;
-      transition: background-color .3s ease;
+
+      @include mre-height-block(15px, 50px, 20px);
     }
     //position: relative;
     //&::before {
@@ -832,14 +832,14 @@ button.search-fild__loupe {
   &__hidden {
     //display: none;
     position: absolute;
-    width: 100%;
-    background-color: #2D2D2D;
     top: 100%;
     //top: 0;
     left: 0;
     z-index: 99;
+    width: 100%;
     height: 0;
     overflow: hidden;
+    background-color: #2d2d2d;
     transition: $transition-collapse;
   }
 }
@@ -848,9 +848,9 @@ button.search-fild__loupe {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
   height: 620px;
-  justify-content: space-between;
   //align-content: flex-start;
   padding: 28px 36px 46px;
 
@@ -868,14 +868,14 @@ button.search-fild__loupe {
   }
 
   &__list {
-    list-style: none;
     padding-left: 0;
+    list-style: none;
   }
 
   &__item {
-    color: rgba(white, 0.5);
     font-size: 14px;
     line-height: 17px;
+    color: rgba(white, .5);
 
     &:not(:last-child) {
       margin-bottom: 16px;
@@ -888,18 +888,18 @@ button.search-fild__loupe {
 }
 
 .change-city {
-  color: white;
   padding: 20px 0 20px 50px;
+  color: white;
   @include media-breakpoint-up(xl) {
     padding: 30px 0 58px;
   }
 
   &__header {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
     height: 45px;
     margin-bottom: 45px;
-    justify-content: space-between;
-    align-items: center;
-    display: none;
     @include media-breakpoint-up(xl) {
 
       display: flex;
@@ -913,21 +913,21 @@ button.search-fild__loupe {
 
   &__btn-close {
     @include button-variant($main-color, $main-color, #FFF, #FFF);
-    border-radius: 50%;
 
     width: 33px;
     height: 33px;
     padding: 0;
+    border-radius: 50%;
 
     &::before,
     &::after {
-      content: '';
       position: absolute;
-      width: 10px;
-      height: 2px;
-      background: currentColor;
       top: 50%;
       left: 50%;
+      width: 10px;
+      height: 2px;
+      content: '';
+      background: currentColor;
     }
 
     &::before {
@@ -940,46 +940,46 @@ button.search-fild__loupe {
   }
 
   &__list {
-    list-style: none;
     padding-left: 0;
     margin-bottom: 0;
+    list-style: none;
 
     @include media-breakpoint-up(xl) {
-      max-height: 410px;
       display: flex;
       flex-direction: column;
-      align-content: space-between;
       flex-wrap: wrap;
+      align-content: space-between;
+      max-height: 410px;
     }
   }
 
   &__item {
+
+    position: relative;
     margin-bottom: 21px;
     font-size: 14px;
     line-height: normal;
 
-    position: relative;
-
     &::before {
+      position: absolute;
+      top: -5px;
+      left: -30px;
+      font-size: 20px;
+      color: $main-color;
       content: attr(data-letter);
 
       @extend %title;
-      font-size: 20px;
-      color: $main-color;
-      position: absolute;
-      left: -30px;
-      top: -5px;
     }
   }
 
   &__note {
-    margin-top: 52px;
-    max-width: 455px;
-
-    color: rgba(255, 255, 255, 0.5);
-    line-height: 20px;
-    font-size: 14px;
     display: none;
+    max-width: 455px;
+    margin-top: 52px;
+    font-size: 14px;
+    line-height: 20px;
+
+    color: rgba(255, 255, 255, .5);
     @include media-breakpoint-up(xl) {
       display: block;
     }
@@ -991,19 +991,19 @@ button.search-fild__loupe {
 }
 
 .change-store {
-  color: white;
   padding: 21px 0;
+  color: white;
   //background: url("../img/rm/change-store.png") center top no-repeat;
   @include media-breakpoint-up(xl) {
     padding: 49px 0 58px;
   }
 
   &__header {
+    display: none;
+    align-items: flex-start;
+    justify-content: space-between;
     //height: 45px;
     margin-bottom: 53px;
-    justify-content: space-between;
-    align-items: flex-start;
-    display: none;
     @include media-breakpoint-up(xl) {
       display: flex;
     }
@@ -1017,21 +1017,21 @@ button.search-fild__loupe {
 
   &__btn-close {
     @include button-variant($main-color, $main-color, #FFF, #FFF);
-    border-radius: 50%;
 
     width: 33px;
     height: 33px;
     padding: 0;
+    border-radius: 50%;
 
     &::before,
     &::after {
-      content: '';
       position: absolute;
-      width: 10px;
-      height: 2px;
-      background: currentColor;
       top: 50%;
       left: 50%;
+      width: 10px;
+      height: 2px;
+      content: '';
+      background: currentColor;
     }
 
     &::before {
@@ -1044,34 +1044,34 @@ button.search-fild__loupe {
   }
 
   &__list {
-    list-style: none;
     padding-left: 0;
     margin-bottom: 0;
+    list-style: none;
 
     @include media-breakpoint-up(xl) {
       //max-height: 410px;
       display: flex;
       flex-wrap: wrap;
       margin-bottom: 77px;
-      transform: $skew;
       margin-left: -14px;
+      transform: $skew;
     }
   }
 
   &__note {
-
-    color: rgba(255, 255, 255, 0.5);
+    padding: 12px 20px 0;
     //display: none;
     font-size: 12px;
     line-height: 17px;
-    padding: 12px 20px 0;
+
+    color: rgba(255, 255, 255, .5);
     @include media-breakpoint-up(xl) {
-    //  display: block;
-      margin-top: 52px;
       max-width: 455px;
-      line-height: 20px;
-      font-size: 14px;
       padding: 0;
+      //  display: block;
+      margin-top: 52px;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     b {
@@ -1085,26 +1085,26 @@ button.search-fild__loupe {
       @include make-col(4);
       padding: 0 10px;
       &_right {
-        margin-left: auto;
         margin-bottom: -163px;
+        margin-left: auto;
       }
     }
   }
 
   &__link {
 
-    font-size: 14px;
-    line-height: normal;
-
     position: relative;
-
-    background: #292929;
-    height: 100px;
     display: flex;
     flex-direction: column;
+    height: 100px;
     //margin: 0 0px 33px;
     padding: 15px 20px;
     margin-bottom: 10px;
+
+    font-size: 14px;
+    line-height: normal;
+
+    background: #292929;
 
     //flex: 0 0 3;
 
@@ -1115,8 +1115,8 @@ button.search-fild__loupe {
     }
     @include media-breakpoint-up(xl) {
       height: 130px;
+      padding: 20px;
       margin-bottom: 33px;
-      padding: 20px 20px;
 
 
       &_icon {
@@ -1131,26 +1131,26 @@ button.search-fild__loupe {
 
   &__item-icon {
     position: absolute;
+    right: 20px;
+    bottom: 15px;
     width: 58px;
     height: 42px;
-    bottom: 15px;
-    right: 20px;
     @include media-breakpoint-up(xl) {
-      width: 105px;
-      height: 77px;
       top: 50%;
-      left: 0;
       right: auto;
       bottom: auto;
+      left: 0;
+      width: 105px;
+      height: 77px;
       transform: $skew-reverse translate(-60px, -50%);
     }
   }
 
   &__item-name {
     @include title;
+    margin-bottom: 7px;
     font-size: 14px;
     line-height: normal;
-    margin-bottom: 7px;
     @include media-breakpoint-up(xl) {
       font-size: 18px;
       transform: $skew-reverse;
@@ -1168,12 +1168,12 @@ button.search-fild__loupe {
   }
 
   &__item-note {
+    margin-top: auto;
 
     font-size: 12px;
     line-height: normal;
 
-    color: rgba(white, 0.5);
-    margin-top: auto;
+    color: rgba(white, .5);
 
     @include media-breakpoint-up(xl) {
       font-size: 15px;
@@ -1183,17 +1183,17 @@ button.search-fild__loupe {
 }
 
 .header-cart {
-  background: #1B1B1B;
   position: absolute;
   top: 100%;
   right: 0;
+  z-index: 1040;
+
+  display: none;
   width: 430px;
   max-height: 400px;
   overflow: auto;
   color: white;
-  z-index: 1040;
-
-  display: none;
+  background: #1b1b1b;
 
 
   //background: url("../img/rm/cart.png") center top no-repeat;
@@ -1216,18 +1216,18 @@ button.search-fild__loupe {
   &__btn-clear {
     @extend %button-reset;
     font-size: 14px;
-    color: rgba(white, 0.5);
+    color: rgba(white, .5);
 
     > svg {
       display: inline-block;
       width: 14px;
       height: 16px;
-      vertical-align: -3px;
       margin-right: 3px;
+      vertical-align: -3px;
     }
 
     &:hover {
-      color: #FFFFFF;
+      color: #fff;
     }
   }
 }
@@ -1251,19 +1251,19 @@ button.search-fild__loupe {
   }
 
   &__name {
+    margin-bottom: 9px;
     font-family: $font-family-bender;
-    text-transform: uppercase;
+    font-size: 14px;
     font-style: italic;
     font-weight: bold;
-    font-size: 14px;
     line-height: 17px;
-    letter-spacing: 0.02em;
-    margin-bottom: 9px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
   }
 
   &__description {
     font-size: 14px;
-    color: rgba(white, 0.5);
+    color: rgba(white, .5);
   }
 
   &__controls {
@@ -1272,18 +1272,18 @@ button.search-fild__loupe {
 
   &__price {
     @include title;
-    font-size: 20px;
     display: inline-block;
     margin-right: 10px;
+    font-size: 20px;
   }
 
   &__remove {
     @extend %button-reset;
-    color: $main-color;
     display: inline-block;
 
     width: 14px;
     height: 16px;
+    color: $main-color;
 
     > svg {
       display: block;

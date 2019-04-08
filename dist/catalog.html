@@ -493,6 +493,85 @@
       </nav>
     </div>
   </div>
+  <div class="catalog-mobile-control active">
+    <div class="catalog-mobile-control__container">
+      <div class="catalog-mobile-control__header">
+        <!--button.catalog-mobile__btn-back--><span class="catalog-mobile-control__title">Фильтр</span><button class="catalog-mobile-control__btn-close"></button></div>
+      <div class="catalog-mobile-control__wrapper">
+        <!-- .multifilter.active || .multifilter_active - (Когда выбраны значения) ? Показывается кнопка "Сбросить"-->
+        <!-- .multifilter.view [bootstrap dropdown] - (Когда открыт dropdown) ? Применяем фон к кнопке-->
+        <div class="multifilter">
+          <!-- (optional)--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Категория<span class="multifilter__total">23</span></span><button class="multifilter__btn-clear">Сбросить</button><!-- .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown--></button>
+          <div class="multifilter__dropdown">
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter">
+          <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Бренд<span class="multifilter__total">2</span></span><!-- dropdown button--></button><button class="multifilter__btn-clear">Сбросить</button>
+          <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false">
+            <!-- dropdown--><input class="multifilter__search" type="text" placeholder="Поиск по брендам">
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+            <div class="p-3">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter active">
+          <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Страна<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button><!-- dropdown button-->
+          <div class="multifilter__dropdown dropdown-menu">
+            <!-- dropdown-->
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter">
+          <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Объём, кг<span class="multifilter__total">2</span></span></button><!-- dropdown button-->
+          <div class="multifilter__dropdown dropdown-menu">
+            <!-- dropdown-->
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter">
+          <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Порции<span class="multifilter__total">2</span></span></button><!-- dropdown button-->
+          <div class="multifilter__dropdown dropdown-menu">
+            <!-- dropdown-->
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter">
+          <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">% Белка</span></button><!-- dropdown button-->
+          <div class="multifilter__dropdown dropdown-menu">
+            <!-- dropdown-->
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter">
+          <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Время приёма</span></button><!-- dropdown button-->
+          <div class="multifilter__dropdown dropdown-menu">
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter"><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Цена</span></button>
+          <div class="multifilter__dropdown dropdown-menu">
+            <div class="multifilter-price">
+              <div class="multifilter-price__title"><span class="multifilter-price__start">От</span><span class="multifilter-price__end">До</span></div>
+              <div class="multifilter-price__range">
+                <div class="input-range"></div>
+              </div>
+              <div class="multifilter-price__num"><span class="multifilter-price__start">50 ₽</span><span class="multifilter-price__end">10 000 ₽</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="catalog-mobile-control__footer"><button class="catalog-mobile-control__btn-footer btn btn-gray-2">Сбросить</button><button class="catalog-mobile-control__btn-footer btn btn-red">Применить</button></div>
+    </div>
+  </div>
   <div class="wrapper">
     <div class="page-header">
       <div class="container">
@@ -513,19 +592,19 @@
       </div>
     </div>
     <div class="filter">
-      <div class="filter__container container">
+      <div class="filter__container">
         <div class="filter-list">
           <!-- .multifilter.active || .multifilter_active - (Когда выбраны значения) ? Показывается кнопка "Сбросить"-->
           <!-- .multifilter.view [bootstrap dropdown] - (Когда открыт dropdown) ? Применяем фон к кнопке-->
           <div class="multifilter">
-            <!-- (optional)--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко</span><span class="multifilter__total">2</span></button><button class="multifilter__btn-clear">Сбросить</button><!-- .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown-->
+            <!-- (optional)--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко<span class="multifilter__total">23</span></span></button><button class="multifilter__btn-clear">Сбросить</button><!-- .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown-->
             <div class="multifilter__dropdown">
               <div class="p-1">dropdown</div>
             </div>
           </div>
-          <div class="multifilter show">
-            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Бренд</span><span class="multifilter__total">2</span></button><!-- dropdown button--><button class="multifilter__btn-clear">Сбросить</button>
-            <div class="multifilter__dropdown dropdown-menu show" data-simplebar data-simplebar-auto-hide="false">
+          <div class="multifilter">
+            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Бренд<span class="multifilter__total">2</span></span></button><!-- dropdown button--><button class="multifilter__btn-clear">Сбросить</button>
+            <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false">
               <!-- dropdown--><input class="multifilter__search" type="text" placeholder="Поиск по брендам">
               <div class="p-3">dropdown</div>
               <div class="p-3">dropdown</div>
@@ -541,21 +620,21 @@
             </div>
           </div>
           <div class="multifilter active">
-            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Страна</span><span class="multifilter__total">2</span></button><button class="multifilter__btn-clear">Сбросить</button><!-- dropdown button-->
+            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Страна<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button><!-- dropdown button-->
             <div class="multifilter__dropdown dropdown-menu">
               <!-- dropdown-->
               <div class="p-1">dropdown</div>
             </div>
           </div>
           <div class="multifilter">
-            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Объём, кг</span><span class="multifilter__total">2</span></button><!-- dropdown button-->
+            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Объём, кг<span class="multifilter__total">2</span></span></button><!-- dropdown button-->
             <div class="multifilter__dropdown dropdown-menu">
               <!-- dropdown-->
               <div class="p-1">dropdown</div>
             </div>
           </div>
           <div class="multifilter">
-            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Порции</span><span class="multifilter__total">2</span></button><!-- dropdown button-->
+            <!-- dropdown container--><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Порции<span class="multifilter__total">2</span></span></button><!-- dropdown button-->
             <div class="multifilter__dropdown dropdown-menu">
               <!-- dropdown-->
               <div class="p-1">dropdown</div>
@@ -620,7 +699,7 @@
       </div>
     </div>
     <div class="sorting">
-      <div class="sorting__container container">
+      <div class="sorting__container">
         <div class="sorting__list">
           <!--.multifilter-->
           <!--    span.multifilter__label Найдено:-->
@@ -646,10 +725,11 @@
         </div>
       </div>
     </div>
+    <div class="catalog-control"><button class="catalog-control__button catalog-control__button_filter">Фильтр</button><button class="catalog-control__button catalog-control__button_sort">Сорт.</button></div>
     <div class="catalog">
-      <div class="container">
-        <div class="row">
-          <div class="catalog__item col-md-6 col-xl-3">
+      <div class="catalog__container">
+        <div class="catalog__list">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -675,7 +755,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -701,7 +781,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -730,7 +810,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -756,7 +836,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -782,7 +862,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -808,7 +888,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -834,7 +914,7 @@
               <div class="product-card__controls"><button class="btn btn-red product-card__button">Подробнее</button><button class="btn btn-gray-2 product-card__button">К сравнению</button></div><button class="product-card__favorites"></button>
             </div>
           </div>
-          <div class="catalog__item col-md-6 col-xl-3">
+          <div class="catalog__item">
             <div class="product-card">
               <div class="product-card__wrapper">
                 <div class="product-card__img"></div>
@@ -888,7 +968,7 @@
               <div class="benefits__icon"><svg width="91" height="62">
                   <use xlink:href="images/sprite.2ce3b050.svg#benefits-cup"></use>
                 </svg></div>
-              <div class="benefits__title">Профессиональная <br>консультация</div>
+              <div class="benefits__title">Профессиональная<br>консультация</div>
             </div>
           </div>
           <div class="col-md-6 col-xl-3">
@@ -896,7 +976,7 @@
               <div class="benefits__icon"><svg width="86" height="87">
                   <use xlink:href="images/sprite.2ce3b050.svg#benefits-hand"></use>
                 </svg></div>
-              <div class="benefits__title">Официальная <br>продукция</div>
+              <div class="benefits__title">Официальная<br>продукция</div>
             </div>
           </div>
           <div class="col-xl-6">
@@ -904,7 +984,7 @@
               <div class="benefits__icon"><svg width="68" height="69">
                   <use xlink:href="images/sprite.2ce3b050.svg#benefits-mail"></use>
                 </svg></div>
-              <div class="benefits__title">Подписаться <br>на новости</div>
+              <div class="benefits__title">Подписаться<br>на новости</div>
               <form class="benefits__form">
                 <div class="input-field"><label class="input-field__label" for="email-1">Твой e-mail</label><input class="input-field__input" id="email-1" type="email"></div><button class="btn btn-block btn-red">Подписаться</button>
               </form>
@@ -1031,6 +1111,7 @@
   <script src="js/runtime.bundle.js"></script>
   <script src="js/vendors.bundle.js"></script>
   <script src="js/index.bundle.js"></script>
+  <script src="js/catalog.bundle.js"></script>
 </body>
 
 </html>

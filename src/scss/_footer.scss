@@ -1,7 +1,7 @@
 .footer {
   font-size: 12px;
   line-height: 17px;
-  background-color: #ECECEC;
+  background-color: #ececec;
 
   @include media-breakpoint-up(xl) {
     font-size: 14px;
@@ -37,8 +37,8 @@
     }
   }
   &__bottom {
-    background-color: #F5F5F5;
     padding: 19px 0;
+    background-color: #f5f5f5;
     @include media-breakpoint-up(md) {
       height: 87px;
       padding-top: 0;
@@ -49,34 +49,34 @@
     display: flex;
     flex-direction: column;
     @include media-breakpoint-up(md) {
-      height: 100%;
       flex-direction: row;
       align-items: center;
+      height: 100%;
     }
   }
   &__copyright {
-    color: rgba(black, .6);
     margin-right: 33px;
     margin-bottom: 19px;
+    color: rgba(black, .6);
     @include media-breakpoint-up(md) {
       margin-bottom: 0;
     }
   }
   &__doc {
     display: inline-block;
-    color: rgba(black, .6);
     margin-right: 33px;
     margin-bottom: 25px;
+    color: rgba(black, .6);
 
     @include media-breakpoint-up(md) {
       margin-bottom: 0;
     }
   }
   &__dev {
-    color: rgba(black, .4);
     display: block;
     width: 151px;
     height: 25px;
+    color: rgba(black, .4);
     //opacity: .4;
 
     @include media-breakpoint-up(md) {
@@ -93,24 +93,24 @@
   }
   &__title {
     @extend %title;
+    margin-bottom: 28px;
 
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 28px;
 
     @include media-breakpoint-up(xl) {
+      margin-bottom: 39px;
       font-size: 18px;
       line-height: 22px;
-      margin-bottom: 39px;
     }
   }
   &__list {
     padding-left: 0;
-    list-style: none;
     margin: 0;
+    list-style: none;
   }
   &__item {
-    color: rgba(black, 0.6);
+    color: rgba(black, .6);
 
     &:not(:last-child) {
       margin-bottom: 25px;
@@ -139,20 +139,20 @@
   }
   @include media-breakpoint-up(xl) {
     flex-direction: row-reverse;
-    margin-left: (map_get($grid-gutter-width-map, xl) / -2);
     margin-right: (map_get($grid-gutter-width-map, xl) / -2);
+    margin-left: (map_get($grid-gutter-width-map, xl) / -2);
   }
   &__title {
     @extend %title;
+    max-width: 280px;
+    margin-bottom: 28px;
     font-size: 16px;
     line-height: 20px;
-    margin-bottom: 28px;
-    max-width: 280px;
 
     @include media-breakpoint-up(md) {
+      margin-bottom: 36px;
       font-size: 18px;
       line-height: 22px;
-      margin-bottom: 36px;
     }
     @include media-breakpoint-up(xl) {
       max-width: none;
@@ -167,8 +167,8 @@
     @include media-breakpoint-up(xl) {
       flex: 0 0 50%;
       max-width: 50%;
-      padding-left: (map_get($grid-gutter-width-map, xl) / 2);
       padding-right: (map_get($grid-gutter-width-map, xl) / 2);
+      padding-left: (map_get($grid-gutter-width-map, xl) / 2);
     }
   }
   &__social {
@@ -177,8 +177,8 @@
     @include media-breakpoint-up(xl) {
       flex: 0 0 50%;
       max-width: 50%;
-      padding-left: (map_get($grid-gutter-width-map, xl) / 2);
       padding-right: (map_get($grid-gutter-width-map, xl) / 2);
+      padding-left: (map_get($grid-gutter-width-map, xl) / 2);
     }
   }
   &__social-item {
@@ -203,16 +203,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    color: black;
-    margin-bottom: 30px;
     margin-right: 50px;
+    margin-bottom: 30px;
+    color: black;
   }
   &__address {
     margin-bottom: 8px;
   }
   &__tel {
-    font-weight: 600;
     margin-bottom: 8px;
+    font-weight: 600;
   }
   &__scheme {
     font-weight: 600;

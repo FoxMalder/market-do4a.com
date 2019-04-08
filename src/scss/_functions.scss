@@ -1,4 +1,4 @@
-@function decimal-round ($number, $digits: 0, $mode: round) {
+@function decimal-round($number, $digits: 0, $mode: round) {
   $n: 1;
   // $number must be a number
   @if type-of($number) != number {
@@ -132,7 +132,7 @@
 @mixin responsive-ratio($x,$y, $pseudo: false) {
   $padding: unquote(( $y / $x ) * 100 + '%');
   @if $pseudo {
-    &:before {
+    &::before {
       @include pseudo($pos: relative);
       width: 100%;
       padding-top: $padding;
