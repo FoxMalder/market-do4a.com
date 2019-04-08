@@ -95,7 +95,7 @@ module.exports = (env, args) => ({
       {
         test: /sprite.svg/,
         use: [
-          { loader: 'file-loader', options: { outputPath: './images', name: '[name].[hash:8].[ext]' } },
+          { loader: 'file-loader', options: { outputPath: './images', name: '[name].[ext]' } },
         ],
       },
       {
