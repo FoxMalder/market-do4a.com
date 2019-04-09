@@ -76,8 +76,8 @@ export default function Header() {
     new MobileMenu();
 
 
-    // wrapperEl.style.paddingTop = `${headerEl.getBoundingClientRect().height}px`;
-    // menuEl.style.top = `${headerEl.getBoundingClientRect().height}px`;
+    wrapperEl.style.paddingTop = `${headerEl.getBoundingClientRect().height}px`;
+    menuEl.style.top = `${headerEl.getBoundingClientRect().height}px`;
 
     searchControlBtn.addEventListener('click', (e) => {
       e.preventDefault();

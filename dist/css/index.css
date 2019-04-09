@@ -11839,8 +11839,8 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 
 .catalog-banner {
   position: relative;
-  overflow: hidden;
   padding: 22px 0;
+  overflow: hidden;
   background: #141414;
   color: #fff;
   font-family: "Bender", sans-serif;
@@ -11900,13 +11900,18 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
 }
 .catalog-banner__bg {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
-  top: 0;
-  background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 190px center;
+  background-size: contain;
+}
+@media (min-width: 768px) {
+  .catalog-banner__bg {
+    background-position: center;
+  }
 }
 .catalog-banner__sale {
   font-style: italic;
