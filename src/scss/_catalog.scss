@@ -22,8 +22,8 @@ body {
 
 .catalog-banner {
   position: relative;
-  overflow: hidden;
   padding: 22px 0;
+  overflow: hidden;
   background: #141414;
   //background: red url("../img/rm/catalog-banner-320.png") center top no-repeat;
   //font-style: italic;
@@ -71,13 +71,13 @@ body {
 
   &__bg {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    left: 0;
-    top: 0;
-    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
   }
 
   &__sale {
