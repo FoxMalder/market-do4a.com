@@ -151,18 +151,53 @@ html(lang='ru')
                             button.multifilter__btn-clear Сбросить
                             .multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false")
                                 // dropdown
-                                input.multifilter__search(type="text" placeholder="Поиск по брендам")
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
+                                .multifilter-search
+                                    input.multifilter-search__input(type="text" placeholder="Поиск по брендам")
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-1")
+                                        label.input-checkbox__label(for="f-2-check-1")
+                                            | 4 Dimension Nutrition
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-2" checked=true)
+                                        label.input-checkbox__label(for="f-2-check-2")
+                                            | ActivLab
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-3" disabled=true)
+                                        label.input-checkbox__label(for="f-2-check-3")
+                                            | ASM
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-4")
+                                        label.input-checkbox__label(for="f-2-check-4")
+                                            | 4 Dimension Nutrition
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-5" checked=true)
+                                        label.input-checkbox__label(for="f-2-check-5")
+                                            | ActivLab
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-6" disabled=true)
+                                        label.input-checkbox__label(for="f-2-check-6")
+                                            | ASM
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-7")
+                                        label.input-checkbox__label(for="f-2-check-7")
+                                            | 4 Dimension Nutrition
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-8" checked=true)
+                                        label.input-checkbox__label(for="f-2-check-8")
+                                            | ActivLab
+                                .multifilter-checkbox
+                                    .input-checkbox.input-checkbox_block.input-checkbox_right
+                                        input.input-checkbox__input(type="checkbox" id="f-2-check-9" disabled=true)
+                                        label.input-checkbox__label(for="f-2-check-9")
+                                            | ASM
                         .multifilter.active
                             // dropdown container
                             button.multifilter__button(data-toggle="dropdown")
@@ -259,32 +294,54 @@ html(lang='ru')
             .sorting
                 .sorting__container
                     .sorting__list
-                        //.multifilter
-                        //    span.multifilter__label Найдено:
-                        //    span.multifilter__value 12 товаров
+                        .multifilter
+                            span.multifilter__label Найдено:
+                            span.multifilter__value 12 товаров
 
                         .multifilter
                             button.multifilter__button
                                 span.multifilter__value Сначала дешевые
                             button.multifilter__btn-clear Сбросить
-                            .multifilter__dropdown
+                            .multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false")
                                 // dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
-                                .p-3 dropdown
+                                .multifilter-radio
+                                    .input-radio.input-radio_block.input-radio_right
+                                        input.input-radio__input(type="radio" id="s-1-check-1" name="sort" checked=true)
+                                        label.input-radio__label(for="s-1-check-1")
+                                            | По популярности
+                                .multifilter-radio
+                                    .input-radio.input-radio_block.input-radio_right
+                                        input.input-radio__input(type="radio" id="s-1-check-2" name="sort")
+                                        label.input-radio__label(for="s-1-check-2")
+                                            | Сначала дешевые
+                                .multifilter-radio
+                                    .input-radio.input-radio_block.input-radio_right
+                                        input.input-radio__input(type="radio" id="s-1-check-3" name="sort")
+                                        label.input-radio__label(for="s-1-check-3")
+                                            | Сначала дорогие
+                                .multifilter-radio
+                                    .input-radio.input-radio_block.input-radio_right
+                                        input.input-radio__input(type="radio" id="s-1-check-4" name="sort")
+                                        label.input-radio__label(for="s-1-check-4")
+                                            | По названию (А-Я)
+                                .multifilter-radio
+                                    .input-radio.input-radio_block.input-radio_right
+                                        input.input-radio__input(type="radio" id="s-1-check-5" name="sort")
+                                        label.input-radio__label(for="s-1-check-5")
+                                            | По названию (Я-А)
                     .sorting__check-list
                         .multifilter
-                            button.multifilter__button
+                            button.multifilter__button(data-toggle="dropdown")
                                 span.multifilter__label В магазинах:
                                 span.multifilter__value на Подводниковых
-                                span.multifilter__total 2
+                                    span.multifilter__total 2
                             button.multifilter__btn-clear Сбросить
                             .multifilter__dropdown
                                 .p-1 dropdown
                         .multifilter
-                            .custom-checkbox
-                                input.custom-checkbox__input(type="checkbox" id="customCheck1")
-                                label.custom-checkbox__label(for="customCheck1")
+                            .input-checkbox
+                                input.input-checkbox__input(type="checkbox" id="customCheck1")
+                                label.input-checkbox__label(for="customCheck1")
                                     | Только со скидкой
             .catalog-control
                 button.catalog-control__button.catalog-control__button_filter Фильтр
@@ -329,6 +386,7 @@ html(lang='ru')
                                 .product-card
                                     .product-card__wrapper
                                         .product-card__img
+                                            img(src=require('./img/catalog/product-1.png'))
                                         .product-card__title #{card.title || 'Заголовок'}
                                         .product-card__description #{card.description || 'Комплексный протеин'}
                                         .product-card__price-info

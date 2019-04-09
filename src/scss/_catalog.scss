@@ -166,9 +166,9 @@ body {
 
 .filter {
 
-  background-color: #fff;
-
   display: none;
+
+  background-color: #fff;
   @include media-breakpoint-up(md) {
     display: block;
   }
@@ -240,7 +240,7 @@ body {
   bottom: 0;
   left: 0;
   flex-direction: column;
-  background: #F5F5F5;
+  background: #f5f5f5;
 
   &.active {
     display: block;
@@ -251,9 +251,9 @@ body {
   }
 
   &__container {
-    max-height: 100%;
     display: flex;
     flex-direction: column;
+    max-height: 100%;
   }
 
   &__wrapper {
@@ -320,6 +320,12 @@ body {
   &.active {
     .multifilter__button {
       padding-right: 40px;
+
+      &[data-toggle='dropdown'] {
+        &::after {
+          right: 40px;
+        }
+      }
     }
 
     //.multifilter__total {
@@ -350,20 +356,20 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    @include media-breakpoint-up(md) {
-      &::after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 9px;
-        //position: absolute;
-        right: 0;
-        border-top: 6px solid #101010;
-        border-right: 4px solid transparent;
-        border-bottom: 0;
-        border-left: 4px solid transparent;
-      }
-    }
+    //@include media-breakpoint-up(md) {
+    //  &::after {
+    //    content: '';
+    //    display: block;
+    //    position: absolute;
+    //    top: 9px;
+    //    //position: absolute;
+    //    right: 0;
+    //    border-top: 6px solid #101010;
+    //    border-right: 4px solid transparent;
+    //    border-bottom: 0;
+    //    border-left: 4px solid transparent;
+    //  }
+    //}
   }
 
   &__total {
@@ -372,7 +378,7 @@ body {
     //top: 14px;
     //right: 19px;
 
-    right: 0;
+    right: 8px;
 
     min-width: 13px;
     height: 13px;
@@ -397,6 +403,33 @@ body {
     font-weight: $font-weight-normal;
     letter-spacing: -.01em;
 
+    &[data-toggle='dropdown'] {
+
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: calc(50% - 4px);
+        right: (map_get($grid-gutter-width-map, xs) / 2);
+        border-top: 4px solid transparent;
+        border-right: 0;
+        border-bottom: 4px solid transparent;
+        border-left: 8px solid #101010;
+        opacity: .2;
+
+        @include media-breakpoint-up(md) {
+          top: calc(50% - 3px);
+          right: 15px;
+
+          border-top: 6px solid #101010;
+          border-right: 4px solid transparent;
+          border-bottom: 0;
+          border-left: 4px solid transparent;
+          opacity: 1;
+        }
+      }
+    }
+
     &_hover,
     &:hover {
       background-color: #f8f8f8;
@@ -406,24 +439,12 @@ body {
       background-color: #efefef;
     }
 
-    &::after {
-      content: '';
-      position: absolute;
-      top: calc(50% - 4px);
-      right: (map_get($grid-gutter-width-map, xs) / 2);
-      border-top: 4px solid transparent;
-      border-right: 0;
-      border-bottom: 4px solid transparent;
-      border-left: 8px solid #101010;
-      opacity: .2;
-    }
-
     @include media-breakpoint-up(md) {
       height: 58px;
       padding: 5px 15px;
-      &::after {
-        display: none;
-      }
+      //&::after {
+      //  display: none;
+      //}
     }
   }
 
@@ -451,16 +472,6 @@ body {
     //color: #9b9b9b;
 
 
-    @include media-breakpoint-up(md) {
-      right: 9px;
-      background-color: transparent;
-      font: 0/0 a;
-
-      &:hover {
-        background-color: #eee;
-      }
-    }
-
     &::before {
       content: '';
       display: inline-block;
@@ -473,6 +484,26 @@ body {
 
       @include sprite('close');
     }
+
+    @include media-breakpoint-up(md) {
+      right: 9px;
+      height: auto;
+      margin-left: 0;
+      padding: 4px;
+      background-color: transparent;
+      font: 0/0 a;
+      //width: 18px;
+      //height: 18px;
+
+      &:hover {
+        background-color: #eee;
+      }
+      &::before {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+    }
   }
 
   &__dropdown {
@@ -481,7 +512,7 @@ body {
     z-index: $zindex-dropdown;
     top: 100%;
     left: 0;
-    padding: 22px;
+    padding: 22px 0;
     background: #efefef;
 
     &[data-simplebar] {
@@ -523,7 +554,17 @@ body {
     }
   }
 
-  &__search {
+  &__row {
+    margin-bottom: 25px;
+    padding: 0 22px;
+  }
+}
+
+.multifilter-search {
+  margin-bottom: 17px;
+  padding: 0 22px;
+
+  &__input {
     display: block;
     width: 100%;
     height: 50px;
@@ -537,8 +578,14 @@ body {
   }
 }
 
+.multifilter-checkbox {
+  margin-bottom: 1px;
+  padding: 12px 22px;
+}
+
 .multifilter-price {
-  width: 327px;
+  width: (327px + 22px);
+  padding: 0 22px;
 
   &__title {
     display: flex;
@@ -585,6 +632,7 @@ body {
   @include media-breakpoint-up(md) {
     display: none;
   }
+
   &__button {
     @extend %button-reset;
 
