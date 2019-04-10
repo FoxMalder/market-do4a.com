@@ -85,7 +85,7 @@ module.exports = (env, args) => {
           include: path.resolve(__dirname, 'src/img'),
           use: [
             { loader: 'url-loader', options: { outputPath: './img', name: '[folder]-[name].[ext]', limit: 10 * 1024 } },
-            { loader: 'image-webpack-loader' },
+            { loader: 'image-webpack-loader', options: { disable: args.mode === 'development' } },
           ],
         },
         {
