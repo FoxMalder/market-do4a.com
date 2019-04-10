@@ -900,6 +900,11 @@ body {
       @include sprite('heart-fill');
     }
 
+    &_active,
+    &.active {
+
+    }
+
     &:focus {
       outline: none;
     }

@@ -141,7 +141,7 @@ html(lang='ru')
                                     span.multifilter__total 23
                             button.multifilter__btn-clear Сбросить
                             // .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown
-                            .multifilter__dropdown
+                            .multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false")
                                 .p-1 dropdown
                         .multifilter
                             // dropdown container
@@ -259,38 +259,6 @@ html(lang='ru')
                                     .multifilter-price__num
                                         span.multifilter-price__start 50 ₽
                                         span.multifilter-price__end 10 000 ₽
-                        .multifilter
-                            // dropdown container
-                            button.multifilter__button(data-toggle="dropdown")
-                                span.multifilter__value Порции
-                            // dropdown button
-                            .multifilter__dropdown.dropdown-menu
-                                // dropdown
-                                .p-1 dropdown
-                        .multifilter
-                            // dropdown container
-                            button.multifilter__button(data-toggle="dropdown")
-                                span.multifilter__value % Белка
-                            // dropdown button
-                            .multifilter__dropdown.dropdown-menu
-                                // dropdown
-                                .p-1 dropdown
-                        .multifilter
-                            // dropdown container
-                            button.multifilter__button(data-toggle="dropdown")
-                                span.multifilter__value Время приёма
-                            // dropdown button
-                            .multifilter__dropdown.dropdown-menu
-                                // dropdown
-                                .p-1 dropdown
-                        .multifilter
-                            // dropdown container
-                            button.multifilter__button(data-toggle="dropdown")
-                                span.multifilter__value Цена
-                            // dropdown button
-                            .multifilter__dropdown.dropdown-menu
-                                // dropdown
-                                .p-1 dropdown
                     button.filter__reset Сбросить
             .sorting
                 .sorting__container
@@ -300,11 +268,11 @@ html(lang='ru')
                             span.multifilter__label Найдено:
                             span.multifilter__value 12 товаров
 
-                        .multifilter.show
+                        .multifilter
                             button.multifilter__button(data-toggle="dropdown")
                                 span.multifilter__value Сначала дешевые
                             button.multifilter__btn-clear Сбросить
-                            form.multifilter__dropdown.dropdown-menu.show(data-simplebar data-simplebar-auto-hide="false")
+                            form.multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false")
                                 // dropdown
                                 .multifilter-radio
                                     input.multifilter-radio__input(type="radio" id="s-1-check-1" name="sort" checked=true)
@@ -326,6 +294,26 @@ html(lang='ru')
                                     input.multifilter-radio__input(type="radio" id="s-1-check-5" name="sort")
                                     label.multifilter-radio__label(for="s-1-check-5")
                                         | По названию (Я-А)
+                                .multifilter-radio
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-6" name="sort" checked=true)
+                                    label.multifilter-radio__label(for="s-1-check-6")
+                                        | По популярности
+                                .multifilter-radio
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-7" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-7")
+                                        | Сначала дешевые
+                                .multifilter-radio
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-8" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-8")
+                                        | Сначала дорогие
+                                .multifilter-radio
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-9" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-9")
+                                        | По названию (А-Я)
+                                .multifilter-radio
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-10" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-10")
+                                        | По названию (Я-А)
                     .sorting__check-list
                         .multifilter
                             button.multifilter__button(data-toggle="dropdown")
@@ -333,7 +321,7 @@ html(lang='ru')
                                 span.multifilter__value на Подводниковых
                                     span.multifilter__total 2
                             button.multifilter__btn-clear Сбросить
-                            .multifilter__dropdown
+                            .multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false")
                                 .p-1 dropdown
                         .multifilter
                             .input-checkbox

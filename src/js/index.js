@@ -1,7 +1,6 @@
 import '../scss/main.scss';
 
 
-import './modules/Maps';
 import './global';
 
 import './main';
