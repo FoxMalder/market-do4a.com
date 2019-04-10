@@ -312,6 +312,8 @@
 
   @include media-breakpoint-up(xl) {
     margin-left: auto;
+    flex: 1 1 213px;
+    padding-left: 10px;
   }
 }
 
