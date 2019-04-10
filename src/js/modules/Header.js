@@ -75,7 +75,6 @@ export default function Header() {
   function initMobile() {
     new MobileMenu();
 
-
     wrapperEl.style.paddingTop = `${headerEl.getBoundingClientRect().height}px`;
     menuEl.style.top = `${headerEl.getBoundingClientRect().height}px`;
 

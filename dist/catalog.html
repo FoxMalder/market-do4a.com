@@ -10,14 +10,14 @@
 
 <body>
   <header class="header">
-    <div class="header__mini-banner">Бесплатная доставка при заказе от<span class="price">2 990</span></div>
+    <div class="header__mini-banner">Бесплатная доставка при заказе от <span class="price">2 990</span></div>
     <div class="header__nav-top">
       <div class="container">
         <div class="header-nav-top">
           <div class="header-nav-top__city">
             <div class="select-city"><a class="select-city__link collapsed" data-toggle="collapse" href="#change-city"><svg class="select-city__icon">
-                  <use xlink:href="images/sprite.svg#shield"></use>
-                </svg> Нижний Новгород</a><a class="select-city__link collapsed" data-toggle="collapse" href="#change-store">ул. Невзоровых, д. 64к2</a><!-- <span class="select-city__value">2 магазина</span>-->
+                  <use xlink:href="images/new-sprite.svg#sprite-shield"></use>
+                </svg> Длинное название города</a><a class="select-city__link collapsed" data-toggle="collapse" href="#change-store">ул. Невзоровых, д. 64к2</a><!-- <span class="select-city__value">2 магазина</span>-->
             </div>
           </div>
           <nav class="header-nav-top__menu">
@@ -29,9 +29,9 @@
               <li class="page-nav__item"><a class="page-nav__link" href="#">Контакты</a></li>
             </ul>
           </nav><a class="header-login" data-fancybox="" data-src="#sign-in" href="javascript:;"><svg>
-              <use xlink:href="images/sprite.svg#person"></use>
-            </svg> Войти</a><a class="header-number" href="#"><svg>
-              <use xlink:href="images/sprite.svg#phone"></use>
+              <use xlink:href="images/new-sprite.svg#sprite-person"></use>
+            </svg> Длинное_имя_пользователя_и_еще_больше</a><a class="header-number" href="#"><svg>
+              <use xlink:href="images/new-sprite.svg#sprite-phone"></use>
             </svg> +7 (920) 024-33-14</a>
         </div>
       </div>
@@ -92,16 +92,23 @@
             <li class="change-city__item"><a class="change-city__link" href="#">Южно-Сахалинск</a></li>
             <li class="change-city__item"><a class="change-city__link" href="#">Якутск</a></li>
           </ul>
-          <div class="change-city__note"><b>Не нашли магазина в вашем городе?</b>
-            Отправим с центрального склада почтой или транспортной компанией.
-            Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
+          <div class="change-city__footer"><a class="change-post" href="#"><svg class="change-post__icon">
+                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
+              </svg>
+              <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
+              <div class="change-post__note">Срок от 5 дней</div>
+            </a>
+            <div class="change-city__note"><b>Не нашли магазина в вашем городе?</b>
+              Отправим с центрального склада почтой или транспортной компанией.
+              Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
+          </div>
         </div>
       </div>
     </div>
     <div class="header__city-list collapse" id="change-store" data-parent=".header">
       <div class="container">
         <div class="change-store">
-          <div class="change-store__header"><span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в<span class="selected">нижнем новгороде</span></span><button class="btn change-store__btn-close" data-target="#change-store" data-toggle="collapse"></button></div>
+          <div class="change-store__header"><span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">Название города</span></span><button class="btn change-store__btn-close" data-target="#change-store" data-toggle="collapse"></button></div>
           <ul class="change-store__list">
             <li class="change-store__item"><a class="change-store__link active" href="#">
                 <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
@@ -133,50 +140,34 @@
                 <div class="change-store__item-subtitle">Курьер и самовывоз</div>
                 <div class="change-store__item-note">Курьер и самовывоз</div>
               </a></li>
-            <li class="change-store__item change-store__item_right"><a class="change-store__link change-store__link_icon change-store__link_last" href="#"><svg class="change-store__item-icon">
-                  <use xlink:href="images/sprite.svg#change-store-stock-icon"></use>
-                </svg>
-                <div class="change-store__item-name">Отправлять почтой<br>с центрального склада</div>
-                <div class="change-store__item-note">Срок от 5 дней</div>
-              </a></li>
           </ul>
-          <div class="change-store__note"><b>Не нашли нужный товар?</b>Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.</div><!-- /.change-city__note-->
+          <div class="change-store__footer"><a class="change-post" href="#"><svg class="change-post__icon">
+                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
+              </svg>
+              <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
+              <div class="change-post__note">Срок от 5 дней</div>
+            </a>
+            <div class="change-store__note"><b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
+          </div><!-- /.change-city__note-->
         </div>
       </div>
     </div>
     <div class="header__fixed-block">
       <div class="header__nav-center">
         <div class="container">
-          <div class="header-control"><button class="header-control__menu-btn"></button><a class="header-control__logo" href="/"></a><!-- /.header-control__logo-->
+          <div class="header-control"><button class="header-control__menu-btn"></button><a class="header-control__logo" href="/"></a>
             <div class="header-control__search">
-              <!-- Варианты использования-->
-              <!-- Иконка лупы - часть label-->
-              <!--<label class="search-fild">
-<input class="search-fild__input input-text" type="text" placeholder="Поиск в каталоге">
-<svg class="search-fild__loupe">
-<use xlink:href="images/sprite.svg#loupe"></use>
-</svg>
-</label>
-<div class="search-fild">
-<input class="search-fild__input input-text" id="search" type="text" placeholder="Поиск в каталоге">
-<label class="search-fild__loupe" for="search">
-<svg>
-<use xlink:href="images/sprite.svg#loupe"></use>
-</svg>
-</label>
-</div>-->
-              <!-- Иконка лупы - кнопка-->
               <form class="search-fild"><input class="search-fild__input input-text" placeholder="Поиск в каталоге" type="text"><button class="search-fild__loupe" type="submit"><svg>
-                    <use xlink:href="images/sprite.svg#loupe"></use>
+                    <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
                   </svg></button></form>
-            </div><!-- /.header-control__search--><a class="header-control__button header-control__button_search" href="#"><svg>
-                <use xlink:href="images/sprite.svg#loupe"></use>
+            </div><a class="header-control__button header-control__button_search" href="#"><svg>
+                <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
               </svg></a><a class="header-control__button header-control__button_favorites" href="#"><svg>
-                <use xlink:href="images/sprite.svg#heart"></use>
+                <use xlink:href="images/new-sprite.svg#sprite-heart"></use>
               </svg><span class="header-control__notifications">2</span></a>
             <div class="header-control__cart-container">
               <!--Кнопка корзины для мобилок--><a class="header-control__button header-control__button_cart" href="#"><svg>
-                  <use xlink:href="images/sprite.svg#cart"></use>
+                  <use xlink:href="images/new-sprite.svg#sprite-cart"></use>
                 </svg><span class="header-control__notifications">2</span></a><!-- Кнопка корзины для десктопа-->
               <div class="header-control__cart">
                 <div class="button-cart btn btn-red btn-skew">
@@ -189,22 +180,22 @@
                   </div>
                 </div>
                 <div class="header-cart">
-                  <div class="header-cart__wrapper">
+                  <div class="header-cart__wrapper" data-simplebar data-simplebar-auto-hide="false">
                     <div class="header-cart__header">
                       <div class="header-cart__title">Товары в корзине</div><button class="header-cart__btn-clear"><svg>
-                          <use xlink:href="images/sprite.svg#trash"></use>
+                          <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
                         </svg> Очистить</button>
                     </div>
                     <div class="header-cart__item">
                       <div class="h-product-item">
-                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.b099685f.png"></div>
+                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
                         <div class="h-product-item__info">
                           <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
                           <div class="h-product-item__description">900 г.</div>
                         </div>
                         <div class="h-product-item__controls">
                           <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
-                                <use xlink:href="images/sprite.svg#trash"></use>
+                                <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
                               </svg></button></div><!-- Prod-->
                           <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
                           <!-- Dev-->
@@ -212,14 +203,59 @@
                         </div>
                       </div>
                       <div class="h-product-item">
-                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.b099685f.png"></div>
+                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
                         <div class="h-product-item__info">
                           <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
                           <div class="h-product-item__description">900 г.</div>
                         </div>
                         <div class="h-product-item__controls">
                           <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
-                                <use xlink:href="images/sprite.svg#trash"></use>
+                                <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                              </svg></button></div><!-- Prod-->
+                          <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                          <!-- dev-->
+                          <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                        </div>
+                      </div>
+                      <div class="h-product-item">
+                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                        <div class="h-product-item__info">
+                          <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                          <div class="h-product-item__description">900 г.</div>
+                        </div>
+                        <div class="h-product-item__controls">
+                          <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                                <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                              </svg></button></div><!-- Prod-->
+                          <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                          <!-- dev-->
+                          <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                        </div>
+                      </div>
+                      <div class="h-product-item disabled">
+                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                        <div class="h-product-item__info">
+                          <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                          <div class="h-product-item__description">900 г.</div>
+                        </div>
+                        <div class="h-product-item__controls">
+                          <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                                <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                              </svg></button></div><!-- Prod-->
+                          <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                          <!-- dev-->
+                          <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                        </div>
+                      </div>
+                      <div class="h-product-item">
+                        <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                        <div class="h-product-item__info">
+                          <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                          <div class="h-product-item__description">900 г.</div>
+                        </div>
+                        <div class="h-product-item__controls">
+                          <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                                <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
                               </svg></button></div><!-- Prod-->
                           <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
                           <!-- dev-->
@@ -301,127 +337,6 @@
   <div class="mobile-menu">
     <div class="mobile-menu__overlay"></div>
     <div class="mobile-menu__wrapper">
-      <div class="mobile-menu__header">
-        <div class="select-city"><a class="select-city__link collapsed" data-toggle="collapse" href="#change-city-m"><svg class="select-city__icon">
-              <use xlink:href="images/sprite.svg#shield"></use>
-            </svg> Нижний Новгород</a></div>
-      </div>
-      <div class="mobile-menu__city-list collapse" id="change-city-m" data-parent=".mobile-menu">
-        <div class="change-city">
-          <div class="change-city__header"><span class="change-city__title">Города в которых есть marketdo4a</span><button class="btn change-city__btn-close" data-target="#change-city" data-toggle="collapse"></button></div>
-          <ul class="change-city__list">
-            <li class="change-city__item" data-letter="А"><a class="change-city__link" href="#">Ангарск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Астана</a></li>
-            <li class="change-city__item" data-letter="Б"><a class="change-city__link" href="#">Барнаул</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Белорецк</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Бердск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Березники</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Березовский</a></li>
-            <li class="change-city__item" data-letter="В"><a class="change-city__link" href="#">Великий Новгород</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Владивосток</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Владимир</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Волгоград</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Воронеж</a></li>
-            <li class="change-city__item" data-letter="E"><a class="change-city__link" href="#">Екатеринбург</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Иркутск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Казань</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Калуга</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Кемерово</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Комсомольск-на-Амуре</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Кострома</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Краснодар</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Красноярск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Магадан</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Майкоп</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Москва</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Нижневартовск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Нижний Новгород</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Новокузнецк</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Новороссийск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Новосибирск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Новочеркасск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Новый Уренгой</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Оренбург</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Павлодар</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Пермь</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Ростов-на-Дону</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Самара</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Санкт-Петербург</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Симферополь</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Сочи</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Сургут</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Томск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Тюмень</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Ульяновск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Уссурийск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Уфа</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Хабаровск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Челябинск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Чита</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Южно-Сахалинск</a></li>
-            <li class="change-city__item"><a class="change-city__link" href="#">Якутск</a></li>
-          </ul>
-          <div class="change-city__note"><b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией.
-            Доставка от 250 ₽. Отправка на следующий рабочий день.</div><!-- /.change-city__note-->
-        </div>
-      </div>
-      <div class="mobile-menu__header">
-        <div class="select-city"><a class="select-city__link collapsed" data-toggle="collapse" href="#change-store-m">ул. Невзоровых, д. 64к2</a></div>
-      </div>
-      <div class="mobile-menu__city-list collapse" id="change-store-m" data-parent=".mobile-menu">
-        <!-- Скопировано без изменений-->
-        <div class="change-store">
-          <div class="change-store__header"><span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в<span class="selected">нижнем новгороде</span></span><button class="btn change-store__btn-close" data-target="#change-city" data-toggle="collapse"></button></div>
-          <ul class="change-store__list">
-            <li class="change-store__item"><a class="change-store__link active" href="#">
-                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
-                <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
-                <div class="change-store__item-note">Курьер и самовывоз</div>
-              </a></li>
-            <li class="change-store__item"><a class="change-store__link" href="#">
-                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
-                <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
-                <div class="change-store__item-note">Курьер и самовывоз</div>
-              </a></li>
-            <li class="change-store__item"><a class="change-store__link" href="#">
-                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
-                <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
-                <div class="change-store__item-note">Курьер и самовывоз</div>
-              </a></li>
-            <li class="change-store__item"><a class="change-store__link active" href="#">
-                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
-                <div class="change-store__item-subtitle">Курьер и самовывоз</div>
-                <div class="change-store__item-note">Курьер и самовывоз</div>
-              </a></li>
-            <li class="change-store__item"><a class="change-store__link" href="#">
-                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
-                <div class="change-store__item-subtitle">Курьер и самовывоз</div>
-                <div class="change-store__item-note">Курьер и самовывоз</div>
-              </a></li>
-            <li class="change-store__item"><a class="change-store__link" href="#">
-                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
-                <div class="change-store__item-subtitle">Курьер и самовывоз</div>
-                <div class="change-store__item-note">Курьер и самовывоз</div>
-              </a></li>
-            <li class="change-store__item change-store__item_right"><a class="change-store__link change-store__link_icon change-store__link_last" href="#"><svg class="change-store__item-icon">
-                  <use xlink:href="images/sprite.svg#change-store-stock-icon"></use>
-                </svg>
-                <div class="change-store__item-name">Отправлять почтой<br>с центрального склада</div>
-                <div class="change-store__item-note">Срок от 5 дней</div>
-              </a></li>
-          </ul>
-          <div class="change-store__note"><b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от
-            250 ₽. Отправка на следующий рабочий день.</div><!-- /.change-city__note-->
-        </div>
-      </div>
-      <div class="mobile-menu__header">
-        <div class="mobile-menu__row">
-          <!-- Скопировано без изменений--><a class="header-number" href="#"><svg>
-              <use xlink:href="images/sprite.svg#phone"></use>
-            </svg> +7 (920) 024-33-14</a><!-- Скопировано без изменений--><a class="header-login" data-fancybox="" data-src="#sign-in" href="javascript:;"><svg>
-              <use xlink:href="images/sprite.svg#person"></use>
-            </svg> Войти</a></div>
-      </div>
       <nav class="mobile-menu__nav">
         <!-- Copy-->
         <ul class="header-category">
@@ -490,6 +405,139 @@
           <li class="page-nav__item"><a class="page-nav__link" href="#">Контакты</a></li>
         </ul>
       </nav>
+      <div class="mobile-menu__header">
+        <div class="select-city"><a class="select-city__link collapsed" data-toggle="collapse" href="#change-city-m"><svg class="select-city__icon">
+              <use xlink:href="images/new-sprite.svg#sprite-shield"></use>
+            </svg> Нижний Новгород</a></div>
+      </div>
+      <div class="mobile-menu__city-list collapse" id="change-city-m" data-parent=".mobile-menu">
+        <div class="change-city">
+          <div class="change-city__header"><span class="change-city__title">Города в которых есть marketdo4a</span><button class="btn change-city__btn-close" data-target="#change-city" data-toggle="collapse"></button></div>
+          <ul class="change-city__list">
+            <li class="change-city__item" data-letter="А"><a class="change-city__link" href="#">Ангарск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Астана</a></li>
+            <li class="change-city__item" data-letter="Б"><a class="change-city__link" href="#">Барнаул</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Белорецк</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Бердск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Березники</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Березовский</a></li>
+            <li class="change-city__item" data-letter="В"><a class="change-city__link" href="#">Великий Новгород</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Владивосток</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Владимир</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Волгоград</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Воронеж</a></li>
+            <li class="change-city__item" data-letter="E"><a class="change-city__link" href="#">Екатеринбург</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Иркутск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Казань</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Калуга</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Кемерово</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Комсомольск-на-Амуре</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Кострома</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Краснодар</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Красноярск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Магадан</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Майкоп</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Москва</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Нижневартовск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Нижний Новгород</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Новокузнецк</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Новороссийск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Новосибирск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Новочеркасск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Новый Уренгой</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Оренбург</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Павлодар</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Пермь</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Ростов-на-Дону</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Самара</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Санкт-Петербург</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Симферополь</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Сочи</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Сургут</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Томск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Тюмень</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Ульяновск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Уссурийск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Уфа</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Хабаровск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Челябинск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Чита</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Южно-Сахалинск</a></li>
+            <li class="change-city__item"><a class="change-city__link" href="#">Якутск</a></li>
+          </ul>
+          <div class="change-city__footer"><a class="change-post" href="#"><svg class="change-post__icon">
+                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
+              </svg>
+              <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
+              <div class="change-post__note">Срок от 5 дней</div>
+            </a>
+            <div class="change-city__note"><b>Не нашли магазина в вашем городе?</b>
+              Отправим с центрального склада почтой или транспортной компанией.
+              Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__header">
+        <div class="select-city"><a class="select-city__link collapsed" data-toggle="collapse" href="#change-store-m">ул. Невзоровых, д. 64к2</a></div>
+      </div>
+      <div class="mobile-menu__city-list collapse" id="change-store-m" data-parent=".mobile-menu">
+        <!-- Скопировано без изменений-->
+        <div class="change-store">
+          <div class="change-store__header"><span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">Название города</span></span><button class="btn change-store__btn-close" data-target="#change-city" data-toggle="collapse"></button></div>
+          <ul class="change-store__list">
+            <li class="change-store__item"><a class="change-store__link active" href="#">
+                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+                <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
+                <div class="change-store__item-note">Курьер и самовывоз</div>
+              </a></li>
+            <li class="change-store__item"><a class="change-store__link" href="#">
+                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+                <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
+                <div class="change-store__item-note">Курьер и самовывоз</div>
+              </a></li>
+            <li class="change-store__item"><a class="change-store__link" href="#">
+                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+                <div class="change-store__item-subtitle">За ТЦ «Этажи»</div>
+                <div class="change-store__item-note">Курьер и самовывоз</div>
+              </a></li>
+            <li class="change-store__item"><a class="change-store__link active" href="#">
+                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+                <div class="change-store__item-subtitle">Курьер и самовывоз</div>
+                <div class="change-store__item-note">Курьер и самовывоз</div>
+              </a></li>
+            <li class="change-store__item"><a class="change-store__link" href="#">
+                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+                <div class="change-store__item-subtitle">Курьер и самовывоз</div>
+                <div class="change-store__item-note">Курьер и самовывоз</div>
+              </a></li>
+            <li class="change-store__item"><a class="change-store__link" href="#">
+                <div class="change-store__item-name">ул. Невзоровых, д. 64к2</div>
+                <div class="change-store__item-subtitle">Курьер и самовывоз</div>
+                <div class="change-store__item-note">Курьер и самовывоз</div>
+              </a></li>
+          </ul>
+          <div class="change-store__footer"><a class="change-post" href="#"><svg class="change-post__icon">
+                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
+              </svg>
+              <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
+              <div class="change-post__note">Срок от 5 дней</div>
+            </a>
+            <div class="change-store__note"><b>Не нашли нужный товар?</b>
+              Отправим с центрального склада почтой или транспортной компанией. Доставка от
+              250 ₽. Отправка на следующий рабочий день.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-menu__header">
+        <!-- Скопировано без изменений--><a class="header-number" href="#"><svg>
+            <use xlink:href="images/new-sprite.svg#sprite-phone"></use>
+          </svg> +7 (920) 024-33-14</a></div>
+      <div class="mobile-menu__header">
+        <div class="mobile-menu__row">
+          <!-- Скопировано без изменений--><a class="header-login" data-fancybox="" data-src="#sign-in" href="javascript:;"><svg>
+              <use xlink:href="images/new-sprite.svg#sprite-person"></use>
+            </svg> Войти</a><a href="#">Выйти</a></div>
+      </div>
     </div>
   </div>
   <div class="catalog-mobile-control">
@@ -584,7 +632,7 @@
           <div class="catalog-banner__sale-value">-15%</div>
           <div class="catalog-banner__sale-text">На все протеины</div>
         </div>
-        <div class="catalog-banner__bg" style="background-image: url(images/banner-bg.ed288706.png)"></div>
+        <div class="catalog-banner__bg" style="background-image: url(images/banner-bg.png)"></div>
         <div class="catalog-banner__promocode">
           <div class="catalog-banner__promocode-text">Промокод</div>
           <div class="catalog-banner__promocode-value">Muscle</div>
@@ -719,8 +767,8 @@
       <div class="sorting__container">
         <div class="sorting__list">
           <div class="multifilter"><span class="multifilter__label">Найдено:</span><span class="multifilter__value">12 товаров</span></div>
-          <div class="multifilter"><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Сначала дешевые</span></button><button class="multifilter__btn-clear">Сбросить</button>
-            <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false">
+          <div class="multifilter show"><button class="multifilter__button" data-toggle="dropdown"><span class="multifilter__value">Сначала дешевые</span></button><button class="multifilter__btn-clear">Сбросить</button>
+            <div class="multifilter__dropdown dropdown-menu show" data-simplebar data-simplebar-auto-hide="false">
               <!-- dropdown-->
               <div class="multifilter-radio">
                 <div class="input-radio input-radio_block input-radio_right"><input class="input-radio__input" type="radio" id="s-1-check-1" name="sort" checked><label class="input-radio__label" for="s-1-check-1">По популярности</label></div>
@@ -1024,7 +1072,7 @@
   <footer class="footer">
     <div class="footer__top">
       <div class="container"><a class="footer__logo" href="#"><svg>
-            <use xlink:href="images/sprite.svg#logo"></use>
+            <use xlink:href="images/new-sprite.svg#sprite-logo"></use>
           </svg></a>
         <div class="row">
           <div class="col-6 col-md-3">
@@ -1106,7 +1154,7 @@
     <div class="footer__bottom">
       <div class="footer__inner container">
         <div class="footer__copyright">© DO4A.COM, 2019</div><a class="footer__doc" href="#">Политика конфиденциальности</a><a class="footer__dev" href="https://riverstart.ru/"><svg>
-            <use xlink:href="images/sprite.svg#riverstart-logo"></use>
+            <use xlink:href="images/new-sprite.svg#sprite-riverstart-logo"></use>
           </svg></a>
       </div>
     </div>

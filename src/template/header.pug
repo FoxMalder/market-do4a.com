@@ -1,16 +1,18 @@
+mixin sprite(name)
+    svg&attributes(attributes)
+        use(xlink:href='images/new-sprite.svg#sprite-' + name.replace('.svg', ''))
+
 header.header
     .header__mini-banner
-        | Бесплатная доставка при заказе от
-        span.price 2 990
+        | Бесплатная доставка при заказе от #[span.price 2 990]
     .header__nav-top
         .container
             .header-nav-top
                 .header-nav-top__city
                     .select-city
                         a.select-city__link.collapsed(data-toggle='collapse', href='#change-city')
-                            svg.select-city__icon
-                                use(xlink:href=require('./../images/sprite.svg') + '#shield')
-                            |               Нижний Новгород
+                            +sprite('shield.svg')(class="select-city__icon")
+                            |  Длинное название города
                         a.select-city__link.collapsed(data-toggle='collapse', href='#change-store')
                             | ул. Невзоровых, д. 64к2
                         // <span class="select-city__value">2 магазина</span>
@@ -27,13 +29,11 @@ header.header
                         li.page-nav__item
                             a.page-nav__link(href='#') Контакты
                 a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
-                    svg
-                        use(xlink:href=require('./../images/sprite.svg') + '#person')
-                    |           Войти
+                    +sprite('person.svg')
+                    |  Длинное_имя_пользователя_и_еще_больше
                 a.header-number(href='#')
-                    svg
-                        use(xlink:href=require('./../images/sprite.svg') + '#phone')
-                    |           +7 (920) 024-33-14
+                    +sprite('phone.svg')
+                    |  +7 (920) 024-33-14
     #change-city.header__city-list.collapse(data-parent='.header')
         .container
             .change-city
@@ -141,10 +141,18 @@ header.header
                         a.change-city__link(href='#') Южно-Сахалинск
                     li.change-city__item
                         a.change-city__link(href='#') Якутск
-                .change-city__note
-                    | #[b Не нашли магазина в вашем городе?]
-                    | Отправим с центрального склада почтой или транспортной компанией.
-                    | Доставка от 250 ₽. Отправка на следующий рабочий день.
+                .change-city__footer
+                    a.change-post(href='#')
+                        +sprite("change-store-stock-icon.svg")(class="change-post__icon")
+                        .change-post__title
+                            | Отправлять почтой
+                            br
+                            | с центрального склада
+                        .change-post__note Срок от 5 дней
+                    .change-city__note
+                        | #[b Не нашли магазина в вашем городе?]
+                        | Отправим с центрального склада почтой или транспортной компанией.
+                        | Доставка от 250 ₽. Отправка на следующий рабочий день.
     #change-store.header__city-list.collapse(data-parent='.header')
         .container
             .change-store
@@ -152,8 +160,7 @@ header.header
                     span.change-store__title
                         | ВЫБЕРИТЕ МАГАЗИН
                         br
-                        | в
-                        span.selected нижнем новгороде
+                        | в #[span.selected Название города]
                     button.btn.change-store__btn-close(data-target='#change-store', data-toggle='collapse')
                 ul.change-store__list
                     li.change-store__item
@@ -186,18 +193,16 @@ header.header
                             .change-store__item-name ул. Невзоровых, д. 64к2
                             .change-store__item-subtitle Курьер и самовывоз
                             .change-store__item-note Курьер и самовывоз
-                    li.change-store__item.change-store__item_right
-                        a.change-store__link.change-store__link_icon.change-store__link_last(href='#')
-                            svg.change-store__item-icon
-                                use(xlink:href=require('./../images/sprite.svg') + '#change-store-stock-icon')
-                            .change-store__item-name
-                                | Отправлять почтой
-                                br
-                                | с центрального склада
-                            .change-store__item-note Срок от 5 дней
-                .change-store__note
-                    b Не нашли нужный товар?
-                    | Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
+                .change-store__footer
+                    a.change-post(href='#')
+                        +sprite("change-store-stock-icon.svg")(class="change-post__icon")
+                        .change-post__title
+                            | Отправлять почтой
+                            br
+                            | с центрального склада
+                        .change-post__note Срок от 5 дней
+                    .change-store__note
+                        | #[b Не нашли нужный товар?] Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
                 // /.change-city__note
     .header__fixed-block
         .header__nav-center
@@ -205,44 +210,20 @@ header.header
                 .header-control
                     button.header-control__menu-btn
                     a.header-control__logo(href='/')
-                    // /.header-control__logo
                     .header-control__search
-                        // Варианты использования
-                        // Иконка лупы - часть label
-                        //
-                          <label class="search-fild">
-                          <input class="search-fild__input input-text" type="text" placeholder="Поиск в каталоге">
-                          <svg class="search-fild__loupe">
-                          <use xlink:href="images/sprite.svg#loupe"></use>
-                          </svg>
-                          </label>
-                          <div class="search-fild">
-                          <input class="search-fild__input input-text" id="search" type="text" placeholder="Поиск в каталоге">
-                          <label class="search-fild__loupe" for="search">
-                          <svg>
-                          <use xlink:href="images/sprite.svg#loupe"></use>
-                          </svg>
-                          </label>
-                          </div>
-                        // Иконка лупы - кнопка
                         form.search-fild
                             input.search-fild__input.input-text(placeholder='Поиск в каталоге', type='text')
                             button.search-fild__loupe(type='submit')
-                                svg
-                                    use(xlink:href=require('./../images/sprite.svg') + '#loupe')
-                    // /.header-control__search
+                                +sprite('loupe.svg')
                     a.header-control__button.header-control__button_search(href='#')
-                        svg
-                            use(xlink:href=require('./../images/sprite.svg') + '#loupe')
+                        +sprite('loupe.svg')
                     a.header-control__button.header-control__button_favorites(href='#')
-                        svg
-                            use(xlink:href=require('./../images/sprite.svg') + '#heart')
+                        +sprite('heart.svg')
                         span.header-control__notifications 2
                     .header-control__cart-container
                         //Кнопка корзины для мобилок
                         a.header-control__button.header-control__button_cart(href='#')
-                            svg
-                                use(xlink:href=require('./../images/sprite.svg') + '#cart')
+                            +sprite('cart.svg')
                             span.header-control__notifications 2
                         // Кнопка корзины для десктопа
                         .header-control__cart
@@ -253,17 +234,16 @@ header.header
                                         .button-cart__title Корзина
                                         .button-cart__price 12 245 ₽
                             .header-cart
-                                .header-cart__wrapper
+                                .header-cart__wrapper(data-simplebar data-simplebar-auto-hide="false")
                                     .header-cart__header
                                         .header-cart__title Товары в корзине
                                         button.header-cart__btn-clear
-                                            svg
-                                                use(xlink:href=require('./../images/sprite.svg') + '#trash')
-                                            |                       Очистить
+                                            +sprite('trash.svg')
+                                            |  Очистить
                                     .header-cart__item
                                         .h-product-item
                                             .h-product-item__img
-                                                img(alt='', src=require('./../images/cart-product-1.png'))
+                                                img(alt='', src=require('./images/cart-product-1.png'))
                                             .h-product-item__info
                                                 .h-product-item__name
                                                     | Optimum nutrition gold standart whey
@@ -272,8 +252,7 @@ header.header
                                                 .h-product-item__price-block
                                                     span.h-product-item__price.price 1 750
                                                     button.h-product-item__remove
-                                                        svg
-                                                            use(xlink:href=require('./../images/sprite.svg') + '#trash')
+                                                        +sprite('trash.svg')
                                                 // Prod
                                                 // <input class="input-counter" max="100" min="1" type="number" value="2">
                                                 // Dev
@@ -282,9 +261,10 @@ header.header
                                                     span.input-counter__count 2
                                                     button.input-counter__up +
                                                     input.input-counter(type='hidden', value='2')
+
                                         .h-product-item
                                             .h-product-item__img
-                                                img(alt='', src=require('./../images/cart-product-1.png'))
+                                                img(alt='', src=require('./images/cart-product-1.png'))
                                             .h-product-item__info
                                                 .h-product-item__name
                                                     | Optimum nutrition gold standart whey
@@ -293,8 +273,70 @@ header.header
                                                 .h-product-item__price-block
                                                     span.h-product-item__price.price 1 750
                                                     button.h-product-item__remove
-                                                        svg
-                                                            use(xlink:href=require('./../images/sprite.svg') + '#trash')
+                                                        +sprite('trash.svg')
+                                                // Prod
+                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                                // dev
+                                                .input-counter
+                                                    button.input-counter__down -
+                                                    span.input-counter__count 2
+                                                    button.input-counter__up +
+                                                    input.input-counter(type='hidden', value='2')
+
+                                        .h-product-item
+                                            .h-product-item__img
+                                                img(alt='', src=require('./images/cart-product-1.png'))
+                                            .h-product-item__info
+                                                .h-product-item__name
+                                                    | Optimum nutrition gold standart whey
+                                                .h-product-item__description 900 г.
+                                            .h-product-item__controls
+                                                .h-product-item__price-block
+                                                    span.h-product-item__price.price 1 750
+                                                    button.h-product-item__remove
+                                                        +sprite('trash.svg')
+                                                // Prod
+                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                                // dev
+                                                .input-counter
+                                                    button.input-counter__down -
+                                                    span.input-counter__count 2
+                                                    button.input-counter__up +
+                                                    input.input-counter(type='hidden', value='2')
+
+                                        .h-product-item.disabled
+                                            .h-product-item__img
+                                                img(alt='', src=require('./images/cart-product-1.png'))
+                                            .h-product-item__info
+                                                .h-product-item__name
+                                                    | Optimum nutrition gold standart whey
+                                                .h-product-item__description 900 г.
+                                            .h-product-item__controls
+                                                .h-product-item__price-block
+                                                    span.h-product-item__price.price 1 750
+                                                    button.h-product-item__remove
+                                                        +sprite('trash.svg')
+                                                // Prod
+                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                                // dev
+                                                .input-counter
+                                                    button.input-counter__down -
+                                                    span.input-counter__count 2
+                                                    button.input-counter__up +
+                                                    input.input-counter(type='hidden', value='2')
+
+                                        .h-product-item
+                                            .h-product-item__img
+                                                img(alt='', src=require('./images/cart-product-1.png'))
+                                            .h-product-item__info
+                                                .h-product-item__name
+                                                    | Optimum nutrition gold standart whey
+                                                .h-product-item__description 900 г.
+                                            .h-product-item__controls
+                                                .h-product-item__price-block
+                                                    span.h-product-item__price.price 1 750
+                                                    button.h-product-item__remove
+                                                        +sprite('trash.svg')
                                                 // Prod
                                                 // <input class="input-counter" max="100" min="1" type="number" value="2">
                                                 // dev
@@ -392,12 +434,109 @@ header.header
 .mobile-menu
     .mobile-menu__overlay
     .mobile-menu__wrapper
+        nav.mobile-menu__nav
+            // Copy
+            ul.header-category
+                li.header-category__item
+                    a.header-category__link(href='#') Питание
+                    .header-category__hidden
+                        .hidden-nav
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Протеин
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Батончики, напитки, закуски
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Напитки
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#')
+                                            | Низкокалорийные Соусы и Джемы
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Ореховые пасты
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Правильное питание
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сахарозаменители
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#')
+                                            | Батончики и другие закуски
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Протеин
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                            .hidden-nav__block
+                                .hidden-nav__title
+                                    a.hidden-nav__link(href='#') Протеин
+                                ul.hidden-nav__list
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                                    li.hidden-nav__item
+                                        a.hidden-nav__item__link(href='#') Сывороточный
+                        // /.hidden-nav
+                li.header-category__item
+                    a.header-category__link(href='#') Для похудения
+                li.header-category__item
+                    a.header-category__link(href='#') Для массы
+                li.header-category__item
+                    a.header-category__link(href='#') Для выносливости
+                li.header-category__item
+                    a.header-category__link(href='#') Аксессуары
+                li.header-category__item
+                    a.header-category__link(href='#') Одежда
+                li.header-category__item
+                    a.header-category__link(href='#') Распродажа
+                li.header-category__item
+                    a.header-category__link(href='#') О нас
+                li.header-category__item
+                    a.header-category__link(href='#') Бренды
+            // Copy
+            ul.page-nav
+                li.page-nav__item
+                    a.page-nav__link(href='#') Программа бонусов
+                li.page-nav__item
+                    a.page-nav__link(href='#') Доставка и оплата
+                li.page-nav__item
+                    a.page-nav__link(href='#') Франшиза
+                li.page-nav__item
+                    a.page-nav__link(href='#') Для оптовиков
+                li.page-nav__item
+                    a.page-nav__link(href='#') Контакты
         .mobile-menu__header
             .select-city
                 a.select-city__link.collapsed(data-toggle='collapse', href='#change-city-m')
-                    svg.select-city__icon
-                        use(xlink:href=require('./../images/sprite.svg') + '#shield')
-                    |           Нижний Новгород
+                    +sprite('shield.svg')(class="select-city__icon")
+                    |  Нижний Новгород
         #change-city-m.mobile-menu__city-list.collapse(data-parent='.mobile-menu')
             .change-city
                 .change-city__header
@@ -504,11 +643,18 @@ header.header
                         a.change-city__link(href='#') Южно-Сахалинск
                     li.change-city__item
                         a.change-city__link(href='#') Якутск
-                .change-city__note
-                    b Не нашли магазина в вашем городе?
-                    |  Отправим с центрального склада почтой или транспортной компанией.
-                    |           Доставка от 250 ₽. Отправка на следующий рабочий день.
-                // /.change-city__note
+                .change-city__footer
+                    a.change-post(href='#')
+                        +sprite("change-store-stock-icon.svg")(class="change-post__icon")
+                        .change-post__title
+                            | Отправлять почтой
+                            br
+                            | с центрального склада
+                        .change-post__note Срок от 5 дней
+                    .change-city__note
+                        | #[b Не нашли магазина в вашем городе?]
+                        | Отправим с центрального склада почтой или транспортной компанией.
+                        | Доставка от 250 ₽. Отправка на следующий рабочий день.
         .mobile-menu__header
             .select-city
                 a.select-city__link.collapsed(data-toggle='collapse', href='#change-store-m')
@@ -520,8 +666,7 @@ header.header
                     span.change-store__title
                         | ВЫБЕРИТЕ МАГАЗИН
                         br
-                        | в
-                        span.selected нижнем новгороде
+                        | в #[span.selected Название города]
                     button.btn.change-store__btn-close(data-target='#change-city', data-toggle='collapse')
                 ul.change-store__list
                     li.change-store__item
@@ -554,127 +699,27 @@ header.header
                             .change-store__item-name ул. Невзоровых, д. 64к2
                             .change-store__item-subtitle Курьер и самовывоз
                             .change-store__item-note Курьер и самовывоз
-                    li.change-store__item.change-store__item_right
-                        a.change-store__link.change-store__link_icon.change-store__link_last(href='#')
-                            svg.change-store__item-icon
-                                use(xlink:href=require('./../images/sprite.svg') + '#change-store-stock-icon')
-                            .change-store__item-name
-                                | Отправлять почтой
-                                br
-                                | с центрального склада
-                            .change-store__item-note Срок от 5 дней
-                .change-store__note
-                    b Не нашли нужный товар?
-                    |  Отправим с центрального склада почтой или транспортной компанией. Доставка от
-                    |           250 ₽. Отправка на следующий рабочий день.
-                // /.change-city__note
+                .change-store__footer
+                    a.change-post(href='#')
+                        +sprite("change-store-stock-icon.svg")(class="change-post__icon")
+                        .change-post__title
+                            | Отправлять почтой
+                            br
+                            | с центрального склада
+                        .change-post__note Срок от 5 дней
+                    .change-store__note
+                        | #[b Не нашли нужный товар?]
+                        | Отправим с центрального склада почтой или транспортной компанией. Доставка от
+                        | 250 ₽. Отправка на следующий рабочий день.
+        .mobile-menu__header
+            // Скопировано без изменений
+            a.header-number(href='#')
+                +sprite('phone.svg')
+                |  +7 (920) 024-33-14
         .mobile-menu__header
             .mobile-menu__row
                 // Скопировано без изменений
-                a.header-number(href='#')
-                    svg
-                        use(xlink:href=require('./../images/sprite.svg') + '#phone')
-                    |           +7 (920) 024-33-14
-                // Скопировано без изменений
                 a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
-                    svg
-                        use(xlink:href=require('./../images/sprite.svg') + '#person')
-                    |           Войти
-        nav.mobile-menu__nav
-            // Copy
-            ul.header-category
-                li.header-category__item
-                    a.header-category__link(href='#') Питание
-                    .header-category__hidden
-                        .hidden-nav
-                            .hidden-nav__block
-                                .hidden-nav__title
-                                    a.hidden-nav__link(href='#') Протеин
-                                ul.hidden-nav__list
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                            .hidden-nav__block
-                                .hidden-nav__title
-                                    a.hidden-nav__link(href='#') Батончики, напитки, закуски
-                                ul.hidden-nav__list
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Напитки
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#')
-                                            | Низкокалорийные Соусы и Джемы
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Ореховые пасты
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Правильное питание
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сахарозаменители
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#')
-                                            | Батончики и другие закуски
-                            .hidden-nav__block
-                                .hidden-nav__title
-                                    a.hidden-nav__link(href='#') Протеин
-                                ul.hidden-nav__list
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                            .hidden-nav__block
-                                .hidden-nav__title
-                                    a.hidden-nav__link(href='#') Протеин
-                                ul.hidden-nav__list
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                                    li.hidden-nav__item
-                                        a.hidden-nav__item__link(href='#') Сывороточный
-                        // /.hidden-nav
-                li.header-category__item
-                    a.header-category__link(href='#') Для похудения
-                li.header-category__item
-                    a.header-category__link(href='#') Для массы
-                li.header-category__item
-                    a.header-category__link(href='#') Для выносливости
-                li.header-category__item
-                    a.header-category__link(href='#') Аксессуары
-                li.header-category__item
-                    a.header-category__link(href='#') Одежда
-                li.header-category__item
-                    a.header-category__link(href='#') Распродажа
-                li.header-category__item
-                    a.header-category__link(href='#') О нас
-                li.header-category__item
-                    a.header-category__link(href='#') Бренды
-            // Copy
-            ul.page-nav
-                li.page-nav__item
-                    a.page-nav__link(href='#') Программа бонусов
-                li.page-nav__item
-                    a.page-nav__link(href='#') Доставка и оплата
-                li.page-nav__item
-                    a.page-nav__link(href='#') Франшиза
-                li.page-nav__item
-                    a.page-nav__link(href='#') Для оптовиков
-                li.page-nav__item
-                    a.page-nav__link(href='#') Контакты
+                    +sprite('person.svg')
+                    |  Войти
+                a(href="#") Выйти

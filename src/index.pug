@@ -1,696 +1,672 @@
-doctype html
-html(lang='ru')
-    head
-        title= htmlWebpackPlugin.options.title
-    body.main
-        block header
-            include template/header
-        .wrapper
-            .hero-slider.slider
+extends template/template
+
+block wrapper
+    .wrapper
+        .hero-slider.slider
+            .slider__wrapper
+                .slider__slide
+                    .hero-slider__slide
+                        .hero-slider__left-line
+                        .hero-slider__right-line
+                        .hero-slider__img(style='background-image: url(' + require('./images/man-girl.png') + ')')
+                        .hero-slider__inner.container
+                            .hero-slider__title Комбо-наборы
+                            .hero-slider__subtitle -10% на питание для двоих
+                .slider__slide
+                    .hero-slider__slide
+                        .hero-slider__left-line
+                        .hero-slider__right-line
+                        .hero-slider__inner.container
+                            .hero-slider__title Баллы за покупки
+                            .hero-slider__subtitle -10% на питание для двоих
+                .slider__slide
+                    .hero-slider__slide
+                        .hero-slider__left-line
+                        .hero-slider__right-line
+                        .hero-slider__inner.container
+                            .hero-slider__title -50% на протеины
+                            .hero-slider__subtitle -10% на питание для двоих
+                .slider__slide
+                    .hero-slider__slide
+                        .hero-slider__left-line
+                        .hero-slider__right-line
+                        .hero-slider__inner.container
+                            .hero-slider__title Зарабатывай с do4a
+                            .hero-slider__subtitle -10% на питание для двоих
+            .hero-slider-control
+        .benefits.benefits_first
+            .container
+                .row
+                    .col-6.col-md-3
+                        .benefits__item
+                            .benefits__icon.benefits__icon
+                                +sprite('benefits-jar.svg')(height='81', width='111')
+                            .benefits__title
+                                | Доставка
+                                br
+                                | за 24 часа
+                    .col-6.col-md-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-pay.svg')(height='91', width='98')
+                            .benefits__title
+                                | Оплата при
+                                br
+                                | получении
+                    .col-6.col-md-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-like.svg')(height='76', width='84')
+                            .benefits__title
+                                | Официальная
+                                br
+                                | продукция
+                    .col-6.col-md-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-present.svg')(height='63', width='64')
+                            .benefits__title
+                                | Вознаграждения
+                                br
+                                | с первой покупки
+        section.section.brands
+            .container
+                h1 Бренды
+                .brands__list
+                    .brands__col
+                        a.brands__item.active(href='#')
+                            img(alt='', height='108', src=require('./images/do4a-logo-vertical.svg'), width='94')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='84', src=require('./images/maxler.png'), width='180')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='38', src=require('./images/on-logo.png'), width='193')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='72', src=require('./images/ultimate-nutrition-logo.png'), width='136')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='116', src=require('./images/bsn-logo.png'), width='130')
+                    .brands__col
+                        a.brands__item.active(href='#')
+                            img(alt='', height='126', src=require('./images/do4a-accessories-logo-vertical.svg'), width='97')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='106', src=require('./images/madmax-logo.png'), width='212')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='67', src=require('./images/now-logo.png'), width='156')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='34', src=require('./images/natrol-logo.png'), width='158')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='46', src=require('./images/sabo-logo.png'), width='180')
+                    .brands__col
+                        a.brands__item(href='#', style='margin-top: -25px')
+                            img(alt='', height='101', src=require('./images/wellfit-logo.png'), width='142')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='23', src=require('./images/cmtech-logo.png'), width='179')
+                button.btn.btn-skew.btn-red.brands__button Смотреть все бренды
+        section.section.m-catalog
+            .container
+                h1.m-catalog__title
+                    | Спортивное питание
+                    br
+                    span.selection В наличии
+            .m-catalog__inner
+                .m-catalog__item.order-xl-1
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Протеин', src=require('./images/protein.png'))
+                        span.m-product__title Протеины
+                        span.m-product__subtitle 45 в наличии
+                .m-catalog__item.order-xl-3
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Аминокислоты', src=require('./images/amino.png'))
+                        span.m-product__title Аминокислоты
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item.m-catalog__item_banner.order-xl-2.d-none.d-md-block
+                    a.m-catalog-promotion(href='#')
+                        img.m-catalog-promotion__img(alt='до 50% на топовые протеины', src=require('./images/catalog-promotion-bg.jpg'))
+                        span.m-catalog-promotion__subtitle-top
+                            | до
+                            span 50%
+                        span.m-catalog-promotion__subtitle-bottom скидки
+                        span.m-catalog-promotion__title На топовые протеины
+                .m-catalog__item.order-xl-last
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Гейнеры', src=require('./images/geiner.png'))
+                        span.m-product__title Гейнеры
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item.order-xl-last
+                    a.m-product(href='#')
+                        img.m-product__img(alt='BCAA', src=require('./images/bcaa.png'))
+                        span.m-product__title BCAA
+                        span.m-product__subtitle 9 в наличии
+                .m-catalog__item.order-xl-last
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Жиросжигатели', src=require('./images/termo-speed.png'))
+                        span.m-product__title Жиросжигатели
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item.order-xl-last
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Продукты для здоровья', src=require('./images/omega3.png'))
+                        span.m-product__title Продукты для здоровья
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item.order-xl-last.d-none.d-xl-block
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Креатин', src=require('./images/creatine.png'))
+                        span.m-product__title Креатин
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item.order-xl-last.d-none.d-xl-block
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Ореховые пасты', src=require('./images/pasta.png'))
+                        span.m-product__title Ореховые пасты
+                        span.m-product__subtitle 9 в наличии
+                .m-catalog__item.order-xl-last.d-none.d-xl-block
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Выносливость и силовые', src=require('./images/no-xplode.png'))
+                        span.m-product__title Выносливость и силовые
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item.order-xl-last.d-none.d-xl-block
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Диетическое питание', src=require('./images/diet.png'))
+                        span.m-product__title Диетическое питание
+                        span.m-product__subtitle 9 в наличии
+                .m-catalog__item.order-xl-last.d-none.d-xl-block
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Батончики', src=require('./images/bar.png'))
+                        span.m-product__title Батончики
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item.order-xl-last.d-none.d-xl-block
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Напитки', src=require('./images/drink.png'))
+                        span.m-product__title Напитки
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item.m-catalog__item_open-catalog.order-xl-last
+                    a.m-product.m-product_open-catalog(href='#')
+                        span.m-product__title Открыть каталог
+                        +sprite('arrow-right.svg')(class="m-product__icon")
+            // /.m-catalog__inner
+        section.section.cashback
+            .container
+                h1.cashback__title
+                    | Возвращаем
+                    br
+                    span.selection 1 балл за 1 рубль
+                p.cashback__text
+                    | Экономь с каждой покупкой вместе с нашей системой вознаграждения. Покупай спортпит,
+                    | становись сильнее, а мы вернём баллы за каждый потраченный рубль. Трать баллы без ограничений.
+                button.cashback__button.btn.btn-red.btn-skew как получать баллы
+                .cashback__arnold.arnold
+                    .arnold__bg(style='transform: translate(0, 14px);')
+                    .arnold__img(style='transform: translate(-46px, -34px);')
+                        img(alt='', src=require('./images/arnold-1.jpg'))
+        section.section.individual-selection
+            .container
+                h2.individual-selection__title
+                    | Индвидуальный подбор спортпита
+                    span.selection за 2 минуты
+                p.individual-selection__text.d-none.d-md-block
+                    | Не разбираешься в спортивном питании? Цели поставлены, но не знаешь, какие добавки выбрать? Ответь на 5 простых
+                    | вопросов, и мы предоставим набор питания в наличии, который подойдёт именно тебе!
+                .individual-selection__bottom
+                    button.individual-selection__button.btn.btn-red.btn-skew Пройти опрос
+                    .individual-selection__note.d-none.d-md-block Время прохождения опроса ~ 3 минуты
+        section.section.stars
+            .container
+                .stars__info
+                    h1.stars__title
+                        | Нас выбирают
+                        br
+                        span.selection лучшие
+                    p.stars__text
+                        | Постоянное наличие, оригинальная продукция и быстрая доставка — нас оценили как любители
+                        | фитнеса, так и профессиональные спортсмены. И мы гордимся своей аудиторией
+                // /.stars__info
+            .stars__inner
+                #stars-slider.stars__slider.slider(data-sticky-container)
+                    .slider__wrapper
+                        .slider__slide.stars__col.star-card
+                            .star-card__header
+                                .star-card__name Артем Тарасов
+                                a.star-card__link(href='#') artemtarasov_mma
+                            .star-card__bottom Самый популярный MMA блогер России и СНГ
+                            .star-card__content
+                                img.star-card__img(alt='Артем Тарасов', src=require('./images/artem-tarasov.jpg'))
+                                .star-card__text
+                                    .skew-reverse
+                                        | «Выбираю Do4a уже 5 лет, у ребят полно спортпита в ассортименте, привозят все быстро и подскажут в
+                                        | случае чего. Рекомендую!»
+                        .slider__slide.stars__col.star-card
+                            .star-card__header
+                                .star-card__name Анжелика андерсон
+                                a.star-card__link(href='#') artemtarasov_mma
+                            .star-card__bottom Фитнес модель
+                            .star-card__content
+                                img.star-card__img(alt='Анжелика андерсон', src=require('./images/a-anderson.jpg'))
+                                .star-card__text
+                                    .skew-reverse
+                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aut commodi cum earum
+                                        | excepturi inventore iste non quae totam.
+                        .slider__slide.stars__col.star-card
+                            .star-card__header
+                                .star-card__name Марианна Маркина
+                                a.star-card__link(href='#') artemtarasov_mma
+                            .star-card__bottom Актриса, модель
+                            .star-card__content
+                                img.star-card__img(alt='Марианна Маркина', src=require('./images/m-markina.jpg'))
+                                .star-card__text
+                                    .skew-reverse
+                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam modi mollitia perferendis.
+                                        | Consectetur et minus necessitatibus officia pariatur perferendis possimus.
+                        .slider__slide.stars__col.star-card
+                            .star-card__header
+                                .star-card__name Елена коршина
+                                a.star-card__link(href='#') artemtarasov_mma
+                            .star-card__bottom Модель
+                            .star-card__content
+                                img.star-card__img(alt='Елена коршина', src=require('./images/e-korshina.jpg'))
+                                .star-card__text
+                                    .skew-reverse
+                                        | «Выбираю Do4a уже 5 лет, у ребят полно спортпита в ассортименте, привозят все быстро и подскажут в
+                                        | случае чего. Рекомендую!»
+                        .slider__slide.stars__col.star-card
+                            .star-card__header
+                                .star-card__name Анжелика андерсон
+                                a.star-card__link(href='#') artemtarasov_mma
+                            .star-card__bottom Фитнес модель
+                            .star-card__content
+                                img.star-card__img(alt='Анжелика андерсон', src=require('./images/a-anderson.jpg'))
+                                .star-card__text
+                                    .skew-reverse
+                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aut commodi cum earum
+                                        | excepturi inventore iste non quae totam.
+                        .slider__slide.stars__col.star-card
+                            .star-card__header
+                                .star-card__name Марианна Маркина
+                                a.star-card__link(href='#') artemtarasov_mma
+                            .star-card__bottom Актриса, модель
+                            .star-card__content
+                                img.star-card__img(alt='Марианна Маркина', src=require('./images/m-markina.jpg'))
+                                .star-card__text
+                                    .skew-reverse
+                                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam modi mollitia perferendis.
+                                        | Consectetur et minus necessitatibus officia pariatur perferendis possimus.
+                    .slider__controls(data-margin-top='150', data-sticky-class='is-sticky')
+                        .slider__scrollbar
+                            button.slider__track
+                                +sprite('track-icon.svg')
+                        .slider__explanation.slider__explanation_tablet
+                            | Задержи пальцем и
+                            br
+                            | тащи, чтобы увидеть
+                            br
+                            | больше звёзд.
+                        .slider__explanation.slider__explanation_desktop
+                            | Задержи мышкой и
+                            br
+                            | тащи, чтобы увидеть
+                            br
+                            | больше звёзд.
+            // /.stars__inner
+        section.section.sets
+            .container
+                h1.sets__title
+                    | Наборы под
+                    br
+                    span.selection твою цель
+                .sets__header
+                    p.sets__info
+                        | Мы собрали наборы лучших продуктов для достижения твоей цели — от наращивания мышц до
+                        | поддержания себя в тонусе. Выбери цель, хватай набор и действуй!
+                    .sets__tabs.tabs
+                        button.tabs__tab.btn.btn-red.btn-skew Для мужчин
+                        button.tabs__tab.btn.btn-border-red.btn-skew Для женщин
+            .sets__inner
+                .set-block.set-block_reverse
+                    .set-block__banner(style='background-image: url(' + require('./images/set-1-baner.jpg') + ')')
+                        .set-block__title наращивание мышечной массы
+                    .set-block__slider.owl-carousel
+                        .set-item
+                            .set-item__title Набор 1
+                            .set-item__img
+                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                            .set-item__info
+                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                .set-item__price
+                                    | Цена
+                                    span.selection 1 750 ₽
+                                .set-item__control
+                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
+                        .set-item
+                            .set-item__title Набор 2
+                            .set-item__img
+                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                            .set-item__info
+                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                .set-item__price
+                                    | Цена
+                                    span.selection 1 750 ₽
+                                .set-item__control
+                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
+                        // /.set-item
+                .set-block
+                    .set-block__banner(style='background-image: url(' + require('./images/set-2-baner.jpg') + ')')
+                        .set-block__title
+                            | Выносливость
+                            br
+                            |  и производительность
+                    .set-block__slider.owl-carousel
+                        .set-item
+                            .set-item__title Набор 1
+                            .set-item__img
+                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                            .set-item__info
+                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                .set-item__price
+                                    | Цена
+                                    span.selection 1 750 ₽
+                                .set-item__control
+                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
+                        // /.set-item
+                        .set-item
+                            .set-item__title Набор 1
+                            .set-item__img
+                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                            .set-item__info
+                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                .set-item__price
+                                    | Цена
+                                    span.selection 1 750 ₽
+                                .set-item__control
+                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
+                .set-block.set-block_reverse
+                    .set-block__banner(style='background-image: url(' + require('./images/set-3-baner.jpg') + ')')
+                        .set-block__title Похудение
+                    .set-block__slider.owl-carousel
+                        .set-item
+                            .set-item__title Набор 1
+                            .set-item__img
+                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                            .set-item__info
+                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                .set-item__price
+                                    | Цена
+                                    span.selection 1 750 ₽
+                                .set-item__control
+                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                        svg
+                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
+                        .set-item
+                            .set-item__title Набор 1
+                            .set-item__img
+                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                            .set-item__info
+                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                .set-item__price
+                                    | Цена
+                                    span.selection 1 750 ₽
+                                .set-item__control
+                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                        +sprite('add-to-cart.svg')
+                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                        +sprite('heart.svg')
+                        // /.set-item
+                        // /.sets__inner
+        section.section.shops
+            .container
+                h1.shops__title
+                    span.normal market
+                    | do
+                    span.selection 4
+                    | a
+                    br
+                    |  в нижнем новгороде
+                p.shops__text
+                    | Компания Do4a Lab зародилась 1 июля 2016 года в г. Санкт-Петербург. Сегодня мы одни из лидеров рынка спортивного
+                    | питания в России.
+                .shops__row
+                    .shops__col.shops__advantages
+                        | #[b.large 7000] товаров
+                        br
+                        | сейчас #[b.selection в наличии]
+                    .shops__col.shops__advantages
+                        | #[b.large 2] магазина
+                        br
+                        | открыты #[b.selection 7 дней] в неделю
+                    p.shops__col.shops__info
+                        | В Нижнем Новгороде работают 2 магазина: на
+                        |
+                        a(href='javascript:;' data-marker-id='82955') ул. Подводников, д. 31
+                        |
+                        | и
+                        |
+                        a(href='javascript:;', data-marker-id='35900') ул. Невзоровых, д. 64к2
+                    p.shops__col.shops__info
+                        | #[b Самовывоз] работает без выходных, #[b доставка] курьером бесплатно от 2990 руб.
+                a.btn.btn-red.btn-skew.shops__button(href='#') Подробнее о нас
+            .shops-map
+                #map.shops-map__map
+        .shop-gallery
+            a.shop-gallery__item(href='#')
+                img(alt='Магазин', src=require('./images/shop-photo-1.jpg'))
+        section.section.franchise
+            .container
+                h1.franchise__title
+                    | франшиза
+                    br
+                    |  Do
+                    span.selection 4
+                    | a
+                .franchise__list
+                    .franchise__advantages
+                        .franchise__value
+                            span.selection 70+
+                            |  магазинов
+                        .franchise__caption открыто в России и Казахстане
+                    .franchise__advantages
+                        .franchise__value
+                            span.selection 6
+                            |  Недель
+                        .franchise__caption Среднее время открытия магазина
+                    .franchise__advantages
+                        .franchise__value
+                            span.selection 100+
+                            |  Млн. руб.
+                        .franchise__caption оборот наших партнёров в месяц
+                p.franchise__text
+                    | Мы предлагаем отборный спортпит, а партнерство с нами – выгодное сотрудничество с готовой бизнес-моделью.
+                    | Приглашаем партнеров по франчайзингу для представления бренда Do4a в твоём городе. Узнай, как заработать на том,
+                    | что ты любишь, помогая любителям спорта достигать цели.
+                a.btn.btn-black.btn-skew.franchise__button(href='#') Подробнее о франшизе
+                .franchise__arnold.arnold
+                    .arnold__bg(style='transform: translate(0, 14px);')
+                    .arnold__img(style='transform: translate(-46px, -34px);')
+                        img(alt='', src=require('./images/arnold-2.jpg'))
+        section.section.best-articles
+            .container
+                h2.best-articles__title
+                    | Наш блог
+                    br
+                    span.selection Топ подборки
+            .best-articles__slider.slider.slider_container
                 .slider__wrapper
                     .slider__slide
-                        .hero-slider__slide
-                            .hero-slider__left-line
-                            .hero-slider__right-line
-                            .hero-slider__img(style='background-image: url(' + require('./images/man-girl.png') + ')')
-                            .hero-slider__inner.container
-                                .hero-slider__title Комбо-наборы
-                                .hero-slider__subtitle -10% на питание для двоих
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
                     .slider__slide
-                        .hero-slider__slide
-                            .hero-slider__left-line
-                            .hero-slider__right-line
-                            .hero-slider__inner.container
-                                .hero-slider__title Баллы за покупки
-                                .hero-slider__subtitle -10% на питание для двоих
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
                     .slider__slide
-                        .hero-slider__slide
-                            .hero-slider__left-line
-                            .hero-slider__right-line
-                            .hero-slider__inner.container
-                                .hero-slider__title -50% на протеины
-                                .hero-slider__subtitle -10% на питание для двоих
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
                     .slider__slide
-                        .hero-slider__slide
-                            .hero-slider__left-line
-                            .hero-slider__right-line
-                            .hero-slider__inner.container
-                                .hero-slider__title Зарабатывай с do4a
-                                .hero-slider__subtitle -10% на питание для двоих
-                .hero-slider-control
-            .benefits.benefits_first
-                .container
-                    .row
-                        .col-6.col-md-3
-                            .benefits__item
-                                .benefits__icon.benefits__icon
-                                    svg(height='81', width='111')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-jar')
-                                .benefits__title
-                                    | Доставка
-                                    br
-                                    | за 24 часа
-                        .col-6.col-md-3
-                            .benefits__item
-                                .benefits__icon
-                                    svg(height='91', width='98')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-pay')
-                                .benefits__title
-                                    | Оплата при
-                                    br
-                                    | получении
-                        .col-6.col-md-3
-                            .benefits__item
-                                .benefits__icon
-                                    svg(height='76', width='84')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-like')
-                                .benefits__title
-                                    | Официальная
-                                    br
-                                    | продукция
-                        .col-6.col-md-3
-                            .benefits__item
-                                .benefits__icon
-                                    svg(height='63', width='64')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-present')
-                                .benefits__title
-                                    | Вознаграждения
-                                    br
-                                    | с первой покупки
-            section.section.brands
-                .container
-                    h1 Бренды
-                    // @formatter:off
-                    .brands__list
-                        .brands__col
-                            a.brands__item.active(href='#')
-                                img(alt='', height='108', src=require('./images/do4a-logo-vertical.svg'), width='94')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='84', src=require('./images/maxler.png'), width='180')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='38', src=require('./images/on-logo.png'), width='193')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='72', src=require('./images/ultimate-nutrition-logo.png'), width='136')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='116', src=require('./images/bsn-logo.png'), width='130')
-                        .brands__col
-                            a.brands__item.active(href='#')
-                                img(alt='', height='126', src=require('./images/do4a-accessories-logo-vertical.svg'), width='97')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='106', src=require('./images/madmax-logo.png'), width='212')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='67', src=require('./images/now-logo.png'), width='156')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='34', src=require('./images/natrol-logo.png'), width='158')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='46', src=require('./images/sabo-logo.png'), width='180')
-                        .brands__col
-                            a.brands__item(href='#', style='margin-top: -25px')
-                                img(alt='', height='101', src=require('./images/wellfit-logo.png'), width='142')
-                        .brands__col
-                            a.brands__item(href='#')
-                                img(alt='', height='23', src=require('./images/cmtech-logo.png'), width='179')
-                    // @formatter:on
-                    button.btn.btn-skew.btn-red.brands__button Смотреть все бренды
-            section.section.m-catalog
-                .container
-                    h1.m-catalog__title
-                        | Спортивное питание
-                        br
-                        span.selection В наличии
-                .m-catalog__inner
-                    .m-catalog__item.order-xl-1
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Протеин', src=require('./images/protein.png'))
-                            span.m-product__title Протеины
-                            span.m-product__subtitle 45 в наличии
-                    .m-catalog__item.order-xl-3
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Аминокислоты', src=require('./images/amino.png'))
-                            span.m-product__title Аминокислоты
-                            span.m-product__subtitle 12 в наличии
-                    .m-catalog__item.m-catalog__item_banner.order-xl-2.d-none.d-md-block
-                        a.m-catalog-promotion(href='#')
-                            img.m-catalog-promotion__img(alt='до 50% на топовые протеины', src=require('./images/catalog-promotion-bg.jpg'))
-                            span.m-catalog-promotion__subtitle-top
-                                | до
-                                span 50%
-                            span.m-catalog-promotion__subtitle-bottom скидки
-                            span.m-catalog-promotion__title На топовые протеины
-                    .m-catalog__item.order-xl-last
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Гейнеры', src=require('./images/geiner.png'))
-                            span.m-product__title Гейнеры
-                            span.m-product__subtitle 36 в наличии
-                    .m-catalog__item.order-xl-last
-                        a.m-product(href='#')
-                            img.m-product__img(alt='BCAA', src=require('./images/bcaa.png'))
-                            span.m-product__title BCAA
-                            span.m-product__subtitle 9 в наличии
-                    .m-catalog__item.order-xl-last
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Жиросжигатели', src=require('./images/termo-speed.png'))
-                            span.m-product__title Жиросжигатели
-                            span.m-product__subtitle 12 в наличии
-                    .m-catalog__item.order-xl-last
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Продукты для здоровья', src=require('./images/omega3.png'))
-                            span.m-product__title Продукты для здоровья
-                            span.m-product__subtitle 36 в наличии
-                    .m-catalog__item.order-xl-last.d-none.d-xl-block
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Креатин', src=require('./images/creatine.png'))
-                            span.m-product__title Креатин
-                            span.m-product__subtitle 12 в наличии
-                    .m-catalog__item.order-xl-last.d-none.d-xl-block
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Ореховые пасты', src=require('./images/pasta.png'))
-                            span.m-product__title Ореховые пасты
-                            span.m-product__subtitle 9 в наличии
-                    .m-catalog__item.order-xl-last.d-none.d-xl-block
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Выносливость и силовые', src=require('./images/no-xplode.png'))
-                            span.m-product__title Выносливость и силовые
-                            span.m-product__subtitle 36 в наличии
-                    .m-catalog__item.order-xl-last.d-none.d-xl-block
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Диетическое питание', src=require('./images/diet.png'))
-                            span.m-product__title Диетическое питание
-                            span.m-product__subtitle 9 в наличии
-                    .m-catalog__item.order-xl-last.d-none.d-xl-block
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Батончики', src=require('./images/bar.png'))
-                            span.m-product__title Батончики
-                            span.m-product__subtitle 12 в наличии
-                    .m-catalog__item.order-xl-last.d-none.d-xl-block
-                        a.m-product(href='#')
-                            img.m-product__img(alt='Напитки', src=require('./images/drink.png'))
-                            span.m-product__title Напитки
-                            span.m-product__subtitle 36 в наличии
-                    .m-catalog__item.m-catalog__item_open-catalog.order-xl-last
-                        a.m-product.m-product_open-catalog(href='#')
-                            span.m-product__title Открыть каталог
-                            svg.m-product__icon
-                                use(xlink:href=require('./images/sprite.svg') + '#arrow-right')
-                // /.m-catalog__inner
-            section.section.cashback
-                .container
-                    h1.cashback__title
-                        | Возвращаем
-                        br
-                        span.selection 1 балл за 1 рубль
-                    p.cashback__text
-                        | Экономь с каждой покупкой вместе с нашей системой вознаграждения. Покупай спортпит,
-                        | становись сильнее, а мы вернём баллы за каждый потраченный рубль. Трать баллы без ограничений.
-                    button.cashback__button.btn.btn-red.btn-skew как получать баллы
-                    .cashback__arnold.arnold
-                        .arnold__bg(style='transform: translate(0, 14px);')
-                        .arnold__img(style='transform: translate(-46px, -34px);')
-                            img(alt='', src=require('./images/arnold-1.jpg'))
-            section.section.individual-selection
-                .container
-                    h2.individual-selection__title
-                        | Индвидуальный подбор спортпита
-                        span.selection за 2 минуты
-                    p.individual-selection__text.d-none.d-md-block
-                        | Не разбираешься в спортивном питании? Цели поставлены, но не знаешь, какие добавки выбрать? Ответь на 5 простых
-                        | вопросов, и мы предоставим набор питания в наличии, который подойдёт именно тебе!
-                    .individual-selection__bottom
-                        button.individual-selection__button.btn.btn-red.btn-skew Пройти опрос
-                        .individual-selection__note.d-none.d-md-block Время прохождения опроса ~ 3 минуты
-            section.section.stars
-                .container
-                    .stars__info
-                        h1.stars__title
-                            | Нас выбирают
-                            br
-                            span.selection лучшие
-                        p.stars__text
-                            | Постоянное наличие, оригинальная продукция и быстрая доставка — нас оценили как любители
-                            | фитнеса, так и профессиональные спортсмены. И мы гордимся своей аудиторией
-                    // /.stars__info
-                .stars__inner
-                    #stars-slider.stars__slider.slider(data-sticky-container='')
-                        .slider__wrapper
-                            .slider__slide.stars__col.star-card
-                                .star-card__header
-                                    .star-card__name Артем Тарасов
-                                .star-card__bottom Самый популярный MMA блогер России и СНГ
-                                .star-card__content
-                                    img.star-card__img(alt='Артем Тарасов', src=require('./images/artem-tarasov.jpg'))
-                                    .star-card__text
-                                        .skew-reverse
-                                            | «Выбираю Do4a уже 5 лет, у ребят полно спортпита в ассортименте, привозят все быстро и подскажут в
-                                            | случае чего. Рекомендую!»
-                            .slider__slide.stars__col.star-card
-                                .star-card__header
-                                    .star-card__name Анжелика андерсон
-                                .star-card__bottom Фитнес модель
-                                .star-card__content
-                                    img.star-card__img(alt='Анжелика андерсон', src=require('./images/a-anderson.jpg'))
-                                    .star-card__text
-                                        .skew-reverse
-                                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aut commodi cum earum
-                                            | excepturi inventore iste non quae totam.
-                            .slider__slide.stars__col.star-card
-                                .star-card__header
-                                    .star-card__name Марианна Маркина
-                                .star-card__bottom Актриса, модель
-                                .star-card__content
-                                    img.star-card__img(alt='Марианна Маркина', src=require('./images/m-markina.jpg'))
-                                    .star-card__text
-                                        .skew-reverse
-                                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam modi mollitia perferendis.
-                                            | Consectetur et minus necessitatibus officia pariatur perferendis possimus.
-                            .slider__slide.stars__col.star-card
-                                .star-card__header
-                                    .star-card__name Елена коршина
-                                .star-card__bottom Модель
-                                .star-card__content
-                                    img.star-card__img(alt='Елена коршина', src=require('./images/e-korshina.jpg'))
-                                    .star-card__text
-                                        .skew-reverse
-                                            | «Выбираю Do4a уже 5 лет, у ребят полно спортпита в ассортименте, привозят все быстро и подскажут в
-                                            | случае чего. Рекомендую!»
-                            .slider__slide.stars__col.star-card
-                                .star-card__header
-                                    .star-card__name Анжелика андерсон
-                                .star-card__bottom Фитнес модель
-                                .star-card__content
-                                    img.star-card__img(alt='Анжелика андерсон', src=require('./images/a-anderson.jpg'))
-                                    .star-card__text
-                                        .skew-reverse
-                                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aut commodi cum earum
-                                            | excepturi inventore iste non quae totam.
-                            .slider__slide.stars__col.star-card
-                                .star-card__header
-                                    .star-card__name Марианна Маркина
-                                .star-card__bottom Актриса, модель
-                                .star-card__content
-                                    img.star-card__img(alt='Марианна Маркина', src=require('./images/m-markina.jpg'))
-                                    .star-card__text
-                                        .skew-reverse
-                                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam modi mollitia perferendis.
-                                            | Consectetur et minus necessitatibus officia pariatur perferendis possimus.
-                        .slider__controls(data-margin-top='150', data-sticky-class='is-sticky')
-                            .slider__scrollbar
-                                button.slider__track
-                                    svg
-                                        use(xlink:href=require('./images/sprite.svg') + '#track-icon')
-                            .slider__explanation.slider__explanation_tablet
-                                | Задержи пальцем и
-                                br
-                                | тащи, чтобы увидеть
-                                br
-                                | больше звёзд.
-                            .slider__explanation.slider__explanation_desktop
-                                | Задержи мышкой и
-                                br
-                                | тащи, чтобы увидеть
-                                br
-                                | больше звёзд.
-                // /.stars__inner
-            section.section.sets
-                .container
-                    h1.sets__title
-                        | Наборы под
-                        br
-                        span.selection твою цель
-                    .sets__header
-                        p.sets__info
-                            | Мы собрали наборы лучших продуктов для достижения твоей цели — от наращивания мышц до
-                            | поддержания себя в тонусе. Выбери цель, хватай набор и действуй!
-                        .sets__tabs.tabs
-                            button.tabs__tab.btn.btn-red.btn-skew Для мужчин
-                            button.tabs__tab.btn.btn-border-red.btn-skew Для женщин
-                .sets__inner
-                    .set-block.set-block_reverse
-                        .set-block__banner(style='background-image: url(' + require('./images/set-1-baner.jpg') + ')')
-                            .set-block__title наращивание мышечной массы
-                        .set-block__slider.owl-carousel
-                            .set-item
-                                .set-item__title Набор 1
-                                .set-item__img
-                                    img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                                .set-item__info
-                                    a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                    .set-item__price
-                                        | Цена
-                                        span.selection 1 750 ₽
-                                    .set-item__control
-                                        button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                        button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#heart')
-                            .set-item
-                                .set-item__title Набор 2
-                                .set-item__img
-                                    img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                                .set-item__info
-                                    a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                    .set-item__price
-                                        | Цена
-                                        span.selection 1 750 ₽
-                                    .set-item__control
-                                        button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                        button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#heart')
-                            // /.set-item
-                    .set-block
-                        .set-block__banner(style='background-image: url(' + require('./images/set-2-baner.jpg') + ')')
-                            .set-block__title
-                                | Выносливость
-                                br
-                                |  и производительность
-                        .set-block__slider.owl-carousel
-                            .set-item
-                                .set-item__title Набор 1
-                                .set-item__img
-                                    img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                                .set-item__info
-                                    a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                    .set-item__price
-                                        | Цена
-                                        span.selection 1 750 ₽
-                                    .set-item__control
-                                        button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                        button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#heart')
-                            // /.set-item
-                            .set-item
-                                .set-item__title Набор 1
-                                .set-item__img
-                                    img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                                .set-item__info
-                                    a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                    .set-item__price
-                                        | Цена
-                                        span.selection 1 750 ₽
-                                    .set-item__control
-                                        button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                        button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#heart')
-                    .set-block.set-block_reverse
-                        .set-block__banner(style='background-image: url(' + require('./images/set-3-baner.jpg') + ')')
-                            .set-block__title Похудение
-                        .set-block__slider.owl-carousel
-                            .set-item
-                                .set-item__title Набор 1
-                                .set-item__img
-                                    img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                                .set-item__info
-                                    a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                    .set-item__price
-                                        | Цена
-                                        span.selection 1 750 ₽
-                                    .set-item__control
-                                        button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                        button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#heart')
-                            .set-item
-                                .set-item__title Набор 1
-                                .set-item__img
-                                    img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                                .set-item__info
-                                    a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                    .set-item__price
-                                        | Цена
-                                        span.selection 1 750 ₽
-                                    .set-item__control
-                                        button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                        button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                            svg
-                                                use(xlink:href=require('./images/sprite.svg') + '#heart')
-                            // /.set-item
-                            // /.sets__inner
-            section.section.shops
-                .container
-                    h1.shops__title
-                        span.normal market
-                        | do
-                        span.selection 4
-                        | a
-                        br
-                        |  в нижнем новгороде
-                    p.shops__text
-                        | Компания Do4a Lab зародилась 1 июля 2016 года в г. Санкт-Петербург. Сегодня мы одни из лидеров рынка спортивного
-                        | питания в России.
-                    .shops__row
-                        .shops__col.shops__advantages
-                            b.large 7000
-                            |  товаров
-                            br
-                            | сейчас
-                            b.selection в наличии
-                        .shops__col.shops__advantages
-                            b.large 2
-                            |  магазина
-                            br
-                            | открыты
-                            b.selection 7 дней
-                            |  в неделю
-                        p.shops__col.shops__info
-                            | В Нижнем Новгороде работают 2 магазина: на
-                            a(href='#') ул. Подводников, 31
-                            |           и
-                            a(href='#') ул. Невзоровых, 64к2.
-                        p.shops__col.shops__info
-                            b Самовывоз
-                            |  работает без выходных,
-                            b доставка
-                            |  курьером бесплатно от 2990 руб.
-                    a.btn.btn-red.btn-skew.shops__button(href='#') Подробнее о нас
-                .shops-map
-                    #map.shops-map__map
-            .shop-gallery
-                a.shop-gallery__item(href='#')
-                    img(alt='Магазин', src=require('./images/shop-photo-1.jpg'))
-            section.section.franchise
-                .container
-                    h1.franchise__title
-                        | франшиза
-                        br
-                        |  Do
-                        span.selection 4
-                        | a
-                    .franchise__list
-                        .franchise__advantages
-                            .franchise__value
-                                span.selection 70+
-                                |  магазинов
-                            .franchise__caption открыто в России и Казахстане
-                        .franchise__advantages
-                            .franchise__value
-                                span.selection 6
-                                |  Недель
-                            .franchise__caption Среднее время открытия магазина
-                        .franchise__advantages
-                            .franchise__value
-                                span.selection 100+
-                                |  Млн. руб.
-                            .franchise__caption оборот наших партнёров в месяц
-                    p.franchise__text
-                        | Мы предлагаем отборный спортпит, а партнерство с нами – выгодное сотрудничество с готовой бизнес-моделью.
-                        | Приглашаем партнеров по франчайзингу для представления бренда Do4a в твоём городе. Узнай, как заработать на том,
-                        | что ты любишь, помогая любителям спорта достигать цели.
-                    a.btn.btn-black.btn-skew.franchise__button(href='#') Подробнее о франшизе
-                    .franchise__arnold.arnold
-                        .arnold__bg(style='transform: translate(0, 14px);')
-                        .arnold__img(style='transform: translate(-46px, -34px);')
-                            img(alt='', src=require('./images/arnold-2.jpg'))
-            section.section.best-articles
-                .container
-                    h2.best-articles__title
-                        | Наш блог
-                        br
-                        span.selection Топ подборки
-                .best-articles__slider.slider.slider_container
-                    .slider__wrapper
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                        .slider__slide
-                            a.article-preview(href='#')
-                                span.article-preview__img
-                                    img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
-                                span.article-preview__content
-                                    span.article-preview__title Топ 10 гейнеров 2018 года
-                                    span.article-preview__date 23.04.2019
-                                    span.article-preview__tags #спортпит #гейнеры #подборка
-                                    span.article-preview__text
-                                        | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                    .slider__scrollbar
-                        button.slider__track
-                            svg
-                                use(xlink:href=require('./images/sprite.svg') + '#track-icon')
-                    .slider__explanation.slider__explanation_tablet
-                        svg(height='31px', width='20px')
-                            use(xlink:href=require('./images/sprite.svg') + '#mouse')
-                        p
-                            | Задержи пальцем и тащи,
-                            br
-                            | чтобы увидеть больше.
-                    .slider__explanation.slider__explanation_desktop
-                        svg(height='31px', width='20px')
-                            use(xlink:href=require('./images/sprite.svg') + '#mouse')
-                        p
-                            | Задержи мышкой и тащи,
-                            br
-                            | чтобы увидеть больше.
-            section.section.banner
-                .banner__block
-                    h3.banner__title
-                        | Бесплатная доставка
-                        br
-                        |  При заказе от
-                        span.selection
-                            | 2 990
-                            span.inter-ui ₽
-                    a.banner__button.btn.btn-red.btn-skew(href='#') В каталог
-            .benefits
-                .container
-                    .row
-                        .col-md-6.col-xl-3
-                            .benefits__item
-                                .benefits__icon
-                                    svg(height='62', width='91')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-cup')
-                                .benefits__title
-                                    | Профессиональная
-                                    br
-                                    | консультация
-                        .col-md-6.col-xl-3
-                            .benefits__item
-                                .benefits__icon
-                                    svg(height='87', width='86')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-hand')
-                                .benefits__title
-                                    | Официальная
-                                    br
-                                    | продукция
-                        .col-xl-6
-                            .benefits__item
-                                .benefits__icon
-                                    svg(height='69', width='68')
-                                        use(xlink:href=require('./images/sprite.svg') + '#benefits-mail')
-                                .benefits__title
-                                    | Подписаться
-                                    br
-                                    | на новости
-                                form.benefits__form
-                                    .input-field
-                                        label.input-field__label(for='email-1') Твой e-mail
-                                        input#email-1.input-field__input(type='email')
-                                    button.btn.btn-block.btn-red Подписаться
-            section.section.seo-text
-                .container
-                    .seo-text__title
-                        | Интернет-магазин
-                        br
-                        span.selection Спортивного питания
-                        |  do#[span.selection 4]a.com
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
+                    .slider__slide
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
+                    .slider__slide
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
+                    .slider__slide
+                        a.article-preview(href='#')
+                            span.article-preview__img
+                                img(alt='Топ 10 гейнеров 2018 года', src=require('./images/article-preview-1.jpg'))
+                            span.article-preview__content
+                                span.article-preview__title Топ 10 гейнеров 2018 года
+                                span.article-preview__date 23.04.2019
+                                span.article-preview__tags #спортпит #гейнеры #подборка
+                                span.article-preview__text
+                                    | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
+                .slider__scrollbar
+                    button.slider__track
+                        +sprite('track-icon.svg')
+                .slider__explanation.slider__explanation_tablet
+                    +sprite('mouse.svg')(height='31px', width='20px')
                     p
-                        | Как создать гармоничное тело и нарастить эффективную мышечную массу? В этом нелегком процессе помогут не только
-                        | интенсивные тренировки, но и качественное спортивное питание. В нашем магазине вы сможете купить все необходимые
-                        | атлетические продукты, а также одежду и аксессуары для тренировок. В чем плюсы спортивного питания?
-                    .d-none.d-md-block
-                        p
-                            | Спортивное питание – это пищевые продукты, направленные на повышение силы и выносливости, укрепления мышц в
-                            | частности и здоровья в целом. Различают множество видов такой продукции:
-                            | #[b  протеины, гейнеры, аминокислоты]
-                            | и так далее – все они способствуют повышению результатов на тренировках.
-                        p
-                            | Спортпит легко усваивается организмом, поскольку производится из натуральных компонентов, подвергшихся самой
-                            | современной и качественной обработке. Благодаря новым технологиям, в этих продуктах остаются только самые
-                            | полезные и нужные вещества, включая витамины и микроэлементы, а вредные – например, жиры – полностью
-                            | исключены. В результате, спортивное питание стало обязательным элементом для быстрого набора мышечной массы.
-                    a.seo-text__more(href='#')
-                        | Читать далее
-                        svg
-                            use(xlink:href=require('./images/sprite.svg') + '#arrow-right')
-                    // /.seo-text__more
-        block footer
-            include template/footer
-        block modal
-            include template/modal
+                        | Задержи пальцем и тащи,
+                        br
+                        | чтобы увидеть больше.
+                .slider__explanation.slider__explanation_desktop
+                    +sprite('mouse.svg')(height='31px', width='20px')
+                    p
+                        | Задержи мышкой и тащи,
+                        br
+                        | чтобы увидеть больше.
+        section.section.banner
+            .banner__block
+                h3.banner__title
+                    | Бесплатная доставка
+                    br
+                    |  При заказе от
+                    span.selection
+                        | 2 990
+                        span.inter-ui ₽
+                a.banner__button.btn.btn-red.btn-skew(href='#') В каталог
+        .benefits
+            .container
+                .row
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-cup.svg')(height='62', width='91')
+                            .benefits__title
+                                | Профессиональная
+                                br
+                                | консультация
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-hand.svg')(height='87', width='86')
+                            .benefits__title
+                                | Официальная
+                                br
+                                | продукция
+                    .col-xl-6
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-mail.svg')(height='69', width='68')
+                            .benefits__title
+                                | Подписаться
+                                br
+                                | на новости
+                            form.benefits__form
+                                .input-field
+                                    label.input-field__label(for='email-1') Твой e-mail
+                                    input#email-1.input-field__input(type='email')
+                                button.btn.btn-block.btn-red Подписаться
+        section.section.seo-text
+            .container
+                .seo-text__title
+                    | Интернет-магазин
+                    br
+                    span.selection Спортивного питания
+                    |  do#[span.selection 4]a.com
+                p
+                    | Как создать гармоничное тело и нарастить эффективную мышечную массу? В этом нелегком процессе помогут не только
+                    | интенсивные тренировки, но и качественное спортивное питание. В нашем магазине вы сможете купить все необходимые
+                    | атлетические продукты, а также одежду и аксессуары для тренировок. В чем плюсы спортивного питания?
+                .d-none.d-md-block
+                    p
+                        | Спортивное питание – это пищевые продукты, направленные на повышение силы и выносливости, укрепления мышц в
+                        | частности и здоровья в целом. Различают множество видов такой продукции:
+                        | #[b  протеины, гейнеры, аминокислоты]
+                        | и так далее – все они способствуют повышению результатов на тренировках.
+                    p
+                        | Спортпит легко усваивается организмом, поскольку производится из натуральных компонентов, подвергшихся самой
+                        | современной и качественной обработке. Благодаря новым технологиям, в этих продуктах остаются только самые
+                        | полезные и нужные вещества, включая витамины и микроэлементы, а вредные – например, жиры – полностью
+                        | исключены. В результате, спортивное питание стало обязательным элементом для быстрого набора мышечной массы.
+                a.seo-text__more(href='#')
+                    | Читать далее
+                    svg
+                        use(xlink:href=require('./images/sprite.svg') + '#arrow-right')

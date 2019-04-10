@@ -46,18 +46,18 @@
 //}
 
 .mobile-menu {
-  position: fixed;
+  visibility: hidden;
   //top: ;
   //height: 100%;
+  position: fixed;
+  z-index: 999;
   top: 65px;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 999;
-  color: white;
-  visibility: hidden;
-  transition-duration: .3s;
   transition-property: visibility;
+  transition-duration: .3s;
+  color: white;
 
   &.opened {
     visibility: visible;
@@ -78,10 +78,10 @@
     bottom: 0;
     left: 0;
 
-    background: #1b1b1b;
+    transition: opacity .3s ease;
     opacity: 0;
     //opacity: 0.8;
-    transition: opacity .3s ease;
+    background: #1b1b1b;
   }
 
   &__wrapper {
@@ -91,9 +91,9 @@
     left: 0;
     width: 300px;
     overflow: auto;
-    background: #1b1b1b;
-    transition: transform .3s ease;
     transform: translateX(-100%);
+    transition: transform .3s ease;
+    background: #1b1b1b;
   }
 
   &__header {
@@ -112,24 +112,22 @@
   }
 
   &__city-list {
-    //background: url("../img/rm/change-city.png") center top no-repeat;
     overflow: hidden;
-    background-color: #1b1b1b;
     transition: height .7s ease-in-out;
+    background-color: #1b1b1b;
   }
 
 }
 
 .header {
-
   position: fixed;
+  z-index: $zindex-fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: $zindex-fixed;
   //opacity: .5;
-  background-color: white;
   border-bottom: 1px solid #e3e3e3;
+  background-color: #fff;
 
   @include media-breakpoint-up(xl) {
     position: relative;
@@ -149,14 +147,14 @@
   &__city-list {
     //background: url("../img/rm/change-city.png") center top no-repeat;
     overflow: hidden;
-    background-color: #1b1b1b;
     transition: height .7s ease-in-out;
+    background-color: #1b1b1b;
   }
 
   &__category {
     display: none;
-    color: white;
     background-color: #101010;
+    color: white;
   }
 
   &__fixed-block {
@@ -165,12 +163,12 @@
     @include media-breakpoint-up(xl) {
       //background: white;
       position: absolute;
+      z-index: $zindex-fixed;
       top: 100%;
       right: 0;
       left: 0;
-      z-index: $zindex-fixed;
-      transition: transform .3s ease;
       transform: translateY(-100%);
+      transition: transform .3s ease;
       &.fixed {
         position: fixed;
         top: 0;
@@ -184,9 +182,9 @@
   }
 
   &__mini-banner {
-    color: white;
-    text-align: center;
     background-color: $main-color;
+    color: #fff;
+    text-align: center;
     @include title;
 
     @include mre-height-block(11px, 20px, 1);
@@ -195,7 +193,7 @@
       @include mre-height-block(14px, 26px);
     }
     @include media-breakpoint-up(xl) {
-      @include mre-height-block(18px, 40px);
+      @include mre-height-block(16px, 34px);
     }
   }
 
@@ -219,23 +217,25 @@
 }
 
 .page-nav {
-
-  // List
-  padding-left: 0;
   margin-bottom: 0;
-  color: rgba(#f5f5f5, .5);
+  padding-left: 0;
   list-style: none;
+  color: rgba(#f5f5f5, .5);
 
   &__item {
-    margin-bottom: 26px;
+    &:not(:last-child) {
+      margin-bottom: 26px;
+    }
   }
 
   @include media-breakpoint-up(xl) {
     display: flex;
+    justify-content: space-between;
     color: rgba(#000, .5);
     &__item {
-      padding: 0 11px;
-      margin-bottom: 0;
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -246,14 +246,17 @@
 .header-nav-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  //justify-content: space-between;
   height: 50px;
 
-  padding-right: 10px;
-  @include font-size(14px);
+  //padding-right: 10px;
+  @include font-size(13px);
+  white-space: nowrap;
 
   &__menu {
-    font-family: $font-family-inter-ui;
+    //margin-right: 30px;
+    //font-family: $font-family-inter-ui;
+    flex: 1 1 auto;
   }
 
   &__link {
@@ -268,11 +271,19 @@
 
 .header-login {
   font-weight: 500;
+  white-space: nowrap;
 
   svg {
     width: 8px;
     height: 12px;
     vertical-align: -1px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 150px;
+    margin-left: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -280,14 +291,19 @@
   font-family: $font-family-bender;
   font-size: 16px;
   font-style: normal;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   line-height: normal;
+  white-space: nowrap;
 
   svg {
     width: 11px;
     height: 11px;
     margin-right: 4px;
     vertical-align: 0;
+  }
+
+  @include media-breakpoint-up(xl) {
+    margin-left: 10px;
   }
 }
 
@@ -327,29 +343,37 @@
     //margin: 10px 0;
 
     &::after {
-      position: absolute;
-      top: 8px;
-      right: 0;
-      //display: inline-block;
+      content: '';
       display: block;
+      position: absolute;
+      //display: inline-block;
+      top: 8px;
 
       //margin-left: 1px;
       //vertical-align: middle;
-      content: '';
-      border-top: .3em solid;
-      border-right: .3em solid transparent;
+      right: 0;
+      border-top: 4px solid;
+      border-right: 3px solid transparent;
       border-bottom: 0;
-      border-left: .3em solid transparent;
+      border-left: 3px solid transparent;
     }
 
     &:not(.collapsed) {
       color: $main-color;
+
+      &::after {
+        border-top: 0;
+        border-right: 3px solid transparent;
+        border-bottom: 4px solid;
+        border-left: 3px solid transparent;
+      }
     }
 
     @include media-breakpoint-up(xl) {
-      max-width: 150px;
+      max-width: 165px;
       //margin: 0 16px 0 0;
       margin-right: 16px;
+      padding-right: 12px;
     }
   }
 
@@ -397,6 +421,7 @@
 
     &::before,
     &::after {
+      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
@@ -404,9 +429,8 @@
       height: 3px;
       margin-top: -1px;
       margin-left: -10px;
-      content: '';
-      background: black;
       transition: transform .3s ease;
+      background: black;
     }
 
     &::before {
@@ -471,14 +495,14 @@
 
   &__search {
     position: absolute;
+    z-index: -1;
     top: 100%;
     right: 0;
+
     left: 0;
-
-    z-index: -1;
-    transition: transform .3s ease;
-
     transform: translateY(-100%);
+
+    transition: transform .3s ease;
 
     &.active,
     &_active {
@@ -488,10 +512,10 @@
 
     @include media-breakpoint-up(xl) {
       position: relative;
+      z-index: auto;
       top: 0;
       right: auto;
       left: auto;
-      z-index: auto;
       flex: 1 0;
       height: 100%;
       margin: 0;
@@ -504,8 +528,8 @@
   }
 
   &__cart {
-    position: relative;
     display: none;
+    position: relative;
     width: 195px;
 
     height: 100%;
@@ -524,9 +548,9 @@
 
 
   &__button {
-    position: relative;
-
     display: flex;
+
+    position: relative;
     align-items: center;
     justify-content: center;
     width: 44px;
@@ -585,25 +609,25 @@
     min-width: 13px;
     height: 13px;
     padding: 2px 2px 1px;
-    font-size: 10px;
-    line-height: 10px;
-
-    color: white;
-    text-align: center;
-    background-color: $main-color;
-
-    border-radius: 7px;
     transform: translate(50%, -50%) translate(10px, -10px);
+    border-radius: 7px;
+
+    background-color: $main-color;
+    color: white;
+    font-size: 10px;
+
+    line-height: 10px;
+    text-align: center;
 
     @include media-breakpoint-up(xl) {
       min-width: 26px;
       height: 26px;
       padding: 3px 5px;
+      transform: translate(50%, -50%) translate(18px, -16px);
+      border-radius: 13px;
+
       font-size: 15px;
       line-height: 20px;
-
-      border-radius: 13px;
-      transform: translate(50%, -50%) translate(18px, -16px);
     }
   }
 }
@@ -623,17 +647,17 @@
 
     padding-left: 20px;
 
+    border-color: #eee;
+    background-color: #eee;
+
     font-size: 13px;
     font-style: italic;
-
-    background-color: #eee;
-    border-color: #eee;
     @include media-breakpoint-up(xl) {
       padding-right: 75px;
       padding-left: 35px;
+      transform: $skew;
       font-size: 17px;
       font-style: normal;
-      transform: $skew;
     }
   }
 
@@ -655,8 +679,8 @@
 
 button.search-fild__loupe {
   @extend %button-reset;
-  color: #bababa;
   transition: color .3s ease;
+  color: #bababa;
 
   &:hover {
     color: $main-color;
@@ -686,16 +710,16 @@ button.search-fild__loupe {
     display: inline-block;
     min-width: 44px;
     padding: 7px 10px;
+    border-radius: 22px;
+    background: #fff;
+    color: black;
+
     font-size: 20px;
     font-style: italic;
     font-weight: 900;
-
-    line-height: 30px;
-    color: black;
-    text-transform: uppercase;
     letter-spacing: .02em;
-    background: #fff;
-    border-radius: 22px;
+    line-height: 30px;
+    text-transform: uppercase;
   }
 
   &__block {
@@ -708,21 +732,21 @@ button.search-fild__loupe {
     font-size: 18px;
     font-style: italic;
     font-weight: 900;
+    letter-spacing: .02em;
     line-height: normal;
     text-transform: uppercase;
-    letter-spacing: .02em;
   }
 
   &__price {
     display: block;
 
-    font-family: $font-family-inter-ui;
-    font-size: 15px;
-    font-weight: 500;
-
-    color: #fff;
-
     opacity: .7;
+    color: #fff;
+    font-family: $font-family-inter-ui;
+
+    font-size: 15px;
+
+    font-weight: 500;
   }
 }
 
@@ -735,8 +759,8 @@ button.search-fild__loupe {
   //&__list {
   position: relative;
   //margin-left: -20px;
-  padding-left: 0;
   margin-bottom: 40px;
+  padding-left: 0;
   list-style: none;
 
   @include media-breakpoint-up(xl) {
@@ -768,8 +792,8 @@ button.search-fild__loupe {
 
         .header-category__link {
 
-          color: white;
           background-color: #2d2d2d;
+          color: white;
           //&::before {
           //  transform: translate3d(0, 0, 0);
           //}
@@ -789,23 +813,23 @@ button.search-fild__loupe {
     font-size: 14px;
     font-style: italic;
     font-weight: 900;
-    text-transform: uppercase;
     letter-spacing: .02em;
+    text-transform: uppercase;
 
     @include media-breakpoint-up(xl) {
 
       display: block;
       width: 100%;
       height: 100%;
-      font-style: normal;
+      transform: $skew;
 
+      transform-origin: bottom;
+
+      transition: background-color .3s ease;
       color: white;
-
+      font-style: normal;
       text-align: center;
       white-space: nowrap;
-      transition: background-color .3s ease;
-      transform: $skew;
-      transform-origin: bottom;
 
       @include mre-height-block(15px, 50px, 20px);
     }
@@ -832,15 +856,15 @@ button.search-fild__loupe {
   &__hidden {
     //display: none;
     position: absolute;
-    top: 100%;
-    //top: 0;
-    left: 0;
     z-index: 99;
+    //top: 0;
+    top: 100%;
+    left: 0;
     width: 100%;
     height: 0;
     overflow: hidden;
-    background-color: #2d2d2d;
     transition: $transition-collapse;
+    background-color: #2d2d2d;
   }
 }
 
@@ -873,9 +897,9 @@ button.search-fild__loupe {
   }
 
   &__item {
+    color: rgba(white, .5);
     font-size: 14px;
     line-height: 17px;
-    color: rgba(white, .5);
 
     &:not(:last-child) {
       margin-bottom: 16px;
@@ -888,7 +912,7 @@ button.search-fild__loupe {
 }
 
 .change-city {
-  padding: 20px 0 20px 50px;
+  padding: 20px 0;
   color: white;
   @include media-breakpoint-up(xl) {
     padding: 30px 0 58px;
@@ -900,8 +924,8 @@ button.search-fild__loupe {
     justify-content: space-between;
     height: 45px;
     margin-bottom: 45px;
-    @include media-breakpoint-up(xl) {
 
+    @include media-breakpoint-up(xl) {
       display: flex;
     }
   }
@@ -912,7 +936,7 @@ button.search-fild__loupe {
   }
 
   &__btn-close {
-    @include button-variant($main-color, $main-color, #FFF, #FFF);
+    @include button-variant($main-color, $main-color, #fff, #fff);
 
     width: 33px;
     height: 33px;
@@ -921,12 +945,12 @@ button.search-fild__loupe {
 
     &::before,
     &::after {
+      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       width: 10px;
       height: 2px;
-      content: '';
       background: currentColor;
     }
 
@@ -940,9 +964,10 @@ button.search-fild__loupe {
   }
 
   &__list {
-    padding-left: 0;
     margin-bottom: 0;
+    padding-left: 50px;
     list-style: none;
+
 
     @include media-breakpoint-up(xl) {
       display: flex;
@@ -950,6 +975,8 @@ button.search-fild__loupe {
       flex-wrap: wrap;
       align-content: space-between;
       max-height: 410px;
+      margin-bottom: 74px;
+      padding-left: 0;
     }
   }
 
@@ -961,27 +988,45 @@ button.search-fild__loupe {
     line-height: normal;
 
     &::before {
+      content: attr(data-letter);
       position: absolute;
       top: -5px;
       left: -30px;
-      font-size: 20px;
       color: $main-color;
-      content: attr(data-letter);
+      font-size: 20px;
 
-      @extend %title;
+      @include title;
+    }
+  }
+
+  &__footer {
+
+    @include media-breakpoint-up(xl) {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-right: 46px;
     }
   }
 
   &__note {
-    display: none;
-    max-width: 455px;
-    margin-top: 52px;
-    font-size: 14px;
-    line-height: 20px;
 
+    padding: 12px 20px 0;
+    //display: none;
     color: rgba(255, 255, 255, .5);
+    font-size: 12px;
+
+    line-height: 17px;
+
+    //display: none;
     @include media-breakpoint-up(xl) {
-      display: block;
+      //display: block;
+      max-width: 455px;
+      margin-top: 52px;
+      padding: 0;
+      font-size: 14px;
+      line-height: 20px;
     }
 
     b {
@@ -1016,7 +1061,7 @@ button.search-fild__loupe {
   }
 
   &__btn-close {
-    @include button-variant($main-color, $main-color, #FFF, #FFF);
+    @include button-variant($main-color, $main-color, #fff, #fff);
 
     width: 33px;
     height: 33px;
@@ -1025,12 +1070,12 @@ button.search-fild__loupe {
 
     &::before,
     &::after {
+      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       width: 10px;
       height: 2px;
-      content: '';
       background: currentColor;
     }
 
@@ -1044,32 +1089,44 @@ button.search-fild__loupe {
   }
 
   &__list {
-    padding-left: 0;
     margin-bottom: 0;
+    padding-left: 0;
     list-style: none;
 
     @include media-breakpoint-up(xl) {
       //max-height: 410px;
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: 77px;
+      //margin-bottom: 77px;
       margin-left: -14px;
       transform: $skew;
+    }
+  }
+
+
+  &__footer {
+
+    @include media-breakpoint-up(xl) {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-right: 46px;
     }
   }
 
   &__note {
     padding: 12px 20px 0;
     //display: none;
-    font-size: 12px;
-    line-height: 17px;
-
     color: rgba(255, 255, 255, .5);
+    font-size: 12px;
+
+    line-height: 17px;
     @include media-breakpoint-up(xl) {
       max-width: 455px;
-      padding: 0;
-      //  display: block;
       margin-top: 52px;
+      //  display: block;
+      padding: 0;
       font-size: 14px;
       line-height: 20px;
     }
@@ -1093,18 +1150,18 @@ button.search-fild__loupe {
 
   &__link {
 
-    position: relative;
     display: flex;
+    position: relative;
     flex-direction: column;
     height: 100px;
     //margin: 0 0px 33px;
-    padding: 15px 20px;
     margin-bottom: 10px;
-
-    font-size: 14px;
-    line-height: normal;
+    padding: 15px 20px;
 
     background: #292929;
+    font-size: 14px;
+
+    line-height: normal;
 
     //flex: 0 0 3;
 
@@ -1113,10 +1170,11 @@ button.search-fild__loupe {
       box-shadow: 0 0 0 3px $main-color inset;
       //border: 3px solid #F4412D;
     }
+
     @include media-breakpoint-up(xl) {
       height: 130px;
-      padding: 20px;
       margin-bottom: 33px;
+      padding: 20px;
 
 
       &_icon {
@@ -1152,8 +1210,8 @@ button.search-fild__loupe {
     font-size: 14px;
     line-height: normal;
     @include media-breakpoint-up(xl) {
-      font-size: 18px;
       transform: $skew-reverse;
+      font-size: 18px;
     }
   }
 
@@ -1162,38 +1220,111 @@ button.search-fild__loupe {
     line-height: normal;
 
     @include media-breakpoint-up(xl) {
-      font-size: 15px;
       transform: $skew-reverse;
+      font-size: 15px;
     }
   }
 
   &__item-note {
     margin-top: auto;
 
+    color: rgba(white, .5);
     font-size: 12px;
+
     line-height: normal;
 
+    @include media-breakpoint-up(xl) {
+      transform: $skew-reverse;
+      font-size: 15px;
+    }
+  }
+}
+
+.change-post {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100px;
+  margin-bottom: 10px;
+  padding: 15px 20px;
+  background: #292929;
+  font-size: 14px;
+  line-height: normal;
+
+  &_active,
+  &.active {
+    box-shadow: 0 0 0 3px $main-color inset;
+    //border: 3px solid #F4412D;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 130px;
+    margin-bottom: 0;
+    @include make-col(4);
+    padding: 20px 20px 20px 60px;
+    transform: $skew;
+
+    &:hover {
+      box-shadow: 0 0 0 1px $main-color inset;
+      //border: 1px solid #F4412D;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: 58px;
+    height: 42px;
+    @include media-breakpoint-up(xl) {
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      width: 105px;
+      height: 77px;
+      transform: $skew-reverse translate(-60px, -50%);
+    }
+  }
+
+  &__title {
+    @include title;
+    margin-bottom: 7px;
+    font-size: 14px;
+    line-height: normal;
+    @include media-breakpoint-up(xl) {
+      transform: $skew-reverse;
+      font-size: 18px;
+    }
+  }
+
+  &__note {
+    margin-top: auto;
+
     color: rgba(white, .5);
+    font-size: 12px;
+
+    line-height: normal;
 
     @include media-breakpoint-up(xl) {
-      font-size: 15px;
       transform: $skew-reverse;
+      font-size: 15px;
     }
   }
 }
 
 .header-cart {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  z-index: 1040;
-
   display: none;
+  position: absolute;
+  z-index: 1040;
+  top: 100%;
+
+  right: 0;
   width: 430px;
   max-height: 400px;
   overflow: auto;
-  color: white;
   background: #1b1b1b;
+  color: white;
 
 
   //background: url("../img/rm/cart.png") center top no-repeat;
@@ -1215,8 +1346,8 @@ button.search-fild__loupe {
 
   &__btn-clear {
     @extend %button-reset;
-    font-size: 14px;
     color: rgba(white, .5);
+    font-size: 14px;
 
     > svg {
       display: inline-block;
@@ -1234,10 +1365,31 @@ button.search-fild__loupe {
 
 .h-product-item {
   display: flex;
+  position: relative;
   justify-content: space-between;
 
-  padding: 6px 0;
   margin-bottom: 2px;
+  padding: 6px 0;
+
+  &_disabled,
+  &.disabled {
+    //pointer-events: none;
+    > * {
+      opacity: 0.2;
+    }
+
+    &::after {
+      content: 'Нет ' '\A' 'в наличии';
+      position: absolute;
+      top: 26px;
+      left: 4px;
+      color: #fff;
+      font-size: 12px;
+      line-height: normal;
+      text-align: center;
+      white-space: pre;
+    }
+  }
 
   &__img {
     flex: 0 0 71px;
@@ -1256,14 +1408,14 @@ button.search-fild__loupe {
     font-size: 14px;
     font-style: italic;
     font-weight: bold;
+    letter-spacing: .02em;
     line-height: 17px;
     text-transform: uppercase;
-    letter-spacing: .02em;
   }
 
   &__description {
-    font-size: 14px;
     color: rgba(white, .5);
+    font-size: 14px;
   }
 
   &__controls {

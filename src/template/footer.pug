@@ -1,9 +1,12 @@
+mixin sprite(name)
+    svg&attributes(attributes)
+        use(xlink:href='images/new-sprite.svg#sprite-' + name.replace('.svg', ''))
+
 footer.footer
     .footer__top
         .container
             a.footer__logo(href='#')
-                svg
-                    use(xlink:href=require('./../images/sprite.svg') + '#logo')
+                +sprite('logo.svg')
             .row
                 .col-6.col-md-3
                     nav.footer-nav
@@ -102,5 +105,4 @@ footer.footer
             .footer__copyright © DO4A.COM, 2019
             a.footer__doc(href='#') Политика конфиденциальности
             a.footer__dev(href='https://riverstart.ru/')
-                svg
-                    use(xlink:href=require('./../images/sprite.svg') + '#riverstart-logo')
+                +sprite('riverstart-logo.svg')

@@ -1,34 +1,25 @@
-
-
+// Functions and Mixins
+@import 'functions';
 @import 'variables';
-//@import 'libs/jquery.fancybox';
-@import 'libs/owl-carousel/owl.carousel';
+// Библиотеки и переопределения их стилей
 @import '~@fancyapps/fancybox/dist/jquery.fancybox.css';
-@import '~simplebar/dist/simplebar.css';
-@import '~nouislider/distribute/nouislider.css';
-//@import 'libs/simplebar';
-
-@import 'carousel-theme';
-
-//@import 'fonts/muler';
-//@import 'fonts/museo-cyrl';
-//@import 'fonts/stem';
-
+@import 'libs/simplebar';
+@import 'libs/owl.carousel';
+// Шрифты
 @import 'fonts/bender';
 @import 'fonts/inter';
-
-@import 'bootstrap'; // 4.3.1
-
-@import 'functions';
+// Bootstrap (вроде, в голом виде)
+@import 'bootstrap';
 @import 'custom-grid';
+// Спрайты из SVG Spritemap Webpack Plugin
 @import 'sprites';
-
+// Модули
 @import 'icon';
 @import 'global';
 @import 'header';
 @import 'footer';
 @import 'slider';
 @import 'modal';
-
+// Страницы
 @import 'main-page';
 @import 'catalog';

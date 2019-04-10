@@ -64,9 +64,9 @@ if (slider1.length) {
         connects: '__connects',
         ltr: '_ltr',
         rtl: '_rtl',
-        draggable: '__draggable',
-        drag: '__state-drag',
-        tap: '__state-tap',
+        draggable: '_draggable',
+        drag: '_state-drag',
+        tap: '_state-tap',
         active: '__active',
         tooltip: '__tooltip',
 
@@ -93,5 +93,4 @@ if (slider1.length) {
       },
     })),
   );
-
 }

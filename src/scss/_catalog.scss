@@ -530,7 +530,7 @@ body {
     z-index: $zindex-dropdown;
     top: 100%;
     left: 0;
-    padding: 22px 0;
+    padding: 10px 0;
     background: #efefef;
 
     &[data-simplebar] {
@@ -818,7 +818,9 @@ body {
 
     width: 21px;
     height: 19px;
-    @include sprite('heart');
+    @include sprite('heart', (
+      fill: $main-color
+    ));
     background-size: 21px 19px;
     color: $main-color;
 

@@ -1,25 +1,34 @@
-$owl-color-base: 			#869791 !default;
-$owl-color-white: 			#fff !default;
-$owl-color-gray: 			#d6d6d6 !default;
+/*!
+ * Owl Carousel v2.3.4
+ * Copyright 2013-2018 David Deutsch
+ * Licensed under: SEE LICENSE IN (https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE)
+ */
+
+$owl-image-path: './../img/';
+
+@import '~owl.carousel/src/scss/owl.carousel';
+
+$owl-color-base: #869791 !default;
+$owl-color-white: #fff !default;
+$owl-color-gray: #d6d6d6 !default;
 
 //nav
 
-$owl-nav-color: 			#fff;
-$owl-nav-color-hover: 		$main-color;
-$owl-nav-disabled-opacity: 	.5;
-$owl-nav-animation:         $animation;
-$owl-nav-width:             28px;
-$owl-nav-height:            41px;
+$owl-nav-color: #fff;
+$owl-nav-color-hover: $main-color;
+$owl-nav-disabled-opacity: .5;
+$owl-nav-animation: $animation;
+$owl-nav-width: 28px;
+$owl-nav-height: 41px;
 
 //dots
 
-$owl-dot-width: 				13px;
-$owl-dot-height: 			13px;
-$owl-dot-rounded: 			50%;
-$owl-dot-margin: 			5px 13px;
-$owl-dot-background: 		$owl-color-gray !default;
-$owl-dot-background-active: 	$owl-color-base !default;
-
+$owl-dot-width: 13px;
+$owl-dot-height: 13px;
+$owl-dot-rounded: 50%;
+$owl-dot-margin: 5px 13px;
+$owl-dot-background: $owl-color-gray !default;
+$owl-dot-background-active: $owl-color-base !default;
 
 
 .owl-theme {
@@ -37,25 +46,30 @@ $owl-dot-background-active: 	$owl-color-base !default;
     [class*='owl-'] {
       width: $owl-nav-width;
       height: $owl-nav-height;
-      margin-top: -$owl-nav-height/2;
-      color: $owl-nav-color;
+      margin-top: (-$owl-nav-height / 2);
       transition: $owl-nav-animation;
+      color: $owl-nav-color;
+
       &:focus {
         outline: none;
       }
+
       &:hover {
         color: $owl-nav-color-hover;
       }
     }
+
     .owl-next {
       float: right;
     }
+
     .owl-prev {
       float: left;
     }
+
     .disabled {
-      cursor: default;
       opacity: $owl-nav-disabled-opacity;
+      cursor: default;
     }
   }
 
@@ -71,9 +85,10 @@ $owl-dot-background-active: 	$owl-color-base !default;
     left: 0;
 
     margin: 4px auto;
-    text-align: center;
     transform: translate3d(0, 0, 0);
+    text-align: center;
     -webkit-tap-highlight-color: transparent;
+
     .owl-dot {
       display: inline-block;
       *display: inline;
@@ -86,20 +101,20 @@ $owl-dot-background-active: 	$owl-color-base !default;
         margin: $owl-dot-margin;
 
         //				background: black;
-        border: 1px solid #7a7784;
+        -webkit-backface-visibility: visible;
         //background: $owl-dot-background;
         //display: block;
         //transition: opacity 200ms ease;
+        border: 1px solid #7a7784;
         border-radius: $owl-dot-rounded;
-        -webkit-backface-visibility: visible;
       }
 
       &.active,
       &:hover {
         span {
           //background: $owl-dot-background-active;
-          background: #83a7ca;
           border-color: #83a7ca;
+          background: #83a7ca;
         }
       }
     }

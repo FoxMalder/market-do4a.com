@@ -1,15 +1,17 @@
+mixin sprite(name)
+    svg&attributes(attributes)
+        use(xlink:href='images/new-sprite.svg#sprite-' + name.replace('.svg', ''))
+
 doctype html
 html(lang='ru')
     head
         meta(charset='UTF-8')
         meta(content='width=device-width, initial-scale=1.0, maximum-scale=1.0', name='viewport')
         title= htmlWebpackPlugin.options.title
-    body.main
+    body
         block header
-            include template/header
+            include header
         block wrapper
-        //    wrapper
-        block footer
-            include template/footer
+        include footer
         block modal
-            include template/modal
+            include modal
