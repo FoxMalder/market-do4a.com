@@ -295,6 +295,7 @@ html(lang='ru')
             .sorting
                 .sorting__container
                     .sorting__list
+                        
                         .multifilter
                             span.multifilter__label Найдено:
                             span.multifilter__value 12 товаров
@@ -303,33 +304,28 @@ html(lang='ru')
                             button.multifilter__button(data-toggle="dropdown")
                                 span.multifilter__value Сначала дешевые
                             button.multifilter__btn-clear Сбросить
-                            .multifilter__dropdown.dropdown-menu.show(data-simplebar data-simplebar-auto-hide="false")
+                            form.multifilter__dropdown.dropdown-menu.show(data-simplebar data-simplebar-auto-hide="false")
                                 // dropdown
                                 .multifilter-radio
-                                    .input-radio.input-radio_block.input-radio_right
-                                        input.input-radio__input(type="radio" id="s-1-check-1" name="sort" checked=true)
-                                        label.input-radio__label(for="s-1-check-1")
-                                            | По популярности
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-1" name="sort" checked=true)
+                                    label.multifilter-radio__label(for="s-1-check-1")
+                                        | По популярности
                                 .multifilter-radio
-                                    .input-radio.input-radio_block.input-radio_right
-                                        input.input-radio__input(type="radio" id="s-1-check-2" name="sort")
-                                        label.input-radio__label(for="s-1-check-2")
-                                            | Сначала дешевые
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-2" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-2")
+                                        | Сначала дешевые
                                 .multifilter-radio
-                                    .input-radio.input-radio_block.input-radio_right
-                                        input.input-radio__input(type="radio" id="s-1-check-3" name="sort")
-                                        label.input-radio__label(for="s-1-check-3")
-                                            | Сначала дорогие
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-3" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-3")
+                                        | Сначала дорогие
                                 .multifilter-radio
-                                    .input-radio.input-radio_block.input-radio_right
-                                        input.input-radio__input(type="radio" id="s-1-check-4" name="sort")
-                                        label.input-radio__label(for="s-1-check-4")
-                                            | По названию (А-Я)
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-4" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-4")
+                                        | По названию (А-Я)
                                 .multifilter-radio
-                                    .input-radio.input-radio_block.input-radio_right
-                                        input.input-radio__input(type="radio" id="s-1-check-5" name="sort")
-                                        label.input-radio__label(for="s-1-check-5")
-                                            | По названию (Я-А)
+                                    input.multifilter-radio__input(type="radio" id="s-1-check-5" name="sort")
+                                    label.multifilter-radio__label(for="s-1-check-5")
+                                        | По названию (Я-А)
                     .sorting__check-list
                         .multifilter
                             button.multifilter__button(data-toggle="dropdown")
