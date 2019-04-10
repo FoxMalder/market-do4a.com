@@ -1261,18 +1261,16 @@ if (mapBlock) {
 
   if (typeof app !== 'undefined') {
     Object.values(app.storeManagerData.stores).map((item) => {
-      const coord = item.coords.split(',').map(num => Number(num));
       const point = {
         type: 'Feature',
         id: item.id,
-        geometry: { type: 'Point', coordinates: coord },
+        geometry: { type: 'Point', coordinates: item.coords.split(',').map(num => Number(num)) },
         properties: { address: item.name, tel: item.phone[0], link: 'Схема проезда' },
       };
 
       if (item.city === app.storeManagerData.currentCityId) {
-        // currentStoreList.push(point);
-        // currentStoreList.push(coord);
         data2.features.push(point);
+        console.log(point);
       } else {
         data.features.push(point);
       }
@@ -1281,5 +1279,5 @@ if (mapBlock) {
     });
   }
 
-  initMap(mapBlock, {}, data, data2);
+  initMap(mapBlock, data, data2);
 }
