@@ -6,92 +6,134 @@ html(lang='ru')
     body
         block header
             include template/header
-        .catalog-mobile-control
-            .catalog-mobile-control__container
-                .catalog-mobile-control__header
+        .catalog-mobile-menu#mobile-filter
+            .catalog-mobile-menu__container
+                .catalog-mobile-menu__header
                     //button.catalog-mobile__btn-back
-                    span.catalog-mobile-control__title Фильтр
-                    button.catalog-mobile-control__btn-close
-                .catalog-mobile-control__wrapper
-                    // .multifilter.active || .multifilter_active - (Когда выбраны значения) ? Показывается кнопка "Сбросить"
-                    // .multifilter.view [bootstrap dropdown] - (Когда открыт dropdown) ? Применяем фон к кнопке
+                    span.catalog-mobile-menu__title Фильтр
+                    button.catalog-mobile-menu__btn-close(data-toggle="menu" data-target="#mobile-filter")
+                .catalog-mobile-menu__wrapper
+                    // Элемент фильтра
+                    // Модификаторы:
+                    //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
+                    //                                      Пока просто показывает кнопку "Сбросить"
+                    //    .view   - Модификатор dropdown (унаследовано от bootstrap)
+                    //              Изменяет фон кнопки .multifilter__content
+                    // Класс .dropdown обязателен
                     .multifilter
-                        // (optional)
-                        button.multifilter__content(data-toggle="dropdown")
-                            span.multifilter__value Категория
+
+                        // Видимое сожержимое элемента фильтра
+                        //
+                        // При использовании выпадающего меню обязателено использование <button>
+                        // а также наличие атрибута [data-toggle="dropdown"]
+                        button.multifilter__content(data-toggle="menu")
+                            span.multifilter__label Категория:
+                            span.multifilter__value Казеин и молоко
                                 span.multifilter__total 23
-                            button.multifilter__btn-clear Сбросить
-                            // .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown
-                        .multifilter__dropdown
-                            .p-1 dropdown
-                    .multifilter
-                        // dropdown container
+
+                        button.multifilter__btn-clear Сбросить
+
+                        // Выпадающее меню
+                        //    Класс .dropdown-menu обязателен при использовании Dropdown
+                        // Модификаторы:
+                        //    .show - Модификатор dropdown (унаследовано от bootstrap)
+                        //            Показывает меню
+                        // Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем
+                        // Работает также для отдельных вложенных элементов
+                        .multifilter__menu
+                            .catalog-mobile-menu.active
+                                .catalog-mobile-menu__container
+                                    .catalog-mobile-menu__header
+                                        button.catalog-mobile-menu__btn-back
+                                        span.catalog-mobile-menu__title Фильтр
+                                    .catalog-mobile-menu__wrapper
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
+                                            label.multifilter-checkbox__label(for="m-f-2-check-1")
+                                                | 4 Dimension Nutrition
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-2" checked=true)
+                                            label.multifilter-checkbox__label(for="m-f-2-check-2")
+                                                | ActivLab
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-3" disabled=true)
+                                            label.multifilter-checkbox__label(for="m-f-2-check-3")
+                                                | ASM
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-4")
+                                            label.multifilter-checkbox__label(for="m-f-2-check-4")
+                                                | 4 Dimension Nutrition
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-5" checked=true)
+                                            label.multifilter-checkbox__label(for="m-f-2-check-5")
+                                                | ActivLab
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-6" disabled=true)
+                                            label.multifilter-checkbox__label(for="m-f-2-check-6")
+                                                | ASM
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-7")
+                                            label.multifilter-checkbox__label(for="m-f-2-check-7")
+                                                | 4 Dimension Nutrition
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-8" checked=true)
+                                            label.multifilter-checkbox__label(for="m-f-2-check-8")
+                                                | ActivLab
+                                        .multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
+                                            label.multifilter-checkbox__label(for="m-f-2-check-9")
+                                                | ASM
+                                    .catalog-mobile-menu__footer
+                                        button.catalog-mobile-menu__btn-footer.btn.btn-gray-2 Сбросить
+
+                    .multifilter.active
                         button.multifilter__content(data-toggle="dropdown")
                             span.multifilter__value Бренд
                                 span.multifilter__total 2
-                            // dropdown button
                         button.multifilter__btn-clear Сбросить
-                        .multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false")
-                            // dropdown
-                            input.multifilter__search(type="text" placeholder="Поиск по брендам")
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                            .p-3 dropdown
-                    .multifilter.active
+                        .multifilter__menu
+
+                    .multifilter
                         // dropdown container
                         button.multifilter__content(data-toggle="dropdown")
                             span.multifilter__value Страна
                                 span.multifilter__total 2
                         button.multifilter__btn-clear Сбросить
                         // dropdown button
-                        .multifilter__dropdown.dropdown-menu
+                        .multifilter__dropdown.dropdown-menu(role="form")
                             // dropdown
                             .p-1 dropdown
                     .multifilter
-                        // dropdown container
                         button.multifilter__content(data-toggle="dropdown")
                             span.multifilter__value Объём, кг
                                 span.multifilter__total 2
-                        // dropdown button
-                        .multifilter__dropdown.dropdown-menu
+                        .multifilter__dropdown.dropdown-menu(role="form")
                             // dropdown
                             .p-1 dropdown
                     .multifilter
-                        // dropdown container
                         button.multifilter__content(data-toggle="dropdown")
                             span.multifilter__value Порции
                                 span.multifilter__total 2
-                        // dropdown button
-                        .multifilter__dropdown.dropdown-menu
+                        .multifilter__dropdown.dropdown-menu(role="form")
                             // dropdown
                             .p-1 dropdown
                     .multifilter
-                        // dropdown container
                         button.multifilter__content(data-toggle="dropdown")
                             span.multifilter__value % Белка
-                        // dropdown button
-                        .multifilter__dropdown.dropdown-menu
-                            // dropdown
+                        .multifilter__dropdown.dropdown-menu(role="form")
                             .p-1 dropdown
+
                     .multifilter
-                        // dropdown container
                         button.multifilter__content(data-toggle="dropdown")
                             span.multifilter__value Время приёма
-                        // dropdown button
-                        .multifilter__dropdown.dropdown-menu
+                        .dropdown-menu(role="form")
                             .p-1 dropdown
+
                     .multifilter
-                        button.multifilter__content(data-toggle="dropdown")
+                        button.multifilter__content(data-toggle="dropdown" data-boundary="viewport")
                             span.multifilter__value Цена
-                        .multifilter__dropdown.dropdown-menu
+                        .multifilter__dropdown.dropdown-menu(role="form")
+                            // dropdown
                             .multifilter-price
                                 .multifilter-price__title
                                     span.multifilter-price__start От
@@ -101,10 +143,37 @@ html(lang='ru')
                                 .multifilter-price__num
                                     span.multifilter-price__start 50 ₽
                                     span.multifilter-price__end 10 000 ₽
-
-                .catalog-mobile-control__footer
-                    button.catalog-mobile-control__btn-footer.btn.btn-gray-2 Сбросить
-                    button.catalog-mobile-control__btn-footer.btn.btn-red Применить
+                .catalog-mobile-menu__footer
+                    button.catalog-mobile-menu__btn-footer.btn.btn-gray-2 Сбросить
+                    button.catalog-mobile-menu__btn-footer.btn.btn-red Применить
+        .catalog-mobile-menu#mobile-sort
+            .catalog-mobile-menu__container
+                .catalog-mobile-menu__header
+                    span.catalog-mobile-menu__title Сортировка
+                    button.catalog-mobile-menu__btn-close(data-toggle="menu" data-target="#mobile-sort")
+                .catalog-mobile-menu__wrapper
+                    .multifilter-radio
+                        input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
+                        label.multifilter-radio__label(for="m-s-1-check-1")
+                            | По популярности
+                    .multifilter-radio
+                        input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
+                        label.multifilter-radio__label(for="m-s-1-check-2")
+                            | Сначала дешевые
+                    .multifilter-radio
+                        input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
+                        label.multifilter-radio__label(for="m-s-1-check-3")
+                            | Сначала дорогие
+                    .multifilter-radio
+                        input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
+                        label.multifilter-radio__label(for="m-s-1-check-4")
+                            | По названию (А-Я)
+                    .multifilter-radio
+                        input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
+                        label.multifilter-radio__label(for="m-s-1-check-5")
+                            | По названию (Я-А)
+                .catalog-mobile-menu__footer
+                    button.catalog-mobile-menu__btn-footer.btn.btn-red Применить
         .wrapper
             .page-header
                 .container
@@ -246,10 +315,8 @@ html(lang='ru')
                                         .p-1 dropdown
 
                                 .multifilter
-                                    // dropdown container
                                     button.multifilter__content(data-toggle="dropdown" data-boundary="viewport")
                                         span.multifilter__value Цена
-                                    // dropdown button
                                     .multifilter__dropdown.dropdown-menu(role="form")
                                         // dropdown
                                         .multifilter-price
@@ -338,8 +405,8 @@ html(lang='ru')
 
                 .catalog-header__mobile-control
                     .catalog-control
-                        button.catalog-control__button.catalog-control__button_filter Фильтр
-                        button.catalog-control__button.catalog-control__button_sort Сорт.
+                        button.catalog-control__button.catalog-control__button_filter(data-toggle="menu" data-target="#mobile-filter") Фильтр
+                        button.catalog-control__button.catalog-control__button_sort(data-toggle="menu" data-target="#mobile-sort") Сорт.
             .catalog
                 .catalog__container
                     .catalog__list

@@ -1,21 +1,12 @@
 import '../scss/main.scss';
 
 
+//
+// document.ready(() => {
+//   console.log(document.querySelector('.header'));
+// });
+
 import './global';
 
 import './main';
-// import './catalog';
-
-
-$(document).ready(() => {
-  $('[data-fancybox]').fancybox({
-    closeExisting: true,
-  });
-
-  $(document).on('click.bs.dropdown.data-api', '.multifilter [role="form"]', function(e) {
-    e.stopPropagation();
-  });
-
-  // const price = [50, 10000];
-
-});
+import './catalog';

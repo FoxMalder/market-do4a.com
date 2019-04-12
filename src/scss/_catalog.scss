@@ -312,7 +312,7 @@ $multifilter-padding-x: (
 }
 
 
-.catalog-mobile-control {
+.catalog-mobile-menu {
   //display: flex;
   display: none;
   position: fixed;
@@ -335,7 +335,15 @@ $multifilter-padding-x: (
   &__container {
     display: flex;
     flex-direction: column;
-    max-height: 100%;
+    height: 100%;
+
+    .multifilter__content {
+      margin-bottom: 1px;
+
+      > * {
+        @include mre-height-block(16px, 50px, 1);
+      }
+    }
   }
 
   &__wrapper {
@@ -345,6 +353,7 @@ $multifilter-padding-x: (
 
   &__header {
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     padding: 28px (map_get($grid-gutter-width-map, xs) / 2);
   }
@@ -372,13 +381,14 @@ $multifilter-padding-x: (
 
   &__footer {
     display: flex;
+    flex: 0 0 auto;
   }
 
   &__btn-footer {
     @extend %button-reset;
-    height: 60px;
-    @include make-col(6);
     @include title;
+    flex: 1 1;
+    height: 60px;
   }
 }
 
@@ -399,12 +409,12 @@ $multifilter-padding-x: (
 
   &__content {
     @extend %button-reset;
-
     display: flex;
     position: relative;
     align-items: center;
     width: 100%; // only mobile?
-    padding: 5px (map_get($grid-gutter-width-map, xs) / 2);
+    padding: 0 (map_get($grid-gutter-width-map, xs) / 2);
+    text-align: left;
     white-space: nowrap;
     cursor: auto;
 
@@ -414,6 +424,20 @@ $multifilter-padding-x: (
 
     @include media-breakpoint-up(xl) {
       max-width: 250px;
+    }
+  }
+
+  &__content[data-toggle='menu'] {
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(50% - 4px);
+      right: (map_get($grid-gutter-width-map, xs) / 2);
+      border-top: 4px solid transparent;
+      border-right: 0;
+      border-bottom: 4px solid transparent;
+      border-left: 8px solid #101010;
+      opacity: .2;
     }
   }
 
@@ -428,24 +452,15 @@ $multifilter-padding-x: (
     &::after {
       content: '';
       position: absolute;
-      top: calc(50% - 4px);
-      right: (map_get($grid-gutter-width-map, xs) / 2);
-      border-top: 4px solid transparent;
-      border-right: 0;
-      border-bottom: 4px solid transparent;
-      border-left: 8px solid #101010;
-      opacity: .2;
 
-      @include media-breakpoint-up(md) {
-        top: calc(50% - 3px);
-        right: map_get($multifilter-padding-x, xl);
+      top: calc(50% - 3px);
+      right: map_get($multifilter-padding-x, xl);
 
-        border-top: 6px solid #101010;
-        border-right: 4px solid transparent;
-        border-bottom: 0;
-        border-left: 4px solid transparent;
-        opacity: 1;
-      }
+      border-top: 6px solid #101010;
+      border-right: 4px solid transparent;
+      border-bottom: 0;
+      border-left: 4px solid transparent;
+      opacity: 1;
     }
 
     .multifilter.show & {
@@ -478,9 +493,12 @@ $multifilter-padding-x: (
 
   &__value {
     position: relative;
-    flex: 1 1 auto;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @include media-breakpoint-up(md) {
+      flex: 1 1 auto;
+    }
   }
 
   // Иконка с количеством
@@ -563,6 +581,10 @@ $multifilter-padding-x: (
     }
   }
 
+  &__menu {
+    display: none;
+  }
+
   &__dropdown {
 
     &[data-simplebar] {
@@ -626,7 +648,6 @@ $multifilter-menu-padding-x: 22px;
   }
 }
 
-
 .multifilter-checkbox {
   margin-bottom: 1px;
 
@@ -662,11 +683,11 @@ $multifilter-menu-padding-x: 22px;
     width: 100%;
     margin-bottom: 0;
     padding: 12px $multifilter-menu-padding-x;
-    cursor: pointer;
     transition: background .3s ease;
+    cursor: pointer;
 
     &:hover {
-      background-color: #E5E5E5;
+      background-color: #e5e5e5;
     }
 
     &::before {
@@ -1244,7 +1265,8 @@ $multifilter-menu-padding-x: 22px;
 
   &__sticker {
     margin-bottom: 5px;
-    padding: 5px 7px 4px 9px;
+    padding: 5px 5px 5px 7px;
+    //padding: 5px 7px 4px 9px;
 
     transform: $skew;
     transform-origin: top left;
@@ -1253,7 +1275,7 @@ $multifilter-menu-padding-x: 22px;
     font-size: 9px;
     font-weight: 900;
     letter-spacing: .02em;
-    line-height: 13px;
+    line-height: normal;
     text-transform: uppercase;
 
     &_yellow {
@@ -1273,13 +1295,18 @@ $multifilter-menu-padding-x: 22px;
 
     &_center {
       position: absolute;
-      top: 162px;
-      left: (162px + 3px);
+      top: 100px;
+      //left: (162px + 3px);
+      left: calc(50% + 24px);
       margin-bottom: 0;
     }
 
     @include media-breakpoint-up(md) {
       font-size: 11px;
+
+      &_center {
+        top: 162px;
+      }
     }
   }
 }

@@ -554,72 +554,84 @@
       </div>
     </div>
   </div>
-  <div class="catalog-mobile-control">
-    <div class="catalog-mobile-control__container">
-      <div class="catalog-mobile-control__header">
-        <!--button.catalog-mobile__btn-back--><span class="catalog-mobile-control__title">Фильтр</span><button class="catalog-mobile-control__btn-close"></button></div>
-      <div class="catalog-mobile-control__wrapper">
-        <!-- .multifilter.active || .multifilter_active - (Когда выбраны значения) ? Показывается кнопка "Сбросить"-->
-        <!-- .multifilter.view [bootstrap dropdown] - (Когда открыт dropdown) ? Применяем фон к кнопке-->
+  <div class="catalog-mobile-menu" id="mobile-filter">
+    <div class="catalog-mobile-menu__container">
+      <div class="catalog-mobile-menu__header">
+        <!--button.catalog-mobile__btn-back--><span class="catalog-mobile-menu__title">Фильтр</span><button class="catalog-mobile-menu__btn-close" data-toggle="menu" data-target="#mobile-filter"></button></div>
+      <div class="catalog-mobile-menu__wrapper">
+        <!-- Элемент фильтра-->
+        <!-- Модификаторы:-->
+        <!--    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)-->
+        <!--                                      Пока просто показывает кнопку "Сбросить"-->
+        <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
+        <!--              Изменяет фон кнопки .multifilter__content-->
+        <!-- Класс .dropdown обязателен-->
         <div class="multifilter">
-          <!-- (optional)--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Категория<span class="multifilter__total">23</span></span><button class="multifilter__btn-clear">Сбросить</button><!-- .multifilter__dropdown.show [bootstrap dropdown] - (Когда открыт dropdown) ? Показываем dropdown--></button>
-          <div class="multifilter__dropdown">
-            <div class="p-1">dropdown</div>
+          <!-- Видимое сожержимое элемента фильтра-->
+          <!---->
+          <!-- При использовании выпадающего меню обязателено использование <button>-->
+          <!-- а также наличие атрибута [data-toggle="dropdown"]--><button class="multifilter__content" data-toggle="menu"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко<span class="multifilter__total">23</span></span></button><button class="multifilter__btn-clear">Сбросить</button><!-- Выпадающее меню-->
+          <!--    Класс .dropdown-menu обязателен при использовании Dropdown-->
+          <!-- Модификаторы:-->
+          <!--    .show - Модификатор dropdown (унаследовано от bootstrap)-->
+          <!--            Показывает меню-->
+          <!-- Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем-->
+          <!-- Работает также для отдельных вложенных элементов-->
+          <div class="multifilter__menu">
+            <div class="catalog-mobile-menu active">
+              <div class="catalog-mobile-menu__container">
+                <div class="catalog-mobile-menu__header"><button class="catalog-mobile-menu__btn-back"></button><span class="catalog-mobile-menu__title">Фильтр</span></div>
+                <div class="catalog-mobile-menu__wrapper">
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-1"><label class="multifilter-checkbox__label" for="m-f-2-check-1">4 Dimension Nutrition</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-2" checked><label class="multifilter-checkbox__label" for="m-f-2-check-2">ActivLab</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-3" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-3">ASM</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-4"><label class="multifilter-checkbox__label" for="m-f-2-check-4">4 Dimension Nutrition</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-5" checked><label class="multifilter-checkbox__label" for="m-f-2-check-5">ActivLab</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-6" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-6">ASM</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-7"><label class="multifilter-checkbox__label" for="m-f-2-check-7">4 Dimension Nutrition</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-8" checked><label class="multifilter-checkbox__label" for="m-f-2-check-8">ActivLab</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-9" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-9">ASM</label></div>
+                </div>
+                <div class="catalog-mobile-menu__footer"><button class="catalog-mobile-menu__btn-footer btn btn-gray-2">Сбросить</button></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="multifilter">
-          <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Бренд<span class="multifilter__total">2</span></span><!-- dropdown button--></button><button class="multifilter__btn-clear">Сбросить</button>
-          <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false">
-            <!-- dropdown--><input class="multifilter__search" type="text" placeholder="Поиск по брендам">
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-            <div class="p-3">dropdown</div>
-          </div>
+        <div class="multifilter active"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Бренд<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+          <div class="multifilter__menu"></div>
         </div>
-        <div class="multifilter active">
+        <div class="multifilter">
           <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Страна<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button><!-- dropdown button-->
-          <div class="multifilter__dropdown dropdown-menu">
+          <div class="multifilter__dropdown dropdown-menu" role="form">
             <!-- dropdown-->
             <div class="p-1">dropdown</div>
           </div>
         </div>
-        <div class="multifilter">
-          <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Объём, кг<span class="multifilter__total">2</span></span></button><!-- dropdown button-->
-          <div class="multifilter__dropdown dropdown-menu">
+        <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Объём, кг<span class="multifilter__total">2</span></span></button>
+          <div class="multifilter__dropdown dropdown-menu" role="form">
             <!-- dropdown-->
             <div class="p-1">dropdown</div>
           </div>
         </div>
-        <div class="multifilter">
-          <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Порции<span class="multifilter__total">2</span></span></button><!-- dropdown button-->
-          <div class="multifilter__dropdown dropdown-menu">
+        <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Порции<span class="multifilter__total">2</span></span></button>
+          <div class="multifilter__dropdown dropdown-menu" role="form">
             <!-- dropdown-->
             <div class="p-1">dropdown</div>
           </div>
         </div>
-        <div class="multifilter">
-          <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">% Белка</span></button><!-- dropdown button-->
-          <div class="multifilter__dropdown dropdown-menu">
+        <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">% Белка</span></button>
+          <div class="multifilter__dropdown dropdown-menu" role="form">
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Время приёма</span></button>
+          <div class="dropdown-menu" role="form">
+            <div class="p-1">dropdown</div>
+          </div>
+        </div>
+        <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown" data-boundary="viewport"><span class="multifilter__value">Цена</span></button>
+          <div class="multifilter__dropdown dropdown-menu" role="form">
             <!-- dropdown-->
-            <div class="p-1">dropdown</div>
-          </div>
-        </div>
-        <div class="multifilter">
-          <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Время приёма</span></button><!-- dropdown button-->
-          <div class="multifilter__dropdown dropdown-menu">
-            <div class="p-1">dropdown</div>
-          </div>
-        </div>
-        <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Цена</span></button>
-          <div class="multifilter__dropdown dropdown-menu">
             <div class="multifilter-price">
               <div class="multifilter-price__title"><span class="multifilter-price__start">От</span><span class="multifilter-price__end">До</span></div>
               <div class="multifilter-price__range">
@@ -630,7 +642,20 @@
           </div>
         </div>
       </div>
-      <div class="catalog-mobile-control__footer"><button class="catalog-mobile-control__btn-footer btn btn-gray-2">Сбросить</button><button class="catalog-mobile-control__btn-footer btn btn-red">Применить</button></div>
+      <div class="catalog-mobile-menu__footer"><button class="catalog-mobile-menu__btn-footer btn btn-gray-2">Сбросить</button><button class="catalog-mobile-menu__btn-footer btn btn-red">Применить</button></div>
+    </div>
+  </div>
+  <div class="catalog-mobile-menu" id="mobile-sort">
+    <div class="catalog-mobile-menu__container">
+      <div class="catalog-mobile-menu__header"><span class="catalog-mobile-menu__title">Сортировка</span><button class="catalog-mobile-menu__btn-close" data-toggle="menu" data-target="#mobile-sort"></button></div>
+      <div class="catalog-mobile-menu__wrapper">
+        <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-1" name="m-sort" checked><label class="multifilter-radio__label" for="m-s-1-check-1">По популярности</label></div>
+        <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-2" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-2">Сначала дешевые</label></div>
+        <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-3" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-3">Сначала дорогие</label></div>
+        <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-4" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-4">По названию (А-Я)</label></div>
+        <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-5" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-5">По названию (Я-А)</label></div>
+      </div>
+      <div class="catalog-mobile-menu__footer"><button class="catalog-mobile-menu__btn-footer btn btn-red">Применить</button></div>
     </div>
   </div>
   <div class="wrapper">
@@ -723,8 +748,7 @@
                   <div class="p-1">dropdown</div>
                 </div>
               </div>
-              <div class="multifilter">
-                <!-- dropdown container--><button class="multifilter__content" data-toggle="dropdown" data-boundary="viewport"><span class="multifilter__value">Цена</span></button><!-- dropdown button-->
+              <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown" data-boundary="viewport"><span class="multifilter__value">Цена</span></button>
                 <div class="multifilter__dropdown dropdown-menu" role="form">
                   <!-- dropdown-->
                   <div class="multifilter-price">
@@ -781,7 +805,7 @@
         </div>
       </div>
       <div class="catalog-header__mobile-control">
-        <div class="catalog-control"><button class="catalog-control__button catalog-control__button_filter">Фильтр</button><button class="catalog-control__button catalog-control__button_sort">Сорт.</button></div>
+        <div class="catalog-control"><button class="catalog-control__button catalog-control__button_filter" data-toggle="menu" data-target="#mobile-filter">Фильтр</button><button class="catalog-control__button catalog-control__button_sort" data-toggle="menu" data-target="#mobile-sort">Сорт.</button></div>
       </div>
     </div>
     <div class="catalog">
