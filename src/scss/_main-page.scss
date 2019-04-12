@@ -1,22 +1,3 @@
-body {
-  @include dev() {
-    //background: url("../img/rm/1920.png") center top no-repeat;
-    background: url('../img/rm/320.png') center 1px no-repeat;
-
-    > * {
-      opacity: .5;
-    }
-
-    @include media-breakpoint-up(md) {
-      background: url('../img/rm/768.png') center top no-repeat;
-    }
-
-    @include media-breakpoint-up(xl) {
-      background: url('../img/rm/1920.png') center top no-repeat;
-    }
-  }
-}
-
 $section-padding-top: 38px;
 $section-padding-bottom: 30px;
 

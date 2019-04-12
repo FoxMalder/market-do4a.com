@@ -66,3 +66,23 @@ $container-max-widths: (
 );
 
 $font-path: '../fonts/';
+
+
+
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+
+$dropdown-min-width:                316px;
+$dropdown-padding-y:                10px;
+$dropdown-spacer:                   0;
+$dropdown-font-size:                $font-size-base;
+$dropdown-color:                    #000;
+$dropdown-bg:                       #efefef;
+$dropdown-border-color:             transparent;
+$dropdown-border-radius:            0;
+$dropdown-border-width:             0;
+//$dropdown-divider-bg:               $gray-200;
+//$dropdown-divider-margin-y:         $nav-divider-margin-y;
+$dropdown-box-shadow:               none;

@@ -1,26 +1,3 @@
-body {
-
-  @include dev() {
-    //background: url("../img/rm/1920.png") center top no-repeat;
-    background: url('../img/rm/320.png') center 1px no-repeat;
-
-    > * {
-      opacity: .5;
-    }
-
-    @include media-breakpoint-up(md) {
-      background-image: url('../img/rm/768.png');
-      background-position: center top;
-    }
-
-    @include media-breakpoint-up(xl) {
-      background-image: url('../img/rm/catalog-1920-2.png');
-      background-position: center -37px;
-
-    }
-  }
-}
-
 .catalog-banner {
   position: relative;
   padding: 22px 0;
@@ -180,11 +157,12 @@ body {
 .catalog-description {
   padding: 60px 0;
   background: #fff;
-  //font-size: 15px;
-  //line-height: 23px;
 }
 
 .catalog-header {
+  color: #000;
+  font-size: 16px;
+  letter-spacing: -.01em;
 
   &__sorting,
   &__filter {
@@ -199,30 +177,32 @@ body {
   @include media-breakpoint-up(md) {
     &__filter {
       display: block;
-      padding-top: 10px;
-      padding-bottom: 13px;
+      padding-top: 9px;
+      padding-bottom: 12px;
+
       background-color: #fff;
 
-      .filter__reset,
-      .multifilter__label,
-      .multifilter__value {
+      .multifilter__content[data-toggle='dropdown'] {
+        &:hover {
+          background-color: hsl(0, 0%, 97%);
+        }
+      }
+
+      .filter__btn-reset,
+      .multifilter__content > * {
         @include mre-height-block(16px, 40px, 1);
       }
     }
+
     &__sorting {
       display: block;
+      padding-top: 12px;
+      padding-bottom: 14px;
 
-      padding-top: 10px;
-      padding-bottom: 13px;
-      
-      .multifilter__label,
-      .multifilter__value {
+      font-weight: 500;
+
+      .multifilter__content > * {
         @include mre-height-block(16px, 40px, 1);
-      }
-
-      .multifilter__content > .input-checkbox {
-        padding-top: 20px;
-        padding-bottom: 20px;
       }
     }
   }
@@ -232,9 +212,8 @@ body {
       padding-top: 0;
       padding-bottom: 0;
 
-      .filter__reset,
-      .multifilter__label,
-      .multifilter__value {
+      .filter__btn-reset,
+      .multifilter__content > * {
         @include mre-height-block(16px, 58px, 1);
       }
     }
@@ -243,63 +222,58 @@ body {
       padding-top: 0;
       padding-bottom: 0;
 
-      .multifilter__label,
-      .multifilter__value {
+      .multifilter__content > * {
         @include mre-height-block(16px, 64px, 1);
-      }
-
-      .multifilter__content > .input-checkbox {
-        padding-top: 20px;
-        padding-bottom: 20px;
       }
     }
   }
 }
+
+
+$multifilter-padding-x: (
+  xl: 15px
+);
 
 .filter {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
 
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: (map_get($multifilter-padding-x, xl) * -1);
+  margin-left: (map_get($multifilter-padding-x, xl) * -1);
 
   &__list {
-
-    color: #000;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -.01em;
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  &__reset {
+  &__btn-reset {
     @extend %button-reset;
     @include title;
-    display: inline-flex;
-    //white-space: nowrap;
+    display: inline-block;
     position: relative;
-    align-items: center;
-    //height: 58px;
-    padding-right: 15px;
-    padding-left: 15px;
-
+    padding-right: map_get($multifilter-padding-x, xl);
+    padding-left: (map_get($multifilter-padding-x, xl) + 18px + 4px);
     color: $main-color;
-    font-size: 16px;
 
     &::before {
       content: '';
       display: inline-block;
-      width: 18px;
-      height: 18px;
-      margin-right: 5px;
+      position: absolute;
+      top: calc(50% - 9px);
       //position: absolute;
       //lef
+
+      left: map_get($multifilter-padding-x, xl);
+      width: 18px;
+      height: 18px;
 
       @include sprite('close', (
         color: $main-color,
       ));
     }
   }
+
 }
 
 .sorting {
@@ -307,18 +281,33 @@ body {
   align-items: flex-start;
   justify-content: space-between;
 
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: (map_get($multifilter-padding-x, xl) * -1);
+  margin-left: (map_get($multifilter-padding-x, xl) * -1);
 
   &__list {
     display: flex;
     flex: 1 1 auto;
-
     flex-wrap: wrap;
   }
 
-  &__checkbox {
-    //margin-left: auto;
+  &__change-store {
+    @include media-breakpoint-up(xl) {
+      margin-left: auto;
+
+      .multifilter {
+        &__content {
+          max-width: 315px;
+        }
+
+        &__label {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  &__checkbox-container {
+    flex: 0 0 auto;
   }
 }
 
@@ -336,7 +325,7 @@ body {
   background: #f5f5f5;
 
   &.active {
-    display: block;
+    display: block; // flex?
   }
 
   @include media-breakpoint-up(md) {
@@ -358,19 +347,15 @@ body {
     display: flex;
     align-items: center;
     padding: 28px (map_get($grid-gutter-width-map, xs) / 2);
-
   }
 
   &__title {
-
     @include title;
-
     color: #101010;
     font-size: 24px;
   }
 
   &__btn-close {
-
     @extend %button-reset;
     width: 28px;
     height: 28px;
@@ -386,7 +371,6 @@ body {
   }
 
   &__footer {
-
     display: flex;
   }
 
@@ -398,100 +382,19 @@ body {
   }
 }
 
+////////////////////////////////////////////////////////////
 //
 // Фильтры
 //
+//
 
 .multifilter {
+  display: flex;
   position: relative;
-  //display: flex;
-  font-size: 16px;
+  align-items: center;
 
   @include media-breakpoint-up(md) {
     display: inline-flex;
-    align-items: center;
-    //margin-right: 2px;
-  }
-
-  &_active,
-  &.active {
-    .multifilter__content {
-      &[data-toggle='dropdown'] {
-        padding-right: 42px;
-
-        &::after {
-          right: 40px;
-        }
-      }
-    }
-
-    //.multifilter__total {
-    //  right: (19px + 25px);
-    //}
-
-    .multifilter__btn-clear {
-      display: block;
-    }
-  }
-
-  //&.show {
-  //  background: #f2f2f2;
-  //}
-
-  &__label {
-    margin-right: 7px;
-    color: rgba(black, .4);
-  }
-
-  &__value {
-    //font-weight: 500;
-    display: inline-block;
-    position: relative;
-    max-width: 140px;
-    //padding-right: 18px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  //
-  //&__label,
-  //&__value {
-  //  @include media-breakpoint-up(md) {
-  //    @include mre-height-block(16px, 58px, 1);
-  //  }
-  //}
-
-  &__total {
-    @include title;
-    position: absolute;
-    //top: 14px;
-    //right: 19px;
-
-    right: 8px;
-
-    min-width: 13px;
-    height: 13px;
-    padding: 2px 2px 1px;
-    border-radius: 7px;
-    background-color: $main-color;
-
-    color: white;
-    font-size: 10px;
-    line-height: 1;
-    //line-height: 10px;
-
-    text-align: center;
-
-    @include media-breakpoint-up(xl) {
-      top: calc(50% - 17px);
-      right: 6px;
-      min-width: 18px;
-      height: 18px;
-      padding: 3px 4px;
-      border-radius: 9px;
-      font-size: 12px;
-    }
   }
 
   &__content {
@@ -499,64 +402,111 @@ body {
 
     display: flex;
     position: relative;
+    align-items: center;
     width: 100%; // only mobile?
-    //height: 52px;
     padding: 5px (map_get($grid-gutter-width-map, xs) / 2);
-    font-weight: $font-weight-normal;
-    letter-spacing: -.01em;
     white-space: nowrap;
-    cursor: default;
-
-    &[data-toggle='dropdown'] {
-      cursor: pointer;
-
-      .multifilter__value {
-        padding-right: 18px;
-      }
-
-      &:hover {
-        background-color: #f8f8f8;
-      }
-
-      .show > & {
-        background-color: #efefef;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: calc(50% - 4px);
-        right: (map_get($grid-gutter-width-map, xs) / 2);
-        border-top: 4px solid transparent;
-        border-right: 0;
-        border-bottom: 4px solid transparent;
-        border-left: 8px solid #101010;
-        opacity: .2;
-
-        @include media-breakpoint-up(md) {
-          top: calc(50% - 3px);
-          right: 15px;
-
-          border-top: 6px solid #101010;
-          border-right: 4px solid transparent;
-          border-bottom: 0;
-          border-left: 4px solid transparent;
-          opacity: 1;
-        }
-      }
-    }
+    cursor: auto;
 
     @include media-breakpoint-up(md) {
-      //height: 58px;
-      padding: 0 15px;
-      //&::after {
-      //  display: none;
-      //}
+      padding: 0 map_get($multifilter-padding-x, xl);
+    }
+
+    @include media-breakpoint-up(xl) {
+      max-width: 250px;
     }
   }
 
-  &__btn-clear {
+  &__content[data-toggle='dropdown'] {
+    transition: background .3s ease;
+    cursor: pointer;
 
+    &:hover {
+      background-color: hsl(0, 0%, 95%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(50% - 4px);
+      right: (map_get($grid-gutter-width-map, xs) / 2);
+      border-top: 4px solid transparent;
+      border-right: 0;
+      border-bottom: 4px solid transparent;
+      border-left: 8px solid #101010;
+      opacity: .2;
+
+      @include media-breakpoint-up(md) {
+        top: calc(50% - 3px);
+        right: map_get($multifilter-padding-x, xl);
+
+        border-top: 6px solid #101010;
+        border-right: 4px solid transparent;
+        border-bottom: 0;
+        border-left: 4px solid transparent;
+        opacity: 1;
+      }
+    }
+
+    .multifilter.show & {
+      background-color: hsl(0, 0%, 93%);
+    }
+
+    .multifilter.active & {
+      //padding-right: (map_get($multifilter-padding-x, xl) + 23px);
+      padding-right: (map_get($multifilter-padding-x, xl) + 27px);
+
+      &::after {
+        right: 40px;
+      }
+
+      //@include media-breakpoint-up(xl) {
+      //  padding-right: (map_get($multifilter-padding-x, xl) + 27px);
+      //}
+    }
+
+    .multifilter__value {
+      padding-right: 18px;
+    }
+  }
+
+  &__label {
+    flex: 0 0 auto;
+    margin-right: 7px;
+    color: rgba(#000, .4);
+  }
+
+  &__value {
+    position: relative;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // Иконка с количеством
+  //
+  &__total {
+    @include title;
+    position: absolute;
+    top: calc(50% - 17px);
+
+    right: 6px;
+    min-width: 18px;
+    height: 18px;
+
+    padding: 3px 4px;
+    border-radius: 9px;
+    background-color: $main-color;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+
+    //@include media-breakpoint-up(xl) {
+    //}
+  }
+
+  &__btn-clear {
     @extend %button-reset;
 
     display: none;
@@ -574,9 +524,9 @@ body {
     letter-spacing: -0.01em;
     line-height: normal;
 
-    //@include text-hide;
-
-    //color: #9b9b9b;
+    .multifilter.active & {
+      display: block;
+    }
 
 
     &::before {
@@ -614,13 +564,6 @@ body {
   }
 
   &__dropdown {
-    display: none;
-    position: absolute;
-    z-index: $zindex-dropdown;
-    top: 100%;
-    left: 0;
-    padding: 10px 0;
-    background: #efefef;
 
     &[data-simplebar] {
       width: 316px;
@@ -655,21 +598,19 @@ body {
         }
       }
     }
-
-    &.show {
-      display: block;
-    }
   }
 
-  &__row {
-    margin-bottom: 25px;
-    padding: 0 22px;
-  }
+  //&__row {
+  //  margin-bottom: 25px;
+  //  padding: 0 22px;
+  //}
 }
 
+$multifilter-menu-padding-x: 22px;
+
 .multifilter-search {
-  margin-bottom: 17px;
-  padding: 0 22px;
+  margin-bottom: 5px;
+  padding: 12px $multifilter-menu-padding-x;
 
   &__input {
     display: block;
@@ -685,9 +626,74 @@ body {
   }
 }
 
+
 .multifilter-checkbox {
   margin-bottom: 1px;
-  padding: 12px 22px;
+
+  &__input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:checked {
+      ~ .multifilter-checkbox__label {
+        &::after {
+          transform: rotate(45deg);
+          opacity: 1;
+        }
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      ~ .multifilter-checkbox__label {
+        cursor: not-allowed;
+
+        &::before {
+          opacity: .2;
+        }
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 12px $multifilter-menu-padding-x;
+    cursor: pointer;
+    transition: background .3s ease;
+
+    &:hover {
+      background-color: #E5E5E5;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - 10px);
+      right: $multifilter-menu-padding-x;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #000;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - #{10px - 4px});
+      right: ($multifilter-menu-padding-x + 8px);
+      width: 5px;
+      height: 10px;
+      transition: all .3s ease;
+      border-right: 2px solid $main-color;
+      border-bottom: 2px solid $main-color;
+      opacity: 0;
+    }
+  }
 }
 
 .multifilter-radio {
@@ -724,7 +730,7 @@ body {
     position: relative;
     width: 100%;
     margin-bottom: 0;
-    padding: 14px 22px;
+    padding: 14px $multifilter-menu-padding-x;
     transition: all .3s ease;
     line-height: 1;
     vertical-align: top;
@@ -752,7 +758,7 @@ body {
       display: block;
       position: absolute;
       top: 15px;
-      right: 23px;
+      right: ($multifilter-menu-padding-x + 1);
       width: 16px;
       height: 14px;
       transition: all .3s ease;
@@ -765,7 +771,7 @@ body {
 
 .multifilter-price {
   width: (327px + 22px);
-  padding: 0 22px;
+  padding: 8px $multifilter-menu-padding-x 18px;
 
   &__title {
     display: flex;
@@ -835,6 +841,13 @@ body {
   }
 }
 
+
+////////////////////////////////////////////////////////////
+//
+// Каталог
+//
+//
+
 .catalog {
   &__container {
     @include make-container(0);
@@ -855,6 +868,7 @@ body {
     border-color: #e8e8e8;
 
     @include media-breakpoint-up(md) {
+      height: 440px;
       margin-bottom: map_get($grid-gutter-width-map, md);
       padding-right: (map_get($grid-gutter-width-map, md) / 2);
       padding-left: (map_get($grid-gutter-width-map, md) / 2);
@@ -920,13 +934,17 @@ body {
     height: 100%;
     padding: 12px;
     transition: box-shadow .3s ease;
-    //background: url("../img/rm/product-card-320.png") center top no-repeat;
-
-
     background-color: #fff;
 
     @include media-breakpoint-up(md) {
-      padding: 0 20px 22px;
+      padding: 0 20px 23px;
+    }
+
+    @include dev() {
+      background: url('../img/rm/product-card-320.png') center top no-repeat;
+      @include media-breakpoint-up(md) {
+        background: url('../img/rm/product-card-768.png') center top no-repeat;
+      }
     }
   }
 
@@ -952,46 +970,54 @@ body {
 
   &__favorites {
     @extend %button-reset;
+    display: block;
     position: absolute;
     z-index: 1;
+
     top: 12px;
     right: 12px;
-
     width: 21px;
     height: 19px;
-    @include sprite('heart', (
-      fill: $main-color
-    ));
-    background-size: 21px 19px;
     color: $main-color;
 
-    &:hover {
-      @include sprite('heart-fill');
-    }
-
-    &_active,
-    &.active {
-
+    > svg {
+      width: 100%;
+      height: 100%;
+      transition: all .3s ease;
+      fill-opacity: 0;
     }
 
     &:focus {
       outline: none;
     }
 
+    &:hover {
+      > svg {
+        fill-opacity: .3;
+      }
+    }
+
+    &_active,
+    &.active {
+      > svg {
+        fill-opacity: 1;
+      }
+    }
+
     @include media-breakpoint-up(md) {
       top: 20px;
       right: 20px;
-      width: 35px;
-      height: 35px;
-      background-size: 31px 27px;
+      width: 31px;
+      height: 27px;
     }
   }
 
   &__img {
     display: flex;
+    flex: 0 0 118px;
     align-items: center;
     justify-content: center;
-    height: 118px;
+    max-height: 118px;
 
     > img {
       max-width: 100%;
@@ -999,28 +1025,44 @@ body {
     }
 
     @include media-breakpoint-up(md) {
-      height: 230px;
+      flex: 0 0 230px;
+      max-height: 230px;
     }
   }
 
   &__title {
-    @extend %title;
-
+    @include title;
     display: block;
-    display: -webkit-box;
-    height: 26px;
+    //flex: 1 1 auto;
+    //display: -webkit-box;
+    //height: 26px;
     margin-bottom: 12px;
     overflow: hidden;
 
     font-size: 12px;
     font-weight: $font-weight-bold;
     line-height: normal;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    //text-overflow: ellipsis;
+    //-webkit-line-clamp: 2;
+    //-webkit-box-orient: vertical;
+
+    &:hover {
+      color: #101010;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0);
+      pointer-events: auto;
+    }
 
     @include media-breakpoint-up(md) {
-      height: 48px;
       margin-bottom: 8px;
       font-size: 19px;
       line-height: 24px;
@@ -1028,16 +1070,18 @@ body {
   }
 
   &__description {
+    //flex: 1 1 auto;
     margin-bottom: 14px;
-    overflow: hidden;
+    //overflow: hidden;
+
     color: rgba(#000, .4);
     font-size: 10px;
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -.01em;
     line-height: normal;
-    //max-height: 16px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    //text-overflow: ellipsis;
+    //white-space: nowrap;
+
     @include media-breakpoint-up(md) {
       margin-bottom: 0;
       font-size: 13px;
@@ -1055,11 +1099,11 @@ body {
     text-transform: uppercase;
 
     @include media-breakpoint-up(md) {
+      //height: 65px;
       display: flex;
-
+      flex: 0 0 auto;
       align-items: flex-end;
       justify-content: space-between;
-      height: 65px;
     }
   }
 
@@ -1067,13 +1111,13 @@ body {
     margin-bottom: 3px;
     font-size: 19px;
 
-    &::before {
+    &[data-price-text]::before {
       content: attr(data-price-text);
       margin-right: 5px;
       font-size: 9px;
     }
 
-    &::after {
+    &[data-price-unit]::after {
       content: attr(data-price-unit);
       margin-left: 5px;
       font-family: $font-family-inter-ui;
@@ -1083,11 +1127,11 @@ body {
     @include media-breakpoint-up(md) {
       margin-bottom: 0;
       font-size: 28px;
-      &::before {
+      &[data-price-text]::before {
         margin-right: 9px;
         font-size: 18px;
       }
-      &::after {
+      &[data-price-unit]::after {
         margin-left: 12px;
       }
     }
@@ -1140,9 +1184,9 @@ body {
     letter-spacing: -.01em;
     line-height: 1;
     @include media-breakpoint-up(md) {
+      flex: 0 0 auto;
       flex-direction: row;
-      height: 50px;
-      margin-top: 0;
+      margin-top: 16px;
     }
   }
 
@@ -1157,7 +1201,7 @@ body {
   }
 
   &__stock {
-    color: rgba(black, .4);
+    color: rgba(#000, .4);
     font-size: 10px;
     font-weight: 600;
     text-align: right;
@@ -1187,14 +1231,15 @@ body {
   //  padding: 5px 4px 4px 9px;
   //  transform: $skew;
   //}
+
   &__stickers { // Контейнер
     display: flex;
     position: absolute;
-    top: 10px;
-
+    top: 0;
     left: 0;
     flex-direction: column;
     align-items: flex-start;
+    padding-top: 10px;
   }
 
   &__sticker {
@@ -1226,8 +1271,71 @@ body {
       color: #fff;
     }
 
+    &_center {
+      position: absolute;
+      top: 162px;
+      left: (162px + 3px);
+      margin-bottom: 0;
+    }
+
     @include media-breakpoint-up(md) {
       font-size: 11px;
     }
   }
+}
+
+.product-card-banner {
+  display: block;
+  position: relative;
+  height: 100%;
+  padding: 23px;
+  overflow: hidden;
+
+  background-color: #141414;
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+
+  //background-color: #fff;
+  //color: #101010;
+  //
+  //&:hover {
+  //  background-color: #141414;
+  //  color: #fff;
+  //
+  //  &::after {
+  //    transform: scale(1.05);
+  //  }
+  //}
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+
+    right: -221px;
+    bottom: -37px;
+
+    width: 616px;
+    height: 345px;
+    transform-origin: right bottom;
+    transition: all 1s cubic-bezier(0, .05, .13, 1);
+    background: url('../img/main/box.png') no-repeat;
+    background-size: contain;
+  }
+
+  &__title {
+    @include title;
+    font-size: 20px;
+    line-height: 27px;
+
+    span.price {
+      color: $main-color;
+      font-size: 27px;
+      line-height: 37px;
+    }
+  }
+
 }

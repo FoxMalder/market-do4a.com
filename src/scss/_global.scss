@@ -1,4 +1,27 @@
-//@import url('https://rsms.me/inter/inter.css');
+body {
+  @include dev() {
+    //background: url("../img/rm/1920.png") center top no-repeat;
+    background: url('../img/rm/320.png') center 1px no-repeat;
+
+    > * {
+      opacity: .5;
+    }
+
+    @include media-breakpoint-up(md) {
+      background: url('../img/rm/768.png') center top no-repeat;
+    }
+
+    @include media-breakpoint-up(xl) {
+      //background: url('../img/rm/1920.png') center top no-repeat;
+
+      //background: url('../img/rm/1920-login.png') center top no-repeat;
+
+      background: url('../img/rm/catalog-1920.png') center 1px no-repeat;
+      //background: url('../img/rm/catalog-1920-2.png') center -37px no-repeat;
+    }
+  }
+}
+
 
 %title {
   font: {
@@ -409,7 +432,8 @@ textarea.form-control {
 .input-checkbox {
   display: block;
   position: relative;
-  padding-left: 32px;
+  padding: 4px 0 4px 32px;
+  line-height: 1;
 
   &_right {
     padding-right: 32px;
@@ -448,7 +472,11 @@ textarea.form-control {
     }
 
     &:disabled {
+      cursor: not-allowed;
+
       ~ .input-checkbox__label {
+        cursor: not-allowed;
+
         &::before {
           opacity: .2;
         }
@@ -460,17 +488,16 @@ textarea.form-control {
     position: relative;
     width: 100%;
     margin-bottom: 0;
-    vertical-align: top;
     cursor: pointer;
 
     &::before {
       content: '';
       display: block;
       position: absolute;
-      top: 1px;
+      top: calc(0.5em - #{20px / 2});
+      //top: 1px;
       left: -32px;
       width: 20px;
-      //pointer-events: none;
       height: 20px;
       border: 2px solid #000;
     }
@@ -479,8 +506,8 @@ textarea.form-control {
       content: '';
       display: block;
       position: absolute;
-      top: 5px;
-
+      //top: 5px;
+      top: calc(0.5em - #{20px / 2 - 4px});
       left: -24px;
       width: 5px;
       height: 10px;

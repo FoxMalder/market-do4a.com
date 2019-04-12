@@ -12,6 +12,10 @@ $(document).ready(() => {
     closeExisting: true,
   });
 
+  $(document).on('click.bs.dropdown.data-api', '.multifilter [role="form"]', function(e) {
+    e.stopPropagation();
+  });
+
   // const price = [50, 10000];
 
 });

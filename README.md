@@ -21,3 +21,4 @@ $ yarn run start
 ## Демо
  - Главная: https://staremang.github.io/market-do4a.com/dist/index.html
  - Каталог: https://staremang.github.io/market-do4a.com/dist/catalog.html
+ - Тестирование элементов: https://staremang.github.io/market-do4a.com/dist/test.html
