@@ -6,13 +6,13 @@ html(lang='ru')
     body
         block header
             include template/header
-        .catalog-mobile-menu#mobile-filter
-            .catalog-mobile-menu__container
-                .catalog-mobile-menu__header
+        .catalog-filter-m
+            .filter-menu-m#mobile-filter
+                .filter-menu-m__header
                     //button.catalog-mobile__btn-back
-                    span.catalog-mobile-menu__title Фильтр
-                    button.catalog-mobile-menu__btn-close(data-toggle="menu" data-target="#mobile-filter")
-                .catalog-mobile-menu__wrapper
+                    span.filter-menu-m__title Фильтр
+                    button.filter-menu-m__btn-close
+                .filter-menu-m__wrapper
                     // Элемент фильтра
                     // Модификаторы:
                     //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
@@ -26,7 +26,7 @@ html(lang='ru')
                         //
                         // При использовании выпадающего меню обязателено использование <button>
                         // а также наличие атрибута [data-toggle="dropdown"]
-                        button.multifilter__content(data-toggle="menu")
+                        button.multifilter__content(data-toggle="filter-menu")
                             span.multifilter__label Категория:
                             span.multifilter__value Казеин и молоко
                                 span.multifilter__total 23
@@ -40,51 +40,50 @@ html(lang='ru')
                         //            Показывает меню
                         // Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем
                         // Работает также для отдельных вложенных элементов
-                        .multifilter__menu
-                            .catalog-mobile-menu.active
-                                .catalog-mobile-menu__container
-                                    .catalog-mobile-menu__header
-                                        button.catalog-mobile-menu__btn-back
-                                        span.catalog-mobile-menu__title Фильтр
-                                    .catalog-mobile-menu__wrapper
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
-                                            label.multifilter-checkbox__label(for="m-f-2-check-1")
-                                                | 4 Dimension Nutrition
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-2" checked=true)
-                                            label.multifilter-checkbox__label(for="m-f-2-check-2")
-                                                | ActivLab
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-3" disabled=true)
-                                            label.multifilter-checkbox__label(for="m-f-2-check-3")
-                                                | ASM
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-4")
-                                            label.multifilter-checkbox__label(for="m-f-2-check-4")
-                                                | 4 Dimension Nutrition
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-5" checked=true)
-                                            label.multifilter-checkbox__label(for="m-f-2-check-5")
-                                                | ActivLab
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-6" disabled=true)
-                                            label.multifilter-checkbox__label(for="m-f-2-check-6")
-                                                | ASM
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-7")
-                                            label.multifilter-checkbox__label(for="m-f-2-check-7")
-                                                | 4 Dimension Nutrition
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-8" checked=true)
-                                            label.multifilter-checkbox__label(for="m-f-2-check-8")
-                                                | ActivLab
-                                        .multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
-                                            label.multifilter-checkbox__label(for="m-f-2-check-9")
-                                                | ASM
-                                    .catalog-mobile-menu__footer
-                                        button.catalog-mobile-menu__btn-footer.btn.btn-gray-2 Сбросить
+                        .filter-menu-m
+                            .filter-menu-m__header
+                                button.filter-menu-m__btn-back
+                                span.filter-menu-m__title Фильтр
+                            .filter-menu-m__wrapper
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
+                                    label.multifilter-checkbox__label(for="m-f-2-check-1")
+                                        | 4 Dimension Nutrition
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-2" checked=true)
+                                    label.multifilter-checkbox__label(for="m-f-2-check-2")
+                                        | ActivLab
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-3" disabled=true)
+                                    label.multifilter-checkbox__label(for="m-f-2-check-3")
+                                        | ASM
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-4")
+                                    label.multifilter-checkbox__label(for="m-f-2-check-4")
+                                        | 4 Dimension Nutrition
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-5" checked=true)
+                                    label.multifilter-checkbox__label(for="m-f-2-check-5")
+                                        | ActivLab
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-6" disabled=true)
+                                    label.multifilter-checkbox__label(for="m-f-2-check-6")
+                                        | ASM
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-7")
+                                    label.multifilter-checkbox__label(for="m-f-2-check-7")
+                                        | 4 Dimension Nutrition
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-8" checked=true)
+                                    label.multifilter-checkbox__label(for="m-f-2-check-8")
+                                        | ActivLab
+                                .multifilter-checkbox
+                                    input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
+                                    label.multifilter-checkbox__label(for="m-f-2-check-9")
+                                        | ASM
+                            .filter-menu-m__footer
+                                button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
+
 
                     .multifilter.active
                         button.multifilter__content(data-toggle="dropdown")
@@ -143,15 +142,14 @@ html(lang='ru')
                                 .multifilter-price__num
                                     span.multifilter-price__start 50 ₽
                                     span.multifilter-price__end 10 000 ₽
-                .catalog-mobile-menu__footer
-                    button.catalog-mobile-menu__btn-footer.btn.btn-gray-2 Сбросить
-                    button.catalog-mobile-menu__btn-footer.btn.btn-red Применить
-        .catalog-mobile-menu#mobile-sort
-            .catalog-mobile-menu__container
-                .catalog-mobile-menu__header
-                    span.catalog-mobile-menu__title Сортировка
-                    button.catalog-mobile-menu__btn-close(data-toggle="menu" data-target="#mobile-sort")
-                .catalog-mobile-menu__wrapper
+                .filter-menu-m__footer
+                    button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
+                    button.filter-menu-m__btn-footer.btn.btn-red Применить
+            .filter-menu-m#mobile-sort
+                .filter-menu-m__header
+                    span.filter-menu-m__title Сортировка
+                    button.filter-menu-m__btn-close
+                .filter-menu-m__wrapper
                     .multifilter-radio
                         input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
                         label.multifilter-radio__label(for="m-s-1-check-1")
@@ -172,8 +170,9 @@ html(lang='ru')
                         input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
                         label.multifilter-radio__label(for="m-s-1-check-5")
                             | По названию (Я-А)
-                .catalog-mobile-menu__footer
-                    button.catalog-mobile-menu__btn-footer.btn.btn-red Применить
+                .filter-menu-m__footer
+                    button.filter-menu-m__btn-footer.btn.btn-red Применить
+
         .wrapper
             .page-header
                 .container
@@ -198,6 +197,8 @@ html(lang='ru')
                         .catalog-banner__promocode-text Промокод
                         .catalog-banner__promocode-value Muscle
 
+            .catalog-header-mobile
+                .catalog-header-mobile
             .catalog-header
                 .catalog-header__filter
                     .container
@@ -404,9 +405,17 @@ html(lang='ru')
 
 
                 .catalog-header__mobile-control
-                    .catalog-control
-                        button.catalog-control__button.catalog-control__button_filter(data-toggle="menu" data-target="#mobile-filter") Фильтр
-                        button.catalog-control__button.catalog-control__button_sort(data-toggle="menu" data-target="#mobile-sort") Сорт.
+                    .cat-mob-category
+                        .cat-mob-category__item Все категории
+                        .cat-mob-category__item.active Сывороточный
+                        .cat-mob-category__item Комплексный
+                        .cat-mob-category__item Сывороточный
+                        .cat-mob-category__item Комплексный
+                    .cat-mob-control
+                        button.cat-mob-control__button.cat-mob-control__button_filter(data-toggle="filter-menu" data-target="#mobile-filter")
+                            | Фильтр
+                        button.cat-mob-control__button.cat-mob-control__button_sort(data-toggle="filter-menu" data-target="#mobile-sort")
+                            | Сортировка
             .catalog
                 .catalog__container
                     .catalog__list

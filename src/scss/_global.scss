@@ -1,5 +1,5 @@
-body {
-  @include dev() {
+@include dev() {
+  body {
     //background: url("../img/rm/1920.png") center top no-repeat;
     background: url('../img/rm/320.png') center 1px no-repeat;
 
@@ -833,15 +833,15 @@ textarea.form-control {
 }
 
 .wrapper {
-  padding-top: 65px;
-  //padding-top: 45px;
-  @include media-breakpoint-up(md) {
-    padding-top: 0;
-  }
-
-  @include media-breakpoint-up(xl) {
-    padding-top: 0;
-  }
+  //padding-top: 65px;
+  ////padding-top: 45px;
+  //@include media-breakpoint-up(md) {
+  //  padding-top: 0;
+  //}
+  //
+  //@include media-breakpoint-up(xl) {
+  //  padding-top: 0;
+  //}
 }
 
 .page-header {

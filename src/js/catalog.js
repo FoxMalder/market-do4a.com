@@ -19,19 +19,22 @@
 $(() => {
 
 
-  $(document).on('click.catalog.menu', '[data-toggle="menu"]', function(event) {
-    if (event.currentTarget.tagName === 'A') {
+  $(document)
+    .on('click.filter.menu', '[data-toggle="filter-menu"]', function(event) {
       event.preventDefault();
-    }
+      event.stopPropagation();
 
-    const $trigger = $(this);
-    const selector = $trigger.data('target');
-    const selectors = [].slice.call(document.querySelectorAll(selector));
-    $(selectors).each(function() {
-      const $target = $(this);
+      const selector = $(this).data('target');
+      const $target = selector ? $(selector) : $(this).parent().children('.filter-menu-m');
 
-      // catalogMenu.toggle().call($target);
-      $target.toggleClass('active')
+      $target.toggleClass('active');
+    })
+    .on('click.filter.menu', '.filter-menu-m-close', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const $target = $(this).parents('.filter-menu-m');
+      $target.removeClass('active');
     });
-  });
+
 });

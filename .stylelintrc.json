@@ -3,6 +3,7 @@
   "rules": {
     "string-quotes": "single",
     "selector-class-pattern": null,
+    "number-leading-zero": null,
     "order/properties-order": [
       "content",
       "quotes",

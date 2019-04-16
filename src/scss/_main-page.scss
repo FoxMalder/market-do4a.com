@@ -74,13 +74,16 @@ $section-padding-bottom: 30px;
     height: 100%;
     padding-top: 21px;
     background-color: #1b1b1b;
+    padding-bottom: 46px;
 
     @include media-breakpoint-up(md) {
       padding-top: 34px;
+      padding-bottom: 100px;
     }
 
     @include media-breakpoint-up(xl) {
       padding-top: 45px;
+      padding-bottom: 120px;
     }
     //z-index: 0;
     //.slider__slide_active & {
@@ -109,6 +112,14 @@ $section-padding-bottom: 30px;
     transform: $skew;
     transform-origin: top;
     background-color: $main-color;
+  }
+
+  &__inner {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
   }
 
   &__title {
@@ -151,6 +162,16 @@ $section-padding-bottom: 30px;
     background-repeat: no-repeat;
     background-position: 90% 0;
     background-size: auto 100%;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    @include media-breakpoint-up(md) {
+      display: inline-block;
+      width: 336px;
+    }
   }
 }
 
