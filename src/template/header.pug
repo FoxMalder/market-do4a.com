@@ -473,7 +473,63 @@ header.header
                                                     input.input-counter(type='hidden', value='2')
         nav.header__category
             .container
-                +header-category
+                ul.header-category
+                    li.header-category__item
+                        a.header-category__link(href='#') Питание
+                        ul.h-multilevel-nav
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Протеин
+                                .h-multilevel-nav-second
+                                    img.h-multilevel-nav-second__img(src=require('./images/protein.png'))
+                                    ul.h-multilevel-nav-second__list
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Омега 3-6-9
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Витамины и минералы
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Для суставов и связок
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Тестобустеры и ZMA
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Антиоксиданты и Q10
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Для печени и ПКТ
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Качество сна
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Улучшение пщеварения
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Общеукрепляющие добавки
+                                        li.h-multilevel-nav-second__item
+                                            a.h-multilevel-nav-second__link(href='#') Активное долголетие
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Батончики, напитки, закуски
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Выносливость и силовые
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Гейнеры
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Похудение
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Продукты для здоровья
+                            li.h-multilevel-nav__item
+                                a.h-multilevel-nav__link Аминокислоты
+                    li.header-category__item
+                        a.header-category__link(href='#') Для похудения
+                    li.header-category__item
+                        a.header-category__link(href='#') Для массы
+                    li.header-category__item
+                        a.header-category__link(href='#') Для выносливости
+                    li.header-category__item
+                        a.header-category__link(href='#') Аксессуары
+                    li.header-category__item
+                        a.header-category__link(href='#') Одежда
+                    li.header-category__item
+                        a.header-category__link(href='#') Распродажа
+                    li.header-category__item
+                        a.header-category__link(href='#') О нас
+                    li.header-category__item
+                        a.header-category__link(href='#') Бренды
 
 .header-fixed
     .header-fixed__menu
