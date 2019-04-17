@@ -11,6 +11,8 @@ import {
 } from 'swiper/dist/js/swiper.esm';
 import HeaderSlider from './modules/HeaderSlider';
 import YandexMaps from './modules/Maps';
+import Parallax from './modules/Parallax';
+import noUiSlider from 'nouislider';
 
 
 Swiper.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual]);
@@ -19,8 +21,19 @@ Swiper.use([HeaderSlider]);
 window.Sticky = Sticky;
 
 
-$(() => {
+$(document).ready(() => {
   // Заглавный слайдер
+
+
+  Array.prototype.forEach.call(
+    document.querySelectorAll('.arnold'),
+    (el) => {
+      new Parallax(el.querySelector('.arnold__bg'), [-0.1, 0]);
+      new Parallax(el.querySelector('.arnold__img'), [0.1, 0]);
+    },
+  );
+
+
   const mainHeroSliderEl = document.querySelector('.hero-slider');
   if (mainHeroSliderEl) {
     new Swiper(mainHeroSliderEl, {

@@ -73,8 +73,8 @@ $section-padding-bottom: 30px;
   &__slide {
     height: 100%;
     padding-top: 21px;
-    background-color: #1b1b1b;
     padding-bottom: 46px;
+    background-color: #1b1b1b;
 
     @include media-breakpoint-up(md) {
       padding-top: 34px;
@@ -552,9 +552,9 @@ $section-padding-bottom: 30px;
 
   &__item {
     transform: scale(.6);
+    transition: all .3s ease;
     opacity: .5;
     filter: grayscale(100%);
-    transition: all .3s ease;
 
     &.active,
     &:hover {
@@ -993,7 +993,7 @@ $section-padding-bottom: 30px;
 .arnold {
   display: none;
 
-  @extend .skew;
+  //@extend .skew;
 
   position: relative;
 
@@ -1005,15 +1005,13 @@ $section-padding-bottom: 30px;
     position: absolute;
     width: 100%;
     height: 100%;
+    margin-left: -48px;
     overflow: hidden;
+    clip-path: polygon(84px 0, 100% 0%, calc(100% - 84px) 100%, 0% 100%);
 
     img {
-      @extend .skew-reverse;
-      //width: ;
-      max-width: none;
+      width: 100%;
       height: 100%;
-      margin-right: -30px;
-      margin-left: -50px;
       object-fit: cover;
     }
   }
@@ -1023,6 +1021,7 @@ $section-padding-bottom: 30px;
     width: 100%;
     height: 100%;
     background-color: $main-color;
+    clip-path: polygon(84px 0, 100% 0%, calc(100% - 84px) 100%, 0% 100%);
     //transform: translate(47px, 34px);
   }
 }
@@ -1097,10 +1096,10 @@ $section-padding-bottom: 30px;
     }
 
     &__arnold {
-      top: 30px;
+      top: 0;
       right: calc(50% - 600px);
-      width: 405px;
-      height: 500px;
+      width: 490px;
+      height: 515px;
     }
   }
 }
