@@ -325,10 +325,11 @@ header.header
                     +sprite('phone.svg')
                     |  +7 (920) 024-33-14
     .header__collapse
-        .container
-            .change-city-collapse.collapse(data-parent='.header')
+        .change-city-collapse.collapse(data-parent='.header')
+            .container
                 +change-city
-            .change-store-collapse.collapse(data-parent='.header')
+        .change-store-collapse.collapse(data-parent='.header')
+            .container
                 +change-store
     .header__fixed-block(data-sticky-class="is-sticky")
         .header__nav-center
@@ -473,63 +474,63 @@ header.header
                                                     input.input-counter(type='hidden', value='2')
         nav.header__category
             .container
-                ul.header-category
-                    li.header-category__item
-                        a.header-category__link(href='#') Питание
-                        ul.h-multilevel-nav
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Протеин
-                                .h-multilevel-nav-second
-                                    img.h-multilevel-nav-second__img(src=require('./images/protein.png'))
-                                    ul.h-multilevel-nav-second__list
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Омега 3-6-9
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Витамины и минералы
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Для суставов и связок
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Тестобустеры и ZMA
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Антиоксиданты и Q10
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Для печени и ПКТ
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Качество сна
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Улучшение пщеварения
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Общеукрепляющие добавки
-                                        li.h-multilevel-nav-second__item
-                                            a.h-multilevel-nav-second__link(href='#') Активное долголетие
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Батончики, напитки, закуски
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Выносливость и силовые
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Гейнеры
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Похудение
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Продукты для здоровья
-                            li.h-multilevel-nav__item
-                                a.h-multilevel-nav__link Аминокислоты
-                    li.header-category__item
-                        a.header-category__link(href='#') Для похудения
-                    li.header-category__item
-                        a.header-category__link(href='#') Для массы
-                    li.header-category__item
-                        a.header-category__link(href='#') Для выносливости
-                    li.header-category__item
-                        a.header-category__link(href='#') Аксессуары
-                    li.header-category__item
-                        a.header-category__link(href='#') Одежда
-                    li.header-category__item
-                        a.header-category__link(href='#') Распродажа
-                    li.header-category__item
-                        a.header-category__link(href='#') О нас
-                    li.header-category__item
-                        a.header-category__link(href='#') Бренды
+                ul.h-category
+                    li.h-category__item
+                        a.h-category__link(href='#') Питание
+                        ul.h-category-second
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Протеин
+                                .h-category-third
+                                    img.h-category-third__img(src=require('./images/protein.png'))
+                                    ul.h-category-third__list
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Омега 3-6-9
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Витамины и минералы
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Для суставов и связок
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Тестобустеры и ZMA
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Антиоксиданты и Q10
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Для печени и ПКТ
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Качество сна
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Улучшение пщеварения
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Общеукрепляющие добавки
+                                        li.h-category-third__item
+                                            a.h-category-third__link(href='#') Активное долголетие
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Батончики, напитки, закуски
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Выносливость и силовые
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Гейнеры
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Похудение
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Продукты для здоровья
+                            li.h-category-second__item
+                                a.h-category-second__link(href='#') Аминокислоты
+                    li.h-category__item
+                        a.h-category__link(href='#') Для похудения
+                    li.h-category__item
+                        a.h-category__link(href='#') Для массы
+                    li.h-category__item
+                        a.h-category__link(href='#') Для выносливости
+                    li.h-category__item
+                        a.h-category__link(href='#') Аксессуары
+                    li.h-category__item
+                        a.h-category__link(href='#') Одежда
+                    li.h-category__item
+                        a.h-category__link(href='#') Распродажа
+                    li.h-category__item
+                        a.h-category__link(href='#') О нас
+                    li.h-category__item
+                        a.h-category__link(href='#') Бренды
 
 .header-fixed
     .header-fixed__menu
