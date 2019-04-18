@@ -8,5 +8,5 @@ import '../scss/main.scss';
 
 import './global';
 
-import './main';
+// import './main';
 import './catalog';
