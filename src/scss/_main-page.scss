@@ -800,7 +800,7 @@ $section-padding-bottom: 30px;
   $product-img-transform: (
     xs: translate(50%, 50%) scale(.35),
     md: translate(50%, 50%) scale(.87),
-    xl: translate(50%, 50%) scale(1)
+    xl: translate(50%, 50%) translate(-90px, -140px)
   );
   $product-img-transform-hover: scale(1.1) translate(-3%, -3%);
 
@@ -827,7 +827,7 @@ $section-padding-bottom: 30px;
 
       @include media-breakpoint-up(xl) {
         //transform: map_get($product-img-transform, xl) $product-img-transform-hover;
-        transform: translate(25%, 25%) scale(1.1);
+        transform: map_get($product-img-transform, xl) $product-img-transform-hover;
       }
     }
   }
@@ -854,7 +854,8 @@ $section-padding-bottom: 30px;
       //transform: map_get($product-img-transform, xl);
       right: 0;
       bottom: 0;
-      transform: translate(30%, 30%);
+      //transform: translate(30%, 30%);
+      transform: translate(50%, 50%) translate(-90px, -140px);
     }
   }
 

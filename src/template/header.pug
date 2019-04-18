@@ -296,250 +296,252 @@ mixin change-store
 
 .header-banner
     | Бесплатная доставка при заказе от #[span.price 2 990]
-header.header
-    .header__nav-top
+
+header.h-navbar-top
+    .container
+        .h-navbar-top__inner
+            // Ширина: фиксированна
+            // Переполнение: -
+            // Позиционирование: К левому краю
+            .h-navbar-top__change-store
+                +select-city
+
+            // Ширина: Фиксированна
+            // Переполнение: Равномерное расположение
+            // Позиционирование: К левому краю
+            nav.h-navbar-top__menu
+                +page-nav
+
+            // Ширина: Фиксированна
+            // Переполнение: Обрезается
+            // Позиционирование: К левому краю
+            a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
+                +sprite('person.svg')
+                |  riverstart-person
+                //|  Войти
+
+            // Ширина: Фиксированна
+            // Переполнение: -
+            // Позиционирование: К правому краю
+            a.header-number(href='#')
+                +sprite('phone.svg')
+                |  +7 (920) 024-33-14
+
+header.h-navbar-collapse
+    .change-city-collapse.collapse(data-parent='.h-navbar-collapse')
         .container
-            .header-nav-top
-                // Ширина: фиксированна
-                // Переполнение: -
-                // Позиционирование: К левому краю
-                .header-nav-top__city
-                    +select-city
+            +change-city
+    .change-store-collapse.collapse(data-parent='.h-navbar-collapse')
+        .container
+            +change-store
 
-                // Ширина: Фиксированна
-                // Переполнение: Равномерное расположение
-                // Позиционирование: К левому краю
-                nav.header-nav-top__menu
-                    +page-nav
+header.h-navbar-fixed
+    .h-navbar-main
+        .container
+            .header-control
+                button.header-control__menu-btn
+                a.header-control__logo(href='/')
+                .header-control__search
+                    form.search-fild
+                        input.search-fild__input.input-text(placeholder='Поиск в каталоге', type='text')
+                        button.search-fild__loupe(type='submit')
+                            +sprite('loupe.svg')
 
-                // Ширина: Фиксированна
-                // Переполнение: Обрезается
-                // Позиционирование: К левому краю
-                a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
-                    +sprite('person.svg')
-                    |  riverstart-person
-                    //|  Войти
+                a.header-control__button.header-control__button_search(href='#')
+                    +sprite('loupe.svg')(width="17px", height="18px")
 
-                // Ширина: Фиксированна
-                // Переполнение: -
-                // Позиционирование: К правому краю
-                a.header-number(href='#')
-                    +sprite('phone.svg')
-                    |  +7 (920) 024-33-14
-    .header__collapse
-        .change-city-collapse.collapse(data-parent='.header')
-            .container
-                +change-city
-        .change-store-collapse.collapse(data-parent='.header')
-            .container
-                +change-store
-    .header__fixed-block
-        .header__nav-center
-            .container
-                .header-control
-                    button.header-control__menu-btn
-                    a.header-control__logo(href='/')
-                    .header-control__search
-                        form.search-fild
-                            input.search-fild__input.input-text(placeholder='Поиск в каталоге', type='text')
-                            button.search-fild__loupe(type='submit')
-                                +sprite('loupe.svg')
+                a.header-control__button.header-control__button_favorites(href='#')
+                    +sprite('heart-mobile.svg')(width="22px", height="19px")
 
-                    a.header-control__button.header-control__button_search(href='#')
-                        +sprite('loupe.svg')(width="17px", height="18px")
+                a.header-control__button.header-control__button_login(href='#')
+                    +sprite('person-mobile.svg')(width="18px", height="18px")
+                    span.header-control__notifications 2
 
-                    a.header-control__button.header-control__button_favorites(href='#')
-                        +sprite('heart-mobile.svg')(width="22px", height="19px")
-
-                    a.header-control__button.header-control__button_login(href='#')
-                        +sprite('person-mobile.svg')(width="18px", height="18px")
+                .header-control__cart-container
+                    //Кнопка корзины для мобилок
+                    a.header-control__button.header-control__button_cart(href='#')
+                        +sprite('cart.svg')(width="20px", height="22px")
                         span.header-control__notifications 2
 
-                    .header-control__cart-container
-                        //Кнопка корзины для мобилок
-                        a.header-control__button.header-control__button_cart(href='#')
-                            +sprite('cart.svg')(width="20px", height="22px")
-                            span.header-control__notifications 2
+                    // Кнопка корзины для десктопа
+                    .header-control__cart
+                        .button-cart.btn.btn-red.btn-skew
+                            .btn-skew__revers.button-cart__inner
+                                .button-cart__num 5
+                                .button-cart__block
+                                    .button-cart__title Корзина
+                                    .button-cart__price 12 245 ₽
+                        .header-cart
+                            .header-cart__wrapper(data-simplebar data-simplebar-auto-hide="false")
+                                .header-cart__header
+                                    .header-cart__title Товары в корзине
+                                    button.header-cart__btn-clear
+                                        +sprite('trash.svg')
+                                        |  Очистить
+                                .header-cart__item
+                                    .h-product-item
+                                        .h-product-item__img
+                                            img(alt='', src=require('./images/cart-product-1.png'))
+                                        .h-product-item__info
+                                            .h-product-item__name
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
+                                            .h-product-item__description 900 г.
+                                        .h-product-item__controls
+                                            .h-product-item__price-block
+                                                span.h-product-item__price.price 1 750
+                                                button.h-product-item__remove
+                                                    +sprite('trash.svg')
+                                            // Prod
+                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                            // Dev
+                                            .input-counter
+                                                button.input-counter__down -
+                                                span.input-counter__count 2
+                                                button.input-counter__up +
+                                                input.input-counter(type='hidden', value='2')
 
-                        // Кнопка корзины для десктопа
-                        .header-control__cart
-                            .button-cart.btn.btn-red.btn-skew
-                                .btn-skew__revers.button-cart__inner
-                                    .button-cart__num 5
-                                    .button-cart__block
-                                        .button-cart__title Корзина
-                                        .button-cart__price 12 245 ₽
-                            .header-cart
-                                .header-cart__wrapper(data-simplebar data-simplebar-auto-hide="false")
-                                    .header-cart__header
-                                        .header-cart__title Товары в корзине
-                                        button.header-cart__btn-clear
-                                            +sprite('trash.svg')
-                                            |  Очистить
-                                    .header-cart__item
-                                        .h-product-item
-                                            .h-product-item__img
-                                                img(alt='', src=require('./images/cart-product-1.png'))
-                                            .h-product-item__info
-                                                .h-product-item__name
-                                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
-                                                .h-product-item__description 900 г.
-                                            .h-product-item__controls
-                                                .h-product-item__price-block
-                                                    span.h-product-item__price.price 1 750
-                                                    button.h-product-item__remove
-                                                        +sprite('trash.svg')
-                                                // Prod
-                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                                // Dev
-                                                .input-counter
-                                                    button.input-counter__down -
-                                                    span.input-counter__count 2
-                                                    button.input-counter__up +
-                                                    input.input-counter(type='hidden', value='2')
+                                    .h-product-item
+                                        .h-product-item__img
+                                            img(alt='', src=require('./images/cart-product-1.png'))
+                                        .h-product-item__info
+                                            .h-product-item__name
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
+                                            .h-product-item__description 900 г.
+                                        .h-product-item__controls
+                                            .h-product-item__price-block
+                                                span.h-product-item__price.price 1 750
+                                                button.h-product-item__remove
+                                                    +sprite('trash.svg')
+                                            // Prod
+                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                            // dev
+                                            .input-counter
+                                                button.input-counter__down -
+                                                span.input-counter__count 2
+                                                button.input-counter__up +
+                                                input.input-counter(type='hidden', value='2')
 
-                                        .h-product-item
-                                            .h-product-item__img
-                                                img(alt='', src=require('./images/cart-product-1.png'))
-                                            .h-product-item__info
-                                                .h-product-item__name
-                                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
-                                                .h-product-item__description 900 г.
-                                            .h-product-item__controls
-                                                .h-product-item__price-block
-                                                    span.h-product-item__price.price 1 750
-                                                    button.h-product-item__remove
-                                                        +sprite('trash.svg')
-                                                // Prod
-                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                                // dev
-                                                .input-counter
-                                                    button.input-counter__down -
-                                                    span.input-counter__count 2
-                                                    button.input-counter__up +
-                                                    input.input-counter(type='hidden', value='2')
+                                    .h-product-item
+                                        .h-product-item__img
+                                            img(alt='', src=require('./images/cart-product-1.png'))
+                                        .h-product-item__info
+                                            .h-product-item__name
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
+                                            .h-product-item__description 900 г.
+                                        .h-product-item__controls
+                                            .h-product-item__price-block
+                                                span.h-product-item__price.price 1 750
+                                                button.h-product-item__remove
+                                                    +sprite('trash.svg')
+                                            // Prod
+                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                            // dev
+                                            .input-counter
+                                                button.input-counter__down -
+                                                span.input-counter__count 2
+                                                button.input-counter__up +
+                                                input.input-counter(type='hidden', value='2')
 
-                                        .h-product-item
-                                            .h-product-item__img
-                                                img(alt='', src=require('./images/cart-product-1.png'))
-                                            .h-product-item__info
-                                                .h-product-item__name
-                                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
-                                                .h-product-item__description 900 г.
-                                            .h-product-item__controls
-                                                .h-product-item__price-block
-                                                    span.h-product-item__price.price 1 750
-                                                    button.h-product-item__remove
-                                                        +sprite('trash.svg')
-                                                // Prod
-                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                                // dev
-                                                .input-counter
-                                                    button.input-counter__down -
-                                                    span.input-counter__count 2
-                                                    button.input-counter__up +
-                                                    input.input-counter(type='hidden', value='2')
+                                    .h-product-item.disabled
+                                        .h-product-item__img
+                                            img(alt='', src=require('./images/cart-product-1.png'))
+                                        .h-product-item__info
+                                            .h-product-item__name
+                                                | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
+                                            .h-product-item__description 900 г.
+                                        .h-product-item__controls
+                                            .h-product-item__price-block
+                                                span.h-product-item__price.price 1 750
+                                                button.h-product-item__remove
+                                                    +sprite('trash.svg')
+                                            // Prod
+                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                            // dev
+                                            .input-counter
+                                                button.input-counter__down -
+                                                span.input-counter__count 2
+                                                button.input-counter__up +
+                                                input.input-counter(type='hidden', value='2')
 
-                                        .h-product-item.disabled
-                                            .h-product-item__img
-                                                img(alt='', src=require('./images/cart-product-1.png'))
-                                            .h-product-item__info
-                                                .h-product-item__name
-                                                    | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!
-                                                .h-product-item__description 900 г.
-                                            .h-product-item__controls
-                                                .h-product-item__price-block
-                                                    span.h-product-item__price.price 1 750
-                                                    button.h-product-item__remove
-                                                        +sprite('trash.svg')
-                                                // Prod
-                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                                // dev
-                                                .input-counter
-                                                    button.input-counter__down -
-                                                    span.input-counter__count 2
-                                                    button.input-counter__up +
-                                                    input.input-counter(type='hidden', value='2')
-
-                                        .h-product-item
-                                            .h-product-item__img
-                                                img(alt='', src=require('./images/cart-product-1.png'))
-                                            .h-product-item__info
-                                                .h-product-item__name
-                                                    | Optimum nutrition gold standart whey
-                                                .h-product-item__description 900 г.
-                                            .h-product-item__controls
-                                                .h-product-item__price-block
-                                                    span.h-product-item__price.price 1 750
-                                                    button.h-product-item__remove
-                                                        +sprite('trash.svg')
-                                                // Prod
-                                                // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                                // dev
-                                                .input-counter
-                                                    button.input-counter__down -
-                                                    span.input-counter__count 2
-                                                    button.input-counter__up +
-                                                    input.input-counter(type='hidden', value='2')
-        nav.header__category
-            .container
-                ul.h-category
-                    li.h-category__item
-                        a.h-category__link(href='#') Питание
-                        ul.h-category-second
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Протеин
-                                .h-category-third
-                                    img.h-category-third__img(src=require('./images/protein.png'))
-                                    ul.h-category-third__list
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Омега 3-6-9
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Витамины и минералы
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Для суставов и связок
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Тестобустеры и ZMA
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Антиоксиданты и Q10
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Для печени и ПКТ
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Качество сна
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Улучшение пщеварения
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Общеукрепляющие добавки
-                                        li.h-category-third__item
-                                            a.h-category-third__link(href='#') Активное долголетие
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Батончики, напитки, закуски
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Выносливость и силовые
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Гейнеры
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Похудение
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Продукты для здоровья
-                            li.h-category-second__item
-                                a.h-category-second__link(href='#') Аминокислоты
-                    li.h-category__item
-                        a.h-category__link(href='#') Для похудения
-                    li.h-category__item
-                        a.h-category__link(href='#') Для массы
-                    li.h-category__item
-                        a.h-category__link(href='#') Для выносливости
-                    li.h-category__item
-                        a.h-category__link(href='#') Аксессуары
-                    li.h-category__item
-                        a.h-category__link(href='#') Одежда
-                    li.h-category__item
-                        a.h-category__link(href='#') Распродажа
-                    li.h-category__item
-                        a.h-category__link(href='#') О нас
-                    li.h-category__item
-                        a.h-category__link(href='#') Бренды
+                                    .h-product-item
+                                        .h-product-item__img
+                                            img(alt='', src=require('./images/cart-product-1.png'))
+                                        .h-product-item__info
+                                            .h-product-item__name
+                                                | Optimum nutrition gold standart whey
+                                            .h-product-item__description 900 г.
+                                        .h-product-item__controls
+                                            .h-product-item__price-block
+                                                span.h-product-item__price.price 1 750
+                                                button.h-product-item__remove
+                                                    +sprite('trash.svg')
+                                            // Prod
+                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
+                                            // dev
+                                            .input-counter
+                                                button.input-counter__down -
+                                                span.input-counter__count 2
+                                                button.input-counter__up +
+                                                input.input-counter(type='hidden', value='2')
+    .h-navbar-category
+        .container
+            ul.h-category
+                li.h-category__item
+                    a.h-category__link(href='#') Питание
+                    ul.h-category-second
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Протеин
+                            .h-category-third
+                                img.h-category-third__img(src=require('./images/protein.png'))
+                                ul.h-category-third__list
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Омега 3-6-9
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Витамины и минералы
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Для суставов и связок
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Тестобустеры и ZMA
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Антиоксиданты и Q10
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Для печени и ПКТ
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Качество сна
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Улучшение пщеварения
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Общеукрепляющие добавки
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Активное долголетие
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Батончики, напитки, закуски
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Выносливость и силовые
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Гейнеры
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Похудение
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Продукты для здоровья
+                        li.h-category-second__item
+                            a.h-category-second__link(href='#') Аминокислоты
+                li.h-category__item
+                    a.h-category__link(href='#') Для похудения
+                li.h-category__item
+                    a.h-category__link(href='#') Для массы
+                li.h-category__item
+                    a.h-category__link(href='#') Для выносливости
+                li.h-category__item
+                    a.h-category__link(href='#') Аксессуары
+                li.h-category__item
+                    a.h-category__link(href='#') Одежда
+                li.h-category__item
+                    a.h-category__link(href='#') Распродажа
+                li.h-category__item
+                    a.h-category__link(href='#') О нас
+                li.h-category__item
+                    a.h-category__link(href='#') Бренды
 
 .mobile-menu
     .mobile-menu__overlay

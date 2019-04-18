@@ -1236,7 +1236,9 @@ function initHeroSlider() {
       },
     },
   });
-  heroSlider.init();
+  window.addEventListener('load', () => {
+    heroSlider.init();
+  });
 }
 
 
@@ -1274,7 +1276,7 @@ $(() => {
     },
   });
 
-  // initHeroSlider();
+  initHeroSlider();
 
   if (document.documentElement.clientWidth >= 768) {
     [...document.querySelectorAll('.arnold')].forEach((el) => {

@@ -1,15 +1,16 @@
-import Sticky from 'sticky-js';
+import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 import Utils from '../utils/utils';
+
 
 class Header {
   constructor() {
     this.scrollOffset = window.pageYOffset;
     this.header = {
-      targets: Utils.parseTargets('.header'),
-      collapse: Utils.parseTargets('.header__collapse'),
-      fixedTargets: Utils.parseTargets('.header__fixed-block'),
+      // targets: Utils.parseTargets('.header'),
+      collapse: Utils.parseTargets('.h-navbar-collapse'),
+      fixedTargets: Utils.parseTargets('.h-navbar-fixed'),
       // Список элементов в не фиксированной области над фиксированной
-      fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.header__nav-top']),
+      fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.h-navbar-top']),
       // Высота не фиксированной области над фиксированной
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,
@@ -44,10 +45,12 @@ class Header {
     this.calculate();
     this.initListeners();
 
-    new Sticky('.header__fixed-block', {
-      marginTop: 0,
-      stickyClass: 'fixed',
-    });
+    Stickyfill.add(document.querySelectorAll('.header__fixed-block'));
+
+    // new Sticky('.header__fixed-block', {
+    //   marginTop: 0,
+    //   stickyClass: 'fixed',
+    // });
 
   }
 
@@ -117,26 +120,53 @@ class Header {
     //   this.fixingHeader(item);
     // });
 
-    this.header.collapse.forEach((item) => {
-      item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-    });
-    this.menu.targets.forEach((item) => {
-      item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-    });
+    if (this.vp.width < 1240) {
+      this.header.collapse.forEach((item) => {
+        item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+      });
+      this.menu.targets.forEach((item) => {
+        item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+      });
+    }
   };
 
   onWindowResize = () => {
     this.vp = Header.getViewportSize();
     this.calculate();
+
+    if (this.vp.width < 1240) {
+      this.header.collapse.forEach((item) => {
+        item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+        item.style.top = `${this.header.fixedOffset}px`;
+      });
+      this.menu.targets.forEach((item) => {
+        item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+      });
+    } else {
+      this.header.collapse.forEach((item) => {
+        item.style.maxHeight = '';
+        item.style.top = '';
+      });
+    }
   };
 
   onLoad = () => {
     this.calculate();
 
-    this.menu.targets.map((item) => {
-      item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-      return item;
-    });
+    if (this.vp.width < 1240) {
+      this.header.collapse.forEach((item) => {
+        item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+        item.style.top = `${this.header.fixedOffset}px`;
+      });
+      this.menu.targets.forEach((item) => {
+        item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+      });
+    } else {
+      this.header.collapse.forEach((item) => {
+        item.style.maxHeight = '';
+        item.style.top = '';
+      });
+    }
   };
 
   /*
