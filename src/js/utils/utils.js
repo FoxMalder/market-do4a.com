@@ -3,6 +3,26 @@ const Utils = {
     return typeof o === 'object' && o !== null && o.constructor && o.constructor === Object;
   },
 
+  flattenArray(arr) {
+    return arr.reduce((a, b) => a.concat(Array.isArray(b) ? Utils.flattenArray(b) : b), []);
+  },
+
+  toArray(o) {
+    if (Array.isArray(o)) return o;
+    if (typeof o === 'string') o = document.querySelectorAll(o) || o;
+    if (o instanceof NodeList || o instanceof HTMLCollection) {
+      return [].slice.call(o);
+    }
+    return [o];
+  },
+
+  parseTargets(targets) {
+    if (targets) {
+      return Utils.flattenArray(Array.isArray(targets) ? targets.map(Utils.toArray) : Utils.toArray(targets));
+    }
+    return [];
+  },
+
   extend(...args) {
     const to = Object(args[0]);
     for (let i = 1; i < args.length; i += 1) {

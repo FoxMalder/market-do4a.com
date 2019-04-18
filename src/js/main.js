@@ -12,7 +12,7 @@ import {
 import HeaderSlider from './modules/HeaderSlider';
 import YandexMaps from './modules/Maps';
 import Parallax from './modules/Parallax';
-import noUiSlider from 'nouislider';
+// import noUiSlider from 'nouislider';
 
 
 Swiper.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual]);
@@ -21,71 +21,72 @@ Swiper.use([HeaderSlider]);
 window.Sticky = Sticky;
 
 
-$(document).ready(() => {
+$(() => {
   // Заглавный слайдер
 
 
-  Array.prototype.forEach.call(
-    document.querySelectorAll('.arnold'),
-    (el) => {
-      new Parallax(el.querySelector('.arnold__bg'), [-0.1, 0]);
-      new Parallax(el.querySelector('.arnold__img'), [0.1, 0]);
-    },
-  );
+  // Array.prototype.forEach.call(
+  //   document.querySelectorAll('.arnold'),
+  //   (el) => {
+  //     new Parallax(el.querySelector('.arnold__bg'), [-0.1, 0]);
+  //     new Parallax(el.querySelector('.arnold__img'), [0.1, 0]);
+  //   },
+  // );
+
+  [...document.querySelectorAll('.arnold')].forEach((el) => {
+    new Parallax(el.querySelector('.arnold__bg'), [-0.1, 0]);
+    new Parallax(el.querySelector('.arnold__img'), [0.1, 0]);
+  });
+
+  new Swiper(document.querySelector('.hero-slider'), {
+    touchEventsTarget: 'wrapper',
+    effect: 'hero-slider',
+    // runCallbacksOnInit: false,
+    // watchSlidesVisibility: true,
+    // resistance: false,
+    // loop: true,
+    // speed: 0,
+
+    // autoplay: {
+    //   delay: 5000,
+    //   disableOnInteraction: false,
+    //   waitForTransition: false,
+    // },
+
+    containerModifierClass: 'slider_',
+    slideClass: 'slider__slide',
+    slideBlankClass: 'slider__slide_invisible-blank',
+    slideActiveClass: 'slider__slide_active',
+    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+    slideVisibleClass: 'slider__slide_visible',
+    slideDuplicateClass: 'slider__slide_duplicate',
+    slideNextClass: 'slider__slide_next',
+    slideDuplicateNextClass: 'slider__slide_duplicate-next',
+    slidePrevClass: 'slider__slide_prev',
+    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+    wrapperClass: 'slider__wrapper',
 
 
-  const mainHeroSliderEl = document.querySelector('.hero-slider');
-  if (mainHeroSliderEl) {
-    new Swiper(mainHeroSliderEl, {
-      touchEventsTarget: 'wrapper',
-      effect: 'hero-slider',
-      // runCallbacksOnInit: false,
-      // watchSlidesVisibility: true,
-      // resistance: false,
-      // loop: true,
-      // speed: 0,
+    // heroSliderEffect: {
+    //   duration: 1000,
+    // },
+    pagination: {
+      el: '.hero-slider-control',
+      clickable: true,
+      bulletClass: 'hero-slider-control__item',
+      bulletActiveClass: 'active',
 
-      // autoplay: {
-      //   delay: 5000,
-      //   disableOnInteraction: false,
-      //   waitForTransition: false,
-      // },
-
-      containerModifierClass: 'slider_',
-      slideClass: 'slider__slide',
-      slideBlankClass: 'slider__slide_invisible-blank',
-      slideActiveClass: 'slider__slide_active',
-      slideDuplicateActiveClass: 'slider__slide_duplicate-active',
-      slideVisibleClass: 'slider__slide_visible',
-      slideDuplicateClass: 'slider__slide_duplicate',
-      slideNextClass: 'slider__slide_next',
-      slideDuplicateNextClass: 'slider__slide_duplicate-next',
-      slidePrevClass: 'slider__slide_prev',
-      slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
-      wrapperClass: 'slider__wrapper',
-
-
-      // heroSliderEffect: {
-      //   duration: 1000,
-      // },
-      pagination: {
-        el: '.hero-slider-control',
-        clickable: true,
-        bulletClass: 'hero-slider-control__item',
-        bulletActiveClass: 'active',
-
-        renderBullet(index, className) {
-          return `
+      renderBullet(index, className) {
+        return `
             <div class="${className}">
               <div class="hero-slider-control__title">${this.slides[index].querySelector('.hero-slider__title').innerHTML}</div>
               <div class="hero-slider-control__loader">
                 <div class="hero-slider-control__loader-line"></div>
               </div>
             </div>`;
-        },
       },
-    });
-  }
+    },
+  });
 
   // Карта
   const mapEl = document.querySelector('#map');

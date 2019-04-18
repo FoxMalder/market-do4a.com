@@ -19,7 +19,6 @@ import Input from './modules/Input';
 
 window.noUiSlider = noUiSlider;
 
-
 $(() => {
   $('[data-fancybox]').fancybox({
     closeExisting: true,
@@ -32,7 +31,7 @@ $(() => {
   svg4everybody();
 
 
-  Header();
+  const header = new Header();
   Input();
 
 
