@@ -8791,18 +8791,13 @@ button.search-fild__loupe:focus, button.search-fild__loupe:active {
   }
 }
 .change-store__header {
-  display: none;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-align: start;
       align-items: flex-start;
   -ms-flex-pack: justify;
       justify-content: space-between;
   margin-bottom: 53px;
-}
-@media (min-width: 1240px) {
-  .change-store__header {
-    display: -ms-flexbox;
-    display: flex;
-  }
 }
 .change-store__title {
   font-family: "Bender", sans-serif;

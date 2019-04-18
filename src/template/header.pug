@@ -128,7 +128,7 @@ mixin change-city
     .change-city
         .change-city__header
             span.change-city__title Города в которых есть marketdo4a
-            button.btn.change-city__btn-close(data-target='#change-city', data-toggle='collapse')
+            button.btn.change-city__btn-close(data-toggle='collapse', data-target='.change-city-collapse')
         ul.change-city__list
             li.change-city__item(data-letter='А')
                 a.change-city__link(href='#') Ангарск
@@ -250,7 +250,7 @@ mixin change-store
                 | ВЫБЕРИТЕ МАГАЗИН
                 br
                 | в #[span.selected Название города]
-            button.btn.change-store__btn-close(data-target='#change-store', data-toggle='collapse')
+            button.btn.change-store__btn-close(data-toggle='collapse', data-target='.change-store-collapse')
         ul.change-store__list
             li.change-store__item
                 a.change-store__link.active(href='#')

@@ -1141,14 +1141,11 @@ button.search-fild__loupe {
   }
 
   &__header {
-    display: none;
+    display: flex;
     align-items: flex-start;
     justify-content: space-between;
     //height: 45px;
     margin-bottom: 53px;
-    @include media-breakpoint-up(xl) {
-      display: flex;
-    }
   }
 
   &__title {
