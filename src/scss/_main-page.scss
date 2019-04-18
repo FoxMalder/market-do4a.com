@@ -1245,7 +1245,7 @@ $section-padding-bottom: 30px;
 
     //@extend .container;
 
-    @include make-container();
+    @include make-container(0);
     @include make-container-max-widths();
 
     //@include media-breakpoint-down(xs) {
@@ -1277,6 +1277,8 @@ $section-padding-bottom: 30px;
   &__slider {
     height: 407px;
     //margin-top: 35px;
+    padding-right: (map_get($grid-gutter-width-map, xs) / 2);
+    padding-left: (map_get($grid-gutter-width-map, xs) / 2);
     overflow: visible;
   }
 
