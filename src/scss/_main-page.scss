@@ -41,9 +41,13 @@ $section-padding-bottom: 30px;
   background-color: #1b1b1b;
   color: #fff;
 
-  &.slider_initialized {
-    opacity: 1;
+  &:not(.slider_initialized) {
+    overflow: hidden;
   }
+
+  //&.slider_initialized {
+  //  opacity: 1;
+  //}
 
   @include media-breakpoint-up(md) {
     height: 438px;
@@ -1010,7 +1014,7 @@ $section-padding-bottom: 30px;
     position: absolute;
     width: 100%;
     height: 100%;
-    margin-left: -48px;
+    margin-left: -27px;
     overflow: hidden;
     clip-path: polygon(84px 0, 100% 0%, calc(100% - 84px) 100%, 0% 100%);
 
@@ -1018,6 +1022,10 @@ $section-padding-bottom: 30px;
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-left: -48px;
     }
   }
 
@@ -1078,8 +1086,8 @@ $section-padding-bottom: 30px;
     &__arnold {
       top: 40px;
       right: calc(50% - 370px);
-      width: 258px;
-      height: 319px;
+      width: 311px;
+      height: 328px;
     }
   }
 
@@ -2333,8 +2341,8 @@ $section-padding-bottom: 30px;
       position: absolute;
       top: 80px;
       left: calc(50% + 50px);
-      width: 252px;
-      height: 402px;
+      width: 317px;
+      height: 403px;
 
       .arnold__bg {
         background-color: #000;

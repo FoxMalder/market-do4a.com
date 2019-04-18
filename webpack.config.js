@@ -105,19 +105,6 @@ module.exports = (env, args) => {
             { loader: 'file-loader', options: { outputPath: './fonts', name: '[name].[ext]' } },
           ],
         },
-        // {
-        //   test: require.resolve('jquery'),
-        //   use: [
-        //     { loader: 'expose-loader', options: 'jQuery' },
-        //     { loader: 'expose-loader', options: '$' },
-        //   ],
-        // },
-        // {
-        //   test: require.resolve('sticky-js'),
-        //   use: [
-        //     { loader: 'expose-loader', options: 'Sticky' },
-        //   ],
-        // },
       ],
     },
 
@@ -130,7 +117,7 @@ module.exports = (env, args) => {
         // 'window.$': 'jquery',
         // 'window.jQuery': 'jquery',
 
-        // Костыль, чтоб подключить OwlCarousel2 и воткнуть jq в глобальную область видимости
+        // Костыль, чтоб подключить OwlCarousel2 и воткнуть jQuery в глобальную область видимости
         'window.Zepto': 'jquery',
       }),
 

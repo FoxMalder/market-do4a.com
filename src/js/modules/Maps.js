@@ -77,6 +77,9 @@ export default class YandexMaps {
     if (!this.el || this.el === '') return;
     if (!data || data === '') return;
 
+    // console.log('inner');
+
+
     Object.values(data.storeManagerData.stores).map((item) => {
       const point = {
         type: 'Feature',
@@ -100,6 +103,7 @@ export default class YandexMaps {
 
       return point;
     });
+
 
     this.loadMapApi();
   }

@@ -336,7 +336,7 @@
     @extend %button-reset;
     position: relative;
     max-width: 100%;
-    padding-right: 15px;
+    padding-right: 12px;
     overflow: hidden;
     transition: color .3s ease;
     text-overflow: ellipsis;
@@ -387,12 +387,12 @@
       letter-spacing: 0.01em;
     }
 
-    @include media-breakpoint-up(xl) {
-      //max-width: 165px;
-      //max-width: 147px;
-      //margin: 0 16px 0 0;
-      padding-right: 12px;
-    }
+    //@include media-breakpoint-up(xl) {
+    //  //max-width: 165px;
+    //  //max-width: 147px;
+    //  //margin: 0 16px 0 0;
+    //  padding-right: 12px;
+    //}
   }
 
   &__value {
@@ -690,6 +690,7 @@
           height: 32px;
         }
       }
+      &_login,
       &_search,
       &_cart {
         display: none;
@@ -1017,15 +1018,11 @@ button.search-fild__loupe {
   }
 
   &__header {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     height: 45px;
     margin-bottom: 45px;
-
-    @include media-breakpoint-up(xl) {
-      display: flex;
-    }
   }
 
   &__title {
@@ -1040,6 +1037,8 @@ button.search-fild__loupe {
     height: 33px;
     padding: 0;
     border-radius: 50%;
+    flex: 0 0 auto;
+    margin-left: 20px;
 
     &::before,
     &::after {
@@ -1063,7 +1062,7 @@ button.search-fild__loupe {
 
   &__list {
     margin-bottom: 0;
-    padding-left: 50px;
+    padding-left: 30px;
     list-style: none;
 
 
