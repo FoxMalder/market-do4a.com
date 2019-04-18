@@ -8,7 +8,7 @@ module.exports = (api) => {
     plugins: [
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-syntax-dynamic-import',
-      '@babel/transform-runtime',
+      // '@babel/transform-runtime',
     ],
   };
 };

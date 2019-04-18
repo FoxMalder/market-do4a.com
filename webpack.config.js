@@ -237,6 +237,7 @@ module.exports = (env, args) => {
       contentBase: distPath,
       port: 9000,
       lazy: false,
+      host: '192.168.0.165',
       // hot: true,
       // inline: true,
       // compress: true,

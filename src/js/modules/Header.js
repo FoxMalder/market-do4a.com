@@ -1,3 +1,4 @@
+import Sticky from 'sticky-js';
 import Utils from '../utils/utils';
 
 class Header {
@@ -8,7 +9,7 @@ class Header {
       collapse: Utils.parseTargets('.header__collapse'),
       fixedTargets: Utils.parseTargets('.header__fixed-block'),
       // Список элементов в не фиксированной области над фиксированной
-      fixedOffsetTargets: Utils.parseTargets('.header-banner'),
+      fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.header__nav-top']),
       // Высота не фиксированной области над фиксированной
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,
@@ -31,13 +32,23 @@ class Header {
       controls: Utils.parseTargets('.header-control__button_search'),
     };
 
+    // this.getViewportSize =
+
+    this.vp = Header.getViewportSize();
+
     this.init();
   }
 
   init() {
-    this.header.fixedTargets.forEach(item => this.fixingHeader(item));
+    // this.header.fixedTargets.forEach(item => this.fixingHeader(item));
     this.calculate();
     this.initListeners();
+
+    new Sticky('.header__fixed-block', {
+      marginTop: 0,
+      stickyClass: 'fixed',
+    });
+
   }
 
   toggleMenu = (event) => {
@@ -70,19 +81,19 @@ class Header {
   };
 
 
-  fixingHeader = (element) => {
-    // const breakpoints = element.getBoundingClientRect().bottom + this.header.fixedBreakpointsOffset;
-    const breakpoints = this.header.fixedBreakpointsOffset;
-
-    if (this.scrollOffset >= breakpoints && !element.fixed) {
-      element.classList.add('fixed');
-      element.fixed = true;
-    } else if (this.scrollOffset < breakpoints && element.fixed) {
-      element.classList.remove('fixed');
-      element.fixed = false;
-
-    }
-  };
+  // fixingHeader = (element) => {
+  //   // const breakpoints = element.getBoundingClientRect().bottom + this.header.fixedBreakpointsOffset;
+  //   const breakpoints = this.header.fixedBreakpointsOffset;
+  //
+  //   if (this.scrollOffset >= breakpoints && !element.fixed) {
+  //     element.classList.add('fixed');
+  //     element.fixed = true;
+  //   } else if (this.scrollOffset < breakpoints && element.fixed) {
+  //     element.classList.remove('fixed');
+  //     element.fixed = false;
+  //
+  //   }
+  // };
 
   initDOM() {
 
@@ -102,18 +113,20 @@ class Header {
   onScroll = () => {
     this.scrollOffset = window.pageYOffset;
 
-    this.header.fixedTargets.map((item) => {
-      this.fixingHeader(item);
-      return item;
-    });
+    // this.header.fixedTargets.forEach((item) => {
+    //   this.fixingHeader(item);
+    // });
 
-    this.menu.targets.map((item) => {
-      item.style.top = `${Math.max(this.header.fixedOffset - window.pageYOffset, 0)}px`;
-      return item;
+    this.header.collapse.forEach((item) => {
+      item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
+    });
+    this.menu.targets.forEach((item) => {
+      item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
     });
   };
 
   onWindowResize = () => {
+    this.vp = Header.getViewportSize();
     this.calculate();
   };
 
@@ -121,7 +134,7 @@ class Header {
     this.calculate();
 
     this.menu.targets.map((item) => {
-      item.style.top = `${Math.max(this.header.fixedOffset - window.pageYOffset, 0)}px`;
+      item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
       return item;
     });
   };
@@ -138,6 +151,13 @@ class Header {
       this.header.fixedOffset += item.clientHeight;
     });
   };
+
+  static getViewportSize() {
+    return {
+      width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+      height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+    };
+  }
 }
 
 export default Header;
