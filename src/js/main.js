@@ -1,7 +1,7 @@
 import Sticky from 'sticky-js';
 import {
-  Autoplay,
-  EffectFade,
+  // Autoplay,
+  // EffectFade,
   Mousewheel,
   Navigation,
   Pagination,
@@ -15,7 +15,7 @@ import Parallax from './modules/Parallax';
 // import noUiSlider from 'nouislider';
 
 
-Swiper.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, Mousewheel, Virtual]);
+Swiper.use([Navigation, Pagination, Scrollbar, Mousewheel, Virtual]);
 Swiper.use([HeaderSlider]);
 
 window.Sticky = Sticky;
@@ -1129,8 +1129,7 @@ $(() => {
 
 
   // Слайдеры с содержимым наборов
-  const $mainSetSliderEl = $('.set-block__slider');
-  $mainSetSliderEl.owlCarousel({
+  $('.set-block__slider').owlCarousel({
     loop: true,
     items: 1,
     center: true,
@@ -1165,14 +1164,16 @@ $(() => {
 
   // Слайдер с отзывами
   const mainStarSliderEl = document.querySelector('#stars-slider');
-  new Sticky('#stars-slider .slider__controls');
   if (mainStarSliderEl && document.documentElement.clientWidth >= 768) {
+    new Sticky('#stars-slider .slider__controls', {
+      marginTop: 150,
+    });
     new Swiper(mainStarSliderEl, {
       slidesPerView: 'auto',
       freeMode: true,
       // freeModeMomentum: false,
       // freeModeSticky: false,
-
+      runCallbacksOnInit: false,
       touchEventsTarget: 'wrapper',
 
       containerModifierClass: 'slider_',
@@ -1205,30 +1206,33 @@ $(() => {
 
       on: {
         setTranslate(arg) {
-          // if (document.documentElement.clientWidth > 768) {
-          arg = (arg / 90) + 1;
-          if (arg < 0) arg = 0;
-          if (arg > 1) arg = 1;
+          const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
+          document.querySelector('.stars__info').style.opacity = opacity;
+          this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
+          this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
 
-          document.querySelector('.stars__info').style.opacity = arg;
-          this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-          this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
-          // }
+          if (this.scrollbar.el) {
+            if (arg) {
+              this.scrollbar.el.classList.add('active');
+            } else {
+              this.scrollbar.el.classList.remove('active');
+            }
+          }
         },
-
-        touchStart() {
-          this.scrollbar.el.classList.add('active');
-        },
-        scrollbarDragStart() {
-          this.scrollbar.el.classList.add('active');
-        },
-
-        touchEnd() {
-          this.scrollbar.el.classList.remove('active');
-        },
-        scrollbarDragEnd() {
-          this.scrollbar.el.classList.remove('active');
-        },
+        //
+        // touchStart() {
+        //   this.scrollbar.el.classList.add('active');
+        // },
+        // scrollbarDragStart() {
+        //   this.scrollbar.el.classList.add('active');
+        // },
+        //
+        // touchEnd() {
+        //   this.scrollbar.el.classList.remove('active');
+        // },
+        // scrollbarDragEnd() {
+        //   this.scrollbar.el.classList.remove('active');
+        // },
       },
     });
   }
@@ -1278,14 +1282,9 @@ $(() => {
       breakpoints: {
         on: {
           setTranslate(arg) {
-            // if (document.documentElement.clientWidth > 768) {
-            arg = (arg / 90) + 1;
-            if (arg < 0) arg = 0;
-            if (arg > 1) arg = 1;
-
-            this.el.querySelector('.slider__explanation_tablet').style.opacity = arg;
-            this.el.querySelector('.slider__explanation_desktop').style.opacity = arg;
-            // }
+            const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
+            this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
+            this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
           },
 
           touchStart() {
@@ -1306,4 +1305,12 @@ $(() => {
     });
   }
 
+  if (document.documentElement.clientWidth < 768) {
+    $('.main-footer-description__btn-more').show();
+    $('.main-footer-description__collapse').height();
+    
+    $('.main-footer-description__btn-more').on('click', function() {
+
+    });
+  }
 });

@@ -1,19 +1,24 @@
 
 .mobile-menu {
-  visibility: hidden;
+  display: flex;
   //top: ;
   //height: 100%;
+  visibility: hidden;
   position: fixed;
-  z-index: 999;
-  top: 65px;
+  z-index: 900;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  flex-direction: column;
+  padding-top: 68px;
+  //transform: translateZ(0);
   transition-property: visibility;
-  transition-duration: .3s;
-  color: white;
 
-  &.opened {
+  transition-duration: .3s;
+  color: #fff;
+
+  &.active {
     visibility: visible;
 
     .mobile-menu__overlay {
@@ -23,6 +28,13 @@
     .mobile-menu__wrapper {
       transform: translateX(0);
     }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-top: 78px;
+  }
+  @include media-breakpoint-up(xl) {
+    display: none;
   }
 
   &__overlay {
@@ -39,45 +51,55 @@
   }
 
   &__wrapper {
-    position: absolute;
-    top: 0;
     bottom: 0;
+    //position: absolute;
+    //top: 0;
     left: 0;
+    flex: 1 1 100%;
     width: 300px;
+    padding: 10px 0;
     overflow: auto;
     transform: translateX(-100%);
     transition: transform .3s ease;
     background: #1b1b1b;
   }
 
-  &__header {
-    padding: 20px;
-    background: #2b2b2b;
+  &__block {
+    padding: 18px 20px;
+  }
+}
+
+.mobile-menu-category {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+
+  &__item {
+    margin-bottom: 25px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
-  &__row {
-    display: flex;
-    justify-content: space-between;
-    //margin-top: 15px;
+  &__link {
+    @include title;
+    display: block;
+    color: inherit;
+    font-size: 14px;
+    //padding: 12px 0;
   }
-
-  &__nav {
-    padding: 20px;
-  }
-
-  &__city-list {
-    overflow: hidden;
-    transition: height .7s ease-in-out;
-    background-color: #1b1b1b;
-  }
-
 }
 
 .header-banner {
+  position: relative;
+  z-index: 1000;
+  //transform: translateZ(0);
   background-color: $main-color;
+  @include title;
   color: #fff;
   text-align: center;
-  @include title;
 
   @include mre-height-block(11px, 20px, 1);
 
@@ -90,48 +112,69 @@
 }
 
 .header {
+  position: sticky;
   //position: fixed;
   //z-index: $zindex-fixed;
-  //top: 0;
+  z-index: 950;
   //right: 0;
   //left: 0;
-  display: none;
-  border-bottom: 1px solid #e3e3e3;
+  //display: none;
+  top: 0;
+  //transform: translateZ(0);
+  //z-index: 980;
+  //transform: translateZ(0);
   background-color: #fff;
 
   @include media-breakpoint-up(xl) {
-    display: block;
     position: relative;
+    //display: block;
     padding-bottom: 140px;
-    border-bottom: 0;
+    //border-bottom: 0;
+    //border-bottom: 1px solid #e3e3e3;
   }
 
+  &__nav-top {
+    z-index: 960;
+    transform: translateZ(0);
+    background: #f3f3f3;
+    @include media-breakpoint-up(xl) {
+      border-bottom: 1px solid #e3e3e3;
+      background: #fff;
+    }
+  }
 
   // Раздвигающееся меню
   &__collapse {
     //background: url("../img/rm/change-city.png") center top no-repeat;
-    overflow: hidden;
-    transition: height .7s ease-in-out;
+    //transition: height .7s ease-in-out;
+    position: absolute;
+    z-index: 940;
+    top: 24px;
+    right: 0;
+    left: 0;
+    max-height: calc(100vh - 24px);
+    overflow: auto;
+    transform: translateZ(0);
     background-color: #1b1b1b;
-  }
 
-  &__nav-top {
-    display: none;
-    border-bottom: 1px solid #e3e3e3;
+    .collapsing {
+      transition: height .7s ease-in-out;
+    }
 
     @include media-breakpoint-up(xl) {
-      display: block;
+      position: relative;
+      top: 0;
     }
   }
 
   &__nav-center {
-
+    background: #fff;
   }
 
   &__category {
     display: none;
     background-color: #101010;
-    color: white;
+    color: #fff;
 
     @include media-breakpoint-up(xl) {
       display: block;
@@ -139,7 +182,9 @@
   }
 
   &__fixed-block {
-    background: white;
+    z-index: 920;
+    transform: translateZ(0);
+    background: #fff;
 
     @include media-breakpoint-up(xl) {
       //background: white;
@@ -162,6 +207,9 @@
     }
   }
 
+  //&__mobile-menu {
+  //  z-index: 900;
+  //}
 }
 
 @keyframes header {
@@ -251,6 +299,7 @@
   justify-content: center;
   height: 100%;
   font-weight: 500;
+  white-space: nowrap;
 
   @include media-breakpoint-up(xl) {
     //justify-content: space-between;
@@ -258,12 +307,27 @@
     margin: 0;
   }
 
-  &__icon {
-    width: 11px;
-    height: 15px;
-    margin-right: 5px;
+  &__label {
+    flex: 0 0 auto;
+    margin-right: 6px;
+    overflow: hidden;
+    color: rgba(#0E0E0E, 0.4);
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @include media-breakpoint-up(xl) {
+      display: none;
+    }
+  }
+
+  &__icon {
+    width: 8px;
+    height: 10px;
+    margin-right: 4px;
+
+    @include media-breakpoint-up(xl) {
+      width: 11px;
+      height: 15px;
       margin-right: 3px;
     }
   }
@@ -314,21 +378,20 @@
       margin-right: 16px;
     }
 
+    &_city {
+      flex: 0 0 auto;
+    }
+
+    &_store {
+      flex: 0 1 auto;
+      letter-spacing: 0.01em;
+    }
+
     @include media-breakpoint-up(xl) {
       //max-width: 165px;
       //max-width: 147px;
       //margin: 0 16px 0 0;
       padding-right: 12px;
-
-
-      &:nth-child(1) {
-        flex: 0 0 auto;
-      }
-
-      &:nth-child(2) {
-        flex: 0 1 auto;
-        letter-spacing: 0.01em;
-      }
     }
   }
 
@@ -368,30 +431,47 @@
 .header-nav-top {
   display: flex;
   align-items: center;
-  height: (40px - 1px);
-  font-size: 13px;
+  height: 24px;
+  font-size: 12px;
   white-space: nowrap;
 
   &__city {
-    flex: 0 0 306px;
-    max-width: 306px;
-    margin-right: 37px;
+    flex: 1 1 auto;
+    max-width: 100%;
   }
 
-  &__menu {
-    flex: 0 0 541px;
-    max-width: 541px;
-    margin-right: 31px;
-  }
-
-  .header-login {
-    flex: 0 0 100px;
-    max-width: 100px;
-  }
-
+  &__menu,
+  .header-login,
   .header-number {
-    flex: 0 0 auto;
-    margin-left: auto;
+    display: none;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: (40px - 1px);
+    font-size: 13px;
+    &__city {
+      flex: 0 0 306px;
+      max-width: 306px;
+      margin-right: 37px;
+    }
+    &__menu {
+      display: block;
+      flex: 0 0 541px;
+      max-width: 541px;
+      margin-right: 31px;
+    }
+
+    .header-login {
+      display: block;
+      flex: 0 0 100px;
+      max-width: 100px;
+    }
+
+    .header-number {
+      display: block;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
   }
 }
 
@@ -508,18 +588,19 @@
   &__search {
     position: absolute;
     z-index: -1;
-    top: 100%;
+    //top: 100%;
+    top: 0;
     right: 0;
-
+    bottom: 0;
     left: 0;
-    transform: translateY(-100%);
 
     transition: transform .3s ease;
 
     &.active,
     &_active {
 
-      transform: translateY(0);
+      transform: translateY(100%);
+      //transform: translateY(0);
     }
 
     @include media-breakpoint-up(xl) {
@@ -582,6 +663,11 @@
     &_cart svg {
       width: 20px;
       height: 22px;
+    }
+
+    &_login svg {
+      width: 18px;
+      height: 18px;
     }
 
     &.active,
@@ -647,10 +733,10 @@
 .search-fild {
   position: relative;
   width: 100%;
-  height: 54px;
-  @include media-breakpoint-up(xl) {
-    height: 100%;
-  }
+  height: 100%;
+  //@include media-breakpoint-up(xl) {
+  //  height: 100%;
+  //}
 
   &__input {
     width: 100%;

@@ -1,6 +1,6 @@
 export default class Parallax {
-  constructor(targets, options) {
-    this.elements = targets ? Parallax.toArray(targets) : [];
+  constructor(target, options) {
+    this.element = target;
     this.options = options;
     this.scrollTicking = false;
 
@@ -32,43 +32,18 @@ export default class Parallax {
 
   update = () => {
     this.scrollTicking = false;
-
-    this.elements.forEach((item) => {
-      // item.parallax.rect = Parallax.getRectangle(item);
-      this.calculate(item);
-    });
+    this.calculate();
   };
 
-  calculate = (element) => {
-    const a = element.getBoundingClientRect().top + element.clientHeight / 2;
+  calculate = () => {
+    const a = this.element.getBoundingClientRect().top + this.element.clientHeight / 2;
 
     const translateX = (a - this.vp.height / 2) * this.options[1];
     const translateY = (a - this.vp.height / 2) * this.options[0];
 
-    element.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+    this.element.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
   };
 
-
-  /**
-   * Функция, которая возвращает преобразованный массив элементов
-   * @function
-   * @param {Array | Node | NodeList} targets - Element which position & rectangle are returned
-   * @return {Array}
-   */
-  static toArray(targets) {
-    if (Array.isArray(targets)) return targets;
-    if (typeof targets === 'string') targets = document.querySelectorAll(targets) || targets;
-    if (targets instanceof NodeList || targets instanceof HTMLCollection) {
-      return [].slice.call(targets);
-    }
-    return [targets];
-  }
-
-  /**
-   * Function that returns viewport dimensions
-   * @function
-   * @return {object}
-   */
   static getViewportSize() {
     return {
       width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),

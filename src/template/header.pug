@@ -6,17 +6,19 @@ mixin select-city
     // select-city
     // Статичный модуль (используется несколько раз без изменения)
     .select-city
+        .select-city__label
+            | Город:
         // Ширина: Фиксированна
         // Переполнение: Обрезается
         // Позиционирование: К левому краю
-        button.select-city__link.collapsed(data-toggle='collapse', data-target='.change-city-collapse')
+        button.select-city__link.select-city__link_city.collapsed(data-toggle='collapse', data-target='.change-city-collapse')
             +sprite('shield.svg')(class="select-city__icon")
             |  Нижний Новгород
 
         // Ширина: автоматическая
         // Переполнение: Обрезается
         // Позиционирование: К левому краю
-        button.select-city__link.collapsed(data-toggle='collapse', data-target='.change-store-collapse')
+        button.select-city__link.select-city__link_store.collapsed(data-toggle='collapse', data-target='.change-store-collapse')
             | ул. Невзоровых, д. 64к2
 
 mixin page-nav
@@ -331,7 +333,7 @@ header.header
         .change-store-collapse.collapse(data-parent='.header')
             .container
                 +change-store
-    .header__fixed-block(data-sticky-class="is-sticky")
+    .header__fixed-block
         .header__nav-center
             .container
                 .header-control
@@ -342,16 +344,23 @@ header.header
                             input.search-fild__input.input-text(placeholder='Поиск в каталоге', type='text')
                             button.search-fild__loupe(type='submit')
                                 +sprite('loupe.svg')
+
                     a.header-control__button.header-control__button_search(href='#')
-                        +sprite('loupe.svg')
+                        +sprite('loupe.svg')(width="17px", height="18px")
+
                     a.header-control__button.header-control__button_favorites(href='#')
-                        +sprite('heart.svg')
+                        +sprite('heart-mobile.svg')(width="22px", height="19px")
+
+                    a.header-control__button.header-control__button_login(href='#')
+                        +sprite('person-mobile.svg')(width="18px", height="18px")
                         span.header-control__notifications 2
+
                     .header-control__cart-container
                         //Кнопка корзины для мобилок
                         a.header-control__button.header-control__button_cart(href='#')
-                            +sprite('cart.svg')
+                            +sprite('cart.svg')(width="20px", height="22px")
                             span.header-control__notifications 2
+
                         // Кнопка корзины для десктопа
                         .header-control__cart
                             .button-cart.btn.btn-red.btn-skew
@@ -532,171 +541,32 @@ header.header
                     li.h-category__item
                         a.h-category__link(href='#') Бренды
 
-.header-fixed
-    .header-fixed__menu
-        .container
-            .header-control
-                button.header-control__menu-btn
-                a.header-control__logo(href='/')
-                .header-control__search
-                    form.search-fild
-                        input.search-fild__input.input-text(placeholder='Поиск в каталоге', type='text')
-                        button.search-fild__loupe(type='submit')
-                            +sprite('loupe.svg')
-                a.header-control__button.header-control__button_search(href='#')
-                    +sprite('loupe.svg')
-                a.header-control__button.header-control__button_favorites(href='#')
-                    +sprite('heart.svg')
-                    span.header-control__notifications 2
-                .header-control__cart-container
-                    //Кнопка корзины для мобилок
-                    a.header-control__button.header-control__button_cart(href='#')
-                        +sprite('cart.svg')
-                        span.header-control__notifications 2
-                    // Кнопка корзины для десктопа
-                    .header-control__cart
-                        .button-cart.btn.btn-red.btn-skew
-                            .btn-skew__revers.button-cart__inner
-                                .button-cart__num 5
-                                .button-cart__block
-                                    .button-cart__title Корзина
-                                    .button-cart__price 12 245 ₽
-                        .header-cart
-                            .header-cart__wrapper(data-simplebar data-simplebar-auto-hide="false")
-                                .header-cart__header
-                                    .header-cart__title Товары в корзине
-                                    button.header-cart__btn-clear
-                                        +sprite('trash.svg')
-                                        |  Очистить
-                                .header-cart__item
-                                    .h-product-item
-                                        .h-product-item__img
-                                            img(alt='', src=require('./images/cart-product-1.png'))
-                                        .h-product-item__info
-                                            .h-product-item__name
-                                                | Optimum nutrition gold standart whey
-                                            .h-product-item__description 900 г.
-                                        .h-product-item__controls
-                                            .h-product-item__price-block
-                                                span.h-product-item__price.price 1 750
-                                                button.h-product-item__remove
-                                                    +sprite('trash.svg')
-                                            // Prod
-                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                            // Dev
-                                            .input-counter
-                                                button.input-counter__down -
-                                                span.input-counter__count 2
-                                                button.input-counter__up +
-                                                input.input-counter(type='hidden', value='2')
-
-                                    .h-product-item
-                                        .h-product-item__img
-                                            img(alt='', src=require('./images/cart-product-1.png'))
-                                        .h-product-item__info
-                                            .h-product-item__name
-                                                | Optimum nutrition gold standart whey
-                                            .h-product-item__description 900 г.
-                                        .h-product-item__controls
-                                            .h-product-item__price-block
-                                                span.h-product-item__price.price 1 750
-                                                button.h-product-item__remove
-                                                    +sprite('trash.svg')
-                                            // Prod
-                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                            // dev
-                                            .input-counter
-                                                button.input-counter__down -
-                                                span.input-counter__count 2
-                                                button.input-counter__up +
-                                                input.input-counter(type='hidden', value='2')
-
-                                    .h-product-item
-                                        .h-product-item__img
-                                            img(alt='', src=require('./images/cart-product-1.png'))
-                                        .h-product-item__info
-                                            .h-product-item__name
-                                                | Optimum nutrition gold standart whey
-                                            .h-product-item__description 900 г.
-                                        .h-product-item__controls
-                                            .h-product-item__price-block
-                                                span.h-product-item__price.price 1 750
-                                                button.h-product-item__remove
-                                                    +sprite('trash.svg')
-                                            // Prod
-                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                            // dev
-                                            .input-counter
-                                                button.input-counter__down -
-                                                span.input-counter__count 2
-                                                button.input-counter__up +
-                                                input.input-counter(type='hidden', value='2')
-
-                                    .h-product-item.disabled
-                                        .h-product-item__img
-                                            img(alt='', src=require('./images/cart-product-1.png'))
-                                        .h-product-item__info
-                                            .h-product-item__name
-                                                | Optimum nutrition gold standart whey
-                                            .h-product-item__description 900 г.
-                                        .h-product-item__controls
-                                            .h-product-item__price-block
-                                                span.h-product-item__price.price 1 750
-                                                button.h-product-item__remove
-                                                    +sprite('trash.svg')
-                                            // Prod
-                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                            // dev
-                                            .input-counter
-                                                button.input-counter__down -
-                                                span.input-counter__count 2
-                                                button.input-counter__up +
-                                                input.input-counter(type='hidden', value='2')
-
-                                    .h-product-item
-                                        .h-product-item__img
-                                            img(alt='', src=require('./images/cart-product-1.png'))
-                                        .h-product-item__info
-                                            .h-product-item__name
-                                                | Optimum nutrition gold standart whey
-                                            .h-product-item__description 900 г.
-                                        .h-product-item__controls
-                                            .h-product-item__price-block
-                                                span.h-product-item__price.price 1 750
-                                                button.h-product-item__remove
-                                                    +sprite('trash.svg')
-                                            // Prod
-                                            // <input class="input-counter" max="100" min="1" type="number" value="2">
-                                            // dev
-                                            .input-counter
-                                                button.input-counter__down -
-                                                span.input-counter__count 2
-                                                button.input-counter__up +
-                                                input.input-counter(type='hidden', value='2')
-    .m-change-store
-        .m-change-store__header
-            +select-city
-        .m-change-store__wrapper
-            .change-city-collapse.collapse(data-parent='.header-fixed')
-                +change-city
-            .change-store-collapse.collapse(data-parent='.header-fixed')
-                +change-store
-    .mobile-menu
-        .mobile-menu__overlay
-        .mobile-menu__wrapper
-            nav.mobile-menu__nav
-                +header-category
-                +page-nav
-
-            .mobile-menu__header
-                // Скопировано без изменений
-                a.header-number(href='#')
-                    +sprite('phone.svg')
-                    |  +7 (920) 024-33-14
-            .mobile-menu__header
-                .mobile-menu__row
-                    // Скопировано без изменений
-                    a.header-login(data-fancybox='', data-src='#sign-in', href='javascript:;')
-                        +sprite('person.svg')
-                        |  Войти
-                    a(href="#") Выйти
+.mobile-menu
+    .mobile-menu__overlay
+    .mobile-menu__wrapper
+        .mobile-menu__block
+            a.header-number(href='#')
+                +sprite('phone.svg')
+                |  +7 (920) 024-33-14
+        .mobile-menu__block
+            ul.mobile-menu-category
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Питание
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Для массы
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Для похудения
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Для выносливости
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Аксессуары
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Распродажа
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Одежда
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") О нас
+                li.mobile-menu-category__item
+                    a.mobile-menu-category__link(href="#") Бренды
+        .mobile-menu__block
+            +page-nav

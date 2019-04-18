@@ -7,6 +7,12 @@ const Utils = {
     return arr.reduce((a, b) => a.concat(Array.isArray(b) ? Utils.flattenArray(b) : b), []);
   },
 
+  /**
+   * Функция, которая возвращает преобразованный массив элементов
+   * @function
+   * @param {Array | Node | NodeList} o - Element which position & rectangle are returned
+   * @return {Array}
+   */
   toArray(o) {
     if (Array.isArray(o)) return o;
     if (typeof o === 'string') o = document.querySelectorAll(o) || o;
@@ -18,7 +24,9 @@ const Utils = {
 
   parseTargets(targets) {
     if (targets) {
-      return Utils.flattenArray(Array.isArray(targets) ? targets.map(Utils.toArray) : Utils.toArray(targets));
+      return Utils.flattenArray(
+        Array.isArray(targets) ? targets.map(Utils.toArray) : Utils.toArray(targets),
+      );
     }
     return [];
   },

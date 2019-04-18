@@ -1,4 +1,4 @@
-export default function Input() {
+function Input() {
   const $input = $('.input-field__input');
 
   $input.each(function() {
@@ -17,3 +17,5 @@ export default function Input() {
     }
   });
 }
+
+export default Input;

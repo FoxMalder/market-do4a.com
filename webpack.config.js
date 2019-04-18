@@ -64,7 +64,12 @@ module.exports = (env, args) => {
           use: [
             { loader: args.mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader },
             { loader: 'css-loader', options: { importLoaders: 2, sourceMap: args.mode === 'development' } },
-            { loader: 'postcss-loader', options: { sourceMap: args.mode === 'development' } },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: args.mode === 'development',
+              },
+            },
             {
               loader: 'sass-loader',
               options: { sourceMap: args.mode === 'development', implementation: require('sass') },
@@ -100,13 +105,13 @@ module.exports = (env, args) => {
             { loader: 'file-loader', options: { outputPath: './fonts', name: '[name].[ext]' } },
           ],
         },
-        {
-          test: require.resolve('jquery'),
-          use: [
-            { loader: 'expose-loader', options: 'jQuery' },
-            { loader: 'expose-loader', options: '$' },
-          ],
-        },
+        // {
+        //   test: require.resolve('jquery'),
+        //   use: [
+        //     { loader: 'expose-loader', options: 'jQuery' },
+        //     { loader: 'expose-loader', options: '$' },
+        //   ],
+        // },
         // {
         //   test: require.resolve('sticky-js'),
         //   use: [
@@ -118,6 +123,16 @@ module.exports = (env, args) => {
 
     plugins: [
       new CleanWebpackPlugin(),
+
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        // 'window.$': 'jquery',
+        // 'window.jQuery': 'jquery',
+
+        // Костыль, чтоб подключить OwlCarousel2 и воткнуть jq в глобальную область видимости
+        'window.Zepto': 'jquery',
+      }),
 
       new CssUrlRelativePlugin(),
       new MiniCssExtractPlugin({
@@ -162,17 +177,14 @@ module.exports = (env, args) => {
         filename: 'index.html',
         template: path.resolve(__dirname, 'src/index.pug'),
         minify: false,
-        meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       }),
 
       new HtmlWebpackPlugin({
-        // alwaysWriteToDisk: true,
         title: 'Каталог',
         filename: 'catalog.html',
         template: path.resolve(__dirname, 'src/catalog.pug'),
         minify: false,
         // hash: true,
-        meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       }),
 
       new HtmlWebpackPlugin({
@@ -180,7 +192,6 @@ module.exports = (env, args) => {
         filename: 'test.html',
         template: path.resolve(__dirname, 'src/test.pug'),
         minify: false,
-        meta: { viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       }),
 
       // new HtmlWebpackHarddiskPlugin({
