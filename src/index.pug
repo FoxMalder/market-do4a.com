@@ -16,16 +16,14 @@ block wrapper
                                 | Подробнее
 
                 .slider__slide
-                    .hero-slider__slide
-                        .hero-slider__left-line
-                        .hero-slider__right-line
+                    .hero-slider__slide(style='background-image: url(' + require('./images/hero-slider-bg-1.jpg') + ')')
                         .hero-slider__inner.container
-                            .hero-slider__title Баллы за покупки
-                            .hero-slider__subtitle -10% на питание для двоих
+                            .hero-slider__title Доставка курьером
+                            .hero-slider__subtitle бесплатно за 24 часа*
+                            .hero-slider__note
+                                | *доставка в отдалённые районы по согласованию
                 .slider__slide
-                    .hero-slider__slide
-                        .hero-slider__left-line
-                        .hero-slider__right-line
+                    .hero-slider__slide(style='background-image: url(' + require('./images/hero-slider-bg-2.jpg') + ')')
                         .hero-slider__inner.container
                             .hero-slider__title -50% на протеины
                             .hero-slider__subtitle -10% на питание для двоих

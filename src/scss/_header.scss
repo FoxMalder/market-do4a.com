@@ -1370,6 +1370,7 @@ $header-category-link-lvl-3-bg: #454545;
 
   &__item {
     flex: 1 1 auto;
+    position: relative;
 
     > .h-category-second {
 
@@ -1378,6 +1379,11 @@ $header-category-link-lvl-3-bg: #454545;
       top: 100%;
       //z-index: 99;
       left: 0;
+
+      &_right {
+        left: auto;
+        right: 0;
+      }
     }
 
     &:hover {
@@ -1421,6 +1427,7 @@ $header-category-link-lvl-3-bg: #454545;
   list-style: none;
   background-color: $header-category-link-lvl-1-bg;
   color: #fff;
+  min-width: 340px;
 
   &__item {
     margin-bottom: 2px;
@@ -1484,6 +1491,9 @@ $header-category-link-lvl-3-bg: #454545;
     bottom: 0;
     transform: translate(28%, 10%);
     pointer-events: none;
+    &_no-offset {
+      transform: none;
+    }
   }
 
   &__list {

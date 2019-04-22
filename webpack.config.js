@@ -27,15 +27,19 @@ const distPath = path.resolve(__dirname, 'dist');
 // }
 
 module.exports = (env, args) => {
+  process.env.NODE_ENV = args.mode;
+
   const config = {
+    // mode: devMode ? "development" : "production",
     entry: {
-      index: './src/js/index.js',
+      index: './src/index.js',
+      catalog: './src/catalog.js',
     },
     output: {
       path: distPath,
-      filename: 'js/[name].bundle.js',
+      filename: 'js/[name].js',
       chunkFilename: 'js/[name].bundle.js',
-      publicPath: '',
+      // publicPath: '',
     },
     module: {
       rules: [
@@ -123,8 +127,10 @@ module.exports = (env, args) => {
 
       new CssUrlRelativePlugin(),
       new MiniCssExtractPlugin({
-        filename: 'css/[name].css',
-        chunkFilename: 'css/[name].css',
+        filename: 'css/style.css',
+        chunkFilename: 'css/style.css',
+        // filename: 'css/[name].css',
+        // chunkFilename: 'css/[id].333.css',
       }),
 
       new SVGSpritemapPlugin('src/img/svg-sprite/*.svg', {
@@ -135,7 +141,7 @@ module.exports = (env, args) => {
             // as these will skew the sprites when using the <view> via fragment identifiers
             sizes: false,
           },
-          svg4everybody: true,
+          // svg4everybody: true,
         },
         sprite: {
           prefix: 'sprite-',
@@ -159,10 +165,19 @@ module.exports = (env, args) => {
         },
       }),
 
+      // new HtmlWebpackPlugin({
+      //   title: 'Главная',
+      //   filename: '[name].html',
+      //   template: path.resolve(__dirname, 'src/index.pug'),
+      //   // chunks: ['main', 'common'],
+      //   minify: false,
+      // }),
+
       new HtmlWebpackPlugin({
         title: 'Главная',
         filename: 'index.html',
         template: path.resolve(__dirname, 'src/index.pug'),
+        chunks: ['index', 'commons'],
         minify: false,
       }),
 
@@ -170,16 +185,17 @@ module.exports = (env, args) => {
         title: 'Каталог',
         filename: 'catalog.html',
         template: path.resolve(__dirname, 'src/catalog.pug'),
+        chunks: ['catalog', 'commons'],
         minify: false,
         // hash: true,
       }),
 
-      new HtmlWebpackPlugin({
-        title: 'Тест',
-        filename: 'test.html',
-        template: path.resolve(__dirname, 'src/test.pug'),
-        minify: false,
-      }),
+      // new HtmlWebpackPlugin({
+      //   title: 'Тест',
+      //   filename: 'test.html',
+      //   template: path.resolve(__dirname, 'src/test.pug'),
+      //   minify: false,
+      // }),
 
       // new HtmlWebpackHarddiskPlugin({
       //   outputPath: distPath,
@@ -233,29 +249,17 @@ module.exports = (env, args) => {
 
     // devtool: 'inline-source-map',
 
+
     devServer: {
       contentBase: distPath,
       port: 9000,
       lazy: false,
       host: '192.168.0.165',
-      // hot: true,
-      // inline: true,
+      hot: true,
+      inline: true,
       // compress: true,
-      // historyApiFallback: true,
+      historyApiFallback: true,
     },
-
-    // optimization: {
-    //   // runtimeChunk: 'single',
-    //   // splitChunks: {
-    //   //   cacheGroups: {
-    //   //     vendor: {
-    //   //       test: /[\\/]node_modules[\\/]/,
-    //   //       name: 'vendors',
-    //   //       chunks: 'all',
-    //   //     },
-    //   //   },
-    //   // },
-    // },
   };
   //
   // if (args.mode === 'production') {
@@ -263,6 +267,28 @@ module.exports = (env, args) => {
   // }
 
   if (args.mode === 'production') {
+    config.optimization = {
+      // runtimeChunk: {
+      //   name: 'runtime'
+      // },
+      splitChunks: {
+        cacheGroups: {
+          // default: false,
+          // styles: {
+          //   name: 'styles',
+          //   test: /\.(sass|scss|css)$/,
+          //   chunks: 'initial',
+          //   enforce: true,
+          // },
+          commons: {
+            name: 'common',
+            // test: /\.js$/,
+            chunks: 'initial',
+            minChunks: 2,
+          },
+        },
+      },
+    };
     config.plugins.push(
       new HtmlBeautifyPlugin({
         config: {

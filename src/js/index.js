@@ -7,6 +7,6 @@ import '../scss/main.scss';
 // });
 
 import './global';
-
-import './main';
-import './catalog';
+//
+// import './page/main';
+// import './page/catalog';

@@ -6,6 +6,8 @@
 //   ],
 // };
 module.exports = ({ file, options, env }) => {
+  console.log(file, options, env);
+
   return {
     exec: true,
     // parser: file.extname === '.sss' ? 'sugarss' : false,

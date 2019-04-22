@@ -1,11 +1,6 @@
-doctype html
-html(lang='ru')
-    head
-        title= htmlWebpackPlugin.options.title
-        //title Catalog
-    body
-        block header
-            include template/header
+extends template/template
+block wrapper
+    .wrapper
         .catalog-filter-m
             .filter-menu-m#mobile-filter
                 .filter-menu-m__header

@@ -8,10 +8,13 @@ function startHeroSlideAnimation(slide, func) {
   const image = slide.querySelector('.hero-slider__img');
   const text = slide.querySelector('.hero-slider__inner');
 
-  const transformStyle = window.getComputedStyle(leftLine).transform;
 
-  leftLine.style.transform = transformStyle;
-  rightLine.style.transform = transformStyle;
+  if (leftLine && rightLine) {
+    const transformStyle = window.getComputedStyle(leftLine).transform;
+
+    leftLine.style.transform = transformStyle;
+    rightLine.style.transform = transformStyle;
+  }
 
 
   const animation = anime.timeline({
@@ -95,7 +98,7 @@ const HeroSliderEffect = {
     const swiper = this;
     const { slides } = swiper;
 
-    swiper.heroSliderEffect.animationsArray = Array.from(slides).map(el => ({
+    swiper.heroSliderEffect.animationsArray = [].map.call(slides, el => ({
       start: startHeroSlideAnimation(el, () => swiper.emit('transitionEnd')),
       second: anime({
         autoplay: false,
@@ -113,7 +116,7 @@ const HeroSliderEffect = {
     swiper.heroSliderEffect.animationsArray[0].start.play();
   },
   setTranslate(translate) {
-    console.log(`setTranslate, active:${this.activeIndex}, prev: ${this.previousIndex}, translate: ${translate}`);
+    // console.log(`setTranslate, active:${this.activeIndex}, prev: ${this.previousIndex}, translate: ${translate}`);
 
     const swiper = this;
     const { slides } = swiper;
@@ -147,7 +150,7 @@ const HeroSliderEffect = {
     }
   },
   setTransition(duration) {
-    console.log(`setTransition, active:${this.activeIndex}, prev: ${this.previousIndex}`);
+    // console.log(`setTransition, active:${this.activeIndex}, prev: ${this.previousIndex}`);
     //
     // const swiper = this;
     // const { slides, $wrapperEl } = swiper;

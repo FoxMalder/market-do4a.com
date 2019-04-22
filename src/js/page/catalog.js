@@ -1,5 +1,5 @@
 import noUiSlider from 'nouislider';
-import Utils from './utils/utils';
+import Utils from '../utils/utils';
 
 
 $(() => {

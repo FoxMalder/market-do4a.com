@@ -5,13 +5,9 @@ import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
 
 import '@fancyapps/fancybox';
-import 'owl.carousel';
 
 import 'simplebar';
 
-// import svg4everybody from 'svg4everybody';
-
-import Utils from './utils/utils';
 import Header from './modules/Header';
 import Input from './modules/Input';
 
@@ -20,9 +16,9 @@ import Input from './modules/Input';
 
 window.jQuery = $;
 window.$ = $;
+$.fancybox.defaults.closeExisting = true;
 
 $(() => {
-  $.fancybox.defaults.closeExisting = true;
 
   $(document).on('click.bs.dropdown', '.multifilter [role="form"]', (e) => {
     e.stopPropagation();
