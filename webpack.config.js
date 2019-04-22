@@ -177,7 +177,7 @@ module.exports = (env, args) => {
         title: 'Главная',
         filename: 'index.html',
         template: path.resolve(__dirname, 'src/index.pug'),
-        chunks: ['index', 'commons'],
+        chunks: ['index', 'common'],
         minify: false,
       }),
 
@@ -185,7 +185,7 @@ module.exports = (env, args) => {
         title: 'Каталог',
         filename: 'catalog.html',
         template: path.resolve(__dirname, 'src/catalog.pug'),
-        chunks: ['catalog', 'commons'],
+        chunks: ['catalog', 'common'],
         minify: false,
         // hash: true,
       }),
@@ -280,7 +280,7 @@ module.exports = (env, args) => {
           //   chunks: 'initial',
           //   enforce: true,
           // },
-          commons: {
+          common: {
             name: 'common',
             // test: /\.js$/,
             chunks: 'initial',
