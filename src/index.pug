@@ -2,8 +2,21 @@ extends template/template
 
 block wrapper
     .wrapper
-        .hero-slider.slider
+        .hero-slider
             .slider__wrapper
+                .slider__slide
+                    // Весь блок можно сделать ссылкой
+                    a.hero-slider__slide(href="#" style='background-image: url(' + require('./images/hero-slider-bg-1.jpg') + ')')
+                        .hero-slider__inner.container
+                            .hero-slider__title Доставка курьером
+                            .hero-slider__subtitle бесплатно за 24 часа*
+                            .hero-slider__note *доставка в отдалённые районы по согласованию
+                .slider__slide
+                    .hero-slider__slide(style='background-image: url(' + require('./images/hero-slider-bg-2.jpg') + ')')
+                        .hero-slider__inner.container
+                            // Или только заголовок
+                            a.hero-slider__title(href="#") Скидка <br> 10% на всё
+                            .hero-slider__subtitle Покупай товары <br> из каталога со скидкой
                 .slider__slide
                     .hero-slider__slide
                         .hero-slider__left-line
@@ -12,21 +25,7 @@ block wrapper
                         .hero-slider__inner.container
                             .hero-slider__title Комбо-наборы
                             .hero-slider__subtitle -10% на питание для двоих
-                            .hero-slider__button.btn.btn-red.btn-skew
-                                | Подробнее
-
-                .slider__slide
-                    .hero-slider__slide(style='background-image: url(' + require('./images/hero-slider-bg-1.jpg') + ')')
-                        .hero-slider__inner.container
-                            .hero-slider__title Доставка курьером
-                            .hero-slider__subtitle бесплатно за 24 часа*
-                            .hero-slider__note
-                                | *доставка в отдалённые районы по согласованию
-                .slider__slide
-                    .hero-slider__slide(style='background-image: url(' + require('./images/hero-slider-bg-2.jpg') + ')')
-                        .hero-slider__inner.container
-                            .hero-slider__title -50% на протеины
-                            .hero-slider__subtitle -10% на питание для двоих
+                            a.hero-slider__button.btn.btn-red.btn-skew(href="#") Подробнее
                 .slider__slide
                     .hero-slider__slide
                         .hero-slider__left-line

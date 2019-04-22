@@ -22,8 +22,8 @@ Swiper.use([HeaderSlider]);
 
 export default class MainPage {
   constructor() {
-    MainPage.initSetsSlider();
     MainPage.initHeroSlider();
+    MainPage.initSetsSlider();
 
     if (document.documentElement.clientWidth >= 768) {
       [...document.querySelectorAll('.arnold')].forEach((el) => {
@@ -210,8 +210,12 @@ export default class MainPage {
   }
 
   static initHeroSlider() {
-    if (document.querySelectorAll('.slider__slide').length < 2) return;
-    const heroSlider = new Swiper(document.querySelector('.hero-slider'), {
+    const heroSliderEl = document.querySelector('.hero-slider');
+
+    if (!heroSliderEl || heroSliderEl.querySelectorAll('.slider__slide').length < 2) return;
+
+    heroSliderEl.classList.add('slider');
+    const heroSlider = new Swiper(heroSliderEl, {
       init: false,
       touchEventsTarget: 'wrapper',
       effect: 'hero-slider',
@@ -229,10 +233,6 @@ export default class MainPage {
       slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
       wrapperClass: 'slider__wrapper',
 
-
-      // heroSliderEffect: {
-      //   duration: 1000,
-      // },
       pagination: {
         el: '.hero-slider-control',
         clickable: true,
@@ -242,7 +242,7 @@ export default class MainPage {
         renderBullet(index, className) {
           return `
             <div class="${className}">
-              <div class="hero-slider-control__title">${this.slides[index].querySelector('.hero-slider__title').innerHTML}</div>
+              <div class="hero-slider-control__title">${this.slides[index].querySelector('.hero-slider__title').textContent}</div>
               <div class="hero-slider-control__loader">
                 <div class="hero-slider-control__loader-line"></div>
               </div>
@@ -250,6 +250,7 @@ export default class MainPage {
         },
       },
     });
+    heroSlider.pagination.render();
     window.addEventListener('load', () => {
       heroSlider.init();
     });
