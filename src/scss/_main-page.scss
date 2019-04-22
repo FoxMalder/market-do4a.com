@@ -295,6 +295,7 @@ $section-padding-bottom: 30px;
       font: italic $font-weight-bold 14px/normal $font-family-bender;
       letter-spacing: .02em;
       text-align: center;
+      text-transform: uppercase;
     }
 
     &__item {
@@ -1357,6 +1358,8 @@ $section-padding-bottom: 30px;
         right: 0;
         width: 50%;
         margin-top: 0;
+        //position: sticky;
+        //top: 150px;
 
         &.is-sticky {
           .slider__explanation {
@@ -1381,8 +1384,6 @@ $section-padding-bottom: 30px;
         padding-top: (460px - 78px);
         padding-bottom: (380px + 40px);
       }
-
-      //transform-origin: center calc(100% - 380px);
     }
 
     &__col {
@@ -1473,6 +1474,8 @@ $section-padding-bottom: 30px;
         position: absolute;
         top: 310px;
         width: 640px;
+        //top: 150px;
+        //position: sticky;
         //transform: $skew-reverse;
         //&::before {
         //  opacity: 0;

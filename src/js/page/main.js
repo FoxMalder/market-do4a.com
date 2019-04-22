@@ -153,6 +153,7 @@ export default class MainPage {
 
     new Sticky('#stars-slider .slider__controls', {
       marginTop: 150,
+      stickyClass: 'is-sticky',
     });
     return new Swiper(mainStarSliderEl, {
       slidesPerView: 'auto',
