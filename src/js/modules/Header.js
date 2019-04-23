@@ -72,9 +72,15 @@ class Header {
 
       while (target !== parent) {
         if (target.classList.contains('change-city__link')) {
-          Header.generateStoreList(
-            parseInt(target.getAttribute('data-city'), 10) || app.storeManagerData.currentCityId,
-          );
+          const cityId = parseInt(target.getAttribute('data-city'), 10);
+          // Header.generateStoreList(
+          //   parseInt(target.getAttribute('data-city'), 10) || app.storeManagerData.currentCityId,
+          // );
+
+          // document.querySelector('.select-city__link_city').innerHTML = app.storeManagerData.cities[cityId].name;
+          document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[cityId].name5}</span>`;
+          document.querySelector('.change-store__list').innerHTML = Header.generateStoreList(cityId);
+
           event.preventDefault();
 
           $(document.querySelector('.change-store-collapse')).collapse('show');
@@ -132,7 +138,7 @@ class Header {
     parent.appendChild(container);
 
 
-    Header.generateStoreList(parseInt(app.storeManagerData.currentCityId, 10));
+    // Header.generateStoreList(parseInt(app.storeManagerData.currentCityId, 10));
 
     app.header.cityList = block;
   };
@@ -162,11 +168,14 @@ class Header {
     const header = document.createElement('div');
     header.classList.add('change-store__header');
     header.innerHTML = `
-      <span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">Название города</span></span>
+      <span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[app.storeManagerData.currentCityId].name5}</span></span>
       <button class="btn change-store__btn-close" data-toggle="collapse" data-target=".change-store-collapse"></button>`;
 
     const list = document.createElement('ul');
     list.classList.add('change-store__list');
+
+    // document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected"></span>`;
+    list.innerHTML = Header.generateStoreList(parseInt(app.storeManagerData.currentCityId, 10));
 
     const footer = document.createElement('div');
     footer.classList.add('change-store__footer');
@@ -379,9 +388,7 @@ class Header {
       storeListHtml += Header.storeItemTemplate(store);
     });
 
-    // document.querySelector('.select-city__link_city').innerHTML = app.storeManagerData.cities[cityId].name;
-    document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[cityId].name5}</span>`;
-    document.querySelector('.change-store__list').innerHTML = storeListHtml;
+    return storeListHtml;
   }
 
   static storeItemTemplate(data) {
