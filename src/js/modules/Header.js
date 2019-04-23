@@ -151,7 +151,7 @@ class Header {
       while (target !== parent) {
         if (target.classList.contains('change-store__link')) {
           event.preventDefault();
-          const storeId = target.getAttribute('data-store');
+          const storeId = parseInt(target.getAttribute('data-store'), 10);
           Header.setStore(app.storeManagerData.stores[storeId].city, storeId);
           return;
         }
@@ -392,8 +392,8 @@ class Header {
   }
 
   static storeItemTemplate(data) {
-    return `<li class="change-store__item${data.tempUnavailableText ? ' store-switcher-popup-item--suspended' : ''}" data-store="${data.id}">
-                <a class="change-store__link${parseInt(app.storeId, 10) === parseInt(data.id, 10) ? ' active' : ''}" href="#">
+    return `<li class="change-store__item${data.tempUnavailableText ? ' store-switcher-popup-item--suspended' : ''}">
+                <a class="change-store__link${parseInt(app.storeId, 10) === parseInt(data.id, 10) ? ' active' : ''}" href="#" data-store="${data.id}">
                     <div class="change-store__item-name">${data.name}</div>
                     <div class="change-store__item-subtitle">${data.shortAddress}</div>
                     <div class="change-store__item-note">${data.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}</div>
