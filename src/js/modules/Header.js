@@ -1,6 +1,9 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 import Tooltip from 'tooltip.js';
 import Utils from '../utils/utils';
+import postIconSvg from '../../img/svg-sprite/change-store-stock-icon.svg';
+
+console.log(postIconSvg);
 
 
 class Header {
@@ -77,14 +80,18 @@ class Header {
           //   parseInt(target.getAttribute('data-city'), 10) || app.storeManagerData.currentCityId,
           // );
 
-          // document.querySelector('.select-city__link_city').innerHTML = app.storeManagerData.cities[cityId].name;
+          event.preventDefault();
+
           document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[cityId].name5}</span>`;
           document.querySelector('.change-store__list').innerHTML = Header.generateStoreList(cityId);
 
-          event.preventDefault();
-
           $(document.querySelector('.change-store-collapse')).collapse('show');
           return;
+        }
+
+        if (target.classList.contains('change-post')) {
+          event.preventDefault();
+          Header.setStore(app.storeManagerData.noCityId, app.storeManagerData.remoteStoreId);
         }
         target = target.parentNode;
       }
@@ -120,9 +127,7 @@ class Header {
     footer.classList.add('change-city__footer');
     footer.innerHTML = `
       <a class="change-post" href="#">
-        <svg class="change-post__icon">
-          <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
-        </svg>
+        <img class="change-post__icon" src="${postIconSvg}" alt="">
         <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
         <div class="change-post__note">Срок от 5 дней</div>
       </a>
@@ -155,6 +160,10 @@ class Header {
           Header.setStore(app.storeManagerData.stores[storeId].city, storeId);
           return;
         }
+        if (target.classList.contains('change-post')) {
+          event.preventDefault();
+          Header.setStore(app.storeManagerData.noCityId, app.storeManagerData.remoteStoreId);
+        }
         target = target.parentNode;
       }
     });
@@ -181,9 +190,7 @@ class Header {
     footer.classList.add('change-store__footer');
     footer.innerHTML = `
       <a class="change-post" href="#">
-        <svg class="change-post__icon">
-          <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
-        </svg>
+        <img class="change-post__icon" src="${postIconSvg}" alt="">
         <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
         <div class="change-post__note">Срок от 5 дней</div>
       </a>
