@@ -131,6 +131,9 @@ class Header {
     container.appendChild(block);
     parent.appendChild(container);
 
+
+    Header.generateStoreList(parseInt(app.storeManagerData.currentCityId, 10));
+
     app.header.cityList = block;
   };
 
@@ -188,7 +191,6 @@ class Header {
 
     app.header.storeList = block;
   };
-
 
 
   toggleMenu = (event) => {
