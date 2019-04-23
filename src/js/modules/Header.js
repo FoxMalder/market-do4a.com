@@ -51,6 +51,54 @@ class Header {
     this.initListeners();
     this.header.fixedTargets.forEach(item => new Stickyfill.Sticky(item));
 
+    app.header = {};
+    this.initCityContainer();
+    this.initStoreContainer();
+
+
+    // const sticky = new Stickyfill.Sticky(document.querySelector('.h-navbar-fixed'));
+    // new Sticky('.header__fixed-block', {
+    //   marginTop: 0,
+    //   stickyClass: 'fixed',
+    // });
+    // Utils.parseTargets('.h-category__link').map()
+  }
+
+  initCityContainer = () => {
+    const parent = document.querySelector('.change-city-collapse');
+
+    parent.addEventListener('click', (event) => {
+      let { target } = event;
+
+      while (target !== parent) {
+        if (target.classList.contains('change-city__link')) {
+          Header.generateStoreList(
+            parseInt(target.getAttribute('data-city'), 10) || app.storeManagerData.currentCityId,
+          );
+          event.preventDefault();
+
+          $(document.querySelector('.change-store-collapse')).collapse('show');
+          return;
+        }
+        target = target.parentNode;
+      }
+    });
+
+    const container = document.createElement('div');
+    container.classList.add('container');
+
+    const block = document.createElement('div');
+    block.classList.add('change-city');
+
+    const header = document.createElement('div');
+    header.classList.add('change-city__header');
+    header.innerHTML = `
+      <span class="change-city__title">Города в которых есть marketdo4a</span>
+      <button class="btn change-city__btn-close" data-toggle="collapse" data-target=".change-city-collapse" aria-expanded="true"></button>`;
+
+    const list = document.createElement('ul');
+    list.classList.add('change-city__list');
+
     let cityListHtml = '';
     Object.keys(app.storeManagerData.chars).forEach((char) => {
       app.storeManagerData.chars[char].forEach((cityId, index) => {
@@ -59,28 +107,39 @@ class Header {
                          </li>`;
       });
     });
-    document.querySelector('.change-city__list').innerHTML = cityListHtml;
+    list.innerHTML = cityListHtml;
 
-    this.collapse.cityContainer.addEventListener('click', (event) => {
+
+    const footer = document.createElement('div');
+    footer.classList.add('change-city__footer');
+    footer.innerHTML = `
+      <a class="change-post" href="#">
+        <svg class="change-post__icon">
+          <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
+        </svg>
+        <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
+        <div class="change-post__note">Срок от 5 дней</div>
+      </a>
+      <div class="change-city__note">
+        <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
+      </div>`;
+
+    block.appendChild(header);
+    block.appendChild(list);
+    block.appendChild(footer);
+
+    container.appendChild(block);
+    parent.appendChild(container);
+
+    app.header.cityList = block;
+  };
+
+  initStoreContainer = () => {
+    const parent = document.querySelector('.change-store-collapse');
+
+    parent.addEventListener('click', (event) => {
       let { target } = event;
-
-      while (target !== this.collapse.cityContainer) {
-        if (target.classList.contains('change-city__link')) {
-          Header.generateStoreList(
-            parseInt(target.getAttribute('data-city'), 10) || app.storeManagerData.currentCityId,
-          );
-          event.preventDefault();
-
-          $(this.collapse.storeContainer).collapse('show');
-          return;
-        }
-        target = target.parentNode;
-      }
-    });
-
-    this.collapse.storeContainer.addEventListener('click', (event) => {
-      let { target } = event;
-      while (target !== this.collapse.storeContainer) {
+      while (target !== parent) {
         if (target.classList.contains('change-store__link')) {
           event.preventDefault();
           const storeId = target.getAttribute('data-store');
@@ -91,14 +150,46 @@ class Header {
       }
     });
 
+    const container = document.createElement('div');
+    container.classList.add('container');
 
-    // const sticky = new Stickyfill.Sticky(document.querySelector('.h-navbar-fixed'));
-    // new Sticky('.header__fixed-block', {
-    //   marginTop: 0,
-    //   stickyClass: 'fixed',
-    // });
-    // Utils.parseTargets('.h-category__link').map()
-  }
+    const block = document.createElement('div');
+    block.classList.add('change-store');
+
+    const header = document.createElement('div');
+    header.classList.add('change-store__header');
+    header.innerHTML = `
+      <span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">Название города</span></span>
+      <button class="btn change-store__btn-close" data-toggle="collapse" data-target=".change-store-collapse"></button>`;
+
+    const list = document.createElement('ul');
+    list.classList.add('change-store__list');
+
+    const footer = document.createElement('div');
+    footer.classList.add('change-store__footer');
+    footer.innerHTML = `
+      <a class="change-post" href="#">
+        <svg class="change-post__icon">
+          <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
+        </svg>
+        <div class="change-post__title">Отправлять почтой<br>с центрального склада</div>
+        <div class="change-post__note">Срок от 5 дней</div>
+      </a>
+      <div class="change-store__note">
+        <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
+      </div>`;
+
+    block.appendChild(header);
+    block.appendChild(list);
+    block.appendChild(footer);
+
+    container.appendChild(block);
+    parent.appendChild(container);
+
+    app.header.storeList = block;
+  };
+
+
 
   toggleMenu = (event) => {
     event.preventDefault();
@@ -143,18 +234,6 @@ class Header {
   //
   //   }
   // };
-
-  initDOM() {
-
-  }
-
-  initCollapseCity() {
-
-  }
-
-  initCollapseStore(storeId) {
-
-  }
 
   initListeners() {
     window.addEventListener('scroll', this.onScroll);
@@ -298,7 +377,7 @@ class Header {
       storeListHtml += Header.storeItemTemplate(store);
     });
 
-    document.querySelector('.select-city__link_city').innerHTML = app.storeManagerData.cities[cityId].name;
+    // document.querySelector('.select-city__link_city').innerHTML = app.storeManagerData.cities[cityId].name;
     document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[cityId].name5}</span>`;
     document.querySelector('.change-store__list').innerHTML = storeListHtml;
   }

@@ -50,7 +50,8 @@ $section-padding-bottom: 30px;
   }
 
   @include media-breakpoint-up(xl) {
-    height: (600 / 1920 * 100vw);
+    height: 600px;
+    //height: (600 / 1920 * 100vw);
   }
 
   .slider__slide {
@@ -97,8 +98,10 @@ $section-padding-bottom: 30px;
     }
 
     @include media-breakpoint-up(xl) {
-      padding-top: (60 / 1920 * 100vw);
-      padding-bottom: (140 / 1920 * 100vw);
+      padding-top: 60px;
+      padding-bottom: 140px;
+      //padding-top: (60 / 1920 * 100vw);
+      //padding-bottom: (140 / 1920 * 100vw);
       &::before {
         width: 64%;
       }
@@ -151,8 +154,10 @@ $section-padding-bottom: 30px;
 
     @include media-breakpoint-up(xl) {
       max-width: 50%;
-      margin-bottom: (18 / 1920 * 100vw);
-      font-size: (70 / 1920 * 100vw);
+      margin-bottom: 18px;
+      font-size: 70px;
+      //margin-bottom: (18 / 1920 * 100vw);
+      //font-size: (70 / 1920 * 100vw);
     }
   }
 
@@ -167,7 +172,8 @@ $section-padding-bottom: 30px;
       font-size: 22px;
     }
     @include media-breakpoint-up(xl) {
-      font-size: (27 / 1920 * 100vw);
+      font-size: 27px;
+      //font-size: (27 / 1920 * 100vw);
     }
   }
 
@@ -181,7 +187,8 @@ $section-padding-bottom: 30px;
       font-size: 14px;
     }
     @include media-breakpoint-up(xl) {
-      font-size: (15 / 1920 * 100vw);
+      font-size: 15px;
+      //font-size: (15 / 1920 * 100vw);
     }
   }
 

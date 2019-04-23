@@ -126,173 +126,75 @@ mixin header-category
 
 mixin change-city
     .change-city
-        .change-city__header
-            span.change-city__title Города в которых есть marketdo4a
-            button.btn.change-city__btn-close(data-toggle='collapse', data-target='.change-city-collapse')
-        ul.change-city__list
-            li.change-city__item(data-letter='А')
-                a.change-city__link(href='#') Ангарск
-            li.change-city__item
-                a.change-city__link(href='#') Астана
-            li.change-city__item(data-letter='Б')
-                a.change-city__link(href='#') Барнаул
-            li.change-city__item
-                a.change-city__link(href='#') Белорецк
-            li.change-city__item
-                a.change-city__link(href='#') Бердск
-            li.change-city__item
-                a.change-city__link(href='#') Березники
-            li.change-city__item
-                a.change-city__link(href='#') Березовский
-            li.change-city__item(data-letter='В')
-                a.change-city__link(href='#') Великий Новгород
-            li.change-city__item
-                a.change-city__link(href='#') Владивосток
-            li.change-city__item
-                a.change-city__link(href='#') Владимир
-            li.change-city__item
-                a.change-city__link(href='#') Волгоград
-            li.change-city__item
-                a.change-city__link(href='#') Воронеж
-            li.change-city__item(data-letter='E')
-                a.change-city__link(href='#') Екатеринбург
-            li.change-city__item
-                a.change-city__link(href='#') Иркутск
-            li.change-city__item
-                a.change-city__link(href='#') Казань
-            li.change-city__item
-                a.change-city__link(href='#') Калуга
-            li.change-city__item
-                a.change-city__link(href='#') Кемерово
-            li.change-city__item
-                a.change-city__link(href='#') Комсомольск-на-Амуре
-            li.change-city__item
-                a.change-city__link(href='#') Кострома
-            li.change-city__item
-                a.change-city__link(href='#') Краснодар
-            li.change-city__item
-                a.change-city__link(href='#') Красноярск
-            li.change-city__item
-                a.change-city__link(href='#') Магадан
-            li.change-city__item
-                a.change-city__link(href='#') Майкоп
-            li.change-city__item
-                a.change-city__link(href='#') Москва
-            li.change-city__item
-                a.change-city__link(href='#') Нижневартовск
-            li.change-city__item
-                a.change-city__link(href='#') Нижний Новгород
-            li.change-city__item
-                a.change-city__link(href='#') Новокузнецк
-            li.change-city__item
-                a.change-city__link(href='#') Новороссийск
-            li.change-city__item
-                a.change-city__link(href='#') Новосибирск
-            li.change-city__item
-                a.change-city__link(href='#') Новочеркасск
-            li.change-city__item
-                a.change-city__link(href='#') Новый Уренгой
-            li.change-city__item
-                a.change-city__link(href='#') Оренбург
-            li.change-city__item
-                a.change-city__link(href='#') Павлодар
-            li.change-city__item
-                a.change-city__link(href='#') Пермь
-            li.change-city__item
-                a.change-city__link(href='#') Ростов-на-Дону
-            li.change-city__item
-                a.change-city__link(href='#') Самара
-            li.change-city__item
-                a.change-city__link(href='#') Санкт-Петербург
-            li.change-city__item
-                a.change-city__link(href='#') Симферополь
-            li.change-city__item
-                a.change-city__link(href='#') Сочи
-            li.change-city__item
-                a.change-city__link(href='#') Сургут
-            li.change-city__item
-                a.change-city__link(href='#') Томск
-            li.change-city__item
-                a.change-city__link(href='#') Тюмень
-            li.change-city__item
-                a.change-city__link(href='#') Ульяновск
-            li.change-city__item
-                a.change-city__link(href='#') Уссурийск
-            li.change-city__item
-                a.change-city__link(href='#') Уфа
-            li.change-city__item
-                a.change-city__link(href='#') Хабаровск
-            li.change-city__item
-                a.change-city__link(href='#') Челябинск
-            li.change-city__item
-                a.change-city__link(href='#') Чита
-            li.change-city__item
-                a.change-city__link(href='#') Южно-Сахалинск
-            li.change-city__item
-                a.change-city__link(href='#') Якутск
-        .change-city__footer
-            a.change-post(href='#')
-                +sprite("change-store-stock-icon.svg")(class="change-post__icon")
-                .change-post__title
-                    | Отправлять почтой
-                    br
-                    | с центрального склада
-                .change-post__note Срок от 5 дней
-            .change-city__note
-                | #[b Не нашли магазина в вашем городе?]
-                | Отправим с центрального склада почтой или транспортной компанией.
-                | Доставка от 250 ₽. Отправка на следующий рабочий день.
+        .container
+            .change-city__header
+                span.change-city__title Города в которых есть marketdo4a
+                button.btn.change-city__btn-close(data-toggle='collapse', data-target='.change-city-collapse')
+            ul.change-city__list
+            .change-city__footer
+                a.change-post(href='#')
+                    +sprite("change-store-stock-icon.svg")(class="change-post__icon")
+                    .change-post__title
+                        | Отправлять почтой
+                        br
+                        | с центрального склада
+                    .change-post__note Срок от 5 дней
+                .change-city__note
+                    | #[b Не нашли магазина в вашем городе?]
+                    | Отправим с центрального склада почтой или транспортной компанией.
+                    | Доставка от 250 ₽. Отправка на следующий рабочий день.
 
 mixin change-store
     .change-store
-        .change-store__header
-            span.change-store__title
-                | ВЫБЕРИТЕ МАГАЗИН
-                br
-                | в #[span.selected Название города]
-            button.btn.change-store__btn-close(data-toggle='collapse', data-target='.change-store-collapse')
-        ul.change-store__list
-            li.change-store__item
-                a.change-store__link.active(href='#')
-                    .change-store__item-name ул. Невзоровых, д. 64к2
-                    .change-store__item-subtitle За ТЦ «Этажи»
-                    .change-store__item-note Курьер и самовывоз
-            li.change-store__item
-                a.change-store__link(href='#')
-                    .change-store__item-name ул. Невзоровых, д. 64к2
-                    .change-store__item-subtitle За ТЦ «Этажи»
-                    .change-store__item-note Курьер и самовывоз
-            li.change-store__item
-                a.change-store__link(href='#')
-                    .change-store__item-name ул. Невзоровых, д. 64к2
-                    .change-store__item-subtitle За ТЦ «Этажи»
-                    .change-store__item-note Курьер и самовывоз
-            li.change-store__item
-                a.change-store__link.active(href='#')
-                    .change-store__item-name ул. Невзоровых, д. 64к2
-                    .change-store__item-subtitle Курьер и самовывоз
-                    .change-store__item-note Курьер и самовывоз
-            li.change-store__item
-                a.change-store__link(href='#')
-                    .change-store__item-name ул. Невзоровых, д. 64к2
-                    .change-store__item-subtitle Курьер и самовывоз
-                    .change-store__item-note Курьер и самовывоз
-            li.change-store__item
-                a.change-store__link(href='#')
-                    .change-store__item-name ул. Невзоровых, д. 64к2
-                    .change-store__item-subtitle Курьер и самовывоз
-                    .change-store__item-note Курьер и самовывоз
-        .change-store__footer
-            a.change-post(href='#')
-                +sprite("change-store-stock-icon.svg")(class="change-post__icon")
-                .change-post__title
-                    | Отправлять почтой
+        .container
+            .change-store__header
+                span.change-store__title
+                    | ВЫБЕРИТЕ МАГАЗИН
                     br
-                    | с центрального склада
-                .change-post__note Срок от 5 дней
-            .change-store__note
-                | #[b Не нашли нужный товар?] Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
-        // /.change-city__note
+                    | в #[span.selected Название города]
+                button.btn.change-store__btn-close(data-toggle='collapse', data-target='.change-store-collapse')
+            ul.change-store__list
+                li.change-store__item
+                    a.change-store__link.active(href='#')
+                        .change-store__item-name ул. Невзоровых, д. 64к2
+                        .change-store__item-subtitle За ТЦ «Этажи»
+                        .change-store__item-note Курьер и самовывоз
+                li.change-store__item
+                    a.change-store__link(href='#')
+                        .change-store__item-name ул. Невзоровых, д. 64к2
+                        .change-store__item-subtitle За ТЦ «Этажи»
+                        .change-store__item-note Курьер и самовывоз
+                li.change-store__item
+                    a.change-store__link(href='#')
+                        .change-store__item-name ул. Невзоровых, д. 64к2
+                        .change-store__item-subtitle За ТЦ «Этажи»
+                        .change-store__item-note Курьер и самовывоз
+                li.change-store__item
+                    a.change-store__link.active(href='#')
+                        .change-store__item-name ул. Невзоровых, д. 64к2
+                        .change-store__item-subtitle Курьер и самовывоз
+                        .change-store__item-note Курьер и самовывоз
+                li.change-store__item
+                    a.change-store__link(href='#')
+                        .change-store__item-name ул. Невзоровых, д. 64к2
+                        .change-store__item-subtitle Курьер и самовывоз
+                        .change-store__item-note Курьер и самовывоз
+                li.change-store__item
+                    a.change-store__link(href='#')
+                        .change-store__item-name ул. Невзоровых, д. 64к2
+                        .change-store__item-subtitle Курьер и самовывоз
+                        .change-store__item-note Курьер и самовывоз
+            .change-store__footer
+                a.change-post(href='#')
+                    +sprite("change-store-stock-icon.svg")(class="change-post__icon")
+                    .change-post__title
+                        | Отправлять почтой
+                        br
+                        | с центрального склада
+                    .change-post__note Срок от 5 дней
+                .change-store__note
+                    | #[b Не нашли нужный товар?] Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
+            // /.change-city__note
 
 .header-banner
     | Бесплатная доставка при заказе от #[span.price 2 990]
@@ -329,11 +231,7 @@ header.h-navbar-top
 
 header.h-navbar-collapse
     .change-city-collapse.collapse(data-parent='.h-navbar-collapse')
-        .container
-            +change-city
     .change-store-collapse.collapse(data-parent='.h-navbar-collapse')
-        .container
-            +change-store
 
 header.h-navbar-fixed
     .h-navbar-main
