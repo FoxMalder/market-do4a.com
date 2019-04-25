@@ -35,7 +35,8 @@
           <!-- page-nav-->
           <!-- Статичный модуль (используется несколько раз без изменения)-->
           <ul class="page-nav">
-            <li class="page-nav__item"><a class="page-nav__link" href="#">Программа бонусов</a></li>
+            <!--li.page-nav__item-->
+            <!--    a.page-nav__link(href='#') Программа бонусов-->
             <li class="page-nav__item"><a class="page-nav__link" href="#">Доставка и оплата</a></li>
             <li class="page-nav__item"><a class="page-nav__link" href="#">Франшиза</a></li>
             <li class="page-nav__item"><a class="page-nav__link" href="#">Оптовикам</a></li>
@@ -183,8 +184,21 @@
         <ul class="h-category">
           <li class="h-category__item"><a class="h-category__link" href="#">Питание</a>
             <ul class="h-category-second">
-              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Протеин</a>
-                <div class="h-category-third"><img class="h-category-third__img" src="images/protein.png">
+              <li class="h-category-second__item">
+                <!-- Модификаторы:-->
+                <!--  - '_arrow' - добавляет стрелку справа-->
+                <!-- Примечание:-->
+                <!-- Если существует подменю, добавляем модификатор '_arrow'--><a class="h-category-second__link h-category-second__link_arrow" href="#">Протеин</a><!-- Модификаторы:-->
+                <!-- - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)-->
+                <!-- - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)-->
+                <!-- Примечание:-->
+                <!--  Только для категории "Спортивное питание"-->
+                <!--  (по дизайну, фиксировання высота подменю только для него)-->
+                <!--  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'-->
+                <div class="h-category-third h-category-third_h-460">
+                  <!-- Модификаторы:-->
+                  <!-- - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))-->
+                  <!-- - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)--><img class="h-category-third__img" src="images/protein.png">
                   <ul class="h-category-third__list">
                     <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
                     <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
@@ -199,7 +213,25 @@
                   </ul>
                 </div>
               </li>
-              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Батончики, напитки, закуски</a></li>
+              <li class="h-category-second__item"><a class="h-category-second__link h-category-second__link_arrow" href="#">Батончики, напитки, закуски</a><!-- Модификаторы:-->
+                <!-- - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)-->
+                <!-- - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)-->
+                <!-- Примечание:-->
+                <!--  Только для категории "Спортивное питание"-->
+                <!--  (по дизайну, фиксировання высота подменю только для него)-->
+                <!--  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'-->
+                <div class="h-category-third h-category-third_h-320">
+                  <!-- Модификаторы:-->
+                  <!-- - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))-->
+                  <!-- - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)--><img class="h-category-third__img" src="images/protein.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                  </ul>
+                </div>
+              </li>
               <li class="h-category-second__item"><a class="h-category-second__link" href="#">Выносливость и силовые</a></li>
               <li class="h-category-second__item"><a class="h-category-second__link" href="#">Гейнеры</a></li>
               <li class="h-category-second__item"><a class="h-category-second__link" href="#">Похудение</a></li>
@@ -312,7 +344,8 @@
         <!-- page-nav-->
         <!-- Статичный модуль (используется несколько раз без изменения)-->
         <ul class="page-nav">
-          <li class="page-nav__item"><a class="page-nav__link" href="#">Программа бонусов</a></li>
+          <!--li.page-nav__item-->
+          <!--    a.page-nav__link(href='#') Программа бонусов-->
           <li class="page-nav__item"><a class="page-nav__link" href="#">Доставка и оплата</a></li>
           <li class="page-nav__item"><a class="page-nav__link" href="#">Франшиза</a></li>
           <li class="page-nav__item"><a class="page-nav__link" href="#">Оптовикам</a></li>
@@ -325,6 +358,9 @@
     <div class="hero-slider">
       <div class="slider__wrapper">
         <div class="slider__slide">
+          <!-- Модификаторы:-->
+          <!-- - '_right' - располагает элементы справа-->
+          <!---->
           <!-- Весь блок можно сделать ссылкой--><a class="hero-slider__slide" href="#" style="background-image: url(images/hero-slider-bg-1.jpg)">
             <div class="hero-slider__inner container">
               <div class="hero-slider__title">Доставка курьером</div>
@@ -341,7 +377,9 @@
           </div>
         </div>
         <div class="slider__slide">
-          <div class="hero-slider__slide">
+          <!-- Модификаторы:-->
+          <!-- - '_right' - располагает элементы справа-->
+          <div class="hero-slider__slide hero-slider__slide_right">
             <div class="hero-slider__left-line"></div>
             <div class="hero-slider__right-line"></div>
             <div class="hero-slider__img" style="background-image: url(images/man-girl.png)"></div>
@@ -352,6 +390,8 @@
           </div>
         </div>
         <div class="slider__slide">
+          <!-- Модификаторы:-->
+          <!-- - '_right' - располагает элементы справа-->
           <div class="hero-slider__slide">
             <div class="hero-slider__left-line"></div>
             <div class="hero-slider__right-line"></div>

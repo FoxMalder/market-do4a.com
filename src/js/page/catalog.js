@@ -65,23 +65,62 @@ $(() => {
     },
   }));
 
+  // $('.filter-menu-m').hide();
+  $('.cat-mob-control__button_filter').on('click', (event) => {
+    event.preventDefault();
+    // $('.catalog-filter-m').show();
+    // $('.filter-menu-m').addClass('active');
+    $('.filter-menu-m#mobile-filter').addClass('active');
+    $('body').css('overflow', 'hidden');
+  });
+
+  $(document).on('scroll', (event) => {
+    $('.catalog-filter-m').css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
+  });
+
   $(document)
-    .on('click.filter.menu', '[data-toggle="filter-menu"]', (event) => {
+    .on('click.filter.menu', '[data-toggle="m-filter"]', (event) => {
       event.preventDefault();
       event.stopPropagation();
 
       const $this = $(event.currentTarget);
       const selector = $this.data('target');
-      const $target = selector ? $(selector) : $this.parent().children('.filter-menu-m');
 
-      $target.toggleClass('active');
+      const $target = selector ? $(selector) : $this.siblings('.filter-menu-m');
+
+      $target.addClass('active');
+      $('body').css('overflow', 'hidden');
     })
-    .on('click.filter.menu', '.filter-menu-m-close', (event) => {
+    .on('click.filter.close', '.filter-menu-m__btn-back, .filter-menu-m__btn-close', (event) => {
       event.preventDefault();
       event.stopPropagation();
 
       const $this = $(event.currentTarget);
-      const $target = $this.parents('.filter-menu-m');
+      const $target = $this.parents('.filter-menu-m').eq(0);
+
       $target.removeClass('active');
+
+      if ($('.filter-menu-m.active').length === 0) {
+        $('body').css('overflow', '');
+      }
     });
+// $(document)
+//   .on('click.filter.menu', '[data-toggle="filter-menu"]', (event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//
+//     const $this = $(event.currentTarget);
+//     const selector = $this.data('target');
+//     const $target = selector ? $(selector) : $this.parent().children('.filter-menu-m');
+//
+//     $target.toggleClass('active');
+//   })
+//   .on('click.filter.menu', '.filter-menu-m-close', (event) => {
+//     event.preventDefault();
+//     event.stopPropagation();
+//
+//     const $this = $(event.currentTarget);
+//     const $target = $this.parents('.filter-menu-m');
+//     $target.removeClass('active');
+//   });
 });

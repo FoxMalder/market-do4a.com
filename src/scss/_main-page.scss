@@ -78,6 +78,14 @@ $section-padding-bottom: 30px;
     background-position: center top;
     background-size: cover;
 
+    &_right {
+      text-align: right;
+
+      .hero-slider__inner {
+        align-items: flex-end;
+      }
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -299,8 +307,9 @@ $section-padding-bottom: 30px;
       display: block;
       margin-bottom: 11px;
       color: #fff;
-      font: italic $font-weight-bold 14px/normal $font-family-bender;
+      font: italic $font-weight-bold 14px $font-family-bender;
       letter-spacing: .02em;
+      line-height: normal;
       text-align: center;
       text-transform: uppercase;
     }

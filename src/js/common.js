@@ -27,7 +27,7 @@ $(() => {
   // svg4everybody();
 
 
-  const header = new Header();
+  app.Header = new Header();
   Input();
 
 });

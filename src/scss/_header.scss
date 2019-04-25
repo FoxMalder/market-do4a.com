@@ -334,6 +334,8 @@
     justify-content: space-between;
     color: rgba(#000, 0.5);
     &__item {
+      margin-right: 10px;
+
       &:not(:last-child) {
         margin-bottom: 0;
       }
@@ -1467,15 +1469,17 @@ $header-category-link-lvl-3-bg: #454545;
       color: inherit;
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      width: 8px;
-      height: 12px;
-      margin-top: -6px;
-      @include sprite('nav-arrow-right');
+    &_arrow {
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        width: 8px;
+        height: 12px;
+        margin-top: -6px;
+        @include sprite('nav-arrow-right');
+      }
     }
   }
 }
@@ -1485,6 +1489,14 @@ $header-category-link-lvl-3-bg: #454545;
   padding: 15px 0;
   overflow: hidden;
   background-color: $header-category-link-lvl-2-bg;
+
+  &_h-320 {
+    height: 320px;
+  }
+
+  &_h-460 {
+    height: 460px;
+  }
 
   &__img {
     position: absolute;

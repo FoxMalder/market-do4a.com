@@ -31,7 +31,10 @@ $(() => {
   // svg4everybody();
 
 
-  const header = new Header();
+  const header = new Header()
+  console.log(header);
+  app.header = header;
+
   Input();
 
 });

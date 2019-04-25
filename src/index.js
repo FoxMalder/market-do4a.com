@@ -1,3 +1,4 @@
+// import '@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 import './scss/main.scss';
 
 import './js/common';

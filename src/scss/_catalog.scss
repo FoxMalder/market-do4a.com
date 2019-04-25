@@ -55,12 +55,20 @@
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-position: 190px center;
+    background-position: calc(50% + 150px) center;
 
     background-size: contain;
 
+    //@include media-breakpoint-up(sm) {
+    //  background-position: calc(50% + 280px) center;
+    //}
     @include media-breakpoint-up(md) {
+      //background-position: center;
+      background-position: calc(50% + 280px) center;
+    }
+    @include media-breakpoint-up(xl) {
       background-position: center;
+
     }
   }
 
@@ -316,24 +324,52 @@ $multifilter-padding-x: (
 }
 
 
-.catalog-mobile-menu {
-  //display: flex;
-  display: none;
+.catalog-filter-m {
+  //display: none;
   position: fixed;
-  z-index: $zindex-sticky;
-  top: 65px;
+  z-index: 800;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  flex-direction: column;
-  background: #f5f5f5;
-
-  &.active {
-    display: block; // flex?
-  }
+  padding-top: 44px;
+  pointer-events: none;
 
   @include media-breakpoint-up(md) {
     display: none;
+  }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    > * {
+      pointer-events: auto;
+    }
+  }
+}
+
+.filter-menu-m {
+  display: none;
+  position: absolute;
+  z-index: $zindex-fixed;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+
+  &.active {
+    display: flex;
+  }
+
+  .catalog-filter-m > & {
+
+  }
+
+  .multifilter > & {
   }
 
   &__container {
@@ -380,7 +416,13 @@ $multifilter-padding-x: (
   }
 
   &__btn-back {
-
+    @extend %button-reset;
+    width: 18px;
+    height: 20px;
+    margin-right: 14px;
+    @include sprite('back', (
+      color: $main-color
+    ));
   }
 
   &__footer {
@@ -396,18 +438,6 @@ $multifilter-padding-x: (
   }
 }
 
-.filter-menu-m {
-  display: none;
-
-  .catalog-filter-m > & {
-
-  }
-
-  .multifilter > & {
-
-  }
-}
-
 ////////////////////////////////////////////////////////////
 //
 // Фильтры
@@ -416,11 +446,11 @@ $multifilter-padding-x: (
 
 .multifilter {
   display: flex;
-  position: relative;
   align-items: center;
 
   @include media-breakpoint-up(md) {
     display: inline-flex;
+    position: relative;
   }
 
   &__content {
@@ -434,6 +464,11 @@ $multifilter-padding-x: (
     white-space: nowrap;
     cursor: auto;
 
+    > * {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
     @include media-breakpoint-up(md) {
       padding: 0 map_get($multifilter-padding-x, xl);
     }
@@ -443,7 +478,7 @@ $multifilter-padding-x: (
     }
   }
 
-  &__content[data-toggle='menu'] {
+  &__content[data-toggle='m-filter'] {
     &::after {
       content: '';
       position: absolute;

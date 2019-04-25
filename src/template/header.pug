@@ -25,8 +25,8 @@ mixin page-nav
     // page-nav
     // Статичный модуль (используется несколько раз без изменения)
     ul.page-nav
-        li.page-nav__item
-            a.page-nav__link(href='#') Программа бонусов
+        //li.page-nav__item
+        //    a.page-nav__link(href='#') Программа бонусов
         li.page-nav__item
             a.page-nav__link(href='#') Доставка и оплата
         li.page-nav__item
@@ -388,8 +388,22 @@ header.h-navbar-fixed
                     a.h-category__link(href='#') Питание
                     ul.h-category-second
                         li.h-category-second__item
-                            a.h-category-second__link(href='#') Протеин
-                            .h-category-third
+                            // Модификаторы:
+                            //  - '_arrow' - добавляет стрелку справа
+                            // Примечание:
+                            // Если существует подменю, добавляем модификатор '_arrow'
+                            a.h-category-second__link.h-category-second__link_arrow(href='#') Протеин
+                            // Модификаторы:
+                            // - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)
+                            // - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)
+                            // Примечание:
+                            //  Только для категории "Спортивное питание"
+                            //  (по дизайну, фиксировання высота подменю только для него)
+                            //  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'
+                            .h-category-third.h-category-third_h-460
+                                // Модификаторы:
+                                // - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))
+                                // - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)
                                 img.h-category-third__img(src=require('./images/protein.png'))
                                 ul.h-category-third__list
                                     li.h-category-third__item
@@ -413,7 +427,28 @@ header.h-navbar-fixed
                                     li.h-category-third__item
                                         a.h-category-third__link(href='#') Активное долголетие
                         li.h-category-second__item
-                            a.h-category-second__link(href='#') Батончики, напитки, закуски
+                            a.h-category-second__link.h-category-second__link_arrow(href='#') Батончики, напитки, закуски
+                            // Модификаторы:
+                            // - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)
+                            // - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)
+                            // Примечание:
+                            //  Только для категории "Спортивное питание"
+                            //  (по дизайну, фиксировання высота подменю только для него)
+                            //  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'
+                            .h-category-third.h-category-third_h-320
+                                // Модификаторы:
+                                // - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))
+                                // - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)
+                                img.h-category-third__img(src=require('./images/protein.png'))
+                                ul.h-category-third__list
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Омега 3-6-9
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Витамины и минералы
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Для суставов и связок
+                                    li.h-category-third__item
+                                        a.h-category-third__link(href='#') Тестобустеры и ZMA
                         li.h-category-second__item
                             a.h-category-second__link(href='#') Выносливость и силовые
                         li.h-category-second__item

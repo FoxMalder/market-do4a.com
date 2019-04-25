@@ -5,6 +5,9 @@ block wrapper
         .hero-slider
             .slider__wrapper
                 .slider__slide
+                    // Модификаторы:
+                    // - '_right' - располагает элементы справа
+                    //
                     // Весь блок можно сделать ссылкой
                     a.hero-slider__slide(href="#" style='background-image: url(' + require('./images/hero-slider-bg-1.jpg') + ')')
                         .hero-slider__inner.container
@@ -18,7 +21,9 @@ block wrapper
                             a.hero-slider__title(href="#") Скидка <br> 10% на всё
                             .hero-slider__subtitle Покупай товары <br> из каталога со скидкой
                 .slider__slide
-                    .hero-slider__slide
+                    // Модификаторы:
+                    // - '_right' - располагает элементы справа
+                    .hero-slider__slide.hero-slider__slide_right
                         .hero-slider__left-line
                         .hero-slider__right-line
                         .hero-slider__img(style='background-image: url(' + require('./images/man-girl.png') + ')')
@@ -27,6 +32,8 @@ block wrapper
                             .hero-slider__subtitle -10% на питание для двоих
                             a.hero-slider__button.btn.btn-red.btn-skew(href="#") Подробнее
                 .slider__slide
+                    // Модификаторы:
+                    // - '_right' - располагает элементы справа
                     .hero-slider__slide
                         .hero-slider__left-line
                         .hero-slider__right-line
