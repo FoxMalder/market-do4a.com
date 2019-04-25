@@ -225,7 +225,7 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(),
 
-    // new CssUrlRelativePlugin(),
+    new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/style.css',
       chunkFilename: 'css/style.css',
