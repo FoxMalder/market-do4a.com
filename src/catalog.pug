@@ -1,11 +1,11 @@
 extends template/template
 block wrapper
-    .filter-menu-m#mobile-filter
-        .filter-menu-m__header
+    .catalog-menu-mob#mobile-filter
+        .catalog-menu-mob__header
             //button.catalog-mobile__btn-back
-            span.filter-menu-m__title Фильтр
-            button.filter-menu-m__btn-close
-        .filter-menu-m__wrapper
+            span.catalog-menu-mob__title Фильтр
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
             // Элемент фильтра
             // Модификаторы:
             //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
@@ -24,24 +24,24 @@ block wrapper
                         span.multifilter__total 23
 
                 button.multifilter__btn-clear Сбросить
-                .filter-menu-m
-                    .filter-menu-m__header
-                        button.filter-menu-m__btn-back
-                        span.filter-menu-m__title Фильтр
-                    .filter-menu-m__wrapper
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
                         .p-1 Фильтр
-                    .filter-menu-m__footer
-                        button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
             .multifilter.active
                 button.multifilter__content(data-toggle="m-filter")
                     span.multifilter__value Смотреть тут
                         span.multifilter__total 2
                 button.multifilter__btn-clear Сбросить
-                .filter-menu-m
-                    .filter-menu-m__header
-                        button.filter-menu-m__btn-back
-                        span.filter-menu-m__title Фильтр
-                    .filter-menu-m__wrapper
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
                         .multifilter-checkbox
                             input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
                             label.multifilter-checkbox__label(for="m-f-2-check-1")
@@ -78,8 +78,8 @@ block wrapper
                             input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
                             label.multifilter-checkbox__label(for="m-f-2-check-9")
                                 | ASM
-                    .filter-menu-m__footer
-                        button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
 
             .multifilter.active
                 // dropdown container
@@ -87,14 +87,14 @@ block wrapper
                     span.multifilter__value Очень длинное название которое должно обрезаться
                         span.multifilter__total 2
                 button.multifilter__btn-clear Сбросить
-                .filter-menu-m
-                    .filter-menu-m__header
-                        button.filter-menu-m__btn-back
-                        span.filter-menu-m__title Фильтр
-                    .filter-menu-m__wrapper
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
                         .p-1 Фильтр
-                    .filter-menu-m__footer
-                        button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
             .multifilter
                 button.multifilter__content
                     span.multifilter__value Очень длинное название которое должно обрезаться
@@ -105,14 +105,14 @@ block wrapper
                     span.multifilter__value Очень длинное название которое должно обрезаться
                         span.multifilter__total 2
                 button.multifilter__btn-clear Сбросить
-                .filter-menu-m
-                    .filter-menu-m__header
-                        button.filter-menu-m__btn-back
-                        span.filter-menu-m__title Фильтр
-                    .filter-menu-m__wrapper
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
                         .p-1 Фильтр
-                    .filter-menu-m__footer
-                        button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
             .multifilter
                 button.multifilter__content
                     span.multifilter__value Очень длинное название которое должно обрезаться
@@ -125,14 +125,14 @@ block wrapper
                 button.multifilter__content
                     span.multifilter__value Цена
 
-        .filter-menu-m__footer
-            button.filter-menu-m__btn-footer.btn.btn-gray-2 Сбросить
-            button.filter-menu-m__btn-footer.btn.btn-red Применить
-    .filter-menu-m#mobile-sort
-        .filter-menu-m__header
-            span.filter-menu-m__title Сортировка
-            button.filter-menu-m__btn-close
-        .filter-menu-m__wrapper
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+    .catalog-menu-mob#mobile-sort
+        .catalog-menu-mob__header
+            span.catalog-menu-mob__title Сортировка
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
             .multifilter-radio
                 input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
                 label.multifilter-radio__label(for="m-s-1-check-1")
@@ -153,8 +153,8 @@ block wrapper
                 input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
                 label.multifilter-radio__label(for="m-s-1-check-5")
                     | По названию (Я-А)
-        .filter-menu-m__footer
-            button.filter-menu-m__btn-footer.btn.btn-red Применить
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
 
 
     .wrapper
@@ -181,10 +181,8 @@ block wrapper
                     .catalog-banner__promocode-text Промокод
                     .catalog-banner__promocode-value Muscle
 
-        .catalog-header-mobile
-            .catalog-header-mobile
-        .catalog-header
-            .catalog-header__filter
+        .catalog-control
+            .catalog-control__menu.catalog-control__menu_white
                 .container
                     .filter
                         .filter__list
@@ -315,7 +313,7 @@ block wrapper
                                             span.multifilter-price__end 10 000 ₽
                         .filter__btn-reset Сбросить
 
-            .catalog-header__sorting
+            .catalog-control__menu
                 .container
                     .sorting
                         .sorting__list
@@ -388,18 +386,23 @@ block wrapper
                                             | Только со скидкой
 
 
-            .catalog-header__mobile-control
-                .cat-mob-category
-                    .cat-mob-category__item Все категории
-                    .cat-mob-category__item.active Сывороточный
-                    .cat-mob-category__item Комплексный
-                    .cat-mob-category__item Сывороточный
-                    .cat-mob-category__item Комплексный
-                .cat-mob-control
-                    button.cat-mob-control__button.cat-mob-control__button_filter(data-toggle="m-filter" data-target="#mobile-filter")
-                        | Фильтр
-                    button.cat-mob-control__button.cat-mob-control__button_sort(data-toggle="m-filter" data-target="#mobile-sort")
-                        | Сортировка
+
+            .catalog-control__menu.catalog-control__menu_white
+                .category-list-mob
+                    .category-list-mob__item Все категории
+                    .category-list-mob__item.active Сывороточный
+                    .category-list-mob__item Комплексный
+                    .category-list-mob__item Сывороточный
+                    .category-list-mob__item Комплексный
+
+            .catalog-control__menu.catalog-control__menu_white
+                .catalog-control-mob
+                    button.catalog-control-mob__button.justify-content-start(data-toggle="m-filter" data-target="#mobile-filter")
+                        +sprite('filter.svg')(class="catalog-control-mob__icon", height='21', width='19')
+                        span Фильтр
+                    button.catalog-control-mob__button.catalog-control-mob__button_gray.justify-content-end(data-toggle="m-filter" data-target="#mobile-sort")
+                        span Сортировка
+                        +sprite('sort.svg')(class="catalog-control-mob__icon", height='22', width='14')
         .catalog
             .catalog__container
                 .catalog__list
@@ -538,8 +541,7 @@ block wrapper
                     .col-md-6.col-xl-3
                         .benefits__item
                             .benefits__icon
-                                svg(width='91', height='62')
-                                    use(xlink:href=require('./images/sprite.svg') + '#benefits-cup')
+                                +sprite('benefits-cup.svg')(height='62', width='91')
                             .benefits__title
                                 | Профессиональная
                                 br
@@ -547,8 +549,7 @@ block wrapper
                     .col-md-6.col-xl-3
                         .benefits__item
                             .benefits__icon
-                                svg(width='86', height='87')
-                                    use(xlink:href=require('./images/sprite.svg') + '#benefits-hand')
+                                +sprite('benefits-hand.svg')(height='87', width='86')
                             .benefits__title
                                 | Официальная
                                 br
@@ -556,8 +557,7 @@ block wrapper
                     .col-xl-6
                         .benefits__item
                             .benefits__icon
-                                svg(width='68', height='69')
-                                    use(xlink:href=require('./images/sprite.svg') + '#benefits-mail')
+                                +sprite('benefits-mail.svg')(height='69', width='68')
                             .benefits__title
                                 | Подписаться
                                 br

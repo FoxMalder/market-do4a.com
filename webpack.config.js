@@ -31,6 +31,7 @@ const cummonConfig = {
   entry: {
     index: './src/index.js',
     catalog: './src/catalog.js',
+    favorites: './src/favorites.js',
   },
   output: {
     path: distPath,
@@ -94,6 +95,14 @@ const cummonConfig = {
       filename: 'catalog.html',
       template: path.resolve(__dirname, 'src/catalog.pug'),
       chunks: ['catalog', 'common'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Избранное',
+      filename: 'favorites.html',
+      template: path.resolve(__dirname, 'src/favorites.pug'),
+      chunks: ['favorites', 'common'],
       minify: false,
     }),
   ],

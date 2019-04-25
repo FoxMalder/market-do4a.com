@@ -65,17 +65,8 @@ $(() => {
     },
   }));
 
-  // $('.filter-menu-m').hide();
-  $('.cat-mob-control__button_filter').on('click', (event) => {
-    event.preventDefault();
-    // $('.catalog-filter-m').show();
-    // $('.filter-menu-m').addClass('active');
-    $('.filter-menu-m#mobile-filter').addClass('active');
-    $('body').css('overflow', 'hidden');
-  });
-
   $(document).on('scroll', (event) => {
-    $('.catalog-filter-m').css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
+    $('.catalog-menu-mob.active').css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
   });
 
   $(document)
@@ -86,18 +77,18 @@ $(() => {
       const $this = $(event.currentTarget);
       const selector = $this.data('target');
 
-      const $target = selector ? $(selector) : $this.siblings('.filter-menu-m');
+      const $target = selector ? $(selector) : $this.siblings('.catalog-menu-mob');
 
       $target.addClass('active');
       $target.css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
       $('body').css('overflow', 'hidden');
     })
-    .on('click.filter.close', '.filter-menu-m__btn-back, .filter-menu-m__btn-close', (event) => {
+    .on('click.filter.close', '.catalog-menu-mob__btn-back, .catalog-menu-mob__btn-close', (event) => {
       event.preventDefault();
       event.stopPropagation();
 
       const $this = $(event.currentTarget);
-      const $target = $this.parents('.filter-menu-m').eq(0);
+      const $target = $this.parents('.catalog-menu-mob').eq(0);
 
       $target.removeClass('active');
 

@@ -1,0 +1,272 @@
+extends template/template
+block wrapper
+    .catalog-menu-mob#mobile-sort
+        .catalog-menu-mob__header
+            span.catalog-menu-mob__title Сортировка
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
+                label.multifilter-radio__label(for="m-s-1-check-1")
+                    | По популярности
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-2")
+                    | Сначала дешевые
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-3")
+                    | Сначала дорогие
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-4")
+                    | По названию (А-Я)
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-5")
+                    | По названию (Я-А)
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+
+
+    .wrapper
+        .page-header
+            .container
+                .breadcumps
+                    a.breadcumps__link.red(href='#') Главная
+                    span.breadcumps__delimiter
+                    a.breadcumps__link.red(href='#') Личный кабинет
+                    span.breadcumps__delimiter
+                    span.breadcumps__page Избранное
+                h1.page-header__title Избранное
+
+        .catalog-control.catalog-control_favorites
+            .catalog-control__menu.catalog-control__menu_white
+                .container
+                    .sorting
+                        .sorting__list
+                            .multifilter
+                                .multifilter__content
+                                    span.multifilter__label В изрбанном
+                                    span.multifilter__value 12 товаров
+
+                            .multifilter
+                                button.multifilter__content(data-toggle="dropdown")
+                                    span.multifilter__value Сначала дешевые
+                                button.multifilter__btn-clear Сбросить
+                                .multifilter__dropdown.dropdown-menu(data-simplebar data-simplebar-auto-hide="false" role="form")
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-1" name="sort" checked=true)
+                                        label.multifilter-radio__label(for="s-1-check-1")
+                                            | По популярности
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-2" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-2")
+                                            | Сначала дешевые
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-3" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-3")
+                                            | Сначала дорогие
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-4" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-4")
+                                            | По названию (А-Я)
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-5" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-5")
+                                            | По названию (Я-А)
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-6" name="sort" checked=true)
+                                        label.multifilter-radio__label(for="s-1-check-6")
+                                            | По популярности
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-7" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-7")
+                                            | Сначала дешевые
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-8" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-8")
+                                            | Сначала дорогие
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-9" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-9")
+                                            | По названию (А-Я)
+                                    .multifilter-radio
+                                        input.multifilter-radio__input(type="radio" id="s-1-check-10" name="sort")
+                                        label.multifilter-radio__label(for="s-1-check-10")
+                                            | По названию (Я-А)
+
+                        .sorting__checkbox-container
+                            .multifilter
+                                .multifilter__content
+                                    .input-checkbox
+                                        input.input-checkbox__input(type="checkbox" id="customCheck1")
+                                        label.input-checkbox__label(for="customCheck1")
+                                            | Только со скидкой
+
+
+
+            .catalog-control__menu.catalog-control__menu_white
+                .catalog-control-mob
+                    button.catalog-control-mob__button.catalog-control-mob__button_gray.justify-content-between(data-toggle="m-filter" data-target="#mobile-sort")
+                        span Сортировка
+                        +sprite('sort.svg')(class="catalog-control-mob__icon", height='22', width='14')
+    .catalog
+        .catalog__container
+            .catalog__list
+                -
+                    const productCards = [
+                    {
+                    title: 'Optimum nutrition gold standart whey',
+                    description: 'Комплексный протеин',
+                    price: '1 750',
+                    sale: '600',
+                    }, {
+                    title: 'Optimum nutrition gold standart whey',
+                    price: '1 750',
+                    sale: '600',
+                    }, {
+                    title: 'Optimum nutrition',
+                    price: '1 750',
+                    sale: '600',
+                    stickers: ['yellow', 'green', 'red', 'delivery']
+                    }, {
+                    title: 'Optimum nutrition gold standart whey protein',
+                    price: '1 750',
+                    sale: '600',
+                    }, {
+                    price: '1 750',
+                    sale: '600',
+                    }, {
+                    price: '1 750',
+                    sale: '600',
+                    }, {
+                    price: '1 750',
+                    sale: '600',
+                    }, {
+                    price: '1 750',
+                    sale: '600',
+                    },
+                    ]
+                each card in productCards
+                    .catalog__item
+
+                        // Карточка товара
+                        // По высоте и ширине заполняет родительский элемент
+                        .product-card
+                            .product-card__wrapper
+                                .product-card__img
+                                    img(src=require('./img/catalog/product-1.png'))
+
+                                // Ссылка. Делает кликабельным весь .product-card__wrapper
+                                // Причина: отсутствие необходимости использовать <div> внутри <a>
+                                // См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/
+                                a.product-card__title(href='#') #{card.title || 'Заголовок'}
+
+                                .product-card__description #{card.description || 'Комплексный протеин'}
+
+                                .product-card__price-info
+                                    // Не хотел пихать каждое слово в отдельный элемент, потому на псевдоэлементах
+                                    // Если потребуется, переделаю
+                                    .product-card__price(data-price-text='от', data-price-unit='₽') #{card.price || '1 750'}
+                                    .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') #{card.sale || '300'}
+
+                                .product-card__row
+                                    .product-card__reviews
+                                        .product-rating
+                                            .product-rating__item.product-rating__item_100
+                                            .product-rating__item.product-rating__item_100
+                                            .product-rating__item.product-rating__item_100
+                                            .product-rating__item.product-rating__item_50
+                                            .product-rating__item
+                                        .product-card__reviews-title
+                                            | 31 отзыв
+                                    .product-card__stock
+                                        // Модификаторы:
+                                        //    .green    - (глобальный класс) Зеленый текст
+                                        //    .red      - (глобальный класс) Красный текст
+                                        .product-card__stock-title.green В наличии
+                                        .product-card__stock-value 6 фасовок
+
+                                .product-card__stickers
+                                    // Модификаторы:
+                                    //    .product-card__sticker_yellow     - Желтый фон
+                                    //    .product-card__sticker_green      - Зеленый фон
+                                    //    .product-card__sticker_red        - Красный фон
+                                    //    .product-card__sticker_center     - Размещает по центру
+                                    if card.stickers
+                                        each sticker in card.stickers
+                                            if sticker === 'yellow'
+                                                .product-card__sticker.product-card__sticker_yellow
+                                                    | Рекомендуем
+                                            else if sticker === 'green'
+                                                .product-card__sticker.product-card__sticker_green
+                                                    | Новинка
+                                            else if sticker === 'red'
+                                                .product-card__sticker.product-card__sticker_red
+                                                    | Хит!
+                                            else if sticker === 'delivery'
+                                                .product-card__sticker.product-card__sticker_red.product-card__sticker_center
+                                                    | Доставка 1 день
+
+                            .product-card__controls
+                                button.product-card__button.btn.btn-red Подробнее
+                                button.product-card__button.btn.btn-gray-2 К сравнению
+
+                            // Возможные элементы:
+                            //     <button>
+                            //     <a>
+                            // Модификаторы:
+                            //     .active или .product-card__favorites_active - Добавлено в избранное
+                            button.product-card__favorites.active.hover
+                                +sprite('product-card-heart.svg')
+            .catalog__more
+                button.catalog__more-link Показать еще
+                .catalog__more-value Показано 24 из 170
+    .catalog-description
+        .container
+            p
+                | Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
+                | для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
+                | человека.
+            p
+                | Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
+                | необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
+                | роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
+                | максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
+                | коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.
+            p
+                | Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
+                | порошок или коктейль.
+    .benefits
+        .container
+            .row
+                .col-md-6.col-xl-3
+                    .benefits__item
+                        .benefits__icon
+                            +sprite('benefits-cup.svg')(height='62', width='91')
+                        .benefits__title
+                            | Профессиональная
+                            br
+                            | консультация
+                .col-md-6.col-xl-3
+                    .benefits__item
+                        .benefits__icon
+                            +sprite('benefits-hand.svg')(height='87', width='86')
+                        .benefits__title
+                            | Официальная
+                            br
+                            | продукция
+                .col-xl-6
+                    .benefits__item
+                        .benefits__icon
+                            +sprite('benefits-mail.svg')(height='69', width='68')
+                        .benefits__title
+                            | Подписаться
+                            br
+                            | на новости
+                        form.benefits__form
+                            .input-field
+                                label.input-field__label(for='email-1') Твой e-mail
+                                input#email-1.input-field__input(type='email')
+                            button.btn.btn-block.btn-red Подписаться

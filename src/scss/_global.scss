@@ -901,16 +901,9 @@ textarea.form-control {
     margin-bottom: 12px;
   }
   @include media-breakpoint-up(xl) {
-    margin-bottom: 31px;
+    margin-bottom: 28px;
   }
 
-  &__link {
-
-  }
-
-  &__page {
-    color: rgba(#101010, .4);
-  }
 
   &__delimiter {
     display: inline-block;
@@ -918,9 +911,17 @@ textarea.form-control {
     //color: $main-color;
     width: 2px;
     height: 11px;
-    margin: 0 5px -1px;
+    margin: 0 13px -1px;
     transform: skewX(-12deg);
     background-color: $main-color;
+  }
+
+  //&__link {
+  //  color: $main-color;
+  //}
+
+  &__page {
+    color: rgba(#101010, .4);
   }
 }
 
