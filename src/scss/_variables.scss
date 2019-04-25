@@ -86,3 +86,16 @@ $dropdown-border-width:             0;
 //$dropdown-divider-bg:               $gray-200;
 //$dropdown-divider-margin-y:         $nav-divider-margin-y;
 $dropdown-box-shadow:               none;
+
+//
+//
+$page-padding-x: (
+  xs: (map_get($grid-gutter-width-map, xs) / 2),
+  md: (map_get($grid-gutter-width-map, md) / 2),
+);
+
+$page-header-padding-y: (
+  xs: 19px,
+  md: 25px,
+  xl: 30px,
+);

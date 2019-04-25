@@ -125,7 +125,7 @@ h3,
 h4,
 h5,
 h6 {
-  @extend %title;
+  @include title;
 
   @include font-size(24px);
   line-height: 30px;
@@ -856,31 +856,34 @@ textarea.form-control {
 }
 
 .page-header {
-  padding-top: 28px;
-  padding-bottom: 18px;
+  padding: map_get($page-header-padding-y, xs) 0;
 
   @include media-breakpoint-up(md) {
-    padding-top: 32px;
-    padding-bottom: 25px;
+    padding: map_get($page-header-padding-y, md) 0;
+    //padding-top: 32px;
+    //padding-bottom: 25px;
   }
 
   @include media-breakpoint-up(xl) {
-    padding-top: 42px;
-    padding-bottom: 30px;
-  }
-}
-
-.page-title {
-  margin-bottom: 0;
-  font-size: 24px;
-  line-height: normal;
-
-  @include media-breakpoint-up(md) {
-    font-size: 36px;
+    padding: map_get($page-header-padding-y, xl) 0;
+    //padding-top: 42px;
+    //padding-bottom: 30px;
   }
 
-  @include media-breakpoint-up(xl) {
-    font-size: 60px;
+  &__title {
+    margin-bottom: 0;
+    font-size: 24px;
+    line-height: 1.25;
+
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: 60px;
+      line-height: 68px;
+    }
   }
 }
 

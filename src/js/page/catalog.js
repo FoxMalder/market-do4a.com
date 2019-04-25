@@ -89,6 +89,7 @@ $(() => {
       const $target = selector ? $(selector) : $this.siblings('.filter-menu-m');
 
       $target.addClass('active');
+      $target.css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
       $('body').css('overflow', 'hidden');
     })
     .on('click.filter.close', '.filter-menu-m__btn-back, .filter-menu-m__btn-close', (event) => {

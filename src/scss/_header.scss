@@ -224,6 +224,7 @@
   }
 
   &__label {
+    display: none;
     flex: 0 0 auto;
     margin-right: 6px;
     overflow: hidden;
@@ -231,8 +232,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    @include media-breakpoint-up(xl) {
-      display: none;
+    @include media-breakpoint-only(md) {
+      display: block;
     }
   }
 

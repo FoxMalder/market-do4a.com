@@ -332,7 +332,7 @@ $multifilter-padding-x: (
   right: 0;
   bottom: 0;
   left: 0;
-  padding-top: 44px;
+  //padding-top: 44px;
   pointer-events: none;
 
   @include media-breakpoint-up(md) {
@@ -340,9 +340,9 @@ $multifilter-padding-x: (
   }
 
   &__wrapper {
+    position: relative;
     width: 100%;
     height: 100%;
-    position: relative;
 
     > * {
       pointer-events: auto;
@@ -352,14 +352,17 @@ $multifilter-padding-x: (
 
 .filter-menu-m {
   display: none;
-  position: absolute;
-  z-index: $zindex-fixed;
+  position: fixed;
+  z-index: 800;
   top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  padding-top: 44px;
+  //background: url("../img/rm/filter-320.png") center -44px no-repeat;
   background-color: #f5f5f5;
+  background-size: 320px auto;
 
   &.active {
     display: flex;
@@ -388,20 +391,35 @@ $multifilter-padding-x: (
 
   &__wrapper {
     flex: 1 1 auto;
+    padding: 14px map_get($page-padding-x, xs);
     overflow: hidden auto;
+
+    > .multifilter,
+    > .multifilter-radio,
+    > .multifilter-checkbox,
+    > .multifilter-search {
+      margin-right: (map_get($page-padding-x, xs) * -1);
+      margin-left: (map_get($page-padding-x, xs) * -1);
+
+      font-size: 16px;
+      line-height: 1;
+    }
   }
 
   &__header {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
-    padding: 28px (map_get($grid-gutter-width-map, xs) / 2);
+    padding: map_get($page-header-padding-y, xs) map_get($page-padding-x, xs);
+    //@include page-header;
   }
 
   &__title {
     @include title;
+    margin-bottom: 0;
     color: #101010;
     font-size: 24px;
+    line-height: 1.25;
   }
 
   &__btn-close {
@@ -444,11 +462,11 @@ $multifilter-padding-x: (
 
 .multifilter {
   display: flex;
+  position: relative;
   align-items: center;
 
   @include media-breakpoint-up(md) {
     display: inline-flex;
-    position: relative;
   }
 
   &__content {
@@ -458,17 +476,25 @@ $multifilter-padding-x: (
     align-items: center;
     width: 100%; // only mobile?
     padding: 0 (map_get($grid-gutter-width-map, xs) / 2);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
     text-align: left;
     white-space: nowrap;
     cursor: auto;
 
     > * {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      padding-top: 17px;
+      padding-bottom: 17px;
     }
 
     @include media-breakpoint-up(md) {
       padding: 0 map_get($multifilter-padding-x, xl);
+
+      //> * {
+      //  padding-top: 10px;
+      //  padding-bottom: 10px;
+      //}
     }
 
     @include media-breakpoint-up(xl) {
@@ -477,6 +503,14 @@ $multifilter-padding-x: (
   }
 
   &__content[data-toggle='m-filter'] {
+    padding-right: 35px;
+    transition: background .3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: hsl(0, 0%, 92%);
+    }
+
     &::after {
       content: '';
       position: absolute;
@@ -487,6 +521,18 @@ $multifilter-padding-x: (
       border-bottom: 4px solid transparent;
       border-left: 8px solid #101010;
       opacity: .2;
+    }
+
+    .multifilter.active & {
+      padding-right: 150px;
+    }
+
+    .multifilter__value {
+      padding-right: 18px;
+    }
+
+    .multifilter__total {
+      right: 6px;
     }
   }
 
@@ -532,6 +578,10 @@ $multifilter-padding-x: (
     .multifilter__value {
       padding-right: 18px;
     }
+
+    .multifilter__total {
+      right: 6px;
+    }
   }
 
   &__label {
@@ -557,7 +607,7 @@ $multifilter-padding-x: (
     position: absolute;
     top: calc(50% - 17px);
 
-    right: 6px;
+    right: 0;
     min-width: 18px;
     height: 18px;
 
@@ -863,9 +913,11 @@ $multifilter-menu-padding-x: 22px;
   display: flex;
   padding-right: 5px;
   padding-left: 5px;
-  overflow: auto;
+  overflow: scroll;
   border-bottom: 1px solid #e8e8e8;
+  background-color: #fff;
   white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 
   &__item {
     @extend %button-reset;
@@ -904,6 +956,7 @@ $multifilter-menu-padding-x: 22px;
 .cat-mob-control {
   display: flex;
   height: 48px;
+  border-bottom: 1px solid #e8e8e8;
 
   @include media-breakpoint-up(md) {
     display: none;
@@ -974,9 +1027,9 @@ $multifilter-menu-padding-x: 22px;
     //position: relative;
     @include make-col-ready(0);
     @include make-col(6);
-    border-width: 1px 1px 0 0;
-    border-style: solid;
-    border-color: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    border-top: 0;
+    border-left: 0;
 
     @include media-breakpoint-up(md) {
       height: 440px;
@@ -1005,17 +1058,36 @@ $multifilter-menu-padding-x: 22px;
   &__more-link {
     @extend %button-reset;
     @include title;
-    margin-bottom: 21px;
+    margin-bottom: 15px;
     border-bottom: 1px dashed rgba(#000, .4);
-    font-size: 18px;
+    font-size: 16px;
 
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 9px;
+      margin-left: 13px;
+      vertical-align: 2px;
+      @include sprite('arrow-down');
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 21px;
+      font-size: 18px;
+    }
   }
 
   &__more-value {
     opacity: .5;
     color: #000;
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: -.01em;
+    line-height: 1;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 14px;
+    }
   }
 }
 
@@ -1124,15 +1196,17 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__img {
-    display: flex;
+    //display: flex;
     flex: 0 0 118px;
-    align-items: center;
-    justify-content: center;
+    //align-items: center;
+    //justify-content: center;
     max-height: 118px;
+    text-align: center;
 
     > img {
       max-width: 100%;
-      max-height: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     @include media-breakpoint-up(md) {
@@ -1302,12 +1376,25 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     color: $main-color;
     font-size: 10px;
     font-weight: 500;
 
     @include media-breakpoint-up(md) {
+      flex-direction: row;
+      align-items: center;
       font-size: 13px;
+    }
+  }
+
+  &__reviews-title {
+    margin-top: 4px;
+    @include media-breakpoint-up(md) {
+      margin-top: 0;
+      margin-left: 5px;
     }
   }
 
@@ -1401,6 +1488,51 @@ $multifilter-menu-padding-x: 22px;
   }
 }
 
+.product-rating {
+  display: flex;
+  transform: $skew;
+  transform-origin: bottom;
+
+
+  &__item {
+    position: relative;
+    width: 4px;
+    height: 9px;
+    margin-right: 3px;
+    overflow: hidden;
+    background: #dbdbdb;
+
+    @include media-breakpoint-up(md) {
+      width: 5px;
+      height: 11px;
+      margin-right: 4px;
+    }
+
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 0;
+      background: $main-color;
+    }
+
+    &_100 {
+      &::before {
+        height: 100%;
+      }
+    }
+
+    &_50 {
+      &::before {
+        height: 50%;
+      }
+    }
+  }
+}
+
 .product-card-banner {
   display: block;
   position: relative;
@@ -1456,13 +1588,13 @@ $multifilter-menu-padding-x: 22px;
 
   &__title {
     @include title;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 22px;
 
     span.price {
       color: $main-color;
-      font-size: 15px;
-      line-height: 18px;
+      font-size: 21px;
+      line-height: 28px;
     }
 
     @include media-breakpoint-up(md) {

@@ -1,14 +1,13 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
-import Tooltip from 'tooltip.js';
+// import Tooltip from 'tooltip.js';
 import Utils from '../utils/utils';
 import postIconSvg from '../../img/svg-sprite/change-store-stock-icon.svg';
-
-console.log(postIconSvg);
 
 
 class Header {
   constructor() {
     this.scrollOffset = window.pageYOffset;
+
     this.header = {
       // targets: Utils.parseTargets('.header'),
       collapse: Utils.parseTargets('.h-navbar-collapse'),
@@ -19,10 +18,6 @@ class Header {
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,
     };
-
-    // this.header.fixedTargets.forEach((item) => {
-    //   item.fixed = false;
-    // });
 
     this.menu = {
       opened: false,
@@ -41,9 +36,7 @@ class Header {
       cityContainer: document.querySelector('.change-city-collapse'),
       storeContainer: document.querySelector('.change-store-collapse'),
     };
-
-    // this.getViewportSize =
-
+    
     this.vp = Header.getViewportSize();
 
     this.init();

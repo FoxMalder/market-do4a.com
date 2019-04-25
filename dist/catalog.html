@@ -354,75 +354,88 @@
       </div>
     </div>
   </div>
-  <div class="catalog-filter-m">
-    <div class="catalog-filter-m__wrapper">
-      <div class="filter-menu-m" id="mobile-filter">
-        <div class="filter-menu-m__header">
-          <!--button.catalog-mobile__btn-back--><span class="filter-menu-m__title">Фильтр</span><button class="filter-menu-m__btn-close"></button></div>
-        <div class="filter-menu-m__wrapper">
-          <!-- Элемент фильтра-->
-          <!-- Модификаторы:-->
-          <!--    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)-->
-          <!--                                      Пока просто показывает кнопку "Сбросить"-->
-          <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
-          <!--              Изменяет фон кнопки .multifilter__content-->
-          <!-- Класс .dropdown обязателен-->
-          <div class="multifilter">
-            <!-- Видимое сожержимое элемента фильтра-->
-            <!---->
-            <!-- При использовании выпадающего меню обязателено использование <button>-->
-            <!-- а также наличие атрибута [data-toggle="dropdown"]--><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко<span class="multifilter__total">23</span></span></button><button class="multifilter__btn-clear">Сбросить</button><!-- Выпадающее меню-->
-            <!--    Класс .dropdown-menu обязателен при использовании Dropdown-->
-            <!-- Модификаторы:-->
-            <!--    .show - Модификатор dropdown (унаследовано от bootstrap)-->
-            <!--            Показывает меню-->
-            <!-- Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем-->
-            <!-- Работает также для отдельных вложенных элементов-->
-            <div class="filter-menu-m">
-              <div class="filter-menu-m__header"><button class="filter-menu-m__btn-back"></button><span class="filter-menu-m__title">Фильтр</span></div>
-              <div class="filter-menu-m__wrapper">
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-1"><label class="multifilter-checkbox__label" for="m-f-2-check-1">4 Dimension Nutrition</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-2" checked><label class="multifilter-checkbox__label" for="m-f-2-check-2">ActivLab</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-3" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-3">ASM</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-4"><label class="multifilter-checkbox__label" for="m-f-2-check-4">4 Dimension Nutrition</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-5" checked><label class="multifilter-checkbox__label" for="m-f-2-check-5">ActivLab</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-6" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-6">ASM</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-7"><label class="multifilter-checkbox__label" for="m-f-2-check-7">4 Dimension Nutrition</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-8" checked><label class="multifilter-checkbox__label" for="m-f-2-check-8">ActivLab</label></div>
-                <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-9" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-9">ASM</label></div>
-              </div>
-              <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button></div>
-            </div>
+  <div class="filter-menu-m" id="mobile-filter">
+    <div class="filter-menu-m__header">
+      <!--button.catalog-mobile__btn-back--><span class="filter-menu-m__title">Фильтр</span><button class="filter-menu-m__btn-close"></button></div>
+    <div class="filter-menu-m__wrapper">
+      <!-- Элемент фильтра-->
+      <!-- Модификаторы:-->
+      <!--    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)-->
+      <!--                                      Пока просто показывает кнопку "Сбросить"-->
+      <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
+      <!--              Изменяет фон кнопки .multifilter__content-->
+      <div class="multifilter">
+        <!-- Видимое сожержимое элемента фильтра-->
+        <!---->
+        <!-- При использовании выпадающего меню обязателено использование <button>-->
+        <!-- а также наличие атрибута [data-toggle="m-filter"]--><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко<span class="multifilter__total">23</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="filter-menu-m">
+          <div class="filter-menu-m__header"><button class="filter-menu-m__btn-back"></button><span class="filter-menu-m__title">Фильтр</span></div>
+          <div class="filter-menu-m__wrapper">
+            <div class="p-1">Фильтр</div>
           </div>
-          <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Бренд<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button></div>
-          <div class="multifilter">
-            <!-- dropdown container--><button class="multifilter__content"><span class="multifilter__value">Страна<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button></div>
-          <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Объём, кг<span class="multifilter__total">2</span></span></button></div>
-          <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Порции<span class="multifilter__total">2</span></span></button></div>
-          <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">% Белка</span></button></div>
-          <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Время приёма</span></button></div>
-          <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Цена</span></button></div>
+          <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button></div>
         </div>
-        <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button><button class="filter-menu-m__btn-footer btn btn-red">Применить</button></div>
       </div>
-      <div class="filter-menu-m" id="mobile-sort">
-        <div class="filter-menu-m__header"><span class="filter-menu-m__title">Сортировка</span><button class="filter-menu-m__btn-close"></button></div>
-        <div class="filter-menu-m__wrapper">
-          <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-1" name="m-sort" checked><label class="multifilter-radio__label" for="m-s-1-check-1">По популярности</label></div>
-          <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-2" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-2">Сначала дешевые</label></div>
-          <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-3" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-3">Сначала дорогие</label></div>
-          <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-4" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-4">По названию (А-Я)</label></div>
-          <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-5" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-5">По названию (Я-А)</label></div>
+      <div class="multifilter active"><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__value">Смотреть тут<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="filter-menu-m">
+          <div class="filter-menu-m__header"><button class="filter-menu-m__btn-back"></button><span class="filter-menu-m__title">Фильтр</span></div>
+          <div class="filter-menu-m__wrapper">
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-1"><label class="multifilter-checkbox__label" for="m-f-2-check-1">4 Dimension Nutrition</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-2" checked><label class="multifilter-checkbox__label" for="m-f-2-check-2">ActivLab</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-3" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-3">ASM</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-4"><label class="multifilter-checkbox__label" for="m-f-2-check-4">4 Dimension Nutrition</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-5" checked><label class="multifilter-checkbox__label" for="m-f-2-check-5">ActivLab</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-6" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-6">ASM</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-7"><label class="multifilter-checkbox__label" for="m-f-2-check-7">4 Dimension Nutrition</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-8" checked><label class="multifilter-checkbox__label" for="m-f-2-check-8">ActivLab</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-9" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-9">ASM</label></div>
+          </div>
+          <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button></div>
         </div>
-        <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-red">Применить</button></div>
       </div>
+      <div class="multifilter active">
+        <!-- dropdown container--><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__value">Очень длинное название которое должно обрезаться<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="filter-menu-m">
+          <div class="filter-menu-m__header"><button class="filter-menu-m__btn-back"></button><span class="filter-menu-m__title">Фильтр</span></div>
+          <div class="filter-menu-m__wrapper">
+            <div class="p-1">Фильтр</div>
+          </div>
+          <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button></div>
+        </div>
+      </div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Очень длинное название которое должно обрезаться<span class="multifilter__total">2</span></span></button></div>
+      <div class="multifilter"><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__value">Очень длинное название которое должно обрезаться<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="filter-menu-m">
+          <div class="filter-menu-m__header"><button class="filter-menu-m__btn-back"></button><span class="filter-menu-m__title">Фильтр</span></div>
+          <div class="filter-menu-m__wrapper">
+            <div class="p-1">Фильтр</div>
+          </div>
+          <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button></div>
+        </div>
+      </div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Очень длинное название которое должно обрезаться</span></button></div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Время приёма</span></button></div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Цена</span></button></div>
     </div>
+    <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-gray-2">Сбросить</button><button class="filter-menu-m__btn-footer btn btn-red">Применить</button></div>
+  </div>
+  <div class="filter-menu-m" id="mobile-sort">
+    <div class="filter-menu-m__header"><span class="filter-menu-m__title">Сортировка</span><button class="filter-menu-m__btn-close"></button></div>
+    <div class="filter-menu-m__wrapper">
+      <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-1" name="m-sort" checked><label class="multifilter-radio__label" for="m-s-1-check-1">По популярности</label></div>
+      <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-2" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-2">Сначала дешевые</label></div>
+      <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-3" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-3">Сначала дорогие</label></div>
+      <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-4" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-4">По названию (А-Я)</label></div>
+      <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="m-s-1-check-5" name="m-sort"><label class="multifilter-radio__label" for="m-s-1-check-5">По названию (Я-А)</label></div>
+    </div>
+    <div class="filter-menu-m__footer"><button class="filter-menu-m__btn-footer btn btn-red">Применить</button></div>
   </div>
   <div class="wrapper">
     <div class="page-header">
       <div class="container">
         <div class="breadcumps"><a class="breadcumps__link red" href="#">Главная</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link" href="#">Каталог</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link" href="#">Протеины</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link" href="#">Комплексный протеин</a><span class="breadcumps__delimiter"></span><span class="breadcumps__page">BSN Syntha-6</span></div>
-        <h1 class="page-title">протеины</h1>
+        <h1 class="page-header__title">протеины</h1>
       </div>
     </div>
     <div class="catalog-banner">
@@ -582,8 +595,7 @@
       <div class="catalog__container">
         <div class="catalog__list">
           <div class="catalog__item"><a class="product-card-banner" href="#">
-              <div class="product-card-banner__title">Бесплатная доставка курьером от
-                <span class="price">2 990</span></div>
+              <div class="product-card-banner__title">Бесплатная доставка курьером <span class="nowrap">от <span class="price">2 990</span></span></div>
             </a></div>
           <div class="catalog__item">
             <!-- Карточка товара-->
@@ -601,7 +613,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -643,7 +664,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -685,7 +715,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -731,7 +770,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -773,7 +821,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -815,7 +872,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -857,7 +923,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
@@ -899,7 +974,16 @@
                   <div class="product-card__sale" data-sale-text="скидка до" data-sale-unit="₽">600</div>
                 </div>
                 <div class="product-card__row">
-                  <div class="product-card__reviews">31 отзыв</div>
+                  <div class="product-card__reviews">
+                    <div class="product-rating">
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_100"></div>
+                      <div class="product-rating__item product-rating__item_50"></div>
+                      <div class="product-rating__item"></div>
+                    </div>
+                    <div class="product-card__reviews-title">31 отзыв</div>
+                  </div>
                   <div class="product-card__stock">
                     <!-- Модификаторы:-->
                     <!--    .green    - (глобальный класс) Зеленый текст-->
