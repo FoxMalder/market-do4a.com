@@ -420,9 +420,7 @@ $multifilter-padding-x: (
     width: 18px;
     height: 20px;
     margin-right: 14px;
-    @include sprite('back', (
-      color: $main-color
-    ));
+    @include sprite('back');
   }
 
   &__footer {
