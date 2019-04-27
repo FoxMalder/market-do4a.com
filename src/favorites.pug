@@ -119,125 +119,109 @@ block wrapper
                     {
                     title: 'Optimum nutrition gold standart whey',
                     description: 'Комплексный протеин',
-                    price: '1 750',
-                    sale: '600',
+                    stickers: ['delivery', 'yellow', 'green', 'red']
                     }, {
                     title: 'Optimum nutrition gold standart whey',
-                    price: '1 750',
-                    sale: '600',
                     }, {
                     title: 'Optimum nutrition',
-                    price: '1 750',
-                    sale: '600',
-                    stickers: ['yellow', 'green', 'red', 'delivery']
+                    stickers: ['yellow', 'green', 'red'],
+                    disabled: true,
                     }, {
                     title: 'Optimum nutrition gold standart whey protein',
+                    stickers: ['delivery', 'yellow']
+                    }, {
                     price: '1 750',
                     sale: '600',
+                    stickers: ['', 'yellow', 'green', '']
                     }, {
                     price: '1 750',
                     sale: '600',
                     }, {
                     price: '1 750',
                     sale: '600',
-                    }, {
-                    price: '1 750',
-                    sale: '600',
+                    stickers: ['delivery', '', '', '']
                     }, {
                     price: '1 750',
                     sale: '600',
                     },
                     ]
                 each card in productCards
-                    .catalog__item
+                    div(class=`product-card ${card.disabled ? 'disabled' : ''}`)
+                        .product-card__wrapper(itemscope itemtype="http://schema.org/Product")
+                            .product-card__img
+                                img(itemprop="image"
+                                    src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg"
+                                    srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x"
+                                    alt="Название товара")
 
-                        // Карточка товара
-                        // По высоте и ширине заполняет родительский элемент
-                        .product-card
-                            .product-card__wrapper
-                                .product-card__img
-                                    img(src=require('./img/catalog/product-1.png'))
-
-                                // Ссылка. Делает кликабельным весь .product-card__wrapper
-                                // Причина: отсутствие необходимости использовать <div> внутри <a>
+                            .product-card__body
+                                // Ссылку назначаем на заголовок
+                                // Если хотим, чтобы вся карточка была кликабельной, а не только заголовок
+                                // то добавляем класс .stretched-link
                                 // См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/
-                                a.product-card__title(href='#') #{card.title || 'Заголовок'}
+                                // Причина: соответствие стандартам, которые запрещают <div> внутри <a>
+                                a.product-card__title.stretched-link(href='#' itemprop="name")
+                                    | #{card.title || 'Заголовок'}
+                                .product-card__description(itemprop="description")
+                                    | #{card.description || 'Описание'}
 
-                                .product-card__description #{card.description || 'Комплексный протеин'}
-
-                                .product-card__price-info
-                                    // Не хотел пихать каждое слово в отдельный элемент, потому на псевдоэлементах
-                                    // Если потребуется, переделаю
-                                    .product-card__price(data-price-text='от', data-price-unit='₽') #{card.price || '1 750'}
-                                    .product-card__sale(data-sale-text='скидка до', data-sale-unit='₽') #{card.sale || '300'}
+                            .product-card__footer(itemprop="offers" itemscope itemtype="http://schema.org/Offer")
+                                .product-card__price
+                                    span.small от
+                                    span.price(itemprop="price" content="1750.00")  1 750
+                                    span.currency(itemprop="priceCurrency" content="RUB")  ₽
+                                .product-card__sale
+                                    | Экономия до 300 ₽
 
                                 .product-card__row
-                                    .product-card__reviews
-                                        .product-rating
-                                            .product-rating__item.product-rating__item_100
-                                            .product-rating__item.product-rating__item_100
-                                            .product-rating__item.product-rating__item_100
-                                            .product-rating__item.product-rating__item_50
-                                            .product-rating__item
-                                        .product-card__reviews-title
-                                            | 31 отзыв
+                                    .product-card__reviews(itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating")
+                                        meta(itemprop="ratingValue" content="4.23")
+                                        meta(itemprop="bestRating" content="5")
+                                        meta(itemprop="reviewCount" content="31")
+                                        span.product-card__rating
+                                            i.icon-star.red
+                                            i.icon-star.red
+                                            i.icon-star.red
+                                            i.icon-star.red
+                                            i.icon-star
+                                        span 31 отзыв
                                     .product-card__stock
+                                        // Добавляем элемент, если товар в наличии
+                                        link(itemprop="availability" href="http://schema.org/InStock")
                                         // Модификаторы:
                                         //    .green    - (глобальный класс) Зеленый текст
                                         //    .red      - (глобальный класс) Красный текст
-                                        .product-card__stock-title.green В наличии
-                                        .product-card__stock-value 6 фасовок
+                                        div.green В наличии
+                                        div 6 фасовок
+                        if card.stickers
+                            .product-stickers
+                                // Модификаторы:
+                                //    .product-stickers_item_yellow     - Желтый фон
+                                //    .product-stickers_item_green      - Зеленый фон
+                                //    .product-stickers_item_red        - Красный фон
+                                //    .product-stickers_item_delivery   - Иконка доставки
+                                each sticker in card.stickers
+                                    if sticker === 'delivery'
+                                        .product-stickers__item.product-stickers__item_red.product-stickers__item_delivery
+                                            | Доставка <br>1 день
+                                    else if sticker === 'yellow'
+                                        .product-stickers__item.product-stickers__item_yellow
+                                            | Рекомендуем
+                                    else if sticker === 'green'
+                                        .product-stickers__item.product-stickers__item_green
+                                            | Новинка
+                                    else if sticker === 'red'
+                                        .product-stickers__item.product-stickers__item_red
+                                            | Хит!
 
-                                .product-card__stickers
-                                    // Модификаторы:
-                                    //    .product-card__sticker_yellow     - Желтый фон
-                                    //    .product-card__sticker_green      - Зеленый фон
-                                    //    .product-card__sticker_red        - Красный фон
-                                    //    .product-card__sticker_center     - Размещает по центру
-                                    if card.stickers
-                                        each sticker in card.stickers
-                                            if sticker === 'yellow'
-                                                .product-card__sticker.product-card__sticker_yellow
-                                                    | Рекомендуем
-                                            else if sticker === 'green'
-                                                .product-card__sticker.product-card__sticker_green
-                                                    | Новинка
-                                            else if sticker === 'red'
-                                                .product-card__sticker.product-card__sticker_red
-                                                    | Хит!
-                                            else if sticker === 'delivery'
-                                                .product-card__sticker.product-card__sticker_red.product-card__sticker_center
-                                                    | Доставка 1 день
-
-                            .product-card__controls
-                                button.product-card__button.btn.btn-red Подробнее
-                                button.product-card__button.btn.btn-gray-2 К сравнению
-
-                            // Возможные элементы:
-                            //     <button>
-                            //     <a>
-                            // Модификаторы:
-                            //     .active или .product-card__favorites_active - Добавлено в избранное
-                            button.product-card__favorites.active.hover
+                        // Возможные элементы:
+                        //     <button>
+                        //     <a>
+                        // Модификаторы:
+                        //     .active или .product-card__favorites_active - Добавлено в избранное
+                        .product-control
+                            button.product-control__favorites.active.hover
                                 +sprite('product-card-heart.svg')
-            .catalog__more
-                button.catalog__more-link Показать еще
-                .catalog__more-value Показано 24 из 170
-    .catalog-description
-        .container
-            p
-                | Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
-                | для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
-                | человека.
-            p
-                | Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
-                | необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
-                | роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
-                | максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
-                | коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.
-            p
-                | Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
-                | порошок или коктейль.
     .benefits
         .container
             .row

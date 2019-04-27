@@ -2,25 +2,43 @@
   display: inline-block;
   width: 60px;
   height: 60px;
+
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 
   font-size: 0;
   line-height: 60px;
-  background-repeat: no-repeat;
-  //color: rgba(white, 0);
-
-  background-position: center;
-  background-size: 100% 100%;
 }
+
 .icon-fb {
   background-image: url('../img/fb-logo.svg');
 }
+
 .icon-inst {
   background-image: url('../img/inst-logo.svg');
 }
+
 .icon-vk {
   background-image: url('../img/vk-logo.svg');
 }
+
 .icon-ok {
   background-image: url('../img/ok-logo.svg');
+}
+
+.icon-star {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  @include sprite('star', (
+    fill: #e1e1e1
+  ));
+
+  &.red {
+    @include sprite('star', (
+      fill: $main-color
+    ));
+  }
 }
