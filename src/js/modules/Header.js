@@ -1,6 +1,8 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 // import Tooltip from 'tooltip.js';
 import Utils from '../utils/utils';
+// import StickySidebar from '../plugins/sticky-sidebar';
+
 import postIconSvg from '../../img/svg-sprite/change-store-stock-icon.svg';
 
 
@@ -36,7 +38,7 @@ class Header {
       cityContainer: document.querySelector('.change-city-collapse'),
       storeContainer: document.querySelector('.change-store-collapse'),
     };
-    
+
     this.vp = Header.getViewportSize();
 
     this.init();

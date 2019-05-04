@@ -24,6 +24,7 @@
     "resize-observer-polyfill": "latest",
     "simplebar": "^3.1.5",
     "sticky-js": "^1.2.0",
+    "sticky-sidebar": "^3.3.1",
     "stickyfilljs": "^2.1.0",
     "svg4everybody": "^2.1.9",
     "swiper": "^4.5.0",

@@ -32,6 +32,8 @@ const cummonConfig = {
     index: './src/index.js',
     catalog: './src/catalog.js',
     favorites: './src/favorites.js',
+    vendors: './src/vendors.js',
+    product: './src/product.js',
   },
   output: {
     path: distPath,
@@ -105,6 +107,22 @@ const cummonConfig = {
       chunks: ['favorites', 'common'],
       minify: false,
     }),
+
+    new HtmlWebpackPlugin({
+      title: 'Производители',
+      filename: 'vendors.html',
+      template: path.resolve(__dirname, 'src/vendors.pug'),
+      chunks: ['vendors', 'common'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Карточка товара',
+      filename: 'product.html',
+      template: path.resolve(__dirname, 'src/product.pug'),
+      chunks: ['product', 'common'],
+      minify: false,
+    }),
   ],
 };
 
@@ -158,10 +176,11 @@ const devConfig = {
     contentBase: distPath,
     port: 9000,
     lazy: false,
-    host: '192.168.0.165',
+    host: '0.0.0.0',
     hot: true,
     inline: true,
     // compress: true,
+    open: true,
     historyApiFallback: true,
   },
 };

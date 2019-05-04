@@ -502,7 +502,7 @@ textarea.form-control {
       left: -24px;
       width: 5px;
       height: 10px;
-      transition: all .3s ease;
+      //transition: all .3s ease;
       border-right: 2px solid $main-color;
       border-bottom: 2px solid $main-color;
       opacity: 0;
@@ -889,6 +889,11 @@ textarea.form-control {
       line-height: 68px;
     }
   }
+
+  &__search {
+    height: 90px;
+    margin-top: 50px;
+  }
 }
 
 .breadcumps {
@@ -1195,4 +1200,20 @@ textarea.form-control {
 [disabled].input-range__handle,
 [disabled] .input-range__handle {
   cursor: not-allowed;
+}
+
+
+
+
+// Tabbable tabs
+//
+// Hide tabbable panes to start, show them when `.active`
+
+.tab-content {
+  > .tab-pane {
+    display: none;
+  }
+  > .active {
+    display: block;
+  }
 }

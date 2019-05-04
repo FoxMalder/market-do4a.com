@@ -113,8 +113,9 @@ block wrapper
                         +sprite('sort.svg')(class="catalog-control-mob__icon", height='22', width='14')
     .catalog
         .catalog__container
-            .catalog__list
+            .card-list
                 -
+                    let index = Math.round(Math.random() * 1000);
                     const productCards = [
                     {
                     title: 'Optimum nutrition gold standart whey',
@@ -135,18 +136,18 @@ block wrapper
                     stickers: ['', 'yellow', 'green', '']
                     }, {
                     price: '1 750',
-                    sale: '600',
+                    sale: '600'
                     }, {
                     price: '1 750',
                     sale: '600',
                     stickers: ['delivery', '', '', '']
                     }, {
                     price: '1 750',
-                    sale: '600',
-                    },
+                    sale: '600'
+                    }
                     ]
                 each card in productCards
-                    div(class=`product-card ${card.disabled ? 'disabled' : ''}`)
+                    div(class=`product-card ${card.disabled ? 'disabled' : ''}`, data-product-id=index++)
                         .product-card__wrapper(itemscope itemtype="http://schema.org/Product")
                             .product-card__img
                                 img(itemprop="image"
@@ -220,7 +221,7 @@ block wrapper
                         // Модификаторы:
                         //     .active или .product-card__favorites_active - Добавлено в избранное
                         .product-control
-                            button.product-control__favorites.active.hover
+                            button.product-control__favorites.active(data-product-toggle='remove-favorites')
                                 +sprite('product-card-heart.svg')
     .benefits
         .container
