@@ -78,8 +78,10 @@ const StickySidebar = (() => {
 
         // Sidebar element query if there's no one, throw error.
         this.sidebar = ('string' === typeof sidebar ) ? document.querySelector(sidebar) : sidebar;
-        if( 'undefined' === typeof this.sidebar )
-          throw new Error("There is no specific sidebar element.");
+
+        if(!(this.sidebar instanceof Node) || !this.sidebar)
+          return;
+          // throw new Error("There is no specific sidebar element.");
 
         this.sidebarComputedStyle = false;
 

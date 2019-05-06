@@ -31,6 +31,7 @@ const cummonConfig = {
   entry: {
     index: './src/index.js',
     catalog: './src/catalog.js',
+    firstLevel: './src/first-level.js',
     favorites: './src/favorites.js',
     vendors: './src/vendors.js',
     product: './src/product.js',
@@ -38,7 +39,7 @@ const cummonConfig = {
   output: {
     path: distPath,
     filename: 'js/[name].js',
-    chunkFilename: 'js/[name].bundle.js',
+    // chunkFilename: 'js/[name].bundle.js',
     // publicPath: '',
   },
   plugins: [
@@ -97,6 +98,14 @@ const cummonConfig = {
       filename: 'catalog.html',
       template: path.resolve(__dirname, 'src/catalog.pug'),
       chunks: ['catalog', 'common'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Каталог / Первый уровень',
+      filename: 'first-level.html',
+      template: path.resolve(__dirname, 'src/first-level.pug'),
+      chunks: ['firstLevel', 'common'],
       minify: false,
     }),
 
@@ -279,8 +288,9 @@ const prodConfig = {
   ],
   optimization: {
     // runtimeChunk: {
-    //   name: 'runtime'
+    //   name: 'common.bundle',
     // },
+    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         // default: false,
@@ -293,6 +303,7 @@ const prodConfig = {
         common: {
           name: 'common',
           // test: /\.js$/,
+          filename: 'js/[name].bundle.js',
           chunks: 'initial',
           minChunks: 2,
         },

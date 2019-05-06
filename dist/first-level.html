@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
-  <title>Избранное</title>
+  <title>Каталог / Первый уровень</title>
   <link href="css/style.css" rel="stylesheet">
 </head>
 
@@ -354,6 +354,72 @@
       </div>
     </div>
   </div>
+  <div class="catalog-menu-mob" id="mobile-filter">
+    <div class="catalog-menu-mob__header">
+      <!--button.catalog-mobile__btn-back--><span class="catalog-menu-mob__title">Фильтр</span><button class="catalog-menu-mob__btn-close"></button></div>
+    <div class="catalog-menu-mob__wrapper">
+      <!-- Элемент фильтра-->
+      <!-- Модификаторы:-->
+      <!--    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)-->
+      <!--                                      Пока просто показывает кнопку "Сбросить"-->
+      <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
+      <!--              Изменяет фон кнопки .multifilter__content-->
+      <div class="multifilter">
+        <!-- Видимое сожержимое элемента фильтра-->
+        <!---->
+        <!-- При использовании выпадающего меню обязателено использование <button>-->
+        <!-- а также наличие атрибута [data-toggle="m-filter"]--><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко<span class="multifilter__total">23</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="catalog-menu-mob">
+          <div class="catalog-menu-mob__header"><button class="catalog-menu-mob__btn-back"></button><span class="catalog-menu-mob__title">Фильтр</span></div>
+          <div class="catalog-menu-mob__wrapper">
+            <div class="p-1">Фильтр</div>
+          </div>
+          <div class="catalog-menu-mob__footer"><button class="catalog-menu-mob__btn-footer btn btn-gray-2">Сбросить</button></div>
+        </div>
+      </div>
+      <div class="multifilter active"><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__value">Смотреть тут<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="catalog-menu-mob">
+          <div class="catalog-menu-mob__header"><button class="catalog-menu-mob__btn-back"></button><span class="catalog-menu-mob__title">Фильтр</span></div>
+          <div class="catalog-menu-mob__wrapper">
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-1"><label class="multifilter-checkbox__label" for="m-f-2-check-1">4 Dimension Nutrition</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-2" checked><label class="multifilter-checkbox__label" for="m-f-2-check-2">ActivLab</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-3" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-3">ASM</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-4"><label class="multifilter-checkbox__label" for="m-f-2-check-4">4 Dimension Nutrition</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-5" checked><label class="multifilter-checkbox__label" for="m-f-2-check-5">ActivLab</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-6" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-6">ASM</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-7"><label class="multifilter-checkbox__label" for="m-f-2-check-7">4 Dimension Nutrition</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-8" checked><label class="multifilter-checkbox__label" for="m-f-2-check-8">ActivLab</label></div>
+            <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="m-f-2-check-9" disabled><label class="multifilter-checkbox__label" for="m-f-2-check-9">ASM</label></div>
+          </div>
+          <div class="catalog-menu-mob__footer"><button class="catalog-menu-mob__btn-footer btn btn-gray-2">Сбросить</button></div>
+        </div>
+      </div>
+      <div class="multifilter active">
+        <!-- dropdown container--><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__value">Очень длинное название которое должно обрезаться<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="catalog-menu-mob">
+          <div class="catalog-menu-mob__header"><button class="catalog-menu-mob__btn-back"></button><span class="catalog-menu-mob__title">Фильтр</span></div>
+          <div class="catalog-menu-mob__wrapper">
+            <div class="p-1">Фильтр</div>
+          </div>
+          <div class="catalog-menu-mob__footer"><button class="catalog-menu-mob__btn-footer btn btn-gray-2">Сбросить</button></div>
+        </div>
+      </div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Очень длинное название которое должно обрезаться<span class="multifilter__total">2</span></span></button></div>
+      <div class="multifilter"><button class="multifilter__content" data-toggle="m-filter"><span class="multifilter__value">Очень длинное название которое должно обрезаться<span class="multifilter__total">2</span></span></button><button class="multifilter__btn-clear">Сбросить</button>
+        <div class="catalog-menu-mob">
+          <div class="catalog-menu-mob__header"><button class="catalog-menu-mob__btn-back"></button><span class="catalog-menu-mob__title">Фильтр</span></div>
+          <div class="catalog-menu-mob__wrapper">
+            <div class="p-1">Фильтр</div>
+          </div>
+          <div class="catalog-menu-mob__footer"><button class="catalog-menu-mob__btn-footer btn btn-gray-2">Сбросить</button></div>
+        </div>
+      </div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Очень длинное название которое должно обрезаться</span></button></div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Время приёма</span></button></div>
+      <div class="multifilter"><button class="multifilter__content"><span class="multifilter__value">Цена</span></button></div>
+    </div>
+    <div class="catalog-menu-mob__footer"><button class="catalog-menu-mob__btn-footer btn btn-gray-2">Сбросить</button><button class="catalog-menu-mob__btn-footer btn btn-red">Применить</button></div>
+  </div>
   <div class="catalog-menu-mob" id="mobile-sort">
     <div class="catalog-menu-mob__header"><span class="catalog-menu-mob__title">Сортировка</span><button class="catalog-menu-mob__btn-close"></button></div>
     <div class="catalog-menu-mob__wrapper">
@@ -368,435 +434,82 @@
   <div class="wrapper">
     <div class="page-header">
       <div class="container">
-        <div class="breadcumps"><a class="breadcumps__link red" href="#">Главная</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link red" href="#">Личный кабинет</a><span class="breadcumps__delimiter"></span><span class="breadcumps__page">Избранное</span></div>
-        <h1 class="page-header__title">Избранное</h1>
+        <div class="breadcumps"><a class="breadcumps__link red" href="#">Главная</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link" href="#">Каталог</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link" href="#">Протеины</a><span class="breadcumps__delimiter"></span><a class="breadcumps__link" href="#">Комплексный протеин</a><span class="breadcumps__delimiter"></span><span class="breadcumps__page">BSN Syntha-6</span></div>
+        <h1 class="page-header__title">протеины</h1>
       </div>
     </div>
-    <div class="catalog-control catalog-control_favorites">
-      <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="container">
-          <div class="sorting">
-            <div class="sorting__list">
-              <div class="multifilter">
-                <div class="multifilter__content"><span class="multifilter__label">В изрбанном</span><span class="multifilter__value">12 товаров</span></div>
-              </div>
-              <div class="multifilter"><button class="multifilter__content" data-toggle="dropdown"><span class="multifilter__value">Сначала дешевые</span></button><button class="multifilter__btn-clear">Сбросить</button>
-                <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false" role="form">
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-1" name="sort" checked><label class="multifilter-radio__label" for="s-1-check-1">По популярности</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-2" name="sort"><label class="multifilter-radio__label" for="s-1-check-2">Сначала дешевые</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-3" name="sort"><label class="multifilter-radio__label" for="s-1-check-3">Сначала дорогие</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-4" name="sort"><label class="multifilter-radio__label" for="s-1-check-4">По названию (А-Я)</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-5" name="sort"><label class="multifilter-radio__label" for="s-1-check-5">По названию (Я-А)</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-6" name="sort" checked><label class="multifilter-radio__label" for="s-1-check-6">По популярности</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-7" name="sort"><label class="multifilter-radio__label" for="s-1-check-7">Сначала дешевые</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-8" name="sort"><label class="multifilter-radio__label" for="s-1-check-8">Сначала дорогие</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-9" name="sort"><label class="multifilter-radio__label" for="s-1-check-9">По названию (А-Я)</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-10" name="sort"><label class="multifilter-radio__label" for="s-1-check-10">По названию (Я-А)</label></div>
-                </div>
-              </div>
-            </div>
-            <div class="sorting__checkbox-container">
-              <div class="multifilter">
-                <div class="multifilter__content">
-                  <div class="input-checkbox"><input class="input-checkbox__input" type="checkbox" id="customCheck1"><label class="input-checkbox__label" for="customCheck1">Только со скидкой</label></div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="catalog-banner">
+      <div class="catalog-banner__container">
+        <div class="catalog-banner__sale">
+          <div class="catalog-banner__sale-value">-15%</div>
+          <div class="catalog-banner__sale-text">На все протеины</div>
         </div>
-      </div>
-      <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="catalog-control-mob"><button class="catalog-control-mob__button catalog-control-mob__button_gray justify-content-between" data-toggle="m-filter" data-target="#mobile-sort"><span>Сортировка</span><svg class="catalog-control-mob__icon" height="22" width="14">
-              <use xlink:href="images/new-sprite.svg#sprite-sort"></use>
-            </svg></button></div>
-      </div>
-    </div>
-  </div>
-  <div class="catalog">
-    <div class="catalog__container">
-      <div class="card-list">
-        <div class="product-card " data-product-id="599">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey</a>
-              <div class="product-card__description" itemprop="description">Комплексный протеин</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-stickers">
-            <!-- Модификаторы:-->
-            <!--    .product-stickers_item_yellow     - Желтый фон-->
-            <!--    .product-stickers_item_green      - Зеленый фон-->
-            <!--    .product-stickers_item_red        - Красный фон-->
-            <!--    .product-stickers_item_delivery   - Иконка доставки-->
-            <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>
-            <div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>
-            <div class="product-stickers__item product-stickers__item_green">Новинка</div>
-            <div class="product-stickers__item product-stickers__item_red">Хит!</div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card " data-product-id="600">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card disabled" data-product-id="601">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-stickers">
-            <!-- Модификаторы:-->
-            <!--    .product-stickers_item_yellow     - Желтый фон-->
-            <!--    .product-stickers_item_green      - Зеленый фон-->
-            <!--    .product-stickers_item_red        - Красный фон-->
-            <!--    .product-stickers_item_delivery   - Иконка доставки-->
-            <div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>
-            <div class="product-stickers__item product-stickers__item_green">Новинка</div>
-            <div class="product-stickers__item product-stickers__item_red">Хит!</div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card " data-product-id="602">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey protein</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-stickers">
-            <!-- Модификаторы:-->
-            <!--    .product-stickers_item_yellow     - Желтый фон-->
-            <!--    .product-stickers_item_green      - Зеленый фон-->
-            <!--    .product-stickers_item_red        - Красный фон-->
-            <!--    .product-stickers_item_delivery   - Иконка доставки-->
-            <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>
-            <div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card " data-product-id="603">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-stickers">
-            <!-- Модификаторы:-->
-            <!--    .product-stickers_item_yellow     - Желтый фон-->
-            <!--    .product-stickers_item_green      - Зеленый фон-->
-            <!--    .product-stickers_item_red        - Красный фон-->
-            <!--    .product-stickers_item_delivery   - Иконка доставки-->
-            <div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>
-            <div class="product-stickers__item product-stickers__item_green">Новинка</div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card " data-product-id="604">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card " data-product-id="605">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="product-stickers">
-            <!-- Модификаторы:-->
-            <!--    .product-stickers_item_yellow     - Желтый фон-->
-            <!--    .product-stickers_item_green      - Зеленый фон-->
-            <!--    .product-stickers_item_red        - Красный фон-->
-            <!--    .product-stickers_item_delivery   - Иконка доставки-->
-            <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
-        </div>
-        <div class="product-card " data-product-id="606">
-          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-            <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
-            <div class="product-card__body">
-              <!-- Ссылку назначаем на заголовок-->
-              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-              <!-- то добавляем класс .stretched-link-->
-              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>--><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
-              <div class="product-card__description" itemprop="description">Описание</div>
-            </div>
-            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-              <div class="product-card__price"><span class="small">от</span><span class="price" itemprop="price" content="1750.00"> 1 750</span><span class="currency" itemprop="priceCurrency" content="RUB"> ₽</span></div>
-              <div class="product-card__sale">Экономия до 300 ₽</div>
-              <div class="product-card__row">
-                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                  <meta itemprop="ratingValue" content="4.23">
-                  <meta itemprop="bestRating" content="5">
-                  <meta itemprop="reviewCount" content="31"><span class="product-card__rating"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>31 отзыв</span></div>
-                <div class="product-card__stock">
-                  <!-- Добавляем элемент, если товар в наличии-->
-                  <link itemprop="availability" href="http://schema.org/InStock"><!-- Модификаторы:-->
-                  <!--    .green    - (глобальный класс) Зеленый текст-->
-                  <!--    .red      - (глобальный класс) Красный текст-->
-                  <div class="green">В наличии</div>
-                  <div>6 фасовок</div>
-                </div>
-              </div>
-            </div>
-          </div><!-- Возможные элементы:-->
-          <!--     <button>-->
-          <!--     <a>-->
-          <!-- Модификаторы:-->
-          <!--     .active или .product-card__favorites_active - Добавлено в избранное-->
-          <div class="product-control"><button class="product-control__favorites active" data-product-toggle="remove-favorites"><svg>
-                <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-              </svg></button></div>
+        <div class="catalog-banner__bg" style="background-image: url(images/banner-bg.png)"></div>
+        <div class="catalog-banner__promocode">
+          <div class="catalog-banner__promocode-text">Промокод</div>
+          <div class="catalog-banner__promocode-value">Muscle</div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="benefits">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-xl-3">
-          <div class="benefits__item">
-            <div class="benefits__icon"><svg height="62" width="91">
-                <use xlink:href="images/new-sprite.svg#sprite-benefits-cup"></use>
-              </svg></div>
-            <div class="benefits__title">Профессиональная<br>консультация</div>
+    <div class="m-catalog">
+      <div class="m-catalog__inner">
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Протеин" src="images/protein.png"><span class="m-product__title">Протеины</span><span class="m-product__subtitle">45 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Аминокислоты" src="images/amino.png"><span class="m-product__title">Аминокислоты</span><span class="m-product__subtitle">12 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Гейнеры" src="images/geiner.png"><span class="m-product__title">Гейнеры</span><span class="m-product__subtitle">36 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="BCAA" src="images/bcaa.png"><span class="m-product__title">BCAA</span><span class="m-product__subtitle">9 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Жиросжигатели" src="images/termo-speed.png"><span class="m-product__title">Жиросжигатели</span><span class="m-product__subtitle">12 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Продукты для здоровья" src="images/omega3.png"><span class="m-product__title">Продукты для здоровья</span><span class="m-product__subtitle">36 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Креатин" src="images/creatine.png"><span class="m-product__title">Креатин</span><span class="m-product__subtitle">12 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Ореховые пасты" src="images/pasta.png"><span class="m-product__title">Ореховые пасты</span><span class="m-product__subtitle">9 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Выносливость и силовые" src="images/no-xplode.png"><span class="m-product__title">Выносливость и силовые</span><span class="m-product__subtitle">36 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Диетическое питание" src="images/diet.png"><span class="m-product__title">Диетическое питание</span><span class="m-product__subtitle">9 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Батончики" src="images/bar.png"><span class="m-product__title">Батончики</span><span class="m-product__subtitle">12 в наличии</span></a></div>
+        <div class="m-catalog__item"><a class="m-product" href="#"><img class="m-product__img" alt="Напитки" src="images/drink.png"><span class="m-product__title">Напитки</span><span class="m-product__subtitle">36 в наличии</span></a></div>
+      </div>
+    </div>
+    <div class="catalog-description">
+      <div class="container">
+        <p>Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
+          для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
+          человека.</p>
+        <p>Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
+          необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
+          роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
+          максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
+          коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.</p>
+        <p>Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
+          порошок или коктейль.</p>
+      </div>
+    </div>
+    <div class="benefits">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-xl-3">
+            <div class="benefits__item">
+              <div class="benefits__icon"><svg height="62" width="91">
+                  <use xlink:href="images/new-sprite.svg#sprite-benefits-cup"></use>
+                </svg></div>
+              <div class="benefits__title">Профессиональная<br>консультация</div>
+            </div>
           </div>
-        </div>
-        <div class="col-md-6 col-xl-3">
-          <div class="benefits__item">
-            <div class="benefits__icon"><svg height="87" width="86">
-                <use xlink:href="images/new-sprite.svg#sprite-benefits-hand"></use>
-              </svg></div>
-            <div class="benefits__title">Официальная<br>продукция</div>
+          <div class="col-md-6 col-xl-3">
+            <div class="benefits__item">
+              <div class="benefits__icon"><svg height="87" width="86">
+                  <use xlink:href="images/new-sprite.svg#sprite-benefits-hand"></use>
+                </svg></div>
+              <div class="benefits__title">Официальная<br>продукция</div>
+            </div>
           </div>
-        </div>
-        <div class="col-xl-6">
-          <div class="benefits__item">
-            <div class="benefits__icon"><svg height="69" width="68">
-                <use xlink:href="images/new-sprite.svg#sprite-benefits-mail"></use>
-              </svg></div>
-            <div class="benefits__title">Подписаться<br>на новости</div>
-            <form class="benefits__form">
-              <div class="input-field"><label class="input-field__label" for="email-1">Твой e-mail</label><input class="input-field__input" id="email-1" type="email"></div><button class="btn btn-block btn-red">Подписаться</button>
-            </form>
+          <div class="col-xl-6">
+            <div class="benefits__item">
+              <div class="benefits__icon"><svg height="69" width="68">
+                  <use xlink:href="images/new-sprite.svg#sprite-benefits-mail"></use>
+                </svg></div>
+              <div class="benefits__title">Подписаться<br>на новости</div>
+              <form class="benefits__form">
+                <div class="input-field"><label class="input-field__label" for="email-1">Твой e-mail</label><input class="input-field__input" id="email-1" type="email"></div><button class="btn btn-block btn-red">Подписаться</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -2103,7 +1816,7 @@
     };
   </script>
   <script src="js/common.bundle.js"></script>
-  <script src="js/favorites.js"></script>
+  <script src="js/firstLevel.js"></script>
 </body>
 
 </html>

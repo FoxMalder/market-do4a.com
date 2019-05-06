@@ -1,0 +1,293 @@
+extends template/template
+block wrapper
+    .catalog-menu-mob#mobile-filter
+        .catalog-menu-mob__header
+            //button.catalog-mobile__btn-back
+            span.catalog-menu-mob__title Фильтр
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
+            // Элемент фильтра
+            // Модификаторы:
+            //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
+            //                                      Пока просто показывает кнопку "Сбросить"
+            //    .view   - Модификатор dropdown (унаследовано от bootstrap)
+            //              Изменяет фон кнопки .multifilter__content
+            .multifilter
+
+                // Видимое сожержимое элемента фильтра
+                //
+                // При использовании выпадающего меню обязателено использование <button>
+                // а также наличие атрибута [data-toggle="m-filter"]
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__label Категория:
+                    span.multifilter__value Казеин и молоко
+                        span.multifilter__total 23
+
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .p-1 Фильтр
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            .multifilter.active
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__value Смотреть тут
+                        span.multifilter__total 2
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
+                            label.multifilter-checkbox__label(for="m-f-2-check-1")
+                                | 4 Dimension Nutrition
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-2" checked=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-2")
+                                | ActivLab
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-3" disabled=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-3")
+                                | ASM
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-4")
+                            label.multifilter-checkbox__label(for="m-f-2-check-4")
+                                | 4 Dimension Nutrition
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-5" checked=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-5")
+                                | ActivLab
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-6" disabled=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-6")
+                                | ASM
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-7")
+                            label.multifilter-checkbox__label(for="m-f-2-check-7")
+                                | 4 Dimension Nutrition
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-8" checked=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-8")
+                                | ActivLab
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-9")
+                                | ASM
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+
+            .multifilter.active
+                // dropdown container
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+                        span.multifilter__total 2
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .p-1 Фильтр
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+                        span.multifilter__total 2
+
+            .multifilter
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+                        span.multifilter__total 2
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .p-1 Фильтр
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Время приёма
+
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Цена
+
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+    .catalog-menu-mob#mobile-sort
+        .catalog-menu-mob__header
+            span.catalog-menu-mob__title Сортировка
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
+                label.multifilter-radio__label(for="m-s-1-check-1")
+                    | По популярности
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-2")
+                    | Сначала дешевые
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-3")
+                    | Сначала дорогие
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-4")
+                    | По названию (А-Я)
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-5")
+                    | По названию (Я-А)
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+
+
+    .wrapper
+        .page-header
+            .container
+                .breadcumps
+                    a.breadcumps__link.red(href='#') Главная
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Каталог
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Протеины
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Комплексный протеин
+                    span.breadcumps__delimiter
+                    span.breadcumps__page BSN Syntha-6
+                h1.page-header__title протеины
+        .catalog-banner
+            .catalog-banner__container
+                .catalog-banner__sale
+                    .catalog-banner__sale-value -15%
+                    .catalog-banner__sale-text На все протеины
+                .catalog-banner__bg(style='background-image: url(' + require('./images/banner-bg.png') + ')')
+                .catalog-banner__promocode
+                    .catalog-banner__promocode-text Промокод
+                    .catalog-banner__promocode-value Muscle
+
+        .m-catalog
+            .m-catalog__inner
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Протеин', src=require('./images/protein.png'))
+                        span.m-product__title Протеины
+                        span.m-product__subtitle 45 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Аминокислоты', src=require('./images/amino.png'))
+                        span.m-product__title Аминокислоты
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Гейнеры', src=require('./images/geiner.png'))
+                        span.m-product__title Гейнеры
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='BCAA', src=require('./images/bcaa.png'))
+                        span.m-product__title BCAA
+                        span.m-product__subtitle 9 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Жиросжигатели', src=require('./images/termo-speed.png'))
+                        span.m-product__title Жиросжигатели
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Продукты для здоровья', src=require('./images/omega3.png'))
+                        span.m-product__title Продукты для здоровья
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Креатин', src=require('./images/creatine.png'))
+                        span.m-product__title Креатин
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Ореховые пасты', src=require('./images/pasta.png'))
+                        span.m-product__title Ореховые пасты
+                        span.m-product__subtitle 9 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Выносливость и силовые', src=require('./images/no-xplode.png'))
+                        span.m-product__title Выносливость и силовые
+                        span.m-product__subtitle 36 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Диетическое питание', src=require('./images/diet.png'))
+                        span.m-product__title Диетическое питание
+                        span.m-product__subtitle 9 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Батончики', src=require('./images/bar.png'))
+                        span.m-product__title Батончики
+                        span.m-product__subtitle 12 в наличии
+                .m-catalog__item
+                    a.m-product(href='#')
+                        img.m-product__img(alt='Напитки', src=require('./images/drink.png'))
+                        span.m-product__title Напитки
+                        span.m-product__subtitle 36 в наличии
+
+        .catalog-description
+            .container
+                p
+                    | Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
+                    | для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
+                    | человека.
+                p
+                    | Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
+                    | необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
+                    | роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
+                    | максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
+                    | коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.
+                p
+                    | Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
+                    | порошок или коктейль.
+        .benefits
+            .container
+                .row
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-cup.svg')(height='62', width='91')
+                            .benefits__title
+                                | Профессиональная
+                                br
+                                | консультация
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-hand.svg')(height='87', width='86')
+                            .benefits__title
+                                | Официальная
+                                br
+                                | продукция
+                    .col-xl-6
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-mail.svg')(height='69', width='68')
+                            .benefits__title
+                                | Подписаться
+                                br
+                                | на новости
+                            form.benefits__form
+                                .input-field
+                                    label.input-field__label(for='email-1') Твой e-mail
+                                    input#email-1.input-field__input(type='email')
+                                button.btn.btn-block.btn-red Подписаться
