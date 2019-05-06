@@ -196,6 +196,8 @@
 
 
 $multifilter-padding-x: (
+  xs: 20px,
+  md: 15px,
   xl: 15px
 );
 
@@ -343,6 +345,46 @@ $multifilter-padding-x: (
 
   &__checkbox-container {
     flex: 0 0 auto;
+  }
+}
+
+.view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+
+  margin-right: (map_get($multifilter-padding-x, xs) * -1);
+  margin-left: (map_get($multifilter-padding-x, xs) * -1);
+
+  @include media-breakpoint-up(md) {
+    height: 58px;
+    margin-right: (map_get($multifilter-padding-x, md) * -1);
+    margin-left: (map_get($multifilter-padding-x, md) * -1);
+  }
+
+  &__category {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+      .multifilter__content {
+        max-width: 450px;
+      }
+    }
+  }
+
+  &__tab {
+    width: 100%;
+
+    //.multifilter {
+    //  width: 100%;
+    //}
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+      margin-left: auto;
+    }
   }
 }
 
@@ -773,6 +815,30 @@ $multifilter-padding-x: (
     display: none;
   }
 
+  &__tablist {
+    margin-left: auto;
+
+    @include media-breakpoint-up(md) {
+      margin-left: 0;
+    }
+  }
+
+  &__tab {
+    @extend %button-reset;
+    margin-left: 9px;
+    opacity: 0.4;
+    //background: #101010;
+
+    > .i {
+      width: 22px;
+      height: 18px;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
   .dropdown-menu {
     //min-width: 316px;
     width: 316px;
@@ -1015,9 +1081,9 @@ $multifilter-menu-padding-x: 22px;
   &__container {
     position: relative;
     @include make-container(0);
-    //@include media-breakpoint-up(sm) {
-    //  max-width: (map_get($container-max-widths, sm));
-    //}
+    @include media-breakpoint-up(sm) {
+      max-width: (map_get($container-max-widths, sm) - map_get($grid-gutter-width-map, sm));
+    }
     @include media-breakpoint-up(md) {
       max-width: (map_get($container-max-widths, md) - map_get($grid-gutter-width-map, md));
     }
@@ -1699,7 +1765,7 @@ $multifilter-menu-padding-x: 22px;
 .vendor-card {
   position: relative;
   min-width: 152px;
-  height: 283px;
+  height: 253px;
   transition: all .3s ease;
 
   .product-stickers {
@@ -1754,7 +1820,7 @@ $multifilter-menu-padding-x: 22px;
     align-items: center;
     //flex: 0 0 118px;
     justify-content: center;
-    height: 117px;
+    height: 90px;
     //max-height: 118px;
     text-align: center;
 
@@ -1828,16 +1894,15 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__row {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
-    justify-content: space-between;
     margin-top: 16px;
     //font-weight: 600;
     letter-spacing: -.01em;
     @include media-breakpoint-up(md) {
       //flex: 0 0 auto;
+      display: flex;
       flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
       margin-top: 0;
     }
   }
@@ -1906,15 +1971,21 @@ $multifilter-menu-padding-x: 22px;
   //flex-wrap: wrap;
 
   display: grid;
-  //grid-auto-rows: 0;
-  grid-gap: 24px;
-  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  grid-gap: (map_get($grid-gutter-width-map, xs) / 2);
+  grid-template-columns: repeat(2, 1fr);
+  padding: 24px (map_get($grid-gutter-width-map, xs) / 2);
 
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: repeat(3, 1fr);
+    padding-right: 0;
+    padding-left: 0;
+  }
   @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-gap: (map_get($grid-gutter-width-map, md) / 2);
+    grid-template-columns: repeat(4, 1fr);
   }
   @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(6, minmax(100px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
   }
 
   &__col {
@@ -1924,11 +1995,65 @@ $multifilter-menu-padding-x: 22px;
 
   &__title {
     @include title;
-    margin-bottom: 20px;
-    font-size: 19px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 20px;
+      font-size: 19px;
+    }
   }
 
   &__item {
 
+  }
+}
+
+.vendor-description {
+  padding: 70px 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 58px;
+  }
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &__logo {
+    max-height: 54px;
+    //max-height: 100%;
+  }
+
+  &__info {
+    //@include media-breakpoint-up(xl) {
+    //  display: flex;
+    //  justify-content: space-between;
+    //}
+  }
+
+  &__text {
+    //&, * {
+    //  font-size: 15px;
+    //  line-height: 26px;
+    //}
+    //@include media-breakpoint-up(xl) {
+    //  flex: 0 0 720px;
+    //  max-width: 720px;
+    //}
+  }
+
+  &__img {
+    display: none;
+    @include media-breakpoint-up(xl) {
+      display: block;
+      max-width: 390px;
+      margin-bottom: 30px;
+      margin-left: 90px;
+      //flex: 0 0 390px;
+      float: right;
+    }
   }
 }

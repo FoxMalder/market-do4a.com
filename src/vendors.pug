@@ -8,7 +8,9 @@ block wrapper
                     span.breadcumps__delimiter
                     span.breadcumps__page Производители
 
-                h1.page-header__title Производители
+                .page-header__row
+                    h1.page-header__title Производители
+                    img.page-header__logo(src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png")
 
                 .page-header__search
                     form.search-fild
@@ -18,41 +20,42 @@ block wrapper
 
         .catalog-control.catalog-control_favorites
             .catalog-control__menu.catalog-control__menu_white
-                .container
-                    form.filter
-                        .filter__list.w-100
-                            fieldset.multifilter
-                                button.multifilter__content(data-toggle="dropdown" type="button" style="max-width: 460px")
-                                    span.multifilter__label Показывать для категорий:
-                                    span.multifilter__value Протеины, Гейнеры, Аминокислоты
-                                    span.multifilter__total 23
-
-                                button.multifilter__btn-clear(type="reset") Сбросить
-
-                                .dropdown-menu(role="form")
-                                    .p-1 dropdown
-                            .multifilter.ml-auto
-                                .multifilter__content.nav.nav-pills(role="tablist")
-                                    span.multifilter__label Вид:
-                                    button.multifilter__value.active(data-toggle="pill" role="tab" data-target="#table") Таблица
-                                    button.multifilter__value(data-toggle="pill" role="tab" data-target="#list") Список
-
-            .catalog-control__menu.catalog-control__menu_white
                 .category-list-mob
                     .category-list-mob__item Все категории
                     .category-list-mob__item.active Сывороточный
                     .category-list-mob__item Комплексный
                     .category-list-mob__item Сывороточный
                     .category-list-mob__item Комплексный
-
             .catalog-control__menu.catalog-control__menu_white
-                .catalog-control-mob
-                    button.catalog-control-mob__button.justify-content-start(data-toggle="m-filter" data-target="#mobile-filter")
-                        +sprite('filter.svg')(class="catalog-control-mob__icon", height='21', width='19')
-                        span Фильтр
-                    button.catalog-control-mob__button.catalog-control-mob__button_gray.justify-content-end(data-toggle="m-filter" data-target="#mobile-sort")
-                        span Сортировка
-                        +sprite('sort.svg')(class="catalog-control-mob__icon", height='22', width='14')
+                .container
+                    .view
+                        .view__category
+                            form.multifilter
+                                button.multifilter__content(data-toggle="dropdown" type="button")
+                                    span.multifilter__label Показывать для категорий:
+                                    span.multifilter__value Протеины, Гейнеры, Аминокислоты
+                                    span.multifilter__total 23
+                                button.multifilter__btn-clear(type="reset") Сбросить
+                                .dropdown-menu(role="form")
+                                    .p-1 dropdown
+                        .view__tab
+                            .multifilter
+                                .multifilter__content
+                                    .multifilter__label Вид:
+                                    .multifilter__tablist.nav(role="tablist")
+                                        button.multifilter__tab.active(data-toggle="tab" role="tab" data-target="#cards")
+                                            i.i.i-cards
+                                        button.multifilter__tab(data-toggle="tab" role="tab" data-target="#list")
+                                            i.i.i-list
+
+                        //.view-tablist.nav(role="tablist")
+                        //    span.view-tablist__label Вид:
+                        //    button.view-tablist__tab.active(data-toggle="tab" role="tab" data-target="#cards")
+                        //
+                        //    button.view-tablist__tab(data-toggle="tab" role="tab" data-target="#list")
+
+
+
     .catalog
         .catalog__container.tab-content
             #list.tab-pane(role="tabpanel")
@@ -223,7 +226,7 @@ block wrapper
                             .brand-name-list__item bpiSports
 
 
-            #table.tab-pane.active(role="tabpanel")
+            #cards.tab-pane.active(role="tabpanel")
                 .card-list
                     .card-list__nav.nav
                         .alphabet-navigation
@@ -247,7 +250,7 @@ block wrapper
                     -
                         const vandorCards = [
                         {
-                          letter: 'letter-A',
+                        letter: 'letter-A',
                         name: 'ASICS',
                         description: 'ASICS - японская корпорация, один из крупнейших в мире производителей спортивной одежды и обуви, основанная в 1949 году.',
                         img: 'https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png',
@@ -318,6 +321,52 @@ block wrapper
                                         else if sticker === 'red'
                                             .product-stickers__item.product-stickers__item_red
                                                 | Скидки <br>до 15%
+    .vendor-description
+        .container
+            .vendor-description__header
+                h2.vendor-description__title О бренде
+                img.vendor-description__logo(src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png")
+            .vendor-description__info
+                .vendor-description__text
+                    img.vendor-description__img(src=require('./images/brand-image.png') alt='Картинка')
+                    p
+                        | Optimum Nutrition – это, пожалуй, первая фирма, с которой начинается знакомство начинающих бодибилдеров
+                        | с миром спортивного питания. Optimum Nutrition производит множество видов продукции, которая
+                        | охватывает все товарные группы рынка спортивного питания. Главным достоинством компании является
+                        | высочайшее качество производимой ею продукции. Крепче всего Optimum Nutrition закрепилась в
+                        | высоком и премиальном ценовых сегментах. Выпускаемые ею Gold (ON Whey Gold Standart, ON Casien
+                        | Gold Standart и др.) и Platinum линейки (ON Platinum HydroWey, ON Platinum HydroBuilder и др.)
+                        | всегда удерживают стабильно-высокие позиции в рейтингах продаж. Большинство людей приобретают
+                        | ON именно потому, что фирма является своего рода стандартом качества в мире спортивного питания.
+                    p
+                        | Сильные стороны: <br>
+                        | - Высокое качество всей производимой продукции.<br>
+                        | - Большинство протеинов и гейнеров дополнительно обогащены ферментативными смесями для лучшего усвоения.<br>
+                        | - Все продукты обладают прекрасным вкусом.<br>
+                        | - Состав, заявленный на этике, на 100% совпадает с содержимым банки.<br>
+                        | - Отличный сывороточный протеин и отличные витаминно-минеральные комплексы.
+                    p
+                        | Минусы:<br>
+                        | - Дорого.<br>
+                        | - Компания практически не производит предтренировочники и жиросжигатели. ON вообще старается не влезать в малоисследованные сегменты рынка.
+                    p
+                        | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore dolores excepturi exercitationem iste officiis, porro repudiandae similique sint, tempore unde voluptates? A, accusamus at autem enim est eveniet laudantium nam nihil nisi omnis qui quos, similique sint suscipit voluptatibus! A beatae deserunt dignissimos dolor error, est eveniet exercitationem facere labore minima molestiae nobis omnis provident quisquam totam ut vel! Distinctio doloribus impedit iure quis repellat sed voluptates! A amet asperiores autem dolor dolore, dolorem est eum ex, facilis harum inventore ipsam labore laborum laudantium natus nobis odit omnis porro quaerat quam rem repellendus, sequi similique voluptatem voluptates? Amet, hic.
+
+    .catalog-description
+        .container
+            p
+                | Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
+                | для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
+                | человека.
+            p
+                | Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
+                | необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
+                | роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
+                | максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
+                | коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.
+            p
+                | Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
+                | порошок или коктейль.
     .benefits
         .container
             .row

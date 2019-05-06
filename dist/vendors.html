@@ -358,7 +358,9 @@
     <div class="page-header">
       <div class="container">
         <div class="breadcumps"><a class="breadcumps__link red" href="#">Главная</a><span class="breadcumps__delimiter"></span><span class="breadcumps__page">Производители</span></div>
-        <h1 class="page-header__title">Производители</h1>
+        <div class="page-header__row">
+          <h1 class="page-header__title">Производители</h1><img class="page-header__logo" src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png">
+        </div>
         <div class="page-header__search">
           <form class="search-fild"><input class="search-fild__input input-text" placeholder="Поиск по производителям" type="text"><button class="search-fild__loupe" type="submit"><svg>
                 <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
@@ -367,22 +369,6 @@
       </div>
     </div>
     <div class="catalog-control catalog-control_favorites">
-      <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="container">
-          <form class="filter">
-            <div class="filter__list w-100">
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button" style="max-width: 460px"><span class="multifilter__label">Показывать для категорий:</span><span class="multifilter__value">Протеины, Гейнеры, Аминокислоты</span><span class="multifilter__total">23</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button>
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <div class="multifilter ml-auto">
-                <div class="multifilter__content nav nav-pills" role="tablist"><span class="multifilter__label">Вид:</span><button class="multifilter__value active" data-toggle="pill" role="tab" data-target="#table">Таблица</button><button class="multifilter__value" data-toggle="pill" role="tab" data-target="#list">Список</button></div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
       <div class="catalog-control__menu catalog-control__menu_white">
         <div class="category-list-mob">
           <div class="category-list-mob__item">Все категории</div>
@@ -393,11 +379,30 @@
         </div>
       </div>
       <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="catalog-control-mob"><button class="catalog-control-mob__button justify-content-start" data-toggle="m-filter" data-target="#mobile-filter"><svg class="catalog-control-mob__icon" height="21" width="19">
-              <use xlink:href="images/new-sprite.svg#sprite-filter"></use>
-            </svg><span>Фильтр</span></button><button class="catalog-control-mob__button catalog-control-mob__button_gray justify-content-end" data-toggle="m-filter" data-target="#mobile-sort"><span>Сортировка</span><svg class="catalog-control-mob__icon" height="22" width="14">
-              <use xlink:href="images/new-sprite.svg#sprite-sort"></use>
-            </svg></button></div>
+        <div class="container">
+          <div class="view">
+            <div class="view__category">
+              <form class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Показывать для категорий:</span><span class="multifilter__value">Протеины, Гейнеры, Аминокислоты</span><span class="multifilter__total">23</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button>
+                <div class="dropdown-menu" role="form">
+                  <div class="p-1">dropdown</div>
+                </div>
+              </form>
+            </div>
+            <div class="view__tab">
+              <div class="multifilter">
+                <div class="multifilter__content">
+                  <div class="multifilter__label">Вид:</div>
+                  <div class="multifilter__tablist nav" role="tablist"><button class="multifilter__tab active" data-toggle="tab" role="tab" data-target="#cards"><i class="i i-cards"></i></button><button class="multifilter__tab" data-toggle="tab" role="tab" data-target="#list"><i class="i i-list"></i></button></div>
+                </div>
+              </div>
+            </div>
+            <!--.view-tablist.nav(role="tablist")-->
+            <!--    span.view-tablist__label Вид:-->
+            <!--    button.view-tablist__tab.active(data-toggle="tab" role="tab" data-target="#cards")-->
+            <!---->
+            <!--    button.view-tablist__tab(data-toggle="tab" role="tab" data-target="#list")-->
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -587,7 +592,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane active" id="table" role="tabpanel">
+      <div class="tab-pane active" id="cards" role="tabpanel">
         <div class="card-list">
           <div class="card-list__nav nav">
             <div class="alphabet-navigation">
@@ -739,6 +744,49 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="vendor-description">
+    <div class="container">
+      <div class="vendor-description__header">
+        <h2 class="vendor-description__title">О бренде</h2><img class="vendor-description__logo" src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png">
+      </div>
+      <div class="vendor-description__info">
+        <div class="vendor-description__text"><img class="vendor-description__img" src="images/brand-image.png" alt="Картинка">
+          <p>Optimum Nutrition – это, пожалуй, первая фирма, с которой начинается знакомство начинающих бодибилдеров
+            с миром спортивного питания. Optimum Nutrition производит множество видов продукции, которая
+            охватывает все товарные группы рынка спортивного питания. Главным достоинством компании является
+            высочайшее качество производимой ею продукции. Крепче всего Optimum Nutrition закрепилась в
+            высоком и премиальном ценовых сегментах. Выпускаемые ею Gold (ON Whey Gold Standart, ON Casien
+            Gold Standart и др.) и Platinum линейки (ON Platinum HydroWey, ON Platinum HydroBuilder и др.)
+            всегда удерживают стабильно-высокие позиции в рейтингах продаж. Большинство людей приобретают
+            ON именно потому, что фирма является своего рода стандартом качества в мире спортивного питания.</p>
+          <p>Сильные стороны: <br>
+            - Высокое качество всей производимой продукции.<br>
+            - Большинство протеинов и гейнеров дополнительно обогащены ферментативными смесями для лучшего усвоения.<br>
+            - Все продукты обладают прекрасным вкусом.<br>
+            - Состав, заявленный на этике, на 100% совпадает с содержимым банки.<br>
+            - Отличный сывороточный протеин и отличные витаминно-минеральные комплексы.</p>
+          <p>Минусы:<br>
+            - Дорого.<br>
+            - Компания практически не производит предтренировочники и жиросжигатели. ON вообще старается не влезать в малоисследованные сегменты рынка.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore dolores excepturi exercitationem iste officiis, porro repudiandae similique sint, tempore unde voluptates? A, accusamus at autem enim est eveniet laudantium nam nihil nisi omnis qui quos, similique sint suscipit voluptatibus! A beatae deserunt dignissimos dolor error, est eveniet exercitationem facere labore minima molestiae nobis omnis provident quisquam totam ut vel! Distinctio doloribus impedit iure quis repellat sed voluptates! A amet asperiores autem dolor dolore, dolorem est eum ex, facilis harum inventore ipsam labore laborum laudantium natus nobis odit omnis porro quaerat quam rem repellendus, sequi similique voluptatem voluptates? Amet, hic.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="catalog-description">
+    <div class="container">
+      <p>Протеин – это натуральная белковая добавка в виде порошковой смеси, которая применяется в спортивном питании
+        для роста, поддержания и восстановления мышечной массы, а также для коррекции рациона любого современного
+        человека.</p>
+      <p>Для чего нужен протеин? Белок состоит из аминокислот, которые являются основными строительными «кирпичиками»,
+        необходимыми для построения мышц. Протеин - одна из самых востребованных спортивных добавок, необходимых для
+        роста и поддержания мышечной массы. Именно поэтому, чтобы повысить качество тренировки и извлечь из нее
+        максимальную пользу, вы должны обеспечить свой организм достаточным количеством протеина. Прием протеиновых
+        коктейлей – чрезвычайно эффективный и достаточно экономичный способ обеспечения организма белком.</p>
+      <p>Ознакомьтесь с нашими высококачественными продуктами здесь и выберите для себя наиболее подходящий вам белковый
+        порошок или коктейль.</p>
     </div>
   </div>
   <div class="benefits">

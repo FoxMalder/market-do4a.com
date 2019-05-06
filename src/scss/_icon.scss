@@ -28,8 +28,12 @@
   background-image: url('../img/ok-logo.svg');
 }
 
-.icon-star {
+.i {
   display: inline-block;
+}
+
+// TODO: Переделать, чтоб наследовался color
+.i-star {
   width: 12px;
   height: 12px;
   @include sprite('star', (
@@ -41,4 +45,16 @@
       fill: $main-color
     ));
   }
+}
+
+.i-cards {
+  width: 22px;
+  height: 18px;
+  @include sprite('cards');
+}
+
+.i-list {
+  width: 22px;
+  height: 18px;
+  @include sprite('list');
 }
