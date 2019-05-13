@@ -1,0 +1,26 @@
+// Functions and Mixins
+@import 'functions';
+@import 'variables';
+// Библиотеки и переопределения их стилей
+//@import '~@fancyapps/fancybox/dist/jquery.fancybox.css';
+//@import '~@fancyapps/fancybox/src/css/core.css';
+//@import 'libs/simplebar';
+//@import 'libs/owl.carousel';
+// Шрифты
+//@import 'fonts/bender';
+//@import 'fonts/inter';
+// Bootstrap (вроде, в голом виде)
+@import 'bootstrap';
+//@import 'custom-grid';
+// Спрайты из SVG Spritemap Webpack Plugin
+@import 'sprites';
+// Модули
+@import 'icon';
+@import 'global';
+@import 'header';
+@import 'footer';
+//@import 'slider';
+//@import 'modal';
+// Страницы
+//@import 'main-page';
+//@import 'catalog';

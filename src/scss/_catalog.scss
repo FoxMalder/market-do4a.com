@@ -634,7 +634,7 @@ $multifilter-padding-x: (
     }
 
     @include media-breakpoint-up(xl) {
-      max-width: 250px;
+      max-width: 265px;
       //height: 58px;
 
       //> * {
@@ -706,11 +706,11 @@ $multifilter-padding-x: (
     }
 
     .multifilter.active > & {
-      padding-right: (map_get($multifilter-padding-x, xl) + 10px + 17px);
+      padding-right: (map_get($multifilter-padding-x, xl) + 10px + 25px);
 
       &::after,
       > .multifilter__total {
-        margin-right: 17px;
+        margin-right: 25px;
       }
     }
   }
@@ -841,12 +841,12 @@ $multifilter-padding-x: (
 
   .dropdown-menu {
     //min-width: 316px;
-    width: 316px;
+    //width: 316px;
     height: auto;
-    max-height: 446px;
 
     &[data-simplebar] {
-      //width: 316px;
+      width: 316px;
+      max-height: 446px;
       //max-height: 446px;
 
       .simplebar-track {
@@ -1051,7 +1051,7 @@ $multifilter-menu-padding-x: 22px;
 }
 
 .multifilter-price {
-  width: (327px + 22px);
+  width: 381px;
   padding: 8px $multifilter-menu-padding-x 18px;
 
   &__title {
@@ -1062,6 +1062,7 @@ $multifilter-menu-padding-x: 22px;
 
   &__range {
     margin: 18px 0;
+    padding: 0 13px;
   }
 
   &__num {

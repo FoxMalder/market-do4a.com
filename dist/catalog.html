@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
   <title>Каталог</title>
-  <link href="css/style.css" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
 </head>
 
 <body>
@@ -452,134 +452,125 @@
       </div>
     </div>
     <div class="catalog-control">
-      <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="container">
-          <form class="filter">
-            <div class="filter__list">
-              <!-- Элемент фильтра-->
-              <!-- Модификаторы:-->
-              <!--    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)-->
-              <!--                                      Пока просто показывает кнопку "Сбросить"-->
-              <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
-              <!--              Изменяет фон кнопки .multifilter__content-->
-              <!-- Класс .dropdown обязателен-->
-              <fieldset class="multifilter">
-                <!-- Видимое сожержимое элемента фильтра-->
-                <!---->
-                <!-- При использовании выпадающего меню обязателено использование <button>-->
-                <!-- а также наличие атрибута [data-toggle="dropdown"]--><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко</span><span class="multifilter__total">23</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button><!-- Выпадающее меню-->
-                <!--    Класс .dropdown-menu обязателен при использовании Dropdown-->
+      <form>
+        <div class="catalog-control__menu catalog-control__menu_white">
+          <div class="container">
+            <div class="filter">
+              <div class="filter__list">
+                <!-- Элемент фильтра-->
                 <!-- Модификаторы:-->
-                <!--    .show - Модификатор dropdown (унаследовано от bootstrap)-->
-                <!--            Показывает меню-->
-                <!-- Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем-->
-                <!-- Работает также для отдельных вложенных элементов-->
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter active"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Бренд</span><span class="multifilter__total">2</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button>
-                <div class="dropdown-menu" role="form">
-                  <div class="js-filter-search">
-                    <div class="multifilter-search"><input class="multifilter-search__input js-filter-search__input" type="text" placeholder="Поиск по брендам" autocomplete="off"></div><label class="multifilter-checkbox js-filter-search__item" data-filter-search="4 Dimension Nutrition"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="ActivLab"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="ASM"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="4 Dimension Nutrition"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="ActivLab"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="ASM"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="4 Dimension Nutrition"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="ActivLab"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox js-filter-search__item" data-filter-search="ASM"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label>
-                  </div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Страна</span><span class="multifilter__total">2</span></button><button class="multifilter__btn-clear">Сбросить</button>
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Объём, кг</span><span class="multifilter__total">2</span></button>
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Порции</span><span class="multifilter__total">2</span></button>
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">% Белка</span></button>
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Время приёма</span></button>
-                <div class="dropdown-menu" role="form">
-                  <div class="p-1">dropdown</div>
-                </div>
-              </fieldset>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Цена</span></button>
-                <div class="dropdown-menu" role="form">
-                  <div class="multifilter-price">
-                    <div class="multifilter-price__title"><span class="multifilter-price__start">От</span><span class="multifilter-price__end">До</span></div>
-                    <div class="multifilter-price__range">
-                      <div class="input-range"></div>
-                    </div>
-                    <div class="multifilter-price__num"><span class="multifilter-price__start">50 ₽</span><span class="multifilter-price__end">10 000 ₽</span></div>
-                  </div>
-                </div>
-              </fieldset>
-            </div><button class="filter__btn-reset" type="reset">Сбросить</button>
-          </form>
-        </div>
-      </div>
-      <div class="catalog-control__menu">
-        <div class="container">
-          <form class="sorting">
-            <div class="sorting__list">
-              <div class="multifilter">
-                <div class="multifilter__content"><span class="multifilter__label">Найдено:</span><span class="multifilter__value">12 товаров</span></div>
-              </div>
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Сначала дешевые</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button>
-                <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false" role="form">
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-1" name="sort" checked><label class="multifilter-radio__label" for="s-1-check-1">По популярности</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-2" name="sort"><label class="multifilter-radio__label" for="s-1-check-2">Сначала дешевые</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-3" name="sort"><label class="multifilter-radio__label" for="s-1-check-3">Сначала дорогие</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-4" name="sort"><label class="multifilter-radio__label" for="s-1-check-4">По названию (А-Я)</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-5" name="sort"><label class="multifilter-radio__label" for="s-1-check-5">По названию (Я-А)</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-6" name="sort" checked><label class="multifilter-radio__label" for="s-1-check-6">По популярности</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-7" name="sort"><label class="multifilter-radio__label" for="s-1-check-7">Сначала дешевые</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-8" name="sort"><label class="multifilter-radio__label" for="s-1-check-8">Сначала дорогие</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-9" name="sort"><label class="multifilter-radio__label" for="s-1-check-9">По названию (А-Я)</label></div>
-                  <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-10" name="sort"><label class="multifilter-radio__label" for="s-1-check-10">По названию (Я-А)</label></div>
-                </div>
-              </fieldset>
-              <div class="sorting__change-store">
-                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">В магазинах:</span><span class="multifilter__value">длинное Название магазина</span><span class="multifilter__total">2</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button>
-                  <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false" role="form">
+                <!--    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)-->
+                <!--                                      Пока просто показывает кнопку "Сбросить"-->
+                <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
+                <!--              Изменяет фон кнопки .multifilter__content-->
+                <fieldset class="multifilter" data-category data-filter-replace-title>
+                  <!-- Видимое сожержимое элемента фильтра-->
+                  <!---->
+                  <!-- При использовании выпадающего меню обязателено использование <button>-->
+                  <!-- а также наличие атрибута [data-toggle="dropdown"]--><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Казеин и молоко</span></button><!-- Выпадающее меню-->
+                  <!--    Класс .dropdown-menu обязателен при использовании Dropdown-->
+                  <!-- Модификаторы:-->
+                  <!--    .show - Модификатор dropdown (унаследовано от bootstrap)-->
+                  <!--            Показывает меню-->
+                  <!-- Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем-->
+                  <!-- Работает также для отдельных вложенных элементов-->
+                  <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Говяжий</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Изоляты и гидролизаты</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Казеин и молочный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Комплексный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Растительный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Сывороточный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Яичный</span></label></div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Бренд</span></button>
+                  <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label></div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Страна</span></button>
+                  <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label></div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Объём, кг</span></button>
+                  <div class="dropdown-menu" role="form">
                     <div class="p-1">dropdown</div>
+                  </div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Порции</span></button>
+                  <div class="dropdown-menu" role="form">
+                    <div class="p-1">dropdown</div>
+                  </div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">% Белка</span></button>
+                  <div class="dropdown-menu" role="form">
+                    <div class="p-1">dropdown</div>
+                  </div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Время приёма</span></button>
+                  <div class="dropdown-menu" role="form">
+                    <div class="p-1">dropdown</div>
+                  </div>
+                </fieldset>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Цена</span></button>
+                  <div class="dropdown-menu" role="form">
+                    <div class="multifilter-price">
+                      <div class="multifilter-price__title"><span class="multifilter-price__start">От</span><span class="multifilter-price__end">До</span></div>
+                      <div class="multifilter-price__range">
+                        <div class="input-range"></div>
+                      </div>
+                      <div class="multifilter-price__num"><span class="multifilter-price__start">50 ₽</span><span class="multifilter-price__end">10 000 ₽</span></div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div><button class="filter__btn-reset" type="reset">Сбросить</button>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-control__menu">
+          <div class="container">
+            <div class="sorting">
+              <div class="sorting__list">
+                <div class="multifilter">
+                  <div class="multifilter__content"><span class="multifilter__label">Найдено:</span><span class="multifilter__value" data-total-find>12 товаров</span></div>
+                </div>
+                <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Сначала дешевые</span></button><button class="multifilter__btn-clear" type="reset">Сбросить</button>
+                  <div class="dropdown-menu" role="form">
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-1" name="sort" checked><label class="multifilter-radio__label" for="s-1-check-1">По популярности</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-2" name="sort"><label class="multifilter-radio__label" for="s-1-check-2">Сначала дешевые</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-3" name="sort"><label class="multifilter-radio__label" for="s-1-check-3">Сначала дорогие</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-4" name="sort"><label class="multifilter-radio__label" for="s-1-check-4">По названию (А-Я)</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-5" name="sort"><label class="multifilter-radio__label" for="s-1-check-5">По названию (Я-А)</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-6" name="sort" checked><label class="multifilter-radio__label" for="s-1-check-6">По популярности</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-7" name="sort"><label class="multifilter-radio__label" for="s-1-check-7">Сначала дешевые</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-8" name="sort"><label class="multifilter-radio__label" for="s-1-check-8">Сначала дорогие</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-9" name="sort"><label class="multifilter-radio__label" for="s-1-check-9">По названию (А-Я)</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-10" name="sort"><label class="multifilter-radio__label" for="s-1-check-10">По названию (Я-А)</label></div>
+                  </div>
+                </fieldset>
+                <div class="sorting__change-store">
+                  <fieldset class="multifilter" data-filter-replace-title><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">В магазинах:</span><span class="multifilter__value">длинное Название магазина</span></button>
+                    <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ул. Восстания, д. 9</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">ул. Бухарестская, 30-32</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Коломяжский проспект, дом 26</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Проспект Испытателей, д. 39</span></label></div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="sorting__checkbox-container">
+                <fieldset class="multifilter">
+                  <div class="multifilter__content">
+                    <div class="input-checkbox"><input class="input-checkbox__input" type="checkbox" id="customCheck1"><label class="input-checkbox__label" for="customCheck1">Только со скидкой</label></div>
                   </div>
                 </fieldset>
               </div>
             </div>
-            <div class="sorting__checkbox-container">
-              <fieldset class="multifilter">
-                <div class="multifilter__content">
-                  <div class="input-checkbox"><input class="input-checkbox__input" type="checkbox" id="customCheck1"><label class="input-checkbox__label" for="customCheck1">Только со скидкой</label></div>
-                </div>
-              </fieldset>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="category-list-mob">
-          <div class="category-list-mob__item">Все категории</div>
-          <div class="category-list-mob__item active">Сывороточный</div>
-          <div class="category-list-mob__item">Комплексный</div>
-          <div class="category-list-mob__item">Сывороточный</div>
-          <div class="category-list-mob__item">Комплексный</div>
+        <div class="catalog-control__menu catalog-control__menu_white">
+          <div class="category-list-mob">
+            <div class="category-list-mob__item">Все категории</div>
+            <div class="category-list-mob__item active">Сывороточный</div>
+            <div class="category-list-mob__item">Комплексный</div>
+            <div class="category-list-mob__item">Сывороточный</div>
+            <div class="category-list-mob__item">Комплексный</div>
+          </div>
         </div>
-      </div>
-      <div class="catalog-control__menu catalog-control__menu_white">
-        <div class="catalog-control-mob"><button class="catalog-control-mob__button justify-content-start" data-toggle="m-filter" data-target="#mobile-filter"><svg class="catalog-control-mob__icon" height="21" width="19">
-              <use xlink:href="images/new-sprite.svg#sprite-filter"></use>
-            </svg><span>Фильтр</span></button><button class="catalog-control-mob__button catalog-control-mob__button_gray justify-content-end" data-toggle="m-filter" data-target="#mobile-sort"><span>Сортировка</span><svg class="catalog-control-mob__icon" height="22" width="14">
-              <use xlink:href="images/new-sprite.svg#sprite-sort"></use>
-            </svg></button></div>
-      </div>
+        <div class="catalog-control__menu catalog-control__menu_white">
+          <div class="catalog-control-mob"><button class="catalog-control-mob__button justify-content-start" data-toggle="m-filter" data-target="#mobile-filter"><svg class="catalog-control-mob__icon" height="21" width="19">
+                <use xlink:href="images/new-sprite.svg#sprite-filter"></use>
+              </svg><span>Фильтр</span></button><button class="catalog-control-mob__button catalog-control-mob__button_gray justify-content-end" data-toggle="m-filter" data-target="#mobile-sort"><span>Сортировка</span><svg class="catalog-control-mob__icon" height="22" width="14">
+                <use xlink:href="images/new-sprite.svg#sprite-sort"></use>
+              </svg></button></div>
+        </div>
+      </form>
     </div>
     <div class="catalog">
       <div class="catalog__container">
@@ -587,7 +578,7 @@
           <div class="product-card"><a class="product-card-banner" href="#">
               <div class="product-card-banner__title">Бесплатная доставка курьером<span class="nowrap"> от<span class="price"> 2 990<span class="currency"> ₽</span></span></span></div>
             </a></div>
-          <div class="product-card" data-product-id="932">
+          <div class="product-card" data-product-id="123">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -639,7 +630,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="933">
+          <div class="product-card" data-product-id="124">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -680,7 +671,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="934">
+          <div class="product-card" data-product-id="125">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -731,7 +722,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="935">
+          <div class="product-card" data-product-id="126">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -781,7 +772,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="936">
+          <div class="product-card" data-product-id="127">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -831,7 +822,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="937">
+          <div class="product-card" data-product-id="128">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -872,7 +863,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="938">
+          <div class="product-card" data-product-id="129">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -921,7 +912,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="939">
+          <div class="product-card" data-product-id="130">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->

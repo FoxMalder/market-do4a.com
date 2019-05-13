@@ -22,7 +22,6 @@ window.$ = $;
 $.fancybox.defaults.closeExisting = true;
 
 $(() => {
-
   $(document).on('click.bs.dropdown', '.multifilter [role="form"]', (e) => {
     e.stopPropagation();
   });
@@ -30,7 +29,6 @@ $(() => {
   // svg4everybody();
 
 
-  app.Header = new Header();
+  window.app.Header = new Header();
   Input();
-
 });

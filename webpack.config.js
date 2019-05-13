@@ -35,6 +35,8 @@ const cummonConfig = {
     favorites: './src/favorites.js',
     vendors: './src/vendors.js',
     product: './src/product.js',
+
+    // headerStyle: './src/scss/header.scss',
   },
   output: {
     path: distPath,
@@ -42,8 +44,9 @@ const cummonConfig = {
     // chunkFilename: 'js/[name].bundle.js',
     // publicPath: '',
   },
-  plugins: [
 
+  externals: ['app'],
+  plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -132,6 +135,14 @@ const cummonConfig = {
       chunks: ['product', 'common'],
       minify: false,
     }),
+
+    // new HtmlWebpackPlugin({
+    //   title: 'Шапка',
+    //   filename: 'header.html',
+    //   template: path.resolve(__dirname, 'src/product.pug'),
+    //   chunks: ['product', 'style'],
+    //   minify: false,
+    // }),
   ],
 };
 
@@ -264,8 +275,8 @@ const prodConfig = {
 
     new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/style.css',
-      chunkFilename: 'css/style.css',
+      filename: 'css/[name].css',
+      // chunkFilename: 'css/[id].css',
       // filename: 'css/[name].css',
       // chunkFilename: 'css/[id].333.css',
     }),
@@ -298,6 +309,12 @@ const prodConfig = {
         //   name: 'styles',
         //   test: /\.(sass|scss|css)$/,
         //   chunks: 'initial',
+        //   enforce: true,
+        // },
+        // style: {
+        //   name: 'style',
+        //   test: /\.(sass|scss)$/,
+        //   chunks: 'all',
         //   enforce: true,
         // },
         common: {

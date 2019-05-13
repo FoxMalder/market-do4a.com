@@ -99,3 +99,29 @@ $page-header-padding-y: (
   md: 25px,
   xl: 44px,
 );
+
+
+
+
+
+$custom-range-track-padding:        0 !default; // new
+$custom-range-track-width:          100% !default;
+$custom-range-track-height:         6px !default;
+$custom-range-track-cursor:         pointer !default;
+$custom-range-track-bg:             #D2D2D2 !default;
+$custom-range-track-border-radius:  6px !default;
+$custom-range-track-box-shadow:     0 !default;
+
+$custom-range-connect-track-bg:           $main-color !default; // new
+$custom-range-connect-track-box-shadow:   0 !default; // new
+
+$custom-range-thumb-width:                   26px !default;
+$custom-range-thumb-height:                  26px !default;
+$custom-range-thumb-bg:                      #fff !default;
+$custom-range-thumb-border:                  6px solid $main-color !default;
+$custom-range-thumb-border-radius:           50% !default;
+$custom-range-thumb-cursor:                  pointer !default; // new
+$custom-range-thumb-box-shadow:              0 !default;
+$custom-range-thumb-focus-box-shadow:        $custom-range-thumb-box-shadow !default;
+$custom-range-thumb-active-bg:               darken(#fff, 15%) !default;
+$custom-range-thumb-disabled-bg:             #adb5bd !default;

@@ -8,12 +8,10 @@ import '@fancyapps/fancybox';
 import 'owl.carousel';
 
 import 'simplebar';
-
-// import svg4everybody from 'svg4everybody';
-
-import Utils from './utils/utils';
 import Header from './modules/Header';
 import Input from './modules/Input';
+
+// import svg4everybody from 'svg4everybody';
 
 
 // window.noUiSlider = noUiSlider;
@@ -31,9 +29,7 @@ $(() => {
   // svg4everybody();
 
 
-  const header = new Header()
-  console.log(header);
-  app.header = header;
+  window.app.header = new Header();
 
   Input();
 
