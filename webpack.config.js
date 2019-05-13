@@ -92,7 +92,7 @@ const cummonConfig = {
       title: 'Главная',
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/index.pug'),
-      chunks: ['index', 'common'],
+      chunks: ['index', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -100,7 +100,7 @@ const cummonConfig = {
       title: 'Каталог',
       filename: 'catalog.html',
       template: path.resolve(__dirname, 'src/catalog.pug'),
-      chunks: ['catalog', 'common'],
+      chunks: ['catalog', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -108,7 +108,7 @@ const cummonConfig = {
       title: 'Каталог / Первый уровень',
       filename: 'first-level.html',
       template: path.resolve(__dirname, 'src/first-level.pug'),
-      chunks: ['firstLevel', 'common'],
+      chunks: ['firstLevel', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -116,7 +116,7 @@ const cummonConfig = {
       title: 'Избранное',
       filename: 'favorites.html',
       template: path.resolve(__dirname, 'src/favorites.pug'),
-      chunks: ['favorites', 'common'],
+      chunks: ['favorites', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -124,7 +124,7 @@ const cummonConfig = {
       title: 'Производители',
       filename: 'vendors.html',
       template: path.resolve(__dirname, 'src/vendors.pug'),
-      chunks: ['vendors', 'common'],
+      chunks: ['vendors', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -132,7 +132,7 @@ const cummonConfig = {
       title: 'Карточка товара',
       filename: 'product.html',
       template: path.resolve(__dirname, 'src/product.pug'),
-      chunks: ['product', 'common'],
+      chunks: ['product', 'common', 'runtime'],
       minify: false,
     }),
 
