@@ -228,60 +228,8 @@ $input-height: 62px;
 $input-font-size: 16px;
 $input-line-height: 1.5;
 $input-padding-x: 16px;
-$input-padding-y: 12px;
+$input-padding-y: 19px;
 $input-border-width: 3px;
-
-.input-field {
-  //display: inline-flex;
-  position: relative;
-  height: $input-height;
-  overflow: hidden;
-  background-color: #fff;
-  color: #1a1a1a;
-  font-family: $font-family-bender;
-  font-size: $input-font-size;
-  font-weight: 900;
-  letter-spacing: .02em;
-  line-height: $input-line-height;
-  text-transform: uppercase;
-
-  &.active {
-    .input-field {
-      &__label {
-        transform: translateY(-50%) scale(.625);
-      }
-
-      &__input {
-
-      }
-    }
-  }
-
-  &__label {
-    position: absolute;
-    top: 19px;
-    left: $input-padding-x + $input-border-width;
-    margin-bottom: 0;
-    overflow: hidden;
-    //transform: translateY(-50%);
-    transform-origin: left top;
-    transition: transform .15s ease;
-    opacity: .4;
-    text-overflow: ellipsis;
-    text-transform: inherit;
-    white-space: nowrap;
-    cursor: text;
-    pointer-events: none;
-    will-change: transform;
-  }
-
-  &__input {
-    @extend .input-text;
-    align-self: flex-end;
-    width: 100%;
-    height: 100%;
-  }
-}
 
 .input-text {
   display: block;
@@ -298,10 +246,9 @@ $input-border-width: 3px;
   font-weight: 900;
   letter-spacing: .02em;
   line-height: $input-line-height;
-  appearance: none;
+  //appearance: none;
 
   //@include mre-height-block($input-font-size, ($input-height - $input-border-width * 2), $input-line-height);
-
 
   //@include box-shadow($input-box-shadow);
   @include transition($input-transition);
@@ -317,24 +264,17 @@ $input-border-width: 3px;
     border-color: $main-color;
   }
 
-  // Customize the `:focus` state to imitate native WebKit styles.
   &:focus {
     border-color: $main-color;
     outline: 0;
   }
 
-  // Placeholder
   &::placeholder {
     opacity: 1;
     color: rgba(#1a1a1a, .4);
     text-transform: uppercase;
   }
 
-  // Disabled and read-only inputs
-  //
-  // HTML5 says that controls under a fieldset > legend:first-child won't be
-  // disabled if the fieldset is disabled. Due to implementation difficulty, we
-  // don't honor that edge case; we style them as disabled anyway.
   &:disabled,
   &[readonly] {
     opacity: 1;
@@ -342,8 +282,9 @@ $input-border-width: 3px;
   }
 }
 
-textarea.form-control {
-  height: auto;
+textarea.input-text {
+  height: $input-height;
+  min-height: $input-height;
 }
 
 //.checkbox {
@@ -782,9 +723,78 @@ textarea.form-control {
 .btn-border-red {
   //color: #101010;
   //border-color: #DD3F30;
-  @include button-outline-variant(#dd3f30, #fff);
+  @include button-outline-variant($main-color, #fff);
   //color: $main-color;
 }
+
+.btn-border-green {
+  @include button-outline-variant($green, #fff);
+}
+
+//
+// Аналог .form-group из bootstrap
+//
+.input-field {
+  //display: inline-flex;
+  position: relative;
+  //height: $input-height;
+  overflow: hidden;
+  background-color: #fff;
+  color: #1a1a1a;
+  font-family: $font-family-bender;
+  font-size: $input-font-size;
+  font-weight: 900;
+  letter-spacing: .02em;
+  line-height: $input-line-height;
+  text-transform: uppercase;
+
+  &.active {
+    .input-field {
+      &__label {
+        transform: translateY(-50%) scale(.625);
+      }
+
+      &__input {
+
+      }
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 19px;
+    left: $input-padding-x + $input-border-width;
+    margin-bottom: 0;
+    overflow: hidden;
+    //transform: translateY(-50%);
+    transform-origin: left top;
+    transition: transform .15s ease;
+    opacity: .4;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    white-space: nowrap;
+    cursor: text;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  &__input {
+    @extend .input-text;
+    align-self: flex-end;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__button {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+}
+
 
 .slider-nav {
 

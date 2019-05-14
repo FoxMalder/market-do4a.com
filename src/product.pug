@@ -101,9 +101,61 @@ block wrapper
                         .p-section-description__value Питательная ценность
                     .p-section-description__row
                         .p-section-description__key Рекомендации к применению
-                        .p-section-description__value
+                        .p-section-description__value От производителя: Растворите одну- две мерные ложки Matrix в 250-300 мл воды, нежирного молока. Принимайте Matrix два -три раза в день, чтобы восполнить запасы протеина. Помните,что наилучшее время приема- это с утра после пробуждения, после интенсивных тренировок и перед сном.
 
             section.p-section-availability
+                .container
+                    h2.p-section-availability__title
+                        div Наличие в магазинах
+                        div.red г. Нижнего Новгорода
+
+            section.p-section-similar
+                .container
+                    h2.p-section-similar__title Похожие товары
+
+            section.p-section-reviews
+                .container
+                    .p-section-reviews__header
+                        h2.p-section-reviews__title
+                            span Отзывы
+                            span.p-section-reviews__number 11
+
+                        .p-section-reviews__rating
+                            span.p-section-reviews__stars
+                                i.i.i-star.red
+                                i.i.i-star.red
+                                i.i.i-star.red
+                                i.i.i-star.red
+                                i.i.i-star
+                            span Средняя оценка: 4,5
+                    form.p-section-reviews__field
+                        .input-field
+                            label.input-field__label(for="reviews") Оставить свой отзыв
+                            textarea.input-field__input(id="reviews")
+                            button.input-field__button.btn.btn-red(type="submit")
+                each item in [1, 2, 3, 4]
+                    .p-review-item
+                        .container
+                            .p-review-item__inner
+                                .p-review-item__header
+                                    .p-review-item__name Дмитрий
+                                    .p-review-item__rating
+                                        i.i.i-star.red
+                                        i.i.i-star.red
+                                        i.i.i-star.red
+                                        i.i.i-star.red
+                                        i.i.i-star
+                                    .p-review-item__date 25.02.2019
+                                .p-review-item__body
+                                    .p-review-item__text Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!
+                                    .p-review-item__vote
+                                        button.btn.p-review-item__minus -
+                                        span.p-review-item__minus-num 11
+                                        button.btn.p-review-item__plus +
+                                        span.p-review-item__plus-num 2
+
+
+
 
         aside.benefits
             .container

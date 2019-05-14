@@ -9,8 +9,13 @@
 
 .p-section-hero {
   padding-top: 20px;
+  padding-bottom: 30px;
+  @include media-breakpoint-up(md) {
+    padding-bottom: 60px;
+  }
   @include media-breakpoint-up(xl) {
     padding-top: 44px;
+    padding-bottom: 65px;
   }
 }
 
@@ -301,20 +306,27 @@
   background-color: #fff;
 
   &__title {
-
+    margin-bottom: 25px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 35px;
+    }
   }
 
   &__row {
+    margin-bottom: 30px;
     @include media-breakpoint-up(md) {
       display: flex;
-
       justify-content: space-between;
+      margin-bottom: 65px;
+
       &::before {
         content: '';
         flex: 1 0 auto;
         order: 2;
         height: 3px;
         margin-top: 12px;
+        margin-right: 11px;
+        margin-left: 11px;
         background: red;
       }
     }
@@ -334,5 +346,246 @@
       flex: 0 0 (708 - 293px);
       order: 3;
     }
+  }
+}
+
+
+/*
+ * Наличие в магазинах
+ * @Type: Section
+ */
+.p-section-availability {
+  padding-top: 40px;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 60px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 80px;
+  }
+
+  &__title {
+
+  }
+}
+
+
+/*
+ * Похожие товары
+ * @Type: Section
+ */
+.p-section-similar {
+  padding-top: 40px;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 60px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 80px;
+  }
+}
+
+
+/*
+ * Отзывы
+ * @Type: Section
+ */
+.p-section-reviews {
+  padding-top: 40px;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 60px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding-top: 80px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 34px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &__number {
+    margin-left: 9px;
+    opacity: .3;
+    @include media-breakpoint-up(md) {
+      margin-left: 22px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-left: 29px;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    font-weight: 500;
+    @include media-breakpoint-up(md) {
+      font-size: 16px;
+    }
+  }
+
+  &__stars {
+    display: none;
+    //margin-left: auto;
+    @include media-breakpoint-up(md) {
+      display: inline-block;
+      margin-right: 15px;
+    }
+  }
+
+  &__field {
+    margin-bottom: 28px;
+    transform: $skew;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 37px;
+    }
+  }
+}
+
+.p-review-item {
+  margin-bottom: 15px;
+  background: #fff;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 10px;
+  }
+  @include media-breakpoint-up(xl) {
+    margin-bottom: 24px;
+  }
+
+  &__inner {
+    margin-right: (map_get($grid-gutter-width-map, xs) / -2);
+    margin-left: (map_get($grid-gutter-width-map, xs) / -2);
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      min-height: 127px;
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 18px (map_get($grid-gutter-width-map, xs) / 2);
+    border-bottom: 1px solid #eaeaea;
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 162px;
+      flex-direction: column;
+      max-width: 162px;
+      padding: 18px 0;
+      border-right: 1px solid #eaeaea;
+      border-bottom: 0;
+    }
+  }
+
+  &__name {
+    @include title;
+    order: 1;
+    font-size: 16px;
+  }
+
+  &__date {
+    order: 3;
+    width: 100%;
+    color: rgba(#010101, 0.4);
+    font-size: 14px;
+    font-weight: 500;
+    @include media-breakpoint-up(md) {
+      order: 2;
+    }
+  }
+
+  &__rating {
+    order: 2;
+    margin-left: auto;
+
+    @include media-breakpoint-up(md) {
+      order: 3;
+      margin-top: auto;
+      margin-left: 0;
+    }
+  }
+
+  &__body {
+    padding: 21px (map_get($grid-gutter-width-map, xs) / 2) 27px;
+    @include media-breakpoint-up(md) {
+      flex: 1 0 auto;
+      padding: 21px 0 27px 26px;
+    }
+    @include media-breakpoint-up(xl) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  }
+
+  &__text {
+    max-width: 750px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  &__vote {
+    @include title;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    font-size: 18px;
+    @include media-breakpoint-up(xl) {
+      margin-top: 0;
+    }
+  }
+
+  &__minus {
+    width: 52px;
+    height: 40px;
+    padding: 0;
+    transform: $skew;
+    border-color: $main-color;
+    font-size: 22px;
+    @include hover {
+      background-color: $main-color;
+      color: #fff;
+    }
+  }
+
+  &__minus-num {
+    margin-right: 15px;
+    margin-left: 10px;
+  }
+
+  &__plus {
+    width: 52px;
+    height: 40px;
+    padding: 0;
+    transform: $skew;
+    border-color: #80c627;
+    font-size: 22px;
+    @include hover {
+      background-color: #80c627;
+      color: #fff;
+    }
+  }
+
+  &__plus-num {
+    margin-left: 10px;
   }
 }
