@@ -194,7 +194,7 @@ block wrapper
                                 //                                      Пока просто показывает кнопку "Сбросить"
                                 //    .view   - Модификатор dropdown (унаследовано от bootstrap)
                                 //              Изменяет фон кнопки .multifilter__content
-                                fieldset.multifilter(data-category, data-filter-replace-title)
+                                fieldset.multifilter
 
                                     // Видимое сожержимое элемента фильтра
                                     //
@@ -213,31 +213,31 @@ block wrapper
                                     // Работает также для отдельных вложенных элементов
                                     .dropdown-menu(role="form")
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Говяжий
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Изоляты и гидролизаты
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Казеин и молочный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Комплексный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Растительный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Сывороточный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
                                             span.multifilter-checkbox__label
                                                 | Яичный
 
@@ -441,7 +441,7 @@ block wrapper
                                             label.multifilter-radio__label(for="s-1-check-10")
                                                 | По названию (Я-А)
                                 .sorting__change-store
-                                    fieldset.multifilter(data-filter-replace-title)
+                                    fieldset.multifilter
                                         button.multifilter__content(data-toggle="dropdown" type="button")
                                             span.multifilter__label В магазинах:
                                             span.multifilter__value длинное Название магазина

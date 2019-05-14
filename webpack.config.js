@@ -207,6 +207,9 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
+  // output: {
+  //   publicPath: '/static/dist/',
+  // },
   module: {
     rules: [
       {
@@ -313,7 +316,7 @@ const prodConfig = {
         // },
         // style: {
         //   name: 'style',
-        //   test: /\.(sass|scss)$/,
+        //   test: /\.(css|sass|scss)$/,
         //   chunks: 'all',
         //   enforce: true,
         // },

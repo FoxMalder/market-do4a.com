@@ -7,6 +7,13 @@ import StickySidebar from '../plugins/sticky-sidebar';
 let FilterForm;
 let productList;
 
+function htmlToElement(html) {
+  const template = document.createElement('template');
+  html = html.trim(); // Never return a text node of whitespace as the result
+  template.innerHTML = html;
+  return template.content.firstChild;
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;
@@ -181,7 +188,7 @@ class Product {
 class ProductList {
   constructor(el) {
     this.listEl = el;
-    this.list = [];
+    this.shownNumber = 0;
 
     this.init();
   }
@@ -231,23 +238,37 @@ class ProductList {
     }
   };
 
-  updateList(data) {
-    this.listEl.innerHTML = '';
-    this.list = data.items.map((item) => {
-      const prod = new Product(item);
-      this.listEl.appendChild(prod.getElement);
 
-      return prod;
-    });
+  /*
+   * Создает нужные элементы на основе входных данных и вставляет их на страницу
+   * Возвращает вставленное количество продуктов
+   */
+  parse(items) {
+    return items.filter((item) => {
+      let element;
+
+      if (item.type === 'product') {
+        element = new Product(item.options);
+        element = element.getElement();
+      } else {
+        element = htmlToElement(item.html);
+      }
+
+      this.listEl.appendChild(element);
+
+      return item.type === 'product';
+    }).length;
   }
 
-  addItem(data) {
-    this.list.concat(data.items.map((item) => {
-      const prod = new Product(item);
-      this.listEl.appendChild(prod.getElement);
+  reload(items) {
+    this.listEl.innerHTML = '';
+    this.shownNumber = this.parse(items);
+    return this.shownNumber;
+  }
 
-      return prod;
-    }));
+  add(items) {
+    this.shownNumber += this.parse(items);
+    return this.shownNumber;
   }
 
   static addToFavoritesAPI(productId) {
@@ -258,6 +279,7 @@ class ProductList {
     console.log(productId);
   }
 }
+
 
 function initVendorsList() {
   // /**
@@ -339,32 +361,6 @@ function initVendorsList() {
  * Фильтр каталога
  */
 
-// function initFilterSearch() {
-//   Array.from(document.querySelectorAll('.js-filter-search'), (filter) => {
-//     const searchField = filter.querySelector('.js-filter-search__input');
-//     const searchList = [...filter.querySelectorAll('.js-filter-search__item')];
-//
-//     searchField.addEventListener('keyup', (event) => {
-//       const searchText = event.target.value.trim().toLowerCase();
-//
-//       if (searchText.length) {
-//         searchList.forEach((el) => {
-//           if (el.getAttribute('data-filter-search').toLowerCase().indexOf(searchText) !== -1) {
-//             el.style.display = '';
-//           } else {
-//             el.style.display = 'none';
-//           }
-//         });
-//       } else {
-//         searchList.forEach((el) => {
-//           el.style.display = '';
-//         });
-//       }
-//     });
-//     searchField.addEventListener('change', () => 0);
-//   });
-// }
-
 
 class Multifilter {
   constructor(el, callback, options = {}) {
@@ -373,29 +369,17 @@ class Multifilter {
     this.el = el;
     this.contentEl = this.el.querySelector('.dropdown-menu');
     this.menuButton = this.el.querySelector('button.multifilter__content');
-    this.inputList = [...this.el.querySelectorAll('input')];
     this.valueEl = this.el.querySelector('.multifilter__value');
+
+    this.inputList = [...this.el.querySelectorAll('input')];
 
     this.callback = callback;
 
     this.options = {
       search: options.search || false,
       type: options.type || 'simple', // 'checkbox', 'radio', 'price'
-      replaceTitle: this.el.hasAttribute('data-filter-replace-title') || options.replaceTitle || false,
+      replaceTitle: options.replaceTitle || false,
     };
-
-    // // Если нужно подставлять в заголовок
-    // if (this.options.replaceTitle) {
-    //   this.labelEl = this.el.querySelector('.multifilter__label');
-    //
-    //   // if (!this.labelEl) {
-    //   //   this.labelEl = document.createElement('span');
-    //   //   this.labelEl.classList.add('multifilter__label');
-    //   //   this.labelEl.innerHTML = this.valueEl.innerHTML;
-    //   //   this.valueEl.innerHTML = '';
-    //   // }
-    // }
-
 
     if (this.options.type === 'simple') {
       this.inputList.forEach(item => item.addEventListener('change', this.callback));
@@ -558,14 +542,24 @@ class CheckboxFilter extends Multifilter {
     super(el, callback, {
       type: 'checkbox',
       search: options.search || false,
-      replaceTitle: options.replaceTitle || false,
+      // replaceTitle: options.replaceTitle || false,
     });
 
+    if (this.inputList.length > 10) {
+      this.options.search = true;
+    }
+
+    if (this.el.querySelector('.multifilter__label')) {
+      this.options.replaceTitle = true;
+    }
+
+
+    this.total = 0;
     this.totalEl = null;
     this.resetButton = null;
 
-    this.total = 0;
     this.selectedTitle = [];
+
 
     this.init();
   }
@@ -582,10 +576,9 @@ class CheckboxFilter extends Multifilter {
     });
     this.total = this.selectedTitle.length;
 
-    if (this.inputList.length > 10 || this.options.search) {
+    if (this.options.search) {
       this.initSearch();
     }
-
 
     this.totalEl = this.el.querySelector('.multifilter__total');
     if (!this.totalEl) {
@@ -601,7 +594,6 @@ class CheckboxFilter extends Multifilter {
       this.resetButton.classList.add('multifilter__btn-clear');
       this.el.appendChild(this.resetButton);
     }
-
 
     this.resetButton.addEventListener('click', this.onReset);
 
@@ -740,12 +732,26 @@ class Filter {
     if (!el) return;
 
     this.form = el;
-    this.totalLabel = this.form.querySelector('data-total-find');
     this.filterList = [];
 
+    this.totalNumber = 0;
+    this.shownNumber = 0;
+    this.pageNumber = 1;
+
     this.options = {
-      url: '/local/public/catalog.php',
+      url: this.form.action,
     };
+
+    this.itemList = new ProductList(document.querySelector('.card-list'));
+    this.filterList = [...this.form.querySelectorAll('fieldset.multifilter')];
+
+    // Найдено: %s товаров
+    this.totalNumberEl = document.querySelector('data-total-find');
+    // Показано %s из %s
+    this.shownNumberEl = document.querySelector('.catalog__more-value');
+    // Кнопка "Показать еще"
+    this.showMoreButton = document.querySelector('.catalog__more-link');
+
 
     this.update = debounce(this.update.bind(this), 1000);
 
@@ -753,26 +759,17 @@ class Filter {
   }
 
   init() {
-    const filterList = [...this.form.querySelectorAll('fieldset.multifilter')];
-
-    this.filterList = filterList.map((filter) => {
-      if (filter.querySelector('.multifilter-checkbox')) {
-        return new CheckboxFilter(filter, this.update, {
-          replaceTitle: filter.hasAttribute('data-category'),
-        });
-      }
-      if (filter.querySelector('.multifilter-radio')) {
-        return new RadioFilter(filter, this.update);
-      }
-      if (filter.querySelector('.multifilter-price')) {
-        return new PriceFilter(filter, this.update);
-      }
+    this.filterList = this.filterList.map((filter) => {
+      if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, this.update);
+      if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.update);
+      if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter, this.update);
       return new Multifilter(filter, this.update);
     });
 
 
     this.form.addEventListener('submit', this.onSubmit);
     this.form.addEventListener('reset', this.onReset);
+    if (this.showMoreButton) this.showMoreButton.addEventListener('click', this.onClick);
   }
 
   onSubmit = (event) => {
@@ -786,9 +783,17 @@ class Filter {
     this.filterList.forEach(filter => filter.reset());
   };
 
+  onClick = (event) => {
+    event.preventDefault();
+    this.nextPage();
+  };
+
   update() {
-    console.log('Отправили');
     this.sendRequest(1);
+  }
+
+  nextPage() {
+    this.sendRequest(this.pageNumber + 1);
   }
 
   sendRequest(page = 1) {
@@ -801,10 +806,19 @@ class Filter {
     })
       .then(checkStatus)
       .then(parseJSON)
-      .then((data) => {
-        productList.updateList(data);
-        window.history.replaceState(null, null, data.url);
-        if (this.totalLabel) this.totalLabel.innerHTML = declOfNum(data.count, ['товар', 'товара', 'товаров']);
+      .then((response) => {
+        if (response.success) {
+          this.pageNumber = page;
+          this.totalNumber = response.data.count;
+          this.shownNumber = (page === 1)
+            ? this.itemList.reload(response.data.items)
+            : this.itemList.add(response.data.items);
+
+          if (this.totalNumberEl) this.totalNumberEl.innerHTML = `${this.totalNumber} ${declOfNum(this.totalNumber, ['товар', 'товара', 'товаров'])}`;
+          if (this.shownNumberEl) this.shownNumberEl.innerHTML = `Показано ${this.shownNumber} из ${this.totalNumber}`;
+
+          window.history.replaceState(null, null, response.data.url);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -812,12 +826,10 @@ class Filter {
   }
 }
 
-
 $(() => {
   initVendorsList();
 
-  productList = new ProductList(document.querySelector('.card-list'));
-  FilterForm = new Filter(document.querySelector('.catalog-control > form'));
+  FilterForm = new Filter(document.getElementById('#catalog-filter'));
 
   $(document).on('scroll', (event) => {
     $('.catalog-menu-mob.active').css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);

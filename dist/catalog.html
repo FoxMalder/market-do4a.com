@@ -463,7 +463,7 @@
                 <!--                                      Пока просто показывает кнопку "Сбросить"-->
                 <!--    .view   - Модификатор dropdown (унаследовано от bootstrap)-->
                 <!--              Изменяет фон кнопки .multifilter__content-->
-                <fieldset class="multifilter" data-category data-filter-replace-title>
+                <fieldset class="multifilter">
                   <!-- Видимое сожержимое элемента фильтра-->
                   <!---->
                   <!-- При использовании выпадающего меню обязателено использование <button>-->
@@ -474,7 +474,7 @@
                   <!--            Показывает меню-->
                   <!-- Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем-->
                   <!-- Работает также для отдельных вложенных элементов-->
-                  <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Говяжий</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Изоляты и гидролизаты</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Казеин и молочный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Комплексный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Растительный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Сывороточный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Яичный</span></label></div>
+                  <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Говяжий</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Изоляты и гидролизаты</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Казеин и молочный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Комплексный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Растительный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Сывороточный</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" name="category[]"><span class="multifilter-checkbox__label">Яичный</span></label></div>
                 </fieldset>
                 <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__value">Бренд</span></button>
                   <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">4 Dimension Nutrition</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ActivLab</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" disabled><span class="multifilter-checkbox__label">ASM</span></label></div>
@@ -539,7 +539,7 @@
                   </div>
                 </fieldset>
                 <div class="sorting__change-store">
-                  <fieldset class="multifilter" data-filter-replace-title><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">В магазинах:</span><span class="multifilter__value">длинное Название магазина</span></button>
+                  <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">В магазинах:</span><span class="multifilter__value">длинное Название магазина</span></button>
                     <div class="dropdown-menu" role="form"><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" checked><span class="multifilter-checkbox__label">ул. Восстания, д. 9</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">ул. Бухарестская, 30-32</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Коломяжский проспект, дом 26</span></label><label class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox"><span class="multifilter-checkbox__label">Проспект Испытателей, д. 39</span></label></div>
                   </fieldset>
                 </div>
@@ -578,7 +578,7 @@
           <div class="product-card"><a class="product-card-banner" href="#">
               <div class="product-card-banner__title">Бесплатная доставка курьером<span class="nowrap"> от<span class="price"> 2 990<span class="currency"> ₽</span></span></span></div>
             </a></div>
-          <div class="product-card" data-product-id="269">
+          <div class="product-card" data-product-id="267">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -630,7 +630,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="270">
+          <div class="product-card" data-product-id="268">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -671,7 +671,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="271">
+          <div class="product-card" data-product-id="269">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -722,7 +722,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="272">
+          <div class="product-card" data-product-id="270">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -772,7 +772,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="273">
+          <div class="product-card" data-product-id="271">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -822,7 +822,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="274">
+          <div class="product-card" data-product-id="272">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -863,7 +863,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="275">
+          <div class="product-card" data-product-id="273">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -912,7 +912,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="276">
+          <div class="product-card" data-product-id="274">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->

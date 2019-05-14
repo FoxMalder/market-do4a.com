@@ -58,3 +58,23 @@
   height: 18px;
   @include sprite('list');
 }
+
+.icon-tooltip {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin-left: 6px;
+  padding: 0;
+  border: 0;
+  vertical-align: -2px;
+  @include sprite('question-mark');
+
+  &:focus {
+    outline: none;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: 18px;
+    height: 18px;
+  }
+}

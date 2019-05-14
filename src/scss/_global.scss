@@ -92,10 +92,6 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
-//* {
-//  transition: $animation;
-//}
-
 a {
   transition: color .2s ease;
 }
@@ -164,6 +160,15 @@ h6 {
 
 .green {
   color: #80c627;
+}
+
+.black {
+  color: #000;
+}
+
+.text-link {
+  border-bottom: 1px dashed $main-color;
+  color: $main-color;
 }
 
 .nowrap {
@@ -897,8 +902,8 @@ textarea.form-control {
     margin-left: (map_get($grid-gutter-width-map, xs) / -2);
 
     @include media-breakpoint-up(sm) {
-      margin-left: 0;
       margin-right: 0;
+      margin-left: 0;
     }
     @include media-breakpoint-up(md) {
       height: 90px;
@@ -1042,30 +1047,32 @@ textarea.form-control {
 // Определяем стили nouislider с измененными классами
 //
 
-$custom-range-track-padding:        0 !default; // new
-$custom-range-track-width:          100% !default;
-$custom-range-track-height:         6px !default;
-$custom-range-track-cursor:         pointer !default;
-$custom-range-track-bg:             #fff !default;
-$custom-range-track-border-radius:  6px !default;
-$custom-range-track-box-shadow:     none !default;
+$custom-range-track-padding: 0 !default; // new
+$custom-range-track-width: 100% !default;
+$custom-range-track-height: 6px !default;
+$custom-range-track-cursor: pointer !default;
+$custom-range-track-bg: #fff !default;
+$custom-range-track-border-radius: 6px !default;
+$custom-range-track-box-shadow: none !default;
 
-$custom-range-connect-track-bg:           $main-color !default; // new
-$custom-range-connect-track-box-shadow:   0 !default; // new
+$custom-range-connect-track-bg: $main-color !default; // new
+$custom-range-connect-track-box-shadow: 0 !default; // new
 
-$custom-range-thumb-width:                   26px !default;
-$custom-range-thumb-height:                  26px !default;
-$custom-range-thumb-bg:                      #fff !default;
-$custom-range-thumb-border:                  6px solid $main-color !default;
-$custom-range-thumb-border-radius:           50% !default;
-$custom-range-thumb-cursor:                  pointer !default; // new
-$custom-range-thumb-box-shadow:              none !default;
-$custom-range-thumb-focus-box-shadow:        $custom-range-thumb-box-shadow !default;
-$custom-range-thumb-active-bg:               darken($main-color, 15%) !default;
-$custom-range-thumb-disabled-bg:             #adb5bd !default;
+$custom-range-thumb-width: 26px !default;
+$custom-range-thumb-height: 26px !default;
+$custom-range-thumb-bg: #fff !default;
+$custom-range-thumb-border: 6px solid $main-color !default;
+$custom-range-thumb-border-radius: 50% !default;
+$custom-range-thumb-cursor: pointer !default; // new
+$custom-range-thumb-box-shadow: none !default;
+$custom-range-thumb-focus-box-shadow: $custom-range-thumb-box-shadow !default;
+$custom-range-thumb-active-bg: darken($main-color, 15%) !default;
+$custom-range-thumb-disabled-bg: #adb5bd !default;
 
 .input-range {
   position: relative;
+  width: $custom-range-track-width;
+  height: $custom-range-track-height;
   padding: $custom-range-track-padding;
   border-radius: $custom-range-track-border-radius;
   background: $custom-range-track-bg;
@@ -1073,11 +1080,9 @@ $custom-range-thumb-disabled-bg:             #adb5bd !default;
   cursor: $custom-range-track-cursor;
   user-select: none;
   -webkit-touch-callout: none;
+  // horizontal
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   touch-action: none;
-  // horizontal
-  width: $custom-range-track-width;
-  height: $custom-range-track-height;
 
   * {
     user-select: none;
