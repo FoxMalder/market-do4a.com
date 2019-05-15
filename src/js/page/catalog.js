@@ -770,8 +770,14 @@ class Filter {
 
     this.form.addEventListener('submit', this.onSubmit);
     this.form.addEventListener('reset', this.onReset);
+    this.form.addEventListener('change', this.onChange);
     if (this.showMoreButton) this.showMoreButton.addEventListener('click', this.onClick);
   }
+
+  onChange = (event) => {
+    event.preventDefault();
+    this.update();
+  };
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -821,7 +827,7 @@ class Filter {
           if (this.totalNumberEl) this.totalNumberEl.innerHTML = `${this.totalNumber} ${declOfNum(this.totalNumber, ['товар', 'товара', 'товаров'])}`;
           if (this.shownNumberEl) this.shownNumberEl.innerHTML = `Показано ${this.shownNumber} из ${this.totalNumber}`;
 
-          window.history.replaceState(null, null, response.data.url);
+          if (response.data.url) window.history.replaceState(null, null, response.data.url);
         }
       })
       .catch((error) => {
