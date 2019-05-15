@@ -4,7 +4,7 @@
 // Библиотеки и переопределения их стилей
 //@import '~@fancyapps/fancybox/dist/jquery.fancybox.css';
 //@import '~@fancyapps/fancybox/src/css/core.css';
-//@import 'libs/simplebar';
+@import 'libs/simplebar';
 //@import 'libs/owl.carousel';
 // Шрифты
 //@import 'fonts/bender';
@@ -14,7 +14,9 @@
 @import 'bootstrap/functions';
 @import 'bootstrap/variables';
 @import 'bootstrap/mixins';
-//@import 'custom-grid';
+@import 'bootstrap/reboot';
+@import 'bootstrap/transitions';
+@import 'custom-grid';
 // Спрайты из SVG Spritemap Webpack Plugin
 @import 'sprites';
 // Модули
@@ -27,3 +29,5 @@
 // Страницы
 //@import 'main-page';
 //@import 'catalog';
+
+

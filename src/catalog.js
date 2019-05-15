@@ -1,4 +1,5 @@
-import './scss/main.scss';
+// import './scss/main.scss';
+import './scss/header-style.scss';
 
 import './js/common';
 import './js/page/catalog';
