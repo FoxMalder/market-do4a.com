@@ -166,7 +166,7 @@ class Product {
     this.isFavorites = false;
   }
 
-  get getElement() {
+  getElement() {
     return this.el;
   }
 
@@ -740,6 +740,7 @@ class Filter {
 
     this.options = {
       url: this.form.action,
+      method: this.form.method,
     };
 
     this.itemList = new ProductList(document.querySelector('.card-list'));
@@ -748,9 +749,9 @@ class Filter {
     // Найдено: %s товаров
     this.totalNumberEl = document.querySelector('data-total-find');
     // Показано %s из %s
-    this.shownNumberEl = document.querySelector('.catalog__more-value');
+    this.shownNumberEl = document.querySelector('.load-more-block__value');
     // Кнопка "Показать еще"
-    this.showMoreButton = document.querySelector('.catalog__more-link');
+    this.showMoreButton = document.querySelector('.load-more-block__link');
 
 
     this.update = debounce(this.update.bind(this), 1000);
@@ -797,13 +798,16 @@ class Filter {
   }
 
   sendRequest(page = 1) {
-    const formData = new FormData(this.form);
-    formData.append('page', page.toString());
+    const settings = {};
+    settings.method = this.form.method || 'POST';
 
-    fetch(this.options.url || document.location.href, {
-      method: 'POST',
-      body: formData,
-    })
+    if (settings.method.toLowerCase() === 'post') {
+      const formData = new FormData(this.form);
+      formData.append('page', page.toString());
+      settings.body = formData;
+    }
+
+    fetch(this.options.url || document.location.href, settings)
       .then(checkStatus)
       .then(parseJSON)
       .then((response) => {
@@ -829,7 +833,7 @@ class Filter {
 $(() => {
   initVendorsList();
 
-  FilterForm = new Filter(document.getElementById('#catalog-filter'));
+  FilterForm = new Filter(document.getElementById('catalog-filter'));
 
   $(document).on('scroll', (event) => {
     $('.catalog-menu-mob.active').css('top', `${Math.max(app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);

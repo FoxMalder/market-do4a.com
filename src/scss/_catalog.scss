@@ -1128,14 +1128,53 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__more {
+    background: red;
+  }
+
+  //&__more-link {
+  //  @extend %button-reset;
+  //  @include title;
+  //  margin-bottom: 15px;
+  //  border-bottom: 1px dashed rgba(#000, .4);
+  //  font-size: 16px;
+  //
+  //  &::after {
+  //    content: '';
+  //    display: inline-block;
+  //    width: 14px;
+  //    height: 9px;
+  //    margin-left: 13px;
+  //    vertical-align: 2px;
+  //    @include sprite('arrow-down');
+  //  }
+  //
+  //  @include media-breakpoint-up(xl) {
+  //    margin-bottom: 21px;
+  //    font-size: 18px;
+  //  }
+  //}
+  //
+  //&__more-value {
+  //  opacity: .5;
+  //  color: #000;
+  //  font-size: 12px;
+  //  letter-spacing: -.01em;
+  //  line-height: 1;
+  //
+  //  @include media-breakpoint-up(xl) {
+  //    font-size: 14px;
+  //  }
+  //}
+}
+
+.load-more-block {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 50px 0 58px;
-  }
 
-  &__more-link {
+  &__link {
     @extend %button-reset;
     @include title;
     margin-bottom: 15px;
@@ -1158,7 +1197,7 @@ $multifilter-menu-padding-x: 22px;
     }
   }
 
-  &__more-value {
+  &__value {
     opacity: .5;
     color: #000;
     font-size: 12px;
