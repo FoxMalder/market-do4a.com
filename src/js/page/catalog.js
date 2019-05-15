@@ -747,7 +747,7 @@ class Filter {
     this.filterList = [...this.form.querySelectorAll('fieldset.multifilter')];
 
     // Найдено: %s товаров
-    this.totalNumberEl = document.querySelector('data-total-find');
+    this.totalNumberEl = document.querySelector('[data-total-find]');
     // Показано %s из %s
     this.shownNumberEl = document.querySelector('.load-more-block__value');
     // Кнопка "Показать еще"

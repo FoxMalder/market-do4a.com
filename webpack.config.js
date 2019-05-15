@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const distPath = path.resolve(__dirname, 'dist');
 
@@ -47,6 +48,9 @@ const cummonConfig = {
 
   externals: ['app'],
   plugins: [
+    new CopyPlugin([
+      { from: './src/static', to: 'static' },
+    ]),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
