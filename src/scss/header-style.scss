@@ -11,11 +11,11 @@
 //@import 'fonts/inter';
 // Bootstrap (вроде, в голом виде)
 //@import 'bootstrap';
-@import 'bootstrap/functions';
-@import 'bootstrap/variables';
-@import 'bootstrap/mixins';
-@import 'bootstrap/reboot';
-@import 'bootstrap/transitions';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/transitions';
 @import 'custom-grid';
 // Спрайты из SVG Spritemap Webpack Plugin
 @import 'sprites';
@@ -23,7 +23,7 @@
 @import 'icon';
 @import 'global';
 @import 'header';
-@import 'footer';
+//@import 'footer';
 //@import 'slider';
 //@import 'modal';
 // Страницы
