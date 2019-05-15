@@ -421,7 +421,8 @@
   }
 
   &__title {
-    @extend %title;
+    //@extend %title;
+    @include title;
     font-size: 20px;
   }
 

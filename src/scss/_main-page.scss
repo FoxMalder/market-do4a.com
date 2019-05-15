@@ -901,6 +901,7 @@ $section-padding-bottom: 30px;
   }
 
   &__title {
+    @include title;
     display: inline;
     position: relative;
     max-width: 150px;
@@ -908,8 +909,6 @@ $section-padding-bottom: 30px;
     border-bottom: 0 solid #fff;
     font-size: 16px;
     line-height: 1.35;
-
-    @extend %title;
   }
 
   &__subtitle {
@@ -999,7 +998,7 @@ $section-padding-bottom: 30px;
   &__title,
   &__subtitle-top,
   &__subtitle-bottom {
-    @extend %title;
+    @include title;
 
     position: absolute;
     z-index: 2;
@@ -1829,8 +1828,7 @@ $section-padding-bottom: 30px;
   }
 
   &__title {
-    @extend %title;
-
+    @include title;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -1886,7 +1884,7 @@ $section-padding-bottom: 30px;
   background-color: #fff;
 
   &__title {
-    @extend %title;
+    @include title;
 
     // 0
     padding: 0 20px;
@@ -1910,7 +1908,7 @@ $section-padding-bottom: 30px;
   }
 
   &__name {
-    @extend %title;
+    @include title;
 
     display: block;
 
@@ -1935,7 +1933,7 @@ $section-padding-bottom: 30px;
     line-height: 20px;
 
     span {
-      @extend %title;
+      @include title;
 
       font-size: 20px;
     }
@@ -2304,7 +2302,7 @@ $section-padding-bottom: 30px;
   }
 
   &__value {
-    @extend %title;
+    @include title;
 
     @include font-size(20px);
 
@@ -2560,7 +2558,7 @@ $section-padding-bottom: 30px;
   }
 
   &__title {
-    @extend %title;
+    @include title;
 
     transition: $animation;
     font-size: 16px;

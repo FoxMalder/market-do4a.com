@@ -10,7 +10,10 @@
 //@import 'fonts/bender';
 //@import 'fonts/inter';
 // Bootstrap (вроде, в голом виде)
-@import 'bootstrap';
+//@import 'bootstrap';
+@import 'bootstrap/functions';
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
 //@import 'custom-grid';
 // Спрайты из SVG Spritemap Webpack Plugin
 @import 'sprites';

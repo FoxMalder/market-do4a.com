@@ -157,3 +157,34 @@
     @content;
   }
 }
+
+@mixin title {
+  font: {
+    family: $font-family-bender;
+    style: italic;
+    weight: 900;
+  }
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+@mixin make-font-inter {
+  font-family: $font-family-inter-ui;
+  @supports (font-variation-settings: normal) {
+    font-family: $font-family-inter-ui-var;
+  }
+}
+
+%button-reset {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}

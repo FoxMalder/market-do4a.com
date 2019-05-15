@@ -580,17 +580,16 @@ class CheckboxFilter extends Multifilter {
       this.initSearch();
     }
 
-    this.totalEl = this.el.querySelector('.multifilter__total');
+    this.totalEl = this.menuButton.querySelector('.multifilter__total');
     if (!this.totalEl) {
       this.totalEl = document.createElement('span');
       this.totalEl.classList.add('multifilter__total');
       this.menuButton.appendChild(this.totalEl);
     }
 
-    this.resetButton = this.el.querySelector('.multifilter__btn-clear');
+    this.resetButton = this.resetButton.querySelector('.multifilter__btn-clear');
     if (!this.resetButton) {
       this.resetButton = document.createElement('button');
-      this.resetButton.type = 'reset';
       this.resetButton.classList.add('multifilter__btn-clear');
       this.el.appendChild(this.resetButton);
     }

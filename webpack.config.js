@@ -37,7 +37,8 @@ const cummonConfig = {
     vendors: './src/vendors.js',
     product: './src/product.js',
 
-    // headerStyle: './src/scss/header.scss',
+
+    headerStyle: './src/scss/header-style.scss',
   },
   output: {
     path: distPath,

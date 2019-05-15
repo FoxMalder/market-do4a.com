@@ -100,7 +100,8 @@
   }
 
   &__title {
-    @extend %title;
+    //@extend %title;
+    @include title;
     margin-bottom: 28px;
 
     font-size: 16px;
@@ -154,7 +155,8 @@
   }
 
   &__title {
-    @extend %title;
+    //@extend %title;
+    @include title;
     max-width: 280px;
     margin-bottom: 28px;
     font-size: 16px;

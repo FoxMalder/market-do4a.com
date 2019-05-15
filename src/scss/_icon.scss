@@ -1,4 +1,12 @@
 .icon {
+  // ...
+}
+
+
+.icon-ok,
+.icon-vk,
+.icon-inst,
+.icon-fb {
   display: inline-block;
   width: 60px;
   height: 60px;
@@ -10,6 +18,10 @@
 
   font-size: 0;
   line-height: 60px;
+
+  .footer-contacts__social-item & {
+    display: inline-block !important;
+  }
 }
 
 .icon-fb {
