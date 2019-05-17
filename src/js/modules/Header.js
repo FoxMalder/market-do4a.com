@@ -403,12 +403,6 @@ class Header {
             </li>`;
   }
 
-  /**
-   * @param cityId
-   * @param storeId
-   * @param callback
-   * @private
-   */
   static setStore(cityId, storeId, callback) {
     let backUrl = document.location.href;
     backUrl = backUrl.substr(backUrl.indexOf('/', 9));

@@ -7,12 +7,6 @@ import StickySidebar from '../plugins/sticky-sidebar';
 let FilterForm;
 let productList;
 
-function htmlToElement(html) {
-  const template = document.createElement('template');
-  html = html.trim(); // Never return a text node of whitespace as the result
-  template.innerHTML = html;
-  return template.content.firstChild;
-}
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -27,7 +21,26 @@ function parseJSON(response) {
   return response.json();
 }
 
+/**
+ * Создает элемент из строки
+ *
+ * @param {String} html - html-код в виде строки
+ * @returns {ChildNode}
+ */
+function htmlToElement(html) {
+  const template = document.createElement('template');
+  html = html.trim(); // Never return a text node of whitespace as the result
+  template.innerHTML = html;
+  return template.content.firstChild;
+}
 
+/**
+ * Склонение слова в зависимости от числа
+ *
+ * @param {Number} n - Число
+ * @param {Array|String} titles - Слово или массив из форм слова [товар, товара, товаров]
+ * @returns {String}
+ */
 function declOfNum(n, titles) {
   if (typeof titles === 'string' || titles.length !== 3) {
     return titles;
@@ -70,7 +83,6 @@ function declOfNum(n, titles) {
 //     }
 //   }
 // }
-
 
 class Product {
   constructor(data) {
@@ -367,34 +379,55 @@ class Multifilter {
     if (!el) return;
 
     this.el = el;
+    this.valueEl = this.el.querySelector('.multifilter__value');
     this.contentEl = this.el.querySelector('.dropdown-menu');
     this.menuButton = this.el.querySelector('button.multifilter__content');
-    this.valueEl = this.el.querySelector('.multifilter__value');
 
     this.inputList = [...this.el.querySelectorAll('input')];
 
     this.callback = callback;
 
     this.options = {
-      search: options.search || false,
       type: options.type || 'simple', // 'checkbox', 'radio', 'price'
       replaceTitle: options.replaceTitle || false,
     };
 
     if (this.options.type === 'simple') {
-      this.inputList.forEach(item => item.addEventListener('change', this.callback));
-    }
-
-    if (!this.contentEl) return;
-
-    if (this.inputList.length > 9) {
-      const simpleBar = new SimpleBar(this.contentEl, { autoHide: false });
-      this.contentEl = simpleBar.getContentElement();
+      // this.inputList.forEach(item => item.addEventListener('change', this.callback));
+      this.el.addEventListener('change', this.callback);
     }
   }
 
+  /**
+   * Инициализирует кастомную прокрутку
+   *
+   * @returns {SimpleBar|boolean}
+   */
+  initScrollbar() {
+    if (!this.contentEl) return false;
+    const simpleBar = new SimpleBar(this.contentEl, { autoHide: false });
+    this.contentEl = simpleBar.getContentElement();
+    return simpleBar;
+  }
+
+
+  /**
+   * Обновляет заголовок
+   *
+   * @param {Array|String} [title=''] - Строка или массив вставляемых значений
+   * @returns {String} title
+   */
+  updateTitle(title = '') {
+    let newTitle = Array.isArray(title) ? title.join(', ') : title;
+    if (newTitle === '') {
+      newTitle = 'Не выбрано';
+    }
+    this.valueEl.innerHTML = newTitle;
+
+    return title;
+  }
+
   reset() {
-    this.callback();
     this.inputList.forEach((input) => {
       if (!(input.disabled || !input.type)) {
         switch (input.type.toLowerCase()) {
@@ -406,10 +439,13 @@ class Multifilter {
             break;
 
           case 'radio':
-          case 'checkbox':
-            if (input.checked) {
+            if (!input.hasAttribute('checked')) {
               input.checked = false;
             }
+            break;
+
+          case 'checkbox':
+            input.checked = false;
             break;
 
           case 'select-one':
@@ -422,14 +458,13 @@ class Multifilter {
         }
       }
     });
+    this.callback();
   }
 }
 
 class PriceFilter extends Multifilter {
-  constructor(element, callback) {
-    super(element, callback, {
-      type: 'price',
-    });
+  constructor(el, callback) {
+    super(el, callback, { type: 'price' });
 
     this.priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
     this.priceMin = this.priceMinText
@@ -538,53 +573,32 @@ class PriceFilter extends Multifilter {
 }
 
 class CheckboxFilter extends Multifilter {
-  constructor(el, callback, options = {}) {
-    super(el, callback, {
-      type: 'checkbox',
-      search: options.search || false,
-      // replaceTitle: options.replaceTitle || false,
-    });
-
-    if (this.inputList.length > 10) {
-      this.options.search = true;
-    }
-
-    if (this.el.querySelector('.multifilter__label')) {
-      this.options.replaceTitle = true;
-    }
+  constructor(el, callback) {
+    super(el, callback, { type: 'checkbox' });
 
 
     this.total = 0;
     this.totalEl = null;
     this.resetButton = null;
-
     this.selectedTitle = [];
 
+
+    if (this.el.querySelector('.multifilter__label')) {
+      this.options.replaceTitle = true;
+    }
 
     this.init();
   }
 
   init() {
-    this.inputList.forEach((input) => {
-      input.setAttribute('data-title', input.nextElementSibling.textContent);
+    this.total = this.inputList.reduce((arr, input) => (
+      !input.checked ? arr : this.selectedTitle.push(input.nextElementSibling.textContent)
+    ), 0);
 
-      if (input.disabled) return;
-      input.addEventListener('change', this.onChange);
 
-      if (!input.checked) return;
-      this.selectedTitle.push(input.nextElementSibling.textContent);
-    });
-    this.total = this.selectedTitle.length;
-
-    if (this.options.search) {
+    if (this.inputList.length > 9) {
       this.initSearch();
-    }
-
-    this.totalEl = this.el.querySelector('.multifilter__total');
-    if (!this.totalEl) {
-      this.totalEl = document.createElement('span');
-      this.totalEl.classList.add('multifilter__total');
-      this.menuButton.appendChild(this.totalEl);
+      super.initScrollbar();
     }
 
     this.resetButton = this.el.querySelector('.multifilter__btn-clear');
@@ -593,73 +607,77 @@ class CheckboxFilter extends Multifilter {
       this.resetButton.classList.add('multifilter__btn-clear');
       this.el.appendChild(this.resetButton);
     }
-
     this.resetButton.addEventListener('click', this.onReset);
 
-    this.change();
+
+    this.totalEl = this.menuButton.querySelector('.multifilter__total');
+    if (!this.totalEl) {
+      this.totalEl = document.createElement('span');
+      this.totalEl.classList.add('multifilter__total');
+      this.menuButton.appendChild(this.totalEl);
+    }
+
+    this.el.addEventListener('change', this.onChange);
+    this.render();
   }
 
   initSearch() {
-    const searchContainer = document.createElement('div');
-    searchContainer.classList.add('multifilter-search');
-
     const searchField = document.createElement('input');
     searchField.classList.add('multifilter-search__input');
     searchField.type = 'search';
     searchField.placeholder = 'Поиск';
     searchField.autocomplete = 'off';
-
     // searchField.addEventListener('keyup', this.onSearch);
-    // searchField.addEventListener('change', this.onSearch);
-    // searchField.addEventListener('reset', this.onSearch);
     searchField.addEventListener('input', this.onSearch);
+    searchField.addEventListener('change', this.onSearch);
 
+    const searchContainer = document.createElement('div');
+    searchContainer.classList.add('multifilter-search');
     searchContainer.appendChild(searchField);
+
     this.contentEl.insertBefore(searchContainer, this.contentEl.firstChild);
   }
 
   onSearch = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     const searchText = event.target.value.trim().toLowerCase();
 
-    if (searchText.length) {
-      this.inputList.forEach((input) => {
-        if (input.getAttribute('data-title').toLowerCase().indexOf(searchText) !== -1) {
-          input.parentElement.style.display = '';
-        } else {
-          input.parentElement.style.display = 'none';
-        }
-      });
-    } else {
-      this.inputList.forEach((input) => {
+    this.inputList.forEach((input) => {
+      if (!searchText.length) {
         input.parentElement.style.display = '';
-      });
-    }
+      } else if (input.nextElementSibling.textContent.toLowerCase().indexOf(searchText) !== -1) {
+        input.parentElement.style.display = '';
+      } else {
+        input.parentElement.style.display = 'none';
+      }
+    });
   };
 
   onChange = (event) => {
+    if (event.target.getAttribute('type') !== 'checkbox') return;
+
+    const title = event.target.nextElementSibling.textContent;
     if (event.target.checked) {
       this.total += 1;
-      this.selectedTitle.push(event.target.getAttribute('data-title'));
+      this.selectedTitle.push(title);
     } else {
       this.total -= 1;
-      this.selectedTitle.splice(this.selectedTitle.indexOf(event.target.getAttribute('data-title')), 1);
+      this.selectedTitle.splice(this.selectedTitle.indexOf(title), 1);
     }
 
-    this.change();
+    this.render();
     this.callback();
   };
 
   onReset = (event) => {
     event.preventDefault();
     this.reset();
-    this.callback();
   };
 
-  change() {
-    if (this.options.replaceTitle) {
-      this.valueEl.innerText = this.selectedTitle.join(', ');
-    }
-    this.totalEl.innerText = this.total;
+  render() {
+    this.totalEl.innerText = this.total || 0;
     this.totalEl.style.display = this.total ? '' : 'none';
     this.resetButton.style.display = this.total ? '' : 'none';
     if (this.total) {
@@ -667,61 +685,44 @@ class CheckboxFilter extends Multifilter {
     } else {
       this.el.classList.remove('active');
     }
+
+    if (this.options.replaceTitle) {
+      super.updateTitle(this.selectedTitle);
+    }
   }
 
   reset() {
+    super.reset();
     this.total = 0;
     this.selectedTitle = [];
-    this.inputList.forEach((input) => {
-      if (!input.disabled) {
-        input.checked = false;
-      }
-    });
-
-    this.change();
+    this.render();
+    this.callback();
   }
 }
 
 class RadioFilter extends Multifilter {
-  constructor(el, callback, options = {}) {
-    super(el, callback, {
-      type: 'radio',
-      replaceTitle: options.replaceTitle || true,
-    });
+  constructor(el, callback) {
+    super(el, callback, { type: 'radio' });
 
-    this.defaultInput = this.contentEl.querySelector('input[checked]');
-    this.selectedTitle = this.defaultInput.nextElementSibling.textContent;
+    this.el.addEventListener('change', this.onChange);
 
-    this.init();
-  }
+    this.defaultInput = this.el.querySelector('input[checked]');
+    super.updateTitle(this.defaultInput.nextElementSibling.textContent);
 
-  init() {
-    this.inputList.forEach((input) => {
-      if (input.disabled) return;
-      input.addEventListener('change', this.onChange);
-    });
-    this.change();
+    if (this.inputList.length > 9) {
+      super.initScrollbar();
+    }
   }
 
   onChange = (event) => {
-    this.selectedTitle = event.target.nextElementSibling.textContent;
-    this.change();
+    super.updateTitle(event.target.nextElementSibling.textContent);
     this.callback();
   };
 
-
-  change() {
-    if (this.options.replaceTitle) this.valueEl.innerHTML = this.selectedTitle;
-  }
-
   reset() {
-    this.inputList.forEach((input) => {
-      input.checked = false;
-    });
-    this.defaultInput.checked = true;
-    this.selectedTitle = this.defaultInput.nextElementSibling.textContent;
-
-    this.change();
+    super.reset();
+    // this.defaultInput.checked = true;
+    super.updateTitle(this.defaultInput.nextElementSibling.textContent);
   }
 }
 
@@ -769,7 +770,7 @@ class Filter {
 
     this.form.addEventListener('submit', this.onSubmit);
     this.form.addEventListener('reset', this.onReset);
-    this.form.addEventListener('change', this.onChange);
+    // this.form.addEventListener('change', this.onChange);
     if (this.showMoreButton) this.showMoreButton.addEventListener('click', this.onClick);
   }
 
