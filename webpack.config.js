@@ -30,15 +30,15 @@ const distPath = path.resolve(__dirname, 'dist');
 
 const cummonConfig = {
   entry: {
-    index: './src/index.js',
-    catalog: './src/catalog.js',
-    firstLevel: './src/first-level.js',
-    favorites: './src/favorites.js',
-    vendors: './src/vendors.js',
-    product: './src/product.js',
+    // index: './src/index.js',
+    // catalog: './src/catalog.js',
+    // firstLevel: './src/first-level.js',
+    // favorites: './src/favorites.js',
+    // vendors: './src/vendors.js',
+    // product: './src/product.js',
 
 
-    headerStyle: './src/scss/header-style.scss',
+    headerStyle: './src/Header.js',
   },
   output: {
     path: distPath,
@@ -47,7 +47,10 @@ const cummonConfig = {
     // publicPath: '',
   },
 
-  externals: ['app'],
+  externals: {
+    // 'app',
+    jquery: 'jQuery',
+  },
   plugins: [
     new CopyPlugin([
       { from: './src/static', to: 'static' },
@@ -309,7 +312,7 @@ const prodConfig = {
     // runtimeChunk: {
     //   name: 'common.bundle',
     // },
-    runtimeChunk: 'single',
+    // runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
         // default: false,
@@ -325,13 +328,13 @@ const prodConfig = {
         //   chunks: 'all',
         //   enforce: true,
         // },
-        common: {
-          name: 'common',
-          // test: /\.js$/,
-          filename: 'js/[name].bundle.js',
-          chunks: 'initial',
-          minChunks: 2,
-        },
+        // common: {
+        //   name: 'common',
+        //   // test: /\.js$/,
+        //   filename: 'js/[name].bundle.js',
+        //   chunks: 'initial',
+        //   minChunks: 2,
+        // },
       },
     },
   },
