@@ -996,11 +996,7 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 // Hide tabbable panes to start, show them when `.active`
 
 .tab-content {
-  > .tab-pane {
+  > .tab-pane:not(.active) {
     display: none;
-  }
-
-  > .active {
-    display: block;
   }
 }

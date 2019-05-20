@@ -111,8 +111,7 @@ block wrapper
                     button.catalog-control-mob__button.catalog-control-mob__button_gray.justify-content-between(data-toggle="m-filter" data-target="#mobile-sort")
                         span Сортировка
                         +sprite('sort.svg')(class="catalog-control-mob__icon", height='22', width='14')
-    .catalog
-        .catalog__container
+        .favorite-list.container
             .card-list
                 -
                     let index = Math.round(Math.random() * 1000);
@@ -223,35 +222,35 @@ block wrapper
                         .product-control
                             button.product-control__favorites.active(data-product-toggle='remove-favorites')
                                 +sprite('product-card-heart.svg')
-    .benefits
-        .container
-            .row
-                .col-md-6.col-xl-3
-                    .benefits__item
-                        .benefits__icon
-                            +sprite('benefits-cup.svg')(height='62', width='91')
-                        .benefits__title
-                            | Профессиональная
-                            br
-                            | консультация
-                .col-md-6.col-xl-3
-                    .benefits__item
-                        .benefits__icon
-                            +sprite('benefits-hand.svg')(height='87', width='86')
-                        .benefits__title
-                            | Официальная
-                            br
-                            | продукция
-                .col-xl-6
-                    .benefits__item
-                        .benefits__icon
-                            +sprite('benefits-mail.svg')(height='69', width='68')
-                        .benefits__title
-                            | Подписаться
-                            br
-                            | на новости
-                        form.benefits__form
-                            .input-field
-                                label.input-field__label(for='email-1') Твой e-mail
-                                input#email-1.input-field__input(type='email')
-                            button.btn.btn-block.btn-red Подписаться
+        .benefits
+            .container
+                .row
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-cup.svg')(height='62', width='91')
+                            .benefits__title
+                                | Профессиональная
+                                br
+                                | консультация
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-hand.svg')(height='87', width='86')
+                            .benefits__title
+                                | Официальная
+                                br
+                                | продукция
+                    .col-xl-6
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-mail.svg')(height='69', width='68')
+                            .benefits__title
+                                | Подписаться
+                                br
+                                | на новости
+                            form.benefits__form
+                                .input-field
+                                    label.input-field__label(for='email-1') Твой e-mail
+                                    input#email-1.input-field__input(type='email')
+                                button.btn.btn-block.btn-red Подписаться

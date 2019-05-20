@@ -35,6 +35,7 @@ const cummonConfig = {
     firstLevel: './src/first-level.js',
     favorites: './src/favorites.js',
     vendors: './src/vendors.js',
+    vendorOpened: './src/vendor-opened.js',
     product: './src/product.js',
 
 
@@ -130,6 +131,14 @@ const cummonConfig = {
       filename: 'vendors.html',
       template: path.resolve(__dirname, 'src/vendors.pug'),
       chunks: ['vendors', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Производитель',
+      filename: 'vendor-opened.html',
+      template: path.resolve(__dirname, 'src/vendor-opened.pug'),
+      chunks: ['vendorOpened', 'common', 'runtime'],
       minify: false,
     }),
 

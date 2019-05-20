@@ -24,5 +24,6 @@ yarn run start
  - Каталог, первый уровень: https://staremang.github.io/market-do4a.com/dist/first-level.html
  - Избранное: https://staremang.github.io/market-do4a.com/dist/favorites.html
  - Производители: https://staremang.github.io/market-do4a.com/dist/vendors.html
+ - Товары производителя: https://staremang.github.io/market-do4a.com/dist/vendor-opened.html
  - Карточка товара (пока нету): https://staremang.github.io/market-do4a.com/dist/product.html
  - Тестирование элементов (отключено): https://staremang.github.io/market-do4a.com/dist/test.html

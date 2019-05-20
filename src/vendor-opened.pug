@@ -1,0 +1,672 @@
+extends template/template
+block wrapper
+    .catalog-menu-mob#mobile-filter
+        .catalog-menu-mob__header
+            //button.catalog-mobile__btn-back
+            span.catalog-menu-mob__title Фильтр
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
+            // Элемент фильтра
+            // Модификаторы:
+            //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
+            //                                      Пока просто показывает кнопку "Сбросить"
+            //    .view   - Модификатор dropdown (унаследовано от bootstrap)
+            //              Изменяет фон кнопки .multifilter__content
+            .multifilter
+
+                // Видимое сожержимое элемента фильтра
+                //
+                // При использовании выпадающего меню обязателено использование <button>
+                // а также наличие атрибута [data-toggle="m-filter"]
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__label Категория:
+                    span.multifilter__value Казеин и молоко
+                        span.multifilter__total 23
+
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .p-1 Фильтр
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            .multifilter.active
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__value Смотреть тут
+                        span.multifilter__total 2
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
+                            label.multifilter-checkbox__label(for="m-f-2-check-1")
+                                | 4 Dimension Nutrition
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-2" checked=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-2")
+                                | ActivLab
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-3" disabled=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-3")
+                                | ASM
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-4")
+                            label.multifilter-checkbox__label(for="m-f-2-check-4")
+                                | 4 Dimension Nutrition
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-5" checked=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-5")
+                                | ActivLab
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-6" disabled=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-6")
+                                | ASM
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-7")
+                            label.multifilter-checkbox__label(for="m-f-2-check-7")
+                                | 4 Dimension Nutrition
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-8" checked=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-8")
+                                | ActivLab
+                        .multifilter-checkbox
+                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
+                            label.multifilter-checkbox__label(for="m-f-2-check-9")
+                                | ASM
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+
+            .multifilter.active
+                // dropdown container
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+                        span.multifilter__total 2
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .p-1 Фильтр
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+                        span.multifilter__total 2
+
+            .multifilter
+                button.multifilter__content(data-toggle="m-filter")
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+                        span.multifilter__total 2
+                button.multifilter__btn-clear Сбросить
+                .catalog-menu-mob
+                    .catalog-menu-mob__header
+                        button.catalog-menu-mob__btn-back
+                        span.catalog-menu-mob__title Фильтр
+                    .catalog-menu-mob__wrapper
+                        .p-1 Фильтр
+                    .catalog-menu-mob__footer
+                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Очень длинное название которое должно обрезаться
+
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Время приёма
+
+            .multifilter
+                button.multifilter__content
+                    span.multifilter__value Цена
+
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+    .catalog-menu-mob#mobile-sort
+        .catalog-menu-mob__header
+            span.catalog-menu-mob__title Сортировка
+            button.catalog-menu-mob__btn-close
+        .catalog-menu-mob__wrapper
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
+                label.multifilter-radio__label(for="m-s-1-check-1")
+                    | По популярности
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-2")
+                    | Сначала дешевые
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-3")
+                    | Сначала дорогие
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-4")
+                    | По названию (А-Я)
+            .multifilter-radio
+                input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
+                label.multifilter-radio__label(for="m-s-1-check-5")
+                    | По названию (Я-А)
+        .catalog-menu-mob__footer
+            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+
+
+    main.wrapper
+        .page-header
+            .container
+                .breadcumps
+                    a.breadcumps__link.red(href='#') Главная
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Каталог
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Протеины
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Комплексный протеин
+                    span.breadcumps__delimiter
+                    span.breadcumps__page BSN Syntha-6
+                .page-header__row
+                    h1.page-header__title Optimum nutrition
+                    img.page-header__logo(src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png")
+
+
+        form(method="get" action="static/product.json")
+            .catalog-control
+                .catalog-control__menu.catalog-control__menu_white
+                    .container
+                        .filter
+                            .filter__list
+
+                                // Элемент фильтра
+                                // Модификаторы:
+                                //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
+                                //                                      Пока просто показывает кнопку "Сбросить"
+                                //    .view   - Модификатор dropdown (унаследовано от bootstrap)
+                                //              Изменяет фон кнопки .multifilter__content
+                                fieldset.multifilter
+
+                                    // Видимое сожержимое элемента фильтра
+                                    //
+                                    // При использовании выпадающего меню обязателено использование <button>
+                                    // а также наличие атрибута [data-toggle="dropdown"]
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__label Категория:
+                                        span.multifilter__value Казеин и молоко
+
+                                    // Выпадающее меню
+                                    //    Класс .dropdown-menu обязателен при использовании Dropdown
+                                    // Модификаторы:
+                                    //    .show - Модификатор dropdown (унаследовано от bootstrap)
+                                    //            Показывает меню
+                                    // Атрибут role="form" обязателен, когда не требуется закрывать меню при клике в нем
+                                    // Работает также для отдельных вложенных элементов
+                                    .dropdown-menu(role="form")
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Говяжий
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Изоляты и гидролизаты
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Казеин и молочный
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Комплексный
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Растительный
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Сывороточный
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            span.multifilter-checkbox__label
+                                                | Яичный
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Бренд
+                                    .dropdown-menu(role="form")
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Страна
+                                    .dropdown-menu(role="form")
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox")
+                                            span.multifilter-checkbox__label
+                                                | 4 Dimension Nutrition
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | ActivLab
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | ASM
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Объём, кг
+                                    .dropdown-menu(role="form")
+                                        .p-1 dropdown
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Порции
+                                    .dropdown-menu(role="form")
+                                        .p-1 dropdown
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value % Белка
+                                    .dropdown-menu(role="form")
+                                        .p-1 dropdown
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Время приёма
+                                    .dropdown-menu(role="form")
+                                        .p-1 dropdown
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Цена
+                                    .dropdown-menu(role="form")
+                                        .multifilter-price
+                                            .multifilter-price__title
+                                                span.multifilter-price__start От
+                                                span.multifilter-price__end До
+                                            .multifilter-price__range
+                                                .input-range
+                                            .multifilter-price__num
+                                                span.multifilter-price__start 50 ₽
+                                                span.multifilter-price__end 10 000 ₽
+                            button.filter__btn-reset(type="reset") Сбросить
+
+                .catalog-control__menu
+                    .container
+                        .sorting
+                            .sorting__list
+                                .multifilter
+                                    .multifilter__content
+                                        span.multifilter__label Найдено:
+                                        span.multifilter__value(data-total-find) 12 товаров
+
+                                fieldset.multifilter
+                                    button.multifilter__content(data-toggle="dropdown" type="button")
+                                        span.multifilter__value Сначала дешевые
+                                    button.multifilter__btn-clear(type="reset") Сбросить
+                                    .dropdown-menu(role="form")
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-1" name="sort" checked=true)
+                                            label.multifilter-radio__label(for="s-1-check-1")
+                                                | По популярности
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-2" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-2")
+                                                | Сначала дешевые
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-3" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-3")
+                                                | Сначала дорогие
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-4" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-4")
+                                                | По названию (А-Я)
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-5" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-5")
+                                                | По названию (Я-А)
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-6" name="sort" checked=true)
+                                            label.multifilter-radio__label(for="s-1-check-6")
+                                                | По популярности
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-7" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-7")
+                                                | Сначала дешевые
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-8" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-8")
+                                                | Сначала дорогие
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-9" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-9")
+                                                | По названию (А-Я)
+                                        .multifilter-radio
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-10" name="sort")
+                                            label.multifilter-radio__label(for="s-1-check-10")
+                                                | По названию (Я-А)
+                                .sorting__change-store
+                                    fieldset.multifilter
+                                        button.multifilter__content(data-toggle="dropdown" type="button")
+                                            span.multifilter__label В магазинах:
+                                            span.multifilter__value длинное Название магазина
+                                        .dropdown-menu(role="form")
+                                            label.multifilter-checkbox
+                                                input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                                span.multifilter-checkbox__label
+                                                    | ул. Восстания, д. 9
+                                            label.multifilter-checkbox
+                                                input.multifilter-checkbox__input(type="checkbox")
+                                                span.multifilter-checkbox__label
+                                                    | ул. Бухарестская, 30-32
+                                            label.multifilter-checkbox
+                                                input.multifilter-checkbox__input(type="checkbox")
+                                                span.multifilter-checkbox__label
+                                                    | Коломяжский проспект, дом 26
+                                            label.multifilter-checkbox
+                                                input.multifilter-checkbox__input(type="checkbox")
+                                                span.multifilter-checkbox__label
+                                                    | Проспект Испытателей, д. 39
+
+                            .sorting__checkbox-container
+                                fieldset.multifilter
+                                    .multifilter__content
+                                        .input-checkbox
+                                            input.input-checkbox__input(type="checkbox" id="customCheck1")
+                                            label.input-checkbox__label(for="customCheck1")
+                                                | Только со скидкой
+                .catalog-control__menu.catalog-control__menu_white
+                    .category-list-mob
+                        .category-list-mob__item Все категории
+                        .category-list-mob__item.active Сывороточный
+                        .category-list-mob__item Комплексный
+                        .category-list-mob__item Сывороточный
+                        .category-list-mob__item Комплексный
+
+                .catalog-control__menu.catalog-control__menu_white
+                    .catalog-control-mob
+                        button.catalog-control-mob__button.justify-content-start(data-toggle="m-filter" data-target="#mobile-filter")
+                            +sprite('filter.svg')(class="catalog-control-mob__icon", height='21', width='19')
+                            span Фильтр
+                        button.catalog-control-mob__button.catalog-control-mob__button_gray.justify-content-end(data-toggle="m-filter" data-target="#mobile-sort")
+                            span Сортировка
+                            +sprite('sort.svg')(class="catalog-control-mob__icon", height='22', width='14')
+            .catalog.container
+                .card-list
+                    .product-card
+                        a.product-card-banner(href="#")
+                            .product-card-banner__title
+                                | Бесплатная доставка курьером
+                                span.nowrap
+                                    |  от
+                                    span.price
+                                        |  2 990
+                                        span.currency  ₽
+                    -
+                        let index = Math.round(Math.random() * 1000);
+                        const productCards = [
+                        {
+                        title: 'Optimum nutrition gold standart whey',
+                        description: 'Комплексный протеин',
+                        stickers: ['delivery', 'yellow', 'green', 'red']
+                        }, {
+                        title: 'Optimum nutrition gold standart whey',
+                        }, {
+                        title: 'Optimum nutrition',
+                        stickers: ['yellow', 'green', 'red']
+                        }, {
+                        title: 'Optimum nutrition gold standart whey protein',
+                        stickers: ['delivery', 'yellow']
+                        }, {
+                        price: '1 750',
+                        sale: '600',
+                        stickers: ['', 'yellow', 'green', '']
+                        }, {
+                        price: '1 750',
+                        sale: '600',
+                        }, {
+                        price: '1 750',
+                        sale: '600',
+                        stickers: ['delivery', '', '', '']
+                        }, {
+                        price: '1 750',
+                        sale: '600',
+                        },
+                        ]
+                    each card in productCards
+                        .product-card(data-product-id=index++)
+                            .product-card__wrapper(itemscope itemtype="http://schema.org/Product")
+                                .product-card__img
+                                    //img(itemprop="image"
+                                    //    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"
+                                    //    alt="Название товара")
+                                    img(itemprop="image"
+                                        src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg"
+                                        srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x"
+                                        alt="Название товара")
+
+                                .product-card__body
+                                    // Ссылку назначаем на заголовок
+                                    // Если хотим, чтобы вся карточка была кликабельной, а не только заголовок
+                                    // то добавляем класс .stretched-link
+                                    // См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/
+                                    // Причина: соответствие стандартам, которые запрещают <div> внутри <a>
+                                    a.product-card__title.stretched-link(href='#' itemprop="name")
+                                        | #{card.title || 'Заголовок'}
+                                    .product-card__description(itemprop="description")
+                                        | #{card.description || 'Описание'}
+
+                                .product-card__footer(itemprop="offers" itemscope itemtype="http://schema.org/Offer")
+                                    .product-card__price
+                                        span.small от
+                                        span.price(itemprop="price" content="1750.00")  1 750
+                                        span.currency(itemprop="priceCurrency" content="RUB")  ₽
+                                    .product-card__sale
+                                        | Экономия до 300 ₽
+
+                                    .product-card__row
+                                        .product-card__reviews(itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating")
+                                            meta(itemprop="ratingValue" content="4.23")
+                                            meta(itemprop="bestRating" content="5")
+                                            meta(itemprop="reviewCount" content="31")
+                                            span.product-card__rating
+                                                i.i.i-star.red
+                                                i.i.i-star.red
+                                                i.i.i-star.red
+                                                i.i.i-star.red
+                                                i.i.i-star
+                                            span 31 отзыв
+                                        .product-card__stock
+                                            // Добавляем элемент, если товар в наличии
+                                            link(itemprop="availability" href="http://schema.org/InStock")
+                                            // Модификаторы:
+                                            //    .green    - (глобальный класс) Зеленый текст
+                                            //    .red      - (глобальный класс) Красный текст
+                                            div.green В наличии
+                                            div 6 фасовок
+                            if card.stickers
+                                .product-stickers
+                                    // Модификаторы:
+                                    //    .product-stickers_item_yellow     - Желтый фон
+                                    //    .product-stickers_item_green      - Зеленый фон
+                                    //    .product-stickers_item_red        - Красный фон
+                                    //    .product-stickers_item_delivery   - Иконка доставки
+                                    each sticker in card.stickers
+                                        if sticker === 'delivery'
+                                            .product-stickers__item.product-stickers__item_red.product-stickers__item_delivery
+                                                | Доставка <br>1 день
+                                        else if sticker === 'yellow'
+                                            .product-stickers__item.product-stickers__item_yellow
+                                                | Рекомендуем
+                                        else if sticker === 'green'
+                                            .product-stickers__item.product-stickers__item_green
+                                                | Новинка
+                                        else if sticker === 'red'
+                                            .product-stickers__item.product-stickers__item_red
+                                                | Хит!
+
+                            // Возможные элементы:
+                            //     <button>
+                            //     <a>
+                            // Модификаторы:
+                            //     .active или .product-card__favorites_active - Добавлено в избранное
+                            .product-control
+                                button.product-control__favorites(data-product-toggle="add-favorites")
+                                    +sprite('product-card-heart.svg')
+            // Модуль (.load-more-block) Подгрузка
+            .load-more-block
+                button.load-more-block__link Показать еще
+                .load-more-block__value Показано 24 из 170
+
+        // Модуль (.vendor-description) Описание производителя
+        .vendor-description
+            .container
+                .vendor-description__header
+                    h2.vendor-description__title О бренде
+                    img.vendor-description__logo(src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png")
+                .vendor-description__info
+                    .vendor-description__text
+                        img.vendor-description__img(src=require('./images/brand-image.png') alt='Картинка')
+                        p
+                            | Optimum Nutrition – это, пожалуй, первая фирма, с которой начинается знакомство начинающих бодибилдеров
+                            | с миром спортивного питания. Optimum Nutrition производит множество видов продукции, которая
+                            | охватывает все товарные группы рынка спортивного питания. Главным достоинством компании является
+                            | высочайшее качество производимой ею продукции. Крепче всего Optimum Nutrition закрепилась в
+                            | высоком и премиальном ценовых сегментах. Выпускаемые ею Gold (ON Whey Gold Standart, ON Casien
+                            | Gold Standart и др.) и Platinum линейки (ON Platinum HydroWey, ON Platinum HydroBuilder и др.)
+                            | всегда удерживают стабильно-высокие позиции в рейтингах продаж. Большинство людей приобретают
+                            | ON именно потому, что фирма является своего рода стандартом качества в мире спортивного питания.
+                        p
+                            | Сильные стороны: <br>
+                            | - Высокое качество всей производимой продукции.<br>
+                            | - Большинство протеинов и гейнеров дополнительно обогащены ферментативными смесями для лучшего усвоения.<br>
+                            | - Все продукты обладают прекрасным вкусом.<br>
+                            | - Состав, заявленный на этике, на 100% совпадает с содержимым банки.<br>
+                            | - Отличный сывороточный протеин и отличные витаминно-минеральные комплексы.
+                        p
+                            | Минусы:<br>
+                            | - Дорого.<br>
+                            | - Компания практически не производит предтренировочники и жиросжигатели. ON вообще старается не влезать в малоисследованные сегменты рынка.
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dolore dolores excepturi exercitationem iste officiis, porro repudiandae similique sint, tempore unde voluptates? A, accusamus at autem enim est eveniet laudantium nam nihil nisi omnis qui quos, similique sint suscipit voluptatibus! A beatae deserunt dignissimos dolor error, est eveniet exercitationem facere labore minima molestiae nobis omnis provident quisquam totam ut vel! Distinctio doloribus impedit iure quis repellat sed voluptates! A amet asperiores autem dolor dolore, dolorem est eum ex, facilis harum inventore ipsam labore laborum laudantium natus nobis odit omnis porro quaerat quam rem repellendus, sequi similique voluptatem voluptates? Amet, hic.
+        .benefits
+            .container
+                .row
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-cup.svg')(height='62', width='91')
+                            .benefits__title
+                                | Профессиональная
+                                br
+                                | консультация
+                    .col-md-6.col-xl-3
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-hand.svg')(height='87', width='86')
+                            .benefits__title
+                                | Официальная
+                                br
+                                | продукция
+                    .col-xl-6
+                        .benefits__item
+                            .benefits__icon
+                                +sprite('benefits-mail.svg')(height='69', width='68')
+                            .benefits__title
+                                | Подписаться
+                                br
+                                | на новости
+                            form.benefits__form
+                                .input-field
+                                    label.input-field__label(for='email-1') Твой e-mail
+                                    input#email-1.input-field__input(type='email')
+                                button.btn.btn-block.btn-red Подписаться
