@@ -152,6 +152,7 @@
   }
 
   &__row {
+    display: flex;
     margin-bottom: 25px;
     @include media-breakpoint-up(xl) {
       margin-bottom: 45px;
@@ -197,7 +198,7 @@
   display: none;
 
   padding: 12px 17px;
-  //background: #fff;
+  background: #fff;
   color: rgba(#000, 0.4);
   font-size: 12px;
   font-weight: 500;
@@ -243,7 +244,7 @@
   }
 }
 
-.p-control {
+.p-control-options {
   height: 143px;
 
   @include media-breakpoint-up(xl) {
@@ -280,14 +281,14 @@
 }
 
 .p-price {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   @include media-breakpoint-up(md) {
-    padding-right: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    //padding-right: 220px;
   }
   @include media-breakpoint-up(xl) {
-    padding-right: 243px;
+    //padding-right: 243px;
   }
 
   &__old {
@@ -346,6 +347,57 @@
     @include media-breakpoint-up(xl) {
       margin-top: 18px;
       font-size: 14px;
+    }
+  }
+}
+
+.p-control-buttons {
+  position: fixed;
+  z-index: $zindex-fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  @include media-breakpoint-up(md) {
+    position: relative;
+    flex: 0 0 243px;
+    padding-top: 9px;
+    z-index: auto;
+  }
+
+  &__counter {
+    display: none;
+    height: 56px;
+    margin-right: -5px;
+    margin-bottom: 22px;
+    margin-left: -5px;
+    transform: $skew;
+    //transform: matrix(1, 0, -9px, 1, 0, 0);
+    //transform-origin: bottom;
+
+    > .btn,
+    > .input-text {
+      //@include make-col(1, 3);
+      flex: 1 0;
+      margin-right: 5px;
+      margin-left: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+    }
+  }
+
+  &__add-to-cart {
+    //flex: 0 0 100%;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      transform: $skew;
+      transform-origin: center;
     }
   }
 }
@@ -576,6 +628,7 @@
     padding: 17px 0 20px;
     //opacity: .5;
     background: #fff;
+    margin-bottom: 10px;
 
     &:last-child {
       margin-bottom: 0;

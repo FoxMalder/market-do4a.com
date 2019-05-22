@@ -45,15 +45,17 @@ block wrapper
                                 span.p-detail__category Комплексный протеин
                                 span.p-detail__country Страна: <span class="black">США</span>
 
-                            .p-control
-                                .p-control__wrapper
-                                    .p-control__weight
-                                        .p-control__item
-                                            .p-control__tooltip
-                                            .p-control__label 900 гр.
-                                        .p-control__item.active
-                                            .p-control__tooltip
-                                            .p-control__label Шоколадный
+                            .p-control-options
+                                .p-control-options__wrapper
+                                    .p-control-options__weight
+                                        .p-control-options__item
+                                            //.p-control-options__tooltip
+                                            //    | Экономия
+                                            //    | 1000₽
+                                            .p-control-options__label 900 гр.
+                                        .p-control-options__item.active
+                                            .p-control-options__tooltip
+                                            .p-control-options__label Шоколадный
 
                             .p-detail__row
                                 .p-price
@@ -69,6 +71,12 @@ block wrapper
                                         button.icon-tooltip
                                     .p-price__note
                                         | Цена актуальна только в интернет-магазине
+                                .p-control-buttons
+                                    .p-control-buttons__counter
+                                        button.btn.btn-white -
+                                        input.input-text(value='1')
+                                        button.btn.btn-white +
+                                    button.btn.btn-red.p-control-buttons__add-to-cart В корзину
 
                             .p-detail__availability
                                 | В наличии сейчас в <a class="text-link" href="#">2 магазинах</a>

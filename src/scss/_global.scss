@@ -481,6 +481,10 @@ textarea.input-text {
   @include button-variant($main-color, $main-color, #1b1b1b, #1b1b1b);
 }
 
+.btn-white {
+  @include button-variant(#fff, #fff, #1b1b1b, #1b1b1b);
+}
+
 .btn-black {
   @include button-variant(#101010, #101010, #1b1b1b, #1b1b1b, #1b1b1b, #1b1b1b);
 }
