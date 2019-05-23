@@ -257,26 +257,93 @@
   }
 
   &__item {
-    @include title;
     display: inline-block;
+    position: relative;
+    height: 36px;
     margin-right: 7px;
     transform: $skew;
+    text-align: center;
 
 
     &.active {
-      .p-control__label {
+      .p-control-options__tooltip {
+        transform: translateY(-100%);
+        opacity: 1;
+      }
+
+      .p-control-options__label {
         box-shadow: 0 0 0 3px $main-color inset;
       }
     }
   }
 
+  &__input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:checked {
+      ~ .p-control-options__tooltip {
+        transform: translateY(-100%);
+        opacity: 1;
+      }
+
+      ~ .p-control-options__label {
+        box-shadow: 0 0 0 3px $main-color inset;
+      }
+    }
+
+    &:disabled {
+      ~ .p-control-options__label {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+    }
+  }
+
   &__label {
+    @include title;
+    position: relative;
     min-width: 71px;
     padding: 7px 12px;
+    transition: all .3s ease;
     background: #fff;
     font-size: 15px;
     font-style: normal;
     text-align: center;
+    cursor: pointer;
+  }
+
+  &__tooltip {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //bottom: 100%;
+    //transform: translateY(-100%);
+    width: 100%;
+    height: 100%;
+    transition: all .3s ease;
+    opacity: 0;
+    background: $main-color;
+    color: #fff;
+  }
+
+  &__tooltip-title {
+    transform: $skew-reverse;
+    font-size: 11px;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+  }
+
+  &__tooltip-price {
+    @include title;
+    transform: $skew-reverse;
+    font-size: 17px;
+    line-height: 1;
   }
 }
 
@@ -285,6 +352,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex: 1 0;
     //padding-right: 220px;
   }
   @include media-breakpoint-up(xl) {
@@ -344,6 +412,10 @@
     font-size: 12px;
     font-weight: 500;
     letter-spacing: -0.01em;
+
+    @include media-breakpoint-up(md) {
+      max-width: 180px;
+    }
     @include media-breakpoint-up(xl) {
       margin-top: 18px;
       font-size: 14px;
@@ -359,9 +431,9 @@
   left: 0;
   @include media-breakpoint-up(md) {
     position: relative;
+    z-index: auto;
     flex: 0 0 243px;
     padding-top: 9px;
-    z-index: auto;
   }
 
   &__counter {
@@ -625,10 +697,10 @@
   }
 
   &__row {
-    padding: 17px 0 20px;
-    //opacity: .5;
-    background: #fff;
     margin-bottom: 10px;
+    //opacity: .5;
+    padding: 17px 0 20px;
+    background: #fff;
 
     &:last-child {
       margin-bottom: 0;

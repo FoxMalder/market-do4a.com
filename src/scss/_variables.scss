@@ -125,3 +125,21 @@ $custom-range-thumb-box-shadow:              0 !default;
 $custom-range-thumb-focus-box-shadow:        $custom-range-thumb-box-shadow !default;
 $custom-range-thumb-active-bg:               darken(#fff, 15%) !default;
 $custom-range-thumb-disabled-bg:             #adb5bd !default;
+
+
+
+// Tooltips
+
+$tooltip-font-size:                 12px !default;
+$tooltip-max-width:                 255px !default;
+$tooltip-color:                     #000 !default;
+$tooltip-bg:                        #fff !default;
+$tooltip-border-radius:             0 !default;
+$tooltip-opacity:                   1 !default;
+$tooltip-padding-y:                 14px !default;
+$tooltip-padding-x:                 18px !default;
+$tooltip-margin:                    0 0 0 150px !default;
+
+$tooltip-arrow-width:               .8rem !default;
+$tooltip-arrow-height:              .4rem !default;
+$tooltip-arrow-color:               $tooltip-bg !default;

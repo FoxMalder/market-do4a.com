@@ -47,15 +47,31 @@ block wrapper
 
                             .p-control-options
                                 .p-control-options__wrapper
-                                    .p-control-options__weight
-                                        .p-control-options__item
-                                            //.p-control-options__tooltip
-                                            //    | Экономия
-                                            //    | 1000₽
+                                    fieldset.p-control-options__weight
+                                        label.p-control-options__item
+                                            input.p-control-options__input(type="radio" name="weight" required=true)
                                             .p-control-options__label 900 гр.
-                                        .p-control-options__item.active
+                                        label.p-control-options__item
+                                            input.p-control-options__input(type="radio" name="weight" required=true)
                                             .p-control-options__tooltip
-                                            .p-control-options__label Шоколадный
+                                                .p-control-options__tooltip-title Экономия
+                                                .p-control-options__tooltip-price 1000₽
+                                            .p-control-options__label 1 кг.
+                                        label.p-control-options__item
+                                            input.p-control-options__input(type="radio" name="weight" required=true)
+                                            .p-control-options__tooltip
+                                                .p-control-options__tooltip-title Экономия
+                                                .p-control-options__tooltip-price 1500₽
+                                            .p-control-options__label 2 кг.
+                                        label.p-control-options__item
+                                            input.p-control-options__input(type="radio" name="weight" required=true disabled=true)
+                                            .p-control-options__tooltip
+                                                .p-control-options__tooltip-title Экономия
+                                                .p-control-options__tooltip-price 2000₽
+                                            .p-control-options__label 5 кг.
+                                        //.p-control-options__item.active
+                                        //    .p-control-options__tooltip
+                                        //    .p-control-options__label Шоколадный
 
                             .p-detail__row
                                 .p-price
@@ -68,9 +84,10 @@ block wrapper
                                     .p-price__bonuses
                                         span.green +225
                                         span.black  бонусных рублей
-                                        button.icon-tooltip
+                                        button.icon-tooltip(data-toggle="tooltip" title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия.")
                                     .p-price__note
-                                        | Цена актуальна только в интернет-магазине
+                                        span.gray Цена актуальна только в интернет-магазине
+                                        button.icon-tooltip(data-toggle="tooltip" title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия.")
                                 .p-control-buttons
                                     .p-control-buttons__counter
                                         button.btn.btn-white -
