@@ -22,7 +22,8 @@ window.$ = $;
 $.fancybox.defaults.closeExisting = true;
 
 $(() => {
-  $(document).on('click.bs.dropdown', '.multifilter [role="form"]', (e) => {
+  // $(document).on('click.bs.dropdown', '.multifilter [role="form"]', (e) => {
+  $(document).on('click.bs.dropdown', '.dropdown-menu[role="form"]', (e) => {
     e.stopPropagation();
   });
 

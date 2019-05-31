@@ -34,6 +34,8 @@ block wrapper
                                     .product-control
                                         button.product-control__favorites(data-product-toggle="add-favorites")
                                             +sprite('product-card-heart.svg')
+                                        button.product-control__compare(data-product-toggle="compare")
+                                            +sprite('compare-icon.svg')
                                 .p-brand-info
                                     .p-brand-info__logo
                                         img(src='https://marketdo4a.com/upload/resizer/7d/66387_140x38_7dbec6b23aff8ec9f413175944ea2fc3.png')
@@ -72,6 +74,41 @@ block wrapper
                                         //.p-control-options__item.active
                                         //    .p-control-options__tooltip
                                         //    .p-control-options__label Шоколадный
+                                    fieldset.p-control-select
+                                        button.p-control-select__header(data-toggle="dropdown")
+                                            .p-control-select__header-label Ваниль
+                                            .p-control-select__header-availability Нет в наличии
+                                        .p-control-select__list.dropdown-menu(role="form")
+                                            label.p-control-select__item
+                                                input.p-control-select__input(type="radio" name="type" required=true disabled=true)
+                                                .p-control-select__label
+                                                    .p-control-select__value Ваниль
+                                                    .p-control-select__availability.gray Нет в наличии
+                                            label.p-control-select__item
+                                                input.p-control-select__input(type="radio" name="type" required=true)
+                                                .p-control-select__label
+                                                    .p-control-select__value Шоколадный
+                                                    .p-control-select__availability.green В наличии
+                                            label.p-control-select__item
+                                                input.p-control-select__input(type="radio" name="type" required=true)
+                                                .p-control-select__label
+                                                    .p-control-select__value Персик
+                                                    .p-control-select__availability С доставкой
+                                            label.p-control-select__item
+                                                input.p-control-select__input(type="radio" name="type" required=true)
+                                                .p-control-select__label
+                                                    .p-control-select__value Клубника
+                                                    .p-control-select__availability С доставкой
+                                            label.p-control-select__item
+                                                input.p-control-select__input(type="radio" name="type" required=true)
+                                                .p-control-select__label
+                                                    .p-control-select__value Шоколадный пирог
+                                                    .p-control-select__availability.green В наличии
+                                            label.p-control-select__item
+                                                input.p-control-select__input(type="radio" name="type" required=true)
+                                                .p-control-select__label
+                                                    .p-control-select__value Кремовое мороженное
+                                                    .p-control-select__availability.green В наличии
 
                             .p-detail__row
                                 .p-price
@@ -89,10 +126,10 @@ block wrapper
                                         span.gray Цена актуальна только в интернет-магазине
                                         button.icon-tooltip(data-toggle="tooltip" title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия.")
                                 .p-control-buttons
-                                    .p-control-buttons__counter
-                                        button.btn.btn-white -
-                                        input.input-text(value='1')
-                                        button.btn.btn-white +
+                                    .p-control-counter
+                                        button.btn.btn-white.p-control-counter__minus -
+                                        input.input-text.p-control-counter__input(value='1')
+                                        button.btn.btn-white.p-control-counter__plus +
                                     button.btn.btn-red.p-control-buttons__add-to-cart В корзину
 
                             .p-detail__availability

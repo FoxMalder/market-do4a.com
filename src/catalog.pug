@@ -376,6 +376,8 @@ block wrapper
                                         span.multifilter__value Цена
                                     .dropdown-menu(role="form")
                                         .multifilter-price
+                                            input.js-min-value(type='hidden' name='Price[from]' value='0')
+                                            input.js-max-value(type='hidden' name='Price[to]' value='0')
                                             .multifilter-price__title
                                                 span.multifilter-price__start От
                                                 span.multifilter-price__end До

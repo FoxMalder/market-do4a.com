@@ -253,7 +253,10 @@
   }
 
   &__weight {
-    padding-top: 36px;
+    margin: 0 (map_get($grid-gutter-width-map, xs) / -2);
+    padding: 36px (map_get($grid-gutter-width-map, xs) / 2) 0;
+    overflow: auto;
+    white-space: nowrap;
   }
 
   &__item {
@@ -263,6 +266,7 @@
     margin-right: 7px;
     transform: $skew;
     text-align: center;
+    margin-bottom: 0;
 
 
     &.active {
@@ -350,9 +354,9 @@
 .p-price {
   @include media-breakpoint-up(md) {
     display: flex;
+    flex: 1 0;
     flex-direction: column;
     align-items: flex-start;
-    flex: 1 0;
     //padding-right: 220px;
   }
   @include media-breakpoint-up(xl) {
@@ -434,33 +438,6 @@
     z-index: auto;
     flex: 0 0 243px;
     padding-top: 9px;
-  }
-
-  &__counter {
-    display: none;
-    height: 56px;
-    margin-right: -5px;
-    margin-bottom: 22px;
-    margin-left: -5px;
-    transform: $skew;
-    //transform: matrix(1, 0, -9px, 1, 0, 0);
-    //transform-origin: bottom;
-
-    > .btn,
-    > .input-text {
-      //@include make-col(1, 3);
-      flex: 1 0;
-      margin-right: 5px;
-      margin-left: 5px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      font-size: 20px;
-      text-align: center;
-    }
-
-    @include media-breakpoint-up(md) {
-      display: flex;
-    }
   }
 
   &__add-to-cart {
@@ -548,6 +525,198 @@
     order: 3;
     text-align: right;
     white-space: nowrap;
+  }
+}
+
+
+/**
+ * Выбор вкуса
+ */
+.p-control-select {
+  margin-top: 18px;
+  &.show {
+    .p-control-select__header {
+      background: #101010;
+      color: #fff;
+    }
+  }
+
+  &__header {
+    @extend %button-reset;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 19px 27px;
+    transform: $skew;
+    transform-origin: bottom;
+    transition: all .3s ease;
+    background: #fff;
+  }
+
+  &__header-label {
+    @include title;
+    transform: $skew-reverse;
+  }
+
+  &__header-availability {
+    transform: $skew-reverse;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &__header,
+    &__availability {
+      display: none;
+    }
+
+    &__list {
+      display: block;
+      position: relative;
+      top: 0;
+      left: 0;
+      min-width: 0;
+      margin: 0 (map_get($grid-gutter-width-map, xs) / -2);
+      padding: 0 (map_get($grid-gutter-width-map, xs) / 2);
+      float: none;
+      overflow: auto;
+
+      background: none;
+      white-space: nowrap;
+    }
+
+    &__item {
+      display: inline-block;
+      position: relative;
+      height: 36px;
+      margin-right: 7px;
+      transform: $skew;
+      text-align: center;
+    }
+
+    &__input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+
+      &:checked {
+        //~ .p-control-select__tooltip {
+        //  transform: translateY(-100%);
+        //  opacity: 1;
+        //}
+
+        ~ .p-control-select__label {
+          box-shadow: 0 0 0 3px $main-color inset;
+        }
+      }
+
+      &:disabled {
+        ~ .p-control-select__label {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &__label {
+      @include title;
+      position: relative;
+      min-width: 71px;
+      padding: 7px 12px;
+      transition: all .3s ease;
+      background: #fff;
+      font-size: 15px;
+      font-style: normal;
+      text-align: center;
+      cursor: pointer;
+    }
+    &__value {
+      display: inline;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    position: relative;
+    font-weight: 500;
+
+    &__list {
+      width: 100%;
+      background: #fff;
+      box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    &__item {
+      display: block;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    &__input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+
+      &:checked {
+        ~ .p-control-select__label {
+          background: $main-color;
+
+          &,
+          & > * {
+            color: #fff;
+          }
+        }
+      }
+
+      &:disabled {
+        ~ .p-control-select__label {
+          //opacity: 0.3;
+          cursor: not-allowed;
+        }
+      }
+    }
+    &__label {
+      display: flex;
+      justify-content: space-between;
+      padding: 11px 23px 10px;
+      transition: all .3s ease;
+
+      &:hover {
+        background: #eee;
+        //color: #fff;
+      }
+    }
+
+    &__availability {
+
+    }
+  }
+}
+
+/**
+ * Выбор  количества
+ */
+.p-control-counter {
+  display: none;
+  height: 56px;
+  margin-right: -5px;
+  margin-bottom: 22px;
+  margin-left: -5px;
+  transform: $skew;
+  //transform: matrix(1, 0, -9px, 1, 0, 0);
+  //transform-origin: bottom;
+
+  > .btn,
+  > .input-text {
+    //@include make-col(1, 3);
+    flex: 1 0;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
   }
 }
 

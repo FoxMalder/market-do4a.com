@@ -466,50 +466,50 @@ class PriceFilter extends Multifilter {
   constructor(el, callback) {
     super(el, callback, { type: 'price' });
 
-    this.priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
-    this.priceMin = this.priceMinText
-      ? parseInt(this.priceMinText.innerText.replace(' ', ''), 10)
-      : 0;
+    const priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
+    const priceMaxText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__end');
 
-    this.priceMaxText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__end');
-    this.priceMax = this.priceMaxText
-      ? parseInt(this.priceMaxText.innerText.replace(' ', ''), 10)
-      : 9999;
+    const rangeArr = {
+      min: priceMinText ? parseInt(priceMinText.innerText.replace(/[^0-9]/g, ''), 10) : 0,
+      max: priceMaxText ? parseInt(priceMaxText.innerText.replace(/[^0-9]/g, ''), 10) : 9999,
+    };
 
-    this.fromInput = this.contentEl.querySelector('[name="price[from]"]');
+    this.fromInput = this.contentEl.querySelector('.js-min-value');
     if (!this.fromInput) {
       this.fromInput = document.createElement('input');
       this.fromInput.type = 'hidden';
-      this.fromInput.name = 'price[from]';
+      this.fromInput.name = 'Price[from]';
       this.fromInput.value = 0;
       this.contentEl.appendChild(this.fromInput);
     }
 
-    this.toInput = this.contentEl.querySelector('[name="price[to]"]');
+    this.toInput = this.contentEl.querySelector('.js-max-value');
     if (!this.toInput) {
       this.toInput = document.createElement('input');
       this.toInput.type = 'hidden';
-      this.toInput.name = 'price[to]';
+      this.toInput.name = 'Price[to]';
       this.fromInput.value = 0;
       this.contentEl.appendChild(this.toInput);
     }
 
+    const startArr = [
+      parseInt(this.fromInput.value, 10),
+      parseInt(this.toInput.value, 10) || rangeArr.max,
+    ];
+
     this.rangeEl = this.contentEl.querySelector('.input-range');
     noUiSlider.create(this.rangeEl, {
-      start: [this.fromInput.value, this.toInput.value || this.priceMax],
+      start: startArr,
       step: 1,
       connect: true,
       tooltips: true,
-      range: {
-        min: this.priceMin,
-        max: this.priceMax,
-      },
+      range: rangeArr,
       format: {
         to(value) {
           return `${Math.floor(value)} ₽`;
         },
         from(value) {
-          return value.replace(' ₽', '');
+          return value.replace(/[^0-9]/g, '');
         },
       },
       cssPrefix: 'input-range',
