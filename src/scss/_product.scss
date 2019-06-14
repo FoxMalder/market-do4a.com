@@ -184,6 +184,13 @@
     z-index: 2;
     top: 0;
     left: 0;
+
+    @include media-breakpoint-up(xl) {
+      top: 20px;
+      left: 6px;
+      transform: scale(1.4);
+      transform-origin: left top;
+    }
   }
 
   .product-control {
@@ -191,6 +198,11 @@
     z-index: 3;
     top: 5px;
     right: 0;
+    @include media-breakpoint-up(xl) {
+      top: 20px;
+      transform: scale(1.7);
+      transform-origin: right top;
+    }
   }
 }
 
@@ -264,9 +276,9 @@
     position: relative;
     height: 36px;
     margin-right: 7px;
+    margin-bottom: 0;
     transform: $skew;
     text-align: center;
-    margin-bottom: 0;
 
 
     &.active {
@@ -351,6 +363,9 @@
   }
 }
 
+/**
+ * Информация о цене
+ */
 .p-price {
   @include media-breakpoint-up(md) {
     display: flex;
@@ -427,7 +442,10 @@
   }
 }
 
-.p-control-buttons {
+/**
+ * Информация о цене
+ */
+.p-control-fixed {
   position: fixed;
   z-index: $zindex-fixed;
   right: 0;
@@ -443,15 +461,35 @@
   &__add-to-cart {
     //flex: 0 0 100%;
     width: 100%;
+    @extend .btn-red;
+
+    &.added {
+      border-color: #80c627;
+      background-color: #80c627;
+
+      .p-control-fixed__icon {
+        @include sprite('added-to-cart');
+      }
+    }
 
     @include media-breakpoint-up(md) {
       transform: $skew;
       transform-origin: center;
     }
   }
+
+  &__icon {
+    display: inline-block;
+    width: 22px;
+    height: 21px;
+    margin-right: 10px;
+    transform: $skew-reverse;
+    vertical-align: middle;
+    @include sprite('add-to-cart');
+  }
 }
 
-.p-delivery-info {
+.p-detail-delivery {
   margin: 0 (map_get($grid-gutter-width-map, xs) / -2) 24px;
   padding: 15px (map_get($grid-gutter-width-map, xs) / 2) 16px;
   background: #fff;
@@ -534,6 +572,7 @@
  */
 .p-control-select {
   margin-top: 18px;
+
   &.show {
     .p-control-select__header {
       background: #101010;
@@ -546,11 +585,26 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 19px 27px;
+    padding: 19px 57px 19px 27px;
     transform: $skew;
     transform-origin: bottom;
     transition: all .3s ease;
     background: #fff;
+
+    &::after {
+      content: '';
+      position: absolute;
+
+      top: calc(50% - 3px);
+      right: 24px;
+
+      transform: $skew-reverse;
+      border-top: 6px solid currentColor;
+      border-right: 4px solid transparent;
+      border-bottom: 0;
+      border-left: 4px solid transparent;
+      opacity: 1;
+    }
   }
 
   &__header-label {
@@ -763,7 +817,9 @@
         margin-top: 12px;
         margin-right: 11px;
         margin-left: 11px;
-        background: #d7d7d7;
+        //background: #d7d7d7;
+        background: url("../img/dot.svg") left center repeat-x;
+
       }
     }
 

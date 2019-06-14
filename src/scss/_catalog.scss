@@ -1564,6 +1564,10 @@ $multifilter-menu-padding-x: 22px;
 }
 
 .product-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
   &__favorites {
     @extend %button-reset;
     display: block;
@@ -1642,12 +1646,14 @@ $multifilter-menu-padding-x: 22px;
     //  }
     //}
   }
+
   &__compare {
     @extend %button-reset;
     display: block;
+    width: 19px;
+    height: 17px;
+    margin-top: 6px;
     color: $main-color;
-    width: 23px;
-    height: 20px;
   }
 }
 

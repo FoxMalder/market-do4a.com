@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
+  <title>Корзина</title>
+  <link href="css/common.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="header-banner">Бесплатная доставка при заказе от <span class="price">2 990</span></div>
+  <header class="h-navbar-top">
+    <div class="container">
+      <div class="h-navbar-top__inner">
+        <!-- Ширина: фиксированна-->
+        <!-- Переполнение: --->
+        <!-- Позиционирование: К левому краю-->
+        <div class="h-navbar-top__change-store">
+          <!-- select-city-->
+          <!-- Статичный модуль (используется несколько раз без изменения)-->
+          <div class="select-city">
+            <div class="select-city__label">Город:</div><!-- Ширина: Фиксированна-->
+            <!-- Переполнение: Обрезается-->
+            <!-- Позиционирование: К левому краю--><button class="select-city__link select-city__link_city collapsed" data-toggle="collapse" data-target=".change-city-collapse"><svg class="select-city__icon">
+                <use xlink:href="images/new-sprite.svg#sprite-shield"></use>
+              </svg> Нижний Новгород</button><!-- Ширина: автоматическая-->
+            <!-- Переполнение: Обрезается-->
+            <!-- Позиционирование: К левому краю--><button class="select-city__link select-city__link_store collapsed" data-toggle="collapse" data-target=".change-store-collapse">ул. Невзоровых, д. 64к2</button>
+          </div>
+        </div><!-- Ширина: Фиксированна-->
+        <!-- Переполнение: Равномерное расположение-->
+        <!-- Позиционирование: К левому краю-->
+        <nav class="h-navbar-top__menu">
+          <!-- page-nav-->
+          <!-- Статичный модуль (используется несколько раз без изменения)-->
+          <ul class="page-nav">
+            <!--li.page-nav__item-->
+            <!--    a.page-nav__link(href='#') Программа бонусов-->
+            <li class="page-nav__item"><a class="page-nav__link" href="#">Доставка и оплата</a></li>
+            <li class="page-nav__item"><a class="page-nav__link" href="#">Франшиза</a></li>
+            <li class="page-nav__item"><a class="page-nav__link" href="#">Оптовикам</a></li>
+            <li class="page-nav__item"><a class="page-nav__link" href="#">Магазины</a></li>
+          </ul>
+        </nav><!-- Ширина: Фиксированна-->
+        <!-- Переполнение: Обрезается-->
+        <!-- Позиционирование: К левому краю--><a class="header-login" data-fancybox="" data-src="#sign-in" href="javascript:;"><svg>
+            <use xlink:href="images/new-sprite.svg#sprite-person"></use>
+          </svg> riverstart-person
+          <!--|  Войти--></a><!-- Ширина: Фиксированна-->
+        <!-- Переполнение: --->
+        <!-- Позиционирование: К правому краю--><a class="header-number" href="#"><svg>
+            <use xlink:href="images/new-sprite.svg#sprite-phone"></use>
+          </svg> +7 (920) 024-33-14</a>
+      </div>
+    </div>
+  </header>
+  <header class="h-navbar-collapse">
+    <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse"></div>
+    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse"></div>
+  </header>
+  <header class="h-navbar-fixed">
+    <div class="h-navbar-main">
+      <div class="container">
+        <div class="header-control"><button class="header-control__menu-btn"></button><a class="header-control__logo" href="/"></a>
+          <div class="header-control__search">
+            <form class="search-fild"><input class="search-fild__input input-text" placeholder="Поиск в каталоге" type="text"><button class="search-fild__loupe" type="submit"><svg>
+                  <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
+                </svg></button></form>
+          </div><a class="header-control__button header-control__button_search" href="#"><svg width="17px" height="18px">
+              <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
+            </svg></a><a class="header-control__button header-control__button_favorites" href="#"><svg width="22px" height="19px">
+              <use xlink:href="images/new-sprite.svg#sprite-heart-mobile"></use>
+            </svg></a><a class="header-control__button header-control__button_login" href="#"><svg width="18px" height="18px">
+              <use xlink:href="images/new-sprite.svg#sprite-person-mobile"></use>
+            </svg><span class="header-control__notifications">2</span></a>
+          <div class="header-control__cart-container">
+            <!--Кнопка корзины для мобилок--><a class="header-control__button header-control__button_cart" href="#"><svg width="20px" height="22px">
+                <use xlink:href="images/new-sprite.svg#sprite-cart"></use>
+              </svg><span class="header-control__notifications">2</span></a><!-- Кнопка корзины для десктопа-->
+            <div class="header-control__cart">
+              <div class="button-cart btn btn-red btn-skew">
+                <div class="btn-skew__revers button-cart__inner">
+                  <div class="button-cart__num">5</div>
+                  <div class="button-cart__block">
+                    <div class="button-cart__title">Корзина</div>
+                    <div class="button-cart__price">12 245 ₽</div>
+                  </div>
+                </div>
+              </div>
+              <div class="header-cart">
+                <div class="header-cart__wrapper" data-simplebar data-simplebar-auto-hide="false">
+                  <div class="header-cart__header">
+                    <div class="header-cart__title">Товары в корзине</div><button class="header-cart__btn-clear"><svg>
+                        <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                      </svg> Очистить</button>
+                  </div>
+                  <div class="header-cart__item">
+                    <div class="h-product-item">
+                      <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                              <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                            </svg></button></div><!-- Prod-->
+                        <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        <!-- Dev-->
+                        <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                      </div>
+                    </div>
+                    <div class="h-product-item">
+                      <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                              <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                            </svg></button></div><!-- Prod-->
+                        <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        <!-- dev-->
+                        <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                      </div>
+                    </div>
+                    <div class="h-product-item">
+                      <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                              <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                            </svg></button></div><!-- Prod-->
+                        <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        <!-- dev-->
+                        <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                      </div>
+                    </div>
+                    <div class="h-product-item disabled">
+                      <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, voluptatibus!</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                              <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                            </svg></button></div><!-- Prod-->
+                        <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        <!-- dev-->
+                        <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                      </div>
+                    </div>
+                    <div class="h-product-item">
+                      <div class="h-product-item__img"><img alt="" src="images/cart-product-1.png"></div>
+                      <div class="h-product-item__info">
+                        <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                        <div class="h-product-item__description">900 г.</div>
+                      </div>
+                      <div class="h-product-item__controls">
+                        <div class="h-product-item__price-block"><span class="h-product-item__price price">1 750</span><button class="h-product-item__remove"><svg>
+                              <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                            </svg></button></div><!-- Prod-->
+                        <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                        <!-- dev-->
+                        <div class="input-counter"><button class="input-counter__down">-</button><span class="input-counter__count">2</span><button class="input-counter__up">+</button><input class="input-counter" type="hidden" value="2"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="h-navbar-category">
+      <div class="container">
+        <ul class="h-category">
+          <li class="h-category__item"><a class="h-category__link" href="#">Питание</a>
+            <ul class="h-category-second">
+              <li class="h-category-second__item">
+                <!-- Модификаторы:-->
+                <!--  - '_arrow' - добавляет стрелку справа-->
+                <!-- Примечание:-->
+                <!-- Если существует подменю, добавляем модификатор '_arrow'--><a class="h-category-second__link h-category-second__link_arrow" href="#">Протеин</a><!-- Модификаторы:-->
+                <!-- - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)-->
+                <!-- - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)-->
+                <!-- Примечание:-->
+                <!--  Только для категории "Спортивное питание"-->
+                <!--  (по дизайну, фиксировання высота подменю только для него)-->
+                <!--  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'-->
+                <div class="h-category-third h-category-third_h-460">
+                  <!-- Модификаторы:-->
+                  <!-- - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))-->
+                  <!-- - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)--><img class="h-category-third__img" src="images/protein.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Антиоксиданты и Q10</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для печени и ПКТ</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Качество сна</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Улучшение пщеварения</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Общеукрепляющие добавки</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Активное долголетие</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="h-category-second__item"><a class="h-category-second__link h-category-second__link_arrow" href="#">Батончики, напитки, закуски</a><!-- Модификаторы:-->
+                <!-- - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)-->
+                <!-- - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)-->
+                <!-- Примечание:-->
+                <!--  Только для категории "Спортивное питание"-->
+                <!--  (по дизайну, фиксировання высота подменю только для него)-->
+                <!--  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'-->
+                <div class="h-category-third h-category-third_h-320">
+                  <!-- Модификаторы:-->
+                  <!-- - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))-->
+                  <!-- - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)--><img class="h-category-third__img" src="images/protein.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Выносливость и силовые</a></li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Гейнеры</a></li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Похудение</a></li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Продукты для здоровья</a></li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Аминокислоты</a></li>
+            </ul>
+          </li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Для похудения</a></li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Для массы</a></li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Для выносливости</a></li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Аксессуары</a>
+            <ul class="h-category-second">
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Аксесуары</a>
+                <div class="h-category-third"><img class="h-category-third__img h-category-third__img_no-offset" src="images/catalog-dropdown-bg-5.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Антиоксиданты и Q10</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для печени и ПКТ</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Качество сна</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Улучшение пщеварения</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Общеукрепляющие добавки</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Активное долголетие</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Женская одежда</a>
+                <div class="h-category-third"><img class="h-category-third__img h-category-third__img_no-offset" src="images/catalog-dropdown-bg-4.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Антиоксиданты и Q10</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для печени и ПКТ</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Качество сна</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Улучшение пщеварения</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Общеукрепляющие добавки</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Активное долголетие</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Одежда</a>
+            <ul class="h-category-second">
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Женская одежда</a>
+                <div class="h-category-third"><img class="h-category-third__img h-category-third__img_no-offset" src="images/catalog-dropdown-bg-3.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Антиоксиданты и Q10</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для печени и ПКТ</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Качество сна</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Улучшение пщеварения</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Общеукрепляющие добавки</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Активное долголетие</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="h-category-second__item"><a class="h-category-second__link" href="#">Мужская одежда</a>
+                <div class="h-category-third"><img class="h-category-third__img h-category-third__img_no-offset" src="images/catalog-dropdown-bg-2.png">
+                  <ul class="h-category-third__list">
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Омега 3-6-9</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Витамины и минералы</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для суставов и связок</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Тестобустеры и ZMA</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Антиоксиданты и Q10</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Для печени и ПКТ</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Качество сна</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Улучшение пщеварения</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Общеукрепляющие добавки</a></li>
+                    <li class="h-category-third__item"><a class="h-category-third__link" href="#">Активное долголетие</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Распродажа</a></li>
+          <li class="h-category__item"><a class="h-category__link" href="#">О нас</a></li>
+          <li class="h-category__item"><a class="h-category__link" href="#">Бренды</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <div class="mobile-menu__overlay"></div>
+    <div class="mobile-menu__wrapper">
+      <div class="mobile-menu__block"><a class="header-number" href="#"><svg>
+            <use xlink:href="images/new-sprite.svg#sprite-phone"></use>
+          </svg> +7 (920) 024-33-14</a></div>
+      <div class="mobile-menu__block">
+        <ul class="mobile-menu-category">
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Питание</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Для массы</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Для похудения</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Для выносливости</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Аксессуары</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Распродажа</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Одежда</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">О нас</a></li>
+          <li class="mobile-menu-category__item"><a class="mobile-menu-category__link" href="#">Бренды</a></li>
+        </ul>
+      </div>
+      <div class="mobile-menu__block">
+        <!-- page-nav-->
+        <!-- Статичный модуль (используется несколько раз без изменения)-->
+        <ul class="page-nav">
+          <!--li.page-nav__item-->
+          <!--    a.page-nav__link(href='#') Программа бонусов-->
+          <li class="page-nav__item"><a class="page-nav__link" href="#">Доставка и оплата</a></li>
+          <li class="page-nav__item"><a class="page-nav__link" href="#">Франшиза</a></li>
+          <li class="page-nav__item"><a class="page-nav__link" href="#">Оптовикам</a></li>
+          <li class="page-nav__item"><a class="page-nav__link" href="#">Магазины</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <main class="wrapper">
+    <article>
+      <header class="cart-section-header">
+        <div class="container">
+          <div class="breadcumps"><a class="breadcumps__link red" href="#">Главная</a><span class="breadcumps__delimiter"></span><span class="breadcumps__page">Оформление заказа</span></div>
+          <h2>Оформление заказа</h2>
+        </div>
+      </header>
+      <form class="cart">
+        <div class="container">
+          <div class="cart__inner">
+            <div class="cart__col-left">
+              <div class="order-personal-info">
+                <h4>Ваши данные</h4>
+                <div class="order-personal-info__form">
+                  <div class="form-group">
+                    <div class="input-field input-field_primary"><label class="input-field__label">Имя и фамилия*</label><input class="input-field__input" type="text" autocomplete="name" required></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-field input-field_primary"><label class="input-field__label">Номер телефона*</label><input class="input-field__input" type="tel" autocomplete="tel" required></div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-field input-field_primary"><label class="input-field__label">E-mail*</label><input class="input-field__input" type="email" autocomplete="email" required></div>
+                  </div>
+                  <div class="order-personal-info__note">*поля, обязательные для заполнения</div>
+                </div>
+              </div>
+              <div class="order-alert">
+                <div class="order-alert__title">Внимание! Этот заказ был разделён.</div>
+                <div class="order-alert__text">Часть заказа будет отправлена с центрального склада.
+                  Вы получите товары разными способами доставки.</div>
+              </div>
+              <div class="order-shiping">
+                <div class="order-shiping__header">
+                  <div class="order-shiping__name">Отправление 1</div><button class="order-shiping__btn-delete" type="button" data-cart="remove-shiping"><i class="icon icon-delete"></i> Удалить отправление</button>
+                </div>
+                <div class="order-shiping__quantity">2 товара</div>
+                <div class="order-shiping__list"></div>
+                <div class="order-shiping__shipping-type">
+                  <h4>Способ получения</h4>
+                  <div class="order-option active">
+                    <div class="order-option__header">
+                      <div class="order-option__title">Почтой России</div>
+                      <div class="order-option__info"><span class="green">Бесплатная доставка</span><span> Сегодня</span></div>
+                      <div class="order-option__img"><img src="images/logo-rp.svg"></div>
+                    </div>
+                    <div class="order-option__body">
+                      <div class="order-option__subtitle">Срок доставки 14.05 - 17.05</div>
+                      <p class="order-option__text">В удалённые районы доставка от 14 дней. При получении обязательно проверяйте целостность упаковки</p>
+                      <div class="order-option__subtitle">Адрес доставки</div>
+                      <div class="form-group">
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Населённый пункт</label><input class="input-field__input" type="text" autocomplete="address-level2"></div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Улица</label><input class="input-field__input" type="text" autocomplete="address-line1"></div>
+                      </div>
+                      <div class="form-group form-group_row">
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Дом</label><input class="input-field__input" type="text"></div>
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Квартира/офис</label><input class="input-field__input" type="text" autocomplete="address-line2"></div>
+                      </div>
+                      <div class="form-group form-group_row">
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Этаж</label><input class="input-field__input" type="text"></div>
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Подъезд</label><input class="input-field__input" type="text"></div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-field input-field_primary-white"><label class="input-field__label">Индекс</label><input class="input-field__input" type="number" autocomplete="postal-code"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-shiping__payment-type">
+                  <h4>Способ оплаты</h4>
+                  <div class="order-option active">
+                    <div class="order-option__header">
+                      <div class="order-option__title">Картой онлайн</div>
+                      <div class="order-option__info"><i class="icon icon-visa"></i><i class="icon icon-mastercard"></i><i class="icon icon-mir"></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="order-shiping">
+                <div class="order-shiping__header">
+                  <div class="order-shiping__name">Отправление 2</div>
+                </div>
+                <div class="order-shiping__quantity">3 товара</div>
+                <div class="order-shiping__list"></div>
+                <div class="order-shiping__shipping-type">
+                  <h4>Способ получения</h4>
+                  <div class="order-option active">
+                    <div class="order-option__header">
+                      <div class="order-option__title">Самовывоз из магазина</div>
+                      <div class="order-option__info"><span class="green">Бесплатная доставка</span><span> Сегодня</span></div>
+                    </div>
+                    <!--.order-option__body-->
+                  </div>
+                  <div class="order-option">
+                    <div class="order-option__header">
+                      <div class="order-option__title">Курьером до двери</div>
+                      <div class="order-option__info"><span>300 ₽</span><span> В течение 24 часов</span></div>
+                    </div>
+                    <!--.order-option__body-->
+                  </div>
+                </div>
+                <div class="order-shiping__payment-type">
+                  <h4>Способ оплаты</h4>
+                  <div class="order-option active">
+                    <div class="order-option__header">
+                      <div class="order-option__title">Оплата при получении</div>
+                      <div class="order-option__info"><small>Наличными или картой при самовывозе в магазине</small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cart__col-right">
+              <div class="order">
+                <div class="order__header">
+                  <div class="order__header-col">
+                    <h4 class="order__title">В заказе 6 товаров</h4><button class="order__btn-clear" type="button" data-cart="clear"><i class="icon icon-delete"></i>
+                      <span>Очистить корзину</span></button>
+                  </div><button class="order__btn-checkout btn btn-red btn-skew" type="submit">оформить заказ</button>
+                </div>
+                <div class="order-item">
+                  <div class="order-item__header order-item__header_dark">
+                    <div class="order-item__title">Доставка с центрального склада</div>
+                    <div class="order-number-badge order-number-badge_dark">Отправление 1</div>
+                  </div>
+                  <div class="order-item__product-list">
+                    <div class="order-product">
+                      <div class="order-product__col-image"><img class="order-product__img" src="images/product.png"></div>
+                      <div class="order-product__col-info">
+                        <div class="order-product__name">Optimum Nutrition Fish Oil</div>
+                        <div class="order-product__description">900 гр.</div>
+                      </div>
+                      <div class="order-product__col-count">
+                        <div class="order-product__counter"></div>
+                        <div class="order-product__count-note">1 500 ₽/шт.</div>
+                      </div>
+                      <div class="order-product__col-price">
+                        <div class="order-product__price">1 500 <span class="currency">₽</span></div>
+                      </div><button class="order-product__btn-delete" data-cart="remove-product"><i class="icon icon-delete"></i></button>
+                    </div>
+                    <div class="order-product">
+                      <div class="order-product__col-image"><img class="order-product__img" src="images/product.png"></div>
+                      <div class="order-product__col-info">
+                        <div class="order-product__name">Optimum Nutrition Fish Oil</div>
+                        <div class="order-product__description">900 гр.</div>
+                      </div>
+                      <div class="order-product__col-count">
+                        <div class="order-product__counter"></div>
+                        <div class="order-product__count-note">1 500 ₽/шт.</div>
+                      </div>
+                      <div class="order-product__col-price"><del class="order-product__old-price">5 000 <span class="currency">₽</span></del>
+                        <div class="order-product__price">3 500 <span class="currency">₽</span></div>
+                        <div class="order-product__profit">Выгода 627 ₽</div>
+                      </div><button class="order-product__btn-delete" data-cart="remove-product"><i class="icon icon-delete"></i></button>
+                    </div>
+                  </div>
+                  <div class="order-item__amount">
+                    <div class="order-item__row">
+                      <div class="order-item__key">Товары</div>
+                      <div class="order-item__value"><small class="gray">2 товара</small><b> 5 000 <span class="currency">₽</span></b></div>
+                    </div>
+                    <div class="order-item__row">
+                      <div class="order-item__key">Доставка</div>
+                      <div class="order-item__value"><b>300 <span class="currency">₽</span></b></div>
+                    </div>
+                    <div class="order-item__row">
+                      <div class="order-item__key">Скидка</div>
+                      <div class="order-item__value"><b class="red">300 <span class="currency">₽</span></b></div>
+                    </div>
+                    <div class="order-item__row">
+                      <div class="order-item__key">Оплата</div>
+                      <div class="order-item__value"><i class="icon icon-visa"></i><i class="icon icon-mastercard"></i><i class="icon icon-mir"></i> Картой онлайн</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-item">
+                  <div class="order-item__header">
+                    <div class="order-item__title">Получить в магазине или курьером</div>
+                    <div class="order-number-badge">Отправление 2</div>
+                  </div>
+                  <div class="order-item__product-list">
+                    <div class="order-product">
+                      <div class="order-product__col-image"><img class="order-product__img" src="images/product.png"></div>
+                      <div class="order-product__col-info">
+                        <div class="order-product__name">Optimum Nutrition Fish Oil</div>
+                        <div class="order-product__description">900 гр.</div>
+                      </div>
+                      <div class="order-product__col-count">
+                        <div class="order-product__counter"></div>
+                        <div class="order-product__count-note">1 500 ₽/шт.</div>
+                      </div>
+                      <div class="order-product__col-price">
+                        <div class="order-product__price">1 500 <span class="currency">₽</span></div>
+                      </div><button class="order-product__btn-delete" data-cart="remove-product"><i class="icon icon-delete"></i></button>
+                    </div>
+                    <div class="order-product">
+                      <div class="order-product__col-image"><img class="order-product__img" src="images/product.png"></div>
+                      <div class="order-product__col-info">
+                        <div class="order-product__name">Optimum Nutrition Fish Oil</div>
+                        <div class="order-product__description">900 гр.</div>
+                      </div>
+                      <div class="order-product__col-count">
+                        <div class="order-product__counter"></div>
+                        <div class="order-product__count-note">1 500 ₽/шт.</div>
+                      </div>
+                      <div class="order-product__col-price"><del class="order-product__old-price">5 000 <span class="currency">₽</span></del>
+                        <div class="order-product__price">3 500 <span class="currency">₽</span></div>
+                        <div class="order-product__profit">Выгода 627 ₽</div>
+                      </div><button class="order-product__btn-delete" data-cart="remove-product"><i class="icon icon-delete"></i></button>
+                    </div>
+                    <div class="order-product">
+                      <div class="order-product__col-image"><img class="order-product__img" src="images/product.png"></div>
+                      <div class="order-product__col-info">
+                        <div class="order-product__name">Optimum Nutrition Fish Oil</div>
+                        <div class="order-product__description">900 гр.</div>
+                      </div>
+                      <div class="order-product__col-count">
+                        <div class="order-product__counter"></div>
+                        <div class="order-product__count-note">1 500 ₽/шт.</div>
+                      </div>
+                      <div class="order-product__col-price"><del class="order-product__old-price">5 000 <span class="currency">₽</span></del>
+                        <div class="order-product__price">3 500 <span class="currency">₽</span></div>
+                        <div class="order-product__profit">Выгода 627 ₽</div>
+                      </div><button class="order-product__btn-delete" data-cart="remove-product"><i class="icon icon-delete"></i></button>
+                    </div>
+                    <div class="order-product">
+                      <div class="order-product__col-image"><img class="order-product__img" src="images/product.png"></div>
+                      <div class="order-product__col-info">
+                        <div class="order-product__name">Optimum Nutrition Fish Oil</div>
+                        <div class="order-product__description">900 гр.</div>
+                      </div>
+                      <div class="order-product__col-count">
+                        <div class="order-product__counter"></div>
+                        <div class="order-product__count-note">1 500 ₽/шт.</div>
+                      </div>
+                      <div class="order-product__col-price"><del class="order-product__old-price">5 000 <span class="currency">₽</span></del>
+                        <div class="order-product__price">3 500 <span class="currency">₽</span></div>
+                        <div class="order-product__profit">Выгода 627 ₽</div>
+                      </div><button class="order-product__btn-delete" data-cart="remove-product"><i class="icon icon-delete"></i></button>
+                    </div>
+                  </div>
+                  <div class="order-item__amount">
+                    <div class="order-item__row">
+                      <div class="order-item__key">Товары</div>
+                      <div class="order-item__value"><small class="gray">5 товаров</small><b> 11 800 <span class="currency">₽</span></b></div>
+                    </div>
+                    <div class="order-item__row">
+                      <div class="order-item__key">Доставка</div>
+                      <div class="order-item__value"><b>Бесплатно</b></div>
+                    </div>
+                    <div class="order-item__row">
+                      <div class="order-item__key">Скидка</div>
+                      <div class="order-item__value"><b class="red">627 <span class="currency">₽</span></b></div>
+                    </div>
+                    <div class="order-item__row">
+                      <div class="order-item__key">Оплата</div>
+                      <div class="order-item__value">Наличными при получении</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="order-promocode">
+                  <div class="order-promocode__field">
+                    <div class="input-field input-field_primary-white"><label class="input-field__label">Добавить промокод</label><input class="input-field__input"></div>
+                  </div>
+                  <div class="order-promocode__button"><button class="btn btn-gray-2 btn-block" data-cart="promocode">Применить</button></div>
+                </div>
+                <div class="order-amount">
+                  <div class="order-amount__sale">
+                    <div class="order-amount__key">ваша Скидка</div>
+                    <div class="order-amount__value">700 <span class="currency">₽</span></div>
+                  </div>
+                  <div class="order-amount__sum">
+                    <div class="order-amount__key">Итого к оплате</div>
+                    <div class="order-amount__value">16 800 <span class="currency">₽</span></div>
+                  </div>
+                  <div class="order-amount__row">
+                    <div class="order-amount__key"><span class="order-number-badge order-number-badge_dark">Отправление 1</span> Банковской картой онлайн</div>
+                    <div class="order-amount__value">5 000 <span class="currency">₽</span></div>
+                  </div>
+                  <div class="order-amount__row">
+                    <div class="order-amount__key"><span class="order-number-badge">Отправление 1</span> При получении</div>
+                    <div class="order-amount__value">11 800 <span class="currency">₽</span></div>
+                  </div>
+                </div>
+                <div class="order__footer"><button class="order__btn-checkout btn btn-red btn-skew" type="submit">оформить заказ</button>
+                  <div class="order__footer-note">Нажимая на кнопку, вы подтверждаете согласие на обработку<a href="#"> персональных данных</a> и<a href="#"> политику конфиденциальности</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </article>
+  </main>
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container"><a class="footer__logo" href="#"><svg>
+            <use xlink:href="images/new-sprite.svg#sprite-logo"></use>
+          </svg></a>
+        <div class="row">
+          <div class="col-6 col-md-3">
+            <nav class="footer-nav">
+              <h4 class="footer-nav__title">Питание</h4>
+              <ul class="footer-nav__list">
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Протеин</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Гейнер</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Аминокислоты</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Батончики и закуски</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Выносливость и силовые</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Продукты для здоровья</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Похудение</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <nav class="footer-nav">
+              <!--a.footer-nav__title(href='#')-->
+              <h4 class="footer-nav__title">Одежда</h4>
+              <ul class="footer-nav__list">
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Женская одежда</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Мужская одежда</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Экипировка</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Аксессуары</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <nav class="footer-nav">
+              <!--a.footer-nav__title(href='#')-->
+              <h4 class="footer-nav__title">Покупателям</h4>
+              <ul class="footer-nav__list">
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Производители</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Доставка и оплата</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Программа бонусов</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Адреса магазинов</a></li>
+                <li class="footer-nav__item footer-nav__item_select"><a class="footer-nav__link" href="#">Распродажа</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="col-6 col-md-3">
+            <nav class="footer-nav">
+              <!--a.footer-nav__title(href='#')-->
+              <h4 class="footer-nav__title">Компания</h4>
+              <ul class="footer-nav__list">
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">О компании</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Франчайзинг</a></li>
+                <li class="footer-nav__item"><a class="footer-nav__link" href="#">Контакты</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="footer-contacts">
+          <div class="footer-contacts__address">
+            <div class="footer-contacts__title">Магазины в нижнем новгороде</div>
+            <div class="footer-address">
+              <address class="footer-address__item">
+                <div class="footer-address__address">ул. Восстания, д. 9</div><a class="footer-address__tel" href="#">8 (920) 024-33-14</a><a class="footer-address__scheme" href="#">Схема проезда</a>
+              </address>
+              <address class="footer-address__item">
+                <div class="footer-address__address">Проспект Испытателей, д.39. БЦ "Miller Center"</div><a class="footer-address__tel" href="#">8 (920) 028-20-44</a><a class="footer-address__scheme" href="#">Схема проезда</a>
+              </address>
+              <address class="footer-address__item">
+                <div class="footer-address__address">ул. Бухарестская, 30-32</div><a class="footer-address__tel" href="#">8 (920) 024-33-14</a><a class="footer-address__scheme" href="#">Схема проезда</a>
+              </address>
+              <address class="footer-address__item">
+                <div class="footer-address__address">Коломяжский проспект, дом 26.</div><a class="footer-address__tel" href="#">8 (920) 028-20-44</a><a class="footer-address__scheme" href="#">Схема проезда</a>
+              </address>
+              <address class="footer-address__item">
+                <div class="footer-address__address">ул. Невзоровых, 64к2</div><a class="footer-address__tel" href="#">8 (920) 028-20-44</a><a class="footer-address__scheme" href="#">Схема проезда</a>
+              </address>
+            </div>
+          </div>
+          <div class="footer-contacts__social"><a class="footer-contacts__social-item" href="#"><i class="icon icon-vk">Вконтакте</i></a><a class="footer-contacts__social-item" href="#"><i class="icon icon-fb">Facebook</i></a><a class="footer-contacts__social-item" href="#"><i class="icon icon-inst">Instagram</i></a></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__inner container">
+        <div class="footer__copyright">© DO4A.COM, 2019</div><a class="footer__doc" href="#">Политика конфиденциальности</a><a class="footer__dev" href="https://riverstart.ru/"><svg>
+            <use xlink:href="images/new-sprite.svg#sprite-riverstart-logo"></use>
+          </svg></a>
+      </div>
+    </div>
+  </footer>
+  <form class="auth" id="sign-in" style="display: none">
+    <div class="auth__title">Войти на сайт</div>
+    <div class="auth__link auth__link_no-account"><a data-fancybox="" data-src="#registrations" href="javascript:;">У меня еще нет аккаунта</a></div>
+    <div class="auth__form">
+      <div class="auth__input-field input-field"><label class="input-field__label" for="login-1">Твой Логин</label><input class="input-field__input" id="login-1" name="" required="" type="text"></div>
+      <div class="auth__input-field input-field"><label class="input-field__label" for="pass-1">И пароль</label><input class="input-field__input" id="pass-1" name="" required="" type="password"></div>
+    </div>
+    <div class="auth__link auth__link_forget"><a href="#">Забыли пароль?</a></div>
+    <div class="auth__button-block"><button class="btn btn-red btn-block" type="submit">Войти</button></div>
+    <div class="auth__subtitle">Войти через соц. сети:</div>
+    <div class="auth__social"><span><i class="icon icon-vk">Вконтакте</i></span><span><i class="icon icon-fb">Facebook</i></span><span><i class="icon icon-inst">Instagram</i></span><span><i class="icon icon-ok">Одноклассники</i></span></div>
+  </form>
+  <form class="auth" id="registrations" style="display: none">
+    <div class="auth__title">Регистрация</div>
+    <div class="auth__link auth__link_no-account"><a data-fancybox="" data-src="#sign-in" href="javascript:;">У меня уже есть аккаунт</a></div>
+    <div class="auth__form">
+      <div class="auth__input-field input-field"><label class="input-field__label" for="reg-login">Логин</label><input class="input-field__input" id="reg-login" name="" required="" type="text"></div>
+      <div class="auth__input-field input-field"><label class="input-field__label" for="reg-pass">Пароль</label><input class="input-field__input" id="reg-pass" name="" required="" type="password"></div>
+      <div class="auth__input-field input-field"><label class="input-field__label" for="reg-email">Email</label><input class="input-field__input" id="reg-email" name="" required="" type="email"></div>
+    </div>
+    <div class="auth__button-block"><button class="btn btn-red btn-block" type="submit">Зарегистрироваться</button></div>
+    <div class="auth__subtitle">Или войти через соц. сети:</div>
+    <div class="auth__social"><span><i class="icon icon-vk">Вконтакте</i></span><span><i class="icon icon-fb">Facebook</i></span><span><i class="icon icon-ok">Одноклассники</i></span></div>
+  </form>
+  <script>
+    window.app = {
+      storeManagerData: {
+        currentCityId: '35899',
+        noCityId: '35899',
+        remoteStoreId: '24396',
+        chars: {
+          А: ['54314', '35920'],
+          Б: ['65717', '68225', '55304', '70337', '80431'],
+          В: ['35904', '35888', '88027', '97770', '53076'],
+          Е: ['35908'],
+          И: ['35896'],
+          К: ['35892', '49062', '97113', '65718', '80429', '35919', '35906'],
+          М: ['88950', '101341', '35883'],
+          Н: ['35884', '35899', '49060', '43641', '2933', '99314', '53074'],
+          О: ['64117'],
+          П: ['67602', '54756'],
+          Р: ['35890'],
+          С: ['53765', '35916', '68340', '95370', '35881'],
+          Т: ['35886', '35914'],
+          У: ['53078', '80427', '53075'],
+          Х: ['35912'],
+          Ч: ['54186', '35897'],
+          Ю: ['68341'],
+          Я: ['49061'],
+        },
+        breaks: ['М', 'С'],
+        cities: {
+          2933: {
+            id: '2933',
+            name: 'Новосибирск',
+            disconnected: '',
+            name5: 'Новосибирске',
+          },
+          24468: {
+            id: '24468',
+            name: 'Доставка по России',
+            disconnected: '',
+            name5: 'Интернет-магазине',
+          },
+          35881: {
+            id: '35881',
+            name: 'Сургут',
+            disconnected: '',
+            name5: 'Сургуте',
+          },
+          35883: {
+            id: '35883',
+            name: 'Москва',
+            disconnected: '',
+            name5: 'Москве',
+          },
+          35884: {
+            id: '35884',
+            name: 'Нижневартовск',
+            disconnected: '',
+            name5: 'Нижневартовске',
+          },
+          35886: {
+            id: '35886',
+            name: 'Томск',
+            disconnected: '',
+            name5: 'Томске',
+          },
+          35888: {
+            id: '35888',
+            name: 'Владивосток',
+            disconnected: '',
+            name5: 'Владивостоке',
+          },
+          35890: {
+            id: '35890',
+            name: 'Ростов-на-Дону',
+            disconnected: '',
+            name5: 'Ростове-на-Дону',
+          },
+          35892: {
+            id: '35892',
+            name: 'Казань',
+            disconnected: '',
+            name5: 'Казани',
+          },
+          35896: {
+            id: '35896',
+            name: 'Иркутск',
+            disconnected: '',
+            name5: 'Иркутске',
+          },
+          35897: {
+            id: '35897',
+            name: 'Чита',
+            disconnected: '',
+            name5: 'Чите',
+          },
+          35899: {
+            id: '35899',
+            name: 'Нижний Новгород',
+            disconnected: '',
+            name5: 'Нижнем Новгороде',
+          },
+          35904: {
+            id: '35904',
+            name: 'Великий Новгород',
+            disconnected: '',
+            name5: 'Великом Новгороде',
+          },
+          35906: {
+            id: '35906',
+            name: 'Красноярск',
+            disconnected: '',
+            name5: 'Красноярске',
+          },
+          35908: {
+            id: '35908',
+            name: 'Екатеринбург',
+            disconnected: '',
+            name5: 'Екатеринбурге',
+          },
+          35912: {
+            id: '35912',
+            name: 'Хабаровск',
+            disconnected: '',
+            name5: 'Хабаровске',
+          },
+          35914: {
+            id: '35914',
+            name: 'Тюмень',
+            disconnected: '',
+            name5: 'Тюмени',
+          },
+          35916: {
+            id: '35916',
+            name: 'Санкт-Петербург',
+            disconnected: '',
+            name5: 'Санкт-Петербурге',
+          },
+          35919: {
+            id: '35919',
+            name: 'Краснодар',
+            disconnected: '',
+            name5: 'Краснодаре',
+          },
+          35920: {
+            id: '35920',
+            name: 'Астана',
+            disconnected: '',
+            name5: 'Астане',
+          },
+          43641: {
+            id: '43641',
+            name: 'Новороссийск',
+            disconnected: '',
+            name5: 'Новороссийске',
+          },
+          49060: {
+            id: '49060',
+            name: 'Новокузнецк',
+            disconnected: '',
+            name5: 'Новокузнецке',
+          },
+          49061: {
+            id: '49061',
+            name: 'Якутск',
+            disconnected: '',
+            name5: 'Якутске',
+          },
+          49062: {
+            id: '49062',
+            name: 'Калуга',
+            disconnected: '',
+            name5: 'Калуге',
+          },
+          53074: {
+            id: '53074',
+            name: 'Новый Уренгой',
+            disconnected: '',
+            name5: 'новом уренгое',
+          },
+          53075: {
+            id: '53075',
+            name: 'Уфа',
+            disconnected: '',
+            name5: 'уфе',
+          },
+          53076: {
+            id: '53076',
+            name: 'Воронеж',
+            disconnected: '',
+            name5: 'воронеже',
+          },
+          53078: {
+            id: '53078',
+            name: 'Ульяновск',
+            disconnected: '',
+            name5: 'ульяновске',
+          },
+          53765: {
+            id: '53765',
+            name: 'Самара',
+            disconnected: '',
+            name5: 'Самаре',
+          },
+          54186: {
+            id: '54186',
+            name: 'Челябинск',
+            disconnected: '',
+            name5: 'Челябинске',
+          },
+          54314: {
+            id: '54314',
+            name: 'Ангарск',
+            disconnected: '',
+            name5: 'Ангарске',
+          },
+          54756: {
+            id: '54756',
+            name: 'Пермь',
+            disconnected: '',
+            name5: 'Перми',
+          },
+          55304: {
+            id: '55304',
+            name: 'Бердск',
+            disconnected: '',
+            name5: 'Бердске',
+          },
+          64117: {
+            id: '64117',
+            name: 'Оренбург',
+            disconnected: '',
+            name5: 'Оренбурге',
+          },
+          65717: {
+            id: '65717',
+            name: 'Барнаул',
+            disconnected: '',
+            name5: 'Барнауле',
+          },
+          65718: {
+            id: '65718',
+            name: 'Комсомольск-на-Амуре',
+            disconnected: '',
+            name5: 'Комсомольске-на-Амуре',
+          },
+          67602: {
+            id: '67602',
+            name: 'Павлодар',
+            disconnected: '',
+            name5: 'Павлодаре',
+          },
+          68225: {
+            id: '68225',
+            name: 'Белорецк',
+            disconnected: '',
+            name5: 'Белорецке',
+          },
+          68340: {
+            id: '68340',
+            name: 'Симферополь',
+            disconnected: '',
+            name5: 'Симферополе',
+          },
+          68341: {
+            id: '68341',
+            name: 'Южно-Сахалинск',
+            disconnected: '',
+            name5: 'Южно-Сахалинске',
+          },
+          70337: {
+            id: '70337',
+            name: 'Березники',
+            disconnected: '',
+            name5: 'Березниках',
+          },
+          80427: {
+            id: '80427',
+            name: 'Уссурийск',
+            disconnected: '',
+            name5: 'Уссурийске',
+          },
+          80429: {
+            id: '80429',
+            name: 'Кострома',
+            disconnected: '',
+            name5: 'Костроме',
+          },
+          80431: {
+            id: '80431',
+            name: 'Березовский',
+            disconnected: '',
+            name5: 'Березовском',
+          },
+          88027: {
+            id: '88027',
+            name: 'Владимир',
+            disconnected: '',
+            name5: 'Владимире',
+          },
+          88950: {
+            id: '88950',
+            name: 'Магадан',
+            disconnected: '',
+            name5: 'Магадане',
+          },
+          95370: {
+            id: '95370',
+            name: 'Сочи',
+            disconnected: '',
+            name5: 'Сочи',
+          },
+          97113: {
+            id: '97113',
+            name: 'Кемерово',
+            disconnected: '',
+            name5: 'Кемерове',
+          },
+          97770: {
+            id: '97770',
+            name: 'Волгоград',
+            disconnected: '',
+            name5: 'Волгограде',
+          },
+          99314: {
+            id: '99314',
+            name: 'Новочеркасск',
+            disconnected: '',
+            name5: 'Новочеркасске',
+          },
+          101341: {
+            id: '101341',
+            name: 'Майкоп',
+            disconnected: '',
+            name5: 'Майкопе',
+          },
+        },
+        stores: {
+          24390: {
+            id: '24390',
+            name: 'ул. Кирова, д. 27',
+            sort: '10',
+            city: '2933',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'м.Октябрьская, между Бахетле и ГПНТБ',
+            phone: ['8-983-000-13-27'],
+            vk: 'https://vk.com/do4alab',
+            instagram: 'https://www.instagram.com/do4alab/',
+            coords: '55.018122402267,82.944041570144',
+          },
+          24391: {
+            id: '24391',
+            name: 'ул. Ильича, д. 6',
+            sort: '20',
+            city: '2933',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Академгородока, внутри отдела INTERSPORT',
+            phone: ['8-983-000-13-28'],
+            vk: 'https://vk.com/do4alab',
+            instagram: 'https://www.instagram.com/do4alab/',
+            coords: '54.838785589764,83.09591339154',
+          },
+          24392: {
+            id: '24392',
+            name: 'ул. Таганская, д. 3',
+            sort: '502',
+            city: '35883',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Таганский Пассаж&quot;, этаж 3а; ст. м. Марксистская | Таганская',
+            phone: ['8-495-203-62-09'],
+            vk: 'https://vk.com/do4a_market_msk',
+            instagram: 'https://www.instagram.com/do4amsk_taganka/',
+            coords: '55.741281618456,37.658459736771',
+          },
+          35882: {
+            id: '35882',
+            name: 'ул. Ленинградская, д. 1/2',
+            sort: '500',
+            city: '35881',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Невский&quot;, 2 этаж',
+            phone: ['8-3462-59-09-07'],
+            vk: 'https://vk.com/do4asurgut',
+            instagram: 'https://www.instagram.com/do4asurgut/',
+            coords: '61.250761491811,73.377752809899',
+          },
+          35885: {
+            id: '35885',
+            name: 'ул. Ленина, д. 3п, стр. 6',
+            sort: '500',
+            city: '35884',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ “Континент ACTIVE”',
+            phone: ['8-3466-408-308'],
+            vk: 'https://vk.com/do4a.market_nv',
+            instagram: 'https://www.instagram.com/do4a_nv/',
+            coords: '60.941227956049,76.537885068732',
+          },
+          35887: {
+            id: '35887',
+            name: 'ул. Советская, д. 46',
+            sort: '500',
+            city: '35886',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Вход с ул. Советской',
+            phone: ['8-3822-933-899'],
+            vk: 'https://vk.com/do4amarkettomsk',
+            instagram: 'https://www.instagram.com/do4a_market_tomsk/',
+            coords: '56.471293558387,84.953716135582',
+          },
+          35889: {
+            id: '35889',
+            name: 'пр-т Красного знамени, д. 51А',
+            sort: '500',
+            city: '35888',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Остановка &quot;Гоголя&quot;.',
+            phone: ['8-914-209-47-55'],
+            vk: 'https://vk.com/do4a25',
+            instagram: 'https://www.instagram.com/do4a25/',
+            coords: '43.128110799052,131.90569858466',
+          },
+          35891: {
+            id: '35891',
+            name: 'ул. Красноармейская, д.103/123',
+            sort: '500',
+            city: '35890',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Напротив входа в ТЦ &quot;Вавилон&quot;.',
+            phone: ['8-863-264-83-22'],
+            vk: 'https://vk.com/do4a_rostov',
+            instagram: 'https://www.instagram.com/do4a_rostov/',
+            coords: '47.230777452203,39.724558220238',
+          },
+          35893: {
+            id: '35893',
+            name: 'ул. Чернышевского, д. 17',
+            sort: '500',
+            city: '35892',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: '7 минут ходьбы от станции метро Кремлёвская, рядом с кафе &quot;Агафредо&quot;.',
+            phone: ['8-953-408-71-78'],
+            vk: 'https://vk.com/do4a_kazan',
+            instagram: 'https://www.instagram.com/do4a_kazan/',
+            coords: '55.792263465199,49.109790660713',
+          },
+          35898: {
+            id: '35898',
+            name: 'ул. Чкалова, д. 164',
+            sort: '500',
+            city: '35897',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ “Вега” (рядом с пенсионным фондом), 2 этаж',
+            phone: ['8-924-577-38-38 '],
+            vk: 'https://vk.com/do4a75',
+            instagram: 'https://www.instagram.com/do4a.chita/',
+            coords: '52.040429562379,113.49489758466',
+          },
+          35900: {
+            id: '35900',
+            name: 'ул. Невзоровых, д. 64к2',
+            sort: '500',
+            city: '35899',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'За ТЦ “Этажи”',
+            phone: ['8-920-028-20-44'],
+            vk: 'https://vk.com/do4a_nizhniy_novgorod',
+            instagram: 'https://www.instagram.com/do4a_nizhniy_novgorod/',
+            coords: '56.316650419498,44.021708517197',
+          },
+          35901: {
+            id: '35901',
+            name: 'ул. Лермонтова, д. 90/1',
+            sort: '500',
+            city: '35896',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Лермонтов&quot;, 2 этаж',
+            phone: ['8-3952-64-00-51'],
+            vk: 'https://vk.com/do4a_irkutsk',
+            instagram: 'https://www.instagram.com/do4a_irkutsk/',
+            coords: '52.262965707609,104.25924831349',
+          },
+          35905: {
+            id: '35905',
+            name: 'пр-т А. Корсунова, д. 21А',
+            sort: '500',
+            city: '35904',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Панорама&quot;, 3-й этаж',
+            phone: ['8-8162-55-28-31'],
+            vk: 'https://vk.com/do4a53',
+            instagram: 'https://www.instagram.com/vnov.marketdo4a_com/',
+            coords: '58.543828851341,31.245691135582',
+          },
+          35907: {
+            id: '35907',
+            name: 'ул. Белинского, д. 8',
+            sort: '500',
+            city: '35906',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ “Комсомол”, 3 этаж',
+            phone: ['8-923-377-24-24'],
+            vk: 'https://vk.com/do4a.com.krasnoyarsk',
+            instagram: 'https://www.instagram.com/do4a_krsk/',
+            coords: '56.020033087342,92.901418864418',
+          },
+          35913: {
+            id: '35913',
+            name: 'ул. Серышева, д. 88',
+            sort: '500',
+            city: '35912',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Успех&quot;. За остановкой &quot;Университет путей сообщения&quot;.',
+            phone: ['8-4212-670-650'],
+            vk: 'https://vk.com/do4a_khv',
+            instagram: 'https://www.instagram.com/do4a_khv',
+            coords: '48.494795885908,135.06528577116',
+          },
+          35915: {
+            id: '35915',
+            name: 'ул. 50 лет Октября, д. 21А',
+            sort: '500',
+            city: '35914',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Перекресток ул. 50 лет Октября и ул. Максима Горького',
+            phone: ['8-9044-97-66-77'],
+            vk: 'https://vk.com/do4a.com72',
+            instagram: 'https://www.instagram.com/do4a.com72/',
+            coords: '57.151925912504,65.570420660713',
+          },
+          35918: {
+            id: '35918',
+            name: 'ул. Восстания, д. 9',
+            sort: '501',
+            city: '35916',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'Ст. м. Площадь Восстания.',
+            phone: ['+7-812-426-88-36'],
+            vk: 'https://vk.com/do4a_market_spb',
+            instagram: 'https://www.instagram.com/do4a_spb/',
+            coords: '59.933439989303,30.360481118385',
+          },
+          35921: {
+            id: '35921',
+            name: 'ул. Ставропольская, д. 157',
+            sort: '500',
+            city: '35919',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: '',
+            phone: ['8-918-217-10-75'],
+            vk: 'https://vk.com/do4a_market_krd',
+            instagram: 'https://www.instagram.com/do4a_market_krd/',
+            coords: '45.018382151921,39.035309949074',
+          },
+          43642: {
+            id: '43642',
+            name: 'ул. Энгельса, д. 79',
+            sort: '500',
+            city: '43641',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Вход со стороны ул. Серова',
+            phone: ['8-918-44-84-333'],
+            vk: 'https://vk.com/do4a_market_novoros',
+            instagram: 'https://www.instagram.com/do4a.com_nvrsk/',
+            coords: '44.708720077515,37.781518313492',
+          },
+          43644: {
+            id: '43644',
+            name: 'ул. Дмитриевского, д. 3',
+            sort: '503',
+            city: '35883',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ст. м. Выхино | Новокосино',
+            phone: ['8-495-755-95-47'],
+            vk: 'https://vk.com/do4a_market_moscow',
+            instagram: 'https://www.instagram.com/do4a_moscow/',
+            coords: '55.710046719994,37.883049415344',
+          },
+          49059: {
+            id: '49059',
+            name: 'пр-т Стачки, д. 190',
+            sort: '500',
+            city: '35890',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Пересечение проспекта Стачки с ул. Зорге.',
+            phone: ['8-863-241-83-22'],
+            vk: 'https://vk.com/do4a_rostov',
+            instagram: 'https://www.instagram.com/do4a_rostov/',
+            coords: '47.212853905315,39.636735544314',
+          },
+          49458: {
+            id: '49458',
+            name: 'ул. Суворова, д. 77',
+            sort: '500',
+            city: '49062',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Плехановский&quot;',
+            phone: ['8-953-315-17-72'],
+            vk: 'https://vk.com/do4a_klg',
+            instagram: 'https://www.instagram.com/do4a_klg/',
+            coords: '54.518115466008,36.248212987436',
+          },
+          49459: {
+            id: '49459',
+            name: 'пр-т Ермакова, д. 30А',
+            sort: '500',
+            city: '49060',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТПЦ &quot;Виктория&quot;',
+            phone: ['8-951-611-11-56'],
+            vk: 'https://vk.com/do4a_nvkz',
+            instagram: 'https://www.instagram.com/do4a.com_nvkz/',
+            coords: '53.768346433472,87.134942550268',
+          },
+          49460: {
+            id: '49460',
+            name: 'ул. Петра Алексеева, д. 11',
+            sort: '500',
+            city: '49061',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: '',
+            phone: ['8-984-104-76-47'],
+            vk: 'https://vk.com/do4a_ykt',
+            instagram: 'https://www.instagram.com/do4a.com_ykt/',
+            coords: '62.035837996899,129.73847264418',
+          },
+          53079: {
+            id: '53079',
+            name: '1905 года переулок, д. 14/1',
+            sort: '500',
+            city: '35886',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Новый ГУМ&quot;, 3 этаж',
+            phone: ['8-3822-933-558'],
+            vk: 'https://vk.com/do4amarkettomsk',
+            instagram: 'https://www.instagram.com/do4a_market_tomsk/',
+            coords: '56.494087731371,84.949883736113',
+          },
+          53080: {
+            id: '53080',
+            name: 'ул. Бакалинская, д. 64',
+            sort: '500',
+            city: '53075',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'мкр. Солнечный',
+            phone: ['+7-927-236-36-29 '],
+            vk: 'https://vk.com/ufa_do4a',
+            instagram: 'https://www.instagram.com/ufa_do4a/',
+            coords: '54.719454519832,55.988851604166',
+          },
+          53761: {
+            id: '53761',
+            name: 'ул. Никитинская 27',
+            sort: '500',
+            city: '53076',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Напротив Воронежской областной юношеской библиотеки им. В.М. Кубанева',
+            phone: ['8-919-244-11-91'],
+            vk: 'https://vk.com/do4a_vrn',
+            instagram: 'https://www.instagram.com/do4a_vrn/',
+            coords: '51.663744485734,39.194909246033',
+          },
+          53763: {
+            id: '53763',
+            name: 'ул. Интернациональная 4',
+            sort: '500',
+            city: '53074',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Сибирь',
+            phone: ['8-900-4000-441'],
+            vk: 'https://vk.com/do4a_nur',
+            instagram: 'https://www.instagram.com/do4a_nur/',
+            coords: '66.08564,76.678333',
+          },
+          53764: {
+            id: '53764',
+            name: 'ул. Минаева, д. 3',
+            sort: '500',
+            city: '53078',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Остановка &quot;12 Сентября&quot;',
+            phone: ['8-8422-71-02-03 '],
+            vk: 'https://vk.com/73do4a',
+            instagram: 'https://www.instagram.com/73do4a/',
+            coords: '54.307569213891,48.381249387732',
+          },
+          54185: {
+            id: '54185',
+            name: 'пр-т Ленина, д. 12А',
+            sort: '500',
+            city: '53765',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Мелодия | м. Алабинская',
+            phone: ['8-846-990-49-00'],
+            vk: 'https://vk.com/do4a_samara',
+            instagram: 'https://www.instagram.com/do4a_samara/',
+            coords: '53.20915350627,50.137008058982',
+          },
+          54194: {
+            id: '54194',
+            name: 'ул. Куйбышева, д. 57',
+            sort: '500',
+            city: '35908',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ст. м. Геологическая',
+            phone: ['8-922-619-36-26'],
+            vk: 'https://vk.com/do4aekb',
+            instagram: 'https://www.instagram.com/do4a_ekb/',
+            coords: '56.82726509703,60.601521266865',
+          },
+          54195: {
+            id: '54195',
+            name: 'ул. Труда, д. 156',
+            sort: '602',
+            city: '54186',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТК Западный Луч, 2 этаж (Основной Магазин)',
+            phone: ['8-900-025-20-04'],
+            vk: 'https://vk.com/do4achel',
+            instagram: 'https://www.instagram.com/do4achel/',
+            coords: '55.168983896404,61.378874093918',
+          },
+          54315: {
+            id: '54315',
+            name: 'ул. 188-й квартал, д. 17',
+            sort: '500',
+            city: '54314',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Напротив касс ДК &quot;Современник&quot;.',
+            phone: ['8-914-878-99-97'],
+            vk: 'http://vk.com/do4a_138',
+            instagram: 'https://www.instagram.com/do4a_138/',
+            coords: '52.507877989693,103.83582963988',
+          },
+          54581: {
+            id: '54581',
+            name: 'Варшавское шоссе, д. 26, стр. 5',
+            sort: '500',
+            city: '35883',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ст. м. Нагатинская; ТЦ &quot;FOR YOU&quot;, 2 этаж',
+            phone: ['8-929-592-78-77'],
+            vk: 'https://vk.com/do4a_market_msk',
+            instagram: 'https://www.instagram.com/do4amoscow/',
+            coords: '55.684038384862,37.621486317791',
+          },
+          54757: {
+            id: '54757',
+            name: 'ул. Куйбышева, д. 65',
+            sort: '500',
+            city: '54756',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Громовский, 2 этаж. Напротив Alex Fitness ТЦ Триада',
+            phone: ['8-342-202-24-46 '],
+            vk: 'https://vk.com/do4aperm',
+            instagram: 'https://www.instagram.com/do4a_perm/',
+            coords: '57.998428745152,56.242348930059',
+          },
+          55305: {
+            id: '55305',
+            name: 'ул. Ленина 6/1, 2 этаж',
+            sort: '500',
+            city: '55304',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;А\'стор&quot;, 2 этаж',
+            phone: ['8-383-299-06-42'],
+            vk: 'https://vk.com/do4a_berdsk',
+            instagram: 'https://www.instagram.com/do4a_berdsk/',
+            coords: '54.764994,83.08077',
+          },
+          64118: {
+            id: '64118',
+            name: 'ул. Салмышская, д. 24',
+            sort: '500',
+            city: '64117',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Уют&quot;, 1 этаж',
+            phone: ['92-79-60'],
+            vk: 'https://vk.com/do4a_market_orenburg',
+            instagram: 'https://www.instagram.com/do4a_oren56/',
+            coords: '51.832799200531,55.150471922581',
+          },
+          65719: {
+            id: '65719',
+            name: 'пр-т Ленина, д. 105',
+            sort: '500',
+            city: '65717',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ост. Площадь Октября',
+            phone: ['8 (3852) 573-574'],
+            vk: 'https://vk.com/do4a_22',
+            instagram: 'https://www.instagram.com/do4a_22/',
+            coords: '53.357996932513,83.765750881615',
+          },
+          65720: {
+            id: '65720',
+            name: 'пр. Ленина, д. 46',
+            sort: '500',
+            city: '65718',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Оникс&quot;',
+            phone: ['8-929-406-3939'],
+            vk: 'https://vk.com/club143276213',
+            instagram: 'https://www.instagram.com/do4a_market_27/',
+            coords: '50.5465215806,137.0011539173',
+          },
+          67096: {
+            id: '67096',
+            name: 'ул. Щорса, д. 44',
+            sort: '500',
+            city: '35906',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТРК &quot;Мави&quot;',
+            phone: ['8-923-377-24-24'],
+            vk: 'https://vk.com/do4a.com.krasnoyarsk',
+            instagram: 'https://www.instagram.com/do4a_krsk/',
+            coords: '55.992378262038,92.953947809193',
+          },
+          67603: {
+            id: '67603',
+            name: 'ул. Естая, д. 134',
+            sort: '500',
+            city: '67602',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Рядом с ТЦ &quot;Квазар&quot;',
+            phone: ['8-705-500-84-48'],
+            vk: 'https://vk.com/do4a_pvl',
+            instagram: 'https://www.instagram.com/do4a_pvl/',
+            coords: '52.282608071903,76.961718118385',
+          },
+          67617: {
+            id: '67617',
+            name: 'ул.Туркестан, д.4а',
+            sort: '500',
+            city: '35920',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'рядом с ЖК &quot;АртХаус&quot;',
+            phone: ['8-778-941-942-1'],
+            vk: 'https://vk.com/do4a_astana_kz',
+            instagram: 'https://www.instagram.com/do4a.com.astana/',
+            coords: '51.116667821209,71.430145353713',
+          },
+          68226: {
+            id: '68226',
+            name: 'ул. 50 лет Октября, д. 78',
+            sort: '500',
+            city: '68225',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;8 Марта&quot;, 3 этаж',
+            phone: ['8-903-353-12-34'],
+            vk: 'https://vk.com/club147195221',
+            instagram: 'https://www.instagram.com/do4a_bel/',
+            coords: '53.97145354649,58.426328423279',
+          },
+          68342: {
+            id: '68342',
+            name: 'ул.Куйбышева, д. 2',
+            sort: '500',
+            city: '68340',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: '',
+            phone: ['8-978-970-33-39'],
+            vk: 'https://vk.com/do4a_simf',
+            instagram: 'https://www.instagram.com/do4a_simf/',
+            coords: '44.959984343129,34.109289153788',
+          },
+          68343: {
+            id: '68343',
+            name: 'ул.Комсомольская, д. 241/1',
+            sort: '500',
+            city: '68341',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Аист&quot;',
+            phone: ['8-4242-609-111'],
+            vk: 'https://vk.com/do4a.sakh',
+            instagram: 'https://www.instagram.com/do4a.sakh/',
+            coords: '46.940418034196,142.7520955086',
+          },
+          70338: {
+            id: '70338',
+            name: 'ул. Пятилетки, д. 150',
+            sort: '500',
+            city: '70337',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТРЦ &quot;Оранж Молл&quot;',
+            phone: ['8-952-337-37-37'],
+            vk: 'https://vk.com/do4a_berezniki',
+            instagram: 'https://www.instagram.com/do4a_berezniki/',
+            coords: '59.392861730348,56.856684161377',
+          },
+          78869: {
+            id: '78869',
+            name: 'ул.Карла Маркса, д. 30',
+            sort: '500',
+            city: '35896',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'Между улицами Чехова и Володарского, напротив &quot;Сони-центра&quot;. ',
+            phone: ['8-3952-62-92-91'],
+            vk: 'https://vk.com/do4a_irkutsk',
+            instagram: 'https://www.instagram.com/do4a_irkutsk/',
+            coords: '52.2867556343,104.29128142003',
+          },
+          80428: {
+            id: '80428',
+            name: 'ул. Горького, д. 95/1',
+            sort: '500',
+            city: '80427',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: '',
+            phone: ['8-984-264-0574'],
+            vk: 'https://vk.com/do4a25',
+            instagram: 'https://www.instagram.com/do4a25/',
+            coords: '43.80523859262,131.94235589881',
+          },
+          80430: {
+            id: '80430',
+            name: 'ул. Советская, д. 103А',
+            sort: '500',
+            city: '80429',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Остановка &quot;площадь Конституции&quot;.',
+            phone: ['(4942) 36-01-39'],
+            vk: 'https://vk.com/do4a_kostroma',
+            instagram: 'https://www.instagram.com/do4a_kostroma/',
+            coords: '57.760119114627,40.95925114418',
+          },
+          80432: {
+            id: '80432',
+            name: 'ул. Театральная, д. 6',
+            sort: '500',
+            city: '80431',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;Райт&quot;, второй этаж, офис 265',
+            phone: ['8-967-858-0153'],
+            vk: 'https://vk.com/do4abrz',
+            instagram: 'https://www.instagram.com/do4a_berezovskiy/',
+            coords: '56.907184546534,60.810665296295',
+          },
+          82451: {
+            id: '82451',
+            name: 'пл. Карла Маркса, д. 6/1',
+            sort: '500',
+            city: '2933',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'м. Площадь Маркса, ТЦ &quot;Калейдоскоп&quot;, 4 этаж',
+            phone: ['8-983-000-13-29'],
+            vk: 'https://vk.com/do4alab',
+            instagram: 'https://www.instagram.com/do4alab',
+            coords: '54.98097070396,82.894914965607',
+          },
+          82955: {
+            id: '82955',
+            name: 'ул. Подводников, д. 31',
+            sort: '500',
+            city: '35899',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ст. м. &quot;Двигатель Революции&quot;',
+            phone: ['8-920-024-33-14'],
+            vk: 'https://vk.com/do4a_nizhniy_novgorod',
+            instagram: 'https://www.instagram.com/do4a_nizhniy_novgorod/',
+            coords: '56.274694074637,43.922635985322',
+          },
+          88028: {
+            id: '88028',
+            name: 'Мира, д.26',
+            sort: '500',
+            city: '88027',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'перекресток ул.Мира и Горького',
+            phone: ['+7-900-590-90-04'],
+            vk: 'https://vk.com/do4a_vladimir',
+            instagram: 'https://www.instagram.com/do4a_vladimir',
+            coords: '56.138545130333,40.4008879709',
+          },
+          88951: {
+            id: '88951',
+            name: 'Магадан, ул. Коммуны д.2',
+            sort: '500',
+            city: '88950',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'ул. Коммуны д.2',
+            phone: ['89140326542'],
+            vk: 'https://vk.com/do4a__magadan',
+            instagram: 'https://www.instagram.com/do4a_magadan/',
+            coords: '59.568711131484,150.80351818125',
+          },
+          90958: {
+            id: '90958',
+            name: 'ул. Советская, д. 42',
+            sort: '500',
+            city: '64117',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ЦУМ &quot;МЕРИДИАН&quot;, 1 этаж',
+            phone: ['92-79-50'],
+            vk: 'https://vk.com/do4a_market_orenburg',
+            instagram: 'https://www.instagram.com/do4a_oren56/',
+            coords: '51.764556204758,55.100662787697',
+          },
+          93858: {
+            id: '93858',
+            name: 'ул. Хошимина, д.11, к.1',
+            sort: '501',
+            city: '35916',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'Ст. метро Проспект Просвещения',
+            phone: ['+7-812-426-88-36'],
+            vk: 'https://vk.com/do4a_market_spb',
+            instagram: 'https://www.instagram.com/do4a_spb/',
+            coords: '60.052259955011,30.326147201056',
+          },
+          94168: {
+            id: '94168',
+            name: 'Коломяжский проспект, дом 26',
+            sort: '501',
+            city: '35916',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'Ст. метро Пионерская',
+            phone: ['+7-812-426-88-36'],
+            vk: 'https://vk.com/do4a_market_spb',
+            instagram: 'https://www.instagram.com/do4a_spb/',
+            coords: '60.004244,30.295135',
+          },
+          94671: {
+            id: '94671',
+            name: 'ул. Бухарестская, 30-32',
+            sort: '501',
+            city: '35916',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'метро Бухарестская, ТРК &quot;Континент&quot;',
+            phone: ['+7-812-426-88-36'],
+            vk: 'https://vk.com/do4a_market_spb',
+            instagram: 'https://www.instagram.com/do4a_spb/',
+            coords: '59.883611,30.36956',
+          },
+          95355: {
+            id: '95355',
+            name: 'Проспект Ленина 86',
+            sort: '603',
+            city: '54186',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Курчатов, 1 этаж',
+            phone: ['7-908-099-79-07'],
+            vk: 'https://vk.com/do4achel',
+            instagram: 'https://www.instagram.com/do4achel/',
+            coords: '55.159347,61.363701',
+          },
+          95356: {
+            id: '95356',
+            name: 'ул. Северная, 6',
+            sort: '501',
+            city: '95370',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Sun City',
+            phone: ['+7-918-105-81-96'],
+            vk: 'https://vk.com/do4a__sochi',
+            instagram: 'https://www.instagram.com/do4a.sochi/',
+            coords: '43.594555,39.727589',
+          },
+          95817: {
+            id: '95817',
+            name: 'проспект Ульяновский, д 5А',
+            sort: '500',
+            city: '53078',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ &quot;ДА&quot;',
+            phone: false,
+            vk: 'https://vk.com/73do4a',
+            instagram: 'https://www.instagram.com/73do4a/',
+            coords: '54.371936,48.58381',
+          },
+          97114: {
+            id: '97114',
+            name: 'пр. Кузнецкий 33А, 2 этаж',
+            sort: '20',
+            city: '97113',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'Остановка ТЦ «Сити парк», рядом с ТЦ «Я»',
+            phone: ['8-905-917-87-77'],
+            vk: 'https://vk.com/do4a_kmr',
+            instagram: 'https://www.instagram.com/do4a_kmr/',
+            coords: '55.357695,86.066339',
+          },
+          97771: {
+            id: '97771',
+            name: 'ул Ким, д.7а',
+            sort: '20',
+            city: '97770',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'ул. Ким 7А, ТЦ Новый Континент,  2 этаж',
+            phone: ['8-995-403-35-44'],
+            vk: 'https://vk.com/do4a_volgograd',
+            instagram: 'https://www.instagram.com/do4a_volgograd/',
+            coords: '48.697714,44.501856',
+          },
+          99315: {
+            id: '99315',
+            name: 'Платовский проспект 59А',
+            sort: '602',
+            city: '99314',
+            courier: 'Y',
+            tempUnavailableText: '',
+            shortAddress: 'ТЦ Универмаг, 3 этаж',
+            phone: ['+7-988-588-01-99'],
+            vk: 'https://vk.com/do4a_novocherkassk',
+            instagram: 'https://www.instagram.com/do4a_novocherkassk',
+            coords: '47.410955,40.104037',
+          },
+          101342: {
+            id: '101342',
+            name: 'ул. Жуковского, 51',
+            sort: '604',
+            city: '101341',
+            courier: '',
+            tempUnavailableText: '',
+            shortAddress: 'Бизнес центр &quot;Портал&quot;',
+            phone: ['8-918-224-84-12'],
+            vk: 'https://vk.com/do4a_maykop',
+            instagram: 'https://www.instagram.com/do4a_maykop/',
+            coords: '44.61439,40.108259',
+          },
+        },
+      },
+      storeId: 24396,
+    };
+  </script>
+  <script src="js/runtime.js"></script>
+  <script src="js/common.bundle.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+
+</html>

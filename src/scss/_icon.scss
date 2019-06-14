@@ -1,5 +1,22 @@
 .icon {
-  // ...
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icon-visa {
+  @include sprite('visa');
+  width: 33px;
+  height: 10px;
+}
+.icon-mastercard {
+  @include sprite('mastercard');
+  width: 23px;
+  height: 16px;
+}
+.icon-mir {
+  @include sprite('mir');
+  width: 33px;
+  height: 10px;
 }
 
 
@@ -90,3 +107,4 @@
     height: 18px;
   }
 }
+

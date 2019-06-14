@@ -19,11 +19,11 @@ yarn run start
 В качестве адреса используйте `localhost` или локальный адрес вашего компьютера
 
 ## Демо
- - Главная: https://staremang.github.io/market-do4a.com/dist/index.html
- - Каталог: https://staremang.github.io/market-do4a.com/dist/catalog.html
- - Каталог, первый уровень: https://staremang.github.io/market-do4a.com/dist/first-level.html
- - Избранное: https://staremang.github.io/market-do4a.com/dist/favorites.html
- - Производители: https://staremang.github.io/market-do4a.com/dist/vendors.html
- - Товары производителя: https://staremang.github.io/market-do4a.com/dist/vendor-opened.html
- - Карточка товара (пока нету): https://staremang.github.io/market-do4a.com/dist/product.html
- - Тестирование элементов (отключено): https://staremang.github.io/market-do4a.com/dist/test.html
+ - [Главная](dist/main.html)
+ - [Каталог](dist/catalog.html)
+ - [Каталог, первый уровень](dist/first-level.html)
+ - [Избранное](dist/favorites.html)
+ - [Производители](dist/vendors.html)
+ - [Товары производителя](dist/vendor-opened.html)
+ - [Карточка товара](dist/product.html)
+ - [Корзина](dist/cart.html)

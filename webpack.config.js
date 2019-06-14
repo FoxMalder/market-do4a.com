@@ -7,7 +7,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const IconfontPlugin = require('iconfont-plugin-webpack');
 
 const distPath = path.resolve(__dirname, 'dist');
 
@@ -37,9 +39,10 @@ const cummonConfig = {
     vendors: './src/vendors.js',
     vendorOpened: './src/vendor-opened.js',
     product: './src/product.js',
+    cart: './src/cart.js',
 
 
-    headerStyle: './src/scss/header-style.scss',
+    // headerStyle: './src/scss/header-style.scss',
   },
   output: {
     path: distPath,
@@ -50,6 +53,7 @@ const cummonConfig = {
 
   externals: ['app'],
   plugins: [
+    new FriendlyErrorsWebpackPlugin(),
     new CopyPlugin([
       { from: './src/static', to: 'static' },
     ]),
@@ -62,6 +66,21 @@ const cummonConfig = {
       // Костыль, чтоб подключить OwlCarousel2 и воткнуть jQuery в глобальную область видимости
       'window.Zepto': 'jquery',
     }),
+
+    new IconfontPlugin(
+      {
+        src: './src/img/icons', // required - directory where your .svg files are located
+        family: 'iconfont', // optional - the `font-family` name. if multiple iconfonts are generated, the dir names will be used.
+        dest: {
+          font: 'src/fonts/[family].[type]', // required - paths of generated font files
+          css: 'src/scss/_[family].scss', // required - paths of generated css files
+        },
+        watch: {
+          pattern: 'img/icons/*.svg', // required - watch these files to reload
+          cwd: 'src/', // optional - current working dir for watching
+        },
+      },
+    ),
 
     new SVGSpritemapPlugin('src/img/svg-sprite/*.svg', {
       output: {
@@ -150,6 +169,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Корзина',
+      filename: 'cart.html',
+      template: path.resolve(__dirname, 'src/cart.pug'),
+      chunks: ['cart', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',
@@ -208,13 +235,13 @@ const devConfig = {
   },
   devServer: {
     contentBase: distPath,
+    quiet: true,
     port: 9000,
     lazy: false,
-    host: '0.0.0.0',
     hot: true,
     inline: true,
     // compress: true,
-    open: true,
+    // open: true,
     historyApiFallback: true,
   },
 };
@@ -280,7 +307,7 @@ const prodConfig = {
         ],
       },
       {
-        test: /\.(eot|ttf|woff|woff2)$/,
+        test: /\.(svg|eot|ttf|woff|woff2)$/,
         use: [
           { loader: 'file-loader', options: { outputPath: './fonts', name: '[name].[ext]' } },
         ],

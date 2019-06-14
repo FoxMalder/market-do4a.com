@@ -125,24 +125,27 @@ block wrapper
                                     .p-price__note
                                         span.gray Цена актуальна только в интернет-магазине
                                         button.icon-tooltip(data-toggle="tooltip" title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия.")
-                                .p-control-buttons
+                                .p-control-fixed
                                     .p-control-counter
+                                        .p-control-counter__title Количество
                                         button.btn.btn-white.p-control-counter__minus -
                                         input.input-text.p-control-counter__input(value='1')
                                         button.btn.btn-white.p-control-counter__plus +
-                                    button.btn.btn-red.p-control-buttons__add-to-cart В корзину
+                                    button.btn.p-control-fixed__add-to-cart.added
+                                        i.p-control-fixed__icon
+                                        | В корзину
 
                             .p-detail__availability
-                                | В наличии сейчас в <a class="text-link" href="#">2 магазинах</a>
+                                | <i class="icon icon-circle-check green"></i> В наличии сейчас в <a class="text-link" href="#">2 магазинах</a>
 
-                            .p-delivery-info
-                                .p-delivery-info__row
-                                    span.p-delivery-info__key Самовывоз из <a class="text-link" href="#">2 магазинов</a> сегодня
-                                    span.p-delivery-info__value Бесплатно
-                                .p-delivery-info__row
-                                    span.p-delivery-info__key Курьером послезавтра
-                                    span.p-delivery-info__value Бесплатно от 2 990 ₽
-                                .p-delivery-info__bottom
+                            .p-detail-delivery
+                                .p-detail-delivery__row
+                                    span.p-detail-delivery__key Самовывоз из <a class="text-link" href="#">2 магазинов</a> сегодня
+                                    span.p-detail-delivery__value Бесплатно
+                                .p-detail-delivery__row
+                                    span.p-detail-delivery__key Курьером послезавтра
+                                    span.p-detail-delivery__value Бесплатно от 2 990 ₽
+                                .p-detail-delivery-info__bottom
                                     | Оплата при получении
                         .p-detail__col
                             .p-collapse

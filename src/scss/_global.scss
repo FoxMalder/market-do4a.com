@@ -100,6 +100,10 @@ h6 {
     font-size: 40px;
     line-height: 54px;
   }
+  h4 {
+    font-size: 23px;
+    line-height: 31px;
+  }
 }
 
 ::selection {
@@ -481,6 +485,10 @@ textarea.input-text {
   @include button-variant($main-color, $main-color, #1b1b1b, #1b1b1b);
 }
 
+.btn-green {
+  @include button-variant(#80c627, #80c627, #1b1b1b, #1b1b1b);
+}
+
 .btn-white {
   @include button-variant(#fff, #fff, #1b1b1b, #1b1b1b);
 }
@@ -510,6 +518,20 @@ textarea.input-text {
   @include button-outline-variant($green, #fff);
 }
 
+
+.form-group {
+  transform: $skew;
+  margin-bottom: 13px;
+
+  &_row {
+    display: flex;
+
+    .input-field + .input-field {
+      margin-left: 13px;
+    }
+  }
+}
+
 //
 // Аналог .form-group из bootstrap
 //
@@ -526,6 +548,36 @@ textarea.input-text {
   letter-spacing: .02em;
   line-height: $input-line-height;
   text-transform: uppercase;
+
+  &_primary {
+    display: block;
+    width: 100%;
+    //transform: $skew;
+
+    .input-field {
+      &__input {
+        background-color: #f7f7f7;
+
+        &:not(:focus) {
+          border-color: transparent;
+        }
+
+      }
+    }
+  }
+
+  &_primary-white {
+    .input-field {
+      &__input {
+        background-color: #fff;
+
+        &:not(:focus) {
+          border-color: transparent;
+        }
+
+      }
+    }
+  }
 
   &.active {
     .input-field {
@@ -717,7 +769,8 @@ textarea.input-text {
     margin-bottom: 12px;
   }
   @include media-breakpoint-up(xl) {
-    margin-bottom: 28px;
+    //margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
 

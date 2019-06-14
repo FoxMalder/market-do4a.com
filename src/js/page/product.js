@@ -51,6 +51,23 @@ function initProductCounter() {
   });
 }
 
+function initCartButton() {
+  const buttonEl = document.querySelector('.p-control-fixed__add-to-cart');
+
+  if (!buttonEl) {
+    return;
+  }
+
+  function addToCart() {
+    buttonEl.classList.toggle('added');
+  }
+
+  buttonEl.addEventListener('click', () => {
+    addToCart();
+  });
+
+}
+
 $(() => {
   $('[data-toggle="tooltip"]').tooltip();
   $('.p-control-select__header').dropdown({
@@ -59,4 +76,5 @@ $(() => {
 
   initProductSelect();
   initProductCounter();
+  initCartButton();
 });
