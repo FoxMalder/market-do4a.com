@@ -115,7 +115,7 @@ const cummonConfig = {
     }),
     new HtmlWebpackPlugin({
       title: 'Главная',
-      filename: 'index.html',
+      filename: 'main.html',
       template: path.resolve(__dirname, 'src/index.pug'),
       chunks: ['index', 'common', 'runtime'],
       minify: false,
@@ -308,6 +308,7 @@ const prodConfig = {
       },
       {
         test: /\.(svg|eot|ttf|woff|woff2)$/,
+        include: path.resolve(__dirname, 'src/fonts'),
         use: [
           { loader: 'file-loader', options: { outputPath: './fonts', name: '[name].[ext]' } },
         ],
