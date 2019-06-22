@@ -55,5 +55,59 @@ const Utils = {
     }
     return to;
   },
+
+
+  checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    }
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  },
+
+  parseJSON(response) {
+    return response.json();
+  },
+
+  /**
+   * Создает элемент из строки
+   *
+   * @param {String} html - html-код в виде строки
+   * @returns {ChildNode}
+   */
+  htmlToElement(html) {
+    const template = document.createElement('template');
+    html = html.trim(); // Never return a text node of whitespace as the result
+    template.innerHTML = html;
+    return template.content.firstChild;
+  },
+
+  /**
+   * Склонение слова в зависимости от числа
+   *
+   * @param {Number} n - Число
+   * @param {Array|String} titles - Слово или массив из форм слова [товар, товара, товаров]
+   * @returns {String}
+   */
+  declOfNum(n, titles) {
+    if (typeof titles === 'string' || titles.length !== 3) {
+      return titles;
+    }
+
+    return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
+  },
+
+  sendRequest(url, options = {}) {
+    return fetch(url, options)
+      .then(Utils.checkStatus)
+      .then(Utils.parseJSON)
+      .then((data) => {
+        if (data.success) {
+          return data.data;
+        }
+        throw data.message;
+      });
+  },
 };
 export default Utils;

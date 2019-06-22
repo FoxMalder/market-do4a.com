@@ -3,51 +3,14 @@ import SimpleBar from 'simplebar';
 import debounce from 'lodash.debounce';
 import StickySidebar from '../plugins/sticky-sidebar';
 
+import Utils from '../utils/utils';
+import Api from '../utils/Api';
+import ProductCard from '../components/ProductCard';
+
 
 let FilterForm;
 let productList;
 
-
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
-}
-
-function parseJSON(response) {
-  return response.json();
-}
-
-/**
- * Создает элемент из строки
- *
- * @param {String} html - html-код в виде строки
- * @returns {ChildNode}
- */
-function htmlToElement(html) {
-  const template = document.createElement('template');
-  html = html.trim(); // Never return a text node of whitespace as the result
-  template.innerHTML = html;
-  return template.content.firstChild;
-}
-
-/**
- * Склонение слова в зависимости от числа
- *
- * @param {Number} n - Число
- * @param {Array|String} titles - Слово или массив из форм слова [товар, товара, товаров]
- * @returns {String}
- */
-function declOfNum(n, titles) {
-  if (typeof titles === 'string' || titles.length !== 3) {
-    return titles;
-  }
-
-  return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
-}
 
 // function clearForm(form) {
 //   const inputs = form.getElementsByTagName('input');
@@ -84,119 +47,6 @@ function declOfNum(n, titles) {
 //   }
 // }
 
-class Product {
-  constructor(data) {
-    this.data = data;
-
-    this.el = null;
-    this.isFavorites = false;
-    this.favoritesButton = null;
-
-    this.init();
-  }
-
-  init() {
-    const el = document.createElement('div');
-    el.classList.add('product-card');
-
-    const wrapperEl = document.createElement('div');
-    wrapperEl.classList.add('product-card__wrapper');
-    wrapperEl.innerHTML = `
-      <div class="product-card__img">
-        <img src="https://marketdo4a.com${this.data.img}" srcset="https://marketdo4a.com${this.data.img2x} 2x" alt="${this.data.name}">
-      </div>
-      <div class="product-card__body">
-        <a class="product-card__title stretched-link" href="${this.data.url}" title="Перейти в карточку товара">${this.data.name}</a>
-        <div class="product-card__description">${this.data.section}</div>
-      </div>
-      <div class="product-card__footer">
-        <div class="product-card__price">
-          <span class="small">от</span>
-          <span class="price">${this.data.price}</span>
-          <span class="currency">₽</span>
-        </div>
-        <div class="product-card__sale">${this.data.price_benefit ? `Экономия до ${this.data.price_benefit} ₽` : ''}</div>
-        <div class="product-card__row">
-          <div class="product-card__reviews">
-            ${Product.getRatingEl(this.data.rating)}
-            <span>${this.data.review} ${declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
-          </div>                
-          <div class="product-card__stock">
-            <div class="${this.data.inAvailable ? 'green' : 'red'}">${this.data.inAvailable ? 'В наличии' : 'Нет в наличии'}</div>
-            <div>${this.data.pack_count} ${declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
-          </div>
-        </div>
-      </div>`;
-
-
-    const stickersEl = document.createElement('div');
-    stickersEl.classList.add('product-stickers');
-
-
-    const controlEl = document.createElement('div');
-    controlEl.classList.add('product-control');
-
-    const favoritesButton = document.createElement('button');
-    favoritesButton.classList.add('product-control__favorites');
-    if (this.isFavorites) {
-      favoritesButton.classList.add('added');
-    }
-    favoritesButton.innerHTML = '<svg><use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use></svg>';
-    favoritesButton.addEventListener('click', this.onClick);
-    controlEl.appendChild(favoritesButton);
-
-    this.favoritesButton = favoritesButton;
-
-
-    el.appendChild(wrapperEl);
-    el.appendChild(stickersEl);
-    el.appendChild(controlEl);
-
-    this.el = el;
-  }
-
-  onClick = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (this.isFavorites) {
-      this.removeFromFavorites();
-    } else {
-      this.addToFavorites();
-    }
-  };
-
-  addToFavorites() {
-    this.favoritesButton.classList.add('added');
-    ProductList.addToFavoritesAPI(this.data.id);
-    this.isFavorites = true;
-  }
-
-  removeFromFavorites() {
-    this.favoritesButton.classList.remove('added');
-    ProductList.removeFromFavoritesAPI(this.data.id);
-    this.isFavorites = false;
-  }
-
-  getElement() {
-    return this.el;
-  }
-
-  static getRatingEl(rating) {
-    if (rating < 3) return '';
-
-    const rounded = Math.round(rating);
-
-    let html = '<span class="product-card__rating">';
-    [0, 1, 2, 3, 4].forEach((i) => {
-      html += `<i class="i i-star${i < rounded ? ' red' : ''}"></i>`;
-    });
-    html += '</span>';
-
-    return html;
-  }
-}
-
 class ProductList {
   constructor(el) {
     this.listEl = el;
@@ -206,64 +56,26 @@ class ProductList {
   }
 
   init() {
-    $(this.listEl)
-      .on('click.product.favorites', '[data-product-toggle]', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const productId = $(event.currentTarget).parents('.product-card').data('product-id');
-        const toggle = $(event.currentTarget).data('product-toggle');
-
-        this.toggleFavorites(productId, toggle);
-      });
+    this.shownNumber = this.listEl.querySelectorAll('[data-product-id]').length;
+    // this.listEl.style.height = `${this.listEl.scrollHeight}px`;
   }
 
-  toggleFavorites = (productId, toggle) => {
-    const $productCard = $(`[data-product-id="${productId}"]`);
 
-    if (!productId || !$productCard.length) {
-      return;
-    }
-
-    if (toggle === 'add-favorites') {
-      if ($productCard.hasClass('added')) {
-        $productCard.removeClass('added');
-        $productCard.find('[data-product-toggle="add-favorites"]').removeClass('active');
-        ProductList.removeFromFavoritesAPI(productId);
-      } else {
-        $productCard.addClass('added');
-        $productCard.find('[data-product-toggle="add-favorites"]').addClass('active');
-        ProductList.addToFavoritesAPI(productId);
-      }
-    }
-
-    if (toggle === 'remove-favorites') {
-      if ($productCard.hasClass('removed')) {
-        $productCard.removeClass('removed');
-        $productCard.find('[data-product-toggle="remove-favorites"]').addClass('active');
-        ProductList.removeFromFavoritesAPI(productId);
-      } else {
-        $productCard.addClass('removed');
-        $productCard.find('[data-product-toggle="remove-favorites"]').removeClass('active');
-        ProductList.addToFavoritesAPI(productId);
-      }
-    }
-  };
-
-
-  /*
+  /**
    * Создает нужные элементы на основе входных данных и вставляет их на страницу
-   * Возвращает вставленное количество продуктов
+   *
+   * @param {Array} items - Массив вставляемых элементов
+   * @returns {Number} - Вставленное количество продуктов
    */
   parse(items) {
     return items.filter((item) => {
       let element;
 
       if (item.type === 'product') {
-        element = new Product(item.options);
+        element = new ProductCard(item.options);
         element = element.getElement();
       } else {
-        element = htmlToElement(item.html);
+        element = Utils.htmlToElement(item.html);
       }
 
       this.listEl.appendChild(element);
@@ -275,20 +87,14 @@ class ProductList {
   reload(items) {
     this.listEl.innerHTML = '';
     this.shownNumber = this.parse(items);
+    // this.listEl.style.height = `${this.listEl.scrollHeight}px`;
     return this.shownNumber;
   }
 
   add(items) {
     this.shownNumber += this.parse(items);
+    // this.listEl.style.height = `${this.listEl.scrollHeight}px`;
     return this.shownNumber;
-  }
-
-  static addToFavoritesAPI(productId) {
-    console.log(productId);
-  }
-
-  static removeFromFavoritesAPI(productId) {
-    console.log(productId);
   }
 }
 
@@ -748,13 +554,18 @@ class Filter {
 
     // Найдено: %s товаров
     this.totalNumberEl = document.querySelector('[data-total-find]');
-    // Показано %s из %s
-    this.shownNumberEl = document.querySelector('.load-more-block__value');
+
+    //
+    // Блок "Показать еще"
+    //
+    this.showMoreEl = document.querySelector('.load-more-block');
     // Кнопка "Показать еще"
-    this.showMoreButton = document.querySelector('.load-more-block__link');
+    this.showMoreButtonEl = document.querySelector('.load-more-block__link');
+    // Текст "Показано %s из %s"
+    this.showMoreTextEl = document.querySelector('.load-more-block__value');
 
 
-    this.update = debounce(this.update.bind(this), 1000);
+    this.update = debounce(this.update.bind(this), 500);
 
     this.init();
   }
@@ -771,13 +582,13 @@ class Filter {
     this.form.addEventListener('submit', this.onSubmit);
     this.form.addEventListener('reset', this.onReset);
     // this.form.addEventListener('change', this.onChange);
-    if (this.showMoreButton) this.showMoreButton.addEventListener('click', this.onClick);
+    if (this.showMoreButtonEl) this.showMoreButtonEl.addEventListener('click', this.onClick);
   }
 
-  onChange = (event) => {
-    event.preventDefault();
-    this.update();
-  };
+  // onChange = (event) => {
+  //   event.preventDefault();
+  //   this.update();
+  // };
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -786,16 +597,18 @@ class Filter {
 
   onReset = (event) => {
     event.preventDefault();
-    this.update();
     this.filterList.forEach(filter => filter.reset());
+    this.update();
   };
 
   onClick = (event) => {
     event.preventDefault();
+    if (this.showMoreEl) this.showMoreEl.classList.add('loading');
     this.nextPage();
   };
 
   update() {
+    this.itemList.listEl.classList.add('card-list_loading');
     this.sendRequest(1);
   }
 
@@ -813,22 +626,20 @@ class Filter {
       settings.body = formData;
     }
 
-    fetch(this.options.url || document.location.href, settings)
-      .then(checkStatus)
-      .then(parseJSON)
-      .then((response) => {
-        if (response.success) {
-          this.pageNumber = page;
-          this.totalNumber = response.data.count;
-          this.shownNumber = (page === 1)
-            ? this.itemList.reload(response.data.items)
-            : this.itemList.add(response.data.items);
+    Utils.sendRequest(this.options.url || document.location.href, settings)
+      .then((data) => {
+        this.pageNumber = page;
+        this.totalNumber = data.count;
+        this.shownNumber = (page === 1)
+          ? this.itemList.reload(data.items)
+          : this.itemList.add(data.items);
 
-          if (this.totalNumberEl) this.totalNumberEl.innerHTML = `${this.totalNumber} ${declOfNum(this.totalNumber, ['товар', 'товара', 'товаров'])}`;
-          if (this.shownNumberEl) this.shownNumberEl.innerHTML = `Показано ${this.shownNumber} из ${this.totalNumber}`;
+        if (this.totalNumberEl) this.totalNumberEl.innerHTML = `${this.totalNumber} ${Utils.declOfNum(this.totalNumber, ['товар', 'товара', 'товаров'])}`;
+        if (this.showMoreTextEl) this.showMoreTextEl.innerHTML = `Показано ${this.shownNumber} из ${this.totalNumber}`;
+        if (this.showMoreEl) this.showMoreEl.classList.remove('loading');
+        this.itemList.listEl.classList.remove('card-list_loading');
 
-          if (response.data.url) window.history.replaceState(null, null, response.data.url);
-        }
+        if (data.url) window.history.replaceState(null, null, data.url);
       })
       .catch((error) => {
         console.error(error);

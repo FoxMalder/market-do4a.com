@@ -18,6 +18,7 @@
           "review": 69,
           "rating": 4.6,
           "inAvailable": true,
+          "isFavorite": true,
           "section": "Сывороточный"
         }
       },
