@@ -236,7 +236,7 @@ export default class ProductCard {
         this.data.isFavorite = false;
       })
       .catch((er) => {
-        this.favoriteButtonEl.classList.remove('active');
+        this.favoriteButtonEl.classList.add('active');
         alert(er);
       });
   }

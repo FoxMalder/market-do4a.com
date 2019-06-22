@@ -594,6 +594,7 @@ $multifilter-padding-x: (
   display: flex;
   position: relative;
   align-items: center;
+  height: 50px;
 
   @include media-breakpoint-up(md) {
     display: inline-flex;
@@ -670,13 +671,13 @@ $multifilter-padding-x: (
       padding-right: 150px;
     }
 
-    .multifilter__value {
-      padding-right: 18px;
-    }
+    //.multifilter__value {
+    //  padding-right: 18px;
+    //}
 
-    .multifilter__total {
-      right: 6px;
-    }
+    //.multifilter__total {
+    //  right: 6px;
+    //}
   }
 
   &__content[data-toggle='dropdown'] {
@@ -737,21 +738,26 @@ $multifilter-padding-x: (
   &__total {
     display: inline-block;
     position: relative;
-    right: 0;
     min-width: 16px;
     height: 16px;
     padding: 3px 4px;
     border-radius: 8px;
-    background: #101010;
-    color: #fff;
     font-size: 11px;
     font-weight: 600;
     line-height: 1;
     text-align: center;
+    background: $main-color;
+    color: #fff;
+
+    right: 5px;
+    top: -10px;
 
     @include media-breakpoint-up(md) {
       position: absolute;
+      right: 0;
       top: calc(50% - 17px);
+      background: #101010;
+      //color: #fff;
     }
   }
 
@@ -1279,8 +1285,8 @@ $multifilter-menu-padding-x: 22px;
   position: relative;
   grid-gap: 0;
   grid-template-columns: repeat(2, minmax(100px, 1fr));
-  margin-right: (map_get($grid-gutter-width-map, xs) / -2);
-  margin-left: (map_get($grid-gutter-width-map, xs) / -2);
+  //margin-right: (map_get($grid-gutter-width-map, xs) / -2);
+  //margin-left: (map_get($grid-gutter-width-map, xs) / -2);
   transition: height .3s ease;
 
   @include media-breakpoint-up(md) {
@@ -1333,6 +1339,7 @@ $multifilter-menu-padding-x: 22px;
     > .vendor-card,
     > .product-card {
       background-color: #eee;
+
       > * {
         opacity: 0;
       }
