@@ -69,11 +69,10 @@ class Header {
       if (!this.favorites.notifications) {
         this.favorites.notifications = document.createElement('span');
         this.favorites.notifications.classList.add('header-control__notifications');
-        this.favorites.notifications.innerHtml = 0;
-        this.favorites.notifications.style.display = 'none';
         this.favorites.button.appendChild(this.favorites.notifications);
       }
       this.favorites.count = parseInt(this.favorites.notifications.innerHTML, 10) || 0;
+      this.favorites.notifications.style.display = (this.favorites.count < 1) ? 'none' : '';
     }
 
     window.app.Header = this;
@@ -84,7 +83,7 @@ class Header {
    *
    * @param {Number} count - Новое количество товаров в избранном
    */
-  updateFavorites(count) {
+  setFavorites(count) {
     if (this.favorites.button && this.favorites.count !== count) {
       this.favorites.notifications.innerHTML = String(count);
       this.favorites.notifications.style.display = (count < 1) ? 'none' : '';

@@ -17,7 +17,7 @@ const Api = {
       // })
       return Utils.sendRequest(`/ajax/favorite/add/${id}`)
         .then((array) => {
-          window.app.Header.updateFavorites(array.length);
+          window.app.Header.setFavorites(array.length);
           return array;
         });
     },
@@ -27,13 +27,12 @@ const Api = {
      * @returns {Promise}
      */
     delete(id) {
-
       // return new Promise((resolve, reject) => {
       //   resolve([]);
       // })
       return Utils.sendRequest(`/ajax/favorite/delete/${id}`)
         .then((array) => {
-          window.app.Header.updateFavorites(array.length);
+          window.app.Header.setFavorites(array.length);
 
           return array;
         });
