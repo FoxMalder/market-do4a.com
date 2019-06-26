@@ -24,6 +24,8 @@ $skew-reverse: skew(-$transform-skew-deg);
 
 // Переопределение bootstrap
 //
+$yiq-contrasted-threshold:  160;
+
 // Typography
 $font-size-base: 1rem;
 $font-family-base: $font-family-inter-ui;
@@ -147,3 +149,23 @@ $tooltip-margin:                    0 0 0 150px !default;
 $tooltip-arrow-width:               .8rem !default;
 $tooltip-arrow-height:              .4rem !default;
 $tooltip-arrow-color:               $tooltip-bg !default;
+
+
+
+
+// Buttos
+//
+//
+
+$btn-padding-y:               18.5px;
+$btn-padding-x:               10px;
+$btn-font-family:             $font-family-bender;
+$btn-font-size:               18px;
+$btn-line-height:             1.5;
+
+$btn-padding-y-sm:            15px;
+$btn-padding-x-sm:            10px;
+$btn-font-size-sm:            16px;
+$btn-line-height-sm:          1.5;
+
+$btn-border-width:            3px;

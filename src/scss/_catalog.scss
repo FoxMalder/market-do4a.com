@@ -489,7 +489,19 @@ $multifilter-padding-x: (
     @extend %button-reset;
     @include title;
     flex: 1 1;
-    height: 60px;
+    //height: 60px;
+    //font-size: 16px;
+    //line-height: 1;
+    //border: 0;
+    padding-bottom: calc(15px + var(--safe-area-inset-bottom));
+
+    &:first-child {
+      padding-left: var(--safe-area-inset-left);
+    }
+
+    &:last-child {
+      padding-right: var(--safe-area-inset-right);
+    }
   }
 }
 
@@ -738,24 +750,24 @@ $multifilter-padding-x: (
   &__total {
     display: inline-block;
     position: relative;
+    top: -10px;
+    right: 5px;
     min-width: 16px;
     height: 16px;
     padding: 3px 4px;
     border-radius: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1;
-    text-align: center;
     background: $main-color;
     color: #fff;
+    font-size: 11px;
+    font-weight: 600;
 
-    right: 5px;
-    top: -10px;
+    line-height: 1;
+    text-align: center;
 
     @include media-breakpoint-up(md) {
       position: absolute;
-      right: 0;
       top: calc(50% - 17px);
+      right: 0;
       background: #101010;
       //color: #fff;
     }

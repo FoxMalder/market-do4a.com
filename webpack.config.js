@@ -51,21 +51,24 @@ const cummonConfig = {
     // publicPath: '',
   },
 
-  externals: ['app'],
+  externals: {
+    app: 'app',
+    jquery: 'jQuery',
+  },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
     new CopyPlugin([
       { from: './src/static', to: 'static' },
     ]),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      // 'window.$': 'jquery',
-      // 'window.jQuery': 'jquery',
-
-      // Костыль, чтоб подключить OwlCarousel2 и воткнуть jQuery в глобальную область видимости
-      'window.Zepto': 'jquery',
-    }),
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    //   // 'window.$': 'jquery',
+    //   // 'window.jQuery': 'jquery',
+    //
+    //   // Костыль, чтоб подключить OwlCarousel2 и воткнуть jQuery в глобальную область видимости
+    //   'window.Zepto': 'jquery',
+    // }),
 
     new IconfontPlugin(
       {
@@ -240,6 +243,7 @@ const devConfig = {
     lazy: false,
     hot: true,
     inline: true,
+    host: '0.0.0.0',
     // compress: true,
     // open: true,
     historyApiFallback: true,

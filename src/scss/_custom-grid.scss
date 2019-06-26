@@ -5,8 +5,8 @@
 @mixin make-container($gutter: $grid-gutter-width) {
   width: 100%;
   @if $gutter != 0 {
-    padding-right: $gutter / 2;
-    padding-left: $gutter / 2;
+    padding-right: calc(#{$gutter / 2} + var(--safe-area-inset-right));
+    padding-left: calc(#{$gutter / 2} + var(--safe-area-inset-left));
   }
   margin-right: auto;
   margin-left: auto;
@@ -47,8 +47,10 @@
   //}
 
   @include media-breakpoint-up(sm) {
-    padding-right: map_get($grid-gutter-width-map, sm) / 2; // 20
-    padding-left: map_get($grid-gutter-width-map, sm) / 2; // 20
+    //padding-right: calc(#{map_get($grid-gutter-width-map, sm) / 2} + var(--safe-area-inset-right)); // 20
+    //padding-left: calc(#{map_get($grid-gutter-width-map, sm) / 2} + var(--safe-area-inset-left)); // 20
+    padding-left: 10px;
+    padding-right: 10px;
   }
   //@include media-breakpoint-up(xl) {
   //  padding-left: map_get($grid-gutter-width-map, xl) / 2; // 24

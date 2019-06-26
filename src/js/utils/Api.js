@@ -46,6 +46,31 @@ const Api = {
         });
     },
   },
+  cart: {
+    add(id) {
+      const promise = new Promise((resolve, reject) => {
+        resolve();
+      });
+
+      promise.then(() => {
+        console.log('Добавлено в корзину:', id);
+      });
+
+      return promise;
+    },
+    remove(id) {
+      const promise = new Promise((resolve, reject) => {
+        resolve();
+      });
+
+      promise.then(() => {
+        console.log('Удалено из корзины:', id);
+      });
+
+
+      return promise;
+    },
+  },
 };
 
 export default Api;

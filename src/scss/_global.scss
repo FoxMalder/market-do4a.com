@@ -22,6 +22,29 @@
 //  }
 //}
 
+:root {
+  /* -------------------------------------------------------------------
+      Assign the default/constant/env values to CSS variables
+  */
+  --safe-area-inset-top   : 0px;
+  --safe-area-inset-right : 0px;
+  --safe-area-inset-bottom: 0px;
+  --safe-area-inset-left  : 0px;
+
+  @supports (top: constant(safe-area-inset-top)){
+    --safe-area-inset-top   : constant(safe-area-inset-top);
+    --safe-area-inset-right : constant(safe-area-inset-right);
+    --safe-area-inset-bottom: constant(safe-area-inset-bottom);
+    --safe-area-inset-left  : constant(safe-area-inset-left);
+  }
+
+  @supports (top: env(safe-area-inset-top)){
+    --safe-area-inset-top   : env(safe-area-inset-top);
+    --safe-area-inset-right : env(safe-area-inset-right);
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+    --safe-area-inset-left  : env(safe-area-inset-left);
+  }
+}
 
 body {
   font-size: .875rem;
@@ -34,11 +57,6 @@ body {
     font-family: $font-family-inter-ui-var;
   }
 }
-
-//html,
-//body {
-//  height: 100%;
-//}
 
 body,
 input,
@@ -191,7 +209,7 @@ $input-border-width: 3px;
   font-weight: 900;
   letter-spacing: .02em;
   line-height: $input-line-height;
-  //appearance: none;
+  appearance: none;
 
   //@include mre-height-block($input-font-size, ($input-height - $input-border-width * 2), $input-line-height);
 
@@ -379,24 +397,19 @@ textarea.input-text {
 // Buttons
 
 .btn {
-  $btn-height: 70px;
-  $btn-padding-x: 10px;
-  $btn-font-size: 18px;
-  $btn-line-height: 1.5;
-  $btn-border-width: 3px;
   display: inline-block;
-
   position: relative;
-  padding-right: $btn-padding-x;
 
-  padding-left: $btn-padding-x;
+  padding: $btn-padding-y-sm $btn-padding-x-sm;
+  font-size: $btn-font-size-sm;
+  line-height: $btn-line-height-sm;
+
   border: $btn-border-width solid transparent;
   background-color: transparent;
-  color: black;
-  font-family: $font-family-bender;
+  color: #000;
+  font-family: $btn-font-family;
   font-style: normal;
   font-weight: 900;
-
   letter-spacing: .02em;
   text-align: center;
   text-transform: uppercase;
@@ -404,10 +417,10 @@ textarea.input-text {
   user-select: none;
   @include transition($btn-transition);
 
-  @include mre-height-block(16px, 60px, 1.5, $btn-border-width);
   @include media-breakpoint-up(xl) {
-    @include mre-height-block(18px, 70px, 1.5, $btn-border-width);
-    //@include mre-height-block($btn-font-size, $btn-height, $btn-line-height, rem);
+    padding: $btn-padding-y $btn-padding-x;
+    font-size: $btn-font-size;
+    line-height: $btn-line-height;
   }
 
   @include hover {
@@ -432,9 +445,9 @@ textarea.input-text {
   &:not(:disabled):not(.disabled).active {
     @include box-shadow($btn-active-box-shadow);
 
-    &:focus {
-      @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
-    }
+    //&:focus {
+    //  @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+    //}
   }
 }
 
@@ -487,7 +500,22 @@ textarea.input-text {
 }
 
 .btn-green {
-  @include button-variant(#80c627, #80c627, #1b1b1b, #1b1b1b);
+  @include button-variant(#80c627, #80c627);
+  //color: #fff;
+  //background-color: #80c627;
+  //border-color: #80c627;
+  //
+  //@include hover {
+  //  color: #fff;
+  //  background-color: darken(#80c627, 7.5%);
+  //  border-color: darken(#80c627, 7.5%);
+  //}
+  //
+  //&:active {
+  //  color: #fff;
+  //  background-color: darken(#80c627, 7.5%);
+  //  border-color: darken(#80c627, 7.5%);
+  //}
 }
 
 .btn-white {

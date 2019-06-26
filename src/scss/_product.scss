@@ -461,16 +461,17 @@
   &__add-to-cart {
     //flex: 0 0 100%;
     width: 100%;
+    padding-bottom: calc(#{$btn-padding-y-sm} + var(--safe-area-inset-bottom));
     @extend .btn-red;
 
-    &.added {
-      border-color: #80c627;
-      background-color: #80c627;
-
-      .p-control-fixed__icon {
-        @include sprite('added-to-cart');
-      }
-    }
+    //&.active {
+    //  border-color: #80c627;
+    //  background-color: #80c627;
+    //
+    //  //.p-control-fixed__icon {
+    //  //  @include sprite('added-to-cart');
+    //  //}
+    //}
 
     @include media-breakpoint-up(md) {
       transform: $skew;
@@ -483,9 +484,9 @@
     width: 22px;
     height: 21px;
     margin-right: 10px;
-    transform: $skew-reverse;
+    //transform: $skew-reverse;
     vertical-align: middle;
-    @include sprite('add-to-cart');
+    //@include sprite('add-to-cart');
   }
 }
 
@@ -748,14 +749,65 @@
  * Выбор  количества
  */
 .p-control-counter {
-  display: none;
-  height: 56px;
-  margin-right: -5px;
-  margin-bottom: 22px;
-  margin-left: -5px;
-  transform: $skew;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
   //transform: matrix(1, 0, -9px, 1, 0, 0);
   //transform-origin: bottom;
+
+  @include media-breakpoint-down(sm) {
+    margin-bottom: 12px;
+    padding-top: 16px;
+    padding-right: calc(#{map_get($grid-gutter-width-map, xs) / 2} + var(--safe-area-inset-right));
+    padding-bottom: 23px;
+    padding-left: calc(#{map_get($grid-gutter-width-map, xs) / 2} + var(--safe-area-inset-left));
+    background-color: #fff;
+    box-shadow: 0 4px 34px rgba(0, 0, 0, 0.1);
+    transition: all .3s ease-in-out;
+    transform: translateY(100%);
+    opacity: 0;
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    &::before {
+      $caret-width: 12px;
+      content: '';
+      position: absolute;
+      bottom: -$caret-width;
+      left: 50%;
+      margin-left: -$caret-width;
+
+      border-top: $caret-width solid #fff;
+      border-right: $caret-width solid transparent;
+      border-bottom: 0;
+      border-left: $caret-width solid transparent;
+    }
+
+    &__minus,
+    &__plus {
+      border-color: transparent;
+      background-color: #f5f5f5;
+    }
+  }
+
+  &__title {
+    @include title;
+    flex: 0 0 100%;
+    margin-bottom: 16px;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
+  &__input {
+
+  }
 
   > .btn,
   > .input-text {
@@ -765,12 +817,17 @@
     margin-left: 5px;
     padding-top: 10px;
     padding-bottom: 10px;
+    transform: $skew;
     font-size: 20px;
     text-align: center;
   }
 
   @include media-breakpoint-up(md) {
     display: flex;
+    height: 56px;
+    margin-right: -5px;
+    margin-bottom: 22px;
+    margin-left: -5px;
   }
 }
 
@@ -789,7 +846,6 @@
     padding-bottom: 44px;
     font-size: 16px;
     line-height: 1.6875;
-
   }
 
   &__title {
@@ -1225,7 +1281,7 @@
   &__body {
     padding: 21px (map_get($grid-gutter-width-map, xs) / 2) 27px;
     @include media-breakpoint-up(md) {
-      flex: 1 0 auto;
+      flex: 1 0;
       padding: 21px 0 27px 26px;
     }
     @include media-breakpoint-up(xl) {
