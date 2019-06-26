@@ -42,7 +42,10 @@ $(() => {
 
   // svg4everybody();
 
-
-  window.app.Header = new Header();
+  try {
+    new Header();
+  } catch (e) {
+    console.error(e);
+  }
   Input();
 });

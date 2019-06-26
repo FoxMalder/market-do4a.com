@@ -12,16 +12,12 @@ const Api = {
      * @returns {Promise}
      */
     add(id) {
+      // return new Promise((resolve, reject) => {
+      //   resolve([111, 2345]);
+      // })
       return Utils.sendRequest(`/ajax/favorite/add/${id}`)
         .then((array) => {
-          const $headerCount = $('.header-control__button_favorites').find('.header-control__notifications');
-
-          if (array.length) {
-            $headerCount.show();
-            $headerCount.html(array.length);
-          } else {
-            $headerCount.hide();
-          }
+          window.app.Header.updateFavorites(array.length);
           return array;
         });
     },
@@ -31,16 +27,13 @@ const Api = {
      * @returns {Promise}
      */
     delete(id) {
+
+      // return new Promise((resolve, reject) => {
+      //   resolve([]);
+      // })
       return Utils.sendRequest(`/ajax/favorite/delete/${id}`)
         .then((array) => {
-          const $headerCount = $('.header-control__button_favorites').find('.header-control__notifications');
-
-          if (array.length) {
-            $headerCount.show();
-            $headerCount.html(array.length);
-          } else {
-            $headerCount.hide();
-          }
+          window.app.Header.updateFavorites(array.length);
 
           return array;
         });

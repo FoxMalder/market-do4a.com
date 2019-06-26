@@ -21,6 +21,8 @@ class Header {
       fixedBreakpointsOffset: 600,
     };
 
+    this.favorites = {};
+
     this.menu = {
       opened: false,
       targets: Utils.parseTargets('.mobile-menu'),
@@ -60,6 +62,34 @@ class Header {
     //   stickyClass: 'fixed',
     // });
     // Utils.parseTargets('.h-category__link').map()
+
+    this.favorites.button = document.querySelector('.header-control__button_favorites');
+    if (this.favorites.button) {
+      this.favorites.notifications = this.favorites.button.querySelector('.header-control__notifications');
+      if (!this.favorites.notifications) {
+        this.favorites.notifications = document.createElement('span');
+        this.favorites.notifications.classList.add('header-control__notifications');
+        this.favorites.notifications.innerHtml = 0;
+        this.favorites.notifications.style.display = 'none';
+        this.favorites.button.appendChild(this.favorites.notifications);
+      }
+      this.favorites.count = parseInt(this.favorites.notifications.innerHTML, 10) || 0;
+    }
+
+    window.app.Header = this;
+  }
+
+  /**
+   * Обновить количество товаров в избранном
+   *
+   * @param {Number} count - Новое количество товаров в избранном
+   */
+  updateFavorites(count) {
+    if (this.favorites.button && this.favorites.count !== count) {
+      this.favorites.notifications.innerHTML = String(count);
+      this.favorites.notifications.style.display = (count < 1) ? 'none' : '';
+      this.favorites.count = count;
+    }
   }
 
   initCityContainer = () => {
