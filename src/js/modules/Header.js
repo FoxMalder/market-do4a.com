@@ -79,9 +79,10 @@ class Header {
   }
 
   /**
-   * Обновить количество товаров в избранном
+   * Установить количество товаров в избранном
    *
-   * @param {Number} count - Новое количество товаров в избранном
+   * @param {Number} count - Устанавливаемое число
+   * @returns {*}
    */
   setFavorites(count) {
     if (this.favorites.button && this.favorites.count !== count) {
@@ -89,6 +90,7 @@ class Header {
       this.favorites.notifications.style.display = (count < 1) ? 'none' : '';
       this.favorites.count = count;
     }
+    return count;
   }
 
   initCityContainer = () => {

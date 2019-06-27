@@ -213,7 +213,7 @@ export default class ProductCard {
   addToFavorites() {
     this.favoriteButtonEl.classList.add('active');
 
-    Api.favorites
+    return Api.favorites
       .add(this.data.id)
       .then((data) => {
         this.data.isFavorite = true;
@@ -230,7 +230,7 @@ export default class ProductCard {
    */
   removeFromFavorites() {
     this.favoriteButtonEl.classList.remove('active');
-    Api.favorites
+    return Api.favorites
       .delete(this.data.id)
       .then((data) => {
         this.data.isFavorite = false;

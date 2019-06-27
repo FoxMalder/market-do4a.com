@@ -1702,7 +1702,7 @@ $multifilter-menu-padding-x: 22px;
         fill-opacity: 1;
       }
 
-      &[data-product-toggle='remove-favorites'] {
+      &[data-toggle="product.favorites.remove"] {
         &::before {
           content: '';
           position: absolute;

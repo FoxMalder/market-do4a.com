@@ -94,6 +94,32 @@
   }
 }
 
+.mobile-menu-second-level {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #1b1b1b;
+
+  &__header {
+    flex: 0 0 auto;
+    padding: 18px 20px;
+  }
+
+  &__title {
+
+  }
+
+  &__wrapper {
+    flex: 1 1;
+    padding: 18px 20px;
+    overflow: auto;
+  }
+}
+
 .header-banner {
   position: relative;
   z-index: 1000;
@@ -1080,8 +1106,8 @@
     width: 100%;
     height: 100%;
 
-    padding-left: calc(20px + var(--safe-area-inset-left));
     padding-right: calc(75px + var(--safe-area-inset-right));
+    padding-left: calc(20px + var(--safe-area-inset-left));
 
     border-color: #eee;
     background-color: #eee;
