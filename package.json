@@ -16,7 +16,7 @@
     "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
     "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "latest",
+    "lodash.throttle": "^4.1.1",
     "nouislider": "^13.1.4",
     "owl.carousel": "^2.3.4",
     "popper.js": "^1.14.7",

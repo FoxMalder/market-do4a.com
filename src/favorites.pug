@@ -47,10 +47,10 @@ block wrapper
                         .sorting__list
                             .multifilter
                                 .multifilter__content
-                                    span.multifilter__label В изрбанном
-                                    span.multifilter__value 12 товаров
+                                    span.multifilter__label В избранном:
+                                    span.multifilter__value(data-total-find) 12 товаров
 
-                            .multifilter
+                            fieldset.multifilter
                                 button.multifilter__content(data-toggle="dropdown")
                                     span.multifilter__value Сначала дешевые
                                 button.multifilter__btn-clear Сбросить
@@ -97,7 +97,7 @@ block wrapper
                                             | По названию (Я-А)
 
                         .sorting__checkbox-container
-                            .multifilter
+                            fieldset.multifilter
                                 .multifilter__content
                                     .input-checkbox
                                         input.input-checkbox__input(type="checkbox" id="customCheck1")

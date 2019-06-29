@@ -34,6 +34,10 @@ $.fancybox.defaults.i18n.ru = {
   ZOOM: 'Увеличить',
 };
 
+if (!Object.prototype.hasOwnProperty.call(window, 'app')) {
+  window.app = {};
+}
+
 $(() => {
   // $(document).on('click.bs.dropdown', '.multifilter [role="form"]', (e) => {
   $(document).on('click.bs.dropdown', '.dropdown-menu[role="form"]', (e) => {
@@ -43,9 +47,10 @@ $(() => {
   // svg4everybody();
 
   try {
-    new Header();
+    window.app.Header = new Header();
   } catch (e) {
     console.error(e);
   }
+
   Input();
 });

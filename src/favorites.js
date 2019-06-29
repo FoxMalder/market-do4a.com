@@ -1,7 +1,9 @@
 import './scss/main.scss';
 
 import './js/common';
-import { Filter } from './js/page/catalog';
+import { Filter, CatalogControl } from './js/page/catalog';
+// import ProductCard from '../components/ProductCard';
+import Utils from './js/utils/utils';
 
 if (process.env.NODE_ENV !== 'production') {
   require('./favorites.pug');
@@ -9,5 +11,17 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 $(() => {
-  new Filter(document.querySelector('.wrapper'));
+  const control = new CatalogControl({
+    sorting: document.querySelector('.sorting'),
+    quantity: document.querySelector('[data-total-find]'),
+    form: document.getElementById('catalog-filter'),
+  }, {
+    ajax: false,
+  });
+
+  console.log(control);
+
+  window.addEventListener('favorites', (event) => {
+    control.setNumber(event.detail.length);
+  });
 });

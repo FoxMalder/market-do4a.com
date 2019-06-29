@@ -26,8 +26,10 @@ export default class ProductCard {
      */
 
     this.el = el;
-
     this.favoriteButtonEl = null;
+
+    this.removable = false;
+
 
     this.init();
   }
@@ -133,6 +135,9 @@ export default class ProductCard {
       this.initDOM();
     } else {
       this.favoriteButtonEl = this.el.querySelector('.product-control__favorites');
+      if (this.favoriteButtonEl.getAttribute('data-toggle') === 'product.favorites.remove') {
+        this.removable = true;
+      }
     }
 
     this.favoriteButtonEl.addEventListener('click', this.onClick);
@@ -215,7 +220,7 @@ export default class ProductCard {
 
     return Api.favorites
       .add(this.data.id)
-      .then((data) => {
+      .then(() => {
         this.data.isFavorite = true;
       })
       .catch((er) => {
@@ -230,13 +235,22 @@ export default class ProductCard {
    */
   removeFromFavorites() {
     this.favoriteButtonEl.classList.remove('active');
+
+    if (this.removable) {
+      this.el.style.display = 'none';
+    }
+
     return Api.favorites
       .delete(this.data.id)
-      .then((data) => {
+      .then(() => {
         this.data.isFavorite = false;
+        if (this.removable) {
+          this.el.parentNode.removeChild(this.el);
+        }
       })
       .catch((er) => {
         this.favoriteButtonEl.classList.add('active');
+        this.el.style.display = '';
         alert(er);
       });
   }

@@ -74,8 +74,7 @@ class Header {
       this.favorites.count = parseInt(this.favorites.notifications.innerHTML, 10) || 0;
       this.favorites.notifications.style.display = (this.favorites.count < 1) ? 'none' : '';
     }
-
-    window.app.Header = this;
+    window.addEventListener('favorites', event => this.setFavorites(event.detail.length));
   }
 
   /**
