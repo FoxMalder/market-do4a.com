@@ -72,6 +72,7 @@ function initVendorsList() {
     breakAt: {
       1240: 6,
       768: 4,
+      576: 3,
     },
   });
   $('.multifilter__tab').on('shown.bs.tab', () => {

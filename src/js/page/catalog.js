@@ -413,8 +413,9 @@ export class CatalogControl {
   /**
    * Изменение значений фильтра
    */
-  onChange = (event) => {
-    if (event) event.preventDefault();
+  onChange = () => {
+    // console.log(event);
+    // if (event) event.preventDefault();
     this.containerEl.classList.add(this.classNames.cardListLoading);
 
     console.log('onChange');

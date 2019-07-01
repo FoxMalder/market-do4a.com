@@ -21,7 +21,7 @@ export class Multifilter {
 
     if (this.options.type === 'simple') {
       // this.inputList.forEach(item => item.addEventListener('change', this.callback));
-      this.el.addEventListener('change', this.callback(this));
+      this.el.addEventListener('change', event => this.callback(event));
     }
   }
 

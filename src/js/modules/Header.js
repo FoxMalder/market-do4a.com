@@ -15,7 +15,11 @@ class Menu {
       return;
     }
 
-    this.overlay = document.querySelector('.mobile-menu__overlay');
+    this.overlayEl = document.querySelector('.mobile-menu__overlay');
+
+    this.subMenuEl = this.el.querySelectorAll('[data-toggle="submenu"]');
+    this.subMenuBackEl = this.el.querySelectorAll('.m-submenu__back');
+    this.activeSubMenu = [];
 
     this.isOpened = false;
 
@@ -24,9 +28,10 @@ class Menu {
 
   init() {
     Array.prototype.forEach.call(this.controls, item => item.addEventListener('click', this.toggleMenu));
-
-    if (this.overlay) {
-      this.overlay.addEventListener('click', this.toggleMenu);
+    Array.prototype.forEach.call(this.subMenuEl, item => item.addEventListener('click', this.subMenuOnClick));
+    Array.prototype.forEach.call(this.subMenuBackEl, item => item.addEventListener('click', this.subMenuOnClick));
+    if (this.overlayEl) {
+      this.overlayEl.addEventListener('click', this.toggleMenu);
     }
   }
 
@@ -44,6 +49,32 @@ class Menu {
       this.open();
     }
   };
+
+  subMenuOnClick = (event) => {
+    event.preventDefault();
+
+    if (event.target.classList.contains('m-submenu__back')) {
+      this.back();
+    } else if (event.target.nextElementSibling) {
+      this.next(event.target.nextElementSibling);
+    }
+  };
+
+  next(menu) {
+    menu.classList.add('active');
+
+    this.activeSubMenu.push(menu);
+  }
+
+  back() {
+    console.log(this.activeSubMenu);
+    if (this.activeSubMenu.length > 0) {
+      const el = this.activeSubMenu[this.activeSubMenu.length - 1];
+
+      el.classList.remove('active');
+      this.activeSubMenu.splice(this.activeSubMenu.length - 1);
+    }
+  }
 
   open() {
     document.body.style.overflow = 'hidden';

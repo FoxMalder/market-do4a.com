@@ -1,8 +1,9 @@
 $__iconfont__data: map-merge(if(global_variable_exists('__iconfont__data'), $__iconfont__data, ()), (
 	"iconfont": (
-		"check": "\ea01",
-		"circle-check": "\ea02",
-		"delete": "\ea03"
+		"back-left": "\ea01",
+		"check": "\ea02",
+		"circle-check": "\ea03",
+		"delete": "\ea04"
 	)
 ));
 
