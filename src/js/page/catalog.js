@@ -272,6 +272,8 @@ export class CatalogControl {
     this.containerEl = elements.container || document.querySelector('.card-list');
     // this.Container = null;
 
+    this.breadcumps = document.querySelector('.breadcumps');
+
 
     this.showMoreEl = null;
     this.showMoreButtonEl = null;
@@ -411,6 +413,27 @@ export class CatalogControl {
   }
 
   /**
+   * Обновить хлебные крошки
+   * @param {Array} array - Массив "крошек"
+   * @param {String} title - Заголовок страницы
+   */
+  setBreadcumps(array, title = '') {
+    let html = '';
+    array.forEach((item, i) => {
+      if (i < array.length - 1) {
+        html += `<a class="breadcumps__link red" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
+      } else {
+        html += `<span class="breadcumps__page">${item.name}</span>`;
+      }
+    });
+    this.breadcumps.innerHTML = html;
+
+    if (title) {
+      document.title = title;
+    }
+  }
+
+  /**
    * Изменение значений фильтра
    */
   onChange = () => {
@@ -527,6 +550,7 @@ export class CatalogControl {
         this.setNumber(data.count, this.shownCards);
 
         if (data.url) window.history.replaceState(null, null, data.url);
+        if (data.tags && this.breadcumps) this.setBreadcumps(data.tags.breadcrump, data.tags.title);
       })
       .catch((error) => {
         console.error(error);
