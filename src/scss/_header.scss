@@ -18,6 +18,7 @@
   transition-duration: .3s;
   color: #fff;
 
+
   &.active {
     visibility: visible;
 
@@ -48,6 +49,7 @@
     opacity: 0;
     //opacity: 0.8;
     background: #1b1b1b;
+    cursor: pointer;
   }
 
   &__wrapper {
@@ -56,18 +58,20 @@
     //top: 0;
     left: 0;
     flex: 1 1 100%;
-    width: 300px;
-    padding-top: 10px;
+    width: calc(300px + var(--safe-area-inset-left));
     padding-bottom: calc(10px + var(--safe-area-inset-bottom));
-    padding-left: var(--safe-area-inset-left);
+    padding-left: $container-padding-left-mobile;
+    padding-right: $container-padding-x;
     overflow: auto;
     transform: translateX(-100%);
     transition: transform .3s ease;
     background: #1b1b1b;
+    //background: #eee url('../img/rm/menu.png') left top no-repeat;
   }
 
   &__block {
-    padding: 18px 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 }
 
@@ -103,6 +107,8 @@
   width: 100%;
   height: 100%;
   background-color: #1b1b1b;
+
+  display: none;
 
   &__header {
     flex: 0 0 auto;
@@ -390,7 +396,7 @@
 
 .header-number {
   font-family: $font-family-bender;
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
   font-weight: $font-weight-bold;
   line-height: normal;
@@ -403,6 +409,9 @@
     margin-right: 4px;
     vertical-align: 0;
   }
+  @include media-breakpoint-up(xl) {
+    font-size: 15px;
+  }
 }
 
 
@@ -413,12 +422,14 @@
 .h-navbar-collapse {
   //background: url("../img/rm/change-city.png") center top no-repeat;
   //transition: height .7s ease-in-out;
-  position: absolute;
-  z-index: 940;
-  top: 24px;
-  right: 0;
-  left: 0;
-  max-height: calc(100vh - 24px);
+
+  //position: absolute;
+  //z-index: 940;
+  //top: 24px;
+  //right: 0;
+  //left: 0;
+  //max-height: calc(100vh - 24px);
+  //max-height: 90vh;
   overflow: auto;
   transform: translateZ(0);
   background-color: #1b1b1b;

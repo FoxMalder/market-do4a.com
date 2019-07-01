@@ -29,14 +29,77 @@ block wrapper
                 .container
                     .view
                         .view__category
-                            form.multifilter
+                            fieldset.multifilter
                                 button.multifilter__content(data-toggle="dropdown" type="button")
                                     span.multifilter__label Показывать для категорий:
-                                    span.multifilter__value Протеины, Гейнеры, Аминокислоты
-                                    span.multifilter__total 23
-                                button.multifilter__btn-clear(type="reset") Сбросить
+                                    span.multifilter__value Всех категорий
                                 .dropdown-menu(role="form")
-                                    .p-1 dropdown
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="1053" name="categoryAll[]" value="1053")
+                                        label.multifilter-checkbox__label(for="1053") Пояса и ремни
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="1051" name="categoryAll[]" value="1051")
+                                        label.multifilter-checkbox__label(for="1051") Магнезия
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="1054" name="categoryAll[]" value="1054")
+                                        label.multifilter-checkbox__label(for="1054") Кинезио тейпы
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="1052" name="categoryAll[]" value="1052")
+                                        label.multifilter-checkbox__label(for="1052") Обувь и штангетки
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="1055" name="categoryAll[]" value="1055")
+                                        label.multifilter-checkbox__label(for="1055") Экипировка прочая
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="973" name="categoryAll[]" value="973")
+                                        label.multifilter-checkbox__label(for="973") Одежда
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="974" name="categoryAll[]" value="974")
+                                        label.multifilter-checkbox__label(for="974") Женская одежда
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="976" name="categoryAll[]" value="976")
+                                        label.multifilter-checkbox__label(for="976") Лосины и штаны
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="977" name="categoryAll[]" value="977")
+                                        label.multifilter-checkbox__label(for="977") Толстовки и костюмы
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="975" name="categoryAll[]" value="975")
+                                        label.multifilter-checkbox__label(for="975") Купальники
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="978" name="categoryAll[]" value="978")
+                                        label.multifilter-checkbox__label(for="978") Топы и рашгарды
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="979" name="categoryAll[]" value="979")
+                                        label.multifilter-checkbox__label(for="979") Шапки и кепки
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="980" name="categoryAll[]" value="980")
+                                        label.multifilter-checkbox__label(for="980") Шорты
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="981" name="categoryAll[]" value="981")
+                                        label.multifilter-checkbox__label(for="981") Мужская одежда
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="982" name="categoryAll[]" value="982")
+                                        label.multifilter-checkbox__label(for="982") Рашгарды и лосины
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="983" name="categoryAll[]" value="983")
+                                        label.multifilter-checkbox__label(for="983") Толстовки и костюмы
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="984" name="categoryAll[]" value="984")
+                                        label.multifilter-checkbox__label(for="984") Трико (борцовки)
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="985" name="categoryAll[]" value="985")
+                                        label.multifilter-checkbox__label(for="985") Футболки
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="986" name="categoryAll[]" value="986")
+                                        label.multifilter-checkbox__label(for="986") Шапки и кепки
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="987" name="categoryAll[]" value="987")
+                                        label.multifilter-checkbox__label(for="987") Шорты
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="353" name="categoryAll[]" value="353")
+                                        label.multifilter-checkbox__label(for="353") Оборудование свыше 40 тыс
+                                    .multifilter-checkbox
+                                        input.multifilter-checkbox__input(type="checkbox" id="352" name="categoryAll[]" value="352")
+                                        label.multifilter-checkbox__label(for="352") Хоз. нужды
                         .view__tab
                             .multifilter
                                 .multifilter__content
@@ -247,6 +310,7 @@ block wrapper
                 -
                     const vandorCards = [
                     {
+                    data: '1041,977,974,1038,1039,1046,973',
                     letter: 'letter-A',
                     name: 'ASICS',
                     description: 'ASICS - японская корпорация, один из крупнейших в мире производителей спортивной одежды и обуви, основанная в 1949 году.',
@@ -257,6 +321,7 @@ block wrapper
                     img: 'https://marketdo4a.com/upload/resizer/29/66525_212x212_293f83efde3fccdfe63a8cbf5ed1bedf.png',
                     stock: '5 товаров от 1 950 ₽',
                     }, {
+                    data: '1024,988,1019,1015,1002,1027,1017,1008,995,1018,1001',
                     name: 'Название (1 строка)',
                     description: 'Описание (4 строки)',
                     stickers: ['red'],
@@ -271,6 +336,7 @@ block wrapper
                     price: '1 750',
                     sale: '600',
                     }, {
+                      data: '1057,1047,1048,1038',
                     price: '1 750',
                     sale: '600',
                     }, {
@@ -279,7 +345,7 @@ block wrapper
                     },
                     ]
                 each card in vandorCards
-                    div.vendor-card(id=(card.letter || ''))
+                    div.vendor-card(id=(card.letter || '') data-sections-id=(card.data || ''))
                         .vendor-card__wrapper
                             .vendor-card__img
                                 img(src=(card.img || 'https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png')

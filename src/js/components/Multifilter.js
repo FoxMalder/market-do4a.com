@@ -21,7 +21,7 @@ export class Multifilter {
 
     if (this.options.type === 'simple') {
       // this.inputList.forEach(item => item.addEventListener('change', this.callback));
-      this.el.addEventListener('change', this.callback);
+      this.el.addEventListener('change', this.callback(this));
     }
   }
 
@@ -85,7 +85,7 @@ export class Multifilter {
         }
       }
     });
-    this.callback();
+    this.callback(this);
   }
 }
 
@@ -209,6 +209,11 @@ export class CheckboxFilter extends Multifilter {
     this.resetButton = null;
     this.selectedTitle = [];
 
+    this.data = {
+      name: '',
+      value: [],
+    };
+
 
     if (this.el.querySelector('.multifilter__label')) {
       this.options.replaceTitle = true;
@@ -218,9 +223,14 @@ export class CheckboxFilter extends Multifilter {
   }
 
   init() {
-    this.total = this.inputList.reduce((arr, input) => (
-      !input.checked ? arr : this.selectedTitle.push(input.nextElementSibling.textContent)
-    ), 0);
+    this.data.name = this.inputList[0].name;
+    this.total = this.inputList.reduce((arr, input) => {
+      if (!input.checked) {
+        return arr;
+      }
+      this.data.value.push(input.value);
+      return this.selectedTitle.push(input.nextElementSibling.textContent);
+    }, 0);
 
 
     if (this.inputList.length > 9) {
@@ -289,13 +299,15 @@ export class CheckboxFilter extends Multifilter {
     if (event.target.checked) {
       this.total += 1;
       this.selectedTitle.push(title);
+      this.data.value.push(event.target.value);
     } else {
       this.total -= 1;
       this.selectedTitle.splice(this.selectedTitle.indexOf(title), 1);
+      this.data.value.splice(this.data.value.indexOf(event.target.value), 1);
     }
 
     this.render();
-    this.callback();
+    this.callback(this);
   };
 
   onReset = (event) => {
@@ -319,11 +331,12 @@ export class CheckboxFilter extends Multifilter {
   }
 
   reset() {
+    this.data.value = [];
     super.reset();
     this.total = 0;
     this.selectedTitle = [];
     this.render();
-    this.callback();
+    // this.callback(this);
   }
 }
 
@@ -343,12 +356,13 @@ export class RadioFilter extends Multifilter {
 
   onChange = (event) => {
     super.updateTitle(event.target.nextElementSibling.textContent);
-    this.callback();
+    this.callback(this);
   };
 
   reset() {
     super.reset();
     // this.defaultInput.checked = true;
     super.updateTitle(this.defaultInput.nextElementSibling.textContent);
+    // this.callback(this);
   }
 }

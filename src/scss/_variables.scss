@@ -45,9 +45,15 @@ $link-decoration: none;
 $link-hover-color: $main-color;
 $link-hover-decoration: none;
 
+
+
 $grid-gutter-width: 20px;
 $grid-gutter-width-xl: 24px;
 $container-max-widths-xl: 1200px + $grid-gutter-width-xl;
+
+$container-padding-x: 20px;
+$container-padding-left-mobile: calc(#{$container-padding-x} + var(--safe-area-inset-left));
+$container-padding-right-mobile: calc(#{$container-padding-x} + var(--safe-area-inset-right));
 
 $grid-gutter-width-map: (
   xs: 40px,

@@ -1,78 +1,84 @@
 import './scss/main.scss';
 
 import './js/common';
-import './js/page/catalog';
+// import Masonry from 'masonry-layout';
+import Macy from 'macy';
 import StickySidebar from './js/plugins/sticky-sidebar';
+import { CheckboxFilter } from './js/components/Multifilter';
+// import './js/page/catalog';
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('./vendors.pug');
 }
 
+function initVendorsFilter() {
+  const searchField = document.querySelector('.page-header .search-fild__input');
+  const vendorsList = Array.from(document.querySelectorAll('.vendor-card'), item => ({
+    el: item,
+    shown: true,
+    name: item.querySelector('.vendor-card__title').innerHTML.toLowerCase(),
+    category: item.getAttribute('data-sections-id').split(','),
+  }));
+
+  const filterValues = {
+    search: searchField.value || '',
+    category: [],
+  };
+
+  /**
+   * Фильтрация по категории и строке поиска
+   * @param values
+   */
+  function filterItems(values = filterValues) {
+    vendorsList.forEach((item) => {
+      if (
+        (item.name.indexOf(values.search) !== -1 || values.search.length === 0)
+        && (item.category.filter(id => (values.category.indexOf(id) !== -1)).length > 0 || values.category.length === 0)
+      ) {
+        item.el.style.display = '';
+      } else {
+        item.el.style.display = 'none';
+      }
+    });
+  }
+
+  function onSearch(event) {
+    event.preventDefault();
+
+    filterValues.search = event.target.value.trim().toLowerCase();
+    filterItems(filterValues);
+  }
+  searchField.addEventListener('input', onSearch);
+  searchField.addEventListener('change', onSearch);
+
+
+  new CheckboxFilter(document.querySelector('fieldset.multifilter'), (filter) => {
+    filterValues.category = filter.data.value;
+    filterItems(filterValues);
+  });
+}
+
 
 function initVendorsList() {
-  // /**
-  //  * Set appropriate spanning to any masonry item
-  //  *
-  //  * Get different properties we already set for the masonry, calculate
-  //  * height or spanning for any cell of the masonry grid based on its
-  //  * content-wrapper's height, the (row) gap of the grid, and the size
-  //  * of the implicit row tracks.
-  //  *
-  //  * @param item Object A brick/tile/cell inside the masonry
-  //  * @link https://w3bits.com/css-grid-masonry/
-  //  */
-  // function resizeMasonryItem(item) {
-  //   /* Get the grid object, its row-gap, and the size of its implicit rows */
-  //   const grid = document.getElementsByClassName('brand-name-list')[0];
-  //   if (grid) {
-  //     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-  //     const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-  //
-  //     /*
-  //      * Spanning for any brick = S
-  //      * Grid's row-gap = G
-  //      * Size of grid's implicitly create row-track = R
-  //      * Height of item content = H
-  //      * Net height of the item = H1 = H + G
-  //      * Net height of the implicit row-track = T = G + R
-  //      * S = H1 / T
-  //      */
-  //     const rowSpan = Math.ceil((item.querySelector('.brand-name-list__content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-  //
-  //     /* Set the spanning as calculated above (S) */
-  //     item.style.gridRowEnd = `span ${rowSpan}`;
-  //   }
-  // }
-  //
-  // /**
-  //  * Apply spanning to all the masonry items
-  //  *
-  //  * Loop through all the items and apply the spanning to them using
-  //  * `resizeMasonryItem()` function.
-  //  *
-  //  * @uses resizeMasonryItem
-  //  * @link https://w3bits.com/css-grid-masonry/
-  //  */
-  // function resizeAllMasonryItems() {
-  //   // Get all item class objects in one list
-  //   const allItems = document.querySelectorAll('.brand-name-list__col');
-  //
-  //   /*
-  //    * Loop through the above list and execute the spanning function to
-  //    * each list-item (i.e. each masonry item)
-  //    */
-  //   if (allItems) {
-  //     for (let i = 0; i > allItems.length; i++) {
-  //       resizeMasonryItem(allItems[i]);
-  //     }
-  //   }
-  // }
-  //
-  // /* Resize all the grid items on the load and resize events */
-  // const masonryEvents = ['load', 'resize'];
-  // masonryEvents.forEach((event) => {
-  //   window.addEventListener(event, resizeAllMasonryItems);
-  // });
+  const masonryEl = document.querySelector('.brand-name-list');
+  masonryEl.macy = Macy({
+    container: masonryEl,
+    trueOrder: false,
+    useOwnImageLoader: true,
+    // margin: 24,
+    mobileFirst: true,
+    columns: 2,
+    breakAt: {
+      1240: 6,
+      768: 4,
+    },
+  });
+  $('.multifilter__tab').on('shown.bs.tab', () => {
+    masonryEl.macy.recalculate();
+  });
+
+
 
   $('body').scrollspy({ target: '.card-list__nav' });
 
@@ -86,4 +92,5 @@ function initVendorsList() {
 
 $(() => {
   initVendorsList();
+  initVendorsFilter();
 });

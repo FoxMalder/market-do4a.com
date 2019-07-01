@@ -2160,31 +2160,37 @@ $multifilter-menu-padding-x: 22px;
 }
 
 .brand-name-list {
+  margin-top: 24px;
+  margin-right: map_get($grid-gutter-width-map, md) / -2;
+  margin-left: map_get($grid-gutter-width-map, md) / -2;
   //display: flex;
   //flex-wrap: wrap;
 
-  display: grid;
-  grid-gap: (map_get($grid-gutter-width-map, xs) / 2);
-  grid-template-columns: repeat(2, 1fr);
-  //padding: 24px (map_get($grid-gutter-width-map, xs) / 2);
-  padding-top: 24px;
-  padding-bottom: 24px;
+  //display: grid;
+  //grid-gap: (map_get($grid-gutter-width-map, xs) / 2);
+  //grid-template-columns: repeat(2, 1fr);
+  ////padding: 24px (map_get($grid-gutter-width-map, xs) / 2);
+  //padding-top: 24px;
+  //padding-bottom: 24px;
 
   @include media-breakpoint-up(sm) {
-    grid-template-columns: repeat(3, 1fr);
-    padding: 0
-  }
-  @include media-breakpoint-up(md) {
-    grid-gap: (map_get($grid-gutter-width-map, md) / 2);
-    grid-template-columns: repeat(4, 1fr);
+    margin-top: 0;
   }
   @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(5, 1fr);
+    margin-right: map_get($grid-gutter-width-map, xl) / -2;
+    margin-left: map_get($grid-gutter-width-map, xl) / -2;
+    //grid-template-columns: repeat(5, 1fr);
   }
 
   &__col {
-    //@include make-col(2);
-    margin-bottom: 80px;
+    padding-right: map_get($grid-gutter-width-map, md) / 2;
+    padding-bottom: 31px;
+    padding-left: map_get($grid-gutter-width-map, md) / 2;
+    @include media-breakpoint-up(xl) {
+      padding-right: map_get($grid-gutter-width-map, xl) / 2;
+      padding-bottom: 71px;
+      padding-left: map_get($grid-gutter-width-map, xl) / 2;
+    }
   }
 
   &__title {
@@ -2198,7 +2204,7 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__item {
-
+    margin-bottom: 9px;
   }
 }
 

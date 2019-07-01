@@ -12,7 +12,7 @@ import '@fancyapps/fancybox';
 
 import 'simplebar';
 
-import Header from './modules/Header';
+import './modules/Header';
 import Input from './modules/Input';
 
 // window.jQuery = $;
@@ -45,12 +45,6 @@ $(() => {
   });
 
   // svg4everybody();
-
-  try {
-    window.app.Header = new Header();
-  } catch (e) {
-    console.error(e);
-  }
 
   Input();
 });

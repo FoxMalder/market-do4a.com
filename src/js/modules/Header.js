@@ -1,4 +1,4 @@
-import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
+// import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 // import Tooltip from 'tooltip.js';
 import Utils from '../utils/utils';
 // import StickySidebar from '../plugins/sticky-sidebar';
@@ -6,14 +6,76 @@ import Utils from '../utils/utils';
 import postIconSvg from '../../img/svg-sprite/change-store-stock-icon.svg';
 
 
-class Header {
-  constructor() {
-    this.scrollOffset = window.pageYOffset;
+class Menu {
+  constructor(menu, controls) {
+    this.el = menu;
+    this.controls = controls;
 
+    if (!this.el || !this.controls) {
+      return;
+    }
+
+    this.overlay = document.querySelector('.mobile-menu__overlay');
+
+    this.isOpened = false;
+
+    this.init();
+  }
+
+  init() {
+    Array.prototype.forEach.call(this.controls, item => item.addEventListener('click', this.toggleMenu));
+
+    if (this.overlay) {
+      this.overlay.addEventListener('click', this.toggleMenu);
+    }
+  }
+
+  /**
+   * Переключает состояние мобильного меню
+   * @param event
+   * @returns {boolean}
+   */
+  toggleMenu = (event) => {
+    event.preventDefault();
+
+    if (this.isOpened) {
+      this.close();
+    } else {
+      this.open();
+    }
+  };
+
+  open() {
+    document.body.style.overflow = 'hidden';
+
+    this.el.classList.add('active');
+    Array.prototype.forEach.call(this.controls, item => item.classList.add('active'));
+
+    const offsetTop = window.app.Header.header.fixedTargets.getBoundingClientRect().top;
+    if (offsetTop > 0) {
+      $('html, body').animate({
+        scrollTop: offsetTop + window.pageYOffset,
+      });
+    }
+
+    this.isOpened = true;
+  }
+
+  close() {
+    document.body.style.overflow = '';
+
+    this.el.classList.remove('active');
+    Array.prototype.forEach.call(this.controls, item => item.classList.remove('active'));
+
+    this.isOpened = false;
+  }
+}
+
+export default class Header {
+  constructor() {
     this.header = {
-      // targets: Utils.parseTargets('.header'),
       collapse: Utils.parseTargets('.h-navbar-collapse'),
-      fixedTargets: Utils.parseTargets('.h-navbar-fixed'),
+      fixedTargets: document.querySelector('.h-navbar-fixed'),
       // Список элементов в не фиксированной области над фиксированной
       fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.h-navbar-top']),
       // Высота не фиксированной области над фиксированной
@@ -23,17 +85,9 @@ class Header {
 
     this.favorites = {};
 
-    this.menu = {
-      opened: false,
-      targets: Utils.parseTargets('.mobile-menu'),
-      controls: Utils.parseTargets('.header-control__menu-btn'),
-      overlay: Utils.parseTargets('.mobile-menu__overlay'),
-    };
-
     this.search = {
-      opened: false,
-      targets: Utils.parseTargets('.header-control__search'),
-      controls: Utils.parseTargets('.header-control__button_search'),
+      targets: document.querySelector('.header-control__search'),
+      control: document.querySelector('.header-control__button_search'),
     };
 
     this.collapse = {
@@ -43,26 +97,72 @@ class Header {
 
     this.vp = Header.getViewportSize();
 
+    this.Menu = null;
+
     this.init();
   }
 
-  init() {
-    this.calculate();
-    this.initListeners();
-    this.header.fixedTargets.forEach(item => new Stickyfill.Sticky(item));
+  static initHtmlApi() {
+    // Taken from jQuery `ready` function
+    // Instantiate elements already present on the page
+    if (
+      document.readyState === 'complete'
+      || (document.readyState !== 'loading' && !document.documentElement.doScroll)
+    ) {
+      // Handle it asynchronously to allow scripts the opportunity to delay init
+      window.setTimeout(this.initDOMLoadedElements);
+    } else {
+      document.addEventListener('DOMContentLoaded', this.initDOMLoadedElements);
+      window.addEventListener('load', this.initDOMLoadedElements);
+    }
+  }
 
-    app.header = {};
+  static initDOMLoadedElements() {
+    document.removeEventListener('DOMContentLoaded', this.initDOMLoadedElements);
+    window.removeEventListener('load', this.initDOMLoadedElements);
+
+    if (!Object.prototype.hasOwnProperty.call(window, 'app')) {
+      window.app = {};
+    }
+
+    if (!window.app.Header) {
+      window.app.Header = new Header();
+    }
+  }
+
+  init() {
     this.initCityContainer();
     this.initStoreContainer();
 
+    // Мобильное меню
+    this.Menu = new Menu(
+      document.querySelector('.mobile-menu'),
+      document.querySelectorAll('.header-control__menu-btn'),
+    );
 
-    // const sticky = new Stickyfill.Sticky(document.querySelector('.h-navbar-fixed'));
-    // new Sticky('.header__fixed-block', {
-    //   marginTop: 0,
-    //   stickyClass: 'fixed',
-    // });
-    // Utils.parseTargets('.h-category__link').map()
+    // Установка направления выпадающего меню
+    if (this.vp.width >= 1240) {
+      Array.prototype.forEach.call(document.querySelectorAll('.h-category__link'), (item) => {
+        const innerElement = item.nextElementSibling;
+        if (innerElement) {
+          if (item.getBoundingClientRect().left > (this.vp.width / 2)) {
+            innerElement.classList.add('h-category-second_right');
+          } else {
+            innerElement.classList.remove('h-category-second_right');
+          }
+        }
+      });
+    }
 
+    // Строка поиска на телефонах
+    if (this.search.control) {
+      this.search.control.addEventListener('click', (event) => {
+        event.preventDefault();
+        this.toggleSearchField();
+      });
+    }
+
+    // Количество избранного
     this.favorites.button = document.querySelector('.header-control__button_favorites');
     if (this.favorites.button) {
       this.favorites.notifications = this.favorites.button.querySelector('.header-control__notifications');
@@ -107,7 +207,7 @@ class Header {
 
           event.preventDefault();
 
-          document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[cityId].name5}</span>`;
+          document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${window.app.storeManagerData.cities[cityId].name5}</span>`;
           document.querySelector('.change-store__list').innerHTML = Header.generateStoreList(cityId);
 
           $(document.querySelector('.change-store-collapse')).collapse('show');
@@ -116,7 +216,10 @@ class Header {
 
         if (target.classList.contains('change-post')) {
           event.preventDefault();
-          Header.setStore(app.storeManagerData.noCityId, app.storeManagerData.remoteStoreId);
+          Header.setStore(
+            window.app.storeManagerData.noCityId,
+            window.app.storeManagerData.remoteStoreId,
+          );
         }
         target = target.parentNode;
       }
@@ -138,10 +241,10 @@ class Header {
     list.classList.add('change-city__list');
 
     let cityListHtml = '';
-    Object.keys(app.storeManagerData.chars).forEach((char) => {
-      app.storeManagerData.chars[char].forEach((cityId, index) => {
+    Object.keys(window.app.storeManagerData.chars).forEach((char) => {
+      window.app.storeManagerData.chars[char].forEach((cityId, index) => {
         cityListHtml += `<li class="change-city__item" ${(index === 0) ? `data-letter="${char}"` : ''}>
-                            <a href="#" class="change-city__link" data-city="${cityId}">${app.storeManagerData.cities[cityId].name}</a>
+                            <a href="#" class="change-city__link" data-city="${cityId}">${window.app.storeManagerData.cities[cityId].name}</a>
                          </li>`;
       });
     });
@@ -169,8 +272,6 @@ class Header {
 
 
     // Header.generateStoreList(parseInt(app.storeManagerData.currentCityId, 10));
-
-    app.header.cityList = block;
   };
 
   initStoreContainer = () => {
@@ -182,12 +283,15 @@ class Header {
         if (target.classList.contains('change-store__link')) {
           event.preventDefault();
           const storeId = parseInt(target.getAttribute('data-store'), 10);
-          Header.setStore(app.storeManagerData.stores[storeId].city, storeId);
+          Header.setStore(window.app.storeManagerData.stores[storeId].city, storeId);
           return;
         }
         if (target.classList.contains('change-post')) {
           event.preventDefault();
-          Header.setStore(app.storeManagerData.noCityId, app.storeManagerData.remoteStoreId);
+          Header.setStore(
+            window.app.storeManagerData.noCityId,
+            window.app.storeManagerData.remoteStoreId,
+          );
         }
         target = target.parentNode;
       }
@@ -201,15 +305,16 @@ class Header {
 
     const header = document.createElement('div');
     header.classList.add('change-store__header');
-    header.innerHTML = `
-      <span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${app.storeManagerData.cities[app.storeManagerData.currentCityId].name5}</span></span>
+    header.innerHTML = `<span class="change-store__title">ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected">${window.app.storeManagerData.cities[window.app.storeManagerData.currentCityId].name5}</span></span>
       <button class="btn change-store__btn-close" data-toggle="collapse" data-target=".change-store-collapse"></button>`;
 
     const list = document.createElement('ul');
     list.classList.add('change-store__list');
 
     // document.querySelector('.change-store__title').innerHTML = `ВЫБЕРИТЕ МАГАЗИН<br>в <span class="selected"></span>`;
-    list.innerHTML = Header.generateStoreList(parseInt(app.storeManagerData.currentCityId, 10));
+    list.innerHTML = Header.generateStoreList(
+      parseInt(window.app.storeManagerData.currentCityId, 10),
+    );
 
     const footer = document.createElement('div');
     footer.classList.add('change-store__footer');
@@ -229,168 +334,19 @@ class Header {
 
     container.appendChild(block);
     parent.appendChild(container);
-
-    app.header.storeList = block;
   };
 
 
-  toggleMenu = (event) => {
-    event.preventDefault();
-
-    if (this.menu.opened) {
-      this.menu.targets.map(item => item.classList.remove('active'));
-      this.menu.controls.map(item => item.classList.remove('active'));
-      document.body.style.overflow = '';
-      this.menu.opened = false;
+  toggleSearchField() {
+    if (this.search.targets.classList.contains('active')) {
+      this.search.targets.classList.remove('active');
+      this.search.control.classList.remove('active');
     } else {
-      this.menu.targets.map(item => item.classList.add('active'));
-      this.menu.controls.map(item => item.classList.add('active'));
-      document.body.style.overflow = 'hidden';
-      this.menu.opened = true;
+      this.search.targets.classList.add('active');
+      this.search.control.classList.add('active');
     }
-  };
-
-  toggleSearch = (event) => {
-    event.preventDefault();
-    if (this.search.opened) {
-      this.search.targets.map(item => item.classList.remove('active'));
-      this.search.controls.map(item => item.classList.remove('active'));
-      this.search.opened = false;
-    } else {
-      this.search.targets.map(item => item.classList.add('active'));
-      this.search.controls.map(item => item.classList.add('active'));
-      this.search.opened = true;
-    }
-  };
-
-
-  // fixingHeader = (element) => {
-  //   // const breakpoints = element.getBoundingClientRect().bottom + this.header.fixedBreakpointsOffset;
-  //   const breakpoints = this.header.fixedBreakpointsOffset;
-  //
-  //   if (this.scrollOffset >= breakpoints && !element.fixed) {
-  //     element.classList.add('fixed');
-  //     element.fixed = true;
-  //   } else if (this.scrollOffset < breakpoints && element.fixed) {
-  //     element.classList.remove('fixed');
-  //     element.fixed = false;
-  //
-  //   }
-  // };
-
-  initListeners() {
-    window.addEventListener('scroll', this.onScroll);
-    window.addEventListener('resize', this.onWindowResize);
-    window.addEventListener('load', this.onLoad);
-
-    // Управление мобильным меню
-    this.menu.controls.map(item => item.addEventListener('click', this.toggleMenu));
-    // Строка поиска на телефонах
-    this.search.controls.map(item => item.addEventListener('click', this.toggleSearch));
   }
 
-  // onClickCity = () => {
-  //
-  // }
-
-  onScroll = () => {
-    this.scrollOffset = window.pageYOffset;
-
-    // this.header.fixedTargets.forEach((item) => {
-    //   this.fixingHeader(item);
-    // });
-
-    if (this.vp.width < 1240) {
-      this.header.collapse.forEach((item) => {
-        item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-      });
-      this.menu.targets.forEach((item) => {
-        item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-      });
-    }
-  };
-
-  onWindowResize = () => {
-    this.vp = Header.getViewportSize();
-    this.calculate();
-
-    if (this.vp.width < 1240) {
-      this.header.collapse.forEach((item) => {
-        item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-        item.style.top = `${this.header.fixedOffset}px`;
-      });
-      this.menu.targets.forEach((item) => {
-        item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-      });
-    } else {
-      this.header.collapse.forEach((item) => {
-        item.style.maxHeight = '';
-        item.style.top = '';
-      });
-    }
-  };
-
-  onLoad = () => {
-    this.calculate();
-
-    [].forEach.call(document.querySelectorAll('.h-category__link'), (item) => {
-      const innerElement = item.nextElementSibling;
-      if (!innerElement) {
-        return;
-      }
-
-      const isRight = item.getBoundingClientRect().left > (this.vp.width / 2);
-      if (isRight) {
-        innerElement.classList.add('h-category-second_right');
-      } else {
-        innerElement.classList.remove('h-category-second_right');
-      }
-
-      // new Tooltip(item, {
-      //   placement: (item.getBoundingClientRect().left < (this.vp.width / 2)) ? 'bottom-start' : 'bottom-end',
-      //   // container: 'sadfsdg',
-      //   html: true,
-      //   // template:
-      //   //   '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>',
-      //   title: item.nextElementSibling,
-      //   offset: 0,
-      //   popperOptions: {
-      //     positionFixed: true,
-      //     // onUpdate: (e) => {
-      //     //   console.log(this, e);
-      //     // },
-      //   },
-      // });
-    });
-
-    if (this.vp.width < 1240) {
-      this.header.collapse.forEach((item) => {
-        item.style.maxHeight = `${this.vp.height - Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-        item.style.top = `${this.header.fixedOffset}px`;
-      });
-      this.menu.targets.forEach((item) => {
-        item.style.top = `${Math.max(this.header.fixedOffset - this.scrollOffset, 0)}px`;
-      });
-    } else {
-      this.header.collapse.forEach((item) => {
-        item.style.maxHeight = '';
-        item.style.top = '';
-      });
-    }
-  };
-
-  /*
-   * Расчет некоторых статичных значений
-   */
-  calculate = () => {
-    this.scrollOffset = window.pageYOffset;
-
-    // Высота промежутка между фиксированной областью и краем страницы
-    this.header.fixedOffset = 0;
-    this.header.fixedOffsetTargets.forEach((item) => {
-      this.header.fixedOffset += item.clientHeight;
-    });
-  };
 
   static getViewportSize() {
     return {
@@ -402,8 +358,8 @@ class Header {
   static generateStoreList(cityId) {
     const stores = [];
 
-    Object.keys(app.storeManagerData.stores).forEach((key) => {
-      const store = app.storeManagerData.stores[key];
+    Object.keys(window.app.storeManagerData.stores).forEach((key) => {
+      const store = window.app.storeManagerData.stores[key];
       if (parseInt(store.city, 10) !== cityId || store.hidden === 'Y') return;
       stores.push(store);
     });
@@ -425,7 +381,7 @@ class Header {
 
   static storeItemTemplate(data) {
     return `<li class="change-store__item${data.tempUnavailableText ? ' store-switcher-popup-item--suspended' : ''}">
-                <a class="change-store__link${parseInt(app.storeId, 10) === parseInt(data.id, 10) ? ' active' : ''}" href="#" data-store="${data.id}">
+                <a class="change-store__link${parseInt(window.app.storeId, 10) === parseInt(data.id, 10) ? ' active' : ''}" href="#" data-store="${data.id}">
                     <div class="change-store__item-name">${data.name}</div>
                     <div class="change-store__item-subtitle">${data.shortAddress}</div>
                     <div class="change-store__item-note">${data.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}</div>
@@ -446,7 +402,7 @@ class Header {
         storeId,
         backUrl,
         ajax: 'Y',
-        sessid: app.bitrix_sessid,
+        sessid: window.app.bitrix_sessid,
       },
       dataType: 'json',
     }).done((response) => {
@@ -466,4 +422,5 @@ class Header {
   }
 }
 
-export default Header;
+
+Header.initHtmlApi();
