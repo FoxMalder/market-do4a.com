@@ -1,6 +1,6 @@
+import './js/common';
 import './scss/main.scss';
 
-import './js/common';
 import { Filter, CatalogControl } from './js/page/catalog';
 // import ProductCard from '../components/ProductCard';
 import Utils from './js/utils/utils';

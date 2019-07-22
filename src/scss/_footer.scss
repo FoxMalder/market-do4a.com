@@ -81,11 +81,19 @@
   }
 
   &__dev {
-    display: block;
-    width: 151px;
-    height: 25px;
-    color: rgba(black, .4);
+    font-size: 14px;
+    line-height: 17px;
+    color: #000;
+    //display: block;
+    //width: 151px;
+    //height: 25px;
+    //color: rgba(black, .4);
     //opacity: .4;
+
+    [href] {
+      color: $main-color;
+      font-weight: 500;
+    }
 
     @include media-breakpoint-up(md) {
       margin-left: auto;

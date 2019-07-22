@@ -1,5 +1,9 @@
-import SimpleBar from 'simplebar';
+// import SimpleBar from 'simplebar';
 import noUiSlider from 'nouislider';
+
+import Vue from 'vue/dist/vue.esm';
+import MultifilterPrice from './MultifilterPrice.vue';
+import MultifilterCheckboxList from './MultifilterCheckboxList.vue';
 
 export class Multifilter {
   constructor(el, callback, options = {}) {
@@ -32,9 +36,9 @@ export class Multifilter {
    */
   initScrollbar() {
     if (!this.contentEl) return false;
-    const simpleBar = new SimpleBar(this.contentEl, { autoHide: false });
-    this.contentEl = simpleBar.getContentElement();
-    return simpleBar;
+    // const simpleBar = new SimpleBar(this.contentEl, { autoHide: false });
+    // this.contentEl = simpleBar.getContentElement();
+    // return simpleBar;
   }
 
 
@@ -93,99 +97,106 @@ export class PriceFilter extends Multifilter {
   constructor(el, callback) {
     super(el, callback, { type: 'price' });
 
-    const priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
-    const priceMaxText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__end');
-
-    const rangeArr = {
-      min: priceMinText ? parseInt(priceMinText.innerText.replace(/[^0-9]/g, ''), 10) : 0,
-      max: priceMaxText ? parseInt(priceMaxText.innerText.replace(/[^0-9]/g, ''), 10) : 9999,
-    };
-
-    this.fromInput = this.contentEl.querySelector('.js-min-value');
-    if (!this.fromInput) {
-      this.fromInput = document.createElement('input');
-      this.fromInput.type = 'hidden';
-      this.fromInput.name = 'Price[from]';
-      this.fromInput.value = 0;
-      this.contentEl.appendChild(this.fromInput);
-    }
-
-    this.toInput = this.contentEl.querySelector('.js-max-value');
-    if (!this.toInput) {
-      this.toInput = document.createElement('input');
-      this.toInput.type = 'hidden';
-      this.toInput.name = 'Price[to]';
-      this.fromInput.value = 0;
-      this.contentEl.appendChild(this.toInput);
-    }
-
-    const startArr = [
-      parseInt(this.fromInput.value, 10),
-      parseInt(this.toInput.value, 10) || rangeArr.max,
-    ];
-
-    this.rangeEl = this.contentEl.querySelector('.input-range');
-    noUiSlider.create(this.rangeEl, {
-      start: startArr,
-      step: 1,
-      connect: true,
-      tooltips: true,
-      range: rangeArr,
-      format: {
-        to(value) {
-          return `${Math.floor(value)} ₽`;
-        },
-        from(value) {
-          return value.replace(/[^0-9]/g, '');
-        },
-      },
-      cssPrefix: 'input-range',
-      cssClasses: {
-        target: '',
-        base: '__base',
-        origin: '__origin',
-        handle: '__handle',
-        handleLower: '__handle-lower',
-        handleUpper: '__handle-upper',
-        touchArea: '__touch-area',
-        horizontal: '_horizontal',
-        vertical: '_vertical',
-        background: '__background',
-        connect: '__connect',
-        connects: '__connects',
-        ltr: '_ltr',
-        rtl: '_rtl',
-        draggable: '_draggable',
-        drag: '_state-drag',
-        tap: '_state-tap',
-        active: '__active',
-        tooltip: '__tooltip',
-
-        // Шкала
-        pips: '__pips',
-        pipsHorizontal: '__pips_horizontal',
-        pipsVertical: '__pips_vertical',
-
-        // Деления на шкале
-        marker: '__marker',
-        markerHorizontal: '__marker_horizontal',
-        markerVertical: '__marker_vertical',
-        markerNormal: '__marker_normal',
-        markerLarge: '__marker_large',
-        markerSub: '__marker_sub',
-
-        // Значения на шкале
-        value: '__value',
-        valueHorizontal: '__value_horizontal',
-        valueVertical: '__value_vertical',
-        valueNormal: '__value_normal',
-        valueLarge: '__value_large',
-        valueSub: '__value_sub',
-      },
+    new Vue({
+      el: this.el.querySelector('.multifilter-price'),
+      template: '<MultifilterPrice />',
+      components: { MultifilterPrice },
     });
 
 
-    this.rangeEl.noUiSlider.on('set', this.onChange, 100);
+    // const priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
+    // const priceMaxText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__end');
+    //
+    // const rangeArr = {
+    //   min: priceMinText ? parseInt(priceMinText.innerText.replace(/[^0-9]/g, ''), 10) : 0,
+    //   max: priceMaxText ? parseInt(priceMaxText.innerText.replace(/[^0-9]/g, ''), 10) : 9999,
+    // };
+    //
+    // this.fromInput = this.contentEl.querySelector('.js-min-value');
+    // if (!this.fromInput) {
+    //   this.fromInput = document.createElement('input');
+    //   this.fromInput.type = 'hidden';
+    //   this.fromInput.name = 'Price[from]';
+    //   this.fromInput.value = 0;
+    //   this.contentEl.appendChild(this.fromInput);
+    // }
+    //
+    // this.toInput = this.contentEl.querySelector('.js-max-value');
+    // if (!this.toInput) {
+    //   this.toInput = document.createElement('input');
+    //   this.toInput.type = 'hidden';
+    //   this.toInput.name = 'Price[to]';
+    //   this.fromInput.value = 0;
+    //   this.contentEl.appendChild(this.toInput);
+    // }
+    //
+    // const startArr = [
+    //   parseInt(this.fromInput.value, 10),
+    //   parseInt(this.toInput.value, 10) || rangeArr.max,
+    // ];
+    //
+    // this.rangeEl = this.contentEl.querySelector('.input-range');
+    // noUiSlider.create(this.rangeEl, {
+    //   start: startArr,
+    //   step: 1,
+    //   connect: true,
+    //   tooltips: true,
+    //   range: rangeArr,
+    //   format: {
+    //     to(value) {
+    //       return `${Math.floor(value)} ₽`;
+    //     },
+    //     from(value) {
+    //       return value.replace(/[^0-9]/g, '');
+    //     },
+    //   },
+    //   cssPrefix: 'input-range',
+    //   cssClasses: {
+    //     target: '',
+    //     base: '__base',
+    //     origin: '__origin',
+    //     handle: '__handle',
+    //     handleLower: '__handle-lower',
+    //     handleUpper: '__handle-upper',
+    //     touchArea: '__touch-area',
+    //     horizontal: '_horizontal',
+    //     vertical: '_vertical',
+    //     background: '__background',
+    //     connect: '__connect',
+    //     connects: '__connects',
+    //     ltr: '_ltr',
+    //     rtl: '_rtl',
+    //     draggable: '_draggable',
+    //     drag: '_state-drag',
+    //     tap: '_state-tap',
+    //     active: '__active',
+    //     tooltip: '__tooltip',
+    //
+    //     // Шкала
+    //     pips: '__pips',
+    //     pipsHorizontal: '__pips_horizontal',
+    //     pipsVertical: '__pips_vertical',
+    //
+    //     // Деления на шкале
+    //     marker: '__marker',
+    //     markerHorizontal: '__marker_horizontal',
+    //     markerVertical: '__marker_vertical',
+    //     markerNormal: '__marker_normal',
+    //     markerLarge: '__marker_large',
+    //     markerSub: '__marker_sub',
+    //
+    //     // Значения на шкале
+    //     value: '__value',
+    //     valueHorizontal: '__value_horizontal',
+    //     valueVertical: '__value_vertical',
+    //     valueNormal: '__value_normal',
+    //     valueLarge: '__value_large',
+    //     valueSub: '__value_sub',
+    //   },
+    // });
+    //
+    //
+    // this.rangeEl.noUiSlider.on('set', this.onChange, 100);
   }
 
   onChange = (...param) => {
@@ -203,27 +214,63 @@ export class CheckboxFilter extends Multifilter {
   constructor(el, callback) {
     super(el, callback, { type: 'checkbox' });
 
-
-    this.total = 0;
-    this.totalEl = null;
-    this.resetButton = null;
-    this.selectedTitle = [];
-
+    // this.total = 0;
+    // this.totalEl = null;
+    // this.resetButton = null;
+    // this.selectedTitle = [];
+    //
     this.data = {
+      label: '',
       name: '',
-      value: [],
+      checkboxList: [],
     };
 
 
+    // if (this.el.querySelector('.multifilter__label')) {
+    //   this.options.replaceTitle = true;
+    // }
+
+    this.parse();
+    // this.init();
+  }
+
+  parse() {
+    const option = {};
+
     if (this.el.querySelector('.multifilter__label')) {
-      this.options.replaceTitle = true;
+      option.replaceTitle = true;
+      option.label = this.el.querySelector('.multifilter__label').innerHTML;
+    } else {
+      option.replaceTitle = false;
+      option.label = this.el.querySelector('.multifilter__value').innerHTML;
     }
 
-    this.init();
+    option.name = this.inputList[0].name; // Category[] || Brand[]
+    option.data = this.inputList.map(input => ({
+      title: input.nextElementSibling.textContent,
+      value: input.value,
+      checked: input.checked,
+      available: !input.disabled,
+      hidden: false,
+      filtered: false,
+    }));
+
+    new Vue({
+      el: this.el,
+      data: {
+        // options: this.options,
+        filter: option,
+      },
+      template: '<MultifilterCheckboxList :filter="filter"/>',
+      components: { MultifilterCheckboxList },
+    });
   }
 
   init() {
-    this.data.name = this.inputList[0].name;
+    // this.data.name = this.inputList[0].name; // Category[] || Brand[]
+
+
+    this.data.name = this.inputList[0].name; // Category[] || Brand[]
     this.total = this.inputList.reduce((arr, input) => {
       if (!input.checked) {
         return arr;
@@ -231,7 +278,6 @@ export class CheckboxFilter extends Multifilter {
       this.data.value.push(input.value);
       return this.selectedTitle.push(input.nextElementSibling.textContent);
     }, 0);
-
 
     if (this.inputList.length > 9) {
       this.initSearch();

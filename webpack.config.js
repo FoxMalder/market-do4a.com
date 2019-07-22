@@ -10,6 +10,7 @@ const CssUrlRelativePlugin = require('css-url-relative-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const IconfontPlugin = require('iconfont-plugin-webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const distPath = path.resolve(__dirname, 'dist');
 
@@ -40,6 +41,7 @@ const cummonConfig = {
     vendorOpened: './src/vendor-opened.js',
     product: './src/product.js',
     cart: './src/cart.js',
+    franchise: './src/franchise.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -57,6 +59,7 @@ const cummonConfig = {
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
+    new VueLoaderPlugin(),
     new CopyPlugin([
       { from: './src/static', to: 'static' },
     ]),
@@ -116,6 +119,7 @@ const cummonConfig = {
         variables: {},
       },
     }),
+
     new HtmlWebpackPlugin({
       title: 'Главная',
       filename: 'main.html',
@@ -180,6 +184,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Франшиза',
+      filename: 'franchise.html',
+      template: path.resolve(__dirname, 'src/franchise.pug'),
+      chunks: ['franchise', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',
@@ -201,6 +213,10 @@ const devConfig = {
         ],
       },
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: [
@@ -210,14 +226,14 @@ const devConfig = {
       {
         test: /\.css$/,
         use: [
-          { loader: 'style-loader', options: { sourceMap: false } },
+          { loader: 'style-loader' },
           { loader: 'css-loader', options: { sourceMap: false, importLoaders: 1 } },
         ],
       },
       {
         test: /\.(sass|scss)$/,
         use: [
-          { loader: 'style-loader', options: { sourceMap: false } },
+          { loader: 'style-loader' },
           { loader: 'css-loader', options: { sourceMap: false, importLoaders: 1 } },
           { loader: 'fast-sass-loader' },
         ],
@@ -236,6 +252,7 @@ const devConfig = {
       },
     ],
   },
+
   devServer: {
     contentBase: distPath,
     quiet: true,
@@ -262,6 +279,10 @@ const prodConfig = {
         use: [
           { loader: 'pug-loader' },
         ],
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.m?js$/,
@@ -380,9 +401,8 @@ const prodConfig = {
 
 
 module.exports = (env, args) => {
-  process.env.NODE_ENV = args.mode;
-
-  const devMode = args.mode === 'development';
-
-  return devMode ? merge(cummonConfig, devConfig) : merge(cummonConfig, prodConfig);
+  if (args.mode === 'development') {
+    return merge(cummonConfig, devConfig);
+  }
+  return merge(cummonConfig, prodConfig);
 };

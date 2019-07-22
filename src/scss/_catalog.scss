@@ -706,6 +706,7 @@ $multifilter-padding-x: (
   }
 
   &__content[data-toggle='dropdown'] {
+  //&__content {
     padding-right: map_get($multifilter-padding-x, xl) + 10px;
     transition: background .3s ease;
     cursor: pointer;
@@ -877,7 +878,8 @@ $multifilter-padding-x: (
     max-width: 381px;
     height: auto;
     max-height: 461px; // Ровно 9 элементов
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     &[data-simplebar] {
       width: 316px;
@@ -923,6 +925,33 @@ $multifilter-padding-x: (
 
 $multifilter-menu-padding-x: 22px;
 
+.multifilter-delimiter {
+  display: flex;
+
+  align-items: center;
+  padding: 12px $multifilter-menu-padding-x;
+  opacity: 0.5;
+  color: #000;
+
+  font-size: 15px;
+
+  letter-spacing: -0.01em;
+  line-height: 18px;
+  text-align: center;
+
+  &::after,
+  &::before {
+    content: '';
+    flex: 1 0;
+    height: 1px;
+    background-color: #c6c6c6;
+  }
+
+  &__text {
+    margin: 0 12px;
+  }
+}
+
 .multifilter-search {
   margin-bottom: 5px;
   padding: 12px $multifilter-menu-padding-x;
@@ -933,10 +962,15 @@ $multifilter-menu-padding-x: 22px;
     height: 50px;
     padding: 0 17px;
     border: 0;
+    font-size: 15px;
     font-weight: 500;
 
     &:focus {
       outline: 0;
+    }
+
+    &::placeholder {
+      color: rgba(#000, 0.4);
     }
   }
 }
@@ -944,6 +978,7 @@ $multifilter-menu-padding-x: 22px;
 .multifilter-checkbox {
   display: block;
   margin-bottom: 1px;
+  font-weight: 500;
 
   &__input {
     position: absolute;
@@ -1017,6 +1052,7 @@ $multifilter-menu-padding-x: 22px;
   position: relative;
   //padding-left: 32px;
   margin-bottom: 1px;
+  font-weight: 500;
 
   &__input {
     position: absolute;
@@ -2089,13 +2125,13 @@ $multifilter-menu-padding-x: 22px;
   &__description {
     //margin-bottom: 14px;
     display: -webkit-box;
+    height: 60px;
     overflow: hidden;
     color: rgba(#000, .4);
     letter-spacing: -.01em;
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    height: 60px;
 
     @include media-breakpoint-up(md) {
       //margin-bottom: auto;
@@ -2189,8 +2225,8 @@ $multifilter-menu-padding-x: 22px;
   ////padding: 24px (map_get($grid-gutter-width-map, xs) / 2);
   //padding-top: 24px;
   //padding-bottom: 24px;
-  margin-left: 10px;
   margin-right: 10px;
+  margin-left: 10px;
 
   @include media-breakpoint-up(sm) {
     margin-right: map_get($grid-gutter-width-map, sm) / -2;

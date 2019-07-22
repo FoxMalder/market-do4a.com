@@ -213,31 +213,31 @@ block wrapper
                                     // Работает также для отдельных вложенных элементов
                                     .dropdown-menu(role="form")
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1010")
                                             span.multifilter-checkbox__label
                                                 | Говяжий
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1011")
                                             span.multifilter-checkbox__label
                                                 | Изоляты и гидролизаты
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1012")
                                             span.multifilter-checkbox__label
                                                 | Казеин и молочный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1013")
                                             span.multifilter-checkbox__label
                                                 | Комплексный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1014")
                                             span.multifilter-checkbox__label
                                                 | Растительный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1015")
                                             span.multifilter-checkbox__label
                                                 | Сывороточный
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" name="category[]")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Category[]" value="1016")
                                             span.multifilter-checkbox__label
                                                 | Яичный
 
@@ -246,106 +246,70 @@ block wrapper
                                         span.multifilter__value Бренд
                                     .dropdown-menu(role="form")
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1000")
+                                            span.multifilter-checkbox__label
+                                                | 21st Century
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1001" checked=true)
+                                            span.multifilter-checkbox__label
+                                                | 25-й час
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1002" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | 2DTrade
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1003" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | 2SN
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1004" checked=true)
                                             span.multifilter-checkbox__label
                                                 | 4 Dimension Nutrition
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1005" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | 6 Pack Fitness
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1006")
+                                            span.multifilter-checkbox__label
+                                                | ABB
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1008" disabled=true)
+                                            span.multifilter-checkbox__label
+                                                | Activeprotein
+                                        label.multifilter-checkbox
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1009" disabled=true)
                                             span.multifilter-checkbox__label
                                                 | ActivLab
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1011" disabled=true)
                                             span.multifilter-checkbox__label
-                                                | ASM
+                                                | Aesthetixera
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1012")
                                             span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
+                                                | ALLMAX
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            input.multifilter-checkbox__input(type="checkbox" name="Brand[]" value="1014" disabled=true)
                                             span.multifilter-checkbox__label
-                                                | ActivLab
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
-                                            span.multifilter-checkbox__label
-                                                | ASM
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
-                                            span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
-                                            span.multifilter-checkbox__label
-                                                | ActivLab
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
-                                            span.multifilter-checkbox__label
-                                                | ASM
+                                                | Beyond
 
-                                fieldset.multifilter
+                                fieldset.multifilter(is="MultifilterCheckboxList")
                                     button.multifilter__content(data-toggle="dropdown" type="button")
                                         span.multifilter__value Страна
                                     .dropdown-menu(role="form")
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
+                                            input.multifilter-checkbox__input(type="checkbox" name="Country[]" value="1")
                                             span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
+                                                | Америка
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                            input.multifilter-checkbox__input(type="checkbox" name="Country[]" value="2" checked=true)
                                             span.multifilter-checkbox__label
-                                                | ActivLab
+                                                | Англия
                                         label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
+                                            input.multifilter-checkbox__input(type="checkbox" name="Country[]" value="3" disabled=true)
                                             span.multifilter-checkbox__label
-                                                | ASM
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
-                                            span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
-                                            span.multifilter-checkbox__label
-                                                | ActivLab
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
-                                            span.multifilter-checkbox__label
-                                                | ASM
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
-                                            span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
-                                            span.multifilter-checkbox__label
-                                                | ActivLab
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
-                                            span.multifilter-checkbox__label
-                                                | ASM
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
-                                            span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
-                                            span.multifilter-checkbox__label
-                                                | ActivLab
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
-                                            span.multifilter-checkbox__label
-                                                | ASM
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox")
-                                            span.multifilter-checkbox__label
-                                                | 4 Dimension Nutrition
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" checked=true)
-                                            span.multifilter-checkbox__label
-                                                | ActivLab
-                                        label.multifilter-checkbox
-                                            input.multifilter-checkbox__input(type="checkbox" disabled=true)
-                                            span.multifilter-checkbox__label
-                                                | ASM
+                                                | Россия
 
                                 fieldset.multifilter
                                     button.multifilter__content(data-toggle="dropdown" type="button")
@@ -375,7 +339,7 @@ block wrapper
                                     button.multifilter__content(data-toggle="dropdown" type="button")
                                         span.multifilter__value Цена
                                     .dropdown-menu(role="form")
-                                        .multifilter-price
+                                        .multifilter-price(is="multifilter-price")
                                             input.js-min-value(type='hidden' name='Price[from]' value='0')
                                             input.js-max-value(type='hidden' name='Price[to]' value='0')
                                             .multifilter-price__title

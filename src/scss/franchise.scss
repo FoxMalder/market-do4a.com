@@ -1,0 +1,647 @@
+@import 'functions';
+@import 'variables';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+//body {
+//  background: url("../img/rm/franchise-1920.png") center top no-repeat;
+//
+//  > * {
+//    opacity: .5;
+//  }
+//}
+
+//section {
+//  border: 1px solid green;
+//}
+
+.wrapper {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.f-title-long {
+  font-family: $font-family-bender;
+  font-size: 60px;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: uppercase;
+
+  .selected {
+    display: inline-block;
+    margin-right: -12px;
+    margin-left: -12px;
+    padding-right: 12px;
+    padding-left: 12px;
+    transform: $skew;
+    background-color: #101010;
+    color: #fff;
+    font-style: normal;
+    white-space: nowrap;
+  }
+}
+
+.f-title-small {
+  @include title;
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: normal;
+  line-height: 35px;
+}
+
+/*
+ * Первая секция
+ */
+.f-section-hero {
+  height: 800px;
+  padding-top: 57px;
+  overflow: hidden;
+  background-color: #bbb;
+  background-image: url('../img/franchise/f-hero-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  //background: url("../img/rm/f-first-screen.png") center top no-repeat;
+  //> * {
+  //  opacity: 0.5;
+  //}
+
+  @media (min-resolution: 1.5dppx) {
+    background-image: url('../img/franchise/f-hero-bg_2x.jpg');
+  }
+
+  &__inner {
+    position: relative;
+    left: 50%;
+    width: 650px;
+    margin-left: -20px;
+    transform: $skew;
+    transform-origin: top;
+  }
+
+  &__title {
+    padding-top: 45px;
+    padding-bottom: 50px;
+    padding-left: 52px;
+    background-color: #fff;
+    box-shadow: 30px 34px 100px rgba(0, 0, 0, 0.35);
+    font-family: $font-family-bender;
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 900;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: uppercase;
+
+    .selected {
+      display: inline-block;
+      margin-right: -12px;
+      margin-left: -12px;
+      padding-right: 12px;
+      padding-left: 12px;
+      background-color: #101010;
+      color: #fff;
+      white-space: nowrap;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 50px;
+  }
+
+  &__button {
+    flex: 0 0 auto;
+    margin-top: 4px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+
+  &__note {
+    margin-right: -10px;
+    color: #fff;
+    font-family: $font-family-bender;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: normal;
+    line-height: 31px;
+    text-align: right;
+    text-transform: uppercase;
+  }
+}
+
+
+/*
+ * Вторая секция
+ */
+.f-section-benefits {
+  margin-bottom: 120px;
+  padding-top: 80px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__description {
+    max-width: 665px;
+    margin-top: 9px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.f-rbk {
+  &__text {
+    margin-top: 18px;
+    color: rgba(#000, 0.6);
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+.f-benefits {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 90px;
+  margin-bottom: 0;
+  padding: 0 16px 20px;
+  list-style: none;
+
+  &__item {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 250px;
+    height: 169px;
+    padding-right: 22px;
+    padding-bottom: 18px;
+    padding-left: 22px;
+    transform: $skew;
+    background-color: #fff;
+    box-shadow: 20px 20px 0 #101010;
+
+    &:nth-child(1) {
+      margin-top: 158px - 70px;
+    }
+
+    &:nth-child(2) {
+      margin-top: 271px - 70px;
+    }
+
+    &:nth-child(3) {
+      margin-top: 70px - 70px;
+    }
+
+    &:nth-child(4) {
+      margin-top: 233px - 70px;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    transform: $skew-reverse translateY(-50%);
+  }
+
+  &__title {
+    font-family: $font-family-bender;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 27px;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    margin-top: 3px;
+    transform: $skew-reverse;
+
+    color: rgba(#000, 0.6);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
+
+
+/*
+ * Видео
+ */
+.f-section-video {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  //padding-top: 132px;
+
+  &__title {
+    position: absolute;
+    z-index: 1;
+    margin-top: -355px;
+  }
+}
+
+.f-video {
+  position: relative;
+  width: 837px;
+  height: 487px;
+  margin-left: auto;
+  transform: $skew;
+  transform-origin: top;
+
+
+  &__cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #000;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.9;
+    background: $main-color;
+  }
+
+  &__text {
+    position: absolute;
+    top: 42px;
+    right: 50px;
+    width: 280px;
+    transform: $skew-reverse;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 28px;
+    text-align: right;
+  }
+}
+
+
+/*
+ * Получите бизнес-план
+ */
+.f-section-form {
+  position: relative;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-top: 103px;
+  padding-bottom: 143px;
+  overflow: hidden;
+  background-color: #fff;
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__brand-mockup-image {
+    position: absolute;
+    z-index: 0;
+    top: 72px;
+    left: 50%;
+    width: 1213px;
+    height: 1142px;
+
+    margin-left: -140px;
+    background-image: url("../img/brand-mockup-1x.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &__time {
+    position: absolute;
+    //background-color: red;
+    right: 50%;
+    bottom: 134px;
+    margin-right: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / -2;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  &__subtitle {
+    max-width: 470px;
+    margin-top: 31px;
+    margin-bottom: 97px;
+  }
+
+  &__form {
+    width: 344px;
+  }
+
+  &__button {
+    margin-top: 46px;
+    padding-right: 38px;
+    padding-left: 38px;
+  }
+
+  &__note {
+    margin-top: 29px;
+    color: rgba(#000, 0.6);
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+
+/*
+ * Топ-30
+ */
+.f-section-top30 {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-bottom: 50px;
+
+  &__subtitle {
+    margin-top: 33px;
+    margin-bottom: 81px;
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  &__number {
+    @include title;
+    position: absolute;
+    top: 50%;
+    left: -95px;
+    margin-top: -200px;
+    font-size: 400px;
+    letter-spacing: -0.02em;
+    line-height: 100%;
+  }
+
+  &__list {
+    width: 837px;
+    height: 487px;
+    margin-left: auto;
+    transform: $skew;
+    transform-origin: top;
+    background-color: #fff;
+    box-shadow: 48px 50px 0 #101010;
+  }
+}
+
+/*
+ * Собранный за 8 лет бизнеса в индустрии
+ */
+.f-section-progress {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-top: 83px;
+  padding-bottom: 120px;
+  background-color: #fff;
+
+  &__subtitle {
+    max-width: 380px;
+    margin-bottom: 26px;
+  }
+
+  &__title {
+    .selected {
+      background-color: $main-color;
+    }
+  }
+
+  &__list {
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+}
+
+.f-progress-item {
+  margin-bottom: 68px;
+
+  &__icon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    height: 150px;
+    margin-bottom: 18px;
+    //border: 1px solid red;
+  }
+
+  &__title {
+    margin-bottom: 2px;
+    font-size: 30px;
+    line-height: 34px;
+
+    span {
+      font-size: 68px;
+      line-height: 77px;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 0;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    line-height: 28px;
+  }
+}
+
+/*
+ * Секрет успеха наших франчайзи
+ */
+.f-section-complex {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-top: 16px;
+  padding-bottom: 60px;
+
+  &__subtitle {
+    max-width: 380px;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+
+  &__list {
+    margin-top: 60px;
+    margin-bottom: -73px;
+    padding-left: 0;
+    list-style: none;
+  }
+}
+
+.f-complex-item {
+  margin-bottom: 73px;
+
+  &__icon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    height: 300px;
+    margin-bottom: 34px;
+    //border: 1px solid red;
+  }
+
+  &__title {
+    margin-bottom: 18px;
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  &__text {
+    max-width: 341px;
+    margin-bottom: 0;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.f-section-partners {
+  &__subtitle {
+    margin-bottom: 27px;
+  }
+}
+
+
+/*
+ * Варианты сотрудничества
+ */
+.f-section-partnership {
+  background-color: $main-color;
+  padding-bottom: 81px;
+
+  &__list {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  &__note {
+    color: #fff;
+    text-align: center;
+  }
+}
+
+.f-program-item {
+  background-color: #fff;
+
+  &__body {
+    padding-left: 26px;
+    padding-top: 27px;
+    padding-right: 26px;
+  }
+
+  &__footer {
+    background-color: #ececec;
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 24px;
+  }
+}
+
+/*
+ * Основатель MarketDo4a
+ */
+.f-section-director {
+  padding-top: 80px;
+  &__title-small {
+    margin-bottom: 25px;
+  }
+  &__title-long {
+
+  }
+}
+
+
+/*
+ * Ответы на вопросы
+ */
+.f-section-feedback {
+  &__title {
+    max-width: 950px;
+  }
+
+  &__subtitle {
+    max-width: 555px;
+  }
+}
+
+
+/*
+ * Ответы на вопросы
+ */
+.f-section-faq {
+  &__title {
+    margin-bottom: 57px;
+  }
+
+  &__description {
+    max-width: 474px;
+    margin-bottom: 84px;
+  }
+}
+
+.f-accordion {
+  &__item {
+    margin-bottom: 40px;
+    padding-bottom: 25px;
+  }
+
+  &__header {
+    @include title;
+    display: block;
+    //margin-bottom: 25px;
+    position: relative;
+    padding: 37px 40px;
+    transform: $skew;
+    transition: all .3s ease;
+    background-color: #fff;
+    box-shadow: 21px 25px 0 #000;
+    font-size: 23px;
+    font-style: normal;
+    line-height: 31px;
+
+    &.collapsed {
+      box-shadow: 21px 25px 0 #ddd;
+
+      &::after {
+        transform: $skew-reverse rotate(90deg);
+      }
+    }
+
+    //&:not(.collapsed) {
+    //  &::after {
+    //    transform: rotate(90deg);
+    //  }
+    //}
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 40px;
+      width: 26px;
+      height: 4px;
+      margin-top: -4px;
+      transform: $skew-reverse;
+      transition: all .3s ease;
+      background-color: #101010;
+    }
+  }
+
+  &__body {
+    padding-top: 36px + 25px;
+    padding-left: 48px;
+  }
+}

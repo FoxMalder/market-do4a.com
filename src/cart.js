@@ -1,7 +1,11 @@
+import './js/common';
 import './scss/main.scss';
+
+import Vue from 'vue/dist/vue.esm';
+import Cart from './js/components/Cart.vue';
+
 // import './scss/header-style.scss';
 
-import './js/common';
 // import './js/page/catalog';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -10,6 +14,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 $(() => {
+  new Vue({
+    el: '#vueTest',
+    template: '<Cart/>',
+    components: { Cart },
+  });
+
   $('[data-cart="promocode"]').on('click', (event) => {
     event.preventDefault();
 
@@ -83,5 +93,5 @@ $(() => {
       thisEL.classList.add('active');
       $(thisEL).find('.order-option__body').slideDown(500);
     }
-  })
+  });
 });

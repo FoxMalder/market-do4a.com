@@ -1,6 +1,7 @@
+import './js/common';
+
 import './scss/main.scss';
 
-import './js/common';
 // import Masonry from 'masonry-layout';
 import Macy from 'macy';
 import StickySidebar from './js/plugins/sticky-sidebar';

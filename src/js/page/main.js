@@ -1,5 +1,5 @@
 import Sticky from 'sticky-js';
-import 'owl.carousel';
+// import 'owl.carousel';
 import {
   // Autoplay,
   // EffectFade,
@@ -11,7 +11,7 @@ import {
   Scrollbar,
 } from 'swiper/dist/js/swiper.esm';
 import HeaderSlider from '../modules/HeaderSlider';
-import YandexMaps from '../modules/Maps';
+// import YandexMaps from '../modules/Maps';
 import Parallax from '../modules/Parallax';
 // import noUiSlider from 'nouislider';
 
@@ -34,49 +34,58 @@ export default class MainPage {
       MainPage.initMaps();
       MainPage.initStarSlider();
       MainPage.initBestArticles();
-
     }
   }
 
   static initSetsSlider() {
-    // Слайдеры с содержимым наборов
-    $('.set-block__slider').owlCarousel({
-      loop: true,
-      items: 1,
-      center: true,
-      autoWidth: true,
-      // stagePadding: 10,
-      nav: false,
-      dots: false,
-      margin: 10,
-      navContainerClass: 'slider-nav',
-      navText: [
-        `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
+    if (!document.querySelector('.set-block__slider')) {
+      return;
+    }
+
+    import('owl.carousel').then(() => {
+      // Слайдеры с содержимым наборов
+      $('.set-block__slider').owlCarousel({
+        loop: true,
+        items: 1,
+        center: true,
+        autoWidth: true,
+        // stagePadding: 10,
+        nav: false,
+        dots: false,
+        margin: 10,
+        navContainerClass: 'slider-nav',
+        navText: [
+          `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
         <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 5.96968L7.5 5.96968L7.5 9.5498L0 5.21968L7.5 0.88955L7.5 4.46968L16.5 4.46968L16.5 5.96968Z"/>
       </svg>`,
-        `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
+          `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
         <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M0.5 3.96978L9.5 3.96978L9.5 0.389649L17 4.71978L9.5 9.0499L9.5 5.46978L0.5 5.46978L0.5 3.96978Z"/>
       </svg>`,
-      ],
-      navClass: [
-        'btn slider-nav__button slider-nav__button_left',
-        'btn slider-nav__button slider-nav__button_right',
-      ],
-      responsive: {
-        768: {
-          autoWidth: false,
-          center: false,
-          margin: 0,
-          nav: true,
+        ],
+        navClass: [
+          'btn slider-nav__button slider-nav__button_left',
+          'btn slider-nav__button slider-nav__button_right',
+        ],
+        responsive: {
+          768: {
+            autoWidth: false,
+            center: false,
+            margin: 0,
+            nav: true,
+          },
         },
-      },
+      });
     });
   }
 
   static initMaps() {
     const mapEl = document.querySelector('#map');
-    if (!mapEl) return 0;
-    return new YandexMaps(mapEl, window.app);
+    if (!mapEl) return;
+    import('../modules/Maps').then((module) => {
+      const YandexMaps = module.default;
+      new YandexMaps(mapEl, window.app);
+    });
+    // return new YandexMaps(mapEl, window.app);
   }
 
 
@@ -258,6 +267,14 @@ export default class MainPage {
   }
 }
 
-$(() => {
+function ready(fn) {
+  if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+    fn();
+  } else {
+    document.addEventListener('DOMContentLoaded', fn);
+  }
+}
+
+ready(() => {
   window.page = new MainPage();
 });
