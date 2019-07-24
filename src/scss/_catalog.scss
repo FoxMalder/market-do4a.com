@@ -537,10 +537,27 @@ $multifilter-padding-x: (
     position: relative;
     padding-right: 15px;
     padding-left: 15px;
+    color: rgba(#000, 0.5);
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: normal;
-    @include mre-height-block(14px, 47px, 1);
+
+    &_parent {
+
+      &.active {
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          margin-left: -5px;
+          border-bottom: 5px solid $main-color;
+          border-right: 5px solid transparent;
+          border-top: 0;
+          border-left: 5px solid transparent;
+        }
+      }
+    }
 
     &::after {
       content: '';
@@ -553,15 +570,26 @@ $multifilter-padding-x: (
     }
 
     &.active {
-      &::before {
-        content: '';
-        position: absolute;
-        right: 15px;
-        bottom: 0;
-        left: 15px;
+      color: #000;
+
+      .category-list-mob__label {
         border-bottom: 1px solid $main-color;
       }
+
+      //&::before {
+      //  content: '';
+      //  position: absolute;
+      //  right: 15px;
+      //  bottom: 0;
+      //  left: 15px;
+      //  border-bottom: 1px solid $main-color;
+      //}
     }
+  }
+
+  &__label {
+    @include mre-height-block(14px, 47px, 1);
+    border-bottom: 1px solid transparent;
   }
 }
 
@@ -620,6 +648,12 @@ $multifilter-padding-x: (
   position: relative;
   align-items: center;
   height: 50px;
+
+  &[disabled] {
+    color: rgba(#000, 0.4);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
   @include media-breakpoint-up(md) {
     display: inline-flex;
@@ -706,7 +740,7 @@ $multifilter-padding-x: (
   }
 
   &__content[data-toggle='dropdown'] {
-  //&__content {
+    //&__content {
     padding-right: map_get($multifilter-padding-x, xl) + 10px;
     transition: background .3s ease;
     cursor: pointer;
@@ -722,7 +756,7 @@ $multifilter-padding-x: (
       top: calc(50% - 3px);
       right: map_get($multifilter-padding-x, xl);
 
-      border-top: 6px solid #101010;
+      border-top: 6px solid currentColor;
       border-right: 4px solid transparent;
       border-bottom: 0;
       border-left: 4px solid transparent;
@@ -869,6 +903,7 @@ $multifilter-padding-x: (
 
     &.active {
       opacity: 1;
+      color: $main-color;
     }
   }
 
@@ -878,8 +913,8 @@ $multifilter-padding-x: (
     max-width: 381px;
     height: auto;
     max-height: 461px; // Ровно 9 элементов
-    overflow-y: auto;
     overflow-x: hidden;
+    overflow-y: auto;
 
     &[data-simplebar] {
       width: 316px;
@@ -1197,6 +1232,9 @@ $multifilter-menu-padding-x: 22px;
         max-width: calc(25% - #{map_get($grid-gutter-width-map, xl)});
         margin: (map_get($grid-gutter-width-map, xl) / 2);
       }
+      //> .vendor-card:nth-child(6 - n) {
+      //  max-width: calc(33% - #{map_get($grid-gutter-width-map, xl)});
+      //}
     }
   }
 
@@ -1344,28 +1382,30 @@ $multifilter-menu-padding-x: 22px;
 }
 
 .card-list {
-  display: grid;
+  display: flex;
   position: relative;
-  grid-gap: 0;
-  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  //display: grid;
+  flex-wrap: wrap;
+  //grid-gap: 0;
+  //grid-template-columns: repeat(2, minmax(100px, 1fr));
   //margin-right: (map_get($grid-gutter-width-map, xs) / -2);
   //margin-left: (map_get($grid-gutter-width-map, xs) / -2);
   transition: height .3s ease;
 
   @include media-breakpoint-up(sm) {
-    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    //grid-template-columns: repeat(3, minmax(100px, 1fr));
   }
   @include media-breakpoint-up(md) {
-    grid-gap: map_get($grid-gutter-width-map, md);
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
-    //margin-right: (map_get($grid-gutter-width-map, md) / -2);
-    //margin-left: (map_get($grid-gutter-width-map, md) / -2);
+    //grid-gap: map_get($grid-gutter-width-map, md);
+    //grid-template-columns: repeat(2, minmax(100px, 1fr));
+    margin-right: (map_get($grid-gutter-width-map, md) / -2);
+    margin-left: (map_get($grid-gutter-width-map, md) / -2);
   }
   @include media-breakpoint-up(xl) {
-    grid-gap: map_get($grid-gutter-width-map, xl);
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
-    //margin-right: (map_get($grid-gutter-width-map, xl) / -2);
-    //margin-left: (map_get($grid-gutter-width-map, xl) / -2);
+    //grid-gap: map_get($grid-gutter-width-map, xl);
+    //grid-template-columns: repeat(4, minmax(100px, 1fr));
+    margin-right: (map_get($grid-gutter-width-map, xl) / -2);
+    margin-left: (map_get($grid-gutter-width-map, xl) / -2);
   }
 
   //&::before {
@@ -1388,12 +1428,54 @@ $multifilter-menu-padding-x: 22px;
   //  pointer-events: none;
   //}
 
-  > .vendor-card,
   > .product-card {
+    flex: 0 0 50%;
+    max-width: 50%;
     border-right: 1px solid #e8e8e8;
     border-bottom: 1px solid #e8e8e8;
     @include media-breakpoint-up(md) {
       border: 0;
+    }
+  }
+
+  > .vendor-card {
+    flex: 0 0 50%;
+    max-width: 50%;
+    border-right: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    @include media-breakpoint-up(md) {
+      flex: 0 0 calc(33.333% - #{map_get($grid-gutter-width-map, md)});
+      max-width: calc(33.333% - #{map_get($grid-gutter-width-map, md)});
+      margin: (map_get($grid-gutter-width-map, md) / 2);
+      border: 0;
+      &:nth-child(-n + 6) {
+        flex: 0 0 calc(50% - #{map_get($grid-gutter-width-map, md)});
+        max-width: calc(50% - #{map_get($grid-gutter-width-map, md)});
+      }
+    }
+    @include media-breakpoint-up(xl) {
+      flex: 0 0 calc(25% - #{map_get($grid-gutter-width-map, xl)});
+      max-width: calc(25% - #{map_get($grid-gutter-width-map, xl)});
+      margin: (map_get($grid-gutter-width-map, xl) / 2);
+      &:nth-child(-n + 6) {
+        flex: 0 0 calc(33.333% - #{map_get($grid-gutter-width-map, xl)});
+        max-width: calc(33.333% - #{map_get($grid-gutter-width-map, xl)});
+        height: 477px;
+
+        .vendor-card__title {
+          font-size: 28px;
+          line-height: 38px;
+        }
+
+        .vendor-card__description {
+          font-size: 15px;
+          line-height: 22px;
+        }
+
+        .vendor-card__img {
+          height: 222px;
+        }
+      }
     }
   }
 

@@ -488,7 +488,7 @@
       </div>
     </div>
     <div class="catalog-control">
-      <div class="catalog-control__menu catalog-control__menu_white">
+      <div class="catalog-control__menu catalog-control__menu_white" id="vueMobile">
         <div class="category-list-mob">
           <div class="category-list-mob__item">Все категории</div>
           <div class="category-list-mob__item active">Сывороточный</div>
@@ -501,30 +501,319 @@
         <div class="container">
           <div class="view">
             <div class="view__category">
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Показывать для категорий:</span><span class="multifilter__value">Всех категорий</span></button>
+              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Тип товара:</span><span class="multifilter__value">Не выбрано</span></button>
                 <div class="dropdown-menu" role="form">
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1053" name="categoryAll[]" value="1053"><label class="multifilter-checkbox__label" for="1053">Пояса и ремни</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1051" name="categoryAll[]" value="1051"><label class="multifilter-checkbox__label" for="1051">Магнезия</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1054" name="categoryAll[]" value="1054"><label class="multifilter-checkbox__label" for="1054">Кинезио тейпы</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1052" name="categoryAll[]" value="1052"><label class="multifilter-checkbox__label" for="1052">Обувь и штангетки</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1055" name="categoryAll[]" value="1055"><label class="multifilter-checkbox__label" for="1055">Экипировка прочая</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="973" name="categoryAll[]" value="973"><label class="multifilter-checkbox__label" for="973">Одежда</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="974" name="categoryAll[]" value="974"><label class="multifilter-checkbox__label" for="974">Женская одежда</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="976" name="categoryAll[]" value="976"><label class="multifilter-checkbox__label" for="976">Лосины и штаны</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="977" name="categoryAll[]" value="977"><label class="multifilter-checkbox__label" for="977">Толстовки и костюмы</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="975" name="categoryAll[]" value="975"><label class="multifilter-checkbox__label" for="975">Купальники</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="978" name="categoryAll[]" value="978"><label class="multifilter-checkbox__label" for="978">Топы и рашгарды</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="979" name="categoryAll[]" value="979"><label class="multifilter-checkbox__label" for="979">Шапки и кепки</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="980" name="categoryAll[]" value="980"><label class="multifilter-checkbox__label" for="980">Шорты</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="981" name="categoryAll[]" value="981"><label class="multifilter-checkbox__label" for="981">Мужская одежда</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="982" name="categoryAll[]" value="982"><label class="multifilter-checkbox__label" for="982">Рашгарды и лосины</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="983" name="categoryAll[]" value="983"><label class="multifilter-checkbox__label" for="983">Толстовки и костюмы</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="984" name="categoryAll[]" value="984"><label class="multifilter-checkbox__label" for="984">Трико (борцовки)</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="985" name="categoryAll[]" value="985"><label class="multifilter-checkbox__label" for="985">Футболки</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="986" name="categoryAll[]" value="986"><label class="multifilter-checkbox__label" for="986">Шапки и кепки</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="987" name="categoryAll[]" value="987"><label class="multifilter-checkbox__label" for="987">Шорты</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="353" name="categoryAll[]" value="353"><label class="multifilter-checkbox__label" for="353">Оборудование свыше 40 тыс</label></div>
-                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="352" name="categoryAll[]" value="352"><label class="multifilter-checkbox__label" for="352">Хоз. нужды</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1030" value="1030"><label class="multifilter-checkbox__label" for="1030">Протеин</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1011" value="1011"><label class="multifilter-checkbox__label" for="1011">Набор массы</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1015" value="1015"><label class="multifilter-checkbox__label" for="1015">Похудение</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="989" value="989"><label class="multifilter-checkbox__label" for="989">Аминокислоты</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="995" value="995"><label class="multifilter-checkbox__label" for="995">Батончики, напитки, закуски</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1002" value="1002"><label class="multifilter-checkbox__label" for="1002">Выносливость и силовые</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1019" value="1019"><label class="multifilter-checkbox__label" for="1019">Продукты для здоровья</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1039" value="1039"><label class="multifilter-checkbox__label" for="1039">Аксессуары</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1047" value="1047"><label class="multifilter-checkbox__label" for="1047">Экипировка</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="974" value="974"><label class="multifilter-checkbox__label" for="974">Женская одежда</label></div>
+                  <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="981" value="981"><label class="multifilter-checkbox__label" for="981">Мужская одежда</label></div>
+                </div>
+              </fieldset>
+              <fieldset class="multifilter" disabled><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Выберите тип товара</span></button>
+                <div class="dropdown-menu" role="form">
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1036" value="1036">
+                    <label class="multifilter-checkbox__label" for="1036">Сывороточный</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1035" value="1035">
+                    <label class="multifilter-checkbox__label" for="1035">Комплексный</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1034" value="1034">
+                    <label class="multifilter-checkbox__label" for="1034">Казеин и молочный</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1031" value="1031">
+                    <label class="multifilter-checkbox__label" for="1031">Растительный</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1033" value="1033">
+                    <label class="multifilter-checkbox__label" for="1033">Изоляты и гидролизаты</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1037" value="1037">
+                    <label class="multifilter-checkbox__label" for="1037">Яичный</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1032" value="1032">
+                    <label class="multifilter-checkbox__label" for="1032">Говяжий</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1011" type="checkbox" id="1012" value="1012">
+                    <label class="multifilter-checkbox__label" for="1012">Гейнеры на быстрых углеводах</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1011" type="checkbox" id="1013" value="1013">
+                    <label class="multifilter-checkbox__label" for="1013">Гейнеры на долгих углеводах</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1011" type="checkbox" id="1014" value="1014">
+                    <label class="multifilter-checkbox__label" for="1014">Углеводные коктейли</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1015" type="checkbox" id="1016" value="1016">
+                    <label class="multifilter-checkbox__label" for="1016">Жиросжигатели</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1015" type="checkbox" id="1017" value="1017">
+                    <label class="multifilter-checkbox__label" for="1017">Л-карнитин</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1015" type="checkbox" id="1018" value="1018">
+                    <label class="multifilter-checkbox__label" for="1018">Безопасные жиросжигатели</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="989" type="checkbox" id="991" value="991">
+                    <label class="multifilter-checkbox__label" for="991">BCAA</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="989" type="checkbox" id="992" value="992">
+                    <label class="multifilter-checkbox__label" for="992">Глютамин</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="989" type="checkbox" id="993" value="993">
+                    <label class="multifilter-checkbox__label" for="993">Комплексные</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="989" type="checkbox" id="990" value="990">
+                    <label class="multifilter-checkbox__label" for="990">Аргинин и донаторы NO</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="989" type="checkbox" id="994" value="994">
+                    <label class="multifilter-checkbox__label" for="994">Прочие аминокислоты</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="995" type="checkbox" id="997" value="997">
+                    <label class="multifilter-checkbox__label" for="997">Напитки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="995" type="checkbox" id="1064" value="1064">
+                    <label class="multifilter-checkbox__label" for="1064">Низкокалорийные Соусы и Джемы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="995" type="checkbox" id="998" value="998">
+                    <label class="multifilter-checkbox__label" for="998">Ореховые пасты</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="995" type="checkbox" id="999" value="999">
+                    <label class="multifilter-checkbox__label" for="999">Правильное питание</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="995" type="checkbox" id="1000" value="1000">
+                    <label class="multifilter-checkbox__label" for="1000">Сахарозаменители</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="995" type="checkbox" id="1001" value="1001">
+                    <label class="multifilter-checkbox__label" for="1001">Батончики и другие закуски</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1003" value="1003">
+                    <label class="multifilter-checkbox__label" for="1003">Специальные комплексы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1008" value="1008">
+                    <label class="multifilter-checkbox__label" for="1008">Предтренировочные комплексы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1007" value="1007">
+                    <label class="multifilter-checkbox__label" for="1007">Послетренировочные комплексы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1005" value="1005">
+                    <label class="multifilter-checkbox__label" for="1005">Изотоники</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1006" value="1006">
+                    <label class="multifilter-checkbox__label" for="1006">Креатин</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1004" value="1004">
+                    <label class="multifilter-checkbox__label" for="1004">Бета-аланин</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1009" value="1009">
+                    <label class="multifilter-checkbox__label" for="1009">Энергетики</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1002" type="checkbox" id="1010" value="1010">
+                    <label class="multifilter-checkbox__label" for="1010">Энергетические гели</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1027" value="1027">
+                    <label class="multifilter-checkbox__label" for="1027">Омега 3-6-9</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1022" value="1022">
+                    <label class="multifilter-checkbox__label" for="1022">Витамины и минералы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1024" value="1024">
+                    <label class="multifilter-checkbox__label" for="1024">Для суставов и связок</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1028" value="1028">
+                    <label class="multifilter-checkbox__label" for="1028">Тестобустеры и ZMA</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1021" value="1021">
+                    <label class="multifilter-checkbox__label" for="1021">Антиоксиданты и Q10</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1023" value="1023">
+                    <label class="multifilter-checkbox__label" for="1023">Для печени и ПКТ</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1025" value="1025">
+                    <label class="multifilter-checkbox__label" for="1025">Качество сна</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1029" value="1029">
+                    <label class="multifilter-checkbox__label" for="1029">Улучшение пищеварения</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1026" value="1026">
+                    <label class="multifilter-checkbox__label" for="1026">Общеукрепляющие добавки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1019" type="checkbox" id="1020" value="1020">
+                    <label class="multifilter-checkbox__label" for="1020">Активное долголетие</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1041" value="1041">
+                    <label class="multifilter-checkbox__label" for="1041">Бутылки и шейкеры</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1043" value="1043">
+                    <label class="multifilter-checkbox__label" for="1043">Контейнеры и таблетницы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1045" value="1045">
+                    <label class="multifilter-checkbox__label" for="1045">Сувениры</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1046" value="1046">
+                    <label class="multifilter-checkbox__label" for="1046">Спортивные сумки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1056" value="1056">
+                    <label class="multifilter-checkbox__label" for="1056">Сумки холодильники</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1042" value="1042">
+                    <label class="multifilter-checkbox__label" for="1042">Грим и косметика</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1039" type="checkbox" id="1040" value="1040">
+                    <label class="multifilter-checkbox__label" for="1040">Аксессуары прочие</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1044" value="1044">
+                    <label class="multifilter-checkbox__label" for="1044">Перчатки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1057" value="1057">
+                    <label class="multifilter-checkbox__label" for="1057">Бинты на колено (коленные)</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1048" value="1048">
+                    <label class="multifilter-checkbox__label" for="1048">Бинты на руку (кистевые)</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1058" value="1058">
+                    <label class="multifilter-checkbox__label" for="1058">Суппорта для суставов</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1050" value="1050">
+                    <label class="multifilter-checkbox__label" for="1050">Лямки для тяги</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1049" value="1049">
+                    <label class="multifilter-checkbox__label" for="1049">Крюки для турника</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1053" value="1053">
+                    <label class="multifilter-checkbox__label" for="1053">Пояса и ремни</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1051" value="1051">
+                    <label class="multifilter-checkbox__label" for="1051">Магнезия</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1054" value="1054">
+                    <label class="multifilter-checkbox__label" for="1054">Кинезио тейпы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1052" value="1052">
+                    <label class="multifilter-checkbox__label" for="1052">Обувь и штангетки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="1047" type="checkbox" id="1055" value="1055">
+                    <label class="multifilter-checkbox__label" for="1055">Экипировка прочая</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="974" type="checkbox" id="976" value="976">
+                    <label class="multifilter-checkbox__label" for="976">Лосины и штаны</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="974" type="checkbox" id="977" value="977">
+                    <label class="multifilter-checkbox__label" for="977">Толстовки и костюмы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="974" type="checkbox" id="975" value="975">
+                    <label class="multifilter-checkbox__label" for="975">Купальники</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="974" type="checkbox" id="978" value="978">
+                    <label class="multifilter-checkbox__label" for="978">Топы и рашгарды</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="974" type="checkbox" id="979" value="979">
+                    <label class="multifilter-checkbox__label" for="979">Шапки и кепки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="974" type="checkbox" id="980" value="980">
+                    <label class="multifilter-checkbox__label" for="980">Шорты</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="982" value="982">
+                    <label class="multifilter-checkbox__label" for="982">Рашгарды и лосины</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="983" value="983">
+                    <label class="multifilter-checkbox__label" for="983">Толстовки и костюмы</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="984" value="984">
+                    <label class="multifilter-checkbox__label" for="984">Трико (борцовки)</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="985" value="985">
+                    <label class="multifilter-checkbox__label" for="985">Футболки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="986" value="986">
+                    <label class="multifilter-checkbox__label" for="986">Шапки и кепки</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="987" value="987">
+                    <label class="multifilter-checkbox__label" for="987">Шорты</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="353" value="353">
+                    <label class="multifilter-checkbox__label" for="353">Оборудование свыше 40 тыс</label>
+                  </div>
+                  <div class="multifilter-checkbox">
+                    <input class="multifilter-checkbox__input" data-parent-id="981" type="checkbox" id="352" value="352">
+                    <label class="multifilter-checkbox__label" for="352">Хоз. нужды</label>
+                  </div>
                 </div>
               </fieldset>
             </div>
@@ -730,35 +1019,7 @@
           </div>
         </div>
         <div class="card-list tab-pane active" id="cards" role="tabpanel">
-          <div class="card-list__nav nav">
-            <div class="alphabet-navigation">
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value nav-link" href="#letter-A">A</a>
-                <div class="alphabet-navigation__tooltip">A</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value nav-link" href="#letter-B">B</a>
-                <div class="alphabet-navigation__tooltip">B</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value" href="#letter-C">C</a>
-                <div class="alphabet-navigation__tooltip">C</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value" href="#letter-0-9">0-9</a>
-                <div class="alphabet-navigation__tooltip">0-9</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value" href="#">d</a>
-                <div class="alphabet-navigation__tooltip">d</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value" href="#">e</a>
-                <div class="alphabet-navigation__tooltip">e</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value" href="#">f</a>
-                <div class="alphabet-navigation__tooltip">f</div>
-              </div>
-              <div class="alphabet-navigation__item"><a class="alphabet-navigation__value" href="#">g</a>
-                <div class="alphabet-navigation__tooltip">g</div>
-              </div>
-            </div>
-          </div>
-          <div class="vendor-card" id="letter-A" data-sections-id="1041,977,974,1038,1039,1046,973">
+          <div class="vendor-card" data-sections-id="1041,977,974,1038,1039,1046,973">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="ASICS"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">ASICS</a>
@@ -772,7 +1033,7 @@
               </div>
             </div>
           </div>
-          <div class="vendor-card" id="" data-sections-id="">
+          <div class="vendor-card">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/29/66525_212x212_293f83efde3fccdfe63a8cbf5ed1bedf.png" alt="Adidas"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Adidas</a>
@@ -786,7 +1047,7 @@
               </div>
             </div>
           </div>
-          <div class="vendor-card" id="" data-sections-id="1024,988,1019,1015,1002,1027,1017,1008,995,1018,1001">
+          <div class="vendor-card" data-sections-id="1024,988,1019,1015,1002,1027,1017,1008,995,1018,1001">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="Название (1 строка)"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Название (1 строка)</a>
@@ -808,7 +1069,7 @@
               <div class="product-stickers__item product-stickers__item_red">Скидки <br>до 15%</div>
             </div>
           </div>
-          <div class="vendor-card" id="" data-sections-id="">
+          <div class="vendor-card">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="Muscular Development"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Muscular Development</a>
@@ -822,7 +1083,7 @@
               </div>
             </div>
           </div>
-          <div class="vendor-card" id="" data-sections-id="">
+          <div class="vendor-card">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="Название картинки"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Название</a>
@@ -836,7 +1097,7 @@
               </div>
             </div>
           </div>
-          <div class="vendor-card" id="letter-B" data-sections-id="">
+          <div class="vendor-card">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="Название картинки"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Название</a>
@@ -850,7 +1111,7 @@
               </div>
             </div>
           </div>
-          <div class="vendor-card" id="" data-sections-id="1057,1047,1048,1038">
+          <div class="vendor-card" data-sections-id="1057,1047,1048,1038">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="Название картинки"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Название</a>
@@ -864,7 +1125,7 @@
               </div>
             </div>
           </div>
-          <div class="vendor-card" id="" data-sections-id="">
+          <div class="vendor-card">
             <div class="vendor-card__wrapper">
               <div class="vendor-card__img"><img src="https://marketdo4a.com/upload/resizer/02/65178_212x212_023fcd0f28a28b46db8a3881274ff6fe.png" alt="Название картинки"></div>
               <div class="vendor-card__body"><a class="vendor-card__title stretched-link" href="#">Название</a>

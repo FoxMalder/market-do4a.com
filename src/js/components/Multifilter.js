@@ -210,179 +210,62 @@ export class PriceFilter extends Multifilter {
   }
 }
 
-export class CheckboxFilter extends Multifilter {
-  constructor(el, callback) {
-    super(el, callback, { type: 'checkbox' });
-
-    // this.total = 0;
-    // this.totalEl = null;
-    // this.resetButton = null;
-    // this.selectedTitle = [];
-    //
-    this.data = {
-      label: '',
-      name: '',
-      checkboxList: [],
-    };
-
+export class CheckboxFilter {
+  constructor(el, callback, filterSettings = null) {
+    this.el = el;
+    this.callback = callback;
+    this.filterSettings = filterSettings || CheckboxFilter.parseSettings(this.el);
 
     // if (this.el.querySelector('.multifilter__label')) {
     //   this.options.replaceTitle = true;
     // }
 
-    this.parse();
-    // this.init();
+    this.init();
   }
 
-  parse() {
-    const option = {};
+  static parseSettings(multifilterEl) {
+    if (!multifilterEl) return {};
 
-    if (this.el.querySelector('.multifilter__label')) {
+    const option = {
+      type: 'checkbox',
+      replaceTitle: false,
+      label: multifilterEl.querySelector('.multifilter__value').innerHTML,
+      defaultLabel: 'Не выбрано',
+      disabled: false,
+      data: Array.from(multifilterEl.querySelectorAll('input[type="checkbox"]'), input => ({
+        title: input.nextElementSibling.textContent,
+        name: input.name,
+        value: input.value,
+        checked: input.checked,
+        available: !input.disabled,
+        parent: input.dataset.parentId,
+        hidden: false,
+        filtered: false,
+      })),
+    };
+
+    if (multifilterEl.querySelector('.multifilter__label')) {
       option.replaceTitle = true;
-      option.label = this.el.querySelector('.multifilter__label').innerHTML;
-    } else {
-      option.replaceTitle = false;
-      option.label = this.el.querySelector('.multifilter__value').innerHTML;
+      option.label = multifilterEl.querySelector('.multifilter__label').innerHTML;
     }
 
-    option.name = this.inputList[0].name; // Category[] || Brand[]
-    option.data = this.inputList.map(input => ({
-      title: input.nextElementSibling.textContent,
-      value: input.value,
-      checked: input.checked,
-      available: !input.disabled,
-      hidden: false,
-      filtered: false,
-    }));
+    return option;
+  }
 
-    new Vue({
+  init() {
+    this.vm = new Vue({
       el: this.el,
       data: {
         // options: this.options,
-        filter: option,
+        callback: this.callback,
+        filter: this.filterSettings,
+      },
+      mounted() {
+        this.$on('filter:change', this.callback);
       },
       template: '<MultifilterCheckboxList :filter="filter"/>',
       components: { MultifilterCheckboxList },
     });
-  }
-
-  init() {
-    // this.data.name = this.inputList[0].name; // Category[] || Brand[]
-
-
-    this.data.name = this.inputList[0].name; // Category[] || Brand[]
-    this.total = this.inputList.reduce((arr, input) => {
-      if (!input.checked) {
-        return arr;
-      }
-      this.data.value.push(input.value);
-      return this.selectedTitle.push(input.nextElementSibling.textContent);
-    }, 0);
-
-    if (this.inputList.length > 9) {
-      this.initSearch();
-      super.initScrollbar();
-    }
-
-    this.resetButton = this.el.querySelector('.multifilter__btn-clear');
-    if (!this.resetButton) {
-      this.resetButton = document.createElement('button');
-      this.resetButton.classList.add('multifilter__btn-clear');
-      this.el.appendChild(this.resetButton);
-    }
-    this.resetButton.addEventListener('click', this.onReset);
-
-
-    this.totalEl = this.menuButton.querySelector('.multifilter__total');
-    if (!this.totalEl) {
-      this.totalEl = document.createElement('span');
-      this.totalEl.classList.add('multifilter__total');
-      this.menuButton.appendChild(this.totalEl);
-    }
-
-    this.el.addEventListener('change', this.onChange);
-    this.render();
-  }
-
-  initSearch() {
-    const searchField = document.createElement('input');
-    searchField.classList.add('multifilter-search__input');
-    searchField.type = 'search';
-    searchField.placeholder = 'Поиск';
-    searchField.autocomplete = 'off';
-    // searchField.addEventListener('keyup', this.onSearch);
-    searchField.addEventListener('input', this.onSearch);
-    searchField.addEventListener('change', this.onSearch);
-
-    const searchContainer = document.createElement('div');
-    searchContainer.classList.add('multifilter-search');
-    searchContainer.appendChild(searchField);
-
-    this.contentEl.insertBefore(searchContainer, this.contentEl.firstChild);
-  }
-
-  onSearch = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const searchText = event.target.value.trim().toLowerCase();
-
-    this.inputList.forEach((input) => {
-      if (!searchText.length) {
-        input.parentElement.style.display = '';
-      } else if (input.nextElementSibling.textContent.toLowerCase().indexOf(searchText) !== -1) {
-        input.parentElement.style.display = '';
-      } else {
-        input.parentElement.style.display = 'none';
-      }
-    });
-  };
-
-  onChange = (event) => {
-    if (event.target.getAttribute('type') !== 'checkbox') return;
-
-    const title = event.target.nextElementSibling.textContent;
-    if (event.target.checked) {
-      this.total += 1;
-      this.selectedTitle.push(title);
-      this.data.value.push(event.target.value);
-    } else {
-      this.total -= 1;
-      this.selectedTitle.splice(this.selectedTitle.indexOf(title), 1);
-      this.data.value.splice(this.data.value.indexOf(event.target.value), 1);
-    }
-
-    this.render();
-    this.callback(this);
-  };
-
-  onReset = (event) => {
-    event.preventDefault();
-    this.reset();
-  };
-
-  render() {
-    this.totalEl.innerText = this.total || 0;
-    this.totalEl.style.display = this.total ? '' : 'none';
-    this.resetButton.style.display = this.total ? '' : 'none';
-    if (this.total) {
-      this.el.classList.add('active');
-    } else {
-      this.el.classList.remove('active');
-    }
-
-    if (this.options.replaceTitle) {
-      super.updateTitle(this.selectedTitle);
-    }
-  }
-
-  reset() {
-    this.data.value = [];
-    super.reset();
-    this.total = 0;
-    this.selectedTitle = [];
-    this.render();
-    // this.callback(this);
   }
 }
 

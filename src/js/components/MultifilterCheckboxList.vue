@@ -1,5 +1,5 @@
 <template>
-  <dropdown class="multifilter" :scrolled="true" :class="{active: isActive}">
+  <dropdown class="multifilter" :scrolled="true" :class="{active: isActive}" :disabled="filter.disabled">
     <template slot="btn">
       <span class="multifilter__label" v-if="filter.replaceTitle">{{filter.label}}</span>
       <span class="multifilter__value" v-if="filter.replaceTitle">{{checkedTitle}}</span>
@@ -8,7 +8,7 @@
     
     <button class="multifilter__btn-clear" type="reset"
             v-if="isActive"
-            @click.prevent="onReset"
+            @click.prevent="onReset(filter)"
     >Сбросить
     </button>
     
@@ -18,24 +18,25 @@
       </div>
       <template>
         <multifilter-checkbox
-                v-for="item in availableItems" :key="item.title"
+                v-for="item in availableItems" :key="item.value"
                 v-show="!item.hidden && !item.filtered"
                 v-model="item.checked"
                 :name="item.name"
                 :disabled="false"
-                @change="onChange">
+                @change="onChange(item)">
           {{item.title}}
         </multifilter-checkbox>
       </template>
-      <div class="multifilter-delimiter" v-if="hasNotAvailableItems">
+      <div class="multifilter-delimiter" v-if="visibleNotAvailableCount">
         <span class="multifilter-delimiter__text">Нет в наличии</span>
       </div>
       <multifilter-checkbox
-              v-for="item in notAvailableItems" :key="item.title"
+              v-for="item in notAvailableItems" :key="item.value"
               v-show="!item.hidden && !item.filtered"
               v-model="item.checked"
               :name="item.name"
-              :disabled="true">
+              :disabled="!item.checked"
+              @change="onChange(item)">
         {{item.title}}
       </multifilter-checkbox>
     </template>
@@ -43,6 +44,7 @@
 </template>
 
 <script>
+  import { mapGetters, mapState, mapActions } from 'vuex'
   // import simplebar from 'simplebar-vue';
   // import 'simplebar/dist/simplebar.min.css';
   import Dropdown from './Dropdown.vue';
@@ -55,54 +57,17 @@
       MultifilterCheckbox,
       // simplebar
       Dropdown
-
     },
     data() {
       return {
         searchQuery: '',
-        // selectedTitle: '',
-        // data: {
-        //   searchEnabled: true,
-        //   name: 'Category[]',
-        //   checkboxList: [
-        //     {
-        //       title: '4 Dimension Nutrition',
-        //       value: '1032',
-        //       checked: false,
-        //       available: false,
-        //       hidden: false,
-        //       filtered: false,
-        //     }, {
-        //       title: '25-й час',
-        //       value: '1033',
-        //       checked: true,
-        //       available: false,
-        //       hidden: false,
-        //       filtered: false,
-        //     }, {
-        //       title: '2DTrade',
-        //       value: '1034',
-        //       checked: false,
-        //       available: true,
-        //       hidden: false,
-        //       filtered: false,
-        //     }, {
-        //       title: '2SN',
-        //       value: '1035',
-        //       checked: false,
-        //       available: false,
-        //       hidden: false,
-        //       filtered: false,
-        //     }
-        //   ],
-        // }
       }
     },
-    mounted() {
-      this.$root.$on('filter:reset', this.reset);
-    },
+    // mounted() {
+    //   this.$root.$on('filter:reset', this.reset);
+    // },
     watch: {
-      searchQuery: function() {
+      searchQuery() {
         if (this.searchQuery) {
           this.filter.data.forEach((item) => {
             // item.filtered = !item.title.startsWith(this.searchQuery);
@@ -114,79 +79,66 @@
           })
         }
       },
-      // checkboxList: function() {
-      //
-      // }
     },
     methods: {
-      reset() {
-        this.filter.data.forEach((checkbox) => {
-          checkbox.checked = false;
-        });
-      },
-      onReset() {
-        this.reset();
-        this.onChange();
-      },
-      onChange() {
-        this.$root.$emit('filter:change');
-      }
-    },
-    computed: {
-      isActive() {
-        return this.checkedItems.length !== 0;
-      },
-      // filteredItems() {
-      //   if (this.searchQuery) {
-      //     return this.data.checkboxList.map((item) => {
-      //       item.filtered = item.title.startsWith(this.searchQuery);
-      //       return this.searchQuery && item.title.startsWith(this.searchQuery);
-      //     })
-      //   } else {
-      //     return this.data.checkboxList;
+      ...mapActions({
+        onReset: 'checkboxReset',
+        // onChange: 'checkboxChange'
+      }),
+      // reset() {
+      //   this.filter.data.forEach((checkbox) => {
+      //     checkbox.checked = false;
+      //   });
+      // },
+      // onReset() {
+      //   this.reset();
+      //   // this.onChange();
+      // },
+      // onClick(item) {
+      //   if (item.) {
+      //
       //   }
       // },
-      // filterRegExp() {
-      //   return new RegExp(`${this.searchQuery}`, 'ig');
-      // },
+      onChange(item) {
+        this.$store.dispatch('checkboxChange', {
+          name: this.filter.name,
+          target: item,
+        });
+
+        // this.$root.$emit('filter:change');
+      },
+    },
+    computed: {
+      // ...mapGetters({
+      //   availableItems: 'availableByName',
+      //   checkedItems: 'checkedItemsByName',
+      //   notAvailableItems: 'notAvailableByName',
+      //   visibleNotAvailableCount: 'notAvailableVisibleByNameCount',
+      // }),
+
       checkedTitle() {
-        if (this.checkedItems.length) {
+        if (this.isActive) {
           return this.checkedItems.map((item) => {
             return item.title
           }).join(', ');
         }
-        return 'Не выбрано'
+        return this.filter.defaultLabel
+      },
+      isActive() {
+        return this.checkedItems.length !== 0;
       },
       checkedItems() {
-        return this.filter.data.filter((item) => {
-          return item.checked
-        });
+        return this.filter.data.filter(item => item.checked);
       },
       availableItems() {
-        return this.filter.data.filter((item) => {
-          return item.available;
-        })
+        return this.filter.data.filter(item => item.available)
       },
       notAvailableItems() {
-        return this.filter.data.filter((item) => {
-          return !item.available;
-        })
+        return this.filter.data.filter(item => !item.available)
       },
-      hasNotAvailableItems() {
-        return this.notAvailableItems.filter((item) => {
-          return !item.filtered;
-        }).length;
+      visibleNotAvailableCount() {
+        return this.notAvailableItems.filter((item) => !item.available && !item.filtered).length
       },
-      // hiddenNotAvailableItems() {
-      //   return this.notAvailableItems.filter((item) => {
-      //     return !item.available && !item.filtered;
-      //   })
-      // },
-      // availableItems() {
-      //   return this.data.checkboxList.filter((item) => {
-      //     return item.available;
-      //   })
-      // }
     }
   }
 </script>
