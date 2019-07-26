@@ -501,7 +501,7 @@
         <div class="container">
           <div class="view">
             <div class="view__category">
-              <fieldset class="multifilter"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Тип товара:</span><span class="multifilter__value">Не выбрано</span></button>
+              <fieldset class="multifilter" data-filter-name="Type"><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Тип товара:</span><span class="multifilter__value">Не выбрано</span></button>
                 <div class="dropdown-menu" role="form">
                   <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1030" value="1030"><label class="multifilter-checkbox__label" for="1030">Протеин</label></div>
                   <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="1011" value="1011"><label class="multifilter-checkbox__label" for="1011">Набор массы</label></div>
@@ -516,7 +516,7 @@
                   <div class="multifilter-checkbox"><input class="multifilter-checkbox__input" type="checkbox" id="981" value="981"><label class="multifilter-checkbox__label" for="981">Мужская одежда</label></div>
                 </div>
               </fieldset>
-              <fieldset class="multifilter" disabled><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Выберите тип товара</span></button>
+              <fieldset class="multifilter" data-filter-name="Category" data-filter-parent="Type" disabled><button class="multifilter__content" data-toggle="dropdown" type="button"><span class="multifilter__label">Категория:</span><span class="multifilter__value">Выберите тип товара</span></button>
                 <div class="dropdown-menu" role="form">
                   <div class="multifilter-checkbox">
                     <input class="multifilter-checkbox__input" data-parent-id="1030" type="checkbox" id="1036" value="1036">

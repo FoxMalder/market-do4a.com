@@ -1,160 +1,33 @@
 extends template/template
 block wrapper
     .catalog-menu-mob#mobile-filter
-        .catalog-menu-mob__header
-            //button.catalog-mobile__btn-back
-            span.catalog-menu-mob__title Фильтр
-            button.catalog-menu-mob__btn-close
-        .catalog-menu-mob__wrapper
-            // Элемент фильтра
-            // Модификаторы:
-            //    .active или .multifilter_active - Когда фильтр активен (то есть выбраны значения)
-            //                                      Пока просто показывает кнопку "Сбросить"
-            //    .view   - Модификатор dropdown (унаследовано от bootstrap)
-            //              Изменяет фон кнопки .multifilter__content
-            .multifilter
-
-                // Видимое сожержимое элемента фильтра
-                //
-                // При использовании выпадающего меню обязателено использование <button>
-                // а также наличие атрибута [data-toggle="m-filter"]
-                button.multifilter__content(data-toggle="m-filter")
-                    //span.multifilter__label Категория:
-                    span.multifilter__value Казеин и молоко
-                    span.multifilter__total 23
-
-                button.multifilter__btn-clear Сбросить
-                .catalog-menu-mob
-                    .catalog-menu-mob__header
-                        button.catalog-menu-mob__btn-back
-                        span.catalog-menu-mob__title Фильтр
-                    .catalog-menu-mob__wrapper
-                        .p-1 Фильтр
-                    .catalog-menu-mob__footer
-                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
-            .multifilter.active
-                button.multifilter__content(data-toggle="m-filter")
-                    span.multifilter__value Смотреть тут
-                    span.multifilter__total 2
-                button.multifilter__btn-clear Сбросить
-                .catalog-menu-mob
-                    .catalog-menu-mob__header
-                        button.catalog-menu-mob__btn-back
-                        span.catalog-menu-mob__title Фильтр
-                    .catalog-menu-mob__wrapper
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-1")
-                            label.multifilter-checkbox__label(for="m-f-2-check-1")
-                                | 4 Dimension Nutrition
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-2" checked=true)
-                            label.multifilter-checkbox__label(for="m-f-2-check-2")
-                                | ActivLab
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-3" disabled=true)
-                            label.multifilter-checkbox__label(for="m-f-2-check-3")
-                                | ASM
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-4")
-                            label.multifilter-checkbox__label(for="m-f-2-check-4")
-                                | 4 Dimension Nutrition
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-5" checked=true)
-                            label.multifilter-checkbox__label(for="m-f-2-check-5")
-                                | ActivLab
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-6" disabled=true)
-                            label.multifilter-checkbox__label(for="m-f-2-check-6")
-                                | ASM
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-7")
-                            label.multifilter-checkbox__label(for="m-f-2-check-7")
-                                | 4 Dimension Nutrition
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-8" checked=true)
-                            label.multifilter-checkbox__label(for="m-f-2-check-8")
-                                | ActivLab
-                        .multifilter-checkbox
-                            input.multifilter-checkbox__input(type="checkbox" id="m-f-2-check-9" disabled=true)
-                            label.multifilter-checkbox__label(for="m-f-2-check-9")
-                                | ASM
-                    .catalog-menu-mob__footer
-                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
-
-            .multifilter.active
-                // dropdown container
-                button.multifilter__content(data-toggle="m-filter")
-                    span.multifilter__value Очень длинное название которое должно обрезаться
-                    span.multifilter__total 2
-                button.multifilter__btn-clear Сбросить
-                .catalog-menu-mob
-                    .catalog-menu-mob__header
-                        button.catalog-menu-mob__btn-back
-                        span.catalog-menu-mob__title Фильтр
-                    .catalog-menu-mob__wrapper
-                        .p-1 Фильтр
-                    .catalog-menu-mob__footer
-                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
-            .multifilter
-                button.multifilter__content
-                    span.multifilter__value Очень длинное название которое должно обрезаться
-                    span.multifilter__total 2
-
-            .multifilter
-                button.multifilter__content(data-toggle="m-filter")
-                    span.multifilter__value Очень длинное название которое должно обрезаться
-                    span.multifilter__total 2
-                button.multifilter__btn-clear Сбросить
-                .catalog-menu-mob
-                    .catalog-menu-mob__header
-                        button.catalog-menu-mob__btn-back
-                        span.catalog-menu-mob__title Фильтр
-                    .catalog-menu-mob__wrapper
-                        .p-1 Фильтр
-                    .catalog-menu-mob__footer
-                        button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
-            .multifilter
-                button.multifilter__content
-                    span.multifilter__value Очень длинное название которое должно обрезаться
-
-            .multifilter
-                button.multifilter__content
-                    span.multifilter__value Время приёма
-
-            .multifilter
-                button.multifilter__content
-                    span.multifilter__value Цена
-
-        .catalog-menu-mob__footer
-            button.catalog-menu-mob__btn-footer.btn.btn-gray-2 Сбросить
-            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
     .catalog-menu-mob#mobile-sort
-        .catalog-menu-mob__header
-            span.catalog-menu-mob__title Сортировка
-            button.catalog-menu-mob__btn-close
-        .catalog-menu-mob__wrapper
-            .multifilter-radio
-                input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
-                label.multifilter-radio__label(for="m-s-1-check-1")
-                    | По популярности
-            .multifilter-radio
-                input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
-                label.multifilter-radio__label(for="m-s-1-check-2")
-                    | Сначала дешевые
-            .multifilter-radio
-                input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
-                label.multifilter-radio__label(for="m-s-1-check-3")
-                    | Сначала дорогие
-            .multifilter-radio
-                input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
-                label.multifilter-radio__label(for="m-s-1-check-4")
-                    | По названию (А-Я)
-            .multifilter-radio
-                input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
-                label.multifilter-radio__label(for="m-s-1-check-5")
-                    | По названию (Я-А)
-        .catalog-menu-mob__footer
-            button.catalog-menu-mob__btn-footer.btn.btn-red Применить
+        //.catalog-menu-mob__header
+        //    span.catalog-menu-mob__title Сортировка
+        //    button.catalog-menu-mob__btn-close
+        //.catalog-menu-mob__wrapper
+        //    .multifilter-radio
+        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
+        //        label.multifilter-radio__label(for="m-s-1-check-1")
+        //            | По популярности
+        //    .multifilter-radio
+        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
+        //        label.multifilter-radio__label(for="m-s-1-check-2")
+        //            | Сначала дешевые
+        //    .multifilter-radio
+        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
+        //        label.multifilter-radio__label(for="m-s-1-check-3")
+        //            | Сначала дорогие
+        //    .multifilter-radio
+        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
+        //        label.multifilter-radio__label(for="m-s-1-check-4")
+        //            | По названию (А-Я)
+        //    .multifilter-radio
+        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
+        //        label.multifilter-radio__label(for="m-s-1-check-5")
+        //            | По названию (Я-А)
+        //.catalog-menu-mob__footer
+        //    button.catalog-menu-mob__btn-footer.btn.btn-red Применить
 
 
     .wrapper
@@ -407,25 +280,25 @@ block wrapper
                                             label.multifilter-radio__label(for="s-1-check-10")
                                                 | По названию (Я-А)
                                 .sorting__change-store
-                                    fieldset.multifilter
+                                    fieldset.multifilter(data-filter-name="Store")
                                         button.multifilter__content(data-toggle="dropdown" type="button")
                                             span.multifilter__label В магазинах:
                                             span.multifilter__value длинное Название магазина
                                         .dropdown-menu(role="form")
                                             label.multifilter-checkbox
-                                                input.multifilter-checkbox__input(type="checkbox" checked=true)
+                                                input.multifilter-checkbox__input(type="checkbox" name="Store[]" value="10001" checked=true)
                                                 span.multifilter-checkbox__label
                                                     | ул. Восстания, д. 9
                                             label.multifilter-checkbox
-                                                input.multifilter-checkbox__input(type="checkbox")
+                                                input.multifilter-checkbox__input(type="checkbox" name="Store[]" value="10002")
                                                 span.multifilter-checkbox__label
                                                     | ул. Бухарестская, 30-32
                                             label.multifilter-checkbox
-                                                input.multifilter-checkbox__input(type="checkbox")
+                                                input.multifilter-checkbox__input(type="checkbox" name="Store[]" value="10003")
                                                 span.multifilter-checkbox__label
                                                     | Коломяжский проспект, дом 26
                                             label.multifilter-checkbox
-                                                input.multifilter-checkbox__input(type="checkbox")
+                                                input.multifilter-checkbox__input(type="checkbox" name="Store[]" value="10004")
                                                 span.multifilter-checkbox__label
                                                     | Проспект Испытателей, д. 39
 
@@ -436,13 +309,6 @@ block wrapper
                                             input.input-checkbox__input(type="checkbox" id="customCheck1")
                                             label.input-checkbox__label(for="customCheck1")
                                                 | Только со скидкой
-                .catalog-control__menu.catalog-control__menu_white
-                    .category-list-mob
-                        .category-list-mob__item Все категории
-                        .category-list-mob__item.active Сывороточный
-                        .category-list-mob__item Комплексный
-                        .category-list-mob__item Сывороточный
-                        .category-list-mob__item Комплексный
 
                 .catalog-control__menu.catalog-control__menu_white
                     .catalog-control-mob

@@ -243,9 +243,10 @@
   background: #fff;
 
   &.fixed {
-    position: fixed;
-    top: 0;
-    transform: translateY(0);
+    margin-bottom: 24px;
+    //position: fixed;
+    //top: 0;
+    //transform: translateY(0);
 
     @include media-breakpoint-up(xl) {
       .header-control {
@@ -942,6 +943,7 @@
   height: 44px;
   margin-right: -12px;
   margin-left: -12px;
+  transition: height .5s ease-in-out;
   @include media-breakpoint-up(md) {
     height: 54px;
   }
@@ -1540,6 +1542,7 @@ $header-category-link-lvl-3-bg: #454545;
     font-style: normal;
     text-align: center;
 
+    transition: all .5s ease-in-out;
     @include mre-height-block(15px, 50px, 1.2);
 
     &.active,

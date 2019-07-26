@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{105:function(n,o,p){"use strict";p.r(o);p(7),p(6),p(14)},2:function(n,o){n.exports=jQuery}},[[105,1,0]]]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{111:function(t,e,n){"use strict";n.r(e);n(10),n(9);var o=n(14);$(function(){new o.a({filter:document.querySelector(".filter"),sorting:document.querySelector(".sorting"),quantity:document.querySelector("[data-total-find]"),form:document.getElementById("catalog-filter")},{ajax:!0})})},2:function(t,e){t.exports=jQuery}},[[111,1,0]]]);

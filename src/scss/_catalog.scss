@@ -169,6 +169,7 @@
 }
 
 .catalog-control {
+  border-bottom: 1px solid #e8e8e8;
   color: #000;
   font-size: 16px;
   letter-spacing: -.01em;
@@ -181,9 +182,21 @@
   //    margin-bottom: 24px;
   //  }
   //}
+  @include media-breakpoint-up(md) {
+    border-bottom: 0;
+  }
+
+  &__mobile {
+    .catalog-control__menu {
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
 
   &__menu {
-    border-bottom: 1px solid #e8e8e8;
 
     &_white {
       background: white;
@@ -391,9 +404,13 @@ $multifilter-padding-x: (
   &__tab {
     width: 100%;
 
-    //.multifilter {
-    //  width: 100%;
-    //}
+    .multifilter {
+      height: auto;
+    }
+
+    .multifilter__content {
+      font-size: 14px;
+    }
 
     @include media-breakpoint-up(md) {
       width: auto;
@@ -443,15 +460,16 @@ $multifilter-padding-x: (
 
   &__wrapper {
     flex: 1 1 auto;
-    padding: 14px map_get($page-padding-x, xs);
+    //padding: 14px map_get($page-padding-x, xs);
+    padding: 14px 0;
     overflow: hidden auto;
 
     > .multifilter,
     > .multifilter-radio,
     > .multifilter-checkbox,
     > .multifilter-search {
-      margin-right: (map_get($page-padding-x, xs) * -1);
-      margin-left: (map_get($page-padding-x, xs) * -1);
+      //margin-right: (map_get($page-padding-x, xs) * -1);
+      //margin-left: (map_get($page-padding-x, xs) * -1);
 
       font-size: 16px;
       line-height: 1;
@@ -551,9 +569,9 @@ $multifilter-padding-x: (
           bottom: 0;
           left: 50%;
           margin-left: -5px;
-          border-bottom: 5px solid $main-color;
-          border-right: 5px solid transparent;
           border-top: 0;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid $main-color;
           border-left: 5px solid transparent;
         }
       }
@@ -705,7 +723,8 @@ $multifilter-padding-x: (
     }
   }
 
-  &__content[data-toggle='m-filter'] {
+  &__content[data-toggle='m-filter'],
+  &__content_parent {
     padding-right: 35px;
     transition: background .3s ease;
     cursor: pointer;
@@ -1434,7 +1453,15 @@ $multifilter-menu-padding-x: 22px;
     border-right: 1px solid #e8e8e8;
     border-bottom: 1px solid #e8e8e8;
     @include media-breakpoint-up(md) {
+      flex: 0 0 calc(33.333% - #{map_get($grid-gutter-width-map, md)});
+      max-width: calc(33.333% - #{map_get($grid-gutter-width-map, md)});
+      margin: 0 (map_get($grid-gutter-width-map, md) / 2) map_get($grid-gutter-width-map, md);
       border: 0;
+    }
+    @include media-breakpoint-up(xl) {
+      flex: 0 0 calc(25% - #{map_get($grid-gutter-width-map, xl)});
+      max-width: calc(25% - #{map_get($grid-gutter-width-map, xl)});
+      margin: 0 (map_get($grid-gutter-width-map, xl) / 2) map_get($grid-gutter-width-map, xl);
     }
   }
 
@@ -1446,7 +1473,7 @@ $multifilter-menu-padding-x: 22px;
     @include media-breakpoint-up(md) {
       flex: 0 0 calc(33.333% - #{map_get($grid-gutter-width-map, md)});
       max-width: calc(33.333% - #{map_get($grid-gutter-width-map, md)});
-      margin: (map_get($grid-gutter-width-map, md) / 2);
+      margin: 0 (map_get($grid-gutter-width-map, md) / 2) map_get($grid-gutter-width-map, md);
       border: 0;
       &:nth-child(-n + 6) {
         flex: 0 0 calc(50% - #{map_get($grid-gutter-width-map, md)});
@@ -1456,25 +1483,37 @@ $multifilter-menu-padding-x: 22px;
     @include media-breakpoint-up(xl) {
       flex: 0 0 calc(25% - #{map_get($grid-gutter-width-map, xl)});
       max-width: calc(25% - #{map_get($grid-gutter-width-map, xl)});
-      margin: (map_get($grid-gutter-width-map, xl) / 2);
+      margin: 0 (map_get($grid-gutter-width-map, xl) / 2) map_get($grid-gutter-width-map, xl);
       &:nth-child(-n + 6) {
         flex: 0 0 calc(33.333% - #{map_get($grid-gutter-width-map, xl)});
         max-width: calc(33.333% - #{map_get($grid-gutter-width-map, xl)});
         height: 477px;
 
-        .vendor-card__title {
-          font-size: 28px;
-          line-height: 38px;
+        .vendor-card {
+          &__wrapper {
+            padding: 22px 26px 24px;
+            //font-weight: 500;
+            font-size: 15px;
+            //line-height: 18px;
+          }
+
+          &__img {
+            height: 222px;
+          }
+
+          &__title {
+            font-size: 28px;
+            line-height: 38px;
+          }
+
+          &__description {
+            font-size: 15px;
+            line-height: 22px;
+            height: 88px;
+          }
         }
 
-        .vendor-card__description {
-          font-size: 15px;
-          line-height: 22px;
-        }
 
-        .vendor-card__img {
-          height: 222px;
-        }
       }
     }
   }
@@ -2218,7 +2257,7 @@ $multifilter-menu-padding-x: 22px;
     @include media-breakpoint-up(md) {
       //margin-bottom: auto;
       //font-size: 13px;
-      max-height: 76px;
+      height: 76px;
       line-height: 19px;
     }
   }

@@ -28,17 +28,11 @@
   import Dropdown from './Dropdown.vue';
   import MultifilterPrice from '../components/MultifilterPrice.vue';
   import MultifilterCheckboxList from '../components/MultifilterCheckboxList.vue';
+  
+  import { mapGetters, mapState, mapActions } from 'vuex';
 
   export default {
     name: "CatalogFilter",
-    props: {
-      filters: {
-        type: Object,
-      },
-      // onChange: {
-      //   type: Function,
-      // }
-    },
     components: {
       MultifilterCheckboxList,
       MultifilterPrice,
@@ -49,6 +43,9 @@
     //     this.onChange();
     //   });
     // },
+    computed: mapState('filters', {
+      filters: state => state.list,
+    }),
     methods: {
       onReset() {
         this.$root.$emit('filter:reset');

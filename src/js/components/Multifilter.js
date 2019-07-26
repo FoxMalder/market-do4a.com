@@ -2,8 +2,12 @@
 import noUiSlider from 'nouislider';
 
 import Vue from 'vue/dist/vue.esm';
+import Dropdown from './Dropdown.vue';
 import MultifilterPrice from './MultifilterPrice.vue';
-import MultifilterCheckboxList from './MultifilterCheckboxList.vue';
+import MultifilterContainer from './Multifilter.vue';
+import store from '../store';
+
+import { mapGetters, mapState, mapActions } from 'vuex';
 
 export class Multifilter {
   constructor(el, callback, options = {}) {
@@ -93,15 +97,35 @@ export class Multifilter {
   }
 }
 
-export class PriceFilter extends Multifilter {
+export class PriceFilter {
   constructor(el, callback) {
-    super(el, callback, { type: 'price' });
+    this.el = el;
+    this.filterSettings = PriceFilter.parseSettings(this.el);
 
-    new Vue({
-      el: this.el.querySelector('.multifilter-price'),
-      template: '<MultifilterPrice />',
-      components: { MultifilterPrice },
+    this.vm = new Vue({
+      el: this.el,
+      store,
+      computed: mapState('filters', {
+        filter: state => state.filters[this.filterSettings.name],
+      }),
+      template: `
+        <dropdown class="multifilter">
+          <template slot="btn">
+            <span class="multifilter__value">{{filter.label}}</span>
+          </template>
+          
+          <template slot="body">
+            <MultifilterPrice :slider="filter.data" @change="$store.dispatch('filters/onChange')"/>
+          </template>
+        </dropdown>`,
+      components: { Dropdown, MultifilterPrice },
     });
+    //
+    // new Vue({
+    //   el: this.el.querySelector('.multifilter-price'),
+    //   template: '<MultifilterPrice />',
+    //   components: { MultifilterPrice },
+    // });
 
 
     // const priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
@@ -199,6 +223,33 @@ export class PriceFilter extends Multifilter {
     // this.rangeEl.noUiSlider.on('set', this.onChange, 100);
   }
 
+  static parseSettings(multifilterEl) {
+    const container = multifilterEl.querySelector('.multifilter-price');
+    const option = {
+      label: multifilterEl.querySelector('.multifilter__value').textContent,
+      type: 'range',
+      name: 'Price',
+      data: {
+        priceFrom: parseInt(container.querySelector('input[name="Price[from]"]').value, 10) || 0,
+        priceTo: parseInt(container.querySelector('input[name="Price[to]"]').value, 10) || 0,
+        priceMin: parseInt(container.querySelector('.multifilter-price__num .multifilter-price__start').textContent.replace(/[^0-9]/g, ''), 10) || 0,
+        priceMax: parseInt(container.querySelector('.multifilter-price__num .multifilter-price__end').textContent.replace(/[^0-9]/g, ''), 10) || 9999,
+      },
+    };
+
+    if (option.data.priceFrom < option.data.priceMin) {
+      option.data.priceFrom = option.data.priceMin;
+    }
+
+    if (option.data.priceTo > option.data.priceMax || option.data.priceTo === 0) {
+      option.data.priceTo = option.data.priceMax;
+    }
+
+    store.commit('filters/setFilter', option);
+
+    return option;
+  }
+
   onChange = (...param) => {
     this.callback();
     this.fromInput.value = Math.floor(param[2][0]);
@@ -220,7 +271,18 @@ export class CheckboxFilter {
     //   this.options.replaceTitle = true;
     // }
 
-    this.init();
+    this.vm = new Vue({
+      el: this.el,
+      store,
+      // data: {
+      //   name: this.filterSettings.name,
+      // },
+      computed: mapState('filters', {
+        filter: state => state.filters[this.filterSettings.name],
+      }),
+      template: '<MultifilterContainer :filter="filter"/>',
+      components: { MultifilterContainer },
+    });
   }
 
   static parseSettings(multifilterEl) {
@@ -229,43 +291,49 @@ export class CheckboxFilter {
     const option = {
       type: 'checkbox',
       replaceTitle: false,
-      label: multifilterEl.querySelector('.multifilter__value').innerHTML,
-      defaultLabel: 'Не выбрано',
-      disabled: false,
-      data: Array.from(multifilterEl.querySelectorAll('input[type="checkbox"]'), input => ({
-        title: input.nextElementSibling.textContent,
-        name: input.name,
-        value: input.value,
-        checked: input.checked,
-        available: !input.disabled,
-        parent: input.dataset.parentId,
-        hidden: false,
-        filtered: false,
-      })),
+      label: multifilterEl.querySelector('.multifilter__value').textContent,
+      labelDisabled: 'Выберите тип товара',
+      labelEmpty: 'Не выбрано',
+      disabled: multifilterEl.disabled,
+      name: multifilterEl.dataset.filterName || '',
+      parent: multifilterEl.dataset.filterParent || '',
+      selectedItems: [], // Не используется, но пусть будет
+      data: [],
     };
 
     if (multifilterEl.querySelector('.multifilter__label')) {
       option.replaceTitle = true;
-      option.label = multifilterEl.querySelector('.multifilter__label').innerHTML;
+      option.label = multifilterEl.querySelector('.multifilter__label').textContent;
     }
 
-    return option;
-  }
+    [].forEach.call(multifilterEl.querySelectorAll('input[type="checkbox"]'), (input) => {
+      if (!option.name) {
+        option.name = input.name.replace('[]', '');
+      }
 
-  init() {
-    this.vm = new Vue({
-      el: this.el,
-      data: {
-        // options: this.options,
-        callback: this.callback,
-        filter: this.filterSettings,
-      },
-      mounted() {
-        this.$on('filter:change', this.callback);
-      },
-      template: '<MultifilterCheckboxList :filter="filter"/>',
-      components: { MultifilterCheckboxList },
+      if (input.checked) {
+        option.selectedItems.push(input.value);
+      }
+
+      option.data.push({
+        label: input.parentElement.querySelector('.multifilter-checkbox__label').textContent,
+        name: input.name || '',
+        value: input.value,
+        checked: input.checked, // true, если активен
+        available: !input.disabled, // true, если в наличии
+        parent: input.dataset.parentId, // Наследование значения (если есть)
+        hidden: input.style.display === 'none' && !input.checked, // Визуально скрыт, показать, если вдруг будет активен
+        filtered: false,
+      });
     });
+
+    if (!option.name) {
+      option.name = option.label;
+    }
+
+    store.commit('filters/setFilter', option);
+
+    return option;
   }
 }
 

@@ -113,9 +113,16 @@
 
       this.$refs.slider.noUiSlider.on('set', () => {
         if (this.callback) {
-          this.$root.$emit('filter:change');
+          // this.$root.$emit('filter:change');
+          this.$emit('change');
+          // this.$store.dispatch('filters/filterChange');
         }
       }, 100);
+
+      // this.$store.subscribeAction((action, state) => {
+      //   console.log(action.type);
+      //   console.log(action.payload);
+      // });
 
       this.$root.$on('filter:reset', () => {
         this.callback = false;

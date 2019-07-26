@@ -2,7 +2,7 @@ import './js/common';
 import './scss/main.scss';
 // import './scss/header-style.scss';
 
-import { Filter, CatalogControl } from './js/page/catalog';
+import CatalogControl from './js/page/catalog';
 
 if (process.env.NODE_ENV !== 'production') {
   require('./catalog.pug');

@@ -1,14 +1,17 @@
 // import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 // import Tooltip from 'tooltip.js';
 import Vue from 'vue/dist/vue.esm';
+// import Vue from 'vue';
 import Utils from '../utils/utils';
+import store from '../store';
+import HeaderCollapse from '../components/HeaderCollapse.vue';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
 
-Vue.component('header-notifications', {
-  props: ['count'],
-  template: '<span class="header-control__notifications" v-if="count > 0">{{ count }}</span>',
-});
+// Vue.component('header-notifications', {
+//   props: ['count'],
+//   template: '<span class="header-control__notifications" v-if="count > 0">{{ count }}</span>',
+// });
 
 class Menu {
   constructor(menu, controls) {
@@ -109,84 +112,10 @@ class Menu {
 
 export default class Header {
   constructor() {
-    // this.fixedVue = new Vue({
-    //   el: '.h-navbar-fixed',
-    //   data: {
-    //     favorites: 0,
-    //     cart: 0,
-    //   },
-    // });
-
     this.collapse = new Vue({
-      el: '.h-navbar-collapse',
-      data: window.app.storeManagerData,
-      methods: {
-        setCity(cityId) {
-          this.currentCityId = cityId;
-
-          $(document.querySelector('.change-store-collapse')).collapse('show');
-        },
-        setStore(storeId) {
-          this.sendRequest(this.currentCityId, storeId);
-        },
-        setPost() {
-          this.sendRequest(this.noCityId, this.remoteStoreId);
-        },
-        // getStoreList(cityId) {
-        //   // let stores = [];
-        //
-        //   Object.keys(this.stores).forEach((key) => {
-        //     const store = this.stores[key];
-        //     if (parseInt(store.city, 10) !== cityId || store.hidden === 'Y') return;
-        //     stores.push(store);
-        //   });
-        //
-        //   stores.sort((a, b) => {
-        //     if (a.sort === b.sort) {
-        //       return a.id < b.id ? -1 : 1;
-        //     }
-        //     return a.sort < b.sort ? -1 : 1;
-        //   });
-        // },
-        // storeSort() {
-        //   stores.sort((a, b) => {
-        //     if (a.sort === b.sort) {
-        //       return a.id < b.id ? -1 : 1;
-        //     }
-        //     return a.sort < b.sort ? -1 : 1;
-        //   });
-        // }
-        isActive(storeId) {
-          return parseInt(window.app.storeId, 10) === parseInt(storeId, 10);
-        },
-        sendRequest(cityId, storeId) {
-          $.ajax({
-            url: document.location.href,
-            data: {
-              method: 'store.set',
-              cityId: cityId,
-              storeId: storeId,
-              backUrl: document.location.pathname + document.location.search,
-              ajax: 'Y',
-              sessid: window.BX ? window.BX.bitrix_sessid() : window.app.bitrix_sessid,
-            },
-            dataType: 'json',
-          }).done((response) => {
-            if (response.status === 'error') {
-              alert(response.error);
-              return;
-            }
-
-            if (response.redirectUrl) {
-              document.location.href = response.redirectUrl;
-            } else {
-              document.location.reload();
-            }
-          });
-        },
-      },
-    });
-
+      store,
+      render: h => h(HeaderCollapse),
+    }).$mount('.h-navbar-collapse');
 
     this.header = {
       collapse: Utils.parseTargets('.h-navbar-collapse'),
@@ -232,12 +161,12 @@ export default class Header {
     document.removeEventListener('DOMContentLoaded', this.initDOMLoadedElements);
     window.removeEventListener('load', this.initDOMLoadedElements);
 
-    if (!Object.prototype.hasOwnProperty.call(window, 'app')) {
-      window.app = {};
+    if (!{}.hasOwnProperty.call(global, 'app')) {
+      global.app = {};
     }
 
-    if (!window.app.Header) {
-      window.app.Header = new Header();
+    if (!global.app.Header) {
+      global.app.Header = new Header();
     }
   }
 
@@ -245,6 +174,20 @@ export default class Header {
     // this.initCityContainer();
     // this.initStoreContainer();
     //
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 600) {
+        // this.header.fixedTargets.style.height = this.header.fixedTargets.clientHeight;
+        this.header.fixedTargets.classList.add('fixed');
+      } else {
+        this.header.fixedTargets.classList.remove('fixed');
+      }
+      // if (this.header.fixedTargets.getBoundingClientRect().top === 0) {
+      //   this.header.fixedTargets.classList.add('fixed');
+      // } else {
+      //   this.header.fixedTargets.classList.remove('fixed');
+      // }
+    });
 
     // Мобильное меню
     this.Menu = new Menu(

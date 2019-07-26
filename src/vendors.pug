@@ -29,7 +29,7 @@ block wrapper
                 .container
                     .view
                         .view__category
-                            fieldset.multifilter
+                            fieldset.multifilter(data-filter-name="Type")
                                 button.multifilter__content(data-toggle="dropdown" type="button")
                                     span.multifilter__label Тип товара:
                                     span.multifilter__value Не выбрано
@@ -67,7 +67,7 @@ block wrapper
                                     div.multifilter-checkbox
                                         input.multifilter-checkbox__input(type="checkbox" id="981" value="981")
                                         label.multifilter-checkbox__label(for="981") Мужская одежда
-                            fieldset.multifilter(disabled)
+                            fieldset.multifilter(data-filter-name="Category" data-filter-parent="Type" disabled)
                                 button.multifilter__content(data-toggle="dropdown" type="button")
                                     span.multifilter__label Категория:
                                     span.multifilter__value Выберите тип товара

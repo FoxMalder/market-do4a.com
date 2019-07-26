@@ -1,20 +1,23 @@
 import debounce from 'lodash.debounce';
-import throttle from 'lodash.throttle';
+// import throttle from 'lodash.throttle';
 
 import Vue from 'vue/dist/vue.esm';
-import CatalogFilter from '../components/CatalogFilter.vue';
 
 import Utils from '../utils/utils';
 // import Api from '../utils/Api';
 import ProductCard from '../components/ProductCard';
 import {
   Multifilter,
+  PriceFilter,
   CheckboxFilter,
   RadioFilter,
 } from '../components/Multifilter';
+import store from '../store/index';
+import CategoryListMobile from '../components/CategoryListMobile.vue';
+import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
 
 
-export class CatalogControl {
+export default class CatalogControl {
   constructor(
     elements = {
       form: null,
@@ -54,52 +57,26 @@ export class CatalogControl {
       ...options,
     };
 
-    this.options.method = this.formEl.method;
-    this.options.action = this.formEl.action;
+    // this.options.method = this.formEl.method;
+    // this.options.action = this.formEl.action;
 
     this.classNames = {
       ...CatalogControl.defaultOptions.classNames,
       ...this.options.classNames,
     };
 
-    this.onChange = throttle(this.onChange.bind(this), 300);
-    this.onUpdate = debounce(this.onUpdate.bind(this), 600);
 
-
-    $(document).on('scroll', () => {
-      $('.catalog-menu-mob.active').css('top', `${Math.max(window.app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
-    });
+    this.debouncedUpdate = debounce(this.update, 500);
 
     $(document)
       .on('click.filter.menu', '[data-toggle="m-filter"]', (event) => {
         event.preventDefault();
-        event.stopPropagation();
-
-        const $this = $(event.currentTarget);
-        const selector = $this.data('target');
-
-        const $target = selector ? $(selector) : $this.siblings('.catalog-menu-mob');
-
-        $target.addClass('active');
-        $target.css('top', `${Math.max(window.app.Header.header.fixedOffset - window.pageYOffset, 0)}px`);
-        $('body').css('overflow', 'hidden');
-      })
-      .on('click.filter.close', '.catalog-menu-mob__btn-back, .catalog-menu-mob__btn-close', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const $this = $(event.currentTarget);
-        const $target = $this.parents('.catalog-menu-mob').eq(0);
-
-        $target.removeClass('active');
-
-        if ($('.filter-menu-m.active').length === 0) {
-          $('body').css('overflow', '');
-        }
+        store.dispatch('filters/mobile/showMenu');
       });
 
-
     this.init();
+
+    // this.parseHtml();
     this.initVue();
   }
 
@@ -119,92 +96,27 @@ export class CatalogControl {
     },
   };
 
-  static parseHtml(multifilterList) {
-    const obj = {};
-    // const filterListEl = [...this.filterEl.querySelectorAll('fieldset.multifilter')];
+  initVue() {
+    // this.filterList = CatalogControl.parseHtml([...this.filterEl.querySelectorAll('fieldset.multifilter')]);
 
-    // return multifilterList.reduce((arr, filter) => {
-    multifilterList.forEach((filter) => {
-      const option = {};
-
-      if (filter.querySelector('.multifilter__label')) {
-        option.replaceTitle = true;
-        option.label = filter.querySelector('.multifilter__label').innerHTML;
-      } else {
-        option.replaceTitle = false;
-        option.label = filter.querySelector('.multifilter__value').innerHTML;
+    store.subscribeAction((action, state) => {
+      if (action.type === 'filters/onChange') {
+        this.change();
       }
-
-      if (filter.querySelector('.multifilter-price')) {
-        const container = filter.querySelector('.multifilter-price');
-
-        option.type = 'range';
-        option.name = 'Price';
-        option.data = {
-          priceFrom: parseInt(container.querySelector('input[name="Price[from]"]').value, 10) || 0,
-          priceTo: parseInt(container.querySelector('input[name="Price[to]"]').value, 10) || 0,
-          priceMin: parseInt(container.querySelector('.multifilter-price__num .multifilter-price__start').innerHTML.replace(/[^0-9]/g, ''), 10) || 0,
-          priceMax: parseInt(container.querySelector('.multifilter-price__num .multifilter-price__end').innerHTML.replace(/[^0-9]/g, ''), 10) || 9999,
-        };
-
-        if (option.data.priceFrom < option.data.priceMin) {
-          option.data.priceFrom = option.data.priceMin;
-        }
-
-        if (option.data.priceTo > option.data.priceMax || option.data.priceTo === 0) {
-          option.data.priceTo = option.data.priceMax;
-        }
-      } else if (filter.querySelector('.multifilter-checkbox')) {
-        const inputListEl = [...filter.querySelectorAll('input[type="checkbox"]')];
-
-        option.type = 'checkbox';
-        option.name = inputListEl[0].name.replace('[]', '');
-        option.data = inputListEl.map(input => ({
-          title: input.nextElementSibling.textContent,
-          value: input.value,
-          checked: input.checked,
-          available: !input.disabled,
-          name: input.name,
-          hidden: false,
-          filtered: false,
-        }));
-      } else {
-        return;
-      }
-
-      obj[option.name] = option;
     });
 
-    // arr.push(option);
-
-    // return arr;
-    // }, []);
-
-    return obj;
-  }
-
-  initVue() {
-    this.filterList = CatalogControl.parseHtml([...this.filterEl.querySelectorAll('fieldset.multifilter')]);
+    const mobile = document.createElement('div');
+    document.querySelector('.catalog-control').insertBefore(mobile, document.querySelector('.catalog-control').firstChild);
 
     new Vue({
-      el: this.filterEl,
-      template: '<CatalogFilter :filters="filters"/>',
-      data: {
-        filters: this.filterList,
-        onChange: this.update,
-      },
-      components: {
-        CatalogFilter,
-      },
-      mounted() {
-        this.$root.$on('filter:change', this.onChange);
-      },
-      // method: {
-      //   onChange() {
-      //     console.log('GLOBAL CHANGE');
-      //   },
-      // },
-    });
+      store,
+      render: h => h(CategoryListMobile),
+    }).$mount(mobile);
+
+    new Vue({
+      store,
+      render: h => h(CatalogFilterMobile),
+    }).$mount('#mobile-filter');
   }
 
   init() {
@@ -214,26 +126,26 @@ export class CatalogControl {
       this.options.method = this.formEl.method;
       this.options.action = this.formEl.action;
 
-      // this.formEl.addEventListener('submit', this.onChange);
-      // this.formEl.addEventListener('reset', this.onReset);
+      // this.formEl.addEventListener('submit', this.update);
+      this.formEl.addEventListener('reset', this.onReset);
     }
 
     if (this.sortingEl) {
-      this.sortingList = Array.from(this.sortingEl.querySelectorAll('fieldset.multifilter'), (filter) => {
-        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, this.onChange);
-        if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.onChange);
-        return new Multifilter(filter, this.onChange);
+      this.sortingList = [].map.call(this.sortingEl.querySelectorAll('fieldset.multifilter'), (filter) => {
+        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter);
+        if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
+        return new Multifilter(filter, this.change);
       });
     }
 
-    // if (this.filterEl) {
-    //   this.filterList = Array.from(this.filterEl.querySelectorAll('fieldset.multifilter'), (filter) => {
-    //     if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, this.onChange);
-    //     if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.onChange);
-    //     if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter, this.onChange);
-    //     return new Multifilter(filter, this.onChange);
-    //   });
-    // }
+    if (this.filterEl) {
+      this.filterList = [].map.call(this.filterEl.querySelectorAll('fieldset.multifilter'), (filter) => {
+        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter);
+        if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
+        if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter);
+        return new Multifilter(filter, this.change);
+      });
+    }
 
     this.showMoreEl = document.querySelector(`.${this.classNames.showMore}`);
     if (this.showMoreEl) {
@@ -295,41 +207,36 @@ export class CatalogControl {
       this.title.innerHTML = h1;
     }
   }
-
-  /**
-   * Изменение значений фильтра
-   */
-  onChange = () => {
-    // console.log(event);
-    // if (event) event.preventDefault();
-    this.containerEl.classList.add(this.classNames.cardListLoading);
-
-    console.log('onChange');
-
-    this.onUpdate();
-  };
-
-  // onReset = (event) => {
+  //
+  // onChange = (event) => {
   //   event.preventDefault();
-  //   this.filterList.forEach(filter => filter.reset());
   //
-  //   console.log('onReset');
-  //
-  //   this.onUpdate();
-  //   // this.update();
+  //   this.change();
   // };
 
-  /**
-   * Обновление списка (с задержкой)
-   */
-  onUpdate = () => {
+  onReset = (event) => {
+    event.preventDefault();
+
     this.update();
+  };
+
+  // /**
+  //  * Обновление списка (с задержкой)
+  //  */
+  // onUpdate = () => {
+  //   this.update();
+  // };
+
+  change = () => {
+    this.containerEl.classList.add(this.classNames.cardListLoading);
+    this.debouncedUpdate();
   };
 
   /**
    * Моментальное обновление
    */
   update = () => {
+    console.log('Обновляем');
     try {
       this.containerEl.classList.add(this.classNames.cardListLoading);
 
@@ -344,7 +251,6 @@ export class CatalogControl {
       console.error(e);
     }
   };
-
 
   /**
    * Создает нужные элементы на основе входных данных и вставляет их на страницу
