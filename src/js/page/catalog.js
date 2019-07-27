@@ -71,8 +71,6 @@ export default class CatalogControl {
 
 
     this.init();
-
-    // this.parseHtml();
     this.initVue();
   }
 
@@ -111,13 +109,18 @@ export default class CatalogControl {
       }
     });
 
-    const mobile = document.createElement('div');
-    document.querySelector('.catalog-control').insertBefore(mobile, document.querySelector('.catalog-control').firstChild);
+    // const mobile = document.createElement('div');
+    // document.querySelector('.catalog-control').insertBefore(mobile, document.querySelector('.catalog-control').firstChild);
+    //
+    // new Vue({
+    //   store,
+    //   render: h => h(CategoryListMobile),
+    // }).$mount(mobile);
 
-    new Vue({
+    document.querySelector('.catalog-control').insertBefore(new Vue({
       store,
       render: h => h(CategoryListMobile),
-    }).$mount(mobile);
+    }).$mount().$el, document.querySelector('.catalog-control').firstChild);
 
     new Vue({
       store,

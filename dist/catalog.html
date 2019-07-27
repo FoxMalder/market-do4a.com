@@ -56,45 +56,8 @@
     </div>
   </header>
   <header class="h-navbar-collapse">
-    <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse">
-      <!--.container-->
-      <!--    .change-city-->
-      <!--        .change-city__header-->
-      <!--            span.change-city__title Города в которых есть <span class="font-weight-normal">market</span>do<span class="selected">4</span>a-->
-      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-city-collapse")-->
-      <!--        ul.change-city__list-->
-      <!--            template(v-for="(list, char) in chars")-->
-      <!--                li.change-city__item(v-for="(cityId, index) in list" :data-letter="index === 0 ? char : ''")-->
-      <!--                    a.change-city__link(href="#" @click.prevent="setCity(cityId)")-->
-      <!--                        | {{ cities[cityId].name }}-->
-      <!--        .change-city__footer-->
-      <!--            a.change-post(href="#" @click.prevent="setPost")-->
-      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
-      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
-      <!--                .change-post__note Срок от 5 дней-->
-      <!--            .change-city__note-->
-      <!--                | <b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
-    </div>
-    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
-      <!--.container-->
-      <!--    .change-store-->
-      <!--        .change-store__header-->
-      <!--            span.change-store__title Выберите магазин<br> в <span class="selected">{{cities[currentCityId].name5}}</span>-->
-      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-store-collapse")-->
-      <!--        ul.change-store__list-->
-      <!--            li.change-store__item(v-for="store in stores" v-if="store.city == currentCityId && store.hidden !== 'Y'")-->
-      <!--                a.change-store__link(href="#" :class="{active: isActive(store.id)}" @click.prevent="setStore(store.id)")-->
-      <!--                    .change-store__item-name {{store.name}}-->
-      <!--                    .change-store__item-subtitle {{store.shortAddress}}-->
-      <!--                    .change-store__item-note {{store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}}-->
-      <!--        .change-store__footer-->
-      <!--            a.change-post(href="#" @click.prevent="setPost")-->
-      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
-      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
-      <!--                .change-post__note Срок от 5 дней-->
-      <!--            .change-store__note-->
-      <!--                | <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
-    </div>
+    <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse"></div>
+    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse"></div>
   </header>
   <header class="h-navbar-fixed">
     <div class="h-navbar-main">
@@ -475,34 +438,7 @@
     </div>
   </div>
   <div class="catalog-menu-mob" id="mobile-filter"></div>
-  <div class="catalog-menu-mob" id="mobile-sort">
-    <!--.catalog-menu-mob__header-->
-    <!--    span.catalog-menu-mob__title Сортировка-->
-    <!--    button.catalog-menu-mob__btn-close-->
-    <!--.catalog-menu-mob__wrapper-->
-    <!--    .multifilter-radio-->
-    <!--        input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)-->
-    <!--        label.multifilter-radio__label(for="m-s-1-check-1")-->
-    <!--            | По популярности-->
-    <!--    .multifilter-radio-->
-    <!--        input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")-->
-    <!--        label.multifilter-radio__label(for="m-s-1-check-2")-->
-    <!--            | Сначала дешевые-->
-    <!--    .multifilter-radio-->
-    <!--        input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")-->
-    <!--        label.multifilter-radio__label(for="m-s-1-check-3")-->
-    <!--            | Сначала дорогие-->
-    <!--    .multifilter-radio-->
-    <!--        input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")-->
-    <!--        label.multifilter-radio__label(for="m-s-1-check-4")-->
-    <!--            | По названию (А-Я)-->
-    <!--    .multifilter-radio-->
-    <!--        input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")-->
-    <!--        label.multifilter-radio__label(for="m-s-1-check-5")-->
-    <!--            | По названию (Я-А)-->
-    <!--.catalog-menu-mob__footer-->
-    <!--    button.catalog-menu-mob__btn-footer.btn.btn-red Применить-->
-  </div>
+  <div class="catalog-menu-mob" id="mobile-sort"></div>
   <div class="wrapper">
     <div class="page-header">
       <div class="container">
@@ -600,14 +536,9 @@
                   <div class="dropdown-menu" role="form">
                     <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-1" name="Sort" value="1"><label class="multifilter-radio__label" for="s-1-check-1">По популярности</label></div>
                     <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-2" name="Sort" value="2"><label class="multifilter-radio__label" for="s-1-check-2">Сначала дешевые</label></div>
-                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-3" name="Sort" value="3"><label class="multifilter-radio__label" for="s-1-check-3">Сначала дорогие</label></div>
+                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-3" name="Sort" value="3" checked><label class="multifilter-radio__label" for="s-1-check-3">Сначала дорогие</label></div>
                     <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-4" name="Sort" value="4"><label class="multifilter-radio__label" for="s-1-check-4">По названию (А-Я)</label></div>
                     <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-5" name="Sort" value="5"><label class="multifilter-radio__label" for="s-1-check-5">По названию (Я-А)</label></div>
-                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-6" name="Sort" checked value="6"><label class="multifilter-radio__label" for="s-1-check-6">По популярности</label></div>
-                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-7" name="Sort" value="7"><label class="multifilter-radio__label" for="s-1-check-7">Сначала дешевые</label></div>
-                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-8" name="Sort" value="8"><label class="multifilter-radio__label" for="s-1-check-8">Сначала дорогие</label></div>
-                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-9" name="Sort" value="9"><label class="multifilter-radio__label" for="s-1-check-9">По названию (А-Я)</label></div>
-                    <div class="multifilter-radio"><input class="multifilter-radio__input" type="radio" id="s-1-check-10" name="Sort" value="10"><label class="multifilter-radio__label" for="s-1-check-10">По названию (Я-А)</label></div>
                   </div>
                 </fieldset>
                 <div class="sorting__change-store">
@@ -640,7 +571,7 @@
             <div class="product-card"><a class="product-card-banner" href="#">
                 <div class="product-card-banner__title">Бесплатная доставка курьером<span class="nowrap"> от<span class="price"> 2 990<span class="currency"> ₽</span></span></span></div>
               </a></div>
-            <div class="product-card" data-product-id="269">
+            <div class="product-card" data-product-id="875">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -692,7 +623,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="270">
+            <div class="product-card" data-product-id="876">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -733,7 +664,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="271">
+            <div class="product-card" data-product-id="877">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -784,7 +715,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="272">
+            <div class="product-card" data-product-id="878">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -834,7 +765,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="273">
+            <div class="product-card" data-product-id="879">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -884,7 +815,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="274">
+            <div class="product-card" data-product-id="880">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -925,7 +856,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="275">
+            <div class="product-card" data-product-id="881">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->
@@ -974,7 +905,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="276">
+            <div class="product-card" data-product-id="882">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img">
                   <!--img(itemprop="image"-->

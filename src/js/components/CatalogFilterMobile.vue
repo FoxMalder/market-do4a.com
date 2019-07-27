@@ -50,7 +50,7 @@
         </template>
       </template>
     </div>
-    <div class="catalog-menu-mob__wrapper" v-if="bottomContent" style="overflow: hidden;flex: 1 0 auto;">
+    <div class="catalog-menu-mob__wrapper" v-if="bottomContent" style="overflow: hidden;flex: 0 0 auto;">
       <template v-for="item in bottomContent">
         <div class="multifilter"
                 v-if="item.type === 'multifilter'"

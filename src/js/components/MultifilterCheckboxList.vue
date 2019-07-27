@@ -4,11 +4,12 @@
       <input class="multifilter-search__input" type="search" placeholder="Поиск" autocomplete="off" v-model="searchQuery">
     </div>
     <multifilter-checkbox
-            v-for="item in availableItems" :key="item.value"
+            v-for="item in availableItems" :key="item.id"
             v-show="!item.hidden && !item.filtered"
             v-model="item.checked"
             :name="item.name"
             :disabled="false"
+            :value="item.value"
             @change="$emit('change', item)">
       {{item.label}}
     </multifilter-checkbox>
@@ -16,11 +17,12 @@
       <span class="multifilter-delimiter__text">Нет в наличии</span>
     </div>
     <multifilter-checkbox
-            v-for="item in notAvailableItems" :key="item.value"
+            v-for="item in notAvailableItems" :key="item.id"
             v-show="!item.hidden && !item.filtered"
             v-model="item.checked"
             :name="item.name"
             :disabled="!item.checked"
+            :value="item.value"
             @change="$emit('change', item)">
       {{item.label}}
     </multifilter-checkbox>

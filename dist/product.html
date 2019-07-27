@@ -56,45 +56,8 @@
     </div>
   </header>
   <header class="h-navbar-collapse">
-    <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse">
-      <!--.container-->
-      <!--    .change-city-->
-      <!--        .change-city__header-->
-      <!--            span.change-city__title Города в которых есть <span class="font-weight-normal">market</span>do<span class="selected">4</span>a-->
-      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-city-collapse")-->
-      <!--        ul.change-city__list-->
-      <!--            template(v-for="(list, char) in chars")-->
-      <!--                li.change-city__item(v-for="(cityId, index) in list" :data-letter="index === 0 ? char : ''")-->
-      <!--                    a.change-city__link(href="#" @click.prevent="setCity(cityId)")-->
-      <!--                        | {{ cities[cityId].name }}-->
-      <!--        .change-city__footer-->
-      <!--            a.change-post(href="#" @click.prevent="setPost")-->
-      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
-      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
-      <!--                .change-post__note Срок от 5 дней-->
-      <!--            .change-city__note-->
-      <!--                | <b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
-    </div>
-    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
-      <!--.container-->
-      <!--    .change-store-->
-      <!--        .change-store__header-->
-      <!--            span.change-store__title Выберите магазин<br> в <span class="selected">{{cities[currentCityId].name5}}</span>-->
-      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-store-collapse")-->
-      <!--        ul.change-store__list-->
-      <!--            li.change-store__item(v-for="store in stores" v-if="store.city == currentCityId && store.hidden !== 'Y'")-->
-      <!--                a.change-store__link(href="#" :class="{active: isActive(store.id)}" @click.prevent="setStore(store.id)")-->
-      <!--                    .change-store__item-name {{store.name}}-->
-      <!--                    .change-store__item-subtitle {{store.shortAddress}}-->
-      <!--                    .change-store__item-note {{store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}}-->
-      <!--        .change-store__footer-->
-      <!--            a.change-post(href="#" @click.prevent="setPost")-->
-      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
-      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
-      <!--                .change-post__note Срок от 5 дней-->
-      <!--            .change-store__note-->
-      <!--                | <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
-    </div>
+    <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse"></div>
+    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse"></div>
   </header>
   <header class="h-navbar-fixed">
     <div class="h-navbar-main">
@@ -693,7 +656,7 @@
         </div>
         <div class="p-section-similar__inner">
           <div class="p-section-similar__list">
-            <div class="product-card" data-product-id="248">
+            <div class="product-card" data-product-id="660">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey</a>
@@ -725,7 +688,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="249">
+            <div class="product-card" data-product-id="661">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey</a>
@@ -751,7 +714,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="250">
+            <div class="product-card" data-product-id="662">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition</a>
@@ -782,7 +745,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="251">
+            <div class="product-card" data-product-id="663">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey protein</a>
@@ -812,7 +775,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="252">
+            <div class="product-card" data-product-id="664">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -842,7 +805,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="253">
+            <div class="product-card" data-product-id="665">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -868,7 +831,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="254">
+            <div class="product-card" data-product-id="666">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -897,7 +860,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="255">
+            <div class="product-card" data-product-id="667">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>

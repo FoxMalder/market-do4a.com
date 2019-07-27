@@ -2,33 +2,6 @@ extends template/template
 block wrapper
     .catalog-menu-mob#mobile-filter
     .catalog-menu-mob#mobile-sort
-        //.catalog-menu-mob__header
-        //    span.catalog-menu-mob__title Сортировка
-        //    button.catalog-menu-mob__btn-close
-        //.catalog-menu-mob__wrapper
-        //    .multifilter-radio
-        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-1" name="m-sort" checked=true)
-        //        label.multifilter-radio__label(for="m-s-1-check-1")
-        //            | По популярности
-        //    .multifilter-radio
-        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-2" name="m-sort")
-        //        label.multifilter-radio__label(for="m-s-1-check-2")
-        //            | Сначала дешевые
-        //    .multifilter-radio
-        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-3" name="m-sort")
-        //        label.multifilter-radio__label(for="m-s-1-check-3")
-        //            | Сначала дорогие
-        //    .multifilter-radio
-        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-4" name="m-sort")
-        //        label.multifilter-radio__label(for="m-s-1-check-4")
-        //            | По названию (А-Я)
-        //    .multifilter-radio
-        //        input.multifilter-radio__input(type="radio" id="m-s-1-check-5" name="m-sort")
-        //        label.multifilter-radio__label(for="m-s-1-check-5")
-        //            | По названию (Я-А)
-        //.catalog-menu-mob__footer
-        //    button.catalog-menu-mob__btn-footer.btn.btn-red Применить
-
 
     .wrapper
         .page-header
@@ -248,7 +221,7 @@ block wrapper
                                             label.multifilter-radio__label(for="s-1-check-2")
                                                 | Сначала дешевые
                                         .multifilter-radio
-                                            input.multifilter-radio__input(type="radio" id="s-1-check-3" name="Sort" value="3")
+                                            input.multifilter-radio__input(type="radio" id="s-1-check-3" name="Sort" value="3" checked=true)
                                             label.multifilter-radio__label(for="s-1-check-3")
                                                 | Сначала дорогие
                                         .multifilter-radio
@@ -258,26 +231,6 @@ block wrapper
                                         .multifilter-radio
                                             input.multifilter-radio__input(type="radio" id="s-1-check-5" name="Sort" value="5")
                                             label.multifilter-radio__label(for="s-1-check-5")
-                                                | По названию (Я-А)
-                                        .multifilter-radio
-                                            input.multifilter-radio__input(type="radio" id="s-1-check-6" name="Sort" checked=true value="6")
-                                            label.multifilter-radio__label(for="s-1-check-6")
-                                                | По популярности
-                                        .multifilter-radio
-                                            input.multifilter-radio__input(type="radio" id="s-1-check-7" name="Sort" value="7")
-                                            label.multifilter-radio__label(for="s-1-check-7")
-                                                | Сначала дешевые
-                                        .multifilter-radio
-                                            input.multifilter-radio__input(type="radio" id="s-1-check-8" name="Sort" value="8")
-                                            label.multifilter-radio__label(for="s-1-check-8")
-                                                | Сначала дорогие
-                                        .multifilter-radio
-                                            input.multifilter-radio__input(type="radio" id="s-1-check-9" name="Sort" value="9")
-                                            label.multifilter-radio__label(for="s-1-check-9")
-                                                | По названию (А-Я)
-                                        .multifilter-radio
-                                            input.multifilter-radio__input(type="radio" id="s-1-check-10" name="Sort" value="10")
-                                            label.multifilter-radio__label(for="s-1-check-10")
                                                 | По названию (Я-А)
                                 .sorting__change-store
                                     fieldset.multifilter(data-filter-name="Store")

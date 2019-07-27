@@ -5,16 +5,12 @@ const state = {
   title: 'Фильтр',
   isActive: false,
   isParent: true,
-  // content: null,
   parentName: null,
   contentType: null,
 };
 
 // getters
 const getters = {
-  // checkedItems: (state, getters, rootState) => {
-  //   return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length;
-  // },
   visibleBottomContent: (state, getters, rootState) => {
     if (state.defaultContainer === 'sort' && state.isParent) {
       return getters.visibleContent.filter(item => item.name !== 'Sort');
@@ -46,7 +42,6 @@ const getters = {
             }
             arr.push(opt);
           }
-          // }
         }
         return arr;
       }, []);

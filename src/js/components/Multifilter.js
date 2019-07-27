@@ -128,17 +128,34 @@ export class PriceFilter {
 
   static parseSettings(multifilterEl) {
     const container = multifilterEl.querySelector('.multifilter-price');
+
     const option = {
       label: multifilterEl.querySelector('.multifilter__value').textContent,
       type: 'range',
       name: 'Price',
       data: {
-        priceFrom: parseInt(container.querySelector('input[name="Price[from]"]').value, 10) || 0,
-        priceTo: parseInt(container.querySelector('input[name="Price[to]"]').value, 10) || 0,
-        priceMin: parseInt(container.querySelector('.multifilter-price__num .multifilter-price__start').textContent.replace(/[^0-9]/g, ''), 10) || 0,
-        priceMax: parseInt(container.querySelector('.multifilter-price__num .multifilter-price__end').textContent.replace(/[^0-9]/g, ''), 10) || 9999,
+        priceFrom: 0,
+        priceTo: 0,
+        priceMin: 0,
+        priceMax: 10000,
       },
     };
+
+    if (container.querySelector('input[name="Price[from]"]')) {
+      option.data.priceFrom = parseInt(container.querySelector('input[name="Price[from]"]').value, 10) || 0;
+    }
+
+    if (container.querySelector('input[name="Price[to]"]')) {
+      option.data.priceTo = parseInt(container.querySelector('input[name="Price[to]"]').value, 10) || 0;
+    }
+
+    if (container.querySelector('.multifilter-price__num .multifilter-price__start')) {
+      option.data.priceMin = parseInt(container.querySelector('.multifilter-price__num .multifilter-price__start').textContent.replace(/[^0-9]/g, ''), 10) || 0;
+    }
+
+    if (container.querySelector('.multifilter-price__num .multifilter-price__end')) {
+      option.data.priceMax = parseInt(container.querySelector('.multifilter-price__num .multifilter-price__end').textContent.replace(/[^0-9]/g, ''), 10) || 10000;
+    }
 
     if (option.data.priceFrom < option.data.priceMin) {
       option.data.priceFrom = option.data.priceMin;
@@ -189,7 +206,7 @@ export class CheckboxFilter {
       option.label = multifilterEl.querySelector('.multifilter__label').textContent;
     }
 
-    [].forEach.call(multifilterEl.querySelectorAll('input[type="checkbox"]'), (input) => {
+    [].forEach.call(multifilterEl.querySelectorAll('input[type="checkbox"]'), (input, i) => {
       if (!option.name) {
         option.name = input.name.replace('[]', '');
       }
@@ -200,6 +217,7 @@ export class CheckboxFilter {
 
       option.data.push({
         label: input.parentElement.querySelector('.multifilter-checkbox__label').textContent,
+        id: i,
         name: input.name || '',
         value: input.value,
         checked: input.checked, // true, если активен
