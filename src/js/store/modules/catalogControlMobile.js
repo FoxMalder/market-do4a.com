@@ -15,21 +15,38 @@ const getters = {
   // checkedItems: (state, getters, rootState) => {
   //   return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length;
   // },
+  visibleBottomContent: (state, getters, rootState) => {
+    if (state.defaultContainer === 'sort' && state.isParent) {
+      return getters.visibleContent.filter(item => item.name !== 'Sort');
+    }
+    return false;
+  },
+
   visibleContent: (state, getters, rootState) => {
     const filters = rootState.filters[state.defaultContainer];
     if (!state.parentName) {
       return Object.keys(filters).reduce((arr, key) => {
         if (key !== 'Type' && key !== 'Category') {
-          const opt = {
-            type: 'multifilter',
-            name: key,
-            label: filters[key].label,
-            childType: filters[key].type,
-          };
-          if (opt.childType === 'checkbox') {
-            opt.activeChildrenCount = filters[key].data.filter(item => item.checked).length;
+          if (key === 'Sort') {
+            arr.push(filters[key]);
+          } else {
+            const opt = {
+              type: 'multifilter',
+              name: key,
+              label: filters[key].label,
+              childType: filters[key].type,
+              activeChildren: [],
+            };
+
+            if (opt.childType === 'checkbox') {
+              opt.activeChildren = filters[key].data.filter(item => item.checked).map(item => item.label) || [];
+
+              opt.replaceTitle = filters[key].replaceTitle
+                && (opt.activeChildren.length > 0 ? opt.activeChildren.join(', ') : filters[key].labelEmpty);
+            }
+            arr.push(opt);
           }
-          arr.push(opt);
+          // }
         }
         return arr;
       }, []);
@@ -47,11 +64,19 @@ const getters = {
 
 // actions
 const actions = {
-  showMenu({ commit }) {
+  showMenu({ commit }, { name, title }) {
     $('html, body').animate({
       scrollTop: global.app.Header.header.fixedTargets.getBoundingClientRect().top + window.pageYOffset,
     });
     document.body.style.overflow = 'hidden';
+
+    commit('SET_DEFAULT_CONTAINER', name);
+    commit('SET_DEFAULT_TITLE', title);
+    commit('SET_CONTENT_TYPE', null);
+    commit('SET_PARENT_NAME', null);
+    commit('SET_IS_PARENT', true);
+    commit('SET_TITLE', title);
+
     commit('SET_IS_ACTIVE', true);
   },
   hideMenu({ commit, dispatch }) {
@@ -81,6 +106,12 @@ const actions = {
 
 // mutations
 const mutations = {
+  SET_DEFAULT_CONTAINER(state, name) {
+    state.defaultContainer = name;
+  },
+  SET_DEFAULT_TITLE(state, title) {
+    state.defaultTitle = title;
+  },
   SET_IS_ACTIVE(state, status) {
     state.isActive = status;
   },

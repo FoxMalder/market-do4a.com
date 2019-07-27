@@ -11,6 +11,7 @@ import {
   PriceFilter,
   CheckboxFilter,
   RadioFilter,
+  SelectFilter,
 } from '../components/Multifilter';
 import store from '../store/index';
 import CategoryListMobile from '../components/CategoryListMobile.vue';
@@ -68,11 +69,6 @@ export default class CatalogControl {
 
     this.debouncedUpdate = debounce(this.update, 500);
 
-    $(document)
-      .on('click.filter.menu', '[data-toggle="m-filter"]', (event) => {
-        event.preventDefault();
-        store.dispatch('filters/mobile/showMenu');
-      });
 
     this.init();
 
@@ -97,7 +93,17 @@ export default class CatalogControl {
   };
 
   initVue() {
-    // this.filterList = CatalogControl.parseHtml([...this.filterEl.querySelectorAll('fieldset.multifilter')]);
+    [].forEach.call(document.querySelectorAll('[data-toggle="m-filter"]'), (button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (event.currentTarget.dataset.target === '#mobile-filter') {
+          store.dispatch('filters/mobile/showMenu', { name: 'filters', title: 'Фильтр' });
+        } else {
+          store.dispatch('filters/mobile/showMenu', { name: 'sort', title: 'Сортировка' });
+        }
+      });
+    });
 
     store.subscribeAction((action, state) => {
       if (action.type === 'filters/onChange') {
@@ -132,17 +138,19 @@ export default class CatalogControl {
 
     if (this.sortingEl) {
       this.sortingList = [].map.call(this.sortingEl.querySelectorAll('fieldset.multifilter'), (filter) => {
-        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter);
-        if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
+        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, 'sort');
+        // if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
+        if (filter.querySelector('.multifilter-radio')) return new SelectFilter(filter, 'sort');
         return new Multifilter(filter, this.change);
       });
     }
 
     if (this.filterEl) {
       this.filterList = [].map.call(this.filterEl.querySelectorAll('fieldset.multifilter'), (filter) => {
-        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter);
-        if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
-        if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter);
+        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, 'filters');
+        // if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
+        if (filter.querySelector('.multifilter-radio')) return new SelectFilter(filter, 'filters');
+        if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter, 'filters');
         return new Multifilter(filter, this.change);
       });
     }
@@ -207,6 +215,7 @@ export default class CatalogControl {
       this.title.innerHTML = h1;
     }
   }
+
   //
   // onChange = (event) => {
   //   event.preventDefault();

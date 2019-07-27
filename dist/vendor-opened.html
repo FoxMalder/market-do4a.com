@@ -57,44 +57,43 @@
   </header>
   <header class="h-navbar-collapse">
     <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse">
-      <div class="container">
-        <div class="change-city">
-          <div class="change-city__header"><span class="change-city__title">Города в которых есть <span class="font-weight-normal">market</span>do<span class="selected">4</span>a</span><button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-city-collapse"></button></div>
-          <ul class="change-city__list"><template v-for="(list, char) in chars">
-              <li class="change-city__item" v-for="(cityId, index) in list" :data-letter="index === 0 ? char : ''"><a class="change-city__link" href="#" @click.prevent="setCity(cityId)">{{ cities[cityId].name }}</a></li>
-            </template></ul>
-          <div class="change-city__footer"><a class="change-post" href="#" @click.prevent="setPost"><svg class="change-post__icon">
-                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
-              </svg>
-              <div class="change-post__title">Отправлять почтой<br> с центрального склада</div>
-              <div class="change-post__note">Срок от 5 дней</div>
-            </a>
-            <div class="change-city__note"><b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
-          </div>
-        </div>
-      </div>
+      <!--.container-->
+      <!--    .change-city-->
+      <!--        .change-city__header-->
+      <!--            span.change-city__title Города в которых есть <span class="font-weight-normal">market</span>do<span class="selected">4</span>a-->
+      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-city-collapse")-->
+      <!--        ul.change-city__list-->
+      <!--            template(v-for="(list, char) in chars")-->
+      <!--                li.change-city__item(v-for="(cityId, index) in list" :data-letter="index === 0 ? char : ''")-->
+      <!--                    a.change-city__link(href="#" @click.prevent="setCity(cityId)")-->
+      <!--                        | {{ cities[cityId].name }}-->
+      <!--        .change-city__footer-->
+      <!--            a.change-post(href="#" @click.prevent="setPost")-->
+      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
+      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
+      <!--                .change-post__note Срок от 5 дней-->
+      <!--            .change-city__note-->
+      <!--                | <b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
     </div>
     <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
-      <div class="container">
-        <div class="change-store">
-          <div class="change-store__header"><span class="change-store__title">Выберите магазин<br> в <span class="selected">{{cities[currentCityId].name5}}</span></span><button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-store-collapse"></button></div>
-          <ul class="change-store__list">
-            <li class="change-store__item" v-for="store in stores" v-if="store.city == currentCityId &amp;&amp; store.hidden !== 'Y'"><a class="change-store__link" href="#" :class="{active: isActive(store.id)}" @click.prevent="setStore(store.id)">
-                <div class="change-store__item-name">{{store.name}}</div>
-                <div class="change-store__item-subtitle">{{store.shortAddress}}</div>
-                <div class="change-store__item-note">{{store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}}</div>
-              </a></li>
-          </ul>
-          <div class="change-store__footer"><a class="change-post" href="#" @click.prevent="setPost"><svg class="change-post__icon">
-                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
-              </svg>
-              <div class="change-post__title">Отправлять почтой<br> с центрального склада</div>
-              <div class="change-post__note">Срок от 5 дней</div>
-            </a>
-            <div class="change-store__note"><b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
-          </div>
-        </div>
-      </div>
+      <!--.container-->
+      <!--    .change-store-->
+      <!--        .change-store__header-->
+      <!--            span.change-store__title Выберите магазин<br> в <span class="selected">{{cities[currentCityId].name5}}</span>-->
+      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-store-collapse")-->
+      <!--        ul.change-store__list-->
+      <!--            li.change-store__item(v-for="store in stores" v-if="store.city == currentCityId && store.hidden !== 'Y'")-->
+      <!--                a.change-store__link(href="#" :class="{active: isActive(store.id)}" @click.prevent="setStore(store.id)")-->
+      <!--                    .change-store__item-name {{store.name}}-->
+      <!--                    .change-store__item-subtitle {{store.shortAddress}}-->
+      <!--                    .change-store__item-note {{store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}}-->
+      <!--        .change-store__footer-->
+      <!--            a.change-post(href="#" @click.prevent="setPost")-->
+      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
+      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
+      <!--                .change-post__note Срок от 5 дней-->
+      <!--            .change-store__note-->
+      <!--                | <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
     </div>
   </header>
   <header class="h-navbar-fixed">
@@ -686,7 +685,7 @@
           <div class="product-card"><a class="product-card-banner" href="#">
               <div class="product-card-banner__title">Бесплатная доставка курьером<span class="nowrap"> от<span class="price"> 2 990<span class="currency"> ₽</span></span></span></div>
             </a></div>
-          <div class="product-card" data-product-id="227">
+          <div class="product-card" data-product-id="208">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -738,7 +737,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="228">
+          <div class="product-card" data-product-id="209">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -779,7 +778,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="229">
+          <div class="product-card" data-product-id="210">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -830,7 +829,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="230">
+          <div class="product-card" data-product-id="211">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -880,7 +879,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="231">
+          <div class="product-card" data-product-id="212">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -930,7 +929,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="232">
+          <div class="product-card" data-product-id="213">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -971,7 +970,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="233">
+          <div class="product-card" data-product-id="214">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->
@@ -1020,7 +1019,7 @@
                   <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                 </svg></button></div>
           </div>
-          <div class="product-card" data-product-id="234">
+          <div class="product-card" data-product-id="215">
             <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
               <div class="product-card__img">
                 <!--img(itemprop="image"-->

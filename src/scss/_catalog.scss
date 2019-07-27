@@ -1133,6 +1133,7 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__label {
+    display: block;
     position: relative;
     width: 100%;
     margin-bottom: 0;
@@ -1177,6 +1178,7 @@ $multifilter-menu-padding-x: 22px;
 
 .multifilter-price {
   width: 381px;
+  max-width: 100%;
   padding: 8px $multifilter-menu-padding-x 18px;
 
   &__title {

@@ -3,6 +3,7 @@ import noUiSlider from 'nouislider';
 
 import Vue from 'vue/dist/vue.esm';
 import Dropdown from './Dropdown.vue';
+import MultifilterRadio from './MultifilterRadio.vue';
 import MultifilterPrice from './MultifilterPrice.vue';
 import MultifilterContainer from './Multifilter.vue';
 import store from '../store';
@@ -98,15 +99,18 @@ export class Multifilter {
 }
 
 export class PriceFilter {
-  constructor(el, callback) {
+  constructor(el, container = 'filters') {
     this.el = el;
+    this.container = container;
     this.filterSettings = PriceFilter.parseSettings(this.el);
+
+    store.commit('filters/pushFilterToContainer', { container: this.container, filter: this.filterSettings });
 
     this.vm = new Vue({
       el: this.el,
       store,
       computed: mapState('filters', {
-        filter: state => state.filters[this.filterSettings.name],
+        filter: state => state[this.container][this.filterSettings.name],
       }),
       template: `
         <dropdown class="multifilter">
@@ -120,107 +124,6 @@ export class PriceFilter {
         </dropdown>`,
       components: { Dropdown, MultifilterPrice },
     });
-    //
-    // new Vue({
-    //   el: this.el.querySelector('.multifilter-price'),
-    //   template: '<MultifilterPrice />',
-    //   components: { MultifilterPrice },
-    // });
-
-
-    // const priceMinText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__start');
-    // const priceMaxText = this.contentEl.querySelector('.multifilter-price__num .multifilter-price__end');
-    //
-    // const rangeArr = {
-    //   min: priceMinText ? parseInt(priceMinText.innerText.replace(/[^0-9]/g, ''), 10) : 0,
-    //   max: priceMaxText ? parseInt(priceMaxText.innerText.replace(/[^0-9]/g, ''), 10) : 9999,
-    // };
-    //
-    // this.fromInput = this.contentEl.querySelector('.js-min-value');
-    // if (!this.fromInput) {
-    //   this.fromInput = document.createElement('input');
-    //   this.fromInput.type = 'hidden';
-    //   this.fromInput.name = 'Price[from]';
-    //   this.fromInput.value = 0;
-    //   this.contentEl.appendChild(this.fromInput);
-    // }
-    //
-    // this.toInput = this.contentEl.querySelector('.js-max-value');
-    // if (!this.toInput) {
-    //   this.toInput = document.createElement('input');
-    //   this.toInput.type = 'hidden';
-    //   this.toInput.name = 'Price[to]';
-    //   this.fromInput.value = 0;
-    //   this.contentEl.appendChild(this.toInput);
-    // }
-    //
-    // const startArr = [
-    //   parseInt(this.fromInput.value, 10),
-    //   parseInt(this.toInput.value, 10) || rangeArr.max,
-    // ];
-    //
-    // this.rangeEl = this.contentEl.querySelector('.input-range');
-    // noUiSlider.create(this.rangeEl, {
-    //   start: startArr,
-    //   step: 1,
-    //   connect: true,
-    //   tooltips: true,
-    //   range: rangeArr,
-    //   format: {
-    //     to(value) {
-    //       return `${Math.floor(value)} ₽`;
-    //     },
-    //     from(value) {
-    //       return value.replace(/[^0-9]/g, '');
-    //     },
-    //   },
-    //   cssPrefix: 'input-range',
-    //   cssClasses: {
-    //     target: '',
-    //     base: '__base',
-    //     origin: '__origin',
-    //     handle: '__handle',
-    //     handleLower: '__handle-lower',
-    //     handleUpper: '__handle-upper',
-    //     touchArea: '__touch-area',
-    //     horizontal: '_horizontal',
-    //     vertical: '_vertical',
-    //     background: '__background',
-    //     connect: '__connect',
-    //     connects: '__connects',
-    //     ltr: '_ltr',
-    //     rtl: '_rtl',
-    //     draggable: '_draggable',
-    //     drag: '_state-drag',
-    //     tap: '_state-tap',
-    //     active: '__active',
-    //     tooltip: '__tooltip',
-    //
-    //     // Шкала
-    //     pips: '__pips',
-    //     pipsHorizontal: '__pips_horizontal',
-    //     pipsVertical: '__pips_vertical',
-    //
-    //     // Деления на шкале
-    //     marker: '__marker',
-    //     markerHorizontal: '__marker_horizontal',
-    //     markerVertical: '__marker_vertical',
-    //     markerNormal: '__marker_normal',
-    //     markerLarge: '__marker_large',
-    //     markerSub: '__marker_sub',
-    //
-    //     // Значения на шкале
-    //     value: '__value',
-    //     valueHorizontal: '__value_horizontal',
-    //     valueVertical: '__value_vertical',
-    //     valueNormal: '__value_normal',
-    //     valueLarge: '__value_large',
-    //     valueSub: '__value_sub',
-    //   },
-    // });
-    //
-    //
-    // this.rangeEl.noUiSlider.on('set', this.onChange, 100);
   }
 
   static parseSettings(multifilterEl) {
@@ -245,49 +148,29 @@ export class PriceFilter {
       option.data.priceTo = option.data.priceMax;
     }
 
-    store.commit('filters/setFilter', option);
-
     return option;
-  }
-
-  onChange = (...param) => {
-    this.callback();
-    this.fromInput.value = Math.floor(param[2][0]);
-    this.toInput.value = Math.floor(param[2][1]);
-  };
-
-  reset() {
-    this.rangeEl.noUiSlider.reset();
   }
 }
 
 export class CheckboxFilter {
-  constructor(el, callback, filterSettings = null) {
+  constructor(el, container = 'filters') {
     this.el = el;
-    this.callback = callback;
-    this.filterSettings = filterSettings || CheckboxFilter.parseSettings(this.el);
+    this.container = container;
+    this.filterSettings = CheckboxFilter.parseSettings(this.el);
+    store.commit('filters/pushFilterToContainer', { container: this.container, filter: this.filterSettings });
 
-    // if (this.el.querySelector('.multifilter__label')) {
-    //   this.options.replaceTitle = true;
-    // }
 
-    this.vm = new Vue({
-      el: this.el,
+    new Vue({
       store,
-      // data: {
-      //   name: this.filterSettings.name,
-      // },
       computed: mapState('filters', {
-        filter: state => state.filters[this.filterSettings.name],
+        filter: state => state[this.container][this.filterSettings.name],
       }),
       template: '<MultifilterContainer :filter="filter"/>',
       components: { MultifilterContainer },
-    });
+    }).$mount(this.el);
   }
 
   static parseSettings(multifilterEl) {
-    if (!multifilterEl) return {};
-
     const option = {
       type: 'checkbox',
       replaceTitle: false,
@@ -331,7 +214,7 @@ export class CheckboxFilter {
       option.name = option.label;
     }
 
-    store.commit('filters/setFilter', option);
+    // store.commit('filters/setFilter', option);
 
     return option;
   }
@@ -361,5 +244,82 @@ export class RadioFilter extends Multifilter {
     // this.defaultInput.checked = true;
     super.updateTitle(this.defaultInput.nextElementSibling.textContent);
     // this.callback(this);
+  }
+}
+
+export class SelectFilter {
+  constructor(el, container = 'sort') {
+    this.el = el;
+    this.container = container;
+
+    this.filterSettings = SelectFilter.parseSettings(this.el);
+
+    store.commit('filters/pushFilterToContainer', { container: this.container, filter: this.filterSettings });
+
+    new Vue({
+      store,
+      computed: mapState('filters', {
+        filter: state => state[this.container][this.filterSettings.name],
+      }),
+      template: `
+        <dropdown class="multifilter">
+          <template slot="btn">
+            <span class="multifilter__value">{{filter.label}}</span>
+          </template>
+
+          <template slot="body">
+            <label class="multifilter-radio" v-for="item in filter.data">
+              <input class="multifilter-radio__input" 
+                    type="radio" 
+                    :name="item.name" 
+                    :value="item.value" 
+                    v-model="filter.selected" 
+                    @change="onChange(item)">
+              <span class="multifilter-radio__label">{{item.label}}</span>
+            </label>
+          </template>
+        </dropdown>`,
+      methods: {
+        onChange(item) {
+          this.filter.label = item.label;
+          this.$store.dispatch('filters/onChange');
+        },
+      },
+      components: { Dropdown, MultifilterRadio },
+    }).$mount(this.el);
+  }
+
+  static parseSettings(multifilterEl) {
+    const option = {
+      type: 'radio',
+      label: 'Не выбрано',
+      selected: null,
+      name: multifilterEl.dataset.filterName || '',
+      data: [],
+    };
+
+    [].forEach.call(multifilterEl.querySelectorAll('input[type="radio"]'), (input) => {
+      if (!option.name) {
+        option.name = input.name;
+      }
+
+      if (input.checked) {
+        option.selected = input.value;
+        option.label = input.parentElement.querySelector('.multifilter-radio__label').textContent;
+      }
+
+      option.data.push({
+        label: input.parentElement.querySelector('.multifilter-radio__label').textContent,
+        name: input.name || '',
+        value: input.value,
+        checked: input.checked,
+      });
+    });
+
+    if (!option.name) {
+      option.name = option.label;
+    }
+
+    return option;
   }
 }

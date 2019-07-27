@@ -2,7 +2,6 @@ import catalogControlMobile from './catalogControlMobile';
 
 // initial state
 const state = {
-  callback: null,
   filters: {},
   sort: {},
 };
@@ -20,7 +19,8 @@ const actions = {
       commit('RESET_CHECKBOX_BY_NAME', { container, name });
     }
   },
-  onChange() {},
+  onChange() {
+  },
 };
 
 // mutations
@@ -42,6 +42,12 @@ const mutations = {
   },
   setFilters(state, filters) {
     state.filters = filters;
+  },
+  pushFilterToContainer(state, { container, filter }) {
+    state[container] = {
+      ...state[container],
+      [filter.name]: filter,
+    };
   },
   // filterReset() {
   //   console.log('reset');

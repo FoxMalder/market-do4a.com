@@ -57,44 +57,43 @@
   </header>
   <header class="h-navbar-collapse">
     <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse">
-      <div class="container">
-        <div class="change-city">
-          <div class="change-city__header"><span class="change-city__title">Города в которых есть <span class="font-weight-normal">market</span>do<span class="selected">4</span>a</span><button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-city-collapse"></button></div>
-          <ul class="change-city__list"><template v-for="(list, char) in chars">
-              <li class="change-city__item" v-for="(cityId, index) in list" :data-letter="index === 0 ? char : ''"><a class="change-city__link" href="#" @click.prevent="setCity(cityId)">{{ cities[cityId].name }}</a></li>
-            </template></ul>
-          <div class="change-city__footer"><a class="change-post" href="#" @click.prevent="setPost"><svg class="change-post__icon">
-                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
-              </svg>
-              <div class="change-post__title">Отправлять почтой<br> с центрального склада</div>
-              <div class="change-post__note">Срок от 5 дней</div>
-            </a>
-            <div class="change-city__note"><b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
-          </div>
-        </div>
-      </div>
+      <!--.container-->
+      <!--    .change-city-->
+      <!--        .change-city__header-->
+      <!--            span.change-city__title Города в которых есть <span class="font-weight-normal">market</span>do<span class="selected">4</span>a-->
+      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-city-collapse")-->
+      <!--        ul.change-city__list-->
+      <!--            template(v-for="(list, char) in chars")-->
+      <!--                li.change-city__item(v-for="(cityId, index) in list" :data-letter="index === 0 ? char : ''")-->
+      <!--                    a.change-city__link(href="#" @click.prevent="setCity(cityId)")-->
+      <!--                        | {{ cities[cityId].name }}-->
+      <!--        .change-city__footer-->
+      <!--            a.change-post(href="#" @click.prevent="setPost")-->
+      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
+      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
+      <!--                .change-post__note Срок от 5 дней-->
+      <!--            .change-city__note-->
+      <!--                | <b>Не нашли магазина в вашем городе?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
     </div>
     <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
-      <div class="container">
-        <div class="change-store">
-          <div class="change-store__header"><span class="change-store__title">Выберите магазин<br> в <span class="selected">{{cities[currentCityId].name5}}</span></span><button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-store-collapse"></button></div>
-          <ul class="change-store__list">
-            <li class="change-store__item" v-for="store in stores" v-if="store.city == currentCityId &amp;&amp; store.hidden !== 'Y'"><a class="change-store__link" href="#" :class="{active: isActive(store.id)}" @click.prevent="setStore(store.id)">
-                <div class="change-store__item-name">{{store.name}}</div>
-                <div class="change-store__item-subtitle">{{store.shortAddress}}</div>
-                <div class="change-store__item-note">{{store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}}</div>
-              </a></li>
-          </ul>
-          <div class="change-store__footer"><a class="change-post" href="#" @click.prevent="setPost"><svg class="change-post__icon">
-                <use xlink:href="images/new-sprite.svg#sprite-change-store-stock-icon"></use>
-              </svg>
-              <div class="change-post__title">Отправлять почтой<br> с центрального склада</div>
-              <div class="change-post__note">Срок от 5 дней</div>
-            </a>
-            <div class="change-store__note"><b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.</div>
-          </div>
-        </div>
-      </div>
+      <!--.container-->
+      <!--    .change-store-->
+      <!--        .change-store__header-->
+      <!--            span.change-store__title Выберите магазин<br> в <span class="selected">{{cities[currentCityId].name5}}</span>-->
+      <!--            button.change-city__btn-close.btn(data-toggle="collapse" data-target=".change-store-collapse")-->
+      <!--        ul.change-store__list-->
+      <!--            li.change-store__item(v-for="store in stores" v-if="store.city == currentCityId && store.hidden !== 'Y'")-->
+      <!--                a.change-store__link(href="#" :class="{active: isActive(store.id)}" @click.prevent="setStore(store.id)")-->
+      <!--                    .change-store__item-name {{store.name}}-->
+      <!--                    .change-store__item-subtitle {{store.shortAddress}}-->
+      <!--                    .change-store__item-note {{store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз'}}-->
+      <!--        .change-store__footer-->
+      <!--            a.change-post(href="#" @click.prevent="setPost")-->
+      <!--                +sprite('change-store-stock-icon.svg')(class="change-post__icon")-->
+      <!--                .change-post__title Отправлять почтой<br> с центрального склада-->
+      <!--                .change-post__note Срок от 5 дней-->
+      <!--            .change-store__note-->
+      <!--                | <b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.-->
     </div>
   </header>
   <header class="h-navbar-fixed">
@@ -534,7 +533,7 @@
     </div>
     <div class="favorite-list container">
       <div class="card-list">
-        <div class="product-card " data-product-id="558">
+        <div class="product-card " data-product-id="741">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -583,7 +582,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card " data-product-id="559">
+        <div class="product-card " data-product-id="742">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -621,7 +620,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card disabled" data-product-id="560">
+        <div class="product-card disabled" data-product-id="743">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -669,7 +668,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card " data-product-id="561">
+        <div class="product-card " data-product-id="744">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -716,7 +715,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card " data-product-id="562">
+        <div class="product-card " data-product-id="745">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -763,7 +762,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card " data-product-id="563">
+        <div class="product-card " data-product-id="746">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -801,7 +800,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card " data-product-id="564">
+        <div class="product-card " data-product-id="747">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
@@ -847,7 +846,7 @@
                 <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg></button></div>
         </div>
-        <div class="product-card " data-product-id="565">
+        <div class="product-card " data-product-id="748">
           <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
             <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
             <div class="product-card__body">
