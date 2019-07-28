@@ -10,51 +10,57 @@
       <MultifilterPrice
               v-if="contentType === 'range'"
               :slider="content"
-              @change="onChange"/>
+              @change="onChange"
+      />
       <MultifilterCheckboxList
               v-else-if="contentType === 'checkbox'"
               :items="content"
               :search="false"
-              @change="onChange"/>
-      <template
-              v-else>
+              @change="onChange"
+      />
+      <template v-else>
         <template v-for="item in content">
           <div class="multifilter"
                   v-if="item.type === 'multifilter' && !bottomContent"
-                  :class="{active: item.activeChildren.length > 0}">
+                  :class="{active: item.activeChildren.length > 0}"
+          >
             <button class="multifilter__content multifilter__content_parent" @click.prevent="next(item)">
-              <span class="multifilter__label" v-if="item.replaceTitle">{{item.label}}</span>
-              <span class="multifilter__value" v-if="item.replaceTitle">{{item.replaceTitle}}</span>
-              <span class="multifilter__value" v-else>{{item.label}}</span>
+              <span class="multifilter__value" v-if="!item.replaceTitle">{{item.label}}</span>
+              <template v-else>
+                <span class="multifilter__label">{{item.label}}</span>
+                <span class="multifilter__value">{{item.replaceTitle}}</span>
+              </template>
               <span class="multifilter__total" v-show="item.activeChildren.length > 0">{{item.activeChildren.length}}</span>
             </button>
             
             <button class="multifilter__btn-clear"
                     v-show="item.activeChildren.length > 0"
-                    @click.prevent="reset(item.name, item.childType)">
-              Сбросить
-            </button>
+                    @click.prevent="reset(item.name, item.childType)"
+            >Сбросить</button>
+            
           </div>
   
           <template v-else-if="item.type === 'radio'">
-            <label class="multifilter-radio"
-                    v-for="radio in item.data">
+            <label class="multifilter-radio" v-for="radio in item.data">
               <input class="multifilter-radio__input" type="radio"
                       :name="radio.name"
                       :value="radio.value"
                       v-model="item.selected"
-                      @change="onChange">
+                      @change="onChange"
+              >
               <span class="multifilter-radio__label">{{radio.label}}</span>
             </label>
           </template>
         </template>
       </template>
     </div>
-    <div class="catalog-menu-mob__wrapper" v-if="bottomContent" style="overflow: hidden;flex: 0 0 auto;">
+    <div class="catalog-menu-mob__wrapper" style="overflow: hidden;flex: 0 0 auto;">
       <template v-for="item in bottomContent">
         <div class="multifilter"
                 v-if="item.type === 'multifilter'"
-                :class="{active: item.activeChildren.length > 0}">
+                :class="{active: item.activeChildren.length > 0}"
+        >
+          
           <button class="multifilter__content multifilter__content_parent" @click.prevent="next(item)">
             <span class="multifilter__label" v-if="item.replaceTitle">{{item.label}}</span>
             <span class="multifilter__value" v-if="item.replaceTitle">{{item.replaceTitle}}</span>
@@ -64,9 +70,8 @@
     
           <button class="multifilter__btn-clear"
                   v-show="item.activeChildren.length > 0"
-                  @click.prevent="reset(item.name, item.childType)">
-            Сбросить
-          </button>
+                  @click.prevent="reset(item.name, item.childType)"
+          >Сбросить</button>
         </div>
       </template>
     </div>
@@ -75,14 +80,12 @@
       <button class="catalog-menu-mob__btn-footer btn btn-gray-2"
               v-if="!isParent"
               :disabled="!canReset"
-              @click.prevent="reset(parentName, contentType)">
-        Сбросить
-      </button>
+              @click.prevent="reset(parentName, contentType)"
+      >Сбросить</button>
       <button class="catalog-menu-mob__btn-footer btn btn-red"
               v-if="isParent"
-              @click.prevent="close">
-        Применить
-      </button>
+              @click.prevent="close"
+      >Применить</button>
     </div>
   </div>
 </template>

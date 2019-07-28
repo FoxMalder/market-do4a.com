@@ -16,9 +16,16 @@
 //  border: 1px solid green;
 //}
 
+p,
 .wrapper {
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.01em;
+  line-height: 143%;
+  @include media-breakpoint-up(md) {
+    font-size: 18px;
+    line-height: 156%;
+  }
 }
 
 .f-title-long {
@@ -52,18 +59,47 @@
   line-height: 35px;
 }
 
+.f-horizontal-gallery {
+  z-index: 0;
+  width: 100%;
+  overflow: hidden;
+
+  &__wrapper {
+    display: flex;
+    transform: $skew;
+  }
+
+  &__item {
+    position: relative;
+    flex: 0 0 auto;
+    margin-left: 30px;
+    overflow: hidden;
+  }
+
+  &__img {
+    //position: absolute;
+    @include skew-revert(837px, 485px, 9deg);
+    //width: 837px;
+    //height: 485px;
+    //transform: matrix((1 + tan(9deg) * 485 / 837), 0, tan(9deg), 1, 0, 0);
+    background-color: gray;
+  }
+}
+
 /*
  * Первая секция
  */
 .f-section-hero {
+  position: relative;
   height: 800px;
-  padding-top: 57px;
+  padding-top: 94px;
   overflow: hidden;
   background-color: #bbb;
   background-image: url('../img/franchise/f-hero-bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  color: #fff;
 
   //background: url("../img/rm/f-first-screen.png") center top no-repeat;
   //> * {
@@ -74,46 +110,52 @@
     background-image: url('../img/franchise/f-hero-bg_2x.jpg');
   }
 
+  &__overlay {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background: #101010;
+  }
+
   &__inner {
-    position: relative;
-    left: 50%;
-    width: 650px;
-    margin-left: -20px;
-    transform: $skew;
-    transform-origin: top;
+    z-index: 2;
   }
 
   &__title {
-    padding-top: 45px;
-    padding-bottom: 50px;
-    padding-left: 52px;
-    background-color: #fff;
-    box-shadow: 30px 34px 100px rgba(0, 0, 0, 0.35);
-    font-family: $font-family-bender;
+    margin-bottom: 63px;
     font-size: 70px;
-    font-style: normal;
-    font-weight: 900;
-    letter-spacing: normal;
-    line-height: 1;
-    text-transform: uppercase;
+
+    small {
+      display: block;
+      margin-bottom: 11px;
+      font-size: 36px;
+      font-weight: 900;
+    }
 
     .selected {
-      display: inline-block;
-      margin-right: -12px;
-      margin-left: -12px;
-      padding-right: 12px;
-      padding-left: 12px;
-      background-color: #101010;
-      color: #fff;
-      white-space: nowrap;
+      background-color: #fff;
+      color: #101010;
     }
+  }
+
+  &__description {
+    max-width: 516px;
+    margin-bottom: 80px;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    line-height: 28px;
   }
 
   &__bottom {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 50px;
+    //align-items: flex-start;
+    justify-content: flex-end;
+    margin-top: 10px;
+    opacity: .6;
   }
 
   &__button {
@@ -122,48 +164,27 @@
     padding-right: 25px;
     padding-left: 25px;
   }
-
-  &__note {
-    margin-right: -10px;
-    color: #fff;
-    font-family: $font-family-bender;
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: normal;
-    line-height: 31px;
-    text-align: right;
-    text-transform: uppercase;
-  }
 }
 
+.f-rbk {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+
+  &__text {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
 
 /*
  * Вторая секция
  */
 .f-section-benefits {
   margin-bottom: 120px;
-  padding-top: 80px;
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__description {
-    max-width: 665px;
-    margin-top: 9px;
-    font-size: 18px;
-    line-height: 28px;
-  }
-}
-
-.f-rbk {
-  &__text {
-    margin-top: 18px;
-    color: rgba(#000, 0.6);
-    font-size: 15px;
-    line-height: 20px;
-  }
+  padding-top: 31px;
 }
 
 .f-benefits {
@@ -175,50 +196,61 @@
   list-style: none;
 
   &__item {
-    display: flex;
     position: relative;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 250px;
-    height: 169px;
-    padding-right: 22px;
-    padding-bottom: 18px;
-    padding-left: 22px;
-    transform: $skew;
-    background-color: #fff;
-    box-shadow: 20px 20px 0 #101010;
 
-    &:nth-child(1) {
-      margin-top: 158px - 70px;
+    @include media-breakpoint-up(md) {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      width: 250px;
+      height: 169px;
+      padding-right: 22px;
+      padding-bottom: 18px;
+      padding-left: 22px;
+      transform: $skew;
+      background-color: #fff;
+      box-shadow: 20px 20px 0 #101010;
     }
 
-    &:nth-child(2) {
-      margin-top: 271px - 70px;
-    }
+    @include media-breakpoint-up(xl) {
+      &:nth-child(1) {
+        margin-top: 158px - 70px;
+      }
 
-    &:nth-child(3) {
-      margin-top: 70px - 70px;
-    }
+      &:nth-child(2) {
+        margin-top: 271px - 70px;
+      }
 
-    &:nth-child(4) {
-      margin-top: 233px - 70px;
+      &:nth-child(3) {
+        margin-top: 70px - 70px;
+      }
+
+      &:nth-child(4) {
+        margin-top: 233px - 70px;
+      }
     }
   }
 
   &__icon {
     position: absolute;
-    top: 0;
-    left: 20px;
-    transform: $skew-reverse translateY(-50%);
+    @include media-breakpoint-up(md) {
+      top: 0;
+      left: 20px;
+      transform: $skew-reverse translateY(-50%);
+    }
   }
 
   &__title {
     font-family: $font-family-bender;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 900;
     letter-spacing: 0.02em;
-    line-height: 27px;
+    line-height: 23px;
     text-transform: uppercase;
+    @include media-breakpoint-up(md) {
+      font-size: 24px;
+      line-height: 27px;
+    }
   }
 
   &__text {
@@ -226,9 +258,13 @@
     transform: $skew-reverse;
 
     color: rgba(#000, 0.6);
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 24px;
+    line-height: 18px;
+    @include media-breakpoint-up(md) {
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 }
 
@@ -240,21 +276,37 @@
   margin-top: 120px;
   margin-bottom: 120px;
   //padding-top: 132px;
+  //&__inner {
+  //  position: relative;
+  //}
 
   &__title {
-    position: absolute;
     z-index: 1;
-    margin-top: -355px;
+    margin-bottom: -50px;
+    @include media-breakpoint-up(xl) {
+      position: absolute;
+      margin-top: 132px;
+      margin-bottom: 0;
+    }
   }
 }
 
 .f-video {
   position: relative;
-  width: 837px;
-  height: 487px;
-  margin-left: auto;
-  transform: $skew;
-  transform-origin: top;
+  width: 320px;
+  height: 186px;
+  @include media-breakpoint-up(xl) {
+    width: 636px;
+    height: 370px;
+    transform: $skew;
+    transform-origin: center;
+  }
+  @include media-breakpoint-up(xl) {
+    width: 837px;
+    height: 487px;
+    margin-left: auto;
+    transform-origin: top;
+  }
 
 
   &__cover {
@@ -277,6 +329,7 @@
   }
 
   &__text {
+    display: none;
     position: absolute;
     top: 42px;
     right: 50px;
@@ -288,6 +341,9 @@
     letter-spacing: -0.02em;
     line-height: 28px;
     text-align: right;
+    @include media-breakpoint-up(xl) {
+      display: block;
+    }
   }
 }
 
@@ -304,7 +360,7 @@
   overflow: hidden;
   background-color: #fff;
 
-  > .container {
+  &__inner {
     position: relative;
     z-index: 1;
   }
@@ -327,8 +383,10 @@
     position: absolute;
     //background-color: red;
     right: 50%;
-    bottom: 134px;
+    bottom: 0;
     margin-right: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / -2;
+    background-color: red;
+    color: white;
     font-size: 15px;
     line-height: 20px;
   }
@@ -397,12 +455,14 @@
   }
 }
 
+
 /*
  * Собранный за 8 лет бизнеса в индустрии
  */
 .f-section-progress {
   margin-top: 120px;
-  margin-bottom: 120px;
+  //margin-bottom: 120px;
+  margin-bottom: 90px;
   padding-top: 83px;
   padding-bottom: 120px;
   background-color: #fff;
@@ -457,6 +517,64 @@
   }
 }
 
+
+/*
+ * Наши партнёры становятся
+ */
+.f-section-partners {
+  margin-top: 90px;
+  margin-bottom: 120px;
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    margin-bottom: -41px;
+  }
+
+  &__title {
+    margin-bottom: 74px;
+
+    .f-title-small {
+      margin-bottom: 27px;
+    }
+  }
+
+  &__card {
+    transform: $skew;
+    background-color: #fff;
+    box-shadow: 29px 37px 0 #101010;
+    @include media-breakpoint-up(xl) {
+      width: 600px;
+      margin-left: -66px;
+    }
+  }
+
+  &__card-wrapper {
+    padding: 54px 115px 81px 60px;
+    transform: $skew-reverse;
+  }
+
+  &__card-title {
+    @include title;
+    margin-bottom: 15px;
+    font-size: 68px;
+    line-height: 77px;
+
+    small {
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 34px;
+    }
+  }
+
+  &__card-text {
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 28px;
+  }
+}
+
+
 /*
  * Секрет успеха наших франчайзи
  */
@@ -464,7 +582,7 @@
   margin-top: 120px;
   margin-bottom: 120px;
   padding-top: 16px;
-  padding-bottom: 60px;
+  padding-bottom: 49px;
 
   &__subtitle {
     max-width: 380px;
@@ -506,9 +624,207 @@
   }
 }
 
-.f-section-partners {
-  &__subtitle {
-    margin-bottom: 27px;
+
+/*
+ * Вы получите поддержку
+ */
+.f-section-support {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-top: 88px;
+  padding-bottom: 180px;
+  background-color: #fff;
+
+  &__inner {
+    position: relative;
+  }
+
+  &__title {
+    max-width: 610px;
+    margin-bottom: 58px;
+  }
+
+  &__description {
+    max-width: 588px;
+    margin-bottom: 46px;
+  }
+
+  &__social-title {
+    margin-bottom: 20px;
+  }
+}
+
+.f-chat {
+  width: 529px;
+  height: 630px;
+  @include media-breakpoint-up(xl) {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+  }
+
+  &__row {
+    display: flex;
+    margin-bottom: 50px;
+
+    &_reverse {
+      flex-direction: row-reverse;
+
+      .f-chat__message {
+        padding-right: 20px;
+        padding-left: 30px;
+
+        &::before {
+          box-shadow: -20px 20px 0 #101010;
+        }
+
+        &::after {
+          right: 39px;
+          left: auto;
+          box-shadow: -20px 0px 0 #101010;
+        }
+      }
+    }
+  }
+
+  &__profile {
+    width: 40px;
+    text-align: center;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__name {
+    margin-top: 8px;
+    font-size: 13px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-align: center;
+  }
+
+  &__message {
+    position: relative;
+    //background-color: #e4e4e4;
+    min-width: 268px;
+    max-width: 340px;
+    margin-right: 11px;
+    padding: 15px 16px 15px 36px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      //width: 100%;
+      //height: 100%;
+      z-index: 0;
+      top: 0;
+      right: 10px;
+      bottom: 0;
+      left: 10px;
+      transform: $skew;
+      background-color: #f3f3f3;
+      box-shadow: 20px 20px 0 #101010;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      top: 100%;
+      left: 20px;
+      width: 20px;
+      height: 20px;
+      transform: matrix(1, -1, -0.07, 1, -1, -10);
+      background-color: #f3f3f3;
+      box-shadow: 20px 40px 0 #101010;
+    }
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    min-height: 40px;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    line-height: 20px;
+  }
+
+  &__time {
+    position: relative;
+    z-index: 1;
+    margin-top: 22px;
+    color: rgba(#000, 0.5);
+    font-size: 12px;
+    line-height: 1;
+  }
+}
+
+
+/*
+ * Комплектуем филиалы всем необходимым
+ */
+.f-section-equipment {
+  margin-top: 150px;
+
+  &__overlay {
+    position: relative;
+    z-index: 1;
+    margin-top: 86px;
+  }
+
+  &__overlay-text {
+    position: absolute;
+    padding: 16px 30px 14px;
+    @include title;
+    transform: $skew;
+    background-color: #fff;
+    font-size: 44px;
+    font-style: normal;
+    line-height: 50px;
+    box-shadow: 14px 14px 0 #101010;
+
+    &:nth-child(1) {
+      top: -64px;
+      left: 50%;
+    }
+
+    &:nth-child(2) {
+      top: 87px;
+      left: 0;
+    }
+
+    &:nth-child(3) {
+      top: 166px;
+      left: 890px;
+    }
+
+    &:nth-child(4) {
+      top: 319px;
+      left: 160px;
+    }
+  }
+}
+
+
+/*
+ * Бренд MarketDo4a продаёт сам себя
+ */
+.f-section-stars {
+  height: 1515px;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-top: 45px;
+
+  &__title {
+    max-width: 683px;
+    margin-bottom: 63px;
+  }
+
+  &__description {
+    max-width: 494px;
   }
 }
 
@@ -517,8 +833,23 @@
  * Варианты сотрудничества
  */
 .f-section-partnership {
+  padding-top: 90px;
+  padding-bottom: 84px;
   background-color: $main-color;
-  padding-bottom: 81px;
+
+  &__title {
+    margin-bottom: 30px;
+    margin-left: 285px;
+    span {
+      color: #fff;
+    }
+  }
+
+  &__subtitle {
+    margin-bottom: 78px;
+    margin-left: 489px;
+    font-weight: 900;
+  }
 
   &__list {
     margin-bottom: 0;
@@ -527,37 +858,159 @@
   }
 
   &__note {
+    max-width: 560px;
+    margin-top: 117px;
+    margin-right: auto;
+    margin-left: auto;
     color: #fff;
     text-align: center;
   }
 }
 
 .f-program-item {
+  display: block;
+  width: 346px;
   background-color: #fff;
+  box-shadow: 30px 30px 0 #101010;
+  transition: all .3s ease-in-out;
+  &:hover {
+    color: #101010;
+    transform: translate(10px, 10px);
+    box-shadow: 20px 20px 0 #101010;
+  }
 
   &__body {
-    padding-left: 26px;
-    padding-top: 27px;
-    padding-right: 26px;
+    padding: 30px 26px 29px;
+  }
+
+  &__title {
+    max-width: 216px;
+    margin-bottom: 16px;
+    font-size: 40px;
+    line-height: 38px;
+  }
+
+  &__subtitle {
+    margin-bottom: 37px;
+    opacity: 0.5;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  &__list {
+    margin-bottom: 48px;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  &__item {
+    //margin-bottom: 48px;
+    margin-bottom: 21px;
+  }
+
+  &__item-num {
+    margin-bottom: 4px;
+    font-family: $font-family-bender;
+    font-size: 23px;
+    font-style: italic;
+    font-weight: bold;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__item-text {
+    opacity: 0.5;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  &__total-num {
+    margin-bottom: 5px;
+    font-family: $font-family-bender;
+    font-size: 40px;
+    font-style: italic;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  &__total-text {
+    opacity: 0.5;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    line-height: 1;
   }
 
   &__footer {
+    padding-top: 25px;
+    padding-bottom: 30px;
     background-color: #ececec;
     text-align: center;
-    padding-bottom: 30px;
-    padding-top: 24px;
+  }
+
+  &__button {
+
+    margin-top: 22px;
+    padding-right: 37px;
+    padding-left: 37px;
   }
 }
+
 
 /*
  * Основатель MarketDo4a
  */
 .f-section-director {
-  padding-top: 80px;
-  &__title-small {
-    margin-bottom: 25px;
+  position: relative;
+  padding-top: 114px;
+  padding-bottom: 54px;
+  margin-bottom: 120px;
+
+  &__title {
+    max-width: 580px;
+    margin-bottom: 86px;
   }
-  &__title-long {
+
+  &__quote {
+    max-width: 555px;
+    margin-bottom: 100px;
+
+    p {
+      margin-bottom: 28px;
+    }
+  }
+}
+
+.f-director {
+  position: absolute;
+  bottom: 192px;
+  left: 50%;
+
+  &__photo {
+    width: 300px;
+    height: 800px;
+    background-color: #bbb;
+    position: absolute;
+    bottom: 0;
+  }
+
+  &__block {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+  }
+
+  &__name {
+    @include title;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  &__description {
 
   }
 }
@@ -567,8 +1020,11 @@
  * Ответы на вопросы
  */
 .f-section-feedback {
+  padding-top: 24px;
+  height: 2071px;
   &__title {
     max-width: 950px;
+    margin-bottom: 40px;
   }
 
   &__subtitle {
@@ -581,13 +1037,15 @@
  * Ответы на вопросы
  */
 .f-section-faq {
+  margin-top: 120px;
+  margin-bottom: 120px;
   &__title {
-    margin-bottom: 57px;
+    margin-bottom: 53px;
   }
 
   &__description {
     max-width: 474px;
-    margin-bottom: 84px;
+    margin-bottom: 97px;
   }
 }
 

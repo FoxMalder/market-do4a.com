@@ -154,7 +154,7 @@ export default class ProductCard {
     wrapperEl.classList.add('product-card__wrapper');
     wrapperEl.innerHTML = `
       <div class="product-card__img">
-        <img src="https://marketdo4a.com${this.data.img}" srcset="https://marketdo4a.com${this.data.img2x} 2x" alt="${this.data.name}">
+        <img src="${this.data.img}" srcset="${this.data.img2x} 2x" alt="${this.data.name}">
       </div>
       <div class="product-card__body">
         <a class="product-card__title stretched-link" href="${this.data.url}" title="Перейти в карточку товара">${this.data.name}</a>
@@ -174,7 +174,7 @@ export default class ProductCard {
           </div>                
           <div class="product-card__stock">
             <div class="${this.data.inAvailable ? 'green' : 'red'}">${this.data.inAvailable ? 'В наличии' : 'Нет в наличии'}</div>
-            <div>${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
+            <div style="${this.data.pack_count === 0 ? 'display: none' : ''}">${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
           </div>
         </div>
       </div>`;

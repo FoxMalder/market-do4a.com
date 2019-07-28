@@ -2,21 +2,21 @@ extends template/template
 block wrapper
     main.wrapper
         section.f-section-hero
-            .f-section-hero__inner
-                .f-section-hero__title
-                    div получай
-                    div до <span class="selected">3,8 млн.*</span>
-                    div рублей в год
+            .f-section-hero__overlay
+            .container.f-section-hero__inner
+                h1.f-section-hero__title.f-title-long
+                    small открой магазин спортпита <br>
+                    span  и получай до <br>
+                    span  <span class="selected">3,8 млн. ₽</span> в год
+                p.f-section-hero__description
+                    | MarketDo4a — федеральная сеть магазинов спортивного питания, товаров и одежды для спорта, доказавшая успешность в 50 городах Росии. Присоединяйтесь к отлаженной бизнес-модели и зарабатывайте.
+                button.f-section-hero__button.btn.btn-skew.btn-red Получить бизнес-план
                 .f-section-hero__bottom
-                    button.f-section-hero__button.btn.btn-red Получить бизнес-план
-                    .f-section-hero__note *чистая прибыль одного <br>магазина marketDo4a <br>в твоём городе
-        section.f-section-benefits
-            .container
-                .f-section-benefits__header
-                    .f-section-benefits__description MarketDo4a — федеральная сеть магазинов спортивного питания, товаров и одежды для спорта, доказавшая успешность в 50 городах Росии. Присоединяйтесь к отлаженной бизнес-модели и зарабатывайте.
                     .f-rbk
                         img.f-rbk__logo(src=require('./images/rbk_logo.svg'))
                         .f-rbk__text 30 место в рейтинге<br> лучших франшиз России
+        section.f-section-benefits
+            .container
                 ul.f-benefits
                     li.f-benefits__item
                         .f-benefits__icon
@@ -74,21 +74,21 @@ block wrapper
                         .f-benefits__text до 12 месяцев работы
 
         section.f-section-video
-            .container
-                .f-video
-                    .f-video__cover(style="background-image: url(" + require('./images/video-cover.jpg') + ");")
-                    .f-video__overlay
-                    .f-video__text Посмотрите видео об успехах наших партнёров
+            .container.f-section-video__inner
                 .f-section-video__title.f-title-long
                     div.selected 65 магазинов
                     div в городах России
                     div и СНГ открыто
                     div <span class="selected">за 3 года</span> работы
                     div франшизы
+                .f-video
+                    .f-video__cover(style="background-image: url(" + require('./images/video-cover.jpg') + ");")
+                    .f-video__overlay
+                    .f-video__text Посмотрите видео об успехах наших партнёров
 
         section.f-section-form
             figure.f-section-form__brand-mockup-image
-            .container
+            .f-section-form__inner.container
                 .f-section-form__header
                     h2.f-section-form__title.f-title-long Получите <br><span class="selected">бизнес-план</span>
                     p.f-section-form__subtitle.f-title-small с расчётом затрат и прибыли для вашего города
@@ -192,7 +192,7 @@ block wrapper
                                 | <path d="M94.6604 54.1071L98.518 46.6361L100.527 47.6751L101.633 45.5329L99.6247 44.4923L99.8987 43.9605C100.446 42.9041 101.25 42.6892 102.16 43.1613C102.412 43.2917 102.7 43.4985 103.019 43.7748L104.174 41.5368C103.831 41.1511 103.328 40.788 102.674 40.4493C100.291 39.2119 98.3191 40.0095 97.08 42.4056L96.768 43.0119L94.9675 42.0789L93.8608 44.2229L95.6613 45.1559L91.8037 52.6267L94.6604 54.1071Z" fill="#101010"/>
                                 | <path d="M104.335 70.8704L100.116 75.0965L101.758 76.7417L103.867 74.6286L106.233 76.9984C105.792 77.7429 105.274 78.4137 104.682 79.007C102.522 81.1704 100.21 81.0193 97.7484 78.5537C95.3373 76.1384 95.1668 73.8939 97.2371 71.8201C98.3835 70.6717 99.6085 70.1134 101.261 69.8434L100.325 67.3975C98.4649 67.5127 96.6204 68.6934 95.3066 70.0092C92.0408 73.2804 91.9515 77.5481 95.3519 80.9542C98.878 84.4863 103.076 84.2694 106.415 80.9249C107.712 79.6254 108.989 77.8666 109.594 76.1384L104.335 70.8704Z" fill="#101010"/>
                                 | </svg>
-                            h3.f-progress-item__title <span>5</span> млн. руб.
+                            h3.f-progress-item__title <span>15</span> млн. руб.
                             p.f-progress-item__subtitle ежегодно вкладываются<br> в маркетинг бренда
                     li.col-xl-4
                         .f-progress-item
@@ -239,6 +239,26 @@ block wrapper
                                 | </svg>
                             h3.f-progress-item__title <span>8</span> месяцев
                             p.f-progress-item__subtitle средняя окупаемость филиала
+
+        section.f-section-partners
+            .container.f-section-partners__inner
+                .row
+                    .col-xl-8.offset-xl-4
+                        h2.f-section-partners__title
+                            .f-title-small Наши партнёры становятся
+                            .f-title-long частью сообщества молодых бизнесменов, <span class="selected">умеющих зарабатывать</span>
+                .f-section-partners__card
+                    .f-section-partners__card-wrapper
+                        .f-section-partners__card-title 85% <small>клиентов</small>
+                        .f-section-partners__card-text становятся постоянными после первого заказа — это <strong>в 2,5 раза выше,</strong> чем в среднем по рынку
+            .f-horizontal-gallery
+                .f-horizontal-gallery__wrapper
+                    .f-horizontal-gallery__item
+                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                    .f-horizontal-gallery__item
+                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                    .f-horizontal-gallery__item
+                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
 
         section.f-section-complex
             .container
@@ -547,24 +567,48 @@ block wrapper
                             h3.f-complex-item__title CRM-система
                             p.f-complex-item__text Платформа, настроенная специально под ваш филиал. Ни один клиент и ни одна учётная запись не пропадут.
 
-        section.f-section-partners
-            .container
-                .row
-                    .col-xl-8.offset-xl-4
-                        .f-section-partners__subtitle.f-title-small Наши партнёры становятся
-                        .f-section-partners__title.f-title-long частью сообщества молодых бизнесменов, <span class="selected">умеющих зарабатывать</span>
-                .f-section-partners__card
-                    | sdfgsfdg
-                .f-section-partners
-            .f-section-partners__images
-                | fdgfdg
 
         section.f-section-support
-            .container
+            .f-section-support__inner.container
                 .f-section-support__content
-                    h2.f-section-support__title Вы получите <span class="selected">поддержку</span> других франчайзи
+                    h2.f-section-support__title.f-title-long Вы получите <span class="selected">поддержку</span> других франчайзи
                     p.f-section-support__description Партнёры получают доступ в закрытую группу «Do4a Бизнес». Обсуждение успехов и ошибок, разбор стратегии, разбор, что нового внедряют коллеги. Используйте наработки в своём бизнесе. А также голосования по развитию бренда, совместные закупки трендовых товаров с большой маржой и полная демократия в принятии решений. У нас весело!
+                    .f-section-support__social-title Доступ к закрытым чатам:
                     .f-section-support__social
+                        a(href="")
+                            .icon.icon-vk Вконтакте
+                        a(href="")
+                            .icon.icon-inst Instagram
+                .f-chat
+                    .f-chat__row
+                        .f-chat__profile
+                            img.f-chat__avatar(src=require('./images/arnold-1.jpg'))
+                            .f-chat__name Антон
+                        .f-chat__message
+                            .f-chat__text Ребят, всем привет! Кто планирует закупку Дочалаб на август? Хочу присоединиться.
+                            .f-chat__time 12:51
+                    .f-chat__row.f-chat__row_reverse
+                        .f-chat__profile
+                            img.f-chat__avatar(src=require('./images/arnold-1.jpg'))
+                            .f-chat__name Саша
+                        .f-chat__message
+                            .f-chat__text Привет, сейчас внесу тебя в список. Партия поедет на следующей неделе.
+                            .f-chat__time 12:51
+                    .f-chat__row.f-chat__row_reverse
+                        .f-chat__profile
+                            img.f-chat__avatar(src=require('./images/arnold-1.jpg'))
+                            .f-chat__name Ирина
+                        .f-chat__message
+                            .f-chat__text Мы! Давай с нами, скидка приличная получается общаком.
+                            .f-chat__time 12:51
+                    .f-chat__row
+                        .f-chat__profile
+                            img.f-chat__avatar(src=require('./images/arnold-1.jpg'))
+                            .f-chat__name Антон
+                        .f-chat__message
+                            .f-chat__text Здорово, жду инфу.
+                            .f-chat__time 12:51
+
 
         section.f-section-equipment
             .container
@@ -578,17 +622,31 @@ block wrapper
                     .f-section-equipment__overlay-text учёт
                     .f-section-equipment__overlay-text Поддержка
                     .f-section-equipment__overlay-text Бухгалтерия
+            .f-horizontal-gallery
+                .f-horizontal-gallery__wrapper
+                    .f-horizontal-gallery__item
+                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                    .f-horizontal-gallery__item
+                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                    .f-horizontal-gallery__item
+                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
 
         section.f-section-stars
-            | dfgfdgfd
+            .container
+                h2.f-section-stars__title.f-title-long Бренд <span class="selected">MarketDo<span class="red">4</span>a</span><br> продаёт сам себя
+                p.f-section-stars__description
+                    | Нас выбирают звёзды фитнеса и MMA, блогеры
+                    | с миллионами подписчиков и тысячи клиентов
+                    | в России и СНГ. Не разменивайтесь на сомнительные франшизы компаний-однодневок, присоединяйтесь
+                    | к уже сформированному бизнесу!
 
         section.f-section-partnership
             .container
-                h2.f-section-partnership__title.f-title-long Варианты сотрудничества
-                p.f-section-partnership__subtitle.f-title-small 3 пакета старта бизнеса в зависимости от ваших финансовых вложений
+                h2.f-section-partnership__title.f-title-long Варианты <br><span>сотрудничества</span>
+                p.f-section-partnership__subtitle.f-title-small 3 пакета старта бизнеса <br> в зависимости от ваших <br> финансовых вложений
                 ul.row.f-section-partnership__list
                     li.col-xl-4
-                        .f-program-item
+                        a.f-program-item(href="#")
                             .f-program-item__body
                                 h3.f-program-item__title mini market
                                 p.f-program-item__subtitle Магазин до 25 м2
@@ -607,11 +665,11 @@ block wrapper
                                     .f-program-item__total-text Прибыль в месяц
                             .f-program-item__footer
                                 .f-program-item__price
-                                    .f-program-item__price-num 125 000 ₽
-                                    .f-program-item__price-text Паушальный взнос
+                                    .f-program-item__item-num 125 000 ₽
+                                    .f-program-item__item-text Паушальный взнос
                                 button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
                     li.col-xl-4
-                        .f-program-item
+                        a.f-program-item(href="#")
                             .f-program-item__body
                                 h3.f-program-item__title super market
                                 p.f-program-item__subtitle Магазин до 25 м2
@@ -630,11 +688,11 @@ block wrapper
                                     .f-program-item__total-text Прибыль в месяц
                             .f-program-item__footer
                                 .f-program-item__price
-                                    .f-program-item__price-num 250 000 ₽
-                                    .f-program-item__price-text Паушальный взнос
+                                    .f-program-item__item-num 250 000 ₽
+                                    .f-program-item__item-text Паушальный взнос
                                 button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
                     li.col-xl-4
-                        .f-program-item
+                        a.f-program-item(href="#")
                             .f-program-item__body
                                 h3.f-program-item__title hyper market
                                 p.f-program-item__subtitle Магазин до 25 м2
@@ -653,25 +711,25 @@ block wrapper
                                     .f-program-item__total-text Прибыль в месяц
                             .f-program-item__footer
                                 .f-program-item__price
-                                    .f-program-item__price-num 500 000 ₽
-                                    .f-program-item__price-text Паушальный взнос
+                                    .f-program-item__item-num 500 000 ₽
+                                    .f-program-item__item-text Паушальный взнос
                                 button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
                 .f-section-partnership__note Цифры указаны на основании усреднённой статистики прибыли 65 магазинов за последние 12 месяцев работы.
 
         section.f-section-director
             .container
-                .f-section-director__title-small.f-title-small Вы получите
-                .f-section-director__title-long.f-title-long готовую <br><span class="selected">модель бизнеса,</span> приносящую доход
-                blockquote
+                .f-section-director__title.f-title-long готовая <br><span class="selected">модель бизнеса,</span> приносящая доход
+                blockquote.f-section-director__quote
                     p Франшиза MarketDo4a существует с 2015 года. Мы выросли из крупнейшего медиа-ресурса по фитнесу, попали в тридцатку лучших франшиз по версии РБК, открыли собственное производство спортивного питания Do4a Lab и расширились до 65 магазинов по России и СНГ.
                     p Помощь в подборе и обучении персонала, поиск помещения, готовые рекламные материалы, программирование и полная настройка оборудования, - это малая доля того, что вы получите как один из членов команды Do4a. А главное, вы пойдёте по проторенной дороге сильного бренда. Ведь мы уже набили шишек за вас, пока строили федеральный бренд!
-                button.btn.btn-skew Задать вопрос александру
-                .s-director
-                    figure.s-director__photo
-                    .s-director__block
-                        .s-director__name Александр Сторощук
-                        .s-director__description Основатель MarketDo4a
-                        .s-director__contacts 1 2 3
+                .f-director
+                    figure.f-director__photo
+                    .f-director__block
+                        .f-director__name Александр Сторощук
+                        .f-director__description Основатель MarketDo4a
+                        .f-director__contacts 1 2 3
+
+                button.f-section-director__button.btn.btn-skew Задать вопрос александру
 
         section.f-section-form
             figure.f-section-form__brand-mockup-image

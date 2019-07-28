@@ -109,14 +109,6 @@ export default class CatalogControl {
       }
     });
 
-    // const mobile = document.createElement('div');
-    // document.querySelector('.catalog-control').insertBefore(mobile, document.querySelector('.catalog-control').firstChild);
-    //
-    // new Vue({
-    //   store,
-    //   render: h => h(CategoryListMobile),
-    // }).$mount(mobile);
-
     document.querySelector('.catalog-control').insertBefore(new Vue({
       store,
       render: h => h(CategoryListMobile),
@@ -311,6 +303,7 @@ export default class CatalogControl {
     return this.shownCards;
   }
 
+  // TODO: Вынести в api
   sendRequest(page) {
     const settings = {
       method: this.options.method,
@@ -335,25 +328,12 @@ export default class CatalogControl {
           this.setBreadcumps(data.tags.breadcrump, data.tags.title, data.tags.h1);
         }
 
-
         if ({}.hasOwnProperty.call(data, 'activatedVariants')) {
-          Object.keys(data.activatedVariants).forEach((key) => {
-            if ({}.hasOwnProperty.call(this.filterList, key) && this.filterList[key].type === 'checkbox') {
-              this.filterList[key].data.forEach((item) => {
-                item.available = {}.hasOwnProperty.call(data.activatedVariants[key], item.value);
-              });
-            }
-          });
+          store.dispatch('filters/updateActivatedVariants', data);
         }
 
         if ({}.hasOwnProperty.call(data, 'hiddenVariants')) {
-          Object.keys(data.hiddenVariants).forEach((key) => {
-            if ({}.hasOwnProperty.call(this.filterList, key) && this.filterList[key].type === 'checkbox') {
-              this.filterList[key].data.forEach((item) => {
-                item.hidden = {}.hasOwnProperty.call(data.hiddenVariants[key], item.value);
-              });
-            }
-          });
+          store.dispatch('filters/updateHiddenVariants', data);
         }
       })
       .catch((error) => {

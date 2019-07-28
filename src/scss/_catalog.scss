@@ -1694,6 +1694,11 @@ $multifilter-menu-padding-x: 22px;
 
   &__footer {
     flex: 0 0 auto;
+    @include media-breakpoint-up(md) {
+      display: flex;
+      flex-direction: column;
+      min-height: 77px;
+    }
   }
 
   &__title {
@@ -1792,7 +1797,8 @@ $multifilter-menu-padding-x: 22px;
     @include media-breakpoint-up(md) {
       //flex: 0 0 auto;
       flex-direction: row;
-      margin-top: 0;
+      margin-top: auto;
+      //min-height: 30px;
     }
   }
 

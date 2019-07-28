@@ -34,19 +34,14 @@
       Dropdown
     },
     methods: {
-      // ...mapActions({
-      //   onReset: 'checkboxReset',
-      //   // onChange: 'checkboxChange'
-      // }),
-      // reset() {
-      //   this.filter.data.forEach((item) => {
-      //     item.checked = false;
-      //   });
-      // },
+      reset() {
+        this.filter.data.forEach((item) => {
+          item.checked = false;
+        });
+      },
       onReset(filter) {
-        // this.reset();
-        // this.$store.dispatch('filters/filterReset');
-        this.$store.dispatch('filters/filterReset', { container: 'filters', name: filter.name, type: filter.type });
+        this.reset();
+        // this.$store.dispatch('filters/filterReset', { container: 'filters', name: filter.name, type: filter.type });
         this.$store.dispatch('filters/onChange');
       },
       onChange() {
@@ -54,22 +49,30 @@
       },
     },
     computed: {
-      ...mapState({
-        items(state) {
-          if (this.filter.parent) {
-            const checkedParentItemIds = state.filters.filters[this.filter.parent].data.reduce((array, item) => {
-              if (item.checked) {
-                array.push(item.value);
-              }
-              return array;
-            }, []);
-            // TODO: Добавить полифилл для Array.prototype.includes()
-            return this.filter.data.filter(item => checkedParentItemIds.includes(item.parent))
-          }
-          return this.filter.data;
-        },
-      }),
+      items() {
+        if (this.filter.parent) {
+          // TODO: Как-то поправить эту хуйню с обновлениием наследника при изменении родителя
+          const checkedParentItemIds = this.$store.getters['filters/checkedItemIdsByName'](this.filter.parent);
 
+          // return this.filter.data.filter(item => checkedParentItemIds.includes(item.parent))
+          const t = this.filter.data.reduce((arr, item) => {
+            // TODO: Добавить полифилл для Array.prototype.includes()
+            if (checkedParentItemIds.includes(item.parent)) {
+              arr.push(item);
+            } else {
+              item.checked = false;
+            }
+            return arr;
+          }, []);
+          // Срабатывает только тогда, когда изменился родитель
+          // Если меняется родитель, то действие вызывается до того, как обновился наследник и данные неверные.
+          // Поэтому вызываем еще раз
+          // Это все говна кусок, поэтому такой костыль
+          this.$store.dispatch('filters/onChange');
+          return t;
+        }
+        return this.filter.data;
+      },
       checkedTitle() {
         if (this.items.length === 0) {
           return this.filter.labelDisabled
@@ -83,7 +86,7 @@
       checkedItems() {
         return this.items.filter(item => item.checked);
       },
-    }
+    },
   }
 </script>
 

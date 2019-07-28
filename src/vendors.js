@@ -53,9 +53,9 @@ class Vendors {
   }
 
   init() {
-    store.subscribeAction((action) => {
+    store.subscribeAction((action, state) => {
       if (action.type === 'filters/onChange') {
-        this.filterItems();
+        this.filterItems(state);
       }
     });
 
@@ -93,10 +93,16 @@ class Vendors {
   /**
    * Фильтрация по категории и строке поиска
    */
-  filterItems() {
-    const selected = Object.keys(store.state.filters.filters).map(
-      key => store.getters['filters/checkedItemsByName'](key).map(item => item.value),
+  filterItems(state) {
+    const selected = Object.keys(state.filters.filters).map(
+      // key => state.filters.filters[key].data.filter(item => item.checked).map(item => item.value),
+      key => state.filters.filters[key].data.reduce((arr, item) => {
+        if (item.checked) arr.push(item.value);
+        return arr;
+      }, []),
     );
+
+    console.log(selected);
 
     this.vendors.forEach((item) => {
       if (

@@ -233,7 +233,7 @@
 //
 .h-navbar-fixed {
   position: sticky;
-  z-index: 920;
+  z-index: $zindex-sticky;
   top: 0;
   //top: 100%;
   //right: 0;

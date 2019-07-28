@@ -2,13 +2,13 @@
 import noUiSlider from 'nouislider';
 
 import Vue from 'vue/dist/vue.esm';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Dropdown from './Dropdown.vue';
-import MultifilterRadio from './MultifilterRadio.vue';
+// import MultifilterRadio from './MultifilterRadio.vue';
 import MultifilterPrice from './MultifilterPrice.vue';
 import MultifilterContainer from './Multifilter.vue';
 import store from '../store';
 
-import { mapGetters, mapState, mapActions } from 'vuex';
 
 export class Multifilter {
   constructor(el, callback, options = {}) {
@@ -106,8 +106,7 @@ export class PriceFilter {
 
     store.commit('filters/pushFilterToContainer', { container: this.container, filter: this.filterSettings });
 
-    this.vm = new Vue({
-      el: this.el,
+    new Vue({
       store,
       computed: mapState('filters', {
         filter: state => state[this.container][this.filterSettings.name],
@@ -123,7 +122,7 @@ export class PriceFilter {
           </template>
         </dropdown>`,
       components: { Dropdown, MultifilterPrice },
-    });
+    }).$mount(this.el);
   }
 
   static parseSettings(multifilterEl) {
@@ -181,9 +180,11 @@ export class CheckboxFilter {
       store,
       computed: mapState('filters', {
         filter: state => state[this.container][this.filterSettings.name],
+        // filter: 'filterByName',
       }),
       template: '<MultifilterContainer :filter="filter"/>',
       components: { MultifilterContainer },
+      // render: h => h(MultifilterContainer),
     }).$mount(this.el);
   }
 
@@ -303,7 +304,7 @@ export class SelectFilter {
           this.$store.dispatch('filters/onChange');
         },
       },
-      components: { Dropdown, MultifilterRadio },
+      components: { Dropdown },
     }).$mount(this.el);
   }
 
