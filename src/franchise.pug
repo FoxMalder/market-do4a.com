@@ -676,8 +676,9 @@ block wrapper
             .container
                 h2.f-section-partnership__title.f-title-long Варианты <br><span>сотрудничества</span>
                 p.f-section-partnership__subtitle.f-title-small 3 пакета старта бизнеса <br> в зависимости от ваших <br> финансовых вложений
-                ul.row.f-section-partnership__list
-                    li.col-xl-4
+            .f-section-partnership__list
+                ul.f-section-partnership__wrapper
+                    li.f-section-partnership__col
                         a.f-program-item(href="#")
                             .f-program-item__body
                                 h3.f-program-item__title mini market
@@ -700,7 +701,7 @@ block wrapper
                                     .f-program-item__item-num 125 000 ₽
                                     .f-program-item__item-text Паушальный взнос
                                 button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
-                    li.col-xl-4
+                    li.f-section-partnership__col
                         a.f-program-item(href="#")
                             .f-program-item__body
                                 h3.f-program-item__title super market
@@ -723,7 +724,7 @@ block wrapper
                                     .f-program-item__item-num 250 000 ₽
                                     .f-program-item__item-text Паушальный взнос
                                 button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
-                    li.col-xl-4
+                    li.f-section-partnership__col
                         a.f-program-item(href="#")
                             .f-program-item__body
                                 h3.f-program-item__title hyper market
@@ -746,6 +747,7 @@ block wrapper
                                     .f-program-item__item-num 500 000 ₽
                                     .f-program-item__item-text Паушальный взнос
                                 button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
+            .container
                 .f-section-partnership__note Цифры указаны на основании усреднённой статистики прибыли 65 магазинов за последние 12 месяцев работы.
 
         section.f-section-director
@@ -945,7 +947,7 @@ block wrapper
                     .f-section-contacts__manager
                         .f-manager-profile
                             figure.f-manager-profile__photo
-                                img.f-manager-profile__img(src=require('./images/manager-full.jpg'),)
+                                img.f-manager-profile__img(src=require('./images/manager-full.jpg'))
                             .f-manager-profile__badge
                                 .f-manager-profile__name Михеева анна
                                 .f-manager-profile__post Начальник по развитию партнёрства
