@@ -3,11 +3,11 @@ block wrapper
     main.wrapper
         section.f-section-hero
             .f-section-hero__overlay
-            .container.f-section-hero__inner
+            .f-section-hero__inner.container
                 h1.f-section-hero__title.f-title-long
                     small открой магазин спортпита <br>
-                    span  и получай до <br>
-                    span  <span class="selected">3,8 млн. ₽</span> в год
+                    | и получай до <br>
+                    | <span class="selected">3,8 млн. ₽</span> в год
                 p.f-section-hero__description
                     | MarketDo4a — федеральная сеть магазинов спортивного питания, товаров и одежды для спорта, доказавшая успешность в 50 городах Росии. Присоединяйтесь к отлаженной бизнес-модели и зарабатывайте.
                 button.f-section-hero__button.btn.btn-skew.btn-red Получить бизнес-план
@@ -93,25 +93,38 @@ block wrapper
                     h2.f-section-form__title.f-title-long Получите <br><span class="selected">бизнес-план</span>
                     p.f-section-form__subtitle.f-title-small с расчётом затрат и прибыли для вашего города
                 form.f-section-form__form
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label Как вас зовут?
-                            input.input-field__input(type="text" autocomplete="name" name="name" required)
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label В каком городе живёте?
-                            input.input-field__input(type="text" autocomplete="address-level2" name="city" required)
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label Ваш e-mail
-                            input.input-field__input(type="email" autocomplete="email" name="email" required)
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label И номер телефона
-                            input.input-field__input(type="tel" autocomplete="tel" name="tel" required)
-                    button.f-section-form__button.btn.btn-red.btn-skew Получить бизнес-план
-                    .f-section-form__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных
-                .f-section-form__time Пришлём в течение 20 минут
+                    .f-section-form__body.form-body.form-body_loading.form-body_success
+                        .form-body__loading
+                            .form-body__spinner
+                            .form-body__loading-text Отправляем...
+                        .form-body__success
+                            .form-body__success-title Готово!
+                            .form-body__success-text Спасибо за вашу заявку. В течение 20 минут мы отправим бизнес-план на вашу электронную почту и перезвоним, чтобы ответить на все ваши вопросы.
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label Как вас зовут?
+                                input.input-field__input(type="text" autocomplete="name" name="name" required)
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label В каком городе живёте?
+                                input.input-field__input(type="text" autocomplete="address-level2" name="city" required)
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label Ваш e-mail
+                                input.input-field__input(type="email" autocomplete="email" name="email" required)
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label И номер телефона
+                                input.input-field__input(type="tel" autocomplete="tel" name="tel" required)
+                    .f-section-form__footer
+                        .f-section-form__col
+                            button.f-section-form__button.btn.btn-red.btn-skew Получить бизнес-план
+                        .f-section-form__col
+                            .f-section-form__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных
+                button.f-section-form__mobile-button.btn.btn-red.btn-skew.btn-block Получить бизнес-план
+                .f-section-form__time
+                    i.icon.icon-clock
+                    |  Пришлём в течение 20 минут
 
         section.f-section-top30
             .container
@@ -120,6 +133,7 @@ block wrapper
                 .f-section-top30__content
                     .f-section-top30__number 30
                     .f-section-top30__list
+                        figure.f-section-top30__img
 
         section.f-section-progress
             .container
@@ -249,16 +263,25 @@ block wrapper
                             .f-title-long частью сообщества молодых бизнесменов, <span class="selected">умеющих зарабатывать</span>
                 .f-section-partners__card
                     .f-section-partners__card-wrapper
-                        .f-section-partners__card-title 85% <small>клиентов</small>
+                        .f-section-partners__card-title 85%<small> клиентов</small>
                         .f-section-partners__card-text становятся постоянными после первого заказа — это <strong>в 2,5 раза выше,</strong> чем в среднем по рынку
             .f-horizontal-gallery
                 .f-horizontal-gallery__wrapper
                     .f-horizontal-gallery__item
-                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                        img.f-horizontal-gallery__img(
+                            src=require('./images/photo-cards.jpg'),
+                            srcset=require('./images/photo-cards_2x.jpg') + ' 2x'
+                        )
                     .f-horizontal-gallery__item
-                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                        img.f-horizontal-gallery__img(
+                            src=require('./images/photo-team.jpg'),
+                            srcset=require('./images/photo-team_2x.jpg') + ' 2x'
+                        )
                     .f-horizontal-gallery__item
-                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                        img.f-horizontal-gallery__img(
+                            src=require('./images/photo-store.jpg'),
+                            srcset=require('./images/photo-store_2x.jpg') + ' 2x'
+                        )
 
         section.f-section-complex
             .container
@@ -575,10 +598,10 @@ block wrapper
                     p.f-section-support__description Партнёры получают доступ в закрытую группу «Do4a Бизнес». Обсуждение успехов и ошибок, разбор стратегии, разбор, что нового внедряют коллеги. Используйте наработки в своём бизнесе. А также голосования по развитию бренда, совместные закупки трендовых товаров с большой маржой и полная демократия в принятии решений. У нас весело!
                     .f-section-support__social-title Доступ к закрытым чатам:
                     .f-section-support__social
-                        a(href="")
+                        a.f-section-support__social-link(href="#")
                             .icon.icon-vk Вконтакте
-                        a(href="")
-                            .icon.icon-inst Instagram
+                        a.f-section-support__social-link(href="#")
+                            .icon.icon-tg Telegram
                 .f-chat
                     .f-chat__row
                         .f-chat__profile
@@ -625,11 +648,20 @@ block wrapper
             .f-horizontal-gallery
                 .f-horizontal-gallery__wrapper
                     .f-horizontal-gallery__item
-                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                        img.f-horizontal-gallery__img(
+                            src=require('./images/photo-cards.jpg'),
+                            srcset=require('./images/photo-cards_2x.jpg') + ' 2x'
+                        )
                     .f-horizontal-gallery__item
-                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                        img.f-horizontal-gallery__img(
+                            src=require('./images/photo-worker.jpg'),
+                            srcset=require('./images/photo-worker_2x.jpg') + ' 2x'
+                        )
                     .f-horizontal-gallery__item
-                        img.f-horizontal-gallery__img(src=require('./images/video-cover.jpg'))
+                        img.f-horizontal-gallery__img(
+                            src=require('./images/photo-store.jpg'),
+                            srcset=require('./images/photo-store_2x.jpg') + ' 2x'
+                        )
 
         section.f-section-stars
             .container
@@ -717,55 +749,111 @@ block wrapper
                 .f-section-partnership__note Цифры указаны на основании усреднённой статистики прибыли 65 магазинов за последние 12 месяцев работы.
 
         section.f-section-director
-            .container
+            .f-section-director__inner.container
                 .f-section-director__title.f-title-long готовая <br><span class="selected">модель бизнеса,</span> приносящая доход
                 blockquote.f-section-director__quote
-                    p Франшиза MarketDo4a существует с 2015 года. Мы выросли из крупнейшего медиа-ресурса по фитнесу, попали в тридцатку лучших франшиз по версии РБК, открыли собственное производство спортивного питания Do4a Lab и расширились до 65 магазинов по России и СНГ.
-                    p Помощь в подборе и обучении персонала, поиск помещения, готовые рекламные материалы, программирование и полная настройка оборудования, - это малая доля того, что вы получите как один из членов команды Do4a. А главное, вы пойдёте по проторенной дороге сильного бренда. Ведь мы уже набили шишек за вас, пока строили федеральный бренд!
+                    //span.f-icon-quote-left
+                    | Франшиза MarketDo4a существует с 2015 года. Мы выросли из крупнейшего медиа-ресурса по фитнесу, попали в тридцатку лучших франшиз по версии РБК, открыли собственное производство спортивного питания Do4a Lab и расширились до 65 магазинов по России и СНГ.
+                    br
+                    br
+                    | Помощь в подборе и обучении персонала, поиск помещения, готовые рекламные материалы, программирование и полная настройка оборудования, - это малая доля того, что вы получите как один из членов команды Do4a. А главное, вы пойдёте по проторенной дороге сильного бренда. Ведь мы уже набили шишек за вас, пока строили федеральный бренд!
+                    //span.f-icon-quote-right
                 .f-director
                     figure.f-director__photo
+                        img.f-director__img(src=require('./img/franchise/director.png') alt="Александр Сторощук")
                     .f-director__block
                         .f-director__name Александр Сторощук
                         .f-director__description Основатель MarketDo4a
-                        .f-director__contacts 1 2 3
+                        .f-director__contacts
+                            a.f-director__contact-link.icon.icon-vk(href="#")
+                            a.f-director__contact-link.icon.icon-inst(href="#")
+                            a.f-director__contact-link.icon.icon-fb(href="#")
 
-                button.f-section-director__button.btn.btn-skew Задать вопрос александру
+                button.f-section-director__button.btn.btn-blue.btn-skew
+                    span.btn-icon
+                        i.icon.icon-vk-logo
+                    | Задать вопрос александру
 
         section.f-section-form
             figure.f-section-form__brand-mockup-image
-            .container
+            .f-section-form__inner.container
                 .f-section-form__header
                     h2.f-section-form__title.f-title-long Получите <br><span class="selected">бизнес-план</span>
                     p.f-section-form__subtitle.f-title-small с расчётом затрат и прибыли для вашего города
                 form.f-section-form__form
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label Как вас зовут?
-                            input.input-field__input(type="text" autocomplete="name" name="name" required)
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label В каком городе живёте?
-                            input.input-field__input(type="text" autocomplete="address-level2" name="city" required)
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label Ваш e-mail
-                            input.input-field__input(type="email" autocomplete="email" name="email" required)
-                    .form-group
-                        .input-field.input-field_primary
-                            label.input-field__label И номер телефона
-                            input.input-field__input(type="tel" autocomplete="tel" name="tel" required)
-                    button.f-section-form__button.btn.btn-red.btn-skew Получить бизнес-план
-                    .f-section-form__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных
-                .f-section-form__time Пришлём в течение 20 минут
+                    .f-section-form__body.form-body.form-body_loading
+                        .form-body__loading
+                            .form-body__spinner
+                            .form-body__loading-text Отправляем...
+                        .form-body__success
+                            .form-body__success-title Готово!
+                            .form-body__success-text Спасибо за вашу заявку. В течение 20 минут мы отправим бизнес-план на вашу электронную почту и перезвоним, чтобы ответить на все ваши вопросы.
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label Как вас зовут?
+                                input.input-field__input(type="text" autocomplete="name" name="name" required)
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label В каком городе живёте?
+                                input.input-field__input(type="text" autocomplete="address-level2" name="city" required)
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label Ваш e-mail
+                                input.input-field__input(type="email" autocomplete="email" name="email" required)
+                        .f-section-form__col.form-group
+                            .input-field.input-field_primary
+                                label.input-field__label И номер телефона
+                                input.input-field__input(type="tel" autocomplete="tel" name="tel" required)
+                    .f-section-form__footer
+                        .f-section-form__col
+                            button.f-section-form__button.btn.btn-red.btn-skew Получить бизнес-план
+                        .f-section-form__col
+                            .f-section-form__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных
+                button.f-section-form__mobile-button.btn.btn-red.btn-skew.btn-block Получить бизнес-план
+                .f-section-form__time
+                    i.icon.icon-clock
+                    |  Пришлём в течение 20 минут
 
         section.f-section-feedback
             .container
                 h2.f-section-feedback__title.f-title-long Отзывы партнёров, которые уже зарабатывают с нами
                 p.f-section-feedback__subtitle.f-title-small Нам не нужно рекламировать себя, — успех партнёров говорит сам за себя.
-                .row
-                    .col-xl-6
+                .f-section-feedback__list
+                    .f-section-feedback__col
                         .f-feedback-item
-                            .f-feedback-item__video video
+                            a.f-feedback-item__video(href="#")
+                                img.f-feedback-item__video-cover(src=require('./images/video-cover.jpg'))
+                                .f-feedback-item__button-play
+                            .f-feedback-item__title
+                                div marketdo<span class="red">4</span>a
+                                div.selected в нижнем новгороде
+                            .f-feedback-item__description Алексей Седов, первый магазин открыл в 2017 г. Владеет 2 магазинами в Нижнем Новгороде.
+                            blockquote.f-feedback-item__quote Нам помогали с первого дня работы: подсказывали по скриптам продаж, настраивали отчетность и много всего другого. Ежедневные консультации сделали из нас мастеров по продаже спортпита!
+                    .f-section-feedback__col
+                        .f-feedback-item.f-feedback-item_2
+                            a.f-feedback-item__video(href="#")
+                                img.f-feedback-item__video-cover(src=require('./images/video-cover.jpg'))
+                                .f-feedback-item__button-play
+                            .f-feedback-item__title
+                                div marketdo<span class="red">4</span>a
+                                div.selected в нижнем новгороде
+                            .f-feedback-item__description Алексей Седов, первый магазин открыл в 2017 г. Владеет 2 магазинами в Нижнем Новгороде.
+                            blockquote.f-feedback-item__quote Нам помогали с первого дня работы: подсказывали по скриптам продаж, настраивали отчетность и много всего другого. Ежедневные консультации сделали из нас мастеров по продаже спортпита!
+                    .f-section-feedback__col
+                        .f-feedback-item
+                            a.f-feedback-item__video(href="#")
+                                img.f-feedback-item__video-cover(src=require('./images/video-cover.jpg'))
+                                .f-feedback-item__button-play
+                            .f-feedback-item__title
+                                div marketdo<span class="red">4</span>a
+                                div.selected в нижнем новгороде
+                            .f-feedback-item__description Алексей Седов, первый магазин открыл в 2017 г. Владеет 2 магазинами в Нижнем Новгороде.
+                            blockquote.f-feedback-item__quote Нам помогали с первого дня работы: подсказывали по скриптам продаж, настраивали отчетность и много всего другого. Ежедневные консультации сделали из нас мастеров по продаже спортпита!
+                    .f-section-feedback__col
+                        .f-feedback-item.f-feedback-item_2
+                            a.f-feedback-item__video(href="#")
+                                img.f-feedback-item__video-cover(src=require('./images/video-cover.jpg'))
+                                .f-feedback-item__button-play
                             .f-feedback-item__title
                                 div marketdo<span class="red">4</span>a
                                 div.selected в нижнем новгороде
@@ -787,4 +875,107 @@ block wrapper
                         .collapse(id="faq-2")
                             .f-accordion__body
                                 | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+                    .f-accordion__item
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-3" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        .collapse(id="faq-3")
+                            .f-accordion__body
+                                | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+                    .f-accordion__item
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-4" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        .collapse(id="faq-4")
+                            .f-accordion__body
+                                | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+                    .f-accordion__item
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-5" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        .collapse(id="faq-5")
+                            .f-accordion__body
+                                | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+                    .f-accordion__item
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-6" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        .collapse(id="faq-6")
+                            .f-accordion__body
+                                | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+                    .f-accordion__item
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-7" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        .collapse(id="faq-7")
+                            .f-accordion__body
+                                | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+                    .f-accordion__item
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-8" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        .collapse(id="faq-8")
+                            .f-accordion__body
+                                | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
+
+        section.f-section-contacts
+            .container
+                h2.f-section-contacts__title.f-title-long
+                    | Не нашли ответ <br>
+                    | на свой вопрос? <br>
+                    span.selected Задайте его лично!
+                .f-section-contacts__content
+                    .f-section-contacts__text
+                        .f-section-contacts__text-contacts
+                            | Напишите Анне в
+                            |  <a href="#" target="_blank" style="color: #7F4DA0;"><i class="icon icon-viber-round"></i> Вайбер,</a>
+                            |  <a href="#" target="_blank" style="color: #29A0D3;"><i class="icon icon-tg-round"></i> Телеграм,</a>
+                            |  <a href="#" target="_blank" style="color: #25D366;"><i class="icon icon-wa-round"></i> Вотсап, </a><br>
+                            |  или на почту
+                            |  <a class="text-link" href="mailto:partner@marketdo4a.com">partner@marketdo4a.com</a>
+                        .f-section-contacts__text-result Ответим на вопросы, обсудим потенциал роста в вашем городе.
+                        .f-section-contacts__text-else Или оставьте контакты, и мы сами с вами свяжемся:
+                    .f-section-contacts__col
+                        form.f-section-contacts__form
+                            .f-section-contacts__body.form-body
+                                .form-body__loading
+                                    .form-body__spinner
+                                    .form-body__loading-text Отправляем...
+                                .form-body__success
+                                    .form-body__success-title Готово!
+                                    .form-body__success-text Спасибо за вашу заявку. Мы сами с вами свяжемся.
+                                .form-group
+                                    .input-field.input-field_primary
+                                        label.input-field__label Как вас зовут?
+                                        input.input-field__input(type="text" autocomplete="name" name="name" required)
+                                .form-group
+                                    .input-field.input-field_primary
+                                        label.input-field__label Ваш номер телефона
+                                        input.input-field__input(type="tel" autocomplete="tel" name="tel" required)
+                            button.f-section-contacts__button.btn.btn-red.btn-skew.btn-block Отправить
+                            .f-section-contacts__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных
+                    .f-section-contacts__manager
+                        .f-manager-profile
+                            figure.f-manager-profile__photo
+                                img.f-manager-profile__img(src=require('./images/manager-full.jpg'),)
+                            .f-manager-profile__badge
+                                .f-manager-profile__name Михеева анна
+                                .f-manager-profile__post Начальник по развитию партнёрства
+
+        section.f-section-other
+            .container
+                h2.f-section-other__title.f-title-long Посмотреть другие<br> франшизы:
+                .f-section-other__list
+                    a.f-other-fracnhise(href="#")
+                        figure.f-other-fracnhise__banner
+                            img.f-other-fracnhise__img(
+                                src=require('./images/photo-gym.jpg'),
+                                srcset=require('./images/photo-gym_2x.jpg') + ' 2x'
+                            )
+                        .f-other-fracnhise__name
+                            | DO<span class="red">4</span>A
+                            |  gym
+                            | <svg class="f-other-fracnhise__icon" viewBox="0 0 19 33" xmlns="http://www.w3.org/2000/svg">
+                            | <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6378 17.1197L0.0438538 3.43466L4.13798 0.564453L18.3622 18.0014L3.60792 32.9139L0.392098 29.0852L11.6378 17.1197Z" fill="currentColor"/>
+                            | </svg>
+                    a.f-other-fracnhise(href="#")
+                        figure.f-other-fracnhise__banner
+                            img.f-other-fracnhise__img(
+                                src=require('./images/photo-vending.jpg'),
+                                srcset=require('./images/photo-vending_2x.jpg') + ' 2x'
+                            )
+                        .f-other-fracnhise__name
+                            | DO<span class="red">4</span>A
+                            |  vending
+                            | <svg class="f-other-fracnhise__icon" viewBox="0 0 19 33" xmlns="http://www.w3.org/2000/svg">
+                            | <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6378 17.1197L0.0438538 3.43466L4.13798 0.564453L18.3622 18.0014L3.60792 32.9139L0.392098 29.0852L11.6378 17.1197Z" fill="currentColor"/>
+                            | </svg>
 

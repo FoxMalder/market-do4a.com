@@ -204,9 +204,20 @@ $_precision: 10;
 
 
 @mixin skew-revert($w, $h, $angle) {
+  $scale: (1 + tan($angle) * $h / $w);
+  object-fit: cover;
   width: $w;
   height: $h;
-  transform: matrix((1 + tan($angle) * $h / $w), 0, tan($angle), 1, 0, 0);
+  transform: matrix($scale, 0, tan($angle), $scale, 0, 0);
+}
+
+@mixin skew-cover-auto-height($w, $h, $angle) {
+  $scale: (1 + tan($angle) * $h / $w);
+  width: $w;
+  min-height: $h;
+  //max-width: none;
+  max-height: none;
+  transform: matrix($scale, 0, tan($angle), $scale, 0, 0);
 }
 
 @mixin letter-spacing($unit, $return: 'em', $base: '16') {

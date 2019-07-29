@@ -3,7 +3,7 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
-
+//
 //body {
 //  background: url("../img/rm/franchise-1920.png") center top no-repeat;
 //
@@ -28,14 +28,20 @@ p,
   }
 }
 
+.wrapper {
+  overflow: hidden;
+}
+
 .f-title-long {
-  font-family: $font-family-bender;
-  font-size: 60px;
-  font-style: italic;
-  font-weight: 900;
+  @include title;
+  //font-family: $font-family-bender;
+  font-size: 24px;
+  //font-style: italic;
+  //font-weight: 900;
+  //letter-spacing: normal;
   letter-spacing: normal;
-  line-height: 1;
-  text-transform: uppercase;
+  //text-transform: uppercase;
+  line-height: 28px;
 
   .selected {
     display: inline-block;
@@ -49,6 +55,11 @@ p,
     font-style: normal;
     white-space: nowrap;
   }
+
+  @include media-breakpoint-up(md) {
+    font-size: 60px;
+    line-height: 60px;
+  }
 }
 
 .f-title-small {
@@ -59,6 +70,40 @@ p,
   line-height: 35px;
 }
 
+//.f-icon-quote-left {
+//  display: inline;
+//  position: relative;
+//
+//  &::before {
+//    content: '';
+//    display: inline-block;
+//    position: absolute;
+//    top: calc(50% - 4px);
+//    left: -20px;
+//    width: 40px;
+//    height: 37px;
+//    opacity: 0.1;
+//    background: url("../img/quote-left.svg");
+//  }
+//}
+//
+//.f-icon-quote-right {
+//  display: inline;
+//  position: relative;
+//
+//  &::before {
+//    content: '';
+//    display: inline-block;
+//    position: absolute;
+//    top: -4px;
+//    right: -20px;
+//    width: 40px;
+//    height: 37px;
+//    opacity: 0.1;
+//    background: url("../img/quote-right.svg");
+//  }
+//}
+
 .f-horizontal-gallery {
   z-index: 0;
   width: 100%;
@@ -66,7 +111,9 @@ p,
 
   &__wrapper {
     display: flex;
-    transform: $skew;
+    justify-content: center;
+    //margin-left: 50%;
+    //transform: translateX(-50%);
   }
 
   &__item {
@@ -74,6 +121,7 @@ p,
     flex: 0 0 auto;
     margin-left: 30px;
     overflow: hidden;
+    transform: $skew;
   }
 
   &__img {
@@ -86,12 +134,13 @@ p,
   }
 }
 
+
 /*
  * Первая секция
  */
 .f-section-hero {
   position: relative;
-  height: 800px;
+  height: 500px;
   padding-top: 94px;
   overflow: hidden;
   background-color: #bbb;
@@ -101,10 +150,15 @@ p,
   background-size: cover;
   color: #fff;
 
-  //background: url("../img/rm/f-first-screen.png") center top no-repeat;
-  //> * {
-  //  opacity: 0.5;
-  //}
+  @include media-breakpoint-up(md) {
+    height: 600px;
+    padding-top: 94px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 800px;
+    padding-top: 91px;
+  }
 
   @media (min-resolution: 1.5dppx) {
     background-image: url('../img/franchise/f-hero-bg_2x.jpg');
@@ -122,16 +176,18 @@ p,
   }
 
   &__inner {
+    position: relative;
     z-index: 2;
   }
 
   &__title {
-    margin-bottom: 63px;
+    margin-bottom: 60px;
     font-size: 70px;
+    line-height: 1.1;
 
     small {
       display: block;
-      margin-bottom: 11px;
+      margin-bottom: 8px;
       font-size: 36px;
       font-weight: 900;
     }
@@ -155,12 +211,11 @@ p,
     //align-items: flex-start;
     justify-content: flex-end;
     margin-top: 10px;
-    opacity: .6;
   }
 
   &__button {
-    flex: 0 0 auto;
-    margin-top: 4px;
+    //flex: 0 0 auto;
+    //margin-top: 4px;
     padding-right: 25px;
     padding-left: 25px;
   }
@@ -170,7 +225,15 @@ p,
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  opacity: .6;
   text-align: right;
+
+  &[href] {
+    &:hover {
+      opacity: .9;
+      color: #fff;
+    }
+  }
 
   &__text {
     margin-top: 18px;
@@ -178,6 +241,7 @@ p,
     line-height: 20px;
   }
 }
+
 
 /*
  * Вторая секция
@@ -285,7 +349,7 @@ p,
     margin-bottom: -50px;
     @include media-breakpoint-up(xl) {
       position: absolute;
-      margin-top: 132px;
+      margin-top: 135px;
       margin-bottom: 0;
     }
   }
@@ -355,10 +419,20 @@ p,
   position: relative;
   margin-top: 120px;
   margin-bottom: 120px;
-  padding-top: 103px;
-  padding-bottom: 143px;
+  padding-top: 63px;
+  padding-bottom: 121px;
   overflow: hidden;
   background-color: #fff;
+
+  @include media-breakpoint-up(md) {
+    height: 1100px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: auto;
+    padding-top: 103px;
+    padding-bottom: 121px;
+  }
 
   &__inner {
     position: relative;
@@ -368,27 +442,49 @@ p,
   &__brand-mockup-image {
     position: absolute;
     z-index: 0;
-    top: 72px;
+    bottom: -425px;
     left: 50%;
-    width: 1213px;
-    height: 1142px;
+    width: 878px;
+    height: 827px;
+    margin-left: -440px;
 
-    margin-left: -140px;
-    background-image: url("../img/brand-mockup-1x.jpg");
+    background-image: url("../img/franchise/brand-mockup.jpg");
     background-repeat: no-repeat;
     background-size: contain;
+
+    @media (min-resolution: 1.5dppx) {
+      background-image: url("../img/franchise/brand-mockup_2x.jpg");
+    }
+
+    @include media-breakpoint-up(xl) {
+      top: 72px;
+      bottom: auto;
+      left: 50%;
+      width: 1213px;
+      height: 1142px;
+      margin-left: -140px;
+    }
   }
 
   &__time {
-    position: absolute;
-    //background-color: red;
-    right: 50%;
-    bottom: 0;
-    margin-right: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / -2;
-    background-color: red;
-    color: white;
+    //position: absolute;
+    //right: 50%;
+    //bottom: 0;
+    //margin-right: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / -2;
+    opacity: 0.5;
+    color: #101010;
     font-size: 15px;
+    letter-spacing: -0.01em;
     line-height: 20px;
+
+    .icon {
+      //font-size: 14px;
+      margin-right: 0.2em;
+    }
+
+    @include media-breakpoint-up(xl) {
+      text-align: right;
+    }
   }
 
   &__subtitle {
@@ -398,20 +494,71 @@ p,
   }
 
   &__form {
-    width: 344px;
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
+      margin-bottom: 78px;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-wrap: wrap;
+    @include media-breakpoint-up(xl) {
+      display: block;
+      width: 334px;
+    }
+  }
+
+  &__col {
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      padding-right: 5px;
+      padding-left: 5px;
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(xl) {
+      padding-right: 0;
+      padding-left: 0;
+      @include make-col(12);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    margin-top: 20px;
+    @include media-breakpoint-up(xl) {
+      display: block;
+      margin-top: 59px;
+    }
   }
 
   &__button {
-    margin-top: 46px;
     padding-right: 38px;
     padding-left: 38px;
   }
 
+  &__mobile-button {
+    //width: 100%;
+    //@include
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
   &__note {
-    margin-top: 29px;
-    color: rgba(#000, 0.6);
+    opacity: 0.6;
+    color: #000;
     font-size: 15px;
     line-height: 20px;
+    @include media-breakpoint-up(xl) {
+      margin-top: 29px;
+    }
   }
 }
 
@@ -448,10 +595,22 @@ p,
     width: 837px;
     height: 487px;
     margin-left: auto;
+    overflow: hidden;
     transform: $skew;
     transform-origin: top;
     background-color: #fff;
     box-shadow: 48px 50px 0 #101010;
+  }
+
+  &__img {
+    @include skew-revert(837px, 487px, 9deg);
+    margin-bottom: 0;
+    background: url("../img/franchise/top.png") center no-repeat;
+    background-size: cover;
+
+    @media (min-resolution: 1.5dppx) {
+      background-image: url('../img/franchise/top_2x.png');
+    }
   }
 }
 
@@ -652,6 +811,10 @@ p,
   &__social-title {
     margin-bottom: 20px;
   }
+
+  &__social-link {
+    margin-right: 13px;
+  }
 }
 
 .f-chat {
@@ -781,10 +944,10 @@ p,
     @include title;
     transform: $skew;
     background-color: #fff;
+    box-shadow: 14px 14px 0 #101010;
     font-size: 44px;
     font-style: normal;
     line-height: 50px;
-    box-shadow: 14px 14px 0 #101010;
 
     &:nth-child(1) {
       top: -64px;
@@ -824,7 +987,7 @@ p,
   }
 
   &__description {
-    max-width: 494px;
+    max-width: 480px;
   }
 }
 
@@ -840,6 +1003,7 @@ p,
   &__title {
     margin-bottom: 30px;
     margin-left: 285px;
+
     span {
       color: #fff;
     }
@@ -870,13 +1034,14 @@ p,
 .f-program-item {
   display: block;
   width: 346px;
+  transition: all .3s ease-in-out;
   background-color: #fff;
   box-shadow: 30px 30px 0 #101010;
-  transition: all .3s ease-in-out;
+
   &:hover {
-    color: #101010;
     transform: translate(10px, 10px);
     box-shadow: 20px 20px 0 #101010;
+    color: #101010;
   }
 
   &__body {
@@ -966,9 +1131,13 @@ p,
  */
 .f-section-director {
   position: relative;
+  margin-bottom: 120px;
   padding-top: 114px;
   padding-bottom: 54px;
-  margin-bottom: 120px;
+
+  &__inner {
+    position: relative;
+  }
 
   &__title {
     max-width: 580px;
@@ -976,52 +1145,115 @@ p,
   }
 
   &__quote {
+    position: relative;
     max-width: 555px;
     margin-bottom: 100px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 37px;
+      margin-right: -40px;
+      margin-bottom: -37px;
+      transform: translate(-20px, -18px);
+      opacity: 0.1;
+      background: url("../img/quote-left.svg");
+      vertical-align: middle;
+      pointer-events: none;
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 37px;
+      margin-top: -37px;
+      margin-left: -40px;
+      transform: translate(12px, 16px);
+      opacity: 0.1;
+      background: url("../img/quote-right.svg");
+      vertical-align: middle;
+      pointer-events: none;
+    }
 
     p {
       margin-bottom: 28px;
     }
   }
+
+  &__button {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
 }
 
 .f-director {
   position: absolute;
-  bottom: 192px;
-  left: 50%;
+  bottom: 17px;
+  left: 735px;
+  width: 440px;
 
   &__photo {
-    width: 300px;
-    height: 800px;
-    background-color: #bbb;
     position: absolute;
-    bottom: 0;
+    bottom: -7px;
+    left: -124px;
+    width: 697px;
+    height: 1047px;
+    margin-bottom: 0;
+
+    img {
+      //width: 697px;
+      //height: 1047px;
+      //filter: drop-shadow(29px 0px 0 #101010);
+    }
   }
 
   &__block {
     position: relative;
     z-index: 1;
+    padding: 28px 42px 36px;
+    transform: $skew;
+    transform-origin: bottom;
     background-color: #fff;
+    box-shadow: 25px 30px 0 #101010;
   }
 
   &__name {
     @include title;
+    margin-bottom: 12px;
     font-size: 40px;
+    font-style: normal;
     line-height: 1;
   }
 
   &__description {
+    margin-bottom: 26px;
+    transform: $skew-reverse;
+  }
 
+  &__contacts {
+    transform: $skew-reverse;
+  }
+
+  &__contact-link {
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    margin-right: 8px;
+    background: #eee;
   }
 }
 
 
 /*
- * Ответы на вопросы
+ * Отзывы партнёров, которые уже зарабатывают с нами
  */
 .f-section-feedback {
-  padding-top: 24px;
-  height: 2071px;
+  margin-bottom: 120px;
+  padding-top: 22px;
+  padding-bottom: 65px;
+
   &__title {
     max-width: 950px;
     margin-bottom: 40px;
@@ -1029,6 +1261,147 @@ p,
 
   &__subtitle {
     max-width: 555px;
+    margin-bottom: 105px;
+  }
+
+  &__list {
+    display: flex;
+    @include media-breakpoint-up(xl) {
+      flex-wrap: wrap;
+      margin-right: map_get($grid-gutter-width-map, xl) / -2;
+      margin-left: map_get($grid-gutter-width-map, xl) / -2;
+    }
+  }
+
+  &__col {
+    margin-bottom: 83px;
+
+    &:nth-of-type(2n) {
+      margin-top: 90px;
+    }
+
+    &:nth-last-of-type(-n + 2) {
+      margin-bottom: 0;
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(6);
+      padding-right: map_get($grid-gutter-width-map, xl) / 2;
+      padding-left: map_get($grid-gutter-width-map, xl) / 2;
+    }
+  }
+}
+
+.f-feedback-item {
+  &__video {
+    display: block;
+    position: relative;
+    width: 518px;
+    height: 302px;
+    margin-bottom: 78px;
+    overflow: hidden;
+    transform: $skew;
+    transform-origin: bottom;
+    transition: all .3s ease-in-out;
+    background-color: #fff;
+    box-shadow: 26px 30px 0 #101010;
+
+    &:hover {
+      transform: $skew translate(10px, 10px);
+      box-shadow: 16px 20px 0 #101010;
+
+      .f-feedback-item__button-play {
+        background-color: #fff;
+        color: $main-color;
+      }
+    }
+  }
+
+  &__video-cover {
+    @include skew-revert(518px, 302px, 9deg);
+  }
+
+  &__button-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 79px;
+    height: 55px;
+    transform: translate(-50%, -50%);
+    transition: all .3s ease-in-out;
+    background-color: $main-color;
+    box-shadow: 10px 10px 0 #101010;
+    color: #fff;
+
+    &::before {
+      content: '';
+      position: absolute;
+      transform: matrix(0.9, -0.57, 0.01, 1.1, 32, 12);
+      border: 10px solid currentColor;
+      border-top-color: transparent;
+      border-right-color: transparent;
+    }
+  }
+
+  &__title {
+    @include title;
+    margin-bottom: 31px;
+    font-size: 40px;
+    line-height: 38px;
+
+    .selected {
+      display: inline-block;
+      margin-right: -12px;
+      margin-left: -12px;
+      padding-right: 12px;
+      padding-left: 12px;
+      transform: $skew;
+      background-color: #101010;
+      color: #fff;
+      font-style: normal;
+      white-space: nowrap;
+    }
+  }
+
+  &__description {
+    max-width: 429px;
+    margin-bottom: 45px;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    line-height: 24px;
+  }
+
+  &__quote {
+    max-width: 486px;
+    margin-bottom: 0;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 37px;
+      margin-right: -40px;
+      margin-bottom: -37px;
+      transform: translate(-26px, -18px);
+      opacity: 0.1;
+      background: url("../img/quote-left.svg");
+      vertical-align: middle;
+      pointer-events: none;
+    }
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 37px;
+      margin-top: -37px;
+      margin-left: -40px;
+      transform: translate(26px, 16px);
+      opacity: 0.1;
+      background: url("../img/quote-right.svg");
+      vertical-align: middle;
+      pointer-events: none;
+    }
   }
 }
 
@@ -1039,20 +1412,26 @@ p,
 .f-section-faq {
   margin-top: 120px;
   margin-bottom: 120px;
+  padding-bottom: 20px;
+
   &__title {
     margin-bottom: 53px;
   }
 
   &__description {
     max-width: 474px;
-    margin-bottom: 97px;
+    margin-bottom: 87px;
   }
 }
 
 .f-accordion {
   &__item {
-    margin-bottom: 40px;
+    margin-bottom: 41px;
     padding-bottom: 25px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   &__header {
@@ -1061,20 +1440,28 @@ p,
     //margin-bottom: 25px;
     position: relative;
     padding: 37px 40px;
-    transform: $skew;
+    transform: $skew translate(10px, 10px);
+    transform-origin: bottom;
     transition: all .3s ease;
     background-color: #fff;
-    box-shadow: 21px 25px 0 #000;
+    box-shadow: 11px 15px 0 #000;
+    color: #000;
     font-size: 23px;
     font-style: normal;
+    letter-spacing: -0.02em;
     line-height: 31px;
 
     &.collapsed {
+      transform: $skew;
       box-shadow: 21px 25px 0 #ddd;
 
       &::after {
         transform: $skew-reverse rotate(90deg);
       }
+    }
+
+    &:hover {
+      color: #000;
     }
 
     //&:not(.collapsed) {
@@ -1099,7 +1486,259 @@ p,
   }
 
   &__body {
+    max-width: 816px;
+    //padding-left: 48px;
+    margin-left: 48px;
     padding-top: 36px + 25px;
-    padding-left: 48px;
+  }
+}
+
+
+/*
+ * Не нашли ответ
+ * на свой вопрос?
+ * Задайте его лично!
+ */
+.f-section-contacts {
+  padding-top: 86px;
+  padding-bottom: 120px;
+  background-color: #fff;
+
+  &__title {
+    margin-bottom: 71px;
+  }
+
+  &__content {
+    position: relative;
+    @include media-breakpoint-up(md) {
+      display: flex;
+    }
+    @include media-breakpoint-up(xl) {
+      display: block;
+      padding-right: 50%;
+    }
+  }
+
+  &__text {
+    letter-spacing: -0.02em;
+    @include media-breakpoint-up(md) {
+      @include make-col(12);
+      font-size: 18px;
+      line-height: 26px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+
+  &__col {
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(xl) {
+      @include make-col(12);
+    }
+  }
+
+  &__text-contacts {
+    margin-bottom: 36px;
+  }
+
+  &__text-result {
+    margin-bottom: 112px;
+    @include media-breakpoint-up(xl) {
+      max-width: 360px;
+    }
+  }
+
+  &__text-else {
+    margin-bottom: 34px;
+  }
+
+  &__form {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+    @include media-breakpoint-up(xl) {
+      width: 374px;
+    }
+  }
+
+  &__button {
+    margin-top: 33px;
+  }
+
+  &__note {
+    margin-top: 32px;
+    opacity: 0.6;
+    color: #000;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  &__manager {
+    @include media-breakpoint-up(md) {
+      @include make-col(6);
+    }
+    @include media-breakpoint-up(xl) {
+      position: absolute;
+      top: 3px;
+      right: 15px;
+      //float: right;
+    }
+  }
+}
+
+.f-manager-profile {
+  //position: absolute;
+  //top: 0;
+  //right: 0;
+  display: flex;
+  align-items: center;
+  @include media-breakpoint-up(md) {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__photo {
+    margin-bottom: 0;
+    overflow: hidden;
+    transform: $skew;
+    transform-origin: bottom;
+    background-color: #eee;
+    //width: 517px;
+    //height: 485px;
+    @include media-breakpoint-up(md) {
+      transform-origin: top;
+    }
+  }
+
+  &__img {
+    @include skew-revert(84px, 80px, 9deg);
+
+    @include media-breakpoint-up(md) {
+      @include skew-revert(517px, 485px, 9deg)
+    }
+  }
+
+  &__badge {
+    @include media-breakpoint-up(md) {
+      width: 284px;
+      transform: $skew;
+      background-color: $main-color;
+      box-shadow: 25px 29px 0 #101010;
+      color: #fff;
+    }
+    @include media-breakpoint-up(xl) {
+      width: 410px;
+      margin-top: -74px;
+      margin-right: 46px;
+      padding: 30px 40px 34px;
+    }
+  }
+
+  &__name {
+    @include title;
+    font-size: 20px;
+    line-height: 25px;
+    @include media-breakpoint-up(md) {
+      max-width: 200px;
+      margin-bottom: 24px;
+      transform: $skew-reverse;
+      font-size: 40px;
+      line-height: 38px;
+    }
+  }
+
+  &__post {
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: 21px;
+    @include media-breakpoint-up(md) {
+      transform: $skew-reverse;
+      font-size: 16px;
+      line-height: 21px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+}
+
+
+/*
+ *
+ */
+.f-section-other {
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-bottom: 30px;
+
+  &__title {
+    margin-bottom: 109px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @include media-breakpoint-up(md) {
+
+    }
+    @include media-breakpoint-up(xl) {
+      padding-right: (tan(9deg) * 334px / 2);
+      padding-left: (tan(9deg) * 334px / 2);
+    }
+  }
+}
+
+.f-other-fracnhise {
+  display: flex;
+  //display: flex;
+  //flex-direction: column;
+  //align-items: flex-start;
+  transform: $skew;
+  &:hover {
+    .f-other-fracnhise__name {
+      transform: translate(7px, 7px);
+      box-shadow: 8px 8px 0 #101010;
+    }
+  }
+  &__banner {
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  &__img {
+    object-fit: cover;
+    @include skew-revert(560px, 334px, 9deg)
+  }
+
+  &__name {
+    position: absolute;
+    top: 100%;
+    left: 35px;
+    margin-top: -53px;
+    padding: 18px 24px 17px 28px;
+    background-color: #fff;
+    box-shadow: 15px 15px 0 #101010;
+    color: #101010;
+    font-family: $font-family-bender;
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 19px;
+    height: 33px;
+    margin-left: 29px;
+    vertical-align: baseline;
   }
 }

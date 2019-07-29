@@ -441,8 +441,9 @@
   <main class="wrapper">
     <section class="f-section-hero">
       <div class="f-section-hero__overlay"></div>
-      <div class="container f-section-hero__inner">
-        <h1 class="f-section-hero__title f-title-long"><small>открой магазин спортпита <br></small><span> и получай до <br></span><span> <span class="selected">3,8 млн. ₽</span> в год</span></h1>
+      <div class="f-section-hero__inner container">
+        <h1 class="f-section-hero__title f-title-long"><small>открой магазин спортпита <br></small>и получай до <br>
+          <span class="selected">3,8 млн. ₽</span> в год</h1>
         <p class="f-section-hero__description">MarketDo4a — федеральная сеть магазинов спортивного питания, товаров и одежды для спорта, доказавшая успешность в 50 городах Росии. Присоединяйтесь к отлаженной бизнес-модели и зарабатывайте.</p><button class="f-section-hero__button btn btn-skew btn-red">Получить бизнес-план</button>
         <div class="f-section-hero__bottom">
           <div class="f-rbk"><img class="f-rbk__logo" src="images/rbk_logo.svg">
@@ -535,21 +536,36 @@
           <p class="f-section-form__subtitle f-title-small">с расчётом затрат и прибыли для вашего города</p>
         </div>
         <form class="f-section-form__form">
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">Как вас зовут?</label><input class="input-field__input" type="text" autocomplete="name" name="name" required></div>
+          <div class="f-section-form__body form-body form-body_loading form-body_success">
+            <div class="form-body__loading">
+              <div class="form-body__spinner"></div>
+              <div class="form-body__loading-text">Отправляем...</div>
+            </div>
+            <div class="form-body__success">
+              <div class="form-body__success-title">Готово!</div>
+              <div class="form-body__success-text">Спасибо за вашу заявку. В течение 20 минут мы отправим бизнес-план на вашу электронную почту и перезвоним, чтобы ответить на все ваши вопросы.</div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">Как вас зовут?</label><input class="input-field__input" type="text" autocomplete="name" name="name" required></div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">В каком городе живёте?</label><input class="input-field__input" type="text" autocomplete="address-level2" name="city" required></div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">Ваш e-mail</label><input class="input-field__input" type="email" autocomplete="email" name="email" required></div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">И номер телефона</label><input class="input-field__input" type="tel" autocomplete="tel" name="tel" required></div>
+            </div>
           </div>
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">В каком городе живёте?</label><input class="input-field__input" type="text" autocomplete="address-level2" name="city" required></div>
+          <div class="f-section-form__footer">
+            <div class="f-section-form__col"><button class="f-section-form__button btn btn-red btn-skew">Получить бизнес-план</button></div>
+            <div class="f-section-form__col">
+              <div class="f-section-form__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>
+            </div>
           </div>
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">Ваш e-mail</label><input class="input-field__input" type="email" autocomplete="email" name="email" required></div>
-          </div>
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">И номер телефона</label><input class="input-field__input" type="tel" autocomplete="tel" name="tel" required></div>
-          </div><button class="f-section-form__button btn btn-red btn-skew">Получить бизнес-план</button>
-          <div class="f-section-form__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>
-        </form>
-        <div class="f-section-form__time">Пришлём в течение 20 минут</div>
+        </form><button class="f-section-form__mobile-button btn btn-red btn-skew btn-block">Получить бизнес-план</button>
+        <div class="f-section-form__time"><i class="icon icon-clock"></i> Пришлём в течение 20 минут</div>
       </div>
     </section>
     <section class="f-section-top30">
@@ -558,7 +574,9 @@
         <p class="f-section-top30__subtitle f-title-small">И единственные в рейтинге <br>из сегмента «спортивное питание».</p>
         <div class="f-section-top30__content">
           <div class="f-section-top30__number">30</div>
-          <div class="f-section-top30__list"></div>
+          <div class="f-section-top30__list">
+            <figure class="f-section-top30__img"></figure>
+          </div>
         </div>
       </div>
     </section>
@@ -702,16 +720,16 @@
         </div>
         <div class="f-section-partners__card">
           <div class="f-section-partners__card-wrapper">
-            <div class="f-section-partners__card-title">85% <small>клиентов</small></div>
+            <div class="f-section-partners__card-title">85%<small> клиентов</small></div>
             <div class="f-section-partners__card-text">становятся постоянными после первого заказа — это <strong>в 2,5 раза выше,</strong> чем в среднем по рынку</div>
           </div>
         </div>
       </div>
       <div class="f-horizontal-gallery">
         <div class="f-horizontal-gallery__wrapper">
-          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/video-cover.jpg"></div>
-          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/video-cover.jpg"></div>
-          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/video-cover.jpg"></div>
+          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/photo-cards.jpg" srcset="images/photo-cards_2x.jpg 2x"></div>
+          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/photo-team.jpg" srcset="images/photo-team_2x.jpg 2x"></div>
+          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/photo-store.jpg" srcset="images/photo-store_2x.jpg 2x"></div>
         </div>
       </div>
     </section>
@@ -1037,10 +1055,10 @@
           <h2 class="f-section-support__title f-title-long">Вы получите <span class="selected">поддержку</span> других франчайзи</h2>
           <p class="f-section-support__description">Партнёры получают доступ в закрытую группу «Do4a Бизнес». Обсуждение успехов и ошибок, разбор стратегии, разбор, что нового внедряют коллеги. Используйте наработки в своём бизнесе. А также голосования по развитию бренда, совместные закупки трендовых товаров с большой маржой и полная демократия в принятии решений. У нас весело!</p>
           <div class="f-section-support__social-title">Доступ к закрытым чатам:</div>
-          <div class="f-section-support__social"><a href="">
+          <div class="f-section-support__social"><a class="f-section-support__social-link" href="#">
               <div class="icon icon-vk">Вконтакте</div>
-            </a><a href="">
-              <div class="icon icon-inst">Instagram</div>
+            </a><a class="f-section-support__social-link" href="#">
+              <div class="icon icon-tg">Telegram</div>
             </a></div>
         </div>
         <div class="f-chat">
@@ -1102,9 +1120,9 @@
       </div>
       <div class="f-horizontal-gallery">
         <div class="f-horizontal-gallery__wrapper">
-          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/video-cover.jpg"></div>
-          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/video-cover.jpg"></div>
-          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/video-cover.jpg"></div>
+          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/photo-cards.jpg" srcset="images/photo-cards_2x.jpg 2x"></div>
+          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/photo-worker.jpg" srcset="images/photo-worker_2x.jpg 2x"></div>
+          <div class="f-horizontal-gallery__item"><img class="f-horizontal-gallery__img" src="images/photo-store.jpg" srcset="images/photo-store_2x.jpg 2x"></div>
         </div>
       </div>
     </section>
@@ -1217,55 +1235,107 @@
       </div>
     </section>
     <section class="f-section-director">
-      <div class="container">
+      <div class="f-section-director__inner container">
         <div class="f-section-director__title f-title-long">готовая <br><span class="selected">модель бизнеса,</span> приносящая доход</div>
         <blockquote class="f-section-director__quote">
-          <p>Франшиза MarketDo4a существует с 2015 года. Мы выросли из крупнейшего медиа-ресурса по фитнесу, попали в тридцатку лучших франшиз по версии РБК, открыли собственное производство спортивного питания Do4a Lab и расширились до 65 магазинов по России и СНГ.</p>
-          <p>Помощь в подборе и обучении персонала, поиск помещения, готовые рекламные материалы, программирование и полная настройка оборудования, - это малая доля того, что вы получите как один из членов команды Do4a. А главное, вы пойдёте по проторенной дороге сильного бренда. Ведь мы уже набили шишек за вас, пока строили федеральный бренд!</p>
+          <!--span.f-icon-quote-left-->Франшиза MarketDo4a существует с 2015 года. Мы выросли из крупнейшего медиа-ресурса по фитнесу, попали в тридцатку лучших франшиз по версии РБК, открыли собственное производство спортивного питания Do4a Lab и расширились до 65 магазинов по России и СНГ.<br><br>Помощь в подборе и обучении персонала, поиск помещения, готовые рекламные материалы, программирование и полная настройка оборудования, - это малая доля того, что вы получите как один из членов команды Do4a. А главное, вы пойдёте по проторенной дороге сильного бренда. Ведь мы уже набили шишек за вас, пока строили федеральный бренд!
+          <!--span.f-icon-quote-right-->
         </blockquote>
         <div class="f-director">
-          <figure class="f-director__photo"></figure>
+          <figure class="f-director__photo"><img class="f-director__img" src="img/franchise-director.png" alt="Александр Сторощук"></figure>
           <div class="f-director__block">
             <div class="f-director__name">Александр Сторощук</div>
             <div class="f-director__description">Основатель MarketDo4a</div>
-            <div class="f-director__contacts">1 2 3</div>
+            <div class="f-director__contacts"><a class="f-director__contact-link icon icon-vk" href="#"></a><a class="f-director__contact-link icon icon-inst" href="#"></a><a class="f-director__contact-link icon icon-fb" href="#"></a></div>
           </div>
-        </div><button class="f-section-director__button btn btn-skew">Задать вопрос александру</button>
+        </div><button class="f-section-director__button btn btn-blue btn-skew"><span class="btn-icon"><i class="icon icon-vk-logo"></i></span>Задать вопрос александру</button>
       </div>
     </section>
     <section class="f-section-form">
       <figure class="f-section-form__brand-mockup-image"></figure>
-      <div class="container">
+      <div class="f-section-form__inner container">
         <div class="f-section-form__header">
           <h2 class="f-section-form__title f-title-long">Получите <br><span class="selected">бизнес-план</span></h2>
           <p class="f-section-form__subtitle f-title-small">с расчётом затрат и прибыли для вашего города</p>
         </div>
         <form class="f-section-form__form">
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">Как вас зовут?</label><input class="input-field__input" type="text" autocomplete="name" name="name" required></div>
+          <div class="f-section-form__body form-body form-body_loading">
+            <div class="form-body__loading">
+              <div class="form-body__spinner"></div>
+              <div class="form-body__loading-text">Отправляем...</div>
+            </div>
+            <div class="form-body__success">
+              <div class="form-body__success-title">Готово!</div>
+              <div class="form-body__success-text">Спасибо за вашу заявку. В течение 20 минут мы отправим бизнес-план на вашу электронную почту и перезвоним, чтобы ответить на все ваши вопросы.</div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">Как вас зовут?</label><input class="input-field__input" type="text" autocomplete="name" name="name" required></div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">В каком городе живёте?</label><input class="input-field__input" type="text" autocomplete="address-level2" name="city" required></div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">Ваш e-mail</label><input class="input-field__input" type="email" autocomplete="email" name="email" required></div>
+            </div>
+            <div class="f-section-form__col form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label">И номер телефона</label><input class="input-field__input" type="tel" autocomplete="tel" name="tel" required></div>
+            </div>
           </div>
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">В каком городе живёте?</label><input class="input-field__input" type="text" autocomplete="address-level2" name="city" required></div>
+          <div class="f-section-form__footer">
+            <div class="f-section-form__col"><button class="f-section-form__button btn btn-red btn-skew">Получить бизнес-план</button></div>
+            <div class="f-section-form__col">
+              <div class="f-section-form__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>
+            </div>
           </div>
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">Ваш e-mail</label><input class="input-field__input" type="email" autocomplete="email" name="email" required></div>
-          </div>
-          <div class="form-group">
-            <div class="input-field input-field_primary"><label class="input-field__label">И номер телефона</label><input class="input-field__input" type="tel" autocomplete="tel" name="tel" required></div>
-          </div><button class="f-section-form__button btn btn-red btn-skew">Получить бизнес-план</button>
-          <div class="f-section-form__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>
-        </form>
-        <div class="f-section-form__time">Пришлём в течение 20 минут</div>
+        </form><button class="f-section-form__mobile-button btn btn-red btn-skew btn-block">Получить бизнес-план</button>
+        <div class="f-section-form__time"><i class="icon icon-clock"></i> Пришлём в течение 20 минут</div>
       </div>
     </section>
     <section class="f-section-feedback">
       <div class="container">
         <h2 class="f-section-feedback__title f-title-long">Отзывы партнёров, которые уже зарабатывают с нами</h2>
         <p class="f-section-feedback__subtitle f-title-small">Нам не нужно рекламировать себя, — успех партнёров говорит сам за себя.</p>
-        <div class="row">
-          <div class="col-xl-6">
-            <div class="f-feedback-item">
-              <div class="f-feedback-item__video">video</div>
+        <div class="f-section-feedback__list">
+          <div class="f-section-feedback__col">
+            <div class="f-feedback-item"><a class="f-feedback-item__video" href="#"><img class="f-feedback-item__video-cover" src="images/video-cover.jpg">
+                <div class="f-feedback-item__button-play"></div>
+              </a>
+              <div class="f-feedback-item__title">
+                <div>marketdo<span class="red">4</span>a</div>
+                <div class="selected">в нижнем новгороде</div>
+              </div>
+              <div class="f-feedback-item__description">Алексей Седов, первый магазин открыл в 2017 г. Владеет 2 магазинами в Нижнем Новгороде.</div>
+              <blockquote class="f-feedback-item__quote">Нам помогали с первого дня работы: подсказывали по скриптам продаж, настраивали отчетность и много всего другого. Ежедневные консультации сделали из нас мастеров по продаже спортпита!</blockquote>
+            </div>
+          </div>
+          <div class="f-section-feedback__col">
+            <div class="f-feedback-item f-feedback-item_2"><a class="f-feedback-item__video" href="#"><img class="f-feedback-item__video-cover" src="images/video-cover.jpg">
+                <div class="f-feedback-item__button-play"></div>
+              </a>
+              <div class="f-feedback-item__title">
+                <div>marketdo<span class="red">4</span>a</div>
+                <div class="selected">в нижнем новгороде</div>
+              </div>
+              <div class="f-feedback-item__description">Алексей Седов, первый магазин открыл в 2017 г. Владеет 2 магазинами в Нижнем Новгороде.</div>
+              <blockquote class="f-feedback-item__quote">Нам помогали с первого дня работы: подсказывали по скриптам продаж, настраивали отчетность и много всего другого. Ежедневные консультации сделали из нас мастеров по продаже спортпита!</blockquote>
+            </div>
+          </div>
+          <div class="f-section-feedback__col">
+            <div class="f-feedback-item"><a class="f-feedback-item__video" href="#"><img class="f-feedback-item__video-cover" src="images/video-cover.jpg">
+                <div class="f-feedback-item__button-play"></div>
+              </a>
+              <div class="f-feedback-item__title">
+                <div>marketdo<span class="red">4</span>a</div>
+                <div class="selected">в нижнем новгороде</div>
+              </div>
+              <div class="f-feedback-item__description">Алексей Седов, первый магазин открыл в 2017 г. Владеет 2 магазинами в Нижнем Новгороде.</div>
+              <blockquote class="f-feedback-item__quote">Нам помогали с первого дня работы: подсказывали по скриптам продаж, настраивали отчетность и много всего другого. Ежедневные консультации сделали из нас мастеров по продаже спортпита!</blockquote>
+            </div>
+          </div>
+          <div class="f-section-feedback__col">
+            <div class="f-feedback-item f-feedback-item_2"><a class="f-feedback-item__video" href="#"><img class="f-feedback-item__video-cover" src="images/video-cover.jpg">
+                <div class="f-feedback-item__button-play"></div>
+              </a>
               <div class="f-feedback-item__title">
                 <div>marketdo<span class="red">4</span>a</div>
                 <div class="selected">в нижнем новгороде</div>
@@ -1292,7 +1362,105 @@
               <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
             </div>
           </div>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-3" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+            <div class="collapse" id="faq-3">
+              <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
+            </div>
+          </div>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-4" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+            <div class="collapse" id="faq-4">
+              <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
+            </div>
+          </div>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-5" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+            <div class="collapse" id="faq-5">
+              <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
+            </div>
+          </div>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-6" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+            <div class="collapse" id="faq-6">
+              <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
+            </div>
+          </div>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-7" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+            <div class="collapse" id="faq-7">
+              <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
+            </div>
+          </div>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-8" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+            <div class="collapse" id="faq-8">
+              <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+    <section class="f-section-contacts">
+      <div class="container">
+        <h2 class="f-section-contacts__title f-title-long">Не нашли ответ <br>
+          на свой вопрос? <br><span class="selected">Задайте его лично!</span></h2>
+        <div class="f-section-contacts__content">
+          <div class="f-section-contacts__text">
+            <div class="f-section-contacts__text-contacts">Напишите Анне в
+              <a href="#" target="_blank" style="color: #7F4DA0;"><i class="icon icon-viber-round"></i> Вайбер,</a>
+              <a href="#" target="_blank" style="color: #29A0D3;"><i class="icon icon-tg-round"></i> Телеграм,</a>
+              <a href="#" target="_blank" style="color: #25D366;"><i class="icon icon-wa-round"></i> Вотсап, </a><br>
+              или на почту
+              <a class="text-link" href="mailto:partner@marketdo4a.com">partner@marketdo4a.com</a></div>
+            <div class="f-section-contacts__text-result">Ответим на вопросы, обсудим потенциал роста в вашем городе.</div>
+            <div class="f-section-contacts__text-else">Или оставьте контакты, и мы сами с вами свяжемся:</div>
+          </div>
+          <div class="f-section-contacts__col">
+            <form class="f-section-contacts__form">
+              <div class="f-section-contacts__body form-body">
+                <div class="form-body__loading">
+                  <div class="form-body__spinner"></div>
+                  <div class="form-body__loading-text">Отправляем...</div>
+                </div>
+                <div class="form-body__success">
+                  <div class="form-body__success-title">Готово!</div>
+                  <div class="form-body__success-text">Спасибо за вашу заявку. Мы сами с вами свяжемся.</div>
+                </div>
+                <div class="form-group">
+                  <div class="input-field input-field_primary"><label class="input-field__label">Как вас зовут?</label><input class="input-field__input" type="text" autocomplete="name" name="name" required></div>
+                </div>
+                <div class="form-group">
+                  <div class="input-field input-field_primary"><label class="input-field__label">Ваш номер телефона</label><input class="input-field__input" type="tel" autocomplete="tel" name="tel" required></div>
+                </div>
+              </div><button class="f-section-contacts__button btn btn-red btn-skew btn-block">Отправить</button>
+              <div class="f-section-contacts__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>
+            </form>
+          </div>
+          <div class="f-section-contacts__manager">
+            <div class="f-manager-profile">
+              <figure class="f-manager-profile__photo"><img class="f-manager-profile__img" src="images/manager-full.jpg"></figure>
+              <div class="f-manager-profile__badge">
+                <div class="f-manager-profile__name">Михеева анна</div>
+                <div class="f-manager-profile__post">Начальник по развитию партнёрства</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="f-section-other">
+      <div class="container">
+        <h2 class="f-section-other__title f-title-long">Посмотреть другие<br> франшизы:</h2>
+        <div class="f-section-other__list"><a class="f-other-fracnhise" href="#">
+            <figure class="f-other-fracnhise__banner"><img class="f-other-fracnhise__img" src="images/photo-gym.jpg" srcset="images/photo-gym_2x.jpg 2x"></figure>
+            <div class="f-other-fracnhise__name">DO<span class="red">4</span>A
+              gym
+              <svg class="f-other-fracnhise__icon" viewBox="0 0 19 33" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6378 17.1197L0.0438538 3.43466L4.13798 0.564453L18.3622 18.0014L3.60792 32.9139L0.392098 29.0852L11.6378 17.1197Z" fill="currentColor" />
+              </svg></div>
+          </a><a class="f-other-fracnhise" href="#">
+            <figure class="f-other-fracnhise__banner"><img class="f-other-fracnhise__img" src="images/photo-vending.jpg" srcset="images/photo-vending_2x.jpg 2x"></figure>
+            <div class="f-other-fracnhise__name">DO<span class="red">4</span>A
+              vending
+              <svg class="f-other-fracnhise__icon" viewBox="0 0 19 33" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6378 17.1197L0.0438538 3.43466L4.13798 0.564453L18.3622 18.0014L3.60792 32.9139L0.392098 29.0852L11.6378 17.1197Z" fill="currentColor" />
+              </svg></div>
+          </a></div>
       </div>
     </section>
   </main>
