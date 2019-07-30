@@ -1,5 +1,5 @@
 import Sticky from 'sticky-js';
-// import 'owl.carousel';
+import 'owl.carousel';
 import {
   // Autoplay,
   // EffectFade,
@@ -11,7 +11,7 @@ import {
   Scrollbar,
 } from 'swiper/dist/js/swiper.esm';
 import HeaderSlider from '../modules/HeaderSlider';
-// import YandexMaps from '../modules/Maps';
+import YandexMaps from '../modules/Maps';
 import Parallax from '../modules/Parallax';
 // import noUiSlider from 'nouislider';
 
@@ -81,11 +81,11 @@ export default class MainPage {
   static initMaps() {
     const mapEl = document.querySelector('#map');
     if (!mapEl) return;
-    import('../modules/Maps').then((module) => {
-      const YandexMaps = module.default;
-      new YandexMaps(mapEl, window.app);
-    });
-    // return new YandexMaps(mapEl, window.app);
+    // import('../modules/Maps').then((module) => {
+    //   const YandexMaps = module.default;
+    //   new YandexMaps(mapEl, window.app);
+    // });
+    return new YandexMaps(mapEl, window.app);
   }
 
 

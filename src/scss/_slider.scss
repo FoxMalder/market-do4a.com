@@ -106,11 +106,10 @@
     -webkit-overflow-scrolling: touch;
     //.slider__wrapper {
     //}
-    .slider__explanation-tablet,
-    .slider__explanation-desktop,
+    .slider__explanation,
     .slider__scrollbar {
       //visibility: hidden;
-      display: none;
+      display: none !important;
     }
   }
 

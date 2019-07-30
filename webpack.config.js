@@ -250,6 +250,25 @@ const devConfig = {
           { loader: 'file-loader', options: { name: '[name].[ext]' } },
         ],
       },
+      /* config.module.rule('media') */
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: [
+          /* config.module.rule('media').use('url-loader') */
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'media/[name].[ext]',
+                },
+              },
+            },
+          },
+        ],
+      },
     ],
   },
 
@@ -336,6 +355,25 @@ const prodConfig = {
         include: path.resolve(__dirname, 'src/fonts'),
         use: [
           { loader: 'file-loader', options: { outputPath: './fonts', name: '[name].[ext]' } },
+        ],
+      },
+      /* config.module.rule('media') */
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        use: [
+          /* config.module.rule('media').use('url-loader') */
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 4096,
+              fallback: {
+                loader: 'file-loader',
+                options: {
+                  name: 'media/[name].[ext]',
+                },
+              },
+            },
+          },
         ],
       },
     ],

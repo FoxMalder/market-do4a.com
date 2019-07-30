@@ -68,9 +68,9 @@ button {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  transition: color .2s ease;
-}
+//a {
+//  transition: color .2s ease;
+//}
 
 p {
   font-size: 14px;
@@ -151,6 +151,11 @@ h6 {
   color: rgba(#101010, 0.4);
 }
 
+.link {
+  color: $main-color;
+}
+
+.link-underline,
 .text-link {
   border-bottom: 1px dashed $main-color;
   color: $main-color;
@@ -185,6 +190,7 @@ h6 {
     transform: $skew-reverse;
   }
 }
+
 
 
 $input-height: 62px;
@@ -397,12 +403,16 @@ textarea.input-text {
 // Buttons
 
 .btn {
-  display: inline-block;
+  //display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
 
   padding: $btn-padding-y-sm $btn-padding-x-sm;
   border: $btn-border-width solid transparent;
   background-color: transparent;
+  height: 60px;
 
   color: #000;
   font-family: $btn-font-family;
@@ -417,7 +427,8 @@ textarea.input-text {
   user-select: none;
   @include transition($btn-transition);
 
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(md) {
+    height: 70px;
     padding: $btn-padding-y $btn-padding-x;
     font-size: $btn-font-size;
     line-height: $btn-line-height;
@@ -452,8 +463,16 @@ textarea.input-text {
 }
 
 .btn-block {
-  display: block;
+  //display: block;
+  display: flex;
   width: 100%;
+
+  &.btn-skew {
+    width: calc(100% - #{tan(9deg) * 60px});
+    @include media-breakpoint-up(md) {
+      width: calc(100% - #{tan(9deg) * 70px});
+    }
+  }
 
   // Vertically space out multiple block buttons
   + .btn-block {
@@ -462,8 +481,14 @@ textarea.input-text {
 }
 
 .btn-skew {
+  margin-right: tan(9deg) * 60px;
   transform: $skew;
   transform-origin: center bottom;
+  -webkit-backface-visibility: hidden;
+
+  @include media-breakpoint-up(md) {
+    margin-right: tan(9deg) * 70px;
+  }
 
   .btn-icon {
     transform: $skew-reverse;
@@ -477,7 +502,7 @@ textarea.input-text {
 
 .btn-icon {
   display: inline-block;
-  margin-right: 1em;
+  margin-right: .5em;
 }
 
 .btn-text {
@@ -562,8 +587,11 @@ textarea.input-text {
 
 
 .form-group {
+  margin-right: tan(9deg) * 62px / 2;
   margin-bottom: 13px;
+  margin-left: tan(9deg) * 62px / 2;
   transform: $skew;
+  -webkit-backface-visibility: hidden;
 
   &_row {
     display: flex;

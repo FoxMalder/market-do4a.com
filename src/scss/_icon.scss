@@ -19,11 +19,12 @@
   height: 10px;
 }
 
-
+.social-link098,
 .icon-ok,
 .icon-vk,
 .icon-inst,
-.icon-fb {
+.icon-fb,
+.icon-tg {
   display: inline-block;
   width: 60px;
   height: 60px;
@@ -39,22 +40,35 @@
   .footer-contacts__social-item & {
     display: inline-block !important;
   }
+
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
+.social-link098_fb,
 .icon-fb {
-  background-image: url('../img/fb-logo.svg');
+  background-image: url('../img/face@fuckinadblock@book-logo-fill.svg');
 }
 
+.social-link098_inst,
 .icon-inst {
   background-image: url('../img/inst-logo.svg');
 }
 
+.social-link098_vk,
 .icon-vk {
   background-image: url('../img/vk-logo.svg');
 }
 
+.social-link098_ok,
 .icon-ok {
   background-image: url('../img/ok-logo.svg');
+}
+
+.social-link098_tg,
+.icon-tg {
+  background-image: url('../img/telegram-logo-fill.svg');
 }
 
 .i {

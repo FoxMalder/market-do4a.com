@@ -1,4 +1,52 @@
+.modal {
+  padding: 20px 0;
+}
+
+.modal-container {
+  display: none;
+  padding: 0;
+  position: relative;
+  overflow: visible;
+  @include media-breakpoint-up(md) {
+    transform: $skew;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  z-index: 10;
+  //background-color: $main-color;
+  //color: #fff;
+  svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+  @include media-breakpoint-up(md) {
+    transform: $skew-reverse;
+    top: -18px;
+    right: -22px;
+    width: 61px;
+    height: 61px;
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
 .auth {
+  overflow: visible;
   padding: 30px;
   text-align: center;
 

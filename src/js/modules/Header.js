@@ -1,4 +1,4 @@
-// import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
+import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 // import Tooltip from 'tooltip.js';
 import Vue from 'vue/dist/vue.esm';
 // import Vue from 'vue';
@@ -175,8 +175,12 @@ export default class Header {
     // this.initStoreContainer();
     //
 
+    // Stickyfill.forceSticky();
+    Stickyfill.add(this.header.fixedTargets);
+
+
     window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 600) {
+      if (this.header.fixedTargets.getBoundingClientRect().top === 0) {
         // this.header.fixedTargets.style.height = this.header.fixedTargets.clientHeight;
         this.header.fixedTargets.classList.add('fixed');
       } else {

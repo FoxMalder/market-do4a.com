@@ -1,5 +1,7 @@
 window.BX = {};
 
+window.demo = true;
+
 window.app = {
   storeManagerData: {
     currentCityId: '35899',
