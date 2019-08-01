@@ -424,17 +424,17 @@ p,
   }
 
   &__video {
-    display: none;
-    @include media-breakpoint-up(md) {
-      display: block;
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    //display: none;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    //@include media-breakpoint-up(md) {
+    //  display: block;
+    //}
   }
 
   &__overlay {

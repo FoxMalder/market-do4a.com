@@ -112,7 +112,7 @@ function initForms() {
     },
   });
 
-  $('.form-body').parent('form').on('submit', (event) => {
+  $('.form-body').parents('form').on('submit', (event) => {
     event.preventDefault();
 
     const formEl = event.currentTarget;
