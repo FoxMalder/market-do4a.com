@@ -1286,8 +1286,8 @@ $section-padding-bottom: 30px;
 
     //@extend .container;
 
-    @include make-container(0);
-    @include make-container-max-widths();
+    //@include make-container(0);
+    //@include make-container-max-widths();
 
     //@include media-breakpoint-down(xs) {
     //  padding-left: 0;
@@ -1318,14 +1318,51 @@ $section-padding-bottom: 30px;
   &__slider {
     height: 407px;
     //margin-top: 35px;
-    padding-right: (map_get($grid-gutter-width-map, xs) / 2);
-    padding-left: (map_get($grid-gutter-width-map, xs) / 2);
+    //padding-right: (map_get($grid-gutter-width-map, xs) / 2);
+    //padding-left: (map_get($grid-gutter-width-map, xs) / 2);
     overflow: visible;
+
+    @include media-breakpoint-up(sm) {
+      max-width: map_get($container-max-widths, sm);
+    }
+    @include media-breakpoint-up(md) {
+      max-width: map_get($container-max-widths, md);
+    }
+    @include media-breakpoint-up(xl) {
+      max-width: map_get($container-max-widths, xl);
+    }
+
+    &:not(.slider_initialized) {
+      max-width: none;
+
+      > .slider__wrapper {
+        &::before,
+        &::after {
+          content: '';
+          display: block;
+          flex: 0 0 (map_get($grid-gutter-width-map, xs) / 2);
+
+          @include media-breakpoint-up(sm) {
+            flex: 0 0 calc(50% - #{(map_get($container-max-widths, sm) - map_get($grid-gutter-width-map, sm)) / 2});
+          }
+          @include media-breakpoint-up(md) {
+            flex: 0 0 calc(50% - #{(map_get($container-max-widths, md) - map_get($grid-gutter-width-map, md)) / 2});
+          }
+          @include media-breakpoint-up(xl) {
+            flex: 0 0 calc(50% - #{(map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / 2});
+          }
+        }
+      }
+    }
   }
 
   &__col {
     width: map_get($star-width, sm);
-    margin-right: 20px;
+    margin-right: 10px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 
   @include media-breakpoint-up(md) {

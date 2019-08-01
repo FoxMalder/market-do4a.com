@@ -3,7 +3,7 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
-//
+
 //body {
 //  background: url("../img/rm/franchise-320.png") center top no-repeat;
 //  @include media-breakpoint-up(md) {
@@ -13,11 +13,12 @@
 //  > * {
 //    opacity: .5;
 //  }
+//
+//  video {
+//    display: none;
+//  }
 //}
 
-//section {
-//  border: 1px solid green;
-//}
 
 .f-modal-target {
   display: none;
@@ -47,8 +48,6 @@
 }
 
 .f-modal-form {
-  //background: url("../img/rm/franchise-moda-320.png") top center no-repeat;
-
   position: relative;
   //width: 360px;
   //max-width: 100%;
@@ -75,9 +74,9 @@
 
 
   &__inner {
-    max-width: 360px;
     position: relative;
     z-index: 1;
+    max-width: 360px;
   }
 
   &__brand-mockup-image {
@@ -190,6 +189,7 @@
   @include media-breakpoint-up(xl) {
     .f-modal-form {
       width: 947px;
+
       &__inner {
         max-width: 320px;
       }
@@ -202,12 +202,15 @@
     .f-modal-form {
       width: 700px;
       padding-bottom: 80px;
+
       &__title {
         margin-bottom: 30px;
       }
+
       &__description {
         margin-bottom: 52px;
       }
+
       &__note {
         margin-top: 60px;
       }
@@ -274,7 +277,7 @@ p,
     background-color: #101010;
     color: #fff;
     font-style: normal;
-    line-height: 24px;
+    line-height: 1;
     white-space: nowrap;
   }
 
@@ -305,39 +308,6 @@ p,
   }
 }
 
-//.f-icon-quote-left {
-//  display: inline;
-//  position: relative;
-//
-//  &::before {
-//    content: '';
-//    display: inline-block;
-//    position: absolute;
-//    top: calc(50% - 4px);
-//    left: -20px;
-//    width: 40px;
-//    height: 37px;
-//    opacity: 0.1;
-//    background: url("../img/quote-left.svg");
-//  }
-//}
-//
-//.f-icon-quote-right {
-//  display: inline;
-//  position: relative;
-//
-//  &::before {
-//    content: '';
-//    display: inline-block;
-//    position: absolute;
-//    top: -4px;
-//    right: -20px;
-//    width: 40px;
-//    height: 37px;
-//    opacity: 0.1;
-//    background: url("../img/quote-right.svg");
-//  }
-//}
 
 .f-horizontal-gallery {
   z-index: 0;
@@ -385,7 +355,7 @@ p,
 .f-section-hero {
   position: relative;
   height: 500px;
-  padding-top: 34px;
+  padding-top: 32px;
   overflow: hidden;
   background: url('../img/franchise/f-hero-bg.jpg') no-repeat center;
   background-size: cover;
@@ -411,7 +381,7 @@ p,
 
   @include media-breakpoint-up(md) {
     height: 600px;
-    padding-top: 94px;
+    padding-top: 57px;
   }
 
   @include media-breakpoint-up(xl) {
@@ -455,8 +425,7 @@ p,
 
   &__title-small {
     display: block;
-
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     opacity: 0;
     font-size: 15px;
     font-weight: 900;
@@ -464,14 +433,13 @@ p,
       font-size: 28px;
     }
     @include media-breakpoint-up(xl) {
-
       margin-bottom: 8px;
       font-size: 36px;
     }
   }
 
   &__title-long {
-    margin-bottom: 39px;
+    margin-bottom: 36px;
     opacity: 0;
     font-size: 30px;
     letter-spacing: normal;
@@ -510,7 +478,13 @@ p,
   &__bottom {
     display: flex;
     justify-content: flex-end;
-    margin-top: 10px;
+    margin-top: 42px;
+    @include media-breakpoint-up(md) {
+      margin-top: 17px;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-top: 7px;
+    }
   }
 
   &__button {
@@ -534,10 +508,32 @@ p,
     }
   }
 
+  &__logo {
+    width: 75px;
+    height: 20px;
+    @include media-breakpoint-up(md) {
+      width: 83px;
+      height: 22px;
+    }
+    @include media-breakpoint-up(xl) {
+      width: 109px;
+      height: 29px;
+    }
+  }
+
   &__text {
-    margin-top: 18px;
-    font-size: 15px;
-    line-height: 20px;
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 16px;
+    @include media-breakpoint-up(xl) {
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 15px;
+      line-height: 20px;
+    }
   }
 }
 
@@ -622,14 +618,51 @@ p,
     position: absolute;
     top: 0;
     left: 0;
-    max-width: 60px;
-    max-height: 50px;
+
+    &_pepa {
+      top: -15px;
+      width: 54px;
+      height: 61px;
+    }
+
+    &_store {
+      top: 6px;
+      //width: 62px;
+      width: 78px;
+      height: 46px;
+    }
+
+    &_doc {
+      width: 58px;
+      height: 50px;
+    }
+
+    &_payback {
+      width: 56px;
+      height: 50px;
+    }
+
     @include media-breakpoint-up(md) {
       top: 0;
       left: 20px;
-      max-width: 100%;
-      max-height: 100%;
       transform: $skew-reverse translateY(-50%);
+      &_pepa {
+        top: 0;
+        width: 88px;
+        height: 98px;
+      }
+      &_store {
+        width: 125px;
+        height: 72px;
+      }
+      &_doc {
+        width: 88px;
+        height: 76px;
+      }
+      &_payback {
+        width: 89px;
+        height: 80px;
+      }
     }
   }
 
@@ -675,9 +708,14 @@ p,
   //}
   margin-top: 30px;
   @include media-breakpoint-up(md) {
-
     margin-top: 120px;
     margin-bottom: 120px;
+  }
+
+  &__inner {
+    @include media-breakpoint-down(sm) {
+      width: 320px;
+    }
   }
 
   &__title {
@@ -1337,7 +1375,7 @@ p,
 .f-section-complex {
   //height: 2183px;
   margin-top: 30px;
-  margin-bottom: 0;
+  margin-bottom: 25px;
   //overflow: hidden;
   //margin-bottom: 120px;
   ////padding-top: 16px;
@@ -1362,33 +1400,111 @@ p,
   }
 
   &__list {
-    margin-top: 60px;
-    margin-bottom: -73px;
+    margin-top: 47px;
+    //margin-bottom: -73px;
+    margin-bottom: 0;
     padding-left: 0;
     list-style: none;
     @include media-breakpoint-up(xl) {
-
+      margin-top: 60px;
+      margin-bottom: -73px;
     }
   }
 }
 
 .f-complex-item {
-  margin-bottom: 30px;
+  margin-bottom: 43px;
 
   @include media-breakpoint-up(xl) {
     margin-bottom: 73px;
   }
 
   &__icon {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    height: 150px;
-    margin-bottom: 34px;
-    //border: 1px solid red;
-    @include media-breakpoint-up(xl) {
+    margin-bottom: 29px;
+    &_marketing {
+      svg {
+        width: 132px;
+        height: 132px;
+      }
+    }
+
+    &_teaching {
+      svg {
+        width: 115px;
+        height: 131px;
+      }
+    }
+
+    &_store {
+      svg {
+        width: 158px;
+        height: 135px;
+      }
+    }
+
+    &_style {
+      svg {
+        width: 177px;
+        height: 152px;
+      }
+    }
+
+    &_stat {
+      svg {
+        width: 176px;
+        height: 179px;
+      }
+    }
+
+    &_crm {
+      svg {
+        width: 212px;
+        height: 175px;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
       height: 300px;
       margin-bottom: 34px;
+      &_marketing {
+        svg {
+          width: 225px;
+          height: 228px;
+        }
+      }
+      &_teaching {
+        svg {
+          width: 184px;
+          height: 213px;
+        }
+      }
+      &_store {
+        svg {
+          width: 242px;
+          height: 210px;
+        }
+      }
+      &_style {
+        svg {
+          width: 264px;
+          height: 229px;
+        }
+      }
+      &_stat {
+        svg {
+          width: 277px;
+          height: 281px;
+        }
+      }
+      &_crm {
+        svg {
+          width: 325px;
+          height: 269px;
+        }
+      }
     }
   }
 

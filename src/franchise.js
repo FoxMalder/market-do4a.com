@@ -22,7 +22,7 @@ AOS.init({
 
 function initStarSlider() {
   const mainStarSliderEl = document.querySelector('#stars-slider');
-  if (!mainStarSliderEl) return 0;
+  if (!mainStarSliderEl) return;
 
   const starSliderOverlayEl = document.querySelector('.f-section-stars__description');
   const starSliderExplanationTabletEl = document.querySelector('.slider__explanation_tablet');
@@ -100,7 +100,36 @@ function initVideo() {
   }
 }
 
-function initForms() {
+function initProgramList() {
+  const programListEl = document.querySelector('.f-section-partnership__list');
+  if (!programListEl) return;
+
+  // const programTabListEl = document.querySelector('.f-section-partnership__tab-list');
+  // const programTabsEl = document.querySelectorAll('.f-section-partnership__tab-link');
+  // const programItemsEl = programListEl.querySelectorAll('.f-section-partnership__col');
+
+  // programListEl.addEventListener('scroll', () => {
+  //   console.log(programListEl.scrollLeft + programListEl.offsetWidth / 2);
+  // });
+
+  $('.f-section-partnership__tab-link').on('click', (event) => {
+    event.preventDefault();
+    const $this = $(event.currentTarget);
+    const $target = $(event.currentTarget.getAttribute('href'));
+
+    $('.f-section-partnership__tab-link').removeClass('active');
+    $this.addClass('active');
+
+    $(programListEl).animate({
+      scrollLeft: Math.min(
+        (programListEl.scrollWidth - programListEl.offsetWidth),
+        (programListEl.scrollLeft + $target.position().left - $('.f-section-partnership__title').offset().left),
+      ),
+    });
+
+  });
+
+
   $('.f-program-item__button[data-fancybox]').fancybox({
     afterLoad(instance, slide) {
       slide.$content.find('.f-modal-target').append(slide.opts.$orig.parents('.f-program-item').clone());
@@ -111,6 +140,9 @@ function initForms() {
       slide.$content.find('input#js-ask-more-info').val('');
     },
   });
+}
+
+function initForms() {
 
   $('.form-body').parents('form').on('submit', (event) => {
     event.preventDefault();
@@ -159,6 +191,7 @@ function initForms() {
 
 $(() => {
   initVideo();
+  initProgramList();
   initForms();
 
 
