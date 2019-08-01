@@ -7,7 +7,7 @@ import './scss/main.scss';
 import './scss/franchise.scss';
 import Sticky from 'sticky-js';
 import { Mousewheel, Scrollbar, Swiper } from 'swiper/dist/js/swiper.esm';
-// import Parallax from './js/modules/Parallax';
+import Parallax from './js/modules/Parallax';
 
 if (process.env.NODE_ENV !== 'production') {
   require('./franchise.pug');
@@ -197,12 +197,12 @@ $(() => {
 
   $('.f-section-hero').addClass('animate');
 
-  if (document.documentElement.clientWidth >= 768) {
-    // [...document.querySelectorAll('.arnold')].forEach((el) => {
-    //   new Parallax(el.querySelector('.arnold__bg'), [-0.08, 0]);
-    //   new Parallax(el.querySelector('.arnold__img'), [0.08, 0]);
-    // });
+  [].forEach.call(document.querySelectorAll('.f-horizontal-gallery__wrapper'), (el) => {
+    new Parallax(el, [0, -0.2]);
+  });
 
+  if (document.documentElement.clientWidth >= 768) {
+    new Parallax(document.querySelector('.f-section-video__title'), [-0.08, 0]);
     initStarSlider();
   }
 });
