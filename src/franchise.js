@@ -107,18 +107,23 @@ function initProgramList() {
   const programTabsEl = document.querySelectorAll('.f-section-partnership__tab-link');
   const programItemsEl = programListEl.querySelectorAll('.f-section-partnership__col');
 
+  let lastActiveIndex = 0;
+
   try {
     programListEl.addEventListener('scroll', () => {
-      [].forEach.call(programItemsEl, (item, i) => {
+      const newActiveIndex = [].reduce.call(programItemsEl, (index, item) => {
         if (item.getBoundingClientRect().left < programListEl.offsetWidth / 2) {
-          programTabsEl[i].classList.add('active');
-          if (i > 0) {
-            programTabsEl[i - 1].classList.remove('active');
-          }
-        } else {
-          programTabsEl[i].classList.remove('active');
+          index += 1;
         }
-      });
+        return index;
+      }, -1);
+
+      if (newActiveIndex !== lastActiveIndex) {
+        [].forEach.call(programTabsEl, (item, index) => {
+          index === newActiveIndex ? item.classList.add('active') : item.classList.remove('active');
+        });
+        lastActiveIndex = newActiveIndex;
+      }
     });
   } catch (e) {
     console.error(e);
