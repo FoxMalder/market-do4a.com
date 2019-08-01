@@ -122,3 +122,37 @@
   }
 }
 
+
+.icon-tg-round {
+  &::before {
+    content: '';
+    background: url("../img/tg-round.svg") center no-repeat;
+    background-size: contain;
+    //width: ;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+  }
+}
+
+.icon-viber-round {
+  &::before {
+    content: '';
+    background: url("../img/viber-round.svg") center no-repeat;
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+  }
+}
+
+.icon-wa-round {
+  &::before {
+    content: '';
+    background: url("../img/wa-round.svg") center no-repeat;
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+  }
+}
