@@ -104,27 +104,25 @@ function initProgramList() {
   const programListEl = document.querySelector('.f-section-partnership__list');
   if (!programListEl) return;
 
-  // const programTabListEl = document.querySelector('.f-section-partnership__tab-list');
   const programTabsEl = document.querySelectorAll('.f-section-partnership__tab-link');
   const programItemsEl = programListEl.querySelectorAll('.f-section-partnership__col');
 
-  let last = 0;
-
-  programListEl.addEventListener('scroll', () => {
-    // console.log(programListEl.scrollLeft + programListEl.offsetWidth / 2);
-
-    [].forEach.call(programItemsEl, (item, i) => {
-      if (item.getBoundingClientRect().left < programListEl.offsetWidth / 2) {
-        programTabsEl[i].classList.add('active');
-        if (i > 0) {
-          programTabsEl[i - 1].classList.remove('active');
+  try {
+    programListEl.addEventListener('scroll', () => {
+      [].forEach.call(programItemsEl, (item, i) => {
+        if (item.getBoundingClientRect().left < programListEl.offsetWidth / 2) {
+          programTabsEl[i].classList.add('active');
+          if (i > 0) {
+            programTabsEl[i - 1].classList.remove('active');
+          }
+        } else {
+          programTabsEl[i].classList.remove('active');
         }
-      } else {
-        programTabsEl[i].classList.remove('active');
-      }
+      });
     });
-
-  });
+  } catch (e) {
+    console.error(e);
+  }
 
   // $('.f-section-partnership__list').on('scroll', (event) => {
   //   event.currentTarget
@@ -161,7 +159,6 @@ function initProgramList() {
 }
 
 function initForms() {
-
   $('.form-body').parents('form').on('submit', (event) => {
     event.preventDefault();
 
@@ -212,6 +209,18 @@ $(() => {
   initProgramList();
   initForms();
 
+  const $top30TargetRow = $('.f-top30__row').eq(29);
+
+  document.addEventListener('aos:in:top30', ({ detail }) => {
+    const $block = $(detail).find('.f-top30');
+    setTimeout(() => {
+      $block.animate({
+        scrollTop: $top30TargetRow.position().top - $block.height() / 2,
+      }, 2000, () => {
+        $top30TargetRow.addClass('active');
+      });
+    }, 200);
+  });
 
   $('.f-section-hero').addClass('animate');
 
