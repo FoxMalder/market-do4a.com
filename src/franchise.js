@@ -105,11 +105,29 @@ function initProgramList() {
   if (!programListEl) return;
 
   // const programTabListEl = document.querySelector('.f-section-partnership__tab-list');
-  // const programTabsEl = document.querySelectorAll('.f-section-partnership__tab-link');
-  // const programItemsEl = programListEl.querySelectorAll('.f-section-partnership__col');
+  const programTabsEl = document.querySelectorAll('.f-section-partnership__tab-link');
+  const programItemsEl = programListEl.querySelectorAll('.f-section-partnership__col');
 
-  // programListEl.addEventListener('scroll', () => {
-  //   console.log(programListEl.scrollLeft + programListEl.offsetWidth / 2);
+  let last = 0;
+
+  programListEl.addEventListener('scroll', () => {
+    // console.log(programListEl.scrollLeft + programListEl.offsetWidth / 2);
+
+    [].forEach.call(programItemsEl, (item, i) => {
+      if (item.getBoundingClientRect().left < programListEl.offsetWidth / 2) {
+        programTabsEl[i].classList.add('active');
+        if (i > 0) {
+          programTabsEl[i - 1].classList.remove('active');
+        }
+      } else {
+        programTabsEl[i].classList.remove('active');
+      }
+    });
+
+  });
+
+  // $('.f-section-partnership__list').on('scroll', (event) => {
+  //   event.currentTarget
   // });
 
   $('.f-section-partnership__tab-link').on('click', (event) => {

@@ -750,6 +750,11 @@ p,
     height: 487px;
     margin-left: auto;
     transform-origin: top;
+    &:hover {
+      .f-video__icon {
+        color: #101010;
+      }
+    }
   }
 
 
@@ -778,6 +783,7 @@ p,
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
+    transition: all .3s ease;
 
     svg {
       width: 24px;
@@ -2203,11 +2209,14 @@ p,
       height: 37px;
       margin-right: -40px;
       margin-bottom: -37px;
-      transform: translate(-20px, -18px);
+      transform: translate(0px, -18px);
       opacity: 0.1;
       background: url("../img/quote-left.svg");
       vertical-align: middle;
       pointer-events: none;
+      @include media-breakpoint-up(md) {
+        transform: translate(-20px, -18px);
+      }
     }
 
     &::after {
@@ -2348,7 +2357,7 @@ p,
  */
 .f-section-feedback {
   padding-top: 29px;
-  padding-bottom: 39px;
+  padding-bottom: 29px;
   @include media-breakpoint-up(xl) {
     margin-bottom: 120px;
     padding-top: 22px;
@@ -2414,8 +2423,10 @@ p,
 
   &__col {
     margin-right: 40px;
+    padding-bottom: 10px;
 
     @include media-breakpoint-up(xl) {
+      padding-bottom: 0;
       margin-right: 0;
       margin-bottom: 83px;
       @include make-col(6);
@@ -2543,11 +2554,15 @@ p,
       height: 37px;
       margin-right: -40px;
       margin-bottom: -37px;
-      transform: translate(-26px, -18px);
+      transform: translate(0px, -18px);
       opacity: 0.1;
       background: url("../img/quote-left.svg");
       vertical-align: middle;
       pointer-events: none;
+
+      @include media-breakpoint-up(md) {
+        transform: translate(-26px, -18px);
+      }
     }
 
     &::after {
