@@ -687,7 +687,7 @@ block wrapper
             .f-section-partnership__list
                 ul.f-section-partnership__wrapper
                     li.f-section-partnership__col#mini
-                        a.f-program-item(href="#")
+                        div.f-program-item
                             .f-program-item__body
                                 h3.f-program-item__title mini market
                                 p.f-program-item__subtitle Магазин до 25 м<sup>2</sup>
@@ -708,9 +708,13 @@ block wrapper
                                 .f-program-item__price
                                     .f-program-item__item-num 125 000 ₽
                                     .f-program-item__item-text Паушальный взнос
-                                button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
+                                button.f-program-item__button.btn.btn-red.btn-skew(
+                                    data-fancybox
+                                    data-src="#get-program-info"
+                                    data-js-ask-more-info="программа: mini market"
+                                ) Узнать детали
                     li.f-section-partnership__col#super
-                        a.f-program-item(href="#")
+                        div.f-program-item
                             .f-program-item__body
                                 h3.f-program-item__title super market
                                 p.f-program-item__subtitle Магазин до 25 м<sup>2</sup>
@@ -731,9 +735,13 @@ block wrapper
                                 .f-program-item__price
                                     .f-program-item__item-num 250 000 ₽
                                     .f-program-item__item-text Паушальный взнос
-                                button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
+                                button.f-program-item__button.btn.btn-red.btn-skew(
+                                    data-fancybox
+                                    data-src="#get-program-info"
+                                    data-js-ask-more-info="программа: super market"
+                                ) Узнать детали
                     li.f-section-partnership__col#hyper
-                        a.f-program-item(href="#")
+                        div.f-program-item
                             .f-program-item__body
                                 h3.f-program-item__title hyper market
                                 p.f-program-item__subtitle Магазин до 25 м<sup>2</sup>
@@ -754,7 +762,11 @@ block wrapper
                                 .f-program-item__price
                                     .f-program-item__item-num 500 000 ₽
                                     .f-program-item__item-text Паушальный взнос
-                                button.f-program-item__button.btn.btn-red.btn-skew Узнать детали
+                                button.f-program-item__button.btn.btn-red.btn-skew(
+                                    data-fancybox
+                                    data-src="#get-program-info"
+                                    data-js-ask-more-info="программа: hyper market"
+                                ) Узнать детали
             .container
                 .f-section-partnership__note Цифры указаны на основании усреднённой статистики прибыли 65 магазинов за последние 12 месяцев работы.
 
@@ -905,7 +917,7 @@ block wrapper
                             .f-accordion__body
                                 | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
                     .f-accordion__item
-                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-7" data-parent="#f-faq") Нужно ли выполнять план по закупкам?
+                        a.f-accordion__header.collapsed(data-toggle="collapse" href="#faq-7" data-parent="#f-faq") Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda blanditiis consectetur, culpa cum debitis dolor dolorum eius exercitationem ipsam labore magnam mollitia nesciunt, non obcaecati officiis possimus praesentium quaerat quas qui, repellat repellendus sequi tempora totam ut velit voluptatem? Accusamus, maxime nesciunt nisi perspiciatis quidem sapiente! Possimus, voluptas!
                         .collapse(id="faq-7")
                             .f-accordion__body
                                 | Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!
@@ -1046,5 +1058,30 @@ block wrapper
                             .input-field.input-field_primary
                                 label.input-field__label(for="modal-get-answer-tel") И номер телефона
                                 input.input-field__input(id="modal-get-answer-tel" type="tel" autocomplete="tel" name="tel" required )
+                    button.f-modal-form__button.btn.btn-red.btn-block.btn-skew(type="submit" data-success="Заявка отправлена") Оставить заявку
+                    .f-modal-form__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных
+    .modal-container#get-program-info
+        .f-modal-target
+        .f-modal-form
+            .f-modal-form__inner
+                .f-modal-form__title Узнать детали
+                .f-modal-form__description Оставьте заявку, и наш менеджер вам перезвонит, чтобы рассказать о выбранном пакете старта бизнеса.
+                form.f-modal-form__form
+                    input#js-ask-more-info(type="hidden" name="more_info")
+                    .f-modal-form__body.form-body
+                        .form-body__loading
+                            .form-body__spinner
+                            .form-body__loading-text Отправляем...
+                        .form-body__success
+                            .form-body__success-title Готово!
+                            .form-body__success-text Спасибо за заявку. Мы свяжемся с вами в течение 20 минут.
+                        .form-group
+                            .input-field.input-field_primary
+                                label.input-field__label(for="modal-get-answer-name") Как вас зовут?
+                                input.input-field__input(id="modal-get-program-info-name" type="text" autocomplete="name" name="name" required )
+                        .form-group
+                            .input-field.input-field_primary
+                                label.input-field__label(for="modal-get-answer-tel") Ваш номер телефона
+                                input.input-field__input(id="modal-get-program-info-tel" type="tel" autocomplete="tel" name="tel" required )
                     button.f-modal-form__button.btn.btn-red.btn-block.btn-skew(type="submit" data-success="Заявка отправлена") Оставить заявку
                     .f-modal-form__note Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных

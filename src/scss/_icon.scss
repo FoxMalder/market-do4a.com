@@ -41,7 +41,7 @@
     display: inline-block !important;
   }
 
-  &:hover {
+  &[href]:hover {
     opacity: 0.9;
   }
 }

@@ -1159,7 +1159,8 @@
       </div>
       <div class="f-section-partnership__list">
         <ul class="f-section-partnership__wrapper">
-          <li class="f-section-partnership__col" id="mini"><a class="f-program-item" href="#">
+          <li class="f-section-partnership__col" id="mini">
+            <div class="f-program-item">
               <div class="f-program-item__body">
                 <h3 class="f-program-item__title">mini market</h3>
                 <p class="f-program-item__subtitle">Магазин до 25 м<sup>2</sup></p>
@@ -1186,10 +1187,12 @@
                 <div class="f-program-item__price">
                   <div class="f-program-item__item-num">125 000 ₽</div>
                   <div class="f-program-item__item-text">Паушальный взнос</div>
-                </div><button class="f-program-item__button btn btn-red btn-skew">Узнать детали</button>
+                </div><button class="f-program-item__button btn btn-red btn-skew" data-fancybox data-src="#get-program-info" data-js-ask-more-info="программа: mini market">Узнать детали</button>
               </div>
-            </a></li>
-          <li class="f-section-partnership__col" id="super"><a class="f-program-item" href="#">
+            </div>
+          </li>
+          <li class="f-section-partnership__col" id="super">
+            <div class="f-program-item">
               <div class="f-program-item__body">
                 <h3 class="f-program-item__title">super market</h3>
                 <p class="f-program-item__subtitle">Магазин до 25 м<sup>2</sup></p>
@@ -1216,10 +1219,12 @@
                 <div class="f-program-item__price">
                   <div class="f-program-item__item-num">250 000 ₽</div>
                   <div class="f-program-item__item-text">Паушальный взнос</div>
-                </div><button class="f-program-item__button btn btn-red btn-skew">Узнать детали</button>
+                </div><button class="f-program-item__button btn btn-red btn-skew" data-fancybox data-src="#get-program-info" data-js-ask-more-info="программа: super market">Узнать детали</button>
               </div>
-            </a></li>
-          <li class="f-section-partnership__col" id="hyper"><a class="f-program-item" href="#">
+            </div>
+          </li>
+          <li class="f-section-partnership__col" id="hyper">
+            <div class="f-program-item">
               <div class="f-program-item__body">
                 <h3 class="f-program-item__title">hyper market</h3>
                 <p class="f-program-item__subtitle">Магазин до 25 м<sup>2</sup></p>
@@ -1246,9 +1251,10 @@
                 <div class="f-program-item__price">
                   <div class="f-program-item__item-num">500 000 ₽</div>
                   <div class="f-program-item__item-text">Паушальный взнос</div>
-                </div><button class="f-program-item__button btn btn-red btn-skew">Узнать детали</button>
+                </div><button class="f-program-item__button btn btn-red btn-skew" data-fancybox data-src="#get-program-info" data-js-ask-more-info="программа: hyper market">Узнать детали</button>
               </div>
-            </a></li>
+            </div>
+          </li>
         </ul>
       </div>
       <div class="container">
@@ -1403,7 +1409,7 @@
               <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
             </div>
           </div>
-          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-7" data-parent="#f-faq">Нужно ли выполнять план по закупкам?</a>
+          <div class="f-accordion__item"><a class="f-accordion__header collapsed" data-toggle="collapse" href="#faq-7" data-parent="#f-faq">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aspernatur assumenda blanditiis consectetur, culpa cum debitis dolor dolorum eius exercitationem ipsam labore magnam mollitia nesciunt, non obcaecati officiis possimus praesentium quaerat quas qui, repellat repellendus sequi tempora totam ut velit voluptatem? Accusamus, maxime nesciunt nisi perspiciatis quidem sapiente! Possimus, voluptas!</a>
             <div class="collapse" id="faq-7">
               <div class="f-accordion__body">Нет, необязательно качаться 5 раз в неделю, чтобы вести успешный бизнес в этой сфере. Всё зависит от вашего желания зарабатывать и деловой хватки. Остальному научим!</div>
             </div>
@@ -1540,6 +1546,34 @@
             </div>
             <div class="form-group">
               <div class="input-field input-field_primary"><label class="input-field__label" for="modal-get-answer-tel">И номер телефона</label><input class="input-field__input" id="modal-get-answer-tel" type="tel" autocomplete="tel" name="tel" required></div>
+            </div>
+          </div><button class="f-modal-form__button btn btn-red btn-block btn-skew" type="submit" data-success="Заявка отправлена">Оставить заявку</button>
+          <div class="f-modal-form__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal-container" id="get-program-info">
+    <div class="f-modal-target"></div>
+    <div class="f-modal-form">
+      <div class="f-modal-form__inner">
+        <div class="f-modal-form__title">Узнать детали</div>
+        <div class="f-modal-form__description">Оставьте заявку, и наш менеджер вам перезвонит, чтобы рассказать о выбранном пакете старта бизнеса.</div>
+        <form class="f-modal-form__form"><input id="js-ask-more-info" type="hidden" name="more_info">
+          <div class="f-modal-form__body form-body">
+            <div class="form-body__loading">
+              <div class="form-body__spinner"></div>
+              <div class="form-body__loading-text">Отправляем...</div>
+            </div>
+            <div class="form-body__success">
+              <div class="form-body__success-title">Готово!</div>
+              <div class="form-body__success-text">Спасибо за заявку. Мы свяжемся с вами в течение 20 минут.</div>
+            </div>
+            <div class="form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label" for="modal-get-answer-name">Как вас зовут?</label><input class="input-field__input" id="modal-get-program-info-name" type="text" autocomplete="name" name="name" required></div>
+            </div>
+            <div class="form-group">
+              <div class="input-field input-field_primary"><label class="input-field__label" for="modal-get-answer-tel">Ваш номер телефона</label><input class="input-field__input" id="modal-get-program-info-tel" type="tel" autocomplete="tel" name="tel" required></div>
             </div>
           </div><button class="f-modal-form__button btn btn-red btn-block btn-skew" type="submit" data-success="Заявка отправлена">Оставить заявку</button>
           <div class="f-modal-form__note">Отправляя заявку вы даете согласие<br> на обработку ваших персональных данных</div>

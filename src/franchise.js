@@ -102,11 +102,13 @@ function initVideo() {
 
 function initForms() {
   $('.f-program-item__button[data-fancybox]').fancybox({
-    afterShow(instance, slide) {
-      slide.$slide.find('input#js-ask-more-info').val(slide.opts.$orig.data('js-ask-more-info') || '');
+    afterLoad(instance, slide) {
+      slide.$content.find('.f-modal-target').append(slide.opts.$orig.parents('.f-program-item').clone());
+      slide.$content.find('input#js-ask-more-info').val(slide.opts.$orig.data('js-ask-more-info') || '');
     },
     afterClose(instance, slide) {
-      slide.$slide.find('input#js-ask-more-info').val('');
+      slide.$content.find('.f-modal-target').empty();
+      slide.$content.find('input#js-ask-more-info').val('');
     },
   });
 

@@ -19,17 +19,44 @@
 //  border: 1px solid green;
 //}
 
+.f-modal-target {
+  display: none;
+  position: absolute;
+  top: 125px;
+  right: 0;
+  transform: translate(50%, 0) $skew-reverse;
+  background-color: #fff;
+  box-shadow: -10px -36px 74px rgba(0, 0, 0, 0.05);
+
+  .f-program-item {
+    box-shadow: none;
+
+    &__button {
+      display: none;
+    }
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}
+
 .f-modal-form {
   //background: url("../img/rm/franchise-moda-320.png") top center no-repeat;
 
   position: relative;
-  width: 360px;
-  max-width: 100%;
+  //width: 360px;
+  //max-width: 100%;
   padding: 22px 20px;
   overflow: hidden;
 
   @include media-breakpoint-up(md) {
-    width: 460px;
+    //width: 460px;
     padding: 50px 70px;
     //transform: $skew;
     //-webkit-backface-visibility: hidden;
@@ -43,11 +70,12 @@
     }
   }
   @include media-breakpoint-up(xl) {
-    width: 947px;
+    //width: 947px;
   }
 
 
   &__inner {
+    max-width: 360px;
     position: relative;
     z-index: 1;
   }
@@ -98,12 +126,6 @@
     }
   }
 
-  &__inner {
-    @include media-breakpoint-up(xl) {
-      max-width: 320px;
-    }
-  }
-
   &__title {
     @include title;
 
@@ -113,6 +135,7 @@
     line-height: 28px;
 
     @include media-breakpoint-up(md) {
+      margin-right: 0;
       transform: $skew-reverse;
       font-size: 36px;
       line-height: 41px;
@@ -133,6 +156,9 @@
   }
 
   &__form {
+    @include media-breakpoint-up(xl) {
+      max-width: 320px;
+    }
   }
 
   &__body {
@@ -159,6 +185,36 @@
     }
   }
 }
+
+#get-business-plan {
+  @include media-breakpoint-up(xl) {
+    .f-modal-form {
+      width: 947px;
+      &__inner {
+        max-width: 320px;
+      }
+    }
+  }
+}
+
+#get-program-info {
+  @include media-breakpoint-up(xl) {
+    .f-modal-form {
+      width: 700px;
+      padding-bottom: 80px;
+      &__title {
+        margin-bottom: 30px;
+      }
+      &__description {
+        margin-bottom: 52px;
+      }
+      &__note {
+        margin-top: 60px;
+      }
+    }
+  }
+}
+
 
 @keyframes fadeInDown {
   from {
