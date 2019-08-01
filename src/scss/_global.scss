@@ -448,7 +448,8 @@ textarea.input-text {
   // Disabled comes first so active can properly restyle
   &.disabled,
   &:disabled {
-    opacity: $btn-disabled-opacity;
+    //opacity: $btn-disabled-opacity;
+    cursor: not-allowed;
     @include box-shadow(none);
   }
 
@@ -459,6 +460,14 @@ textarea.input-text {
     //&:focus {
     //  @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
     //}
+  }
+
+  .icon-done {
+    font-size: 22px;
+    line-height: 1;
+    @include media-breakpoint-up(md) {
+      font-size: 26px;
+    }
   }
 }
 
@@ -538,7 +547,8 @@ textarea.input-text {
 }
 
 .btn-green {
-  @include button-variant(#80c627, #80c627);
+  //@include button-variant(#80c627, #80c627);
+  @include button-variant(#7FC527, #7FC527);
   //color: #fff;
   //background-color: #80c627;
   //border-color: #80c627;

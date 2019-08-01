@@ -37,12 +37,15 @@
   // Disabled comes first so active can properly restyle
   &.disabled,
   &:disabled {
-    color: color-yiq($background);
+    color: rgba(color-yiq($background), 0.6);
     background-color: $background;
     border-color: $border;
     // Remove CSS gradients if they're enabled
     @if $enable-gradients {
       background-image: none;
+    }
+    .btn-icon {
+      color: color-yiq($background);
     }
   }
 
