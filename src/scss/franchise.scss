@@ -2138,6 +2138,7 @@ p,
     height: 31px;
     margin-right: 8px;
     //background: #eee;
+    -webkit-backface-visibility: hidden;
   }
 }
 
