@@ -1,18 +1,34 @@
-export default class Parallax {
-  constructor(target, options) {
-    this.element = target;
-    this.options = options;
+class Parallax {
+  constructor() {
+    this.items = [];
     this.scrollTicking = false;
-
     this.vp = Parallax.getViewportSize();
 
-    this.init();
-  }
-
-  init() {
-    this.update();
+    this.calculate();
     window.addEventListener('scroll', this.onScroll);
     window.addEventListener('resize', this.onResize);
+  }
+
+  /**
+   * Добавление параллакса на элемент
+   * @param element
+   * @param x - коэффициент смещения по x
+   * @param y - коэффициент смещения по y
+   */
+  add(element, { x, y }) {
+    this.items.push({
+      el: element,
+      x,
+      y,
+    });
+  }
+
+  /**
+   * Удалить параллакс с элемента
+   * @param element
+   */
+  remove(element) {
+    this.items = this.items.filter(item => item.el !== element);
   }
 
   onResize = () => {
@@ -23,26 +39,28 @@ export default class Parallax {
     this.requestTick();
   };
 
-  requestTick = () => {
-    if (!this.scrollTicking) {
-      requestAnimationFrame(this.update);
-    }
-    this.scrollTicking = true;
-  };
-
-  update = () => {
+  onUdate = () => {
     this.scrollTicking = false;
     this.calculate();
   };
 
-  calculate = () => {
-    const a = this.element.getBoundingClientRect().top + this.element.clientHeight / 2;
+  requestTick() {
+    if (!this.scrollTicking) {
+      requestAnimationFrame(this.onUdate);
+    }
+    this.scrollTicking = true;
+  }
 
-    const translateX = (a - this.vp.height / 2) * this.options[1];
-    const translateY = (a - this.vp.height / 2) * this.options[0];
+  calculate() {
+    this.items.forEach((item) => {
+      const a = item.el.getBoundingClientRect().top + item.el.clientHeight / 2;
 
-    this.element.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
-  };
+      const translateX = (a - this.vp.height / 2) * item.x;
+      const translateY = (a - this.vp.height / 2) * item.y;
+
+      item.el.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+    });
+  }
 
   static getViewportSize() {
     return {
@@ -77,3 +95,5 @@ export default class Parallax {
   //   };
   // }
 }
+
+export default new Parallax();

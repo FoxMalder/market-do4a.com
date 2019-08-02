@@ -3,6 +3,7 @@
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
+@import 'mixins';
 
 //body {
 //  background: url("../img/rm/franchise-320.png") center top no-repeat;
@@ -319,6 +320,7 @@ p,
     justify-content: center;
     //margin-left: 50%;
     //transform: translateX(-50%);
+    //transition: transform .3s;
   }
 
   &__item {
@@ -359,7 +361,7 @@ p,
   height: 500px;
   padding-top: 32px;
   overflow: hidden;
-  background: url('../img/franchise/f-hero-bg.jpg') no-repeat center;
+  background: url('../img/franchise/f-hero-bg-mobile.jpg') no-repeat center;
   background-size: cover;
   color: #fff;
 
@@ -384,6 +386,12 @@ p,
   @include media-breakpoint-up(md) {
     height: 600px;
     padding-top: 57px;
+
+    background-image: url('../img/franchise/f-hero-bg.jpg');
+
+    @media (min-resolution: 1.5dppx) {
+      background-image: url('../img/franchise/f-hero-bg_2x.jpg');
+    }
   }
 
   @include media-breakpoint-up(xl) {
@@ -391,12 +399,8 @@ p,
     padding-top: 91px;
   }
 
-  @media (min-resolution: 1.5dppx) {
-    background-image: url('../img/franchise/f-hero-bg_2x.jpg');
-  }
-
   &__video {
-    //display: none;
+    display: none;
     position: absolute;
     z-index: 1;
     top: 0;
@@ -404,9 +408,9 @@ p,
     width: 100%;
     height: 100%;
     object-fit: cover;
-    //@include media-breakpoint-up(md) {
-    //  display: block;
-    //}
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
   }
 
   &__overlay {
@@ -416,8 +420,12 @@ p,
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.6;
+    opacity: 0.7;
     background: #101010;
+
+    @include media-breakpoint-up(md) {
+      opacity: 0.6;
+    }
   }
 
   &__inner {
@@ -787,6 +795,8 @@ p,
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-backface-visibility: hidden;
+    outline: 1px solid transparent;
     transition: all .3s ease;
     color: #fff;
 
@@ -1085,20 +1095,20 @@ p,
     }
   }
 
-  &__img {
-    width: 548.3px;
-    height: 466.49px;
-    margin-bottom: 0;
-    background: url("../img/franchise/top.png") center no-repeat;
-    background-size: cover;
-
-    @media (min-resolution: 1.5dppx) {
-      background-image: url('../img/franchise/top_2x.png');
-    }
-    @include media-breakpoint-up(md) {
-      @include skew-revert(837px, 487px, 9deg);
-    }
-  }
+  //&__img {
+  //  width: 548.3px;
+  //  height: 466.49px;
+  //  margin-bottom: 0;
+  //  background: url("../img/franchise/top.png") center no-repeat;
+  //  background-size: cover;
+  //
+  //  @media (min-resolution: 1.5dppx) {
+  //    background-image: url('../img/franchise/top_2x.png');
+  //  }
+  //  @include media-breakpoint-up(md) {
+  //    @include skew-revert(837px, 487px, 9deg);
+  //  }
+  //}
 }
 
 .f-top30 {
@@ -2632,6 +2642,7 @@ p,
     overflow: hidden;
     transform: $skew;
     transform-origin: bottom;
+    outline: 1px solid transparent;
     -webkit-backface-visibility: hidden;
     transition: all .3s ease-in-out;
     background-color: #fff;

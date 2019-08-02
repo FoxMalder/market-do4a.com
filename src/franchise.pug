@@ -214,13 +214,13 @@ block wrapper
                 .f-horizontal-gallery__wrapper
                     .f-horizontal-gallery__item
                         img.f-horizontal-gallery__img(
-                            src=require('./images/photo-cards.jpg'),
-                            srcset=require('./images/photo-cards_2x.jpg') + ' 2x'
+                            src=require('./images/photo-team.jpg'),
+                            srcset=require('./images/photo-team_2x.jpg') + ' 2x'
                         )
                     .f-horizontal-gallery__item
                         img.f-horizontal-gallery__img(
-                            src=require('./images/photo-team.jpg'),
-                            srcset=require('./images/photo-team_2x.jpg') + ' 2x'
+                            src=require('./images/photo-team-2.jpg'),
+                            srcset=require('./images/photo-team-2_2x.jpg') + ' 2x'
                         )
                     .f-horizontal-gallery__item
                         img.f-horizontal-gallery__img(
@@ -592,8 +592,8 @@ block wrapper
                 .f-horizontal-gallery__wrapper
                     .f-horizontal-gallery__item
                         img.f-horizontal-gallery__img(
-                            src=require('./images/photo-cards.jpg'),
-                            srcset=require('./images/photo-cards_2x.jpg') + ' 2x'
+                            src=require('./images/photo-worker-1.jpg'),
+                            srcset=require('./images/photo-worker-1_2x.jpg') + ' 2x'
                         )
                     .f-horizontal-gallery__item
                         img.f-horizontal-gallery__img(
@@ -602,8 +602,8 @@ block wrapper
                         )
                     .f-horizontal-gallery__item
                         img.f-horizontal-gallery__img(
-                            src=require('./images/photo-store.jpg'),
-                            srcset=require('./images/photo-store_2x.jpg') + ' 2x'
+                            src=require('./images/photo-worker-2.jpg'),
+                            srcset=require('./images/photo-worker-2_2x.jpg') + ' 2x'
                         )
 
 
@@ -706,7 +706,11 @@ block wrapper
             .f-section-partnership__list
                 ul.f-section-partnership__wrapper
                     li.f-section-partnership__col#mini
-                        div.f-program-item
+                        a.f-program-item(
+                            data-fancybox
+                            href="#get-program-info"
+                            data-js-ask-more-info="программа: mini market"
+                        )
                             .f-program-item__body
                                 h3.f-program-item__title mini market
                                 p.f-program-item__subtitle Магазин до 25 м<sup>2</sup>
@@ -733,7 +737,11 @@ block wrapper
                                     data-js-ask-more-info="программа: mini market"
                                 ) Узнать детали
                     li.f-section-partnership__col#super
-                        div.f-program-item
+                        a.f-program-item(
+                            data-fancybox
+                            href="#get-program-info"
+                            data-js-ask-more-info="программа: super market"
+                        )
                             .f-program-item__body
                                 h3.f-program-item__title super market
                                 p.f-program-item__subtitle Магазин до 25 м<sup>2</sup>
@@ -760,7 +768,11 @@ block wrapper
                                     data-js-ask-more-info="программа: super market"
                                 ) Узнать детали
                     li.f-section-partnership__col#hyper
-                        div.f-program-item
+                        a.f-program-item(
+                            data-fancybox
+                            href="#get-program-info"
+                            data-js-ask-more-info="программа: hyper market"
+                        )
                             .f-program-item__body
                                 h3.f-program-item__title hyper market
                                 p.f-program-item__subtitle Магазин до 25 м<sup>2</sup>

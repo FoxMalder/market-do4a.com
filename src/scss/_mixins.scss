@@ -1,0 +1,223 @@
+@mixin mre-height-block($sh-fontsize, $sh-desiredheight, $line-height: 1.5, $mre-border-width: 0, $rem-mode: false) {
+
+  $mre-border-width-unit: unit($mre-border-width);
+  $mre-border-width-value: parseInt($mre-border-width) !default;
+
+  $sh-fontbase: 16;
+
+  $sh-fontunit: unit($sh-fontsize);
+  $sh-fontvalue: parseInt($sh-fontsize) !default;
+
+  $sh-heightunit: unit($sh-desiredheight);
+  $sh-heightvalue: parseInt($sh-desiredheight) !default;
+
+  $mre-line-unit: unit($line-height);
+  $mre-line-value: parseInt($line-height) !default;
+
+
+  // If rems are enforced
+  @if $rem-mode == false {
+    @if $mre-line-unit != '' and $mre-line-unit == 'rem' {
+      $mre-line-value: $mre-line-value * $sh-fontbase;
+    }
+
+    @if $mre-border-width-unit == 'rem' {
+      $mre-border-width-value: $mre-border-width-value * $sh-fontbase;
+    }
+
+    // If the font size is in rems
+    @if $sh-fontunit == 'rem' {
+      $sh-fontvalue: $sh-fontvalue * $sh-fontbase;
+    }
+    // If the height is in rems
+    @if $sh-heightunit == 'rem' {
+      $sh-heightvalue: $sh-heightvalue * $sh-fontbase;
+    }
+  } @else {
+    @if $mre-line-unit != '' and $mre-line-unit != 'rem' {
+      $mre-line-value: $mre-line-value/$sh-fontbase;
+    }
+
+    // If the font size is in px
+    @if $sh-fontunit != 'rem' {
+      $sh-fontvalue: $sh-fontvalue/$sh-fontbase;
+    }
+
+    // If the height is in px
+    @if $sh-heightunit != 'rem' and $sh-heightunit != false {
+      $sh-heightvalue: $sh-heightvalue/$sh-fontbase;
+    }
+
+    // If the border is in px
+    @if $mre-border-width-unit != 'rem' and $sh-heightunit != false {
+      $mre-border-width-value: $mre-border-width-value/$sh-fontbase;
+    }
+  }
+
+  $sh-lineheight: 0;
+  $sh-lineheightrealised: 0;
+
+  @if $mre-line-unit != '' {
+    $sh-lineheightrealised: $mre-line-value;
+    $sh-lineheight: decimal-round($mre-line-value / $sh-fontvalue, 3, ceil);
+  } @else {
+    $sh-lineheight: $mre-line-value;
+    $sh-lineheightrealised: $sh-fontvalue * $mre-line-value;
+  }
+
+  // Set the offset to 0 and override if a height is set
+  $sh-offset: 0 !default;
+
+  @if $sh-heightunit != false {
+
+    // Calculate the remaining space available and halve it
+    $sh-offset: ($sh-heightvalue - $sh-lineheightrealised)/2 - $mre-border-width-value;
+
+  }
+
+  //@include font-size()
+
+  font-size: if($rem-mode, $sh-fontvalue + rem, $sh-fontvalue * 1px);
+  line-height: $sh-lineheight;
+
+  // Only add padding if the offset is truthy
+  @if $sh-offset > 0 {
+
+    // Determine whether rems or pixels
+    $vpadding: if($rem-mode, $sh-offset + rem, $sh-offset * 1px);
+    padding-bottom: $vpadding;
+    padding-top: $vpadding;
+  }
+
+}
+
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+  $padding: unquote(( $y / $x ) * 100 + '%');
+  @if $pseudo {
+    &::before {
+      @include pseudo($pos: relative);
+      width: 100%;
+      padding-top: $padding;
+    }
+  } @else {
+    padding-top: $padding;
+  }
+}
+
+
+@mixin skew-revert($w, $h, $angle, $cover: true) {
+  $scale: (1 + tan($angle) * $h / $w);
+  @if $cover {
+    object-fit: cover;
+  }
+  width: $w;
+  height: $h;
+  transform: matrix($scale, 0, tan($angle), if($cover, $scale, 1), 0, 0);
+}
+
+@mixin skew-cover-auto-height($w, $h, $angle) {
+  $scale: (1 + tan($angle) * $h / $w);
+  width: $w;
+  min-height: $h;
+  //max-width: none;
+  max-height: none;
+  transform: matrix($scale, 0, tan($angle), $scale, 0, 0);
+}
+
+@mixin letter-spacing($unit, $return: 'em', $base: '16') {
+  @if $return == 'em' {
+    letter-spacing: unquote(($unit) / 1000 + 'em');
+  } @else {
+    letter-spacing: unquote(($unit * $base) / 1000 + 'px');
+  }
+}
+
+@mixin dev() {
+  $dev-mode: false !default;
+
+  @if $dev-mode {
+    @content;
+  }
+}
+
+@mixin title {
+  font: {
+    family: $font-family-bender;
+    style: italic;
+    weight: 900;
+  }
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+@mixin make-font-inter {
+  font-family: $font-family-inter-ui;
+  @supports (font-variation-settings: normal) {
+    font-family: $font-family-inter-ui-var;
+  }
+}
+
+@mixin button-variant($background, $border, $hover-background: darken($background, 7.5%), $hover-border: darken($border, 10%), $active-background: darken($background, 10%), $active-border: darken($border, 12.5%)) {
+  color: color-yiq($background);
+  @include gradient-bg($background);
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  @include hover {
+    color: color-yiq($hover-background);
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+  }
+
+  //&:focus,
+  //&.focus {
+  //  // Avoid using mixin so we can pass custom focus shadow properly
+  //  @if $enable-shadows {
+  //    box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+  //  } @else {
+  //    box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+  //  }
+  //}
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    color: rgba(color-yiq($background), 0.6);
+    background-color: $background;
+    border-color: $border;
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+    .btn-icon {
+      color: color-yiq($background);
+    }
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    color: color-yiq($active-background);
+    box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+    background-color: $active-background;
+    border-color: $active-border;
+    @if $enable-gradients {
+      background-image: none; // Remove the gradient for the pressed/active state
+    }
+  }
+}
+
+%button-reset {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+

@@ -87,7 +87,7 @@ class Menu {
     document.body.style.overflow = 'hidden';
 
     this.el.classList.add('active');
-    Array.prototype.forEach.call(this.controls, item => item.classList.add('active'));
+    [].forEach.call(this.controls, item => item.classList.add('active'));
 
     const offsetTop = window.app.Header.header.fixedTargets.getBoundingClientRect().top;
 
@@ -104,7 +104,7 @@ class Menu {
     document.body.style.overflow = '';
 
     this.el.classList.remove('active');
-    Array.prototype.forEach.call(this.controls, item => item.classList.remove('active'));
+    [].forEach.call(this.controls, item => item.classList.remove('active'));
 
     this.isOpened = false;
   }

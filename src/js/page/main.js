@@ -27,8 +27,8 @@ export default class MainPage {
 
     if (document.documentElement.clientWidth >= 768) {
       [...document.querySelectorAll('.arnold')].forEach((el) => {
-        new Parallax(el.querySelector('.arnold__bg'), [-0.08, 0]);
-        new Parallax(el.querySelector('.arnold__img'), [0.08, 0]);
+        Parallax.add(el.querySelector('.arnold__bg'), { y: -0.08, x: 0 });
+        Parallax.add(el.querySelector('.arnold__img'), { y: 0.08, x: 0 });
       });
 
       MainPage.initMaps();

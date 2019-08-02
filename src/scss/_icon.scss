@@ -132,6 +132,7 @@
     width: 1em;
     height: 1em;
     display: inline-block;
+    vertical-align: -0.1em;
   }
 }
 
@@ -143,6 +144,7 @@
     width: 1em;
     height: 1em;
     display: inline-block;
+    vertical-align: -0.1em;
   }
 }
 
@@ -154,5 +156,30 @@
     width: 1em;
     height: 1em;
     display: inline-block;
+    vertical-align: -0.1em;
+  }
+}
+
+.icon-clock {
+  &::before {
+    content: '';
+    background: url("../img/clock.svg") center no-repeat;
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.1em;
+  }
+}
+
+.icon-done {
+  &::before {
+    content: '';
+    background: url("../img/done.svg") center no-repeat;
+    background-size: contain;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.1em;
   }
 }

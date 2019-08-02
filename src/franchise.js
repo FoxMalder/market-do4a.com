@@ -1,4 +1,5 @@
 import './js/common';
+
 import enableInlineVideo from 'iphone-inline-video';
 import AOS from 'aos';
 
@@ -6,7 +7,12 @@ import 'aos/dist/aos.css';
 import './scss/main.scss';
 import './scss/franchise.scss';
 import Sticky from 'sticky-js';
-import { Mousewheel, Scrollbar, Swiper } from 'swiper/dist/js/swiper.esm';
+import {
+  Mousewheel,
+  Scrollbar,
+  Swiper,
+} from 'swiper/dist/js/swiper.esm';
+
 import Parallax from './js/modules/Parallax';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -129,10 +135,6 @@ function initProgramList() {
     console.error(e);
   }
 
-  // $('.f-section-partnership__list').on('scroll', (event) => {
-  //   event.currentTarget
-  // });
-
   $('.f-section-partnership__tab-link').on('click', (event) => {
     event.preventDefault();
     const $this = $(event.currentTarget);
@@ -147,14 +149,36 @@ function initProgramList() {
         (programListEl.scrollLeft + $target.position().left - $('.f-section-partnership__title').offset().left),
       ),
     });
-
   });
 
 
+  $('.f-program-item[data-fancybox]').fancybox({
+    afterLoad(instance, slide) {
+      slide.$content
+        .find('.f-modal-target')
+        .append('<div class="f-program-item"></div>')
+        .children()
+        .append(slide.opts.$orig.children().clone());
+      slide.$content
+        .find('input#js-ask-more-info')
+        .val(slide.opts.$orig.data('js-ask-more-info') || '');
+    },
+    afterClose(instance, slide) {
+      slide.$content.find('.f-modal-target').empty();
+      slide.$content.find('input#js-ask-more-info').val('');
+    },
+  });
+
   $('.f-program-item__button[data-fancybox]').fancybox({
     afterLoad(instance, slide) {
-      slide.$content.find('.f-modal-target').append(slide.opts.$orig.parents('.f-program-item').clone());
-      slide.$content.find('input#js-ask-more-info').val(slide.opts.$orig.data('js-ask-more-info') || '');
+      slide.$content
+        .find('.f-modal-target')
+        .append('<div class="f-program-item"></div>')
+        .children()
+        .append(slide.opts.$orig.parents('.f-program-item').children().clone());
+      slide.$content
+        .find('input#js-ask-more-info')
+        .val(slide.opts.$orig.data('js-ask-more-info') || '');
     },
     afterClose(instance, slide) {
       slide.$content.find('.f-modal-target').empty();
@@ -221,7 +245,7 @@ $(() => {
     setTimeout(() => {
       $block.animate({
         scrollTop: $top30TargetRow.position().top - $block.height() / 2,
-      }, 2000, () => {
+      }, 2000, 'swing', () => {
         $top30TargetRow.addClass('active');
       });
     }, 200);
@@ -230,11 +254,17 @@ $(() => {
   $('.f-section-hero').addClass('animate');
 
   [].forEach.call(document.querySelectorAll('.f-horizontal-gallery__wrapper'), (el) => {
-    new Parallax(el, [0, -0.2]);
+    Parallax.add(el, {
+      y: 0,
+      x: -0.2,
+    });
   });
 
   if (document.documentElement.clientWidth >= 768) {
-    new Parallax(document.querySelector('.f-section-video__title'), [-0.08, 0]);
+    Parallax.add(document.querySelector('.f-section-video__title'), {
+      y: -0.08,
+      x: 0,
+    });
     initStarSlider();
   }
 });

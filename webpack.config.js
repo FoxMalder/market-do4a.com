@@ -240,12 +240,14 @@ const devConfig = {
       },
       {
         test: /\.(gif|png|jpg|jpeg|svg)$/,
+        exclude: /iconfont.svg/,
         use: [
           { loader: 'file-loader', options: { name: '[name].[ext]' } },
         ],
       },
       {
-        test: /\.(eot|ttf|woff|woff2)$/,
+        test: /\.(svg|eot|ttf|woff|woff2)$/,
+        include: path.resolve(__dirname, 'src/fonts'),
         use: [
           { loader: 'file-loader', options: { name: '[name].[ext]' } },
         ],
@@ -301,7 +303,7 @@ const prodConfig = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.m?js$/,

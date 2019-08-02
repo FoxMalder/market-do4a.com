@@ -192,7 +192,6 @@ h6 {
 }
 
 
-
 $input-height: 62px;
 $input-font-size: 16px;
 $input-line-height: 1.5;
@@ -405,14 +404,14 @@ textarea.input-text {
 .btn {
   //display: inline-block;
   display: inline-flex;
+  position: relative;
   align-items: center;
   justify-content: center;
-  position: relative;
 
+  height: 60px;
   padding: $btn-padding-y-sm $btn-padding-x-sm;
   border: $btn-border-width solid transparent;
   background-color: transparent;
-  height: 60px;
 
   color: #000;
   font-family: $btn-font-family;
@@ -548,7 +547,7 @@ textarea.input-text {
 
 .btn-green {
   //@include button-variant(#80c627, #80c627);
-  @include button-variant(#7FC527, #7FC527);
+  @include button-variant(#7fc527, #7fc527);
   //color: #fff;
   //background-color: #80c627;
   //border-color: #80c627;
@@ -765,16 +764,7 @@ textarea.input-text {
     }
   }
 
-  &.active {
-    .input-field {
-      &__label {
-        transform: translateY(-50%) scale(.625);
-      }
-
-      &__input {
-
-      }
-    }
+  &_focused {
   }
 
   &__label {
@@ -793,6 +783,10 @@ textarea.input-text {
     cursor: text;
     pointer-events: none;
     will-change: transform;
+
+    &_active {
+      transform: translateY(-50%) scale(.625);
+    }
   }
 
   &__input {
