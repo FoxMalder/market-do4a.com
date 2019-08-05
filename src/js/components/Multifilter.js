@@ -224,8 +224,7 @@ export class CheckboxFilter {
         checked: input.checked, // true, если активен
         available: !input.disabled, // true, если в наличии
         parent: input.dataset.parentId, // Наследование значения (если есть)
-        hidden: input.style.display === 'none' && !input.checked, // Визуально скрыт, показать, если вдруг будет активен
-        filtered: false,
+        hidden: input.parentElement.style.display === 'none' && !input.checked, // Визуально скрыт, показать, если вдруг будет активен
       });
     });
 

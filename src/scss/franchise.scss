@@ -20,6 +20,9 @@
 //  }
 //}
 
+body {
+  background-color: #101010;
+}
 
 .f-modal-target {
   display: none;
@@ -2643,9 +2646,14 @@ p,
     transform: $skew;
     transform-origin: bottom;
     outline: 1px solid transparent;
-    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-clip: content-box;
+    //-webkit-backface-visibility: initial;
+    //-webkit-transform-style: preserve-3d;
+    //-webkit-perspective: 1000;
     transition: all .3s ease-in-out;
-    background-color: #fff;
+    //background-color: #fff;
+    background-color: #101010;
     box-shadow: 13px 13px 0 #101010;
 
     @include media-breakpoint-up(md) {

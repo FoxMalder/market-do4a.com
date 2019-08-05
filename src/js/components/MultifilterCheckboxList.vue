@@ -5,7 +5,7 @@
     </div>
     <MultifilterCheckbox
             v-for="item in availableItems" :key="item.id"
-            v-show="!item.hidden && !item.filtered"
+            v-show="!item.hidden"
             v-model="item.checked"
             :name="item.name"
             :disabled="false"
@@ -13,13 +13,13 @@
             @change="$emit('change', item)"
     >{{item.label}}</MultifilterCheckbox>
     
-    <div class="multifilter-delimiter" v-if="visibleNotAvailableCount">
+    <div class="multifilter-delimiter" v-if="visibleNotAvailableItems.length">
       <span class="multifilter-delimiter__text">Нет в наличии</span>
     </div>
     
     <MultifilterCheckbox
             v-for="item in notAvailableItems" :key="item.id"
-            v-show="!item.hidden && !item.filtered"
+            v-show="!item.hidden"
             v-model="item.checked"
             :name="item.name"
             :disabled="!item.checked"
@@ -53,33 +53,21 @@
         searchQuery: '',
       }
     },
-    watch: {
-      searchQuery() {
-        if (this.searchQuery) {
-          this.items.forEach((item) => {
-            item.filtered = item.label.toLowerCase().indexOf(this.searchQuery.toLowerCase()) === -1;
-          })
-        } else {
-          this.items.forEach((item) => {
-            item.filtered = false;
-          })
-        }
-      },
-    },
-    // methods: {
-    //   onChange(item) {
-    //     this.$store.dispatch('filters/filterChange');
-    //   },
-    // },
     computed: {
+      filtredItems() {
+        return this.items.map(item => ({
+          ...item,
+          hidden: item.hidden || (this.searchQuery && item.label.toLowerCase().indexOf(this.searchQuery.toLowerCase()) === -1),
+        }))
+      },
       availableItems() {
-        return this.items.filter(item => item.available)
+        return this.filtredItems.filter(item => item.available)
       },
       notAvailableItems() {
-        return this.items.filter(item => !item.available)
+        return this.filtredItems.filter(item => !item.available)
       },
-      visibleNotAvailableCount() {
-        return this.items.filter(item => !item.available && !item.filtered).length
+      visibleNotAvailableItems() {
+        return this.notAvailableItems.filter(item => !item.hidden)
       },
     }
   }
