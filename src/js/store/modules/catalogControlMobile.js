@@ -53,6 +53,9 @@ const getters = {
     if (state.contentType === 'checkbox') {
       return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length > 0;
     }
+    // if (state.isParent) {
+    //   return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length > 0;
+    // }
     return true;
   },
 };

@@ -18,6 +18,14 @@ const getters = {
 
 // actions
 const actions = {
+  resetAll({ state, commit }) {
+    Object.keys(state.filters).forEach((key) => {
+      if (state.filters[key].type === 'checkbox') {
+        commit('RESET_CHECKBOX_BY_NAME', { container: 'filters', name: key });
+      }
+    });
+  },
+
   filterReset({ commit }, { type, container, name }) {
     if (type === 'checkbox') {
       commit('RESET_CHECKBOX_BY_NAME', { container, name });

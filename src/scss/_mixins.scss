@@ -189,6 +189,7 @@
     @if $enable-gradients {
       background-image: none;
     }
+
     .btn-icon {
       color: color-yiq($background);
     }
@@ -206,6 +207,71 @@
     }
   }
 }
+
+//@mixin n-hover-button() {
+//
+//}
+
+@mixin n-button-solid-variant(
+  $background,
+  $color: color-yiq($background),
+  $hover-background: darken($background, 7.5%),
+  $hover-color: color-yiq($hover-background),
+  $active-background: darken($background, 10%),
+  $active-color: color-yiq($active-background),
+  $disabled-background: $background,
+  $disabled-color: rgba($color, 0.4)
+) {
+  $border: $background;
+  $hover-border: $hover-background;
+  $active-border: $active-background;
+
+
+  color: $color;
+  @include gradient-bg($background);
+  border-color: $border;
+  @include box-shadow($btn-box-shadow);
+
+  @include hover {
+    color: $hover-color;
+    @include gradient-bg($hover-background);
+    border-color: $hover-border;
+  }
+
+  //&:focus,
+  //&.focus {
+  //  // Avoid using mixin so we can pass custom focus shadow properly
+  //  @if $enable-shadows {
+  //    box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+  //  } @else {
+  //    box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+  //  }
+  //}
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    color: $disabled-color;
+    background-color: $background;
+    border-color: $border;
+    // Remove CSS gradients if they're enabled
+    @if $enable-gradients {
+      background-image: none;
+    }
+  }
+
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active {
+    color: $active-color;
+    box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+    background-color: $active-background;
+    border-color: $active-border;
+    @if $enable-gradients {
+      background-image: none; // Remove the gradient for the pressed/active state
+    }
+  }
+}
+
 
 %button-reset {
   padding: 0;
