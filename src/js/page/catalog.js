@@ -220,9 +220,7 @@ export default class CatalogControl {
 
   onReset = (event) => {
     event.preventDefault();
-    store.dispatch('filters/resetAll');
-
-    this.update();
+    store.dispatch('filters/resetAll', this.update);
   };
 
   // /**

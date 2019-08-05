@@ -108,7 +108,9 @@
       });
 
       this.$refs.slider.noUiSlider.on('update', (values, handle) => {
-        this[handle ? 'maxRange' : 'minRange'] = parseInt(values[handle]);
+        const t = parseInt(values[handle]);
+        this[handle ? 'maxRange' : 'minRange']
+          = (t !== this.slider[handle ? 'priceMax' : 'priceMin']) ? t : '';
       });
 
       this.$refs.slider.noUiSlider.on('set', () => {
@@ -129,12 +131,10 @@
         this.$refs.slider.noUiSlider.reset();
         this.callback = true;
       });
-      
+
       // this.rangeEl.noUiSlider.on('set', this.onChange, 100);
     },
-    methods: {
-    
-    }
+    methods: {}
   }
 </script>
 
