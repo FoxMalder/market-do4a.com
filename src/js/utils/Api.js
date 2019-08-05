@@ -15,7 +15,7 @@ const Api = {
       // return new Promise((resolve, reject) => {
       //   resolve([111, 2345]);
       // })
-      return Utils.sendRequest(`/ajax/favorite/add/${id}`)
+      return Utils.sendRequest(`/ajax/favorite/add/${id}/`)
         .then((array) => {
           const widgetEvent = new CustomEvent('favorites', {
             bubbles: true,
@@ -35,7 +35,7 @@ const Api = {
       // return new Promise((resolve, reject) => {
       //   resolve([11, 1234, 234]);
       // })
-      return Utils.sendRequest(`/ajax/favorite/delete/${id}`)
+      return Utils.sendRequest(`/ajax/favorite/delete/${id}/`)
         .then((array) => {
           const widgetEvent = new CustomEvent('favorites', {
             bubbles: true,
@@ -72,6 +72,38 @@ const Api = {
 
       return promise;
     },
+  },
+  catalog: {
+    send(url, formData, page = 1) {
+      formData.append('page', page.toString());
+
+      if (global.demo) {
+        console.log(Object.fromEntries(formData));
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            fetch(url)
+              .then(response => response.json())
+              .then((dataJson) => {
+                resolve(dataJson.data);
+              });
+          }, 500);
+        });
+      }
+
+      return Utils.sendRequest(url, {
+        method: 'post',
+        body: formData,
+      });
+    },
+    // reload(url, formData) {
+    //   return Utils.sendRequest(url, {
+    //     method: 'post',
+    //     body: formData,
+    //   });
+    // },
+    // nextPage(url, formData, page) {
+    //
+    // }
   },
 };
 

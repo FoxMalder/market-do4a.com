@@ -288,7 +288,8 @@
       }
 
       .p-control-options__label {
-        box-shadow: 0 0 0 3px $main-color inset;
+        //box-shadow: 0 0 0 3px $main-color inset;
+        border-color: $main-color;
       }
     }
   }
@@ -305,7 +306,8 @@
       }
 
       ~ .p-control-options__label {
-        box-shadow: 0 0 0 3px $main-color inset;
+        //box-shadow: 0 0 0 3px $main-color inset;
+        border-color: $main-color;
       }
     }
 
@@ -328,6 +330,8 @@
     font-style: normal;
     text-align: center;
     cursor: pointer;
+    border: 3px solid transparent;
+    border-bottom: none;
   }
 
   &__tooltip {

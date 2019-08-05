@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import Vue from 'vue/dist/vue.esm';
 
 import Utils from '../utils/utils';
-// import Api from '../utils/Api';
+import Api from '../utils/Api';
 import ProductCard from '../components/ProductCard';
 import {
   Multifilter,
@@ -220,7 +220,9 @@ export default class CatalogControl {
 
   onReset = (event) => {
     event.preventDefault();
-    store.dispatch('filters/resetAll', this.update);
+    store.dispatch('filters/resetAll').then(() => {
+      this.update();
+    });
   };
 
   // /**
@@ -304,16 +306,7 @@ export default class CatalogControl {
 
   // TODO: Вынести в api
   sendRequest(page) {
-    const settings = {
-      method: this.options.method,
-    };
-
-    if (this.options.method.toLowerCase() === 'post') {
-      settings.body = new FormData(this.formEl);
-      settings.body.append('page', page.toString());
-    }
-
-    Utils.sendRequest(this.options.action, settings)
+    Api.catalog.send(this.options.action, new FormData(this.formEl), page)
       .then((data) => {
         this.currentPage = page;
         this.shownCards = (page === 1)
