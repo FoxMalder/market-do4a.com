@@ -469,7 +469,7 @@
               <div class="p-detail__header"><span class="p-detail__reviews">11 отзывов</span><span class="p-detail__category">Комплексный протеин</span><span class="p-detail__country">Страна: <span class="black">США</span></span></div>
               <div class="p-control-options">
                 <div class="p-control-options__wrapper">
-                  <fieldset class="p-control-options__weight"><label class="p-control-options__item"><input class="p-control-options__input" type="radio" name="weight" required>
+                  <div class="p-control-options__weight"><label class="p-control-options__item"><input class="p-control-options__input" type="radio" name="weight" required checked>
                       <div class="p-control-options__label">900 гр.</div>
                     </label><label class="p-control-options__item"><input class="p-control-options__input" type="radio" name="weight" required>
                       <div class="p-control-options__tooltip">
@@ -493,42 +493,49 @@
                     <!--.p-control-options__item.active-->
                     <!--    .p-control-options__tooltip-->
                     <!--    .p-control-options__label Шоколадный-->
-                  </fieldset>
+                  </div>
                   <fieldset class="p-control-select"><button class="p-control-select__header" data-toggle="dropdown">
                       <div class="p-control-select__header-label">Ваниль</div>
-                      <div class="p-control-select__header-availability">Нет в наличии</div>
+                      <div class="p-control-select__header-badge">Доступно 3 вкуса</div>
                     </button>
-                    <div class="p-control-select__list dropdown-menu" role="form"><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required disabled>
+                    <div class="p-control-select__list dropdown-menu" role="form">
+                      <div class="p-control-select__delimiter">
+                        <div class="p-control-select__delimiter-text">В наличии в магазинах</div>
+                      </div><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
                         <div class="p-control-select__label">
                           <div class="p-control-select__value">Ваниль</div>
-                          <div class="p-control-select__availability gray">Нет в наличии</div>
+                          <div class="p-control-select__item-info">Осталось 2 шт.</div>
                         </div>
                       </label><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
                         <div class="p-control-select__label">
                           <div class="p-control-select__value">Шоколадный</div>
-                          <div class="p-control-select__availability green">В наличии</div>
+                          <div class="p-control-select__item-info">Осталось 5 шт.</div>
                         </div>
                       </label><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
                         <div class="p-control-select__label">
                           <div class="p-control-select__value">Персик</div>
-                          <div class="p-control-select__availability">С доставкой</div>
+                          <div class="p-control-select__item-info">Осталось 1 шт.</div>
                         </div>
-                      </label><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
+                      </label>
+                      <div class="p-control-select__delimiter">
+                        <div class="p-control-select__delimiter-text">Доставка с центрального склада</div>
+                      </div><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
                         <div class="p-control-select__label">
                           <div class="p-control-select__value">Клубника</div>
-                          <div class="p-control-select__availability">С доставкой</div>
                         </div>
                       </label><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
                         <div class="p-control-select__label">
                           <div class="p-control-select__value">Шоколадный пирог</div>
-                          <div class="p-control-select__availability green">В наличии</div>
                         </div>
-                      </label><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required>
+                      </label>
+                      <div class="p-control-select__delimiter">
+                        <div class="p-control-select__delimiter-text">Нет в наличии</div>
+                      </div><label class="p-control-select__item"><input class="p-control-select__input" type="radio" name="type" required disabled>
                         <div class="p-control-select__label">
                           <div class="p-control-select__value">Кремовое мороженное</div>
-                          <div class="p-control-select__availability green">В наличии</div>
                         </div>
-                      </label></div>
+                      </label>
+                    </div>
                   </fieldset>
                 </div>
               </div>
@@ -541,7 +548,8 @@
                 </div>
                 <div class="p-control-fixed">
                   <div class="p-control-counter">
-                    <div class="p-control-counter__title">Количество</div><button class="btn btn-white p-control-counter__minus">-</button><input class="input-text p-control-counter__input" value="1"><button class="btn btn-white p-control-counter__plus">+</button>
+                    <div class="p-control-counter__title">Количество</div>
+                    <div class="p-control-counter__tooltip">Часть товара будет доставлена с центрального склада</div><button class="btn btn-white p-control-counter__decrement">-</button><input class="input-text p-control-counter__input" value="1" type="number" min="1" max="5"><button class="btn btn-white p-control-counter__increment">+</button>
                   </div><button class="btn btn-red p-control-fixed__add-to-cart" data-toggle="product.cart" data-options="1132"><svg class="btn-icon p-control-fixed__icon" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M4.81034 2.95034H8.97929C9.36412 2.95034 9.68481 3.27103 9.68481 3.65586C9.68481 4.04068 9.36412 4.42551 8.97929 4.42551H5.06689L6.54206 12.9558H18.7282L20.2034 4.42551H16.291C15.9062 4.42551 15.5855 4.04068 15.5855 3.65586C15.5855 3.27103 15.9062 2.95034 16.291 2.95034H21.1013C21.5503 2.95034 21.871 3.33517 21.8069 3.84827L20.011 13.7896C19.9469 14.1745 19.6262 14.431 19.2413 14.431L5.96482 14.3669C5.57999 14.3669 5.32344 14.1103 5.19516 13.7896L3.07862 1.47517H0.705516C0.320689 1.47517 0 1.15448 0 0.705516C0 0.320689 0.320689 0 0.705516 0H3.65586C4.04068 0 4.29723 0.256551 4.36137 0.57724L4.81034 2.95034ZM11.8655 1.21862C11.8655 0.833791 12.2503 0.448965 12.6351 0.448965C13.02 0.448965 13.3407 0.833791 13.3407 1.21862V7.50412L14.3027 6.54206C14.6234 6.28551 15.0724 6.28551 15.3289 6.54206C15.6496 6.86275 15.6496 7.31171 15.3289 7.56826L13.1483 9.81308C13.02 9.94136 12.8276 10.0055 12.6351 10.0055C12.4427 10.0055 12.2503 9.94136 12.122 9.81308L9.94136 7.56826C9.62067 7.31171 9.62067 6.86275 9.94136 6.54206C10.1979 6.28551 10.6469 6.28551 10.9676 6.54206L11.8655 7.50412V1.21862ZM8.33792 15.842C9.55653 15.842 10.5827 16.8682 10.5827 18.0869C10.5827 19.2413 9.55653 20.2675 8.33792 20.2675C7.18344 20.2675 6.15723 19.3055 6.15723 18.0869C6.15723 17.4455 6.41378 16.9324 6.79861 16.4834C7.18344 16.0986 7.76068 15.842 8.33792 15.842ZM8.33792 17.3172C8.1455 17.3172 7.95309 17.3813 7.82481 17.5738C7.69654 17.702 7.6324 17.8303 7.6324 18.0869C7.6324 18.4717 7.95309 18.7924 8.33792 18.7924C8.78688 18.7924 9.10757 18.4717 9.10757 18.0869C9.10757 17.6379 8.78688 17.3172 8.33792 17.3172ZM16.8682 15.9062C18.0869 15.9062 19.1131 16.8682 19.1131 18.0869C19.1131 19.3055 18.0869 20.2675 16.8682 20.2675C15.7138 20.2675 14.6876 19.3055 14.6876 18.0869C14.6876 17.4455 14.9441 16.9324 15.3289 16.5476C15.7138 16.0986 16.291 15.9062 16.8682 15.9062ZM16.8682 17.3172C16.6758 17.3172 16.4834 17.4455 16.3551 17.5738C16.2269 17.702 16.1627 17.8944 16.1627 18.0869C16.1627 18.4717 16.4834 18.7924 16.8682 18.7924C17.3172 18.7924 17.6379 18.4717 17.6379 18.0869C17.6379 17.702 17.3172 17.3172 16.8682 17.3172Z" fill="currentColor" />
                     </svg>
@@ -552,12 +560,15 @@
               <div class="p-detail-delivery">
                 <div class="p-detail-delivery__row"><span class="p-detail-delivery__key">Самовывоз из <a class="text-link" href="#">2 магазинов</a> сегодня</span><span class="p-detail-delivery__value">Бесплатно</span></div>
                 <div class="p-detail-delivery__row"><span class="p-detail-delivery__key">Курьером послезавтра</span><span class="p-detail-delivery__value">Бесплатно от 2 990 ₽</span></div>
-                <div class="p-detail-delivery-info__bottom">Оплата при получении</div>
+                <div class="p-detail-delivery-info__bottom">Оплата картой онлайн
+                  <i class="icon icon-visa"></i>
+                  <i class="icon icon-mastercard"></i>
+                  <i class="icon icon-mir"></i></div>
               </div>
             </div>
             <div class="p-detail__col">
-              <div class="p-collapse">
-                <div class="p-collapse__text">BSN Syntha 6 — это 6 видов белка, отличный вкус и легкая смешиваемость. Многокомпонентная формула BSN Syntha-6 быстро поднимает уровень аминокислот в крови и удерживает его на протяжении долгого времени. Отличный аминокислотный состав и прекрасный вкус — вот за что этот продукт выбирают тысячи людей по всему миру.</div>
+              <!-- Там, где много предполагается много текста - обернуть его в .p-collapse-->
+              <div class="p-collapse">BSN Syntha 6 — это 6 видов белка, отличный вкус и легкая смешиваемость. Многокомпонентная формула BSN Syntha-6 быстро поднимает уровень аминокислот в крови и удерживает его на протяжении долгого времени. Отличный аминокислотный состав и прекрасный вкус — вот за что этот продукт выбирают тысячи людей по всему миру.
                 <!--.p-collapse__button-->
               </div>
             </div>
@@ -567,27 +578,31 @@
       <section class="p-section-description">
         <div class="container">
           <h2 class="p-section-description__title">Описание</h2>
-          <div class="p-section-description__row">
-            <div class="p-section-description__key">Состав</div>
-            <div class="p-section-description__value">
-              <div class="p-collapse">
-                <div class="p-collapse__text">Протеиновая смесь (изолят сывороточного белка, ионозамещенный и микрофильтрованный, ультрафильтрованный сывороточный белковый концентрат) — все источники белка включают концентрированный бета-лактоглобулин, альфа-лактоальбумин, альбумин, иммуноглобулин, гликомакропептиды, лактоферин, лактопероксидазу и другие схожие по строению протеиновые молекулы</div>
-                <div class="p-collapse__button">Развернуть</div>
-              </div>
+          <dl class="p-section-description__list">
+            <div class="p-section-description__row">
+              <dt class="p-section-description__key">Состав</dt>
+              <dd class="p-section-description__value">
+                <!-- Там, где много предполагается много текста - обернуть его в .p-collapse-->
+                <div class="p-collapse">Протеиновая смесь (изолят сывороточного белка, ионозамещенный и микрофильтрованный, ультрафильтрованный сывороточный белковый концентрат) — все источники белка включают концентрированный бета-лактоглобулин, альфа-лактоальбумин, альбумин, иммуноглобулин, гликомакропептиды, лактоферин, лактопероксидазу и другие схожие по строению протеиновые молекулы
+                  <!--.p-collapse__button Развернуть-->
+                </div>
+              </dd>
             </div>
-          </div>
-          <div class="p-section-description__row">
-            <div class="p-section-description__key">Энергетическая ценность</div>
-            <div class="p-section-description__value">120 ккал/400 ккал</div>
-          </div>
-          <div class="p-section-description__row">
-            <div class="p-section-description__key">Питательная ценность</div>
-            <div class="p-section-description__value">Питательная ценность</div>
-          </div>
-          <div class="p-section-description__row">
-            <div class="p-section-description__key">Рекомендации к применению</div>
-            <div class="p-section-description__value">От производителя: Растворите одну- две мерные ложки Matrix в 250-300 мл воды, нежирного молока. Принимайте Matrix два -три раза в день, чтобы восполнить запасы протеина. Помните,что наилучшее время приема- это с утра после пробуждения, после интенсивных тренировок и перед сном.</div>
-          </div>
+            <div class="p-section-description__row">
+              <dt class="p-section-description__key">Энергетическая ценность</dt>
+              <dd class="p-section-description__value">120 ккал/400 ккал</dd>
+            </div>
+            <div class="p-section-description__row">
+              <dt class="p-section-description__key">Питательная ценность</dt>
+              <dd class="p-section-description__value">Питательная ценность</dd>
+            </div>
+            <div class="p-section-description__row">
+              <dt class="p-section-description__key">Рекомендации к применению</dt>
+              <dd class="p-section-description__value">
+                <div class="p-collapse">От производителя: Растворите одну- две мерные ложки Matrix в 250-300 мл воды, нежирного молока. Принимайте Matrix два -три раза в день, чтобы восполнить запасы протеина. Помните,что наилучшее время приема- это с утра после пробуждения, после интенсивных тренировок и перед сном.</div>
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
       <section class="p-section-availability">
@@ -607,14 +622,14 @@
         </div>
         <div class="p-section-availability__row">
           <div class="p-section-availability__inner container">
-            <div class="p-section-availability__col p-section-availability__col_address">
-              <p>ул. Невзоровых, д.63к2</p>
+            <div class="p-section-availability__col p-section-availability__col_address"><a class="p-section-availability__link" href="#store-1">ул. Невзоровых, д.63к2</a>
               <p>за ТЦ «Этажи»</p>
               <p><span class="gray">Открыто:</span> ежедневно, <span class="nowrap">с 10:00 до 22:00</span></p>
             </div>
             <div class="p-section-availability__col p-section-availability__col_stock">
               <div class="p-section-availability__th">Наличие</div>
-              <div class="p-section-availability__td">Мало</div>
+              <div class="p-section-availability__td">Мало<div class="rect-rating red"><i class="rect-rating__item active"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i></div>
+              </div>
             </div>
             <div class="p-section-availability__col p-section-availability__col_pickup">
               <div class="p-section-availability__th">Самовывоз</div>
@@ -626,17 +641,35 @@
               <div class="p-section-availability__td">Почтой за 5-7 дней</div>
             </div>
           </div>
+          <div class="p-section-availability__hidden" id="store-1">
+            <div class="p-store-info">
+              <div class="p-store-info__photo"><img src="images/video-cover.jpg"></div>
+              <div class="p-store-info__store-info">
+                <div class="p-store-info__title">Этот товар можно найти здесь:</div>
+                <div class="p-store-info__address">ул. Невзоровых, д.63к2</div>
+                <div class="p-store-info__timetable">Открыто: ежедневно, с 10:00 до 22:00</div>
+              </div>
+              <div class="p-store-info__quote-info">
+                <div class="p-store-info__worker">
+                  <div class="p-store-info__worker-photo"><img src="images/p-worker.jpg"></div>
+                  <div class="p-store-info__worker-name">Питерцев Александр</div>
+                  <div class="p-store-info__worker-post">Консультант по спортивному питанию в <b class="red">г. Нижний Новгород</b></div>
+                </div>
+                <blockquote class="p-store-info__quote">Сывороточные протеины отлично подходят как при наборе массы, так и при похудении. Ускоряют восстановление и набор чистой мышечной массы</blockquote>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="p-section-availability__row">
           <div class="p-section-availability__inner container">
-            <div class="p-section-availability__col p-section-availability__col_address">
-              <p>ул. Невзоровых, д.63к2</p>
+            <div class="p-section-availability__col p-section-availability__col_address"><a class="p-section-availability__link" href="#store-2">ул. Невзоровых, д.63к2</a>
               <p>за ТЦ «Этажи»</p>
               <p><span class="gray">Открыто:</span> ежедневно, <span class="nowrap">с 10:00 до 22:00</span></p>
             </div>
             <div class="p-section-availability__col p-section-availability__col_stock">
               <div class="p-section-availability__th">Наличие</div>
-              <div class="p-section-availability__td">Мало</div>
+              <div class="p-section-availability__td">Мало<div class="rect-rating orange"><i class="rect-rating__item active"></i><i class="rect-rating__item active"></i><i class="rect-rating__item active"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i></div>
+              </div>
             </div>
             <div class="p-section-availability__col p-section-availability__col_pickup">
               <div class="p-section-availability__th">Самовывоз</div>
@@ -656,7 +689,7 @@
         </div>
         <div class="p-section-similar__inner">
           <div class="p-section-similar__list">
-            <div class="product-card" data-product-id="248">
+            <div class="product-card" data-product-id="240">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey</a>
@@ -688,7 +721,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="249">
+            <div class="product-card" data-product-id="241">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey</a>
@@ -714,7 +747,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="250">
+            <div class="product-card" data-product-id="242">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition</a>
@@ -745,7 +778,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="251">
+            <div class="product-card" data-product-id="243">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Optimum nutrition gold standart whey protein</a>
@@ -775,7 +808,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="252">
+            <div class="product-card" data-product-id="244">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -805,7 +838,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="253">
+            <div class="product-card" data-product-id="245">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -831,7 +864,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="254">
+            <div class="product-card" data-product-id="246">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -860,7 +893,7 @@
                     <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
                   </svg></button></div>
             </div>
-            <div class="product-card" data-product-id="255">
+            <div class="product-card" data-product-id="247">
               <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
                 <div class="product-card__img"><img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара"></div>
                 <div class="product-card__body"><a class="product-card__title stretched-link" href="#" itemprop="name">Заголовок</a>
@@ -897,7 +930,9 @@
             <div class="p-section-reviews__rating"><span class="p-section-reviews__stars"><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star red"></i><i class="i i-star"></i></span><span>Средняя оценка: 4,5</span></div>
           </div>
           <form class="p-section-reviews__field">
-            <div class="input-field"><label class="input-field__label" for="reviews">Оставить свой отзыв</label><textarea class="input-field__input" id="reviews"></textarea><button class="input-field__button btn btn-red" type="submit"></button></div>
+            <div class="input-field"><label class="input-field__label" for="reviews">Оставить свой отзыв</label><textarea class="input-field__input" id="reviews"></textarea><button class="input-field__button btn btn-red" type="submit"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.86372 5.40662C9.90956 5.34708 9.93209 5.27229 9.92694 5.19677C9.92178 5.12124 9.88931 5.05036 9.83582 4.99788C9.78233 4.94541 9.71165 4.91508 9.63748 4.91278C9.56331 4.91049 9.49096 4.93639 9.43445 4.98546L4.06854 9.6435L1.23493 8.52531C1.11167 8.47718 1.00454 8.39395 0.92627 8.28552C0.848003 8.17708 0.801892 8.048 0.793416 7.91361C0.784939 7.77921 0.814454 7.64517 0.878452 7.52739C0.942451 7.40961 1.03824 7.31305 1.15444 7.2492L12.9182 0.525365C13.0106 0.47455 13.1149 0.450302 13.2198 0.455211C13.3247 0.46012 13.4263 0.494001 13.5138 0.553238C13.6013 0.612474 13.6714 0.694843 13.7166 0.791554C13.7618 0.888265 13.7805 0.995686 13.7705 1.10236L12.7386 12.0778C12.7283 12.1904 12.6923 12.2989 12.6337 12.3948C12.575 12.4907 12.4952 12.5713 12.4006 12.6302C12.306 12.6891 12.1992 12.7247 12.0888 12.734C11.9784 12.7434 11.8673 12.7264 11.7645 12.6843L8.31587 11.3218L6.15093 13.3918C6.07103 13.468 5.971 13.5186 5.86321 13.5374C5.75542 13.5561 5.6446 13.5423 5.54446 13.4974C5.44432 13.4526 5.35926 13.3788 5.29978 13.2852C5.24031 13.1916 5.20903 13.0822 5.20983 12.9707V11.345L9.86372 5.40662Z" fill="currentColor" />
+                </svg></button></div>
           </form>
         </div>
         <div class="p-review-item">
@@ -910,7 +945,7 @@
               </div>
               <div class="p-review-item__body">
                 <div class="p-review-item__text">Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!</div>
-                <div class="p-review-item__vote"><button class="btn p-review-item__minus">-</button><span class="p-review-item__minus-num">11</span><button class="btn p-review-item__plus">+</button><span class="p-review-item__plus-num">2</span></div>
+                <div class="p-review-item__vote"><button class="btn p-review-item__down-vote">-</button><span class="p-review-item__down-vote-count">11</span><button class="btn p-review-item__up-vote">+</button><span class="p-review-item__up-vote-count">2</span></div>
               </div>
             </div>
           </div>
@@ -925,7 +960,7 @@
               </div>
               <div class="p-review-item__body">
                 <div class="p-review-item__text">Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!</div>
-                <div class="p-review-item__vote"><button class="btn p-review-item__minus">-</button><span class="p-review-item__minus-num">11</span><button class="btn p-review-item__plus">+</button><span class="p-review-item__plus-num">2</span></div>
+                <div class="p-review-item__vote"><button class="btn p-review-item__down-vote">-</button><span class="p-review-item__down-vote-count">11</span><button class="btn p-review-item__up-vote">+</button><span class="p-review-item__up-vote-count">2</span></div>
               </div>
             </div>
           </div>
@@ -940,7 +975,7 @@
               </div>
               <div class="p-review-item__body">
                 <div class="p-review-item__text">Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!</div>
-                <div class="p-review-item__vote"><button class="btn p-review-item__minus">-</button><span class="p-review-item__minus-num">11</span><button class="btn p-review-item__plus">+</button><span class="p-review-item__plus-num">2</span></div>
+                <div class="p-review-item__vote"><button class="btn p-review-item__down-vote">-</button><span class="p-review-item__down-vote-count">11</span><button class="btn p-review-item__up-vote">+</button><span class="p-review-item__up-vote-count">2</span></div>
               </div>
             </div>
           </div>
@@ -955,10 +990,13 @@
               </div>
               <div class="p-review-item__body">
                 <div class="p-review-item__text">Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!</div>
-                <div class="p-review-item__vote"><button class="btn p-review-item__minus">-</button><span class="p-review-item__minus-num">11</span><button class="btn p-review-item__plus">+</button><span class="p-review-item__plus-num">2</span></div>
+                <div class="p-review-item__vote"><button class="btn p-review-item__down-vote">-</button><span class="p-review-item__down-vote-count">11</span><button class="btn p-review-item__up-vote">+</button><span class="p-review-item__up-vote-count">2</span></div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="load-more-block"><button class="load-more-block__link">Показать еще</button>
+          <div class="load-more-block__value">Показано 24 из 170</div>
         </div>
       </section>
     </article>

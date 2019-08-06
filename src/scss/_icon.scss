@@ -109,7 +109,8 @@
   margin-left: 6px;
   padding: 0;
   border: 0;
-  vertical-align: -2px;
+  //vertical-align: -2px;
+  vertical-align: middle;
   @include sprite('question-mark');
 
   &:focus {

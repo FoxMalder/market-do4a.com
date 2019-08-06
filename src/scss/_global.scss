@@ -139,6 +139,10 @@ h6 {
   color: $main-color;
 }
 
+.orange {
+  color: #F4C82D;
+}
+
 .green {
   color: #80c627;
 }
@@ -1244,5 +1248,20 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 .tab-content {
   > .tab-pane:not(.active) {
     display: none;
+  }
+}
+
+
+.rect-rating {
+  transform: $skew;
+  &__item {
+    display: inline-block;
+    background: #DBDBDB;
+    height: 10px;
+    width: 5px;
+    margin-right: 5px;
+    &.active {
+      background: currentColor;
+    }
   }
 }

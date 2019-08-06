@@ -49,9 +49,9 @@ block wrapper
 
                             .p-control-options
                                 .p-control-options__wrapper
-                                    fieldset.p-control-options__weight
+                                    div.p-control-options__weight
                                         label.p-control-options__item
-                                            input.p-control-options__input(type="radio" name="weight" required=true)
+                                            input.p-control-options__input(type="radio" name="weight" required=true checked=true)
                                             .p-control-options__label 900 гр.
                                         label.p-control-options__item
                                             input.p-control-options__input(type="radio" name="weight" required=true)
@@ -77,38 +77,41 @@ block wrapper
                                     fieldset.p-control-select
                                         button.p-control-select__header(data-toggle="dropdown")
                                             .p-control-select__header-label Ваниль
-                                            .p-control-select__header-availability Нет в наличии
+                                            .p-control-select__header-badge Доступно 3 вкуса
                                         .p-control-select__list.dropdown-menu(role="form")
+                                            .p-control-select__delimiter
+                                                .p-control-select__delimiter-text В наличии в магазинах
                                             label.p-control-select__item
-                                                input.p-control-select__input(type="radio" name="type" required=true disabled=true)
+                                                input.p-control-select__input(type="radio" name="type" required=true)
                                                 .p-control-select__label
                                                     .p-control-select__value Ваниль
-                                                    .p-control-select__availability.gray Нет в наличии
+                                                    .p-control-select__item-info Осталось 2 шт.
                                             label.p-control-select__item
                                                 input.p-control-select__input(type="radio" name="type" required=true)
                                                 .p-control-select__label
                                                     .p-control-select__value Шоколадный
-                                                    .p-control-select__availability.green В наличии
+                                                    .p-control-select__item-info Осталось 5 шт.
                                             label.p-control-select__item
                                                 input.p-control-select__input(type="radio" name="type" required=true)
                                                 .p-control-select__label
                                                     .p-control-select__value Персик
-                                                    .p-control-select__availability С доставкой
+                                                    .p-control-select__item-info Осталось 1 шт.
+                                            .p-control-select__delimiter
+                                                .p-control-select__delimiter-text Доставка с центрального склада
                                             label.p-control-select__item
                                                 input.p-control-select__input(type="radio" name="type" required=true)
                                                 .p-control-select__label
                                                     .p-control-select__value Клубника
-                                                    .p-control-select__availability С доставкой
                                             label.p-control-select__item
                                                 input.p-control-select__input(type="radio" name="type" required=true)
                                                 .p-control-select__label
                                                     .p-control-select__value Шоколадный пирог
-                                                    .p-control-select__availability.green В наличии
+                                            .p-control-select__delimiter
+                                                .p-control-select__delimiter-text Нет в наличии
                                             label.p-control-select__item
-                                                input.p-control-select__input(type="radio" name="type" required=true)
+                                                input.p-control-select__input(type="radio" name="type" required=true disabled=true)
                                                 .p-control-select__label
                                                     .p-control-select__value Кремовое мороженное
-                                                    .p-control-select__availability.green В наличии
 
                             .p-detail__row
                                 .p-price
@@ -128,9 +131,10 @@ block wrapper
                                 .p-control-fixed
                                     .p-control-counter
                                         .p-control-counter__title Количество
-                                        button.btn.btn-white.p-control-counter__minus -
-                                        input.input-text.p-control-counter__input(value='1')
-                                        button.btn.btn-white.p-control-counter__plus +
+                                        .p-control-counter__tooltip Часть товара будет доставлена с центрального склада
+                                        button.btn.btn-white.p-control-counter__decrement -
+                                        input.input-text.p-control-counter__input(value='1' type="number" min="1" max="5")
+                                        button.btn.btn-white.p-control-counter__increment +
                                     button.btn.btn-red.p-control-fixed__add-to-cart(data-toggle="product.cart" data-options="1132")
                                         | <svg class="btn-icon p-control-fixed__icon" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         | <path d="M4.81034 2.95034H8.97929C9.36412 2.95034 9.68481 3.27103 9.68481 3.65586C9.68481 4.04068 9.36412 4.42551 8.97929 4.42551H5.06689L6.54206 12.9558H18.7282L20.2034 4.42551H16.291C15.9062 4.42551 15.5855 4.04068 15.5855 3.65586C15.5855 3.27103 15.9062 2.95034 16.291 2.95034H21.1013C21.5503 2.95034 21.871 3.33517 21.8069 3.84827L20.011 13.7896C19.9469 14.1745 19.6262 14.431 19.2413 14.431L5.96482 14.3669C5.57999 14.3669 5.32344 14.1103 5.19516 13.7896L3.07862 1.47517H0.705516C0.320689 1.47517 0 1.15448 0 0.705516C0 0.320689 0.320689 0 0.705516 0H3.65586C4.04068 0 4.29723 0.256551 4.36137 0.57724L4.81034 2.95034ZM11.8655 1.21862C11.8655 0.833791 12.2503 0.448965 12.6351 0.448965C13.02 0.448965 13.3407 0.833791 13.3407 1.21862V7.50412L14.3027 6.54206C14.6234 6.28551 15.0724 6.28551 15.3289 6.54206C15.6496 6.86275 15.6496 7.31171 15.3289 7.56826L13.1483 9.81308C13.02 9.94136 12.8276 10.0055 12.6351 10.0055C12.4427 10.0055 12.2503 9.94136 12.122 9.81308L9.94136 7.56826C9.62067 7.31171 9.62067 6.86275 9.94136 6.54206C10.1979 6.28551 10.6469 6.28551 10.9676 6.54206L11.8655 7.50412V1.21862ZM8.33792 15.842C9.55653 15.842 10.5827 16.8682 10.5827 18.0869C10.5827 19.2413 9.55653 20.2675 8.33792 20.2675C7.18344 20.2675 6.15723 19.3055 6.15723 18.0869C6.15723 17.4455 6.41378 16.9324 6.79861 16.4834C7.18344 16.0986 7.76068 15.842 8.33792 15.842ZM8.33792 17.3172C8.1455 17.3172 7.95309 17.3813 7.82481 17.5738C7.69654 17.702 7.6324 17.8303 7.6324 18.0869C7.6324 18.4717 7.95309 18.7924 8.33792 18.7924C8.78688 18.7924 9.10757 18.4717 9.10757 18.0869C9.10757 17.6379 8.78688 17.3172 8.33792 17.3172ZM16.8682 15.9062C18.0869 15.9062 19.1131 16.8682 19.1131 18.0869C19.1131 19.3055 18.0869 20.2675 16.8682 20.2675C15.7138 20.2675 14.6876 19.3055 14.6876 18.0869C14.6876 17.4455 14.9441 16.9324 15.3289 16.5476C15.7138 16.0986 16.291 15.9062 16.8682 15.9062ZM16.8682 17.3172C16.6758 17.3172 16.4834 17.4455 16.3551 17.5738C16.2269 17.702 16.1627 17.8944 16.1627 18.0869C16.1627 18.4717 16.4834 18.7924 16.8682 18.7924C17.3172 18.7924 17.6379 18.4717 17.6379 18.0869C17.6379 17.702 17.3172 17.3172 16.8682 17.3172Z" fill="currentColor"/>
@@ -148,31 +152,35 @@ block wrapper
                                     span.p-detail-delivery__key Курьером послезавтра
                                     span.p-detail-delivery__value Бесплатно от 2 990 ₽
                                 .p-detail-delivery-info__bottom
-                                    | Оплата при получении
+                                    | Оплата картой онлайн
+                                    |  <i class="icon icon-visa"></i>
+                                    |  <i class="icon icon-mastercard"></i>
+                                    |  <i class="icon icon-mir"></i>
                         .p-detail__col
-                            .p-collapse
-                                .p-collapse__text
-                                    | BSN Syntha 6 — это 6 видов белка, отличный вкус и легкая смешиваемость. Многокомпонентная формула BSN Syntha-6 быстро поднимает уровень аминокислот в крови и удерживает его на протяжении долгого времени. Отличный аминокислотный состав и прекрасный вкус — вот за что этот продукт выбирают тысячи людей по всему миру.
+                            // Там, где много предполагается много текста - обернуть его в .p-collapse
+                            .p-collapse BSN Syntha 6 — это 6 видов белка, отличный вкус и легкая смешиваемость. Многокомпонентная формула BSN Syntha-6 быстро поднимает уровень аминокислот в крови и удерживает его на протяжении долгого времени. Отличный аминокислотный состав и прекрасный вкус — вот за что этот продукт выбирают тысячи людей по всему миру.
                                 //.p-collapse__button
 
             section.p-section-description
                 .container
                     h2.p-section-description__title Описание
-                    .p-section-description__row
-                        .p-section-description__key Состав
-                        .p-section-description__value
-                            .p-collapse
-                                .p-collapse__text Протеиновая смесь (изолят сывороточного белка, ионозамещенный и микрофильтрованный, ультрафильтрованный сывороточный белковый концентрат) — все источники белка включают концентрированный бета-лактоглобулин, альфа-лактоальбумин, альбумин, иммуноглобулин, гликомакропептиды, лактоферин, лактопероксидазу и другие схожие по строению протеиновые молекулы
-                                .p-collapse__button Развернуть
-                    .p-section-description__row
-                        .p-section-description__key Энергетическая ценность
-                        .p-section-description__value 120 ккал/400 ккал
-                    .p-section-description__row
-                        .p-section-description__key Питательная ценность
-                        .p-section-description__value Питательная ценность
-                    .p-section-description__row
-                        .p-section-description__key Рекомендации к применению
-                        .p-section-description__value От производителя: Растворите одну- две мерные ложки Matrix в 250-300 мл воды, нежирного молока. Принимайте Matrix два -три раза в день, чтобы восполнить запасы протеина. Помните,что наилучшее время приема- это с утра после пробуждения, после интенсивных тренировок и перед сном.
+                    dl.p-section-description__list
+                        .p-section-description__row
+                            dt.p-section-description__key Состав
+                            dd.p-section-description__value
+                                // Там, где много предполагается много текста - обернуть его в .p-collapse
+                                .p-collapse Протеиновая смесь (изолят сывороточного белка, ионозамещенный и микрофильтрованный, ультрафильтрованный сывороточный белковый концентрат) — все источники белка включают концентрированный бета-лактоглобулин, альфа-лактоальбумин, альбумин, иммуноглобулин, гликомакропептиды, лактоферин, лактопероксидазу и другие схожие по строению протеиновые молекулы
+                                    //.p-collapse__button Развернуть
+                        .p-section-description__row
+                            dt.p-section-description__key Энергетическая ценность
+                            dd.p-section-description__value 120 ккал/400 ккал
+                        .p-section-description__row
+                            dt.p-section-description__key Питательная ценность
+                            dd.p-section-description__value Питательная ценность
+                        .p-section-description__row
+                            dt.p-section-description__key Рекомендации к применению
+                            dd.p-section-description__value
+                                .p-collapse От производителя: Растворите одну- две мерные ложки Matrix в 250-300 мл воды, нежирного молока. Принимайте Matrix два -три раза в день, чтобы восполнить запасы протеина. Помните,что наилучшее время приема- это с утра после пробуждения, после интенсивных тренировок и перед сном.
 
             section.p-section-availability
                 .container
@@ -192,12 +200,19 @@ block wrapper
                 .p-section-availability__row
                     .p-section-availability__inner.container
                         .p-section-availability__col.p-section-availability__col_address
-                            p ул. Невзоровых, д.63к2
+                            a.p-section-availability__link(href="#store-1") ул. Невзоровых, д.63к2
                             p за ТЦ «Этажи»
                             p <span class="gray">Открыто:</span> ежедневно, <span class="nowrap">с 10:00 до 22:00</span>
                         .p-section-availability__col.p-section-availability__col_stock
                             .p-section-availability__th Наличие
-                            .p-section-availability__td Мало
+                            .p-section-availability__td
+                                | Мало
+                                .rect-rating.red
+                                    i.rect-rating__item.active
+                                    i.rect-rating__item
+                                    i.rect-rating__item
+                                    i.rect-rating__item
+                                    i.rect-rating__item
                         .p-section-availability__col.p-section-availability__col_pickup
                             .p-section-availability__th Самовывоз
                             .p-section-availability__td Не доступен
@@ -205,15 +220,41 @@ block wrapper
                         .p-section-availability__col.p-section-availability__col_delivery
                             .p-section-availability__th Доставка
                             .p-section-availability__td Почтой за 5-7 дней
+                    .p-section-availability__hidden(id="store-1")
+                        .p-store-info
+                            .p-store-info__photo
+                                img(src=require('./images/video-cover.jpg'))
+                            .p-store-info__store-info
+                                .p-store-info__title Этот товар можно найти здесь:
+                                .p-store-info__address ул. Невзоровых, д.63к2
+                                .p-store-info__timetable Открыто: ежедневно, с 10:00 до 22:00
+                            .p-store-info__quote-info
+                                .p-store-info__worker
+                                    .p-store-info__worker-photo
+                                        img(src=require('./images/p-worker.jpg'))
+                                    .p-store-info__worker-name Питерцев Александр
+                                    .p-store-info__worker-post Консультант по спортивному питанию в <b class="red">г. Нижний Новгород</b>
+                                blockquote.p-store-info__quote Сывороточные протеины отлично подходят как при наборе массы, так и при похудении. Ускоряют восстановление и набор чистой мышечной массы
+
+
+
+
                 .p-section-availability__row
                     .p-section-availability__inner.container
                         .p-section-availability__col.p-section-availability__col_address
-                            p ул. Невзоровых, д.63к2
+                            a.p-section-availability__link(href="#store-2") ул. Невзоровых, д.63к2
                             p за ТЦ «Этажи»
                             p <span class="gray">Открыто:</span> ежедневно, <span class="nowrap">с 10:00 до 22:00</span>
                         .p-section-availability__col.p-section-availability__col_stock
                             .p-section-availability__th Наличие
-                            .p-section-availability__td Мало
+                            .p-section-availability__td
+                                | Мало
+                                .rect-rating.orange
+                                    i.rect-rating__item.active
+                                    i.rect-rating__item.active
+                                    i.rect-rating__item.active
+                                    i.rect-rating__item
+                                    i.rect-rating__item
                         .p-section-availability__col.p-section-availability__col_pickup
                             .p-section-availability__th Самовывоз
                             .p-section-availability__td Не доступен
@@ -340,6 +381,10 @@ block wrapper
                             label.input-field__label(for="reviews") Оставить свой отзыв
                             textarea.input-field__input(id="reviews")
                             button.input-field__button.btn.btn-red(type="submit")
+                                | <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                | <path d="M9.86372 5.40662C9.90956 5.34708 9.93209 5.27229 9.92694 5.19677C9.92178 5.12124 9.88931 5.05036 9.83582 4.99788C9.78233 4.94541 9.71165 4.91508 9.63748 4.91278C9.56331 4.91049 9.49096 4.93639 9.43445 4.98546L4.06854 9.6435L1.23493 8.52531C1.11167 8.47718 1.00454 8.39395 0.92627 8.28552C0.848003 8.17708 0.801892 8.048 0.793416 7.91361C0.784939 7.77921 0.814454 7.64517 0.878452 7.52739C0.942451 7.40961 1.03824 7.31305 1.15444 7.2492L12.9182 0.525365C13.0106 0.47455 13.1149 0.450302 13.2198 0.455211C13.3247 0.46012 13.4263 0.494001 13.5138 0.553238C13.6013 0.612474 13.6714 0.694843 13.7166 0.791554C13.7618 0.888265 13.7805 0.995686 13.7705 1.10236L12.7386 12.0778C12.7283 12.1904 12.6923 12.2989 12.6337 12.3948C12.575 12.4907 12.4952 12.5713 12.4006 12.6302C12.306 12.6891 12.1992 12.7247 12.0888 12.734C11.9784 12.7434 11.8673 12.7264 11.7645 12.6843L8.31587 11.3218L6.15093 13.3918C6.07103 13.468 5.971 13.5186 5.86321 13.5374C5.75542 13.5561 5.6446 13.5423 5.54446 13.4974C5.44432 13.4526 5.35926 13.3788 5.29978 13.2852C5.24031 13.1916 5.20903 13.0822 5.20983 12.9707V11.345L9.86372 5.40662Z" fill="currentColor"/>
+                                | </svg>
+
                 each item in [1, 2, 3, 4]
                     .p-review-item
                         .container
@@ -356,11 +401,13 @@ block wrapper
                                 .p-review-item__body
                                     .p-review-item__text Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!
                                     .p-review-item__vote
-                                        button.btn.p-review-item__minus -
-                                        span.p-review-item__minus-num 11
-                                        button.btn.p-review-item__plus +
-                                        span.p-review-item__plus-num 2
-
+                                        button.btn.p-review-item__down-vote -
+                                        span.p-review-item__down-vote-count 11
+                                        button.btn.p-review-item__up-vote +
+                                        span.p-review-item__up-vote-count 2
+                .load-more-block
+                    button.load-more-block__link Показать еще
+                    .load-more-block__value Показано 24 из 170
 
 
 
