@@ -18,6 +18,7 @@ class Parallax {
   add(element, { x, y }) {
     this.items.push({
       el: element,
+      offset: $(element).offset(),
       x,
       y,
     });
@@ -33,6 +34,10 @@ class Parallax {
 
   onResize = () => {
     this.vp = Parallax.getViewportSize();
+    // this.items.forEach((item) => {
+    //   // item.offset = $(item).offset();
+    //   // item.el.style.transition
+    // });
   };
 
   onScroll = () => {
@@ -55,7 +60,10 @@ class Parallax {
     this.items.forEach((item) => {
       const a = item.el.getBoundingClientRect().top + item.el.clientHeight / 2;
 
+
+      // const translateX = ((item.offset.top - (this.vp.height / 2) + item.el.clientHeight) - window.pageYOffset) * item.x;
       const translateX = (a - this.vp.height / 2) * item.x;
+      // const translateX = (item.offset.top - (this.vp.height / 2) + (item.el.clientHeight / 2) - window.pageYOffset) * item.x;
       const translateY = (a - this.vp.height / 2) * item.y;
 
       item.el.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;

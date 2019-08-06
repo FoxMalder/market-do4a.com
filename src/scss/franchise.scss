@@ -319,7 +319,8 @@ p,
     justify-content: center;
     //margin-left: 50%;
     //transform: translateX(-50%);
-    //transition: transform .3s;
+    transition: transform .1s ease;
+    //will-change: transforms;
   }
 
   &__item {
