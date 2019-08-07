@@ -99,13 +99,35 @@ h4,
 h5,
 h6 {
   @include title;
+}
 
+
+h1,
+h3,
+h4,
+h5,
+h6 {
   @include font-size(24px);
   line-height: 30px;
+}
 
-  @include media-breakpoint-up(md) {
+h2 {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+@include media-breakpoint-up(md) {
+  h1,
+  h3,
+  h4,
+  h5,
+  h6 {
     @include font-size(36px);
     line-height: 46px;
+  }
+  h2 {
+    font-size: 26px;
+    line-height: 25px;
   }
 }
 
@@ -140,7 +162,7 @@ h6 {
 }
 
 .orange {
-  color: #F4C82D;
+  color: #f4c82d;
 }
 
 .green {
@@ -207,7 +229,7 @@ $input-border-width: 3px;
   display: block;
   width: 100%;
   //height: $input-height;
-  padding: $input-padding-y $input-padding-x;
+  padding: ($input-padding-y - $input-border-width) $input-padding-x;
   border: $input-border-width solid #000;
   border-radius: 0;
   background-color: #fff;
@@ -257,6 +279,10 @@ $input-border-width: 3px;
 textarea.input-text {
   height: $input-height;
   min-height: $input-height;
+
+  resize: none;
+  overflow: hidden;
+  padding-right: 56px;
 }
 
 .input-checkbox {
@@ -1254,12 +1280,14 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
 .rect-rating {
   transform: $skew;
+
   &__item {
     display: inline-block;
-    background: #DBDBDB;
-    height: 10px;
     width: 5px;
+    height: 10px;
     margin-right: 5px;
+    background: #dbdbdb;
+
     &.active {
       background: currentColor;
     }

@@ -836,7 +836,7 @@
       position: relative;
       min-width: 71px;
       padding: 7px 12px;
-      transition: all .3s ease;
+      //transition: all .3s ease;
       background: #fff;
       font-size: 15px;
       font-style: normal;
@@ -1208,6 +1208,7 @@
         background: url("../img/p-arrow-down.svg");
       }
       &.active {
+        color: $main-color;
         &::after {
           background: url("../img/p-arrow-up.svg");
         }
@@ -1365,10 +1366,10 @@
 
 .p-store-info {
   &__photo {
-    img {
-      height: 200px;
-      background-color: #101010;
-    }
+    //img {
+    //  height: 200px;
+    //  background-color: #101010;
+    //}
     @include media-breakpoint-up(xl) {
       display: none;
     }
@@ -1797,14 +1798,36 @@
 
 .p-collapse {
   &__text {
-
+    overflow: hidden;
   }
 
   &__button {
+    @extend %button-reset;
     display: inline-block;
-    margin-top: 13px;
-    margin-bottom: 14px;
-    color: $main-color;
-    font-weight: 500;
+    @include media-breakpoint-only(xs) {
+      background: #E6E6E6;
+      border-radius: 5px;
+      font-size: 0;
+      width: 34px;
+      height: 18px;
+      position: relative;
+      &::before {
+        content: '';
+        top: 7px;
+        left: 15px;
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #C5C5C5;
+        border-radius: 50%;
+        box-shadow: 8px 0 0 #C5C5C5, -8px 0 0 #C5C5C5;
+      }
+    }
+    @include media-breakpoint-up(md) {
+      margin-top: 13px;
+      margin-bottom: 14px;
+      color: $main-color;
+      font-weight: 500;
+    }
   }
 }

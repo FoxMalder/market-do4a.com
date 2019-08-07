@@ -2,6 +2,7 @@ import 'popper.js';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/tooltip';
 
+import Utils from '../utils/utils';
 import Api from '../utils/Api';
 
 
@@ -120,6 +121,8 @@ function initStoreInfo() {
             } else {
               linkEl.classList.add('active');
               targetEl.classList.add('active');
+
+              Utils.scrollTo(targetEl);
             }
           }
         });
@@ -154,6 +157,77 @@ function initStoreInfo() {
   });
 }
 
+
+/**
+ * Сворачивание строк
+ */
+function initCollapse() {
+  let maxLineCount = 5;
+  if (document.documentElement.clientWidth >= 768) {
+    maxLineCount = 8;
+  }
+  if (document.documentElement.clientWidth >= 1240) {
+    maxLineCount = 5;
+  }
+
+  [].forEach.call(document.querySelectorAll('.p-collapse'), (item) => {
+    const lineHeight = parseInt(getComputedStyle(item).lineHeight, 10);
+
+    if (item.clientHeight > lineHeight * maxLineCount) {
+      const container = document.createElement('div');
+      container.classList.add('p-collapse__text');
+      container.innerHTML = item.innerHTML;
+      container.style.height = `${lineHeight * maxLineCount}px`;
+
+      const button = document.createElement('button');
+      button.classList.add('p-collapse__button');
+      button.innerHTML = 'Развернуть';
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        button.style.display = 'none';
+        container.style.height = 'auto';
+      });
+
+      item.innerHTML = '';
+      item.appendChild(container);
+      item.appendChild(button);
+    }
+  });
+}
+
+/**
+ * Прокрутка к якорю
+ */
+function initAnchor() {
+  [].forEach.call(document.querySelectorAll('[data-anchor]'), (link) => {
+    const target = document.querySelector(link.getAttribute('href'));
+
+    if (target) {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        Utils.scrollTo(target);
+      });
+    }
+  });
+}
+
+function initTextareaAutoResize() {
+  [].forEach.call(document.querySelectorAll('textarea'), (textarea) => {
+    // const offsetHeight = textarea.offsetHeight;
+    const border = textarea.offsetHeight - textarea.clientHeight;
+
+    textarea.addEventListener('keyup', (event) => {
+      const height = textarea.scrollHeight;
+
+      if (textarea.value === '') {
+        textarea.style.height = '';
+      } else {
+        textarea.style.height = `${height + border}px`;
+      }
+    });
+  });
+}
+
 $(() => {
   $('[data-toggle="tooltip"]').tooltip();
   $('.p-control-select__header').dropdown({
@@ -164,6 +238,9 @@ $(() => {
   initProductCounter();
   initCartButton();
   initStoreInfo();
+  initCollapse();
+  initAnchor();
+  initTextareaAutoResize();
 
 
   // const t = {

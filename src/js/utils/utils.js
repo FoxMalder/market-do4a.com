@@ -109,5 +109,18 @@ const Utils = {
         throw data.message;
       });
   },
+
+  /**
+   * Плавная прокрутка к элементу
+   * @param {HTMLElement} element - Элемент
+   * @param {Number} duration - Длительность анимации прокрутки
+   */
+  scrollTo(element, duration = 1000) {
+    const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+
+    $('html, body').animate({
+      scrollTop: offsetTop - global.app.Header.header.fixedTargets.clientHeight,
+    }, duration);
+  },
 };
 export default Utils;
