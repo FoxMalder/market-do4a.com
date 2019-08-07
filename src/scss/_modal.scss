@@ -4,40 +4,61 @@
 
 .modal-container {
   display: none;
-  padding: 0;
   position: relative;
+  padding: 0;
   overflow: visible;
+
+  &__inner {
+    min-height: 70px;
+    padding: 20px 20px;
+  }
+
+  &__message {
+    margin-right: 40px;
+    @include title;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
   @include media-breakpoint-up(md) {
     transform: $skew;
     -webkit-backface-visibility: hidden;
+    &__inner {
+      padding: 50px 70px;
+    }
+    &__message {
+      margin-right: 0;
+      transform: $skew-reverse;
+    }
   }
 }
 
 .modal-close {
   position: absolute;
-  right: 20px;
+  z-index: 10;
   top: 20px;
+  right: 20px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  z-index: 10;
   //background-color: $main-color;
   //color: #fff;
   svg {
     display: block;
-    width: 16px;
-    height: 16px;
+    position: absolute;
     top: 50%;
     left: 50%;
+    width: 16px;
+    height: 16px;
     transform: translate(-50%, -50%);
-    position: absolute;
   }
+
   @include media-breakpoint-up(md) {
-    transform: $skew-reverse;
     top: -18px;
     right: -22px;
     width: 61px;
     height: 61px;
+    transform: $skew-reverse;
     svg {
       width: 26px;
       height: 26px;
@@ -46,8 +67,8 @@
 }
 
 .auth {
-  overflow: visible;
   padding: 30px;
+  overflow: visible;
   text-align: center;
 
   @include media-breakpoint-up(md) {
@@ -56,16 +77,18 @@
     padding: 45px 72px;
     transform: $skew;
   }
+
   &__title {
     @include title;
     margin-bottom: 20px;
     font-size: 24px;
     @include media-breakpoint-up(md) {
       margin-bottom: 34px;
-      font-size: 36px;
       transform: $skew-reverse;
+      font-size: 36px;
     }
   }
+
   &__subtitle {
     @include title;
     margin-bottom: 26px;
@@ -75,18 +98,21 @@
       transform: $skew-reverse;
     }
   }
+
   &__link {
     //transform: $skew-reverse;
     &_no-account {
       margin-bottom: 20px;
     }
+
     &_forget {
       margin-bottom: 20px;
     }
+
     a {
-      font-weight: 600;
-      color: $main-color;
       border-bottom: 1px dashed $main-color;
+      color: $main-color;
+      font-weight: 600;
     }
 
     @include media-breakpoint-up(xl) {
@@ -99,15 +125,18 @@
       }
     }
   }
+
   &__form {
     margin-bottom: 20px;
     @include media-breakpoint-up(md) {
       margin-bottom: 30px;
     }
   }
+
   &__input-field {
     margin-bottom: 12px;
   }
+
   &__button-block {
     margin-bottom: 30px;
     @include media-breakpoint-up(md) {
@@ -117,6 +146,7 @@
       }
     }
   }
+
   &__social {
 
     @include media-breakpoint-up(md) {
