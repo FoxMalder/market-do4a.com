@@ -46,7 +46,7 @@
   &__col {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    //align-items: flex-start;
 
     @include media-breakpoint-up(md) {
       @include make-col(5, 8);
@@ -69,7 +69,8 @@
   }
 
   &__name {
-    margin-bottom: 26px;
+    //margin-bottom: 26px;
+    margin-bottom: 6px;
     font-size: 24px;
     line-height: 115%;
 
@@ -87,10 +88,11 @@
 
   &__subtitle {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    //flex-direction: column;
+    //align-items: flex-start;
     flex-wrap: wrap;
     min-height: 19px;
+    margin-bottom: 26px;
     @include media-breakpoint-up(xl) {
       margin-bottom: 28px;
     }
@@ -106,12 +108,13 @@
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1;
-
-    ~ .p-detail__header {
-      @include media-breakpoint-up(xl) {
-        margin-bottom: 18px;
-      }
-    }
+    margin-right: 10px;
+    //
+    //~ .p-detail__header {
+    //  @include media-breakpoint-up(xl) {
+    //    margin-bottom: 18px;
+    //  }
+    //}
   }
 
   &__left-block {
@@ -171,18 +174,27 @@
   &__row {
     display: flex;
     width: 100%;
+    margin-top: 17px;
     margin-bottom: 25px;
     @include media-breakpoint-up(xl) {
-      margin-bottom: 58px;
+      margin-top: 51px;
+      margin-bottom: 56px;
     }
   }
 
-  &__availability {
-    margin-bottom: 17px;
+  &__control {
     @include media-breakpoint-up(xl) {
-      margin-bottom: 51px;
+      margin-bottom: 18px;
+      padding-right: 16px;
     }
   }
+
+  //&__availability {
+  //  margin-bottom: 17px;
+  //  @include media-breakpoint-up(xl) {
+  //    margin-bottom: 51px;
+  //  }
+  //}
 }
 
 .p-images-block {
@@ -281,7 +293,7 @@
   @include media-breakpoint-up(xl) {
     //height: 152px;
     height: auto;
-    margin-bottom: 18px;
+    //margin-bottom: 18px;
   }
 
   &__wrapper {
@@ -290,24 +302,276 @@
       z-index: $zindex-dropdown;
       transform: $skew;
       transform-origin: bottom;
+      margin-right: 20px;
     }
   }
 
   &__weight {
-    position: relative;
-    margin: 0 (map_get($grid-gutter-width-map, xs) / -2);
-    padding: 36px (map_get($grid-gutter-width-map, xs) / 2) 0;
-    overflow: auto;
-    white-space: nowrap;
+    //position: relative;
+    //margin: 0 (map_get($grid-gutter-width-map, xs) / -2);
+    //padding: 36px (map_get($grid-gutter-width-map, xs) / 2) 0;
+    //overflow: auto;
+    //white-space: nowrap;
     @include media-breakpoint-up(md) {
-      display: flex;
+    //  display: flex;
       z-index: 2;
-      margin: 0;
-      padding: 0;
-      overflow: visible;
+      position: relative;
+    //  margin: 0;
+    //  padding: 0;
+    //  overflow: visible;
     }
   }
 
+  &__type {
+    margin-top: 16px;
+    @include media-breakpoint-up(md) {
+      z-index: 1;
+      margin-top: 0;
+    }
+  }
+
+}
+
+/**
+ * Информация о цене
+ */
+.p-price {
+  @include media-breakpoint-up(md) {
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+    align-items: flex-start;
+    //padding-right: 220px;
+  }
+  @include media-breakpoint-up(xl) {
+    //padding-right: 243px;
+  }
+
+  &__old {
+    @include title;
+    display: inline-block;
+    position: relative;
+    margin-left: 14px;
+    font-size: 22px;
+    line-height: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: -9px;
+      bottom: 50%;
+      left: -2px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    @include media-breakpoint-up(md) {
+      display: block;
+      order: -1;
+      margin-left: 0;
+      &::before {
+        right: -6px;
+        bottom: calc(50% - 2px);
+      }
+    }
+  }
+
+  &__new {
+    @include title;
+    display: inline-block;
+    color: $main-color;
+    font-size: 38px;
+    line-height: 1;
+    @include media-breakpoint-up(xl) {
+      font-size: 47px;
+    }
+  }
+
+  &__bonuses {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    @include media-breakpoint-up(xl) {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__note {
+    margin-top: 7px;
+    color: rgba(#000, 0.4);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+
+    @include media-breakpoint-up(md) {
+      max-width: 180px;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-top: 19px;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+/**
+ * Информация о цене
+ */
+.p-control-fixed {
+  position: fixed;
+  z-index: $zindex-fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  @include media-breakpoint-up(md) {
+    position: relative;
+    z-index: auto;
+    flex: 0 0 243px;
+    padding-top: 9px;
+  }
+
+  &__add-to-cart {
+    //flex: 0 0 100%;
+    width: 100%;
+    height: calc(60px + var(--safe-area-inset-bottom));
+    padding-bottom: calc(#{$btn-padding-y-sm} + var(--safe-area-inset-bottom));
+    @extend .btn-red;
+
+    //&.active {
+    //  border-color: #80c627;
+    //  background-color: #80c627;
+    //
+    //  //.p-control-fixed__icon {
+    //  //  @include sprite('added-to-cart');
+    //  //}
+    //}
+
+    @include media-breakpoint-up(md) {
+      height: 70px;
+      padding-top: 0;
+      padding-bottom: 0;
+      transform: $skew;
+      transform-origin: center;
+      -webkit-backface-visibility: hidden;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    width: 22px;
+    height: 21px;
+    margin-right: 10px;
+    vertical-align: middle;
+    //@include sprite('add-to-cart');
+    @include media-breakpoint-up(md) {
+      transform: $skew-reverse;
+    }
+  }
+}
+
+.p-detail-delivery {
+  //width: 100%;
+  margin: 0 (map_get($grid-gutter-width-map, xs) / -2) 24px;
+  padding: 15px (map_get($grid-gutter-width-map, xs) / 2) 16px;
+  background: #fff;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  line-height: 20px;
+
+  @include media-breakpoint-up(md) {
+    margin: 10px 0;
+    padding: 0;
+    background: none;
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  &__row {
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 17px;
+    }
+    //&::before {
+    //  content: '';
+    //  //position: absolute;
+    //  //height: 3px;
+    //  //width: 100%;
+    //  //left: 0;
+    //  //bottom: 7px;
+    //  flex: 1 0;
+    //  align-self: center;
+    //  order: 2;
+    //  height: 3px;
+    //  margin: 0 5px;
+    //  background: #d7d7d7;
+    //}
+  }
+
+  &__key {
+    flex: 1 0;
+    order: 1;
+    margin-right: 5px;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 3px;
+      margin-left: 5px;
+      border-radius: 50%;
+      background: #d7d7d7;
+
+      // УЪУ СУКА!!!
+      $list: ();
+      @for $i from 1 through 50 {
+        //$new: $i * 8px 0 0 0 #d7d7d7;
+        $list: append($list, $i * 8px 0 #d7d7d7, comma);
+      }
+
+      box-shadow: $list;
+
+      vertical-align: middle;
+    }
+  }
+
+  &__delimiter {
+    flex: 1 0;
+    align-self: center;
+    height: 4px;
+    margin: 0 5px;
+    background: #d7d7d7;
+  }
+
+  &__value {
+    order: 3;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+
+.p-control-radio {
+
+  //position: relative;
+  margin: 0 (map_get($grid-gutter-width-map, xs) / -2);
+  padding: 36px (map_get($grid-gutter-width-map, xs) / 2) 0;
+  overflow: auto;
+  white-space: nowrap;
+  @include media-breakpoint-up(md) {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
   &__item {
     display: inline-block;
     position: relative;
@@ -315,21 +579,21 @@
     margin-right: 7px;
     margin-bottom: 0;
     transform: $skew;
-    background-color: #fff;
+    //background-color: #fff;
     text-align: center;
 
 
-    &.active {
-      .p-control-options__tooltip {
-        transform: translateY(-100%);
-        opacity: 1;
-      }
-
-      .p-control-options__label {
-        //box-shadow: 0 0 0 3px $main-color inset;
-        border-color: $main-color;
-      }
-    }
+    //&.active {
+    //  .p-control-radio__tooltip {
+    //    transform: translateY(-100%);
+    //    opacity: 1;
+    //  }
+    //
+    //  .p-control-radio__label {
+    //    //box-shadow: 0 0 0 3px $main-color inset;
+    //    border-color: $main-color;
+    //  }
+    //}
 
     @include media-breakpoint-up(md) {
       flex: 1 0;
@@ -337,7 +601,7 @@
       transform: none;
 
       &:first-of-type {
-        .p-control-options__label {
+        .p-control-radio__label {
           border-left-color: transparent;
         }
       }
@@ -350,12 +614,12 @@
     opacity: 0;
 
     &:checked {
-      ~ .p-control-options__tooltip {
+      ~ .p-control-radio__tooltip {
         transform: translateY(-100%);
         opacity: 1;
       }
 
-      ~ .p-control-options__label {
+      ~ .p-control-radio__label {
         //box-shadow: 0 0 0 3px $main-color inset;
         //border-color: $main-color;
         border: 3px solid $main-color;
@@ -377,7 +641,7 @@
     }
 
     &:disabled {
-      ~ .p-control-options__label {
+      ~ .p-control-radio__label {
         opacity: 0.3;
         cursor: not-allowed;
       }
@@ -443,236 +707,16 @@
     line-height: 1;
   }
 }
-
-/**
- * Информация о цене
- */
-.p-price {
-  @include media-breakpoint-up(md) {
-    display: flex;
-    flex: 1 0;
-    flex-direction: column;
-    align-items: flex-start;
-    //padding-right: 220px;
-  }
-  @include media-breakpoint-up(xl) {
-    //padding-right: 243px;
-  }
-
-  &__old {
-    @include title;
-    display: inline-block;
-    position: relative;
-    margin-left: 14px;
-    font-size: 22px;
-    line-height: 1;
-
-    &::before {
-      content: '';
-      position: absolute;
-      right: -9px;
-      bottom: 50%;
-      left: -2px;
-      height: 2px;
-      background: currentColor;
-    }
-
-    @include media-breakpoint-up(md) {
-      display: block;
-      order: -1;
-      margin-left: 0;
-    }
-  }
-
-  &__new {
-    @include title;
-    display: inline-block;
-    color: $main-color;
-    font-size: 38px;
-    line-height: 1;
-    @include media-breakpoint-up(xl) {
-      font-size: 47px;
-    }
-  }
-
-  &__bonuses {
-    margin-top: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    @include media-breakpoint-up(xl) {
-      margin-top: 11px;
-      font-size: 14px;
-      line-height: 20px;
-    }
-  }
-
-  &__note {
-    margin-top: 7px;
-    color: rgba(#000, 0.4);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-
-    @include media-breakpoint-up(md) {
-      max-width: 180px;
-    }
-    @include media-breakpoint-up(xl) {
-      margin-top: 18px;
-      font-size: 14px;
-      line-height: 20px;
-    }
-  }
-}
-
-/**
- * Информация о цене
- */
-.p-control-fixed {
-  position: fixed;
-  z-index: $zindex-fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  @include media-breakpoint-up(md) {
-    position: relative;
-    z-index: auto;
-    flex: 0 0 243px;
-    padding-top: 9px;
-  }
-
-  &__add-to-cart {
-    //flex: 0 0 100%;
-    width: 100%;
-    height: calc(60px + var(--safe-area-inset-bottom));
-    padding-bottom: calc(#{$btn-padding-y-sm} + var(--safe-area-inset-bottom));
-    @extend .btn-red;
-
-    //&.active {
-    //  border-color: #80c627;
-    //  background-color: #80c627;
-    //
-    //  //.p-control-fixed__icon {
-    //  //  @include sprite('added-to-cart');
-    //  //}
-    //}
-
-    @include media-breakpoint-up(md) {
-      height: 70px;
-      padding-top: 0;
-      padding-bottom: 0;
-      transform: $skew;
-      transform-origin: center;
-      -webkit-backface-visibility: hidden;
-    }
-  }
-
-  &__icon {
-    display: inline-block;
-    width: 22px;
-    height: 21px;
-    margin-right: 10px;
-    vertical-align: middle;
-    //@include sprite('add-to-cart');
-    @include media-breakpoint-up(md) {
-      transform: $skew-reverse;
-    }
-  }
-}
-
-.p-detail-delivery {
-  width: 100%;
-  margin: 0 (map_get($grid-gutter-width-map, xs) / -2) 24px;
-  padding: 15px (map_get($grid-gutter-width-map, xs) / 2) 16px;
-  background: #fff;
-
-  @include media-breakpoint-up(md) {
-    margin: 10px 0;
-    padding: 0;
-    background: none;
-  }
-
-  &__row {
-    display: flex;
-    position: relative;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 12px;
-
-    @include media-breakpoint-up(md) {
-      margin-bottom: 15px;
-    }
-    //&::before {
-    //  content: '';
-    //  //position: absolute;
-    //  //height: 3px;
-    //  //width: 100%;
-    //  //left: 0;
-    //  //bottom: 7px;
-    //  flex: 1 0;
-    //  align-self: center;
-    //  order: 2;
-    //  height: 3px;
-    //  margin: 0 5px;
-    //  background: #d7d7d7;
-    //}
-  }
-
-  &__key {
-    flex: 1 0;
-    order: 1;
-    margin-right: 5px;
-    overflow: hidden;
-
-    &::after {
-      content: '';
-      display: inline-block;
-      width: 3px;
-      height: 3px;
-      margin-left: 5px;
-      border-radius: 50%;
-      background: #d7d7d7;
-
-      // УЪУ СУКА!!!
-      $list: ();
-      @for $i from 1 through 50 {
-        //$new: $i * 8px 0 0 0 #d7d7d7;
-        $list: append($list, $i * 8px 0 #d7d7d7, comma);
-      }
-
-      box-shadow: $list;
-
-      vertical-align: middle;
-    }
-  }
-
-  &__delimiter {
-    flex: 1 0;
-    align-self: center;
-    height: 4px;
-    margin: 0 5px;
-    background: #d7d7d7;
-  }
-
-  &__value {
-    order: 3;
-    text-align: right;
-    white-space: nowrap;
-  }
-}
-
-
 /**
  * Выбор вкуса
  */
 .p-control-select {
-  margin-top: 16px;
-  @include media-breakpoint-up(md) {
-    z-index: 1;
-    margin-top: 0;
-  }
 
   &.show {
+    .p-control-select__header-badge {
+      background-color: #515151;
+      color: rgba(#fff, 0.6);
+    }
     .p-control-select__header {
       //background: #101010;
       //color: #fff;
@@ -854,19 +898,19 @@
       z-index: -1;
       opacity: 0;
 
-      &:checked {
-        ~ .p-control-select__label {
-          background-color: $main-color;
-          color: #fff;
-          ////background: $main-color;
-          //
-          //&,
-          //& > * {
-          //  background-color: $main-color;
-          //  color: #fff;
-          //}
-        }
-      }
+      //&:checked {
+      //  ~ .p-control-select__label {
+      //    background-color: $main-color;
+      //    color: #fff;
+      //    ////background: $main-color;
+      //    //
+      //    //&,
+      //    //& > * {
+      //    //  background-color: $main-color;
+      //    //  color: #fff;
+      //    //}
+      //  }
+      //}
 
       &:disabled {
         ~ .p-control-select__label {
@@ -884,8 +928,8 @@
       line-height: 1;
 
       &:hover {
-        background: #eee;
-        //color: #fff;
+        background-color: $main-color;
+        color: #fff;
       }
     }
 
@@ -1324,6 +1368,9 @@
     img {
       height: 200px;
       background-color: #101010;
+    }
+    @include media-breakpoint-up(xl) {
+      display: none;
     }
   }
 

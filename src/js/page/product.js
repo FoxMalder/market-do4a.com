@@ -15,8 +15,8 @@ function initProductSelect() {
     if (!selectedEL) {
       return;
     }
-    el.querySelector('.p-control-select__header-label').innerHTML = selectedEL.parentElement.querySelector('.p-control-select__value').innerHTML;
-    el.querySelector('.p-control-select__header-availability').innerHTML = selectedEL.parentElement.querySelector('.p-control-select__availability').innerHTML;
+    el.querySelector('.p-control-select__header-label').innerHTML = selectedEL.parentElement.querySelector('.p-control-select__item-name').innerHTML;
+    // el.querySelector('.p-control-select__header-badge').innerHTML = selectedEL.parentElement.querySelector('.p-control-select__item-info').innerHTML;
   }
 
 
@@ -139,7 +139,7 @@ function initStoreInfo() {
       storeEl.addEventListener('mousemove', (event) => {
         if (document.documentElement.clientWidth >= 1240) {
           const top = Math.min(
-            Math.max(event.clientY - 270, 10),
+            Math.max(event.clientY - 70, 10),
             document.documentElement.clientHeight - (targetEl.clientHeight + 10),
           );
           const left = Math.min(
@@ -164,4 +164,41 @@ $(() => {
   initProductCounter();
   initCartButton();
   initStoreInfo();
+
+
+  // const t = {
+  //   weight: [
+  //     {
+  //       title: '900 гр.',
+  //       id: 23525,
+  //     },
+  //     {
+  //       title: '1 кг.',
+  //       id: 23526,
+  //     },
+  //     {
+  //       title: '2 кг.',
+  //       id: 23527,
+  //     },
+  //   ],
+  //   type: [
+  //     {
+  //       title: 'Ваниль',
+  //       post: false, // Достака с центрального склада
+  //       count: 6, // Осталось
+  //       id: 35434,
+  //     },
+  //     {
+  //       title: 'Шоколадный',
+  //       post: false, // Достака с центрального склада
+  //       count: 6, // Осталось
+  //       id: 35434,
+  //     },
+  //     {
+  //       title: 'Клубника',
+  //       post: true, // Достака с центрального склада
+  //       id: 35434,
+  //     },
+  //   ],
+  // };
 });

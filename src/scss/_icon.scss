@@ -184,3 +184,15 @@
     vertical-align: -0.1em;
   }
 }
+
+.icon-truck {
+  &::before {
+    content: '';
+    background: url("../img/truck.svg") center no-repeat;
+    background-size: contain;
+    width: 1.5em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.1em;
+  }
+}
