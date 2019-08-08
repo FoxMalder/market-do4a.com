@@ -461,11 +461,11 @@ textarea.input-text {
     padding: $btn-padding-y $btn-padding-x;
     font-size: $btn-font-size;
     line-height: $btn-line-height;
-  }
 
-  @include hover {
-    color: $body-color;
-    text-decoration: none;
+    @include hover {
+      color: $body-color;
+      text-decoration: none;
+    }
   }
 
   &:focus,

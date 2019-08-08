@@ -25,6 +25,7 @@
     "nouislider": "^13.1.4",
     "owl.carousel": "^2.3.4",
     "popper.js": "^1.14.7",
+    "quasar": "^1.0.5",
     "resize-observer-polyfill": "latest",
     "simplebar": "^3.1.5",
     "simplebar-vue": "^1.1.0",
@@ -35,6 +36,8 @@
     "swiper": "^4.5.0",
     "tooltip.js": "^1.3.2",
     "vue": "^2.6.10",
+    "vue-cli-plugin-quasar": "^1.0.0",
+    "vue2-touch-events": "^2.0.0",
     "vuex": "^3.1.1",
     "ymaps": "^0.2.0"
   },
