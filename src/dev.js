@@ -3095,7 +3095,7 @@ window.product = {
           count: 0,
           count_remote: 4,
           old_price: 1190,
-          price: 1190,
+          price: 1100,
           available_store: {
             111: 0, 114: 0, 115: 0, 130: 0,
           },

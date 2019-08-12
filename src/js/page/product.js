@@ -26,7 +26,7 @@ Vue.filter('formatNumber', (value) => {
 Vue.filter('formatPrice', (value) => {
   // if (!value) return '';
   // return value.toLocaleString();
-  return `${value.toString()} ₽`;
+  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
 });
 //
 // Vue.filter('formatUnit', (value) => {
