@@ -10,7 +10,30 @@ import TextareaAutoHeight from '../plugins/TextareaAutoHeight';
 import Utils from '../utils/utils';
 import Api from '../utils/Api';
 import store from '../store';
-import ControlCounter from '../components/product/ControlCounter.vue';
+// import ControlCounter from '../components/product/ControlCounter.vue';
+// import ControlSelect from '../components/product/ControlSelect.vue';
+// import ProductImage from '../components/product/ImageBlock.vue';
+// import ProductPrice from '../components/product/Price.vue';
+// import ProductDelivery from '../components/product/Delivery.vue';
+import ProductDetail from '../components/product/Detail.vue';
+
+Vue.filter('formatNumber', (value) => {
+  // if (!value) return '';
+  // return value.toLocaleString();
+  return '@' + value.toString();
+});
+
+Vue.filter('formatPrice', (value) => {
+  // if (!value) return '';
+  // return value.toLocaleString();
+  return `${value.toString()} ₽`;
+});
+//
+// Vue.filter('formatUnit', (value) => {
+//   // if (!value) return '';
+//   // return value.toLocaleString();
+//   return `${value.toString()} ₽`;
+// });
 
 /**
  * Инициализирует компонент переключения (выбор вкуса)
@@ -225,11 +248,42 @@ $(() => {
     new TextareaAutoHeight(element);
   });
 
-  // Кнопка и выбор количества
+  if (document.querySelector('.p-detail__name') && global.product) {
+    global.product.name = document.querySelector('.p-detail__name').textContent;
+  }
+
+  store.dispatch('product/getAllPacking');
+
+  // // Кнопка и выбор количества
+  // new Vue({
+  //   store,
+  //   render: h => h(ControlCounter),
+  // }).$mount('.p-control-fixed');
+  //
+  // new Vue({
+  //   store,
+  //   render: h => h(ProductPrice),
+  // }).$mount('.p-price');
+  //
+  // new Vue({
+  //   store,
+  //   render: h => h(ProductDelivery),
+  // }).$mount('.p-detail-delivery');
+  //
+  // new Vue({
+  //   store,
+  //   render: h => h(ControlSelect),
+  // }).$mount('.p-control-options');
+  //
+  // new Vue({
+  //   store,
+  //   render: h => h(ProductImage),
+  // }).$mount('.p-images-block');
+
   new Vue({
     store,
-    render: h => h(ControlCounter),
-  }).$mount('.p-control-fixed');
+    render: h => h(ProductDetail),
+  }).$mount('.p-detail__col_top');
 
 
   initProductSelect();
@@ -237,41 +291,4 @@ $(() => {
   // initCartButton();
   initStoreInfo();
   initCollapse();
-
-
-  // const t = {
-  //   weight: [
-  //     {
-  //       title: '900 гр.',
-  //       id: 23525,
-  //     },
-  //     {
-  //       title: '1 кг.',
-  //       id: 23526,
-  //     },
-  //     {
-  //       title: '2 кг.',
-  //       id: 23527,
-  //     },
-  //   ],
-  //   type: [
-  //     {
-  //       title: 'Ваниль',
-  //       post: false, // Достака с центрального склада
-  //       count: 6, // Осталось
-  //       id: 35434,
-  //     },
-  //     {
-  //       title: 'Шоколадный',
-  //       post: false, // Достака с центрального склада
-  //       count: 6, // Осталось
-  //       id: 35434,
-  //     },
-  //     {
-  //       title: 'Клубника',
-  //       post: true, // Достака с центрального склада
-  //       id: 35434,
-  //     },
-  //   ],
-  // };
 });

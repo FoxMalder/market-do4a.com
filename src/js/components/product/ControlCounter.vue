@@ -9,19 +9,21 @@
       </div>
       <label class="p-control-counter__title" for="product-counter">Количество</label>
       <div class="p-control-counter__row">
-        <div class="p-control-counter__tooltip" v-show="isOpened && count > 3">
+        <div class="p-control-counter__tooltip" v-show="isOpened && count > activeOffer.count">
           Часть товара будет доставлена с центрального склада
         </div>
         <button class="btn btn-white p-control-counter__decrement"
                 @click.prevent="decrement"
-                :disabled="count === 1">-</button>
+                :disabled="count === 1">-
+        </button>
         <input class="input-text p-control-counter__input"
                 id="product-counter"
                 type="number"
                 v-model.number="count">
         <button class="btn btn-white p-control-counter__increment"
                 @click.prevent="increment"
-                :disabled="count === maxCount">+</button>
+                :disabled="count === maxCount">+
+        </button>
       </div>
     </div>
     
@@ -44,6 +46,8 @@
 </template>
 
 <script>
+  import { mapGetters, mapState, mapActions } from 'vuex';
+
   import TouchPan from '../../directives/TouchPan';
 
   function translateY(y) {
@@ -61,18 +65,27 @@
     data() {
       return {
         count: 1,
-        maxCount: 5,
+        // maxCount: 5,
         panning: false,
         isOpened: document.documentElement.clientWidth >= 768,
         isAdded: false,
       };
+    },
+    computed: {
+      ...mapGetters('product', [
+        // 'activePacking',
+        'activeOffer',
+      ]),
+      maxCount() {
+        return this.activeOffer.count + this.activeOffer.count_remote;
+      },
     },
     watch: {
       count: function(val) {
         // if (val === '') {
         //   return;
         // }
-        
+
         if (val < 1) {
           return this.count = 1;
         }
@@ -97,6 +110,11 @@
       //   }
       // },
       handlePan(event) {
+        console.log(event);
+
+        if (document.documentElement.clientWidth >= 768)
+          return false;
+
         if (this.disabled)
           return null;
 
@@ -104,7 +122,7 @@
           return this.startListener(event);
 
         if (!this.panning)
-          return null;
+          return false;
 
         if (event.isFinal)
           return this.stopListener(event);
@@ -126,33 +144,32 @@
       swipeListener({ offset }) {
         const newY = offset.y + this.startTop;
 
-        if (newY > 0) {
+        if (newY > 0)
           return this.translateTo(0);
-        }
-        if (newY < -132) {
-          // return this.translateTo((newY + 132) / 2 - 132);
-          return this.translateTo(-132);
-        }
+
+        if (newY < -132)
+          return this.translateTo(-132); // return this.translateTo((newY + 132) / 2 - 132);
+
         return this.translateTo(newY);
       },
       stopListener({ offset, distance, direction }) {
         this.$refs.counter.classList.remove('p-control-counter_no-transition');
         const newX = this.startTop + offset.y;
-        
-        // setTimeout(() => {
-        //   this.panning = false;
-        // }, 200);
+        // this.panning = false;
 
-        if (distance.y > 40) {
+        setTimeout(() => {
+          this.panning = false;
+        }, 100);
+
+        if (distance.y > 40)
           return this.reveal(direction);
-        }
 
         return this.reveal(newX < (-132 / 2) ? 'up' : 'down');
       },
       toggle() {
-        if (this.panning) {
-          return;
-        }
+        if (this.panning)
+          return this.panning = false;
+
 
         if (this.isOpened) {
           this.reveal('down');

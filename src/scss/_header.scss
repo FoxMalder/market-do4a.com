@@ -5,7 +5,7 @@
   //height: 100%;
   visibility: hidden;
   position: fixed;
-  z-index: 900;
+  z-index: $zindex-fixed + 90;
   top: 0;
   right: 0;
   bottom: 0;
@@ -233,7 +233,7 @@
 //
 .h-navbar-fixed {
   position: sticky;
-  z-index: $zindex-sticky;
+  z-index: $zindex-fixed + 100;
   top: 0;
   //top: 100%;
   //right: 0;
@@ -507,7 +507,8 @@
   //transition: height .7s ease-in-out;
 
   //position: absolute;
-  //z-index: 940;
+  position: relative;
+  z-index: $zindex-fixed + 110;
   //top: 24px;
   //right: 0;
   //left: 0;

@@ -3057,3 +3057,436 @@ window.soaData = {
 //     },
 //   });
 // });
+
+
+window.product = {
+  category: '',
+  country: 'США',
+  name: 'OPTIMUM NUTRITION GOLD STANDART WHEY',
+  productId: 83382,
+  offerId: 83390,
+  packing: {
+    83382: {
+      id: 83382,
+      url: '\/catalog\/product\/biotech_nitro_pure_whey_454_gr\/',
+      pack: '454 \u0433\u0440',
+      price: 1190,
+      price_benefit: 0,
+      review: 0,
+      inAvailable: ['67', '130'],
+      isFavorite: false,
+      isHit: true,
+      isNew: false,
+      isRecommend: true,
+      img: 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513',
+      sku: {
+        83389: {
+          name: '\u0431\u0430\u043d\u0430\u043d',
+          count: 6,
+          count_remote: 15,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 6,
+          },
+        },
+        83390: {
+          name: '\u0432\u0438\u0448\u043d\u044f-\u0439\u043e\u0433\u0443\u0440\u0442',
+          count: 0,
+          count_remote: 4,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83391: {
+          name: '\u0434\u044b\u043d\u044f',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83392: {
+          name: '\u043a\u0430\u0440\u0430\u043c\u0435\u043b\u044c-\u043a\u0430\u043f\u0443\u0447\u0438\u043d\u043e',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83393: {
+          name: '\u043a\u043b\u0443\u0431\u043d\u0438\u043a\u0430',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83394: {
+          name: '\u043a\u043e\u043a\u043e\u0441-\u0448\u043e\u043a\u043e\u043b\u0430\u0434',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83395: {
+          name: '\u043e\u0440\u0435\u0445\u043e\u0432\u044b\u0439 \u043a\u0440\u0435\u043c',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83396: {
+          name: '\u043b\u0438\u043c\u043e\u043d-\u0439\u043e\u0433\u0443\u0440\u0442',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        83397: {
+          name: '\u0431\u0443\u0440\u0431\u043e\u043d-\u0432\u0430\u043d\u0438\u043b\u044c',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        91261: {
+          name: '\u0448\u043e\u043a\u043e\u043b\u0430\u0434',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        103341: {
+          name: '\u043f\u0435\u0447\u0435\u043d\u044c\u0435-\u043a\u0440\u0435\u043c',
+          count: 0,
+          count_remote: 0,
+          old_price: 1190,
+          price: 1190,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+      },
+    },
+    90077: {
+      id: 90077,
+      url: '\/catalog\/product\/biotech_nitro_pure_whey_908_gr_1\/',
+      pack: '908\u0433\u0440',
+      price: 2540,
+      price_benefit: 0,
+      review: 3,
+      inAvailable: [],
+      isFavorite: false,
+      isHit: false,
+      isNew: false,
+      isRecommend: false,
+      img: 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513',
+      sku: {
+        90079: {
+          name: '\u0431\u0430\u043d\u0430\u043d',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90080: {
+          name: '\u0431\u0443\u0440\u0431\u043e\u043d-\u0432\u0430\u043d\u0438\u043b\u044c',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90081: {
+          name: '\u0432\u0438\u0448\u043d\u044f-\u0439\u043e\u0433\u0443\u0440\u0442',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90082: {
+          name: '\u0434\u044b\u043d\u044f',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90083: {
+          name: '\u043a\u0430\u0440\u0430\u043c\u0435\u043b\u044c-\u043a\u0430\u043f\u0443\u0447\u0438\u043d\u043e',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90084: {
+          name: '\u043a\u043b\u0443\u0431\u043d\u0438\u043a\u0430',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90085: {
+          name: '\u043a\u043e\u043a\u043e\u0441-\u0448\u043e\u043a\u043e\u043b\u0430\u0434',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90086: {
+          name: '\u043b\u0435\u0441\u043d\u043e\u0439 \u043e\u0440\u0435\u0445',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90087: {
+          name: '\u043b\u0438\u043c\u043e\u043d-\u0439\u043e\u0433\u0443\u0440\u0442',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        90088: {
+          name: '\u0448\u043e\u043a\u043e\u043b\u0430\u0434',
+          count: 0,
+          count_remote: 0,
+          old_price: 2540,
+          price: 2540,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+      },
+    },
+    65008: {
+      id: 65008,
+      url: '\/catalog\/product\/biotech_nitro_pure_whey_2270_gr\/',
+      pack: '2270 \u0433\u0440',
+      price: 5300,
+      price_benefit: 0,
+      review: 0,
+      inAvailable: ['89', '62'],
+      isFavorite: false,
+      isHit: false,
+      isNew: false,
+      isRecommend: false,
+      img: 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513',
+      sku: {
+        65009: {
+          name: '\u0432\u0438\u0448\u043d\u044f-\u0439\u043e\u0433\u0443\u0440\u0442',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        65010: {
+          name: '\u043b\u0435\u0441\u043d\u043e\u0439\u043e\u0440\u0435\u0445',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        65011: {
+          name: '\u043a\u043e\u043a\u043e\u0441-\u0448\u043e\u043a\u043e\u043b\u0430\u0434',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        65012: {
+          name: '\u043b\u0438\u043c\u043e\u043d-\u0439\u043e\u0433\u0443\u0440\u0442',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        65013: {
+          name: '\u0434\u044b\u043d\u044f',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        68283: {
+          name: '\u043a\u043b\u0443\u0431\u043d\u0438\u043a\u0430',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        68284: {
+          name: '\u0431\u0430\u043d\u0430\u043d',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        68285: {
+          name: '\u043a\u0430\u0440\u0430\u043c\u0435\u043b\u044c-\u043a\u0430\u043f\u0443\u0447\u0438\u043d\u043e',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        89051: {
+          name: '\u0431\u0443\u0440\u0431\u043e\u043d-\u0432\u0430\u043d\u0438\u043b\u044c',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        89052: {
+          name: '\u0448\u043e\u043a\u043e\u043b\u0430\u0434',
+          count: 0,
+          count_remote: 0,
+          old_price: 5300,
+          price: 5300,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+      },
+    },
+    4406: {
+      id: 4406,
+      url: '\/catalog\/product\/biotech_pure_nitro_whey_2200_gr\/',
+      pack: '2200 \u0433\u0440',
+      price: 5430,
+      price_benefit: 0,
+      review: 0,
+      inAvailable: [],
+      isFavorite: false,
+      isHit: false,
+      isNew: false,
+      isRecommend: false,
+      img: 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513',
+      sku: {
+        34782: {
+          name: 'caramel cappuccino',
+          count: 0,
+          count_remote: 0,
+          old_price: 5430,
+          price: 5430,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        34783: {
+          name: 'creamy banana',
+          count: 0,
+          count_remote: 0,
+          old_price: 5430,
+          price: 5430,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        95069: {
+          name: 'chocolate',
+          count: 0,
+          count_remote: 0,
+          old_price: 5430,
+          price: 5430,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+        95070: {
+          name: 'coconut',
+          count: 0,
+          count_remote: 0,
+          old_price: 5430,
+          price: 5430,
+          available_store: {
+            111: 0, 114: 0, 115: 0, 130: 0,
+          },
+        },
+      },
+    },
+  },
+  textAvailable: {
+    0: 'Нет в наличии',
+    1: 'Мало',
+    2: 'Средне',
+    3: 'Достаточно',
+    4: 'Много',
+    5: 'Много',
+  },
+};

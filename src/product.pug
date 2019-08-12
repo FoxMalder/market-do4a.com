@@ -1,19 +1,22 @@
 extends template/template
 block wrapper
     main.wrapper
+        .page-header
+            .container
+                .breadcumps
+                    a.breadcumps__link.red(href='#') Главная
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Каталог
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Протеины
+                    span.breadcumps__delimiter
+                    a.breadcumps__link(href='#') Комплексный протеин
+                    span.breadcumps__delimiter
+                    span.breadcumps__page BSN Syntha-6
+                //h1.page-header__title протеины
         article.product
             section.p-section-hero
                 .container
-                    .breadcumps
-                        a.breadcumps__link.red(href='#') Главная
-                        span.breadcumps__delimiter
-                        a.breadcumps__link(href='#') Каталог
-                        span.breadcumps__delimiter
-                        a.breadcumps__link(href='#') Протеины
-                        span.breadcumps__delimiter
-                        a.breadcumps__link(href='#') Комплексный протеин
-                        span.breadcumps__delimiter
-                        span.breadcumps__page BSN Syntha-6
                     .p-detail
                         .p-detail__col.p-detail__col_top
                             h1.p-detail__name Optimum nutrition gold standart whey
