@@ -33,17 +33,16 @@
     </div>
     
     <div class="p-detail__availability">
-      <template
-              v-if="activeOffer.count > 0">
-        <i class="icon icon-circle-check green"></i> В наличии сейчас в
+      <template v-if="activeOffer.count > 0">
+        <i class="icon icon-available"></i> В наличии сейчас в
         <a class="text-link" data-anchor href="#stores">
           {{formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])}}
         </a>
       </template>
-      <template
-              v-else-if="activeOffer.count_remote > 0">
-        <i class="icon icon-truck"></i> Доставка почтой в Нижний новгород с 23.04 по 26.04
+      <template v-else-if="activeOffer.count_remote > 0">
+        <i class="icon icon-truck"></i> Доставка почтой в Усть-Пердинск с 23.04 по 26.04
       </template>
+      <template v-else><i class="icon icon-not-available"></i> Нет в наличии</template>
     </div>
     
     <div class="p-detail__row">
@@ -53,27 +52,35 @@
     
     <div class="p-detail-delivery">
       
-      <div class="p-detail-delivery__row"
-              v-if="activeOffer.count > 0">
-        <div class="p-detail-delivery__key">
-          Самовывоз из
-          <a class="text-link nowrap" data-anchor href="#stores">
-            {{formatUnit(availableStore.length, ['магазина', 'магазинов', 'магазинов'])}}</a>
-          сегодня
+      <template v-if="activeOffer.count > 0">
+        <div class="p-detail-delivery__row">
+          <div class="p-detail-delivery__key">
+            Самовывоз из
+            <a class="text-link nowrap" data-anchor href="#stores">
+              {{formatUnit(availableStore.length, ['магазина', 'магазинов', 'магазинов'])}}
+            </a>
+            сегодня
+          </div>
+          <div class="p-detail-delivery__value">Бесплатно</div>
         </div>
-        <div class="p-detail-delivery__value">Бесплатно</div>
-      </div>
+        <div class="p-detail-delivery__row">
+          <div class="p-detail-delivery__key">Курьером завтра</div>
+          <div class="p-detail-delivery__value">Бесплатно от 2 990 ₽</div>
+        </div>
+        <div class="p-detail-delivery-info__bottom">Оплата при получении</div>
+      </template>
       
-      <div class="p-detail-delivery__row"
-              v-if="activeOffer.count_remote > 0">
-        <div class="p-detail-delivery__key">Курьером послезавтра</div>
-        <div class="p-detail-delivery__value">Бесплатно от 2 990 ₽</div>
-      </div>
+      <template v-else-if="activeOffer.count_remote > 0">
+        <div class="p-detail-delivery__row">
+          <div class="p-detail-delivery__key">Курьером</div>
+          <div class="p-detail-delivery__value">Бесплатно от 2 990 ₽</div>
+        </div>
+        <div class="p-detail-delivery-info__bottom">
+          Оплата картой онлайн <i class="icon icon-visa"></i> <i class="icon icon-mastercard"></i>
+          <i class="icon icon-mir"></i>
+        </div>
+      </template>
       
-      <div class="p-detail-delivery-info__bottom">
-        Оплата картой онлайн <i class="icon icon-visa"></i> <i class="icon icon-mastercard"></i>
-        <i class="icon icon-mir"></i>
-      </div>
     </div>
   </div>
 </template>

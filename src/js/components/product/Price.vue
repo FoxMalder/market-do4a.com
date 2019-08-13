@@ -1,13 +1,30 @@
 <template>
   <div class="p-price">
-    <div class="p-price__new">{{activeOffer.price | formatPrice}}</div>
-    <div class="p-price__old" v-if="activeOffer.old_price > activeOffer.price">{{activeOffer.old_price | formatPrice}}</div>
-<!--    <div class="p-price__bonuses"><span class="green">+225</span><span class="black"> бонусных рублей</span>-->
-<!--      <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>-->
-<!--    </div>-->
-    <div class="p-price__note"><span class="gray">Цена актуальна только в интернет-магазине</span>
-      <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>
-    </div>
+    <template v-if="isAvailableOffer">
+      <div class="p-price__new">{{activeOffer.price | formatPrice}}</div>
+      <div class="p-price__old" v-if="activeOffer.old_price > activeOffer.price">
+        {{activeOffer.old_price | formatPrice}}
+      </div>
+<!--      <div class="p-price__row">-->
+<!--        <div class="p-price__col">-->
+<!--          <span class="green">+225</span> бонусных рублей-->
+<!--        </div>-->
+<!--        <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>-->
+<!--      </div>-->
+      <div class="p-price__row">
+        <div class="p-price__col">
+          <span class="gray">Цена актуальна только в интернет-магазине</span>
+        </div>
+        <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>
+      </div>
+    </template>
+    <template v-else>
+      <div class="p-price__title" v-if="!isAvailableOffer">Последняя цена:</div>
+      <div class="p-price__new disabled">{{activeOffer.price | formatPrice}}</div>
+      <div class="p-price__alert">
+        Подпишитесь на товар, чтобы узнать, когда он снова будет в наличии.
+      </div>
+    </template>
   </div>
 </template>
 
@@ -18,6 +35,7 @@
     name: "Price",
     computed: mapGetters('product', [
       'activeOffer',
+      'isAvailableOffer'
     ]),
   }
 </script>

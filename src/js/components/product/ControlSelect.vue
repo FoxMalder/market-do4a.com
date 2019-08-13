@@ -18,41 +18,53 @@
       <div class="p-control-options__type">
         <div class="p-control-select">
           <button class="p-control-select__header" data-toggle="dropdown" ref="dropdownHeader">
-            <div class="p-control-select__header-label">{{activeOffer.name}}</div>
-            <div class="p-control-select__header-badge">
-              Доступно {{formatUnit(availableOffers.length + remoteOffers.length)}}
-            </div>
+            <span class="p-control-select__header-label">{{activeOffer.name}}</span>
+            <span class="p-control-select__header-badge" v-if="isAvailablePacking">{{availableMoreText}}</span>
           </button>
           <div class="p-control-select__list dropdown-menu" role="form">
             
-            <div class="p-control-select__delimiter" v-if="availableOffers.length > 0">
-              <div class="p-control-select__delimiter-text">В наличии в магазинах</div>
-            </div>
-            <div class="p-control-select__item" v-for="offer in availableOffers" @click="selectClick(offer)">
-              <div class="p-control-select__label">
-                <div class="p-control-select__item-name">{{offer.name}}</div>
-                <div class="p-control-select__item-info">Осталось {{offer.count}} шт.</div>
+            <template v-if="availableOffers.length > 0">
+              <div class="p-control-select__delimiter">
+                <span class="p-control-select__delimiter-text">В наличии в магазинах</span>
               </div>
-            </div>
+              <div class="p-control-select__item"
+                      v-for="offer in availableOffers"
+                      :key="offer.id"
+                      :class="{checked: offer.id === activeOffer.id}"
+                      @click="selectClick(offer)">
+                <span class="p-control-select__item-name">{{offer.name}}</span>
+                <span class="p-control-select__item-info">Осталось {{offer.count}} шт.</span>
+              </div>
+            </template>
             
-            <div class="p-control-select__delimiter" v-if="remoteOffers.length > 0">
-              <div class="p-control-select__delimiter-text">Доставка с центрального склада</div>
-            </div>
-            <div class="p-control-select__item" v-for="offer in remoteOffers" @click="selectClick(offer)">
-              <div class="p-control-select__label">
-                <div class="p-control-select__item-name">{{offer.name}}</div>
-                <div class="p-control-select__item-info">Осталось {{offer.count_remote}} шт.</div>
+            <template v-if="availableDeliveryOffers.length > 0">
+              <div class="p-control-select__delimiter">
+                <span class="p-control-select__delimiter-text">Доставка с центрального склада</span>
               </div>
-            </div>
+              <div class="p-control-select__item"
+                      v-for="offer in availableDeliveryOffers"
+                      :key="offer.id"
+                      :class="{checked: offer.id === activeOffer.id}"
+                      @click="selectClick(offer)">
+                <span class="p-control-select__item-name">{{offer.name}}</span>
+                <span class="p-control-select__item-info">Осталось {{offer.count_remote}} шт.</span>
+              </div>
+            </template>
             
-            <div class="p-control-select__delimiter" v-if="notAvailableOffers.length > 0">
-              <div class="p-control-select__delimiter-text">Нет в наличии</div>
-            </div>
-            <div class="p-control-select__item disabled" v-for="offer in notAvailableOffers">
-              <div class="p-control-select__label">
-                <div class="p-control-select__item-name">{{offer.name}}</div>
+            <template v-if="notAvailableOffers.length > 0">
+              <div class="p-control-select__delimiter">
+                <span class="p-control-select__delimiter-text">
+                  <i class="icon icon-not-available"></i> Нет в наличии
+                </span>
               </div>
-            </div>
+              <div class="p-control-select__item disabled"
+                      v-for="offer in notAvailableOffers"
+                      :key="offer.id"
+                      :class="{checked: offer.id === activeOffer.id}"
+                      @click="selectClick(offer)">
+                <span class="p-control-select__item-name">{{offer.name}}</span>
+              </div>
+            </template>
           
           </div>
         </div>
@@ -73,27 +85,31 @@
       }),
       ...mapGetters('product', [
         'activePacking',
-        'visibleOffers',
         'activeOffer',
+        'visibleOffers',
+
+        'availableOffers',
+        'availableDeliveryOffers',
+        'notAvailableOffers',
+
+        'isAvailablePacking'
       ]),
-      availableOffers() {
-        return this.visibleOffers.filter(item => item.count > 0);
-      },
-      remoteOffers() {
-        return this.visibleOffers.filter(item => item.count === 0 && item.count_remote > 0);
-      },
-      notAvailableOffers() {
-        return this.visibleOffers.filter(item => item.count === 0 && item.count_remote === 0);
-      },
+      availableMoreText() {
+        if (this.visibleOffers.length === 2) {
+          return 'Доступен еще 1 вкус';
+        }
+        return `Доступно еще ${this.visibleOffers.length - 1} ${Utils.declOfNum(this.visibleOffers.length - 1, ['вкус', 'вкуса', 'вкусов'])}`
+      }
     },
     methods: {
       ...mapActions('product', [
         'selectPacking',
         'selectOffer'
       ]),
-      formatUnit(count) {
-        return `${count} ${Utils.declOfNum(count, ['вкус', 'вкуса', 'вкусов'])}`
-      },
+      // formatUnit(count, units) {
+      //   return `${count} ${Utils.declOfNum(count, units)}`
+      //   // return `${count} ${Utils.declOfNum(count, ['вкус', 'вкуса', 'вкусов'])}`
+      // },
       selectClick(offer) {
         $(this.$refs.dropdownHeader).dropdown('hide');
         this.selectOffer(offer);

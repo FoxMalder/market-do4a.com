@@ -116,14 +116,22 @@ h2 {
   line-height: 25px;
 }
 
+h3 {
+  font-size: 15px;
+  line-height: 19px;
+}
+
 @include media-breakpoint-up(md) {
   h1,
-  h3,
   h4,
   h5,
   h6 {
     @include font-size(36px);
     line-height: 46px;
+  }
+  h3 {
+    font-size: 23px;
+    line-height: 31px;
   }
   h2 {
     font-size: 26px;
@@ -141,6 +149,10 @@ h2 {
     font-size: 40px;
     line-height: 54px;
   }
+  //h3 {
+  //  font-size: 23px;
+  //  line-height: 31px;
+  //}
   h4 {
     font-size: 23px;
     line-height: 31px;
@@ -280,9 +292,9 @@ textarea.input-text {
   height: $input-height;
   min-height: $input-height;
 
-  resize: none;
-  overflow: hidden;
   padding-right: 56px;
+  overflow: hidden;
+  resize: none;
 }
 
 .input-checkbox {
@@ -929,11 +941,13 @@ textarea.input-text {
     line-height: 1.25;
 
     @include media-breakpoint-up(md) {
+      margin-top: 12px;
       font-size: 36px;
       line-height: 41px;
     }
 
     @include media-breakpoint-up(xl) {
+      margin-top: 24px;
       font-size: 60px;
       line-height: 68px;
     }
@@ -981,11 +995,11 @@ textarea.input-text {
 
   @include media-breakpoint-up(md) {
     display: block;
-    margin-bottom: 12px;
+    //margin-bottom: 12px;
   }
   @include media-breakpoint-up(xl) {
     //margin-bottom: 28px;
-    margin-bottom: 24px;
+    //margin-bottom: 24px;
   }
 
 
@@ -1290,6 +1304,20 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
     &.active {
       background: currentColor;
+    }
+  }
+}
+
+
+.article {
+  padding-bottom: 70px;
+  p {
+    margin-bottom: 1.5em;
+  }
+  &__header {
+    margin-bottom: 20px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 55px;
     }
   }
 }

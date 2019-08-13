@@ -42,6 +42,7 @@ const cummonConfig = {
     product: './src/product.js',
     cart: './src/cart.js',
     franchise: './src/franchise.js',
+    privacy: './src/privacy.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -189,6 +190,14 @@ const cummonConfig = {
       filename: 'franchise.html',
       template: path.resolve(__dirname, 'src/franchise.pug'),
       chunks: ['franchise', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Политика приватности',
+      filename: 'privacy.html',
+      template: path.resolve(__dirname, 'src/privacy.pug'),
+      chunks: ['privacy', 'common', 'runtime'],
       minify: false,
     }),
 

@@ -12,10 +12,31 @@ const state = {
 
 // getters
 const getters = {
-  // TODO: Полифилл Array.find()
-  activePacking: state => state.packing.find(item => item.id === state.packingId),
-  activeOffer: (state, getters) => getters.activePacking.sku.find(item => item.id === state.offerId),
-  visibleOffers: (state, getters) => getters.activePacking.sku,
+  activePacking: (state) => {
+    // TODO: Полифилл Array.find()
+    return state.packing.find(item => item.id === state.packingId);
+  },
+  activeOffer: (state, getters) => {
+    return getters.activePacking.sku.find(item => item.id === state.offerId);
+  },
+  visibleOffers: (state, getters) => {
+    return getters.activePacking.sku;
+  },
+  availableOffers: (state, getters) => {
+    return getters.visibleOffers.filter(item => item.count > 0);
+  },
+  availableDeliveryOffers: (state, getters) => {
+    return getters.visibleOffers.filter(item => item.count === 0 && item.count_remote > 0);
+  },
+  notAvailableOffers: (state, getters) => {
+    return getters.visibleOffers.filter(item => item.count === 0 && item.count_remote === 0);
+  },
+  isAvailablePacking: (state, getters) => {
+    return getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0;
+  },
+  isAvailableOffer: (state, getters) => {
+    return getters.activeOffer.count + getters.activeOffer.count_remote > 0;
+  },
 };
 
 // actions

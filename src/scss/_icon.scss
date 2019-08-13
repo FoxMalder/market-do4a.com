@@ -8,11 +8,13 @@
   width: 33px;
   height: 10px;
 }
+
 .icon-mastercard {
   @include sprite('mastercard');
   width: 23px;
   height: 16px;
 }
+
 .icon-mir {
   @include sprite('mir');
   width: 33px;
@@ -127,12 +129,12 @@
 .icon-tg-round {
   &::before {
     content: '';
+    display: inline-block;
+    width: 1em;
+    //width: ;
+    height: 1em;
     background: url("../img/tg-round.svg") center no-repeat;
     background-size: contain;
-    //width: ;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
     vertical-align: -0.1em;
   }
 }
@@ -140,11 +142,11 @@
 .icon-viber-round {
   &::before {
     content: '';
-    background: url("../img/viber-round.svg") center no-repeat;
-    background-size: contain;
+    display: inline-block;
     width: 1em;
     height: 1em;
-    display: inline-block;
+    background: url("../img/viber-round.svg") center no-repeat;
+    background-size: contain;
     vertical-align: -0.1em;
   }
 }
@@ -152,11 +154,11 @@
 .icon-wa-round {
   &::before {
     content: '';
-    background: url("../img/wa-round.svg") center no-repeat;
-    background-size: contain;
+    display: inline-block;
     width: 1em;
     height: 1em;
-    display: inline-block;
+    background: url("../img/wa-round.svg") center no-repeat;
+    background-size: contain;
     vertical-align: -0.1em;
   }
 }
@@ -164,11 +166,11 @@
 .icon-clock {
   &::before {
     content: '';
-    background: url("../img/clock.svg") center no-repeat;
-    background-size: contain;
+    display: inline-block;
     width: 1em;
     height: 1em;
-    display: inline-block;
+    background: url("../img/clock.svg") center no-repeat;
+    background-size: contain;
     vertical-align: -0.1em;
   }
 }
@@ -176,11 +178,11 @@
 .icon-done {
   &::before {
     content: '';
-    background: url("../img/done.svg") center no-repeat;
-    background-size: contain;
+    display: inline-block;
     width: 1em;
     height: 1em;
-    display: inline-block;
+    background: url("../img/done.svg") center no-repeat;
+    background-size: contain;
     vertical-align: -0.1em;
   }
 }
@@ -188,11 +190,47 @@
 .icon-truck {
   &::before {
     content: '';
-    background: url("../img/truck.svg") center no-repeat;
-    background-size: contain;
+    display: inline-block;
     width: 1.5em;
     height: 1em;
+    background: url("../img/truck.svg") center no-repeat;
+    background-size: contain;
+    vertical-align: -0.1em;
+  }
+}
+
+.icon-alert {
+  &::before {
+    content: '';
     display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: url("../img/alert.svg") center no-repeat;
+    background-size: contain;
+    vertical-align: -0.1em;
+  }
+}
+
+.icon-available {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: url("../img/avaible.svg") center no-repeat;
+    background-size: contain;
+    vertical-align: -0.1em;
+  }
+}
+
+.icon-not-available {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background: url("../img/not-avaible.svg") center no-repeat;
+    background-size: contain;
     vertical-align: -0.1em;
   }
 }
