@@ -206,13 +206,14 @@
 
 .p-images-block {
   position: relative;
-  height: 240px;
-  @include media-breakpoint-up(xl) {
-    height: 675px;
-  }
+  min-height: 240px;
+  margin-bottom: 20px;
+  //@include media-breakpoint-up(xl) {
+  //  height: 675px;
+  //}
 
   &__image {
-    height: 100%;
+    //height: 100%;
     text-align: center;
   }
 

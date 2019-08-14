@@ -12,9 +12,9 @@ import Api from '../utils/Api';
 import store from '../store';
 // import ControlCounter from '../components/product/ControlCounter.vue';
 // import ControlSelect from '../components/product/ControlSelect.vue';
-// import ProductImage from '../components/product/ImageBlock.vue';
+import ProductImage from '../components/product/ImageBlock.vue';
 // import ProductPrice from '../components/product/Price.vue';
-// import ProductDelivery from '../components/product/Delivery.vue';
+import ProductAvailabilityBadge from '../components/product/AvailabilityBadge.vue';
 import ProductDetail from '../components/product/Detail.vue';
 
 Vue.filter('formatNumber', (value) => {
@@ -274,16 +274,34 @@ $(() => {
   //   store,
   //   render: h => h(ControlSelect),
   // }).$mount('.p-control-options');
-  //
-  // new Vue({
-  //   store,
-  //   render: h => h(ProductImage),
-  // }).$mount('.p-images-block');
+
+
+
+
+  store.subscribe((mutation, state) => {
+    // console.log(mutation.type);
+    // console.log(mutation.payload);
+
+    if (mutation.type === 'product/SET_ACTIVE_PACKING_ID') {
+      // console.log(mutation.payload);
+      document.querySelector('.p-detail__reviews').innerHTML = `${mutation.payload.review} ${Utils.declOfNum(mutation.payload.review, ['отзыв', 'отзыва', 'отзывов'])}`;
+    }
+  });
+
+  new Vue({
+    store,
+    render: h => h(ProductAvailabilityBadge),
+  }).$mount('#js-product-tag');
+
+  new Vue({
+    store,
+    render: h => h(ProductImage),
+  }).$mount('#js-product-image');
 
   new Vue({
     store,
     render: h => h(ProductDetail),
-  }).$mount('.p-detail__col_top');
+  }).$mount('#js-product-info');
 
 
   initProductSelect();

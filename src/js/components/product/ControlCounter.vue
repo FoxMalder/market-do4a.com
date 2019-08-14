@@ -10,7 +10,7 @@
       </div>
       <label class="p-control-counter__title" for="product-counter">Количество</label>
       <div class="p-control-counter__row">
-        <div class="p-control-counter__tooltip" v-show="isOpened && count > activeOffer.count">
+        <div class="p-control-counter__tooltip" v-show="isOpened && activeOffer.count && count > activeOffer.count">
           Часть товара будет доставлена с центрального склада
         </div>
         <button class="btn btn-white p-control-counter__decrement"
@@ -31,7 +31,7 @@
     <button class="btn btn-black p-control-button"
             v-if="!isAvailableOffer"
             @click.prevent="subscribe">
-      Подписаться на товар
+      Подписаться <br>на товар
     </button>
     <button class="btn btn-red p-control-button"
             v-else-if="!isAdded"
@@ -78,6 +78,9 @@
       };
     },
     computed: {
+      ...mapState('product', {
+        productName: state => state.name,
+      }),
       ...mapGetters('product', [
         // 'activePacking',
         'activeOffer',
@@ -88,6 +91,13 @@
       },
     },
     watch: {
+      activeOffer: function(newValue, val) {
+        if (val !== newValue) {
+          this.count = 1;
+          this.isAdded = false;
+          // this.maxCount = newValue.count + newValue.count_remote
+        }
+      },
       count: function(val) {
         // if (val === '') {
         //   return;
@@ -113,6 +123,9 @@
       },
       addToCart() {
         this.isAdded = true;
+        if (document.documentElement.clientWidth < 768) {
+          this.reveal('up');
+        }
       },
       // onBlur() {
       //   if (this.count === '') {
@@ -120,7 +133,7 @@
       //   }
       // },
       handlePan(event) {
-        console.log(event);
+        // console.log(event);
 
         if (document.documentElement.clientWidth >= 768)
           return false;

@@ -58,11 +58,19 @@ const actions = {
     commit('SET_PACKING', arr);
   },
   selectPacking({ commit }, packing) {
-    commit('SET_ACTIVE_PACKING_ID', { id: packing.id });
-    commit('SET_ACTIVE_OFFER_ID', { id: packing.sku[0].id });
+    commit('SET_ACTIVE_PACKING_ID', packing);
+
+    let newActiveOffer = packing.sku.find(item => item.count > 0);
+    if (!newActiveOffer) {
+      newActiveOffer = packing.sku.find(item => item.count_remote > 0);
+    }
+    if (!newActiveOffer) {
+      newActiveOffer = packing.sku[0];
+    }
+    commit('SET_ACTIVE_OFFER_ID', newActiveOffer);
   },
   selectOffer({ commit }, offer) {
-    commit('SET_ACTIVE_OFFER_ID', { id: offer.id });
+    commit('SET_ACTIVE_OFFER_ID', offer);
   },
 };
 

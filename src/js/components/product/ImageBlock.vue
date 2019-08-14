@@ -1,13 +1,15 @@
 <template>
   <div class="p-images-block">
     <div class="p-images-block__image">
-      <img :src="activePacking.img" :alt="productName + ' ' + activePacking.pack">
+      <!--      <img ref="image" :src="activePacking.img" :alt="productName + ' ' + activePacking.pack">-->
+      <canvas ref="canvas"></canvas>
     </div>
     <div class="product-stickers">
-<!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">-->
-<!--        Доставка <br>1 день-->
-<!--      </div>-->
-      <div class="product-stickers__item product-stickers__item_yellow" v-if="activePacking.isRecommend">Рекомендуем</div>
+      <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">-->
+      <!--        Доставка <br>1 день-->
+      <!--      </div>-->
+      <div class="product-stickers__item product-stickers__item_yellow" v-if="activePacking.isRecommend">Рекомендуем
+      </div>
       <div class="product-stickers__item product-stickers__item_green" v-if="activePacking.isNew">Новинка</div>
       <div class="product-stickers__item product-stickers__item_red" v-if="activePacking.isHit">Хит!</div>
     </div>
@@ -39,6 +41,43 @@
         'activePacking',
       ])
     },
+    watch: {
+      activePacking(newPacking) {
+        const img = new Image();
+
+        img.onload = () => {
+          this.$refs.canvas.width = img.naturalWidth;
+          this.$refs.canvas.height = img.naturalHeight;
+          this.ctx.drawImage(img, 0, 0);
+
+          this.ctx.globalCompositeOperation = 'darken';
+          this.ctx.fillStyle = '#f7f7f7';
+          this.ctx.fillRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
+        };
+
+        img.src = newPacking.img;
+      },
+    },
+    mounted() {
+      // this.canvas = this.$refs.canvas;
+      this.ctx = this.$refs.canvas.getContext('2d');
+
+      const img = new Image();
+      
+      img.onload = () => {
+        this.$refs.canvas.width = img.naturalWidth;
+        this.$refs.canvas.height = img.naturalHeight;
+        this.ctx.drawImage(img, 0, 0);
+
+        this.ctx.globalCompositeOperation = 'darken';
+        this.ctx.fillStyle = '#f7f7f7';
+        this.ctx.fillRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
+      };
+
+      // img.src = 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513';
+      img.src = this.activePacking.img;
+
+    }
   }
 </script>
 

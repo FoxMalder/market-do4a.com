@@ -1,33 +1,5 @@
 <template>
-  <div class="p-detail__col p-detail__col_top">
-    <h1 class="p-detail__name">{{productName}}</h1>
-    
-    <div class="p-detail__subtitle">
-      <div class="p-detail__message" v-if="!activeOffer.count && activeOffer.count_remote > 0">
-        Доставка с центрального склада
-      </div>
-    </div>
-    
-    <div class="p-detail__left-block">
-      <ProductImage/>
-      
-      <div class="p-brand-info">
-        <div class="p-brand-info__logo">
-          <img src="https://marketdo4a.com/upload/resizer/7d/66387_140x38_7dbec6b23aff8ec9f413175944ea2fc3.png">
-        </div>
-        <div class="p-brand-info__text">Официальная поставка от бренда</div>
-        <a class="p-brand-info__link" href="#">Все товары Optimum Nutrition</a>
-      </div>
-    </div>
-    
-    <div class="p-detail__header">
-      <a class="p-detail__reviews" href="#reviews" data-anchor>
-        {{formatUnit(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}}
-      </a>
-      <div class="p-detail__category">Комплексный протеин</div>
-      <div class="p-detail__country">Страна: <span class="black">США</span></div>
-    </div>
-    
+  <div class="p-detail__info">
     <div class="p-detail__control">
       <ControlSelect/>
     </div>
@@ -50,7 +22,7 @@
       <ControlCounter/>
     </div>
     
-    <div class="p-detail-delivery">
+    <div class="p-detail-delivery" v-if="isAvailableOffer">
       
       <template v-if="activeOffer.count > 0">
         <div class="p-detail-delivery__row">
@@ -80,7 +52,7 @@
           <i class="icon icon-mir"></i>
         </div>
       </template>
-      
+    
     </div>
   </div>
 </template>
@@ -109,6 +81,7 @@
       ...mapGetters('product', [
         'activePacking',
         'activeOffer',
+        'isAvailableOffer'
       ]),
       availableStore() {
         return Object.keys(this.activeOffer.available_store).filter(key => this.activeOffer.available_store[key] > 0)
