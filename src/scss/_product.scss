@@ -167,6 +167,18 @@
     white-space: nowrap;
   }
 
+  &__flag {
+    height: 11px;
+    width: auto;
+    //vertical-align: -3px;
+    margin-left: 8px;
+    @include media-breakpoint-up(xl) {
+      height: 20px;
+      vertical-align: -3px;
+      margin-left: 13px;
+    }
+  }
+
   &__reviews {
     float: right;
     color: $main-color;
@@ -206,15 +218,33 @@
 
 .p-images-block {
   position: relative;
-  min-height: 240px;
   margin-bottom: 20px;
   //@include media-breakpoint-up(xl) {
   //  height: 675px;
   //}
 
+  &.disabled {
+    opacity: .3;
+  }
+
   &__image {
     //height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     text-align: center;
+    height: 225px;
+    background-color: $body-bg;
+    > canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+      height: auto;
+      min-height: 240px;
+    }
   }
 
   .product-stickers {
@@ -868,6 +898,10 @@
       border-bottom: 0;
       border-left: 4px solid transparent;
       opacity: 1;
+    }
+
+    &.disabled {
+      color: rgba(#101010, 0.3);
     }
   }
 

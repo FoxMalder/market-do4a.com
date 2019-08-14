@@ -37,6 +37,9 @@
       'activeOffer',
       'isAvailableOffer'
     ]),
+    mounted() {
+      $('[data-toggle="tooltip"]').tooltip();
+    }
   }
 </script>
 

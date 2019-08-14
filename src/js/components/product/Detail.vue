@@ -28,8 +28,8 @@
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">
             Самовывоз из
-            <a class="text-link nowrap" data-anchor href="#stores">
-              {{formatUnit(availableStore.length, ['магазина', 'магазинов', 'магазинов'])}}
+            <a class="text-link nowrap" data-anchor href="#stores">{{ formatUnit(availableStore.length, ['магазина',
+              'магазинов', 'магазинов'])}}
             </a>
             сегодня
           </div>

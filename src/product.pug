@@ -22,26 +22,9 @@ block wrapper
                             h1.p-detail__name Optimum nutrition gold standart whey
 
                             .p-detail__subtitle#js-product-tag
-                                span.p-detail__message Доставка с центрального склада
 
                             .p-detail__left-block
                                 .p-images-block#js-product-image
-                                    .p-images-block__image
-                                        img(src=require('./images/product.png'))
-                                    .product-stickers
-                                        .product-stickers__item.product-stickers__item_red.product-stickers__item_delivery
-                                            | Доставка <br>1 день
-                                        .product-stickers__item.product-stickers__item_yellow
-                                            | Рекомендуем
-                                        .product-stickers__item.product-stickers__item_green
-                                            | Новинка
-                                        .product-stickers__item.product-stickers__item_red
-                                            | Хит!
-                                    .product-control
-                                        button.product-control__favorites(data-product-toggle="add-favorites")
-                                            +sprite('product-card-heart.svg')
-                                        button.product-control__compare(data-product-toggle="compare")
-                                            +sprite('compare-icon.svg')
                                 .p-brand-info
                                     .p-brand-info__logo
                                         img(src='https://marketdo4a.com/upload/resizer/7d/66387_140x38_7dbec6b23aff8ec9f413175944ea2fc3.png')
@@ -51,7 +34,10 @@ block wrapper
                             .p-detail__header
                                 a.p-detail__reviews(href="#reviews" data-anchor) 11 отзывов
                                 span.p-detail__category Комплексный протеин
-                                span.p-detail__country Страна: <span class="black">США</span>
+                                span.p-detail__country
+                                    | Страна: <span class="black">США</span>
+                                    img.p-detail__flag(src=require('./img/flag-usa.png'))
+
 
                             .p-detail__info#js-product-info
 
@@ -121,8 +107,6 @@ block wrapper
                             .p-section-availability__td Почтой за 5-7 дней
                     .p-section-availability__hidden(id="store-1")
                         .p-store-info
-                            .p-store-info__photo
-                                img(src=require('./images/video-cover.jpg'))
                             .p-store-info__store-info
                                 .p-store-info__title Этот товар можно найти здесь:
                                 .p-store-info__address ул. Невзоровых, д.63к2

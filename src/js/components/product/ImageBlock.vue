@@ -1,8 +1,9 @@
 <template>
-  <div class="p-images-block">
+  <div class="p-images-block" :class="{disabled: !isAvailableOffer}">
     <div class="p-images-block__image">
       <!--      <img ref="image" :src="activePacking.img" :alt="productName + ' ' + activePacking.pack">-->
-      <canvas ref="canvas"></canvas>
+      <canvas class="p-images-block__img" ref="canvas"></canvas>
+<!--      <div class="p-images-block__img" ref="canvas" :style="{backgroundImage: `url(${activePacking.img})`}"></div>-->
     </div>
     <div class="product-stickers">
       <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">-->
@@ -39,35 +40,24 @@
       }),
       ...mapGetters('product', [
         'activePacking',
+        'isAvailableOffer'
       ])
     },
     watch: {
       activePacking(newPacking) {
-        const img = new Image();
-
-        img.onload = () => {
-          this.$refs.canvas.width = img.naturalWidth;
-          this.$refs.canvas.height = img.naturalHeight;
-          this.ctx.drawImage(img, 0, 0);
-
-          this.ctx.globalCompositeOperation = 'darken';
-          this.ctx.fillStyle = '#f7f7f7';
-          this.ctx.fillRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
-        };
-
-        img.src = newPacking.img;
+        this.img.src = newPacking.img;
       },
     },
     mounted() {
       // this.canvas = this.$refs.canvas;
       this.ctx = this.$refs.canvas.getContext('2d');
 
-      const img = new Image();
-      
-      img.onload = () => {
-        this.$refs.canvas.width = img.naturalWidth;
-        this.$refs.canvas.height = img.naturalHeight;
-        this.ctx.drawImage(img, 0, 0);
+      this.img = new Image();
+
+      this.img.onload = () => {
+        this.$refs.canvas.width = this.img.naturalWidth;
+        this.$refs.canvas.height = this.img.naturalHeight;
+        this.ctx.drawImage(this.img, 0, 0);
 
         this.ctx.globalCompositeOperation = 'darken';
         this.ctx.fillStyle = '#f7f7f7';
@@ -75,7 +65,7 @@
       };
 
       // img.src = 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513';
-      img.src = this.activePacking.img;
+      this.img.src = this.activePacking.img;
 
     }
   }

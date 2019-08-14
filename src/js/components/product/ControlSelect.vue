@@ -9,7 +9,7 @@
                   :class="{active: pack.id === activePacking.id}">
             <div class="p-control-radio__tooltip" v-if="pack.price_benefit > 0">
               <div class="p-control-radio__tooltip-title">Экономия</div>
-              <div class="p-control-radio__tooltip-price">{{pack.price_benefit}}</div>
+              <div class="p-control-radio__tooltip-price">{{pack.price_benefit}}₽</div>
             </div>
             <div class="p-control-radio__label" @click="selectPacking(pack)">{{pack.pack}}</div>
           </div>
@@ -17,7 +17,7 @@
       </div>
       <div class="p-control-options__type">
         <div class="p-control-select">
-          <button class="p-control-select__header" data-toggle="dropdown" ref="dropdownHeader">
+          <button class="p-control-select__header" :class="{disabled: !isAvailableOffer}" data-toggle="dropdown" ref="dropdownHeader">
             <span class="p-control-select__header-label">{{activeOffer.name}}</span>
             <span class="p-control-select__header-badge" v-if="isAvailablePacking">{{availableMoreText}}</span>
           </button>
@@ -92,7 +92,8 @@
         'availableDeliveryOffers',
         'notAvailableOffers',
 
-        'isAvailablePacking'
+        'isAvailablePacking',
+        'isAvailableOffer'
       ]),
       availableMoreText() {
         if (this.visibleOffers.length === 2) {
