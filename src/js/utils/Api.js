@@ -12,9 +12,11 @@ const Api = {
      * @returns {Promise}
      */
     add(id) {
-      // return new Promise((resolve, reject) => {
-      //   resolve([111, 2345]);
-      // })
+      if (global.demo) {
+        return new Promise((resolve, reject) => {
+          resolve([111, 2345]);
+        });
+      }
       return Utils.sendRequest(`/ajax/favorite/add/${id}/`)
         .then((array) => {
           const widgetEvent = new CustomEvent('favorites', {
@@ -32,9 +34,11 @@ const Api = {
      * @returns {Promise}
      */
     delete(id) {
-      // return new Promise((resolve, reject) => {
-      //   resolve([11, 1234, 234]);
-      // })
+      if (global.demo) {
+        return new Promise((resolve, reject) => {
+          resolve([11, 1234, 234]);
+        });
+      }
       return Utils.sendRequest(`/ajax/favorite/delete/${id}/`)
         .then((array) => {
           const widgetEvent = new CustomEvent('favorites', {

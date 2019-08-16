@@ -1,9 +1,9 @@
 <template>
-  <div class="p-images-block" :class="{disabled: !isAvailableOffer}">
-    <div class="p-images-block__image">
+  <div class="p-images-block">
+    <div class="p-images-block__image" :class="{disabled: !isAvailableOffer}">
       <!--      <img ref="image" :src="activePacking.img" :alt="productName + ' ' + activePacking.pack">-->
       <canvas class="p-images-block__img" ref="canvas"></canvas>
-<!--      <div class="p-images-block__img" ref="canvas" :style="{backgroundImage: `url(${activePacking.img})`}"></div>-->
+      <!--      <div class="p-images-block__img" ref="canvas" :style="{backgroundImage: `url(${activePacking.img})`}"></div>-->
     </div>
     <div class="product-stickers">
       <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">-->
@@ -15,12 +15,14 @@
       <div class="product-stickers__item product-stickers__item_red" v-if="activePacking.isHit">Хит!</div>
     </div>
     <div class="product-control">
-      <button class="product-control__favorites" @click="addToFavorites(activePacking)">
+      <button class="product-control__favorites" title="Добавить в избранное"
+               :class="{active: activePacking.isFavorite}"
+              @click="toggleFavorites(activePacking)">
         <svg>
           <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
         </svg>
       </button>
-      <button class="product-control__compare" @click="addToCompare(activePacking)">
+      <button class="product-control__compare" @click="addToCompare(activePacking)" title="Сравнить">
         <svg>
           <use xlink:href="images/new-sprite.svg#sprite-compare-icon"></use>
         </svg>
@@ -47,6 +49,12 @@
       activePacking(newPacking) {
         this.img.src = newPacking.img;
       },
+    },
+    methods: {
+      ...mapActions('product', [
+        'toggleFavorites',
+        'addToCompare',
+      ])
     },
     mounted() {
       // this.canvas = this.$refs.canvas;

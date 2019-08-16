@@ -17,7 +17,7 @@
       </div>
       <div class="p-control-options__type">
         <div class="p-control-select">
-          <button class="p-control-select__header" :class="{disabled: !isAvailableOffer}" data-toggle="dropdown" ref="dropdownHeader">
+          <button class="p-control-select__header" :class="{notAvailable: !isAvailableOffer}" data-toggle="dropdown" ref="dropdownHeader">
             <span class="p-control-select__header-label">{{activeOffer.name}}</span>
             <span class="p-control-select__header-badge" v-if="isAvailablePacking">{{availableMoreText}}</span>
           </button>
