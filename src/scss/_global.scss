@@ -849,6 +849,7 @@ textarea.input-text {
     align-self: flex-end;
     width: 100%;
     //height: 100%;
+    -webkit-backface-visibility: hidden
   }
 
   &__button {

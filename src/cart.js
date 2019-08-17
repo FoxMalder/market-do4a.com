@@ -2,7 +2,8 @@ import './js/common';
 import './scss/main.scss';
 
 import Vue from 'vue/dist/vue.esm';
-import Cart from './js/components/Cart.vue';
+import Checkout from './js/components/checkout/Checkout.vue';
+import store from './js/store';
 
 // import './scss/header-style.scss';
 
@@ -13,12 +14,22 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
+Vue.filter('formatPrice', (value) => {
+  // if (!value) return '';
+  // return value.toLocaleString();
+  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
+});
+
+
 $(() => {
+  store.dispatch('checkout/getAll');
+  store.dispatch('cart/getCart');
+
   new Vue({
-    el: '#vueTest',
-    template: '<Cart/>',
-    components: { Cart },
-  });
+    store,
+    render: h => h(Checkout),
+  }).$mount('#vueTest');
+
 
   $('[data-cart="promocode"]').on('click', (event) => {
     event.preventDefault();
@@ -83,15 +94,15 @@ $(() => {
   });
 
 
-  $('.order-option__header').on('click', (event) => {
-    const thisEL = event.currentTarget.parentElement;
-
-    if (thisEL.classList.contains('active')) {
-      thisEL.classList.remove('active');
-      $(thisEL).find('.order-option__body').slideUp(500);
-    } else {
-      thisEL.classList.add('active');
-      $(thisEL).find('.order-option__body').slideDown(500);
-    }
-  });
+  // $('.order-option__header').on('click', (event) => {
+  //   const thisEL = event.currentTarget.parentElement;
+  //
+  //   if (thisEL.classList.contains('active')) {
+  //     thisEL.classList.remove('active');
+  //     $(thisEL).find('.order-option__body').slideUp(500);
+  //   } else {
+  //     thisEL.classList.add('active');
+  //     $(thisEL).find('.order-option__body').slideDown(500);
+  //   }
+  // });
 });

@@ -65,6 +65,17 @@
     }
   }
 
+  &__subtitle {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 20px;
+  }
+
+  &__container {
+    margin-bottom: 40px;
+  }
+
   &__note {
     margin-top: 60px;
     color: rgba(#000, 0.5);
@@ -426,6 +437,39 @@
   background: #fff;
   line-height: 1;
 
+  &__counter {
+    display: flex;
+    transform: $skew;
+  }
+
+  &__count-note {
+    margin-top: 9px;
+    color: rgba(#000, 0.6);
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  &__increment,
+  &__decrement {
+    @extend %button-reset;
+    @include title;
+    padding: 6px 13px;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  &__quantity {
+    @include title;
+    min-width: 43px;
+    padding: 6px 0;
+    border: 3px solid #101010;
+    background: #fff;
+    font-size: 18px;
+    font-style: normal;
+    line-height: 1;
+  }
+
   &__col-image {
     display: flex;
     align-items: center;
@@ -461,10 +505,12 @@
 
   &__col-count {
     margin-left: auto;
+    text-align: center;
   }
 
   &__col-price {
-    margin-left: 30px;
+    //margin-left: 30px;
+    min-width: 120px;
     text-align: right;
   }
 
