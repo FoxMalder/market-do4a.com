@@ -18,8 +18,8 @@ export default new Vuex.Store({
   methods: {},
   actions: {},
   modules: {
-    // filters: catalogControl,
-    // product,
+    filters: catalogControl,
+    product,
     cart,
     checkout,
   },
