@@ -1,6 +1,6 @@
 <template>
   <div class="p-detail-header">
-    <h1 class="p-detail-header__name">{{name}}</h1>
+    <h1 class="p-detail-header__name">{{activePacking.name}}</h1>
     <div class="p-detail-header__note">
       <span v-show="!activeOffer.count && activeOffer.count_remote">Доставка с центрального склада</span>
     </div>
@@ -13,11 +13,12 @@
   export default {
     name: "DetailHeader",
     computed: {
-      ...mapState('product', {
-        name: state => state.name,
-      }),
+      // ...mapState('product', {
+      //   name: state => state.name,
+      // }),
       ...mapGetters('product', [
         'activeOffer',
+        'activePacking'
       ]),
     }
   }

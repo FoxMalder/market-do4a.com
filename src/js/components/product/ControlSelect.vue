@@ -1,7 +1,7 @@
 <template>
   <div class="p-control-options">
     <div class="p-control-options__wrapper">
-      <div class="p-control-options__weight">
+      <div class="p-control-options__weight" v-if="packing.length > 1">
         <div class="p-control-radio">
           <div class="p-control-radio__item"
                   v-for="pack in packing"
@@ -17,9 +17,9 @@
       </div>
       <div class="p-control-options__type">
         <div class="p-control-select">
-          <button class="p-control-select__header" :class="{notAvailable: !isAvailableOffer}" data-toggle="dropdown" ref="dropdownHeader">
+          <button class="p-control-select__header" :class="{ notAvailable: !isAvailableOffer }" data-toggle="dropdown" ref="dropdownHeader">
             <span class="p-control-select__header-label">{{activeOffer.name}}</span>
-            <span class="p-control-select__header-badge" v-if="isAvailablePacking">{{availableMoreText}}</span>
+            <span class="p-control-select__header-badge" v-if="activePacking.textCountOffer">{{activePacking.textCountOffer}}</span>
           </button>
           <div class="p-control-select__list dropdown-menu" role="form">
             
@@ -30,7 +30,7 @@
               <div class="p-control-select__item"
                       v-for="offer in availableOffers"
                       :key="offer.id"
-                      :class="{checked: offer.id === activeOffer.id}"
+                      :class="{ checked: offer.id === activeOffer.id }"
                       @click="selectClick(offer)">
                 <span class="p-control-select__item-name">{{offer.name}}</span>
                 <span class="p-control-select__item-info">Осталось {{offer.count}} шт.</span>
@@ -44,7 +44,7 @@
               <div class="p-control-select__item"
                       v-for="offer in availableDeliveryOffers"
                       :key="offer.id"
-                      :class="{checked: offer.id === activeOffer.id}"
+                      :class="{ checked: offer.id === activeOffer.id }"
                       @click="selectClick(offer)">
                 <span class="p-control-select__item-name">{{offer.name}}</span>
                 <span class="p-control-select__item-info">Осталось {{offer.count_remote}} шт.</span>
@@ -60,7 +60,7 @@
               <div class="p-control-select__item disabled"
                       v-for="offer in notAvailableOffers"
                       :key="offer.id"
-                      :class="{checked: offer.id === activeOffer.id}"
+                      :class="{ checked: offer.id === activeOffer.id }"
                       @click="selectClick(offer)">
                 <span class="p-control-select__item-name">{{offer.name}}</span>
               </div>
@@ -75,7 +75,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  import Utils from '../../utils/utils';
+  // import Utils from '../../utils/utils';
 
   export default {
     name: "ControlSelect",
@@ -95,22 +95,18 @@
         'isAvailablePacking',
         'isAvailableOffer'
       ]),
-      availableMoreText() {
-        if (this.visibleOffers.length === 2) {
-          return 'Доступен еще 1 вкус';
-        }
-        return `Доступно еще ${this.visibleOffers.length - 1} ${Utils.declOfNum(this.visibleOffers.length - 1, ['вкус', 'вкуса', 'вкусов'])}`
-      },
+      // availableMoreText() {
+      //   if (this.visibleOffers.length === 2) {
+      //     return 'Доступен еще 1 вкус';
+      //   }
+      //   return `Доступно еще ${this.visibleOffers.length - 1} ${Utils.declOfNum(this.visibleOffers.length - 1, ['вкус', 'вкуса', 'вкусов'])}`
+      // },
     },
     methods: {
       ...mapActions('product', [
         'selectPacking',
         'selectOffer'
       ]),
-      // formatUnit(count, units) {
-      //   return `${count} ${Utils.declOfNum(count, units)}`
-      //   // return `${count} ${Utils.declOfNum(count, ['вкус', 'вкуса', 'вкусов'])}`
-      // },
       selectClick(offer) {
         $(this.$refs.dropdownHeader).dropdown('hide');
         this.selectOffer(offer);
@@ -121,10 +117,6 @@
         display: 'static',
       });
     },
-    // created() {
-    //   this.$store.dispatch('product/getAllPacking');
-    //
-    // }
   }
 </script>
 
