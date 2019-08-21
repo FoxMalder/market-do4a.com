@@ -67,13 +67,13 @@ const actions = {
       }
     });
 
-    commit('SET_ALL', global.product);
+    // commit('SET_ALL', global.product);
 
-    // commit('SET_NAME', { name: global.product.name });
-    // commit('SET_TEXT_DELIVERY', { textDelivery: global.product.textDelivery });
-    // commit('SET_PACKING', { packing: global.product.packing });
-    // commit('SET_ACTIVE_OFFER_ID', { id: global.product.offerId });
-    // commit('SET_ACTIVE_PACKING_ID', { id: global.product.productId });
+    commit('SET_NAME', { name: global.product.name });
+    commit('SET_TEXT_DELIVERY', { textDelivery: global.product.textDelivery });
+    commit('SET_PACKING', { packing: global.product.packing });
+    commit('SET_ACTIVE_OFFER_ID', { id: global.product.offerId });
+    commit('SET_ACTIVE_PACKING_ID', { id: global.product.productId });
 
 
     dispatch('updateReviews');
