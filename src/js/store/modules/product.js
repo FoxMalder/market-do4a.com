@@ -139,6 +139,15 @@ const actions = {
       commit('SET_REVIEWS_LOADING', false);
     });
   },
+
+  // votePlus({ commit }, reviewId) {
+  //   Reviews.vote(reviewId, 'plus').then(() => {
+  //
+  //   });
+  // },
+  // voteMinus({ commit }, reviewId) {
+  //   Reviews.vote(reviewId, 'minus');
+  // },
 };
 
 // mutations

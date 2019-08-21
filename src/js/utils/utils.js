@@ -111,6 +111,12 @@ const Utils = {
       });
   },
 
+  sendRequestFull(url, options = {}) {
+    return fetch(url, options)
+      .then(Utils.checkStatus)
+      .then(Utils.parseJSON);
+  },
+
   /**
    * Плавная прокрутка к элементу
    * @param {HTMLElement} element - Элемент

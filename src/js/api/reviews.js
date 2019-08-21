@@ -57,7 +57,18 @@ export default {
       },
     });
   },
-  vote() {
+  vote(productId, value) {
+    const data = new FormData();
+    data.append('id', productId);
+    data.append('method', value === 'minus' ? 'voteMinus' : 'votePlus');
 
+    if (global.BX && global.BX.bitrix_sessid) {
+      data.append('sessid', global.BX.bitrix_sessid());
+    }
+
+    return Utils.sendRequestFull(`/ajax/review/byProduct/${productId}/`, {
+      method: 'post',
+      body: data,
+    });
   },
 };

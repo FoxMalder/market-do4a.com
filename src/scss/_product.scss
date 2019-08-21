@@ -922,14 +922,20 @@
   &__header-label {
     @include title;
     transform: $skew-reverse;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   &__header-badge {
+    position: absolute;
+    top: 50%;
+    right: 47px;
     padding: 4px 11px 3px;
-    transform: $skew-reverse;
-
+    transform: translateY(-50%) $skew-reverse;
     border-radius: 40px;
     background: #ececec;
+    box-shadow: 0 0 10px 10px #fff;
     color: rgba(#101010, 0.6);
     font-size: 12px;
     font-weight: 500;
@@ -2201,7 +2207,8 @@
     transform: $skew;
     border-color: $main-color;
     font-size: 22px;
-    @include hover {
+    &.active,
+    &:hover {
       background-color: $main-color;
       color: #fff;
     }
@@ -2224,7 +2231,8 @@
     transform: $skew;
     border-color: #80c627;
     font-size: 22px;
-    @include hover {
+    &.active,
+    &:hover {
       background-color: #80c627;
       color: #fff;
     }
