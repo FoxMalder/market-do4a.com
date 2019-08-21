@@ -167,6 +167,10 @@ class ProductPage {
 
     $('.p-review-form').on('submit', this.addReview);
     $('.p-modal-form').on('submit', this.addReview);
+
+    if (global.demo) {
+      this.initVue(true);
+    }
   }
 
   initVue(subscribe = false) {
@@ -225,6 +229,10 @@ class ProductPage {
    */
   onChangePacking = (state, payload) => {
     const activePacking = payload;
+
+    // Utils.sendRequest('/ajax/catalog/products/similarByProductId/83382/', {
+    //   method: 'post',
+    // });
 
     document.title = activePacking.title;
     window.history.replaceState(null, null, activePacking.url);

@@ -20,8 +20,8 @@ export default new Vuex.Store({
   modules: {
     filters: catalogControl,
     product,
-    cart,
-    checkout,
+    // cart,
+    // checkout,
   },
   // strict: debug,
   // plugins: debug ? [createLogger()] : [],

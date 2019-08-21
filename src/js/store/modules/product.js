@@ -59,11 +59,11 @@ const actions = {
 
     global.product.packing.forEach((item) => {
       if (!Array.isArray(item.sku)) {
-        item.sku = Object.values(item.sku);
-        // item.sku = Object.keys(item.sku).map(key => ({
-        //   id: parseInt(key, 10),
-        //   ...item.sku[key],
-        // }));
+        // item.sku = Object.values(item.sku);
+        item.sku = Object.keys(item.sku).map(key => ({
+          id: parseInt(key, 10),
+          ...item.sku[key],
+        }));
       }
     });
 
