@@ -44,6 +44,11 @@
     margin-left: map_get($grid-gutter-width-map, xl) / -2;
   }
 
+  &__name,
+  &__subtitle {
+    background-color: red;
+  }
+
   &__col {
     display: flex;
     flex-direction: column;
@@ -2241,6 +2246,8 @@
 }
 
 .p-collapse {
+  white-space: pre-line;
+
   &__text {
     overflow: hidden;
   }
