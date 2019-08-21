@@ -66,7 +66,7 @@ export default {
       data.append('sessid', global.BX.bitrix_sessid());
     }
 
-    return Utils.sendRequestFull(`/ajax/review/byProduct/${productId}/`, {
+    return Utils.sendRequestFull('/local/public/product_reviews.php', {
       method: 'post',
       body: data,
     });
