@@ -69,55 +69,6 @@
     }
   }
 
-  &__name {
-    //margin-bottom: 26px;
-    margin-bottom: 6px;
-    font-size: 24px;
-    line-height: 115%;
-
-    @include media-breakpoint-up(md) {
-      font-size: 36px;
-      line-height: 41px;
-    }
-
-    @include media-breakpoint-up(xl) {
-      margin-bottom: 17px;
-      font-size: 40px;
-      line-height: 38px;
-    }
-  }
-
-  &__subtitle {
-    display: flex;
-    //flex-direction: column;
-    //align-items: flex-start;
-    flex-wrap: wrap;
-    min-height: 19px;
-    margin-bottom: 26px;
-    @include media-breakpoint-up(xl) {
-      margin-bottom: 28px;
-    }
-  }
-
-  &__message {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 3px 10px 4px;
-    border-radius: 2px;
-    background: #292929;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1;
-    //
-    //~ .p-detail__header {
-    //  @include media-breakpoint-up(xl) {
-    //    margin-bottom: 18px;
-    //  }
-    //}
-  }
-
   &__left-block {
 
     @include media-breakpoint-up(md) {
@@ -216,6 +167,57 @@
   }
 }
 
+.p-detail-header {
+  &__name {
+    //margin-bottom: 26px;
+    margin-bottom: 6px;
+    font-size: 24px;
+    line-height: 115%;
+
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 17px;
+      font-size: 40px;
+      line-height: 38px;
+    }
+  }
+
+  &__subtitle {
+    display: flex;
+    //flex-direction: column;
+    //align-items: flex-start;
+    flex-wrap: wrap;
+    min-height: 19px;
+    margin-bottom: 26px;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 28px;
+    }
+  }
+
+  &__message {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 3px 10px 4px;
+    border-radius: 2px;
+    background: #292929;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    //
+    //~ .p-detail__header {
+    //  @include media-breakpoint-up(xl) {
+    //    margin-bottom: 18px;
+    //  }
+    //}
+  }
+}
+
 .p-images-block {
   position: relative;
   margin-bottom: 20px;
@@ -281,6 +283,7 @@
 
 .p-brand-info {
   display: none;
+  position: relative;
 
   padding: 12px 17px;
   background: #fff;
@@ -293,26 +296,25 @@
     display: block;
   }
   @include media-breakpoint-up(xl) {
-    padding: 17px 26px;
-    //border: 1px solid red;
+    padding: 17px 26px 17px 150px;
+    transform: $skew;
     font-size: 15px;
-    //transform: $skew;
-    //> * {
-    //  transform: $skew-reverse;
-    //}
   }
 
   &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 35px;
 
     @include media-breakpoint-up(xl) {
-      width: 122px;
-      height: 44px;
-      padding-right: 10px;
-      float: left;
-    }
-
-    > img {
-      height: 100%;
+      position: absolute;
+      top: 17px;
+      bottom: 17px;
+      left: 20px;
+      width: 117px;
+      height: auto;
+      transform: $skew-reverse;
     }
   }
 
@@ -321,11 +323,17 @@
     @include media-breakpoint-up(md) {
       margin-bottom: 10px;
     }
+    @include media-breakpoint-up(xl) {
+      transform: $skew-reverse;
+    }
   }
 
   &__link {
     display: inline-block;
     color: $main-color;
+    @include media-breakpoint-up(xl) {
+      transform: $skew-reverse;
+    }
   }
 }
 
@@ -1266,7 +1274,7 @@
       transition: none;
     }
 
-    &.hidden {
+    &_hidden {
       top: 0;
       opacity: 0;
     }
@@ -2078,9 +2086,10 @@
   .load-more-block {
     padding-bottom: 30px;
   }
+
   &__message {
-    text-align: center;
     padding: 0 0 60px;
+    text-align: center;
   }
 }
 
@@ -2329,17 +2338,17 @@
   &__row {
     @include media-breakpoint-up(md) {
       display: flex;
+      margin-right: -5px;
       margin-bottom: 16px;
       margin-left: -5px;
-      margin-right: -5px;
     }
   }
 
   &__col {
     @include media-breakpoint-up(md) {
       flex: 1 0;
-      padding-left: 5px;
       padding-right: 5px;
+      padding-left: 5px;
     }
   }
 
@@ -2351,17 +2360,19 @@
   }
 
   &__note {
+    max-width: 415px;
     margin-top: 48px;
+    margin-right: auto;
+    margin-left: auto;
     color: rgba(#000, 0.6);
     font-size: 14px;
     line-height: 18px;
     text-align: center;
-    max-width: 415px;
-    margin-left: auto;
-    margin-right: auto;
+
     a {
       text-decoration: underline;
     }
+
     @include media-breakpoint-up(md) {
       margin-top: 40px;
       transform: $skew-reverse;
@@ -2372,13 +2383,13 @@
 
   &__footer {
     //display: flex;
-    text-align: center;
     transform: $skew-reverse;
+    text-align: center;
   }
 
   &__button {
     margin-top: 35px;
-    padding-left: 30px;
     padding-right: 30px;
+    padding-left: 30px;
   }
 }

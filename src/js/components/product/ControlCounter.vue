@@ -2,7 +2,7 @@
   <div class="p-control-fixed">
     <div class="p-control-counter"
             ref="counter"
-            :class="{hidden: !isAdded}"
+            :class="{ 'p-control-counter_hidden': !isAdded }"
             v-show="isAvailableOffer"
             v-touch-pan.vertical.prevent.mouse="handlePan">
       <div class="p-control-counter__header" @click.prevent="toggle">
@@ -13,6 +13,7 @@
         <div class="p-control-counter__tooltip" v-show="isOpened && activeOffer.count && count > activeOffer.count">
           Часть товара будет доставлена с центрального склада
         </div>
+        
         <button class="btn btn-white p-control-counter__decrement"
                 @click.prevent="decrement"
                 :disabled="count <= 1">-

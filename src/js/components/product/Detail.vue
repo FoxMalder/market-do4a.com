@@ -11,10 +11,12 @@
           {{formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])}}
         </a>
       </template>
-      <template v-else-if="activeOffer.count_remote > 0">
-        <i class="icon icon-truck"></i> Доставка почтой в Усть-Пердинск с 23.04 по 26.04
-      </template>
-      <template v-else><i class="icon icon-not-available"></i> Нет в наличии</template>
+      
+      <template v-else-if="activeOffer.count_remote > 0"
+      ><i class="icon icon-truck"></i> {{textDelivery}}</template>
+      
+      <template v-else
+      ><i class="icon icon-not-available"></i> Нет в наличии</template>
     </div>
     
     <div class="p-detail__row">
@@ -77,6 +79,7 @@
     computed: {
       ...mapState('product', {
         productName: state => state.name,
+        textDelivery: state => state.textDelivery,
       }),
       ...mapGetters('product', [
         'activePacking',

@@ -100,7 +100,7 @@
           return 'Доступен еще 1 вкус';
         }
         return `Доступно еще ${this.visibleOffers.length - 1} ${Utils.declOfNum(this.visibleOffers.length - 1, ['вкус', 'вкуса', 'вкусов'])}`
-      }
+      },
     },
     methods: {
       ...mapActions('product', [

@@ -10,6 +10,9 @@ const state = {
   offerId: 0,
   packing: [],
   offers: [],
+
+  textDelivery: '',
+
   reviewsLoading: false,
   reviewsPage: 0,
   reviewsCount: 16,
@@ -49,21 +52,22 @@ const getters = {
 // actions
 const actions = {
   getAllPacking({ dispatch, commit }) {
-    if (Array.isArray(global.product.packing)) {
-      commit('SET_PACKING', global.product.packing);
-    } else {
-      const arr = Object.keys(global.product.packing).map((key) => {
-        const p = global.product.packing[key];
-        p.sku = Object.keys(p.sku).map(key2 => ({
-          id: parseInt(key2, 10),
-          ...p.sku[key2],
-        }));
-        return p;
-      });
-
-      commit('SET_PACKING', arr);
+    if (!Array.isArray(global.product.packing)) {
+      global.product.packing = Object.values(global.product.packing);
     }
 
+    global.product.packing.forEach((item) => {
+      if (!Array.isArray(item.sku)) {
+        item.sku = Object.keys(item.sku).map(key => ({
+          id: parseInt(key, 10),
+          ...item.sku[key],
+        }));
+      }
+    });
+
+    commit('SET_PACKING', { packing: global.product.packing });
+    commit('SET_NAME', { name: global.product.name });
+    commit('SET_TEXT_DELIVERY', { textDelivery: global.product.textDelivery });
     commit('SET_ACTIVE_OFFER_ID', { id: global.product.offerId });
     commit('SET_ACTIVE_PACKING_ID', { id: global.product.productId });
 
@@ -135,11 +139,15 @@ const actions = {
 
 // mutations
 const mutations = {
-  SET_NAME(state, name) {
+  SET_NAME(state, { name }) {
     state.name = name;
   },
 
-  SET_PACKING(state, packing) {
+  SET_TEXT_DELIVERY(state, { textDelivery }) {
+    state.name = textDelivery;
+  },
+
+  SET_PACKING(state, { packing }) {
     state.packing = packing;
   },
 

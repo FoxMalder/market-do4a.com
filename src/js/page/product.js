@@ -15,7 +15,7 @@ import store from '../store';
 // import ControlSelect from '../components/product/ControlSelect.vue';
 import ProductImage from '../components/product/ImageBlock.vue';
 import StarRating from '../components/StarRating.vue';
-import ProductAvailabilityBadge from '../components/product/AvailabilityBadge.vue';
+import ProductDetailHeader from '../components/product/DetailHeader.vue';
 import ProductDetail from '../components/product/Detail.vue';
 import ProductReviews from '../components/product/Reviews.vue';
 
@@ -360,8 +360,8 @@ $(() => {
 
   new Vue({
     store,
-    render: h => h(ProductAvailabilityBadge),
-  }).$mount('#js-product-tag');
+    render: h => h(ProductDetailHeader),
+  }).$mount('#js-product-header');
 
   new Vue({
     store,
