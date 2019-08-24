@@ -1,7 +1,5 @@
 import Cart from '../../api/cart';
 
-window.app.Cart = Cart;
-
 // initial state
 const state = {
   all: null,
