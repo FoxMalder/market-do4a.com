@@ -1,6 +1,6 @@
 import Utils from '../utils/utils';
 
-const Cart = {
+export default {
   addProduct({ productId, productQuantity }) {
     const data = {
       method: 'add',
@@ -48,9 +48,3 @@ const Cart = {
     });
   },
 };
-
-if (!global.app.Cart) {
-  global.app.Cart = Cart;
-}
-
-export default Cart;

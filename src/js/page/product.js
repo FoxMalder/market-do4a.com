@@ -11,6 +11,7 @@ import Utils from '../utils/utils';
 import Api from '../utils/Api';
 import Reviews from '../api/reviews';
 import Product from '../api/product';
+import Cart from '../api/cart';
 import store from '../store';
 // import ControlCounter from '../components/product/ControlCounter.vue';
 // import ControlSelect from '../components/product/ControlSelect.vue';
@@ -344,5 +345,6 @@ $(() => {
   initCollapse();
 
 
+  global.app.Cart = Cart;
   global.app.Product = new ProductPage();
 });
