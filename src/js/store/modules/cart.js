@@ -1,5 +1,7 @@
 import Cart from '../../api/cart';
 
+window.app.Cart = Cart;
+
 // initial state
 const state = {
   all: null,
@@ -51,9 +53,7 @@ const actions = {
   addProductToCart({ commit }, { productId, productQuantity }) {
     console.log(`Add product ${productId} to cart`);
 
-    Cart.addProduct({ productId, productQuantity }).then((data) => {
-      console.log(data);
-    });
+    return Cart.addProduct({ productId, productQuantity });
   },
   removeProductFromCart({ commit }, product) {
     console.log('remove product: ', product.ID);

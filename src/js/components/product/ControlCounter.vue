@@ -30,7 +30,7 @@
         </div>
       </div>
     </transition>
-  
+    
     <button class="btn btn-black p-control-button"
             v-if="!isAvailableOffer"
             @click.prevent="subscribe">
@@ -117,20 +117,36 @@
     methods: {
       increment() {
         this.count += 1;
+        
+        if (this.isAdded) {
+          this.addToCart();
+        }
       },
       decrement() {
         this.count -= 1;
+        
+        if (this.isAdded) {
+          this.addToCart();
+        }
       },
       subscribe() {
         alert('Подписка на продукт оформлена')
       },
       addToCart() {
-        this.$store.dispatch('cart/addProductToCart', { productId: this.activeOffer.id, productQuantity: this.count });
-        
-        this.isAdded = true;
-        if (document.documentElement.clientWidth < 768) {
-          this.reveal('up');
-        }
+
+        this.$store.dispatch('cart/addProductToCart', {
+          productId: this.activeOffer.id,
+          productQuantity: this.count
+        }).then((response) => {
+          this.isAdded = true;
+          if (document.documentElement.clientWidth < 768) {
+            this.reveal('up');
+          }
+        }).catch((error) => {
+          console.log(error);
+          console.log(error.response);
+        });
+
       },
       // onBlur() {
       //   if (this.count === '') {

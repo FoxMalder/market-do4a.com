@@ -6,7 +6,7 @@ export default {
       method: 'add',
       id: productId,
       quantity: productQuantity,
-      // getHtml: 'N',
+      ajax: 'Y',
       sessid: Utils.sessid(),
     };
     const formData = new FormData();
@@ -15,9 +15,36 @@ export default {
       formData.append(key, data[key]);
     });
 
-    return Utils.sendRequest('/local/public/basket.php', {
+    return Utils.sendRequestFull('/local/public/basket.php', {
       method: 'post',
       body: formData,
+    }).then((response) => {
+      if (response.status !== 'error') {
+        return response.html;
+      }
+      const error = new Error(response.error);
+      error.response = response;
+      throw error;
+    });
+  },
+
+  test(data) {
+    const formData = new FormData();
+
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+
+    return Utils.sendRequestFull('/local/public/basket.php', {
+      method: 'post',
+      body: formData,
+    }).then((response) => {
+      if (response.status !== 'error') {
+        return response.html;
+      }
+      const error = new Error(response.error);
+      error.response = response;
+      throw error;
     });
   },
 };
