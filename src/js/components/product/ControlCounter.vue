@@ -1,33 +1,35 @@
 <template>
   <div class="p-control-fixed">
-    <div class="p-control-counter"
-            ref="counter"
-            :class="{ 'p-control-counter_hidden': !isAdded }"
-            v-show="isAvailableOffer"
-            v-touch-pan.vertical.prevent.mouse="handlePan">
-      <div class="p-control-counter__header" @click.prevent="toggle">
-        <div class="p-control-counter__icon"></div>
-      </div>
-      <label class="p-control-counter__title" for="product-counter">Количество</label>
-      <div class="p-control-counter__row">
-        <div class="p-control-counter__tooltip" v-show="isOpened && activeOffer.count && count > activeOffer.count">
-          Часть товара будет доставлена с центрального склада
+    <transition name="fade">
+      <div class="p-control-counter"
+              ref="counter"
+              :class="{ 'p-control-counter_hidden': !isAdded }"
+              v-show="isAvailableOffer"
+              v-touch-pan.vertical.prevent.mouse="handlePan">
+        <div class="p-control-counter__header" @click.prevent="toggle">
+          <div class="p-control-counter__icon"></div>
         </div>
-        
-        <button class="btn btn-white p-control-counter__decrement"
-                @click.prevent="decrement"
-                :disabled="count <= 1">-
-        </button>
-        <input class="input-text p-control-counter__input"
-                id="product-counter"
-                type="number"
-                v-model.number="count">
-        <button class="btn btn-white p-control-counter__increment"
-                @click.prevent="increment"
-                :disabled="count >= maxCount">+
-        </button>
+        <label class="p-control-counter__title" for="product-counter">Количество</label>
+        <div class="p-control-counter__row">
+          <div class="p-control-counter__tooltip" v-show="isOpened && activeOffer.count && count > activeOffer.count">
+            Часть товара будет доставлена с центрального склада
+          </div>
+          
+          <button class="btn btn-white p-control-counter__decrement"
+                  @click.prevent="decrement"
+                  :disabled="count <= 1">-
+          </button>
+          <input class="input-text p-control-counter__input"
+                  id="product-counter"
+                  type="number"
+                  v-model.number="count">
+          <button class="btn btn-white p-control-counter__increment"
+                  @click.prevent="increment"
+                  :disabled="count >= maxCount">+
+          </button>
+        </div>
       </div>
-    </div>
+    </transition>
     
     <button class="btn btn-black p-control-button"
             v-if="!isAvailableOffer"

@@ -4,20 +4,20 @@
       <ControlSelect/>
     </div>
     
-    <div class="p-detail__availability">
-      <template v-if="activeOffer.count > 0">
+    <transition>
+      <div class="p-detail__availability" v-if="activeOffer.count > 0">
         <i class="icon icon-available"></i> В наличии сейчас в
         <a class="text-link" data-anchor href="#stores">
           {{formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])}}
         </a>
-      </template>
-      
-      <template v-else-if="activeOffer.count_remote > 0"
-      ><i class="icon icon-truck"></i> {{textDelivery}}</template>
-      
-      <template v-else
-      ><i class="icon icon-not-available"></i> Нет в наличии</template>
-    </div>
+      </div>
+      <div class="p-detail__availability" v-else-if="activeOffer.count_remote > 0">
+        <i class="icon icon-truck"></i> {{textDelivery}}
+      </div>
+      <div class="p-detail__availability" v-else>
+        <i class="icon icon-not-available"></i> Нет в наличии
+      </div>
+    </transition>
     
     <div class="p-detail__row">
       <ProductPrice/>

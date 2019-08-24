@@ -246,15 +246,15 @@ class ProductPage {
   onChangePacking = (state, payload) => {
     const activePacking = payload;
 
-    // Utils.sendRequest('/ajax/catalog/products/similarByProductId/83382/', {
-    //   method: 'post',
-    // });
-
     document.title = activePacking.title;
-    window.history.replaceState(null, null, activePacking.url);
+    if (!global.demo) {
+      window.history.replaceState(null, null, activePacking.url);
+    }
 
     if (this.elements.breadcumpsThisPage) this.elements.breadcumpsThisPage.innerHTML = activePacking.name;
-    if (this.elements.detailReviewsCount) this.elements.detailReviewsCount.innerHTML = `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`;
+    if (this.elements.detailReviewsCount) this.elements.detailReviewsCount.innerHTML = activePacking.review
+      ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
+      : 'Нет отзывов';
     if (this.elements.reviewsCount) this.elements.reviewsCount.innerHTML = `${activePacking.review > 0 ? activePacking.review : ''}`;
   };
 

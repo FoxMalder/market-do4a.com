@@ -23,25 +23,20 @@
     components: {
       Review,
     },
-    computed: mapState({
-      reviews: state => state.product.reviews,
-      reviewsCount: state => state.product.reviewsCount,
-      isLoading: state => state.product.reviewsLoading,
+    computed: mapState('product', {
+      reviews: state => state.reviews,
+      reviewsCount: state => state.reviewsCount,
+      isLoading: state => state.reviewsLoading,
     }),
-    methods: {
-      ...mapActions('product', {
-        nextPage: 'getNextReviews',
-        update: 'updateReviews',
-        // voteMinus: 'voteMinus',
-        // votePlus: 'votePlus',
-      }),
-    },
+    methods: mapActions('product', {
+      nextPage: 'getNextReviews',
+      update: 'updateReviews',
+    }),
     created() {
-      // this.update();
+      this.update();
     }
   }
 </script>
 
 <style scoped>
-
 </style>

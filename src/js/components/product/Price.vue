@@ -5,12 +5,12 @@
       <div class="p-price__old" v-if="activeOffer.old_price > activeOffer.price">
         {{activeOffer.old_price | formatPrice}}
       </div>
-<!--      <div class="p-price__row">-->
-<!--        <div class="p-price__col">-->
-<!--          <span class="green">+225</span> бонусных рублей-->
-<!--        </div>-->
-<!--        <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>-->
-<!--      </div>-->
+      <!--      <div class="p-price__row">-->
+      <!--        <div class="p-price__col">-->
+      <!--          <span class="green">+225</span> бонусных рублей-->
+      <!--        </div>-->
+      <!--        <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>-->
+      <!--      </div>-->
       <div class="p-price__row">
         <div class="p-price__col">
           <span class="gray">Цена актуальна только в интернет-магазине</span>
