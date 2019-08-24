@@ -1,6 +1,7 @@
 import Utils from '../utils/utils';
 
 export default {
+  requestParam: {},
   addReview(review) {
     const data = {
       ajax: 'Y',
@@ -15,6 +16,17 @@ export default {
     });
   },
   getReviews(productId, page = 0) {
+    const formData = new FormData();
+    formData.append('page', page);
+
+    // console.log(this.requestParam);
+
+    if (this.requestParam) {
+      Object.keys(this.requestParam).forEach((key) => {
+        formData.append(key, this.requestParam[key]);
+      });
+    }
+
     if (global.demo) {
       return new Promise((resolve, reject) => {
         let id = Math.ceil(Math.random() * 1000);
@@ -51,24 +63,21 @@ export default {
     }
     return Utils.sendRequest(`/ajax/review/byProduct/${productId}/`, {
       method: 'post',
-      body: {
-        page,
-        linit: '',
-      },
+      body: formData,
     });
   },
   vote(productId, value) {
-    const data = new FormData();
-    data.append('id', productId);
-    data.append('method', value === 'minus' ? 'voteMinus' : 'votePlus');
+    const formData = new FormData();
+    formData.append('id', productId);
+    formData.append('method', value === 'minus' ? 'voteMinus' : 'votePlus');
 
     if (global.BX && global.BX.bitrix_sessid) {
-      data.append('sessid', global.BX.bitrix_sessid());
+      formData.append('sessid', global.BX.bitrix_sessid());
     }
 
     return Utils.sendRequestFull('/local/public/product_reviews.php', {
       method: 'post',
-      body: data,
+      body: formData,
     });
   },
 };

@@ -31,9 +31,13 @@
     methods: {
       ...mapActions('product', {
         nextPage: 'getNextReviews',
+        update: 'updateReviews',
         // voteMinus: 'voteMinus',
         // votePlus: 'votePlus',
       }),
+    },
+    created() {
+      // this.update();
     }
   }
 </script>

@@ -2,6 +2,7 @@
 /* eslint-disable no-shadow */
 
 import Reviews from '../../api/reviews';
+import Product from '../../api/product';
 import Api from '../../utils/Api';
 
 // initial state
@@ -14,10 +15,15 @@ const state = {
   name: '',
   textDelivery: '',
 
+  // reviewsRequestParam: {},
   reviewsLoading: false,
   reviewsPage: 0,
   reviewsCount: 16,
   reviews: [],
+
+  // similarRequestParam: {},
+  similarLoading: false,
+  similar: [],
 };
 
 // getters
@@ -74,9 +80,6 @@ const actions = {
     commit('SET_PACKING', { packing: global.product.packing });
     commit('SET_ACTIVE_OFFER_ID', { id: global.product.offerId });
     commit('SET_ACTIVE_PACKING_ID', { id: global.product.productId });
-
-
-    dispatch('updateReviews');
   },
 
   selectPacking({ dispatch, commit }, packing) {
@@ -93,6 +96,7 @@ const actions = {
 
 
     dispatch('updateReviews');
+    dispatch('updateSimilar');
   },
 
   selectOffer({ commit }, offer) {
@@ -140,14 +144,14 @@ const actions = {
     });
   },
 
-  // votePlus({ commit }, reviewId) {
-  //   Reviews.vote(reviewId, 'plus').then(() => {
-  //
-  //   });
-  // },
-  // voteMinus({ commit }, reviewId) {
-  //   Reviews.vote(reviewId, 'minus');
-  // },
+  updateSimilar({ state, commit }) {
+    commit('SET_SIMILAR_LOADING', true);
+
+    Product.getSimilar(state.packingId).then((data) => {
+      commit('SET_SIMILAR', data.items);
+      commit('SET_SIMILAR_LOADING', false);
+    });
+  },
 };
 
 // mutations
@@ -201,6 +205,16 @@ const mutations = {
 
   SET_REVIEWS_LOADING(state, isLoading) {
     state.reviewsLoading = isLoading;
+  },
+
+
+
+  SET_SIMILAR(state, similar) {
+    state.similar = similar;
+  },
+
+  SET_SIMILAR_LOADING(state, isLoading) {
+    state.similarLoading = isLoading;
   },
 };
 

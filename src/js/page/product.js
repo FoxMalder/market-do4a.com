@@ -10,6 +10,7 @@ import TextareaAutoHeight from '../plugins/TextareaAutoHeight';
 import Utils from '../utils/utils';
 import Api from '../utils/Api';
 import Reviews from '../api/reviews';
+import Product from '../api/product';
 import store from '../store';
 // import ControlCounter from '../components/product/ControlCounter.vue';
 // import ControlSelect from '../components/product/ControlSelect.vue';
@@ -18,6 +19,7 @@ import StarRating from '../components/StarRating.vue';
 import ProductDetailHeader from '../components/product/DetailHeader.vue';
 import ProductDetail from '../components/product/Detail.vue';
 import ProductReviews from '../components/product/Reviews.vue';
+import ProductSimilar from '../components/product/Similar.vue';
 
 Vue.filter('formatNumber', (value) => {
   // if (!value) return '';
@@ -203,11 +205,25 @@ class ProductPage {
       render: h => h(ProductImage),
     }).$mount('#js-product-image');
 
-    new Vue({
-      store,
-      render: h => h(ProductReviews),
-    }).$mount('#js-product-reviews');
+    const reviewsList = document.querySelector('#js-product-reviews');
+    if (reviewsList) {
+      // const reviewsListParam = JSON.parse(reviewsList.dataset.request);
+      Reviews.requestParam = eval(`(${reviewsList.dataset.request})`);
+      new Vue({
+        store,
+        render: h => h(ProductReviews),
+      }).$mount(reviewsList);
+    }
 
+    const similarSection = document.querySelector('.p-section-similar');
+    if (similarSection) {
+      // const similarSectionParam = JSON.parse(similarSection.dataset.request);
+      Product.requestParam = eval(`(${similarSection.dataset.request})`);
+      new Vue({
+        store,
+        render: h => h(ProductSimilar),
+      }).$mount(similarSection);
+    }
 
     // document.querySelector('.p-review-form').querySelector('.p-review-form__stars');
     new Vue({
@@ -219,7 +235,7 @@ class ProductPage {
       store,
       render: h => h(StarRating),
     }).$mount('.p-modal-form__rating-stars');
-  };
+  }
 
   /**
    * При изменении фасовки

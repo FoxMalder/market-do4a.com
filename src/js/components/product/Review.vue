@@ -1,10 +1,13 @@
 <template>
-  <div class="p-review-item">
+  <div class="p-review-item" itemprop="review" itemscope itemtype="http://schema.org/Review">
     <div class="container">
       <div class="p-review-item__inner">
         <div class="p-review-item__header">
-          <div class="p-review-item__name">{{review.author}}</div>
-          <div class="p-review-item__rating">
+          <div class="p-review-item__name" itemprop="author">{{review.author}}</div>
+          <div class="p-review-item__rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+            <meta itemprop="worstRating" content="0">
+            <meta itemprop="bestRating" content="5">
+            <meta itemprop="ratingValue" :content="review.raiting">
             <i class="i i-star"
                     v-for="i in [1, 2, 3, 4, 5]"
                     :class="{red: i <= review.raiting}"></i>
@@ -12,7 +15,7 @@
           <div class="p-review-item__date">{{review.created}}</div>
         </div>
         <div class="p-review-item__body">
-          <div class="p-review-item__text">{{review.text}}</div>
+          <div class="p-review-item__text" itemprop="description">{{review.text}}</div>
           <div class="p-review-item__vote">
             <button class="btn p-review-item__down-vote"
                     :class="{ active: vote === 'minus' }"
