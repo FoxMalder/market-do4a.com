@@ -81,9 +81,9 @@
       };
     },
     computed: {
-      ...mapState('product', {
-        productName: state => state.name,
-      }),
+      // ...mapState('product', {
+      //   productName: state => state.name,
+      // }),
       ...mapGetters('product', [
         // 'activePacking',
         'activeOffer',
@@ -125,6 +125,8 @@
         alert('Подписка на продукт оформлена')
       },
       addToCart() {
+        this.$store.dispatch('cart/addProductToCart', { productId: this.activeOffer.id, productQuantity: this.count });
+        
         this.isAdded = true;
         if (document.documentElement.clientWidth < 768) {
           this.reveal('up');

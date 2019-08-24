@@ -1,3 +1,5 @@
+import Cart from '../../api/cart';
+
 // initial state
 const state = {
   all: null,
@@ -6,35 +8,38 @@ const state = {
 // getters
 const getters = {
   products: (state) => {
-    return Object.keys(state.all).map((key) => {
-      const data = state.all[key].data;
-      return data;
-      // return {
-      //   id: data.ID,
-      //   name: data.NAME,
-      //   url: data.DETAIL_PAGE_URL,
-      //   // priceBase:
-      //   quantity: data.QUANTITY, // Количество
-      //
-      //   price: data.PRICE, // Цена за единицу
-      //   sum: data.SUM_NUM, // Итоговая сумма
-      //   sumBase: data.SUM_BASE, // Итоговая сумма без скидки
-      //   // amount: offer.AMOUNT,
-      //
-      //   imgUrl: data.DETAIL_PICTURE_SRC,
-      //   imgUrl2x: data.DETAIL_PICTURE_SRC_2X,
-      //
-      //   measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
-      //   discountPrice: data.DISCOUNT_PRICE
-      // };
-      // {
-      //   id: state.all[key].id,
-      //   name: data.NAME,
-      //   quantity: 0,
-      //   price: 0,
-      //   DISCOUNT_PRICE: 120,
-      // }
-    });
+    if (state.all) {
+      return Object.keys(state.all).map((key) => {
+        const data = state.all[key].data;
+        return data;
+        // return {
+        //   id: data.ID,
+        //   name: data.NAME,
+        //   url: data.DETAIL_PAGE_URL,
+        //   // priceBase:
+        //   quantity: data.QUANTITY, // Количество
+        //
+        //   price: data.PRICE, // Цена за единицу
+        //   sum: data.SUM_NUM, // Итоговая сумма
+        //   sumBase: data.SUM_BASE, // Итоговая сумма без скидки
+        //   // amount: offer.AMOUNT,
+        //
+        //   imgUrl: data.DETAIL_PICTURE_SRC,
+        //   imgUrl2x: data.DETAIL_PICTURE_SRC_2X,
+        //
+        //   measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
+        //   discountPrice: data.DISCOUNT_PRICE
+        // };
+        // {
+        //   id: state.all[key].id,
+        //   name: data.NAME,
+        //   quantity: 0,
+        //   price: 0,
+        //   DISCOUNT_PRICE: 120,
+        // }
+      });
+    }
+    return null;
   },
 };
 
@@ -42,6 +47,13 @@ const getters = {
 const actions = {
   getCart({ commit }) {
     commit('SET_PRODUCTS', global.soaData.result.GRID.ROWS);
+  },
+  addProductToCart({ commit }, { productId, productQuantity }) {
+    console.log(`Add product ${productId} to cart`);
+
+    Cart.addProduct({ productId, productQuantity }).then((data) => {
+      console.log(data);
+    });
   },
   removeProductFromCart({ commit }, product) {
     console.log('remove product: ', product.ID);

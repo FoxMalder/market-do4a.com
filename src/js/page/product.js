@@ -315,7 +315,7 @@ class ProductPage {
       source: $el.find('[name="source"]').val(),
     };
 
-    Reviews.addReview(store.state.product.productId, data);
+    Reviews.addReview(store.state.product.packingId, data);
   };
 }
 

@@ -19,7 +19,8 @@
         <div class="p-control-select">
           <button class="p-control-select__header" :class="{ notAvailable: !isAvailableOffer }" data-toggle="dropdown" ref="dropdownHeader">
             <span class="p-control-select__header-label">{{activeOffer.name}}</span>
-            <span class="p-control-select__header-badge" v-if="activePacking.textCountOffer">{{activePacking.textCountOffer}}</span>
+            <span class="p-control-select__header-badge"
+                    v-show="(availableOffers.length || availableDeliveryOffers.length) && activePacking.textCountOffer">{{activePacking.textCountOffer}}</span>
           </button>
           <div class="p-control-select__list dropdown-menu" role="form">
             

@@ -10,9 +10,9 @@ const state = {
   packingId: 0,
   offerId: 0,
   packing: [],
-  offers: [],
+  // offers: [],
 
-  name: '',
+  // name: '',
   textDelivery: '',
 
   // reviewsRequestParam: {},
@@ -75,7 +75,7 @@ const actions = {
 
     // commit('SET_ALL', global.product);
 
-    commit('SET_NAME', { name: global.product.name });
+    // commit('SET_NAME', { name: global.product.name });
     commit('SET_TEXT_DELIVERY', { textDelivery: global.product.textDelivery });
     commit('SET_PACKING', { packing: global.product.packing });
     commit('SET_ACTIVE_OFFER_ID', { id: global.product.offerId });

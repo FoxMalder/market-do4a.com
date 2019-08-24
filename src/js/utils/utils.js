@@ -129,5 +129,12 @@ const Utils = {
       scrollTop: offsetTop - global.app.Header.header.fixedTargets.clientHeight,
     }, duration);
   },
+
+  sessid() {
+    if (global.BX && global.BX.bitrix_sessid) {
+      return global.BX.bitrix_sessid();
+    }
+    return '';
+  },
 };
 export default Utils;

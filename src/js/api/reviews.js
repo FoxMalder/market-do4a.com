@@ -6,18 +6,17 @@ export default {
     const data = {
       ajax: 'Y',
       method: 'post',
+      sessid: Utils.sessid(),
       productId,
       ...review,
     };
 
-    if (!data.sessid && global.BX && global.BX.bitrix_sessid) {
-      data.sessid = global.BX.bitrix_sessid();
-    }
-
     const formData = new FormData();
 
     Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
+      if (data[key]) {
+        formData.append(key, data[key]);
+      }
     });
 
     return Utils.sendRequest('/local/public/product_reviews.php', {

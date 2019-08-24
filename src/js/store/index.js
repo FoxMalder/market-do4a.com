@@ -20,7 +20,7 @@ export default new Vuex.Store({
   modules: {
     filters: catalogControl,
     product,
-    // cart,
+    cart,
     // checkout,
   },
   // strict: debug,
