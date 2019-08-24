@@ -278,6 +278,7 @@
       width: 25px;
       height: 22px;
     }
+
     .product-control__compare {
       width: 23px;
       height: 20px;
@@ -937,10 +938,10 @@
 
   &__header-label {
     @include title;
-    transform: $skew-reverse;
-    white-space: nowrap;
     max-width: 100%;
     overflow: hidden;
+    transform: $skew-reverse;
+    white-space: nowrap;
   }
 
   &__header-badge {
@@ -1496,14 +1497,24 @@
   }
 
   &__title {
+    margin-bottom: 20px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 40px;
+    }
     @include media-breakpoint-up(xl) {
-      margin-bottom: 73px;
+      margin-bottom: 67px;
     }
   }
 
   &__thead {
     display: none;
     margin-bottom: 18px;
+
+    .p-section-availability__inner {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
     @include media-breakpoint-up(md) {
       display: block;
     }
@@ -1802,6 +1813,10 @@
   }
 
   &__title {
+    margin-bottom: 25px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 30px;
+    }
     @include media-breakpoint-up(xl) {
       margin-bottom: 50px;
     }
@@ -1831,12 +1846,15 @@
 
     .product-card {
       width: 152px;
+      border-top: 1px solid #e8e8e8;
+      border-right: 1px solid #e8e8e8;
     }
 
     @include media-breakpoint-up(md) {
       .product-card {
         width: 282px;
         margin-right: 20px;
+        border: 0;
       }
     }
 
@@ -1949,12 +1967,26 @@
     transform: $skew;
   }
 
+  .star-rating {
+    margin-top: 9px;
+  }
+
+  .star-rating__value {
+    display: none;
+  }
+
   @include media-breakpoint-up(md) {
     padding-bottom: 37px;
   }
 
   @include media-breakpoint-up(xl) {
     display: none;
+  }
+
+  &__rating {
+    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
   }
 
   &__row {
@@ -2223,6 +2255,7 @@
     transform: $skew;
     border-color: $main-color;
     font-size: 22px;
+
     &.active,
     &:hover {
       background-color: $main-color;
@@ -2247,6 +2280,7 @@
     transform: $skew;
     border-color: #80c627;
     font-size: 22px;
+
     &.active,
     &:hover {
       background-color: #80c627;
@@ -2343,6 +2377,7 @@
 
     @include media-breakpoint-up(md) {
       margin-right: 0;
+      margin-bottom: 45px;
       transform: $skew-reverse;
       font-size: 36px;
       line-height: 41px;
@@ -2350,14 +2385,34 @@
   }
 
   &__rating {
+    display: flex;
+    align-items: center;
 
     @include media-breakpoint-up(md) {
       transform: $skew-reverse;
-      .star-rating__star {
-        width: 50px;
-        height: 50px;
-        font-size: 50px;
-      }
+      //.star-rating__star {
+      //  width: 50px;
+      //  height: 50px;
+      //  font-size: 50px;
+      //}
+    }
+    @include media-breakpoint-up(xl) {
+      height: 60px;
+      margin-bottom: 34px;
+    }
+  }
+
+  &__rating-text {
+    width: 74px;
+    margin-top: 4px;
+    margin-right: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 22px;
+
+    &::after {
+      content: ':';
     }
   }
 

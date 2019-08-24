@@ -1808,6 +1808,7 @@ $multifilter-menu-padding-x: 22px;
     flex-direction: column;
     align-items: flex-end;
     color: $main-color;
+    text-align: right;
 
     @include media-breakpoint-up(md) {
       flex-direction: row;
@@ -1816,6 +1817,7 @@ $multifilter-menu-padding-x: 22px;
       font-size: 13px;
       font-weight: 500;
       line-height: 16px;
+      text-align: left;
     }
   }
 
@@ -1841,10 +1843,11 @@ $multifilter-menu-padding-x: 22px;
   // Наличие
   &__stock {
     color: rgba(#000, .4);
-    text-align: right;
+    text-align: left;
     @include media-breakpoint-up(md) {
       font-size: 12px;
       line-height: 15px;
+      text-align: right;
     }
   }
 }

@@ -30,7 +30,7 @@
         </div>
       </div>
     </transition>
-    
+  
     <button class="btn btn-black p-control-button"
             v-if="!isAvailableOffer"
             @click.prevent="subscribe">

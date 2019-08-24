@@ -2,17 +2,27 @@ import Utils from '../utils/utils';
 
 export default {
   requestParam: {},
-  addReview(review) {
+  addReview(productId, review) {
     const data = {
       ajax: 'Y',
       method: 'post',
-      sessid: global.BX.bitrix_sessid(),
+      productId,
       ...review,
     };
 
+    if (!data.sessid && global.BX && global.BX.bitrix_sessid) {
+      data.sessid = global.BX.bitrix_sessid();
+    }
+
+    const formData = new FormData();
+
+    Object.keys(data).forEach((key) => {
+      formData.append(key, data[key]);
+    });
+
     return Utils.sendRequest('/local/public/product_reviews.php', {
       method: 'post',
-      body: data,
+      body: formData,
     });
   },
   getReviews(productId, page = 0) {

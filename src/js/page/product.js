@@ -170,9 +170,7 @@ class ProductPage {
     $('.p-review-form').on('submit', this.addReview);
     $('.p-modal-form').on('submit', this.addReview);
 
-    if (global.demo) {
-      this.initVue(true);
-    }
+    this.initVue(true);
   }
 
   initVue(subscribe = false) {
@@ -310,7 +308,6 @@ class ProductPage {
     event.preventDefault();
 
     const data = {
-      productId: $el.find('[name="productId"]').val(),
       name: $el.find('[name="name"]').val(),
       email: $el.find('[name="email"]').val(),
       text: $el.find('[name="text"]').val(),
@@ -318,7 +315,7 @@ class ProductPage {
       source: $el.find('[name="source"]').val(),
     };
 
-    Reviews.addReview(data);
+    Reviews.addReview(store.state.product.productId, data);
   };
 }
 
