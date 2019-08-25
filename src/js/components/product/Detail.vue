@@ -11,7 +11,7 @@
           {{formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])}}
         </a>
       </div>
-      <div class="p-detail__availability" v-else-if="activeOffer.count_remote > 0">
+      <div class="p-detail__availability" v-else-if="activeOffer.count_remote > 0 && textDelivery">
         <i class="icon icon-truck"></i> {{textDelivery}}
       </div>
       <div class="p-detail__availability" v-else>

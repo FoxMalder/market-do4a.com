@@ -44,7 +44,7 @@
                 <img :src="item.picture" :alt="item.name">
               </div>
               <div class="h-product-item__info">
-                <a :href="item.url" class="h-product-item__name">{{item.name}}</a>
+                <a :href="item.url" class="h-product-item__name">{{item.name || 'Название'}}</a>
                 <div class="h-product-item__description">{{item.pack}}</div>
               </div>
               <div class="h-product-item__controls">

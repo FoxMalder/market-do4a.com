@@ -63,7 +63,8 @@ const getters = {
   //   }
   //   return null;
   // },
-  availableProducts: state => state.items.filter(item => item.canBuy),
+  // availableProducts: state => state.items.filter(item => item.canBuy),
+  availableProducts: state => state.items,
 };
 
 // actions
