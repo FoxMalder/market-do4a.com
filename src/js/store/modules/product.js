@@ -132,24 +132,36 @@ const actions = {
     commit('SET_REVIEWS_LOADING', true);
     commit('SET_REVIEWS_PAGE', page);
 
-    Reviews.getReviews(state.packingId, page).then((data) => {
-      if (page > 0) {
-        commit('PUSH_REVIEW_TO_REVIEWS', data.items);
-      } else {
-        commit('SET_REVIEWS', data.items);
-      }
-      commit('SET_REVIEWS_COUNT', data.count);
-      commit('SET_REVIEWS_LOADING', false);
-    });
+    Reviews.getReviews(state.packingId, page)
+      .then((data) => {
+        if (page > 0) {
+          commit('PUSH_REVIEW_TO_REVIEWS', data.items);
+        } else {
+          commit('SET_REVIEWS', data.items);
+        }
+        commit('SET_REVIEWS_COUNT', data.count);
+      })
+      .catch((error) => {
+        alert(error.message || error.response.message);
+      })
+      .finally(() => {
+        commit('SET_REVIEWS_LOADING', false);
+      });
   },
 
   updateSimilar({ state, commit }) {
     commit('SET_SIMILAR_LOADING', true);
 
-    Product.getSimilar(state.packingId).then((data) => {
-      commit('SET_SIMILAR', data.items);
-      commit('SET_SIMILAR_LOADING', false);
-    });
+    Product.getSimilar(state.packingId)
+      .then((data) => {
+        commit('SET_SIMILAR', data.items);
+      })
+      .catch((error) => {
+        alert(error.message || error.response.message);
+      })
+      .finally(() => {
+        commit('SET_SIMILAR_LOADING', false);
+      });
   },
 };
 
@@ -205,7 +217,6 @@ const mutations = {
   SET_REVIEWS_LOADING(state, isLoading) {
     state.reviewsLoading = isLoading;
   },
-
 
 
   SET_SIMILAR(state, similar) {

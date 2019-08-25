@@ -12,13 +12,13 @@ export function addToFavorites(id, cb) {
     .get(`/ajax/favorite/add/${id}/`)
     .then((response) => {
       if (response.success) {
+        cb(response);
         return response;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(response => cb(response));
+    });
 }
 
 
@@ -33,13 +33,13 @@ export function removeFromFavorites(id, cb) {
     .get(`/ajax/favorite/delete/${id}/`)
     .then((response) => {
       if (response.success) {
+        cb(response);
         return response;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(response => cb(response));
+    });
 }
 
 
@@ -63,11 +63,10 @@ export function addProductToCart({ productId, productQuantity }, cb) {
     .post('/local/public_/basket.php', data)
     .then((response) => {
       if (response.status === 'ok') {
-        return response;
+        return cb(response);
       }
       const error = new Error(response.error);
       error.response = response;
       throw error;
-    })
-    .then(response => cb(response));
+    });
 }
