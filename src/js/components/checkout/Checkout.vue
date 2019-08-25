@@ -1,5 +1,5 @@
 <template>
-  <form class="cart">
+  <div class="cart">
     <div class="container">
       <div class="cart__empty" v-if="!products.length">
         <h3>Ваша корзина пуста</h3>
@@ -10,7 +10,7 @@
         <div class="cart__col-left">
           
           <div class="order-personal-info">
-            <h4>Ваши данные</h4>
+            <h3 class="order-personal-info__title">Ваши данные</h3>
             <div class="order-personal-info__form">
               <div class="order-personal-info__subtitle">Данные покупателя</div>
               
@@ -69,7 +69,7 @@
           <div class="order-shiping">
             
             <div class="order-shiping__shipping-type">
-              <h4>Способ получения</h4>
+              <h3 class="order-shiping__title">Способ получения</h3>
               <div class="order-option"
                       v-for="item in shippingMethods"
                       :key="item.ID"
@@ -84,7 +84,8 @@
                   <div class="order-option__info">
                     <span :class="{green: parseInt(item.PRICE) === 0}">
                       {{item.PRICE > 0 ? `${item.PRICE} Р` : 'Бесплатная доставка'}}
-                    </span> <span v-if="item.PERIOD_TEXT">{{item.PERIOD_TEXT}}</span>
+                    </span>
+                    <span v-if="item.PERIOD_TEXT">{{item.PERIOD_TEXT}}</span>
                   </div>
                   <div class="order-option__img" v-if="item.LOGOTIP_SRC">
                     <img :src="item.LOGOTIP_SRC" alt="item.NAME">
@@ -103,7 +104,7 @@
             </div>
             
             <div class="order-shiping__payment-type">
-              <h4>Способ оплаты</h4>
+              <h3 class="order-shiping__title">Способ оплаты</h3>
               <div class="order-option"
                       v-for="item in paymentMethods"
                       :key="item.ID"
@@ -239,7 +240,7 @@
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -349,3 +350,8 @@
     },
   }
 </script>
+
+
+<style scoped>
+
+</style>

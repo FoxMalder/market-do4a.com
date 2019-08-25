@@ -4,6 +4,7 @@ import './scss/main.scss';
 import Vue from 'vue/dist/vue.esm';
 import Checkout from './js/components/checkout/Checkout.vue';
 import store from './js/store';
+import checkoutStore from './js/store/modules/checkout';
 
 // import './scss/header-style.scss';
 
@@ -22,6 +23,7 @@ Vue.filter('formatPrice', (value) => {
 
 
 $(() => {
+  store.registerModule('checkout', checkoutStore);
   store.dispatch('checkout/getAll');
   store.dispatch('cart/getCart');
 

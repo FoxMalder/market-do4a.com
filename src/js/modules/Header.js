@@ -5,6 +5,7 @@ import Vue from 'vue/dist/vue.esm';
 import Utils from '../utils/utils';
 import store from '../store';
 import HeaderCollapse from '../components/HeaderCollapse.vue';
+import HeaderBasket from '../components/HeaderBasket.vue';
 // import ProductDetailHeader from '../components/product/DetailHeader';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
@@ -117,6 +118,13 @@ export default class Header {
       store,
       render: h => h(HeaderCollapse),
     }).$mount('.h-navbar-collapse');
+
+    store.dispatch('cart/getContents');
+
+    new Vue({
+      store,
+      render: h => h(HeaderBasket),
+    }).$mount('.header-control__cart-container');
 
     this.header = {
       collapse: Utils.parseTargets('.h-navbar-collapse'),

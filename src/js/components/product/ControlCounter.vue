@@ -121,6 +121,9 @@
       }
     },
     methods: {
+      // ...mapActions('cart', {
+      //   addProductToCart: 'addProductToCart',
+      // }),
       increment() {
         this.count += 1;
 
@@ -143,16 +146,14 @@
 
         this.$store.dispatch('cart/addProductToCart', {
             productId: this.activeOffer.id,
-            productQuantity: this.count
+            quantity: this.count,
+            storeId: global.app.storeId,
           })
-          .then((response) => {
+          .then(() => {
             this.isAdded = true;
             if (document.documentElement.clientWidth < 768) {
               this.reveal('up');
             }
-          })
-          .catch((error) => {
-            alert(error.response.error);
           })
           .finally(() => {
             this.loading = false;

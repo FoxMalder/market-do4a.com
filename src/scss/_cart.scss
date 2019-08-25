@@ -1,6 +1,6 @@
 //
 //body {
-//  background: url("../img/rm/cart-1920.png") center top no-repeat;
+//  background: url("../img/rm/checkout-1920.png") center top no-repeat;
 //
 //  > * {
 //    opacity: 0.5;
@@ -16,6 +16,13 @@
   @include media-breakpoint-up(xl) {
     padding-top: 42px;
     padding-bottom: 55px;
+  }
+
+  &__title {
+
+    @include media-breakpoint-up(xl) {
+      margin-top: 24px;
+    }
   }
 }
 
@@ -33,11 +40,6 @@
     @include media-breakpoint-up(xl) {
       flex: 0 0 448px;
       max-width: 448px;
-    }
-
-    h4 {
-      margin-bottom: 24px;
-      letter-spacing: -0.02em;
     }
   }
 
@@ -62,14 +64,21 @@
       margin-left: -50vw;
       padding-right: 64px;
       padding-left: 50vw;
+      padding-top: 32px;
+    }
+  }
+
+  &__title {
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 24px;
     }
   }
 
   &__subtitle {
-    font-weight: 500;
+    margin-bottom: 18px;
     font-size: 15px;
+    font-weight: 500;
     line-height: 18px;
-    margin-bottom: 20px;
   }
 
   &__container {
@@ -112,6 +121,11 @@
     margin-left: -50vw;
     padding-right: 64px;
     padding-left: 50vw;
+    padding-top: 27px;
+  }
+
+  &__title {
+    margin-bottom: 19px;
   }
 
   &__header {
@@ -218,6 +232,7 @@
   }
 
   &__info {
+    display: flex;
     overflow: hidden;
     color: rgba(#101010, 0.6);
     font-size: 15px;
@@ -227,6 +242,10 @@
     line-height: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    > * {
+      margin-right: 14px;
+    }
   }
 
   &__img {
@@ -263,27 +282,14 @@
 //
 //
 .order {
-  &__header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 31px;
-
+  &__title {
     @include media-breakpoint-up(xl) {
-      flex-direction: row;
-      justify-content: space-between;
+      margin-bottom: 17px;
     }
   }
 
-  &__header-col {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-
-  }
-
-  &__title {
-
+  &__subtitle {
+    margin-bottom: 29px;
   }
 
   &__btn-clear {
@@ -373,7 +379,7 @@
     letter-spacing: -0.02em;
   }
 
-  &__product-list {
+  &__list {
     //height: 92px;
   }
 
@@ -431,8 +437,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 92px;
-  margin-bottom: 4px;
+  height: 90px;
+  margin-bottom: 6px;
   padding: 10px 10px;
   background: #fff;
   line-height: 1;
@@ -443,7 +449,7 @@
   }
 
   &__count-note {
-    margin-top: 9px;
+    margin-top: 11px;
     color: rgba(#000, 0.6);
     font-size: 12px;
     line-height: 1;
@@ -453,8 +459,8 @@
   &__decrement {
     @extend %button-reset;
     @include title;
-    padding: 6px 13px;
-    font-size: 18px;
+    padding: 6px 18px;
+    font-size: 22px;
     font-style: normal;
     line-height: 1;
   }
@@ -483,9 +489,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 163px;
+    max-width: 190px;
     height: 100%;
-    padding: 5px 0;
+    padding-top: 7px;
   }
 
   &__name {
@@ -494,6 +500,7 @@
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 18px;
+    //max-height: 37px;
   }
 
   &__description {
@@ -506,11 +513,12 @@
   &__col-count {
     margin-left: auto;
     text-align: center;
+    margin-top: 4px;
   }
 
   &__col-price {
     //margin-left: 30px;
-    min-width: 120px;
+    min-width: 110px;
     text-align: right;
   }
 
@@ -522,7 +530,7 @@
 
   &__price {
     @include title;
-    margin: 5px 0 6px;
+    margin: 2px 0 8px;
     font-size: 22px;
   }
 
@@ -533,7 +541,7 @@
 
   &__btn-delete {
     margin-right: 15px;
-    margin-left: 34px;
+    margin-left: 32px;
     padding: 0;
     transition: color .1s ease;
     border: 0;
@@ -554,8 +562,9 @@
 
 .order-promocode {
   display: flex;
-  margin: 32px 0 41px;
+  margin: 33px 0 26px;
   transform: $skew;
+  padding: 0 5px;
 
   &__field {
     flex: 0 0 70%;

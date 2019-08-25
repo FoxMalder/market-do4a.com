@@ -1,13 +1,10 @@
 <template>
   <div class="order">
-    <div class="order__header">
-      <div class="order__header-col">
-        <!--                <h4 class="order__title">В заказе {{getProductLengthFormated}}</h4>-->
-        <h4 class="order__title">В заказе {{productCountText}}</h4>
-        <button class="order__btn-clear" type="button" @click.prevent="clearCart">
-          <i class="icon icon-delete"></i> <span>Очистить корзину</span>
-        </button>
-      </div>
+    <h3 class="order__title">В заказе {{productCountText}}</h3>
+    <div class="order__subtitle">
+      <button class="order__btn-clear" type="button" @click.prevent="clearCart">
+        <i class="icon icon-delete"></i> <span>Очистить корзину</span>
+      </button>
     </div>
     
     <ProductList/>

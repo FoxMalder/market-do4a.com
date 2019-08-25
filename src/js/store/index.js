@@ -4,7 +4,7 @@ import catalogControl from './modules/catalogControl';
 // import cart from './modules/cart';
 // import productPage from './modules/product';
 import cart from './modules/cart';
-import checkout from './modules/checkout';
+// import checkout from './modules/checkout';
 
 import * as Api from '../api';
 // import favorites from '../api/favorites';

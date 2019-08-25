@@ -119,6 +119,7 @@ h2 {
 h3 {
   font-size: 15px;
   line-height: 19px;
+  letter-spacing: -0.02em;
 }
 
 @include media-breakpoint-up(md) {
@@ -630,7 +631,7 @@ textarea.input-text {
 
 .btn-gray-2 {
   //@include button-variant(#e7e7e7, #e7e7e7);
-  @include n-button-solid-variant(#eaeaea, #929292);
+  @include n-button-solid-variant(#eaeaea, #101010);
   //color: rgba(#101010, .4);
 
   //background-color: #e7e7e7;

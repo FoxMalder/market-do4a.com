@@ -4,7 +4,7 @@
     <!--      <div class="order-item__title">Доставка с центрального склада</div>-->
     <!--      <div class="order-number-badge" :class="{'order-number-badge_dark': i % 2 !== 0}">Отправление {{i}}</div>-->
     <!--    </div>-->
-    <div class="order-item__product-list">
+    <div class="order-item__list">
       <ProductItem
               v-for="item in products"
               :key="item.ID"
