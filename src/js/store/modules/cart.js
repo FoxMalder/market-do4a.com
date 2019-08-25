@@ -50,8 +50,6 @@ const actions = {
     commit('SET_PRODUCTS', global.soaData.result.GRID.ROWS);
   },
   addProductToCart({ commit }, { productId, productQuantity }) {
-    console.log(`Add product ${productId} to cart`);
-
     return Api.addProductToCart({ productId, productQuantity });
   },
   removeProductFromCart({ commit }, product) {

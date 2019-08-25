@@ -50,7 +50,7 @@ export function removeFromFavorites(id) {
  * @param cb - Callback
  * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function addProductToCart({ productId, productQuantity }, cb) {
+export function addProductToCart({ productId, productQuantity }) {
   const data = {
     method: 'add',
     id: productId,
@@ -64,7 +64,7 @@ export function addProductToCart({ productId, productQuantity }, cb) {
     .then(response => response.data)
     .then((response) => {
       if (response.status === 'ok') {
-        return cb(response);
+        return response;
       }
       const error = new Error(response.error);
       error.response = response;

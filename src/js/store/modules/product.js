@@ -134,7 +134,7 @@ const actions = {
 
     Reviews.getReviews(state.packingId, page)
       .then((response) => {
-        console.log('getReviews then', response);
+        // console.log('getReviews then', response);
         if (page > 0) {
           commit('PUSH_REVIEW_TO_REVIEWS', response.data.items);
         } else {
@@ -143,7 +143,7 @@ const actions = {
         commit('SET_REVIEWS_COUNT', response.data.count);
       })
       .catch((error) => {
-        console.log('getReviews catch', error);
+        // console.log('getReviews catch', error);
         // alert(error.message || error.response.message);
       })
       .finally(() => {
@@ -156,11 +156,11 @@ const actions = {
 
     Product.getSimilar(state.packingId)
       .then((response) => {
-        console.log('getSimilar then', response);
+        // console.log('getSimilar then', response);
         commit('SET_SIMILAR', response.data.items);
       })
       .catch((error) => {
-        console.log('getSimilar catch', error);
+        // console.log('getSimilar catch', error);
         // alert(error.message || error.response.message);
       })
       .finally(() => {
