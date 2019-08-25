@@ -13,7 +13,7 @@ export default {
       .post(`/ajax/catalog/products/similarByProductId/${productId}/`, data)
       .then((response) => {
         if (response.success) {
-          return response.data;
+          return response;
         }
         const error = new Error(response.message);
         error.response = response;

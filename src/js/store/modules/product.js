@@ -133,16 +133,18 @@ const actions = {
     commit('SET_REVIEWS_PAGE', page);
 
     Reviews.getReviews(state.packingId, page)
-      .then((data) => {
+      .then((response) => {
+        console.log('getReviews then', response);
         if (page > 0) {
-          commit('PUSH_REVIEW_TO_REVIEWS', data.items);
+          commit('PUSH_REVIEW_TO_REVIEWS', response.data.items);
         } else {
-          commit('SET_REVIEWS', data.items);
+          commit('SET_REVIEWS', response.data.items);
         }
-        commit('SET_REVIEWS_COUNT', data.count);
+        commit('SET_REVIEWS_COUNT', response.data.count);
       })
       .catch((error) => {
-        alert(error.message || error.response.message);
+        console.log('getReviews catch', error);
+        // alert(error.message || error.response.message);
       })
       .finally(() => {
         commit('SET_REVIEWS_LOADING', false);
@@ -153,11 +155,13 @@ const actions = {
     commit('SET_SIMILAR_LOADING', true);
 
     Product.getSimilar(state.packingId)
-      .then((data) => {
-        commit('SET_SIMILAR', data.items);
+      .then((response) => {
+        console.log('getSimilar then', response);
+        commit('SET_SIMILAR', response.data.items);
       })
       .catch((error) => {
-        alert(error.message || error.response.message);
+        console.log('getSimilar catch', error);
+        // alert(error.message || error.response.message);
       })
       .finally(() => {
         commit('SET_SIMILAR_LOADING', false);

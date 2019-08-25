@@ -24,16 +24,20 @@ const actions = {
     console.log(`Add to compare: ${product.id}`);
   },
   addToFavorites({ commit }, id) {
-    return Api.addToFavorites(id, (response) => {
-      commit('RECEIVE_FAVORITES', response.data);
-      commit('SET_FAVORITES_COUNT', response.data.length);
-    });
+    return Api.addToFavorites(id)
+      .then((response) => {
+        commit('RECEIVE_FAVORITES', response.data);
+        commit('SET_FAVORITES_COUNT', response.data.length);
+        return response;
+      });
   },
   removeFromFavorites({ commit }, id) {
-    return Api.removeFromFavorites(id, (response) => {
-      commit('RECEIVE_FAVORITES', response.data);
-      commit('SET_FAVORITES_COUNT', response.data.length);
-    });
+    return Api.removeFromFavorites(id)
+      .then((response) => {
+        commit('RECEIVE_FAVORITES', response.data);
+        commit('SET_FAVORITES_COUNT', response.data.length);
+        return response;
+      });
   },
 };
 

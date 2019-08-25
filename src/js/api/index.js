@@ -7,12 +7,11 @@ import Utils from '../utils/utils';
  * @param cb - Callback
  * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function addToFavorites(id, cb) {
+export function addToFavorites(id) {
   return axios
     .get(`/ajax/favorite/add/${id}/`)
     .then((response) => {
       if (response.success) {
-        cb(response);
         return response;
       }
       const error = new Error(response.message);
@@ -28,12 +27,11 @@ export function addToFavorites(id, cb) {
  * @param cb - Callback
  * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function removeFromFavorites(id, cb) {
+export function removeFromFavorites(id) {
   return axios
     .get(`/ajax/favorite/delete/${id}/`)
     .then((response) => {
       if (response.success) {
-        cb(response);
         return response;
       }
       const error = new Error(response.message);
