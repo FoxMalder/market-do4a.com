@@ -5,6 +5,7 @@ import Vue from 'vue/dist/vue.esm';
 import Utils from '../utils/utils';
 import store from '../store';
 import HeaderCollapse from '../components/HeaderCollapse.vue';
+// import ProductDetailHeader from '../components/product/DetailHeader';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
 
@@ -230,26 +231,38 @@ export default class Header {
         this.favorites.notifications.classList.add('header-control__notifications');
         this.favorites.button.appendChild(this.favorites.notifications);
       }
-      this.favorites.count = parseInt(this.favorites.notifications.innerHTML, 10) || 0;
-      this.favorites.notifications.style.display = (this.favorites.count < 1) ? 'none' : '';
+      // this.favorites.count = parseInt(this.favorites.notifications.innerHTML, 10) || 0;
+      // this.favorites.notifications.style.display = (this.favorites.count < 1) ? 'none' : '';
+
+      store.commit('SET_FAVORITES_COUNT', parseInt(this.favorites.notifications.innerHTML, 10) || 0);
+      new Vue({
+        store,
+        // computed: {
+        //   count() {
+        //     this.$store.state.favoritesCount,
+        //   },
+        // },
+        template: '<span class="header-control__notifications" v-show="$store.state.favoritesCount > 0">{{ $store.state.favoritesCount }}</span>',
+        // render: h => h(ProductDetailHeader),
+      }).$mount(this.favorites.notifications);
     }
-    window.addEventListener('favorites', event => this.setFavorites(event.detail.length));
+    // window.addEventListener('favorites', event => this.setFavorites(event.detail.length));
   }
 
-  /**
-   * Установить количество товаров в избранном
-   *
-   * @param {Number} count - Устанавливаемое число
-   * @returns {*}
-   */
-  setFavorites(count) {
-    if (this.favorites.button && this.favorites.count !== count) {
-      this.favorites.notifications.innerHTML = String(count);
-      this.favorites.notifications.style.display = (count < 1) ? 'none' : '';
-      this.favorites.count = count;
-    }
-    return count;
-  }
+  // /**
+  //  * Установить количество товаров в избранном
+  //  *
+  //  * @param {Number} count - Устанавливаемое число
+  //  * @returns {*}
+  //  */
+  // setFavorites(count) {
+  //   if (this.favorites.button && this.favorites.count !== count) {
+  //     this.favorites.notifications.innerHTML = String(count);
+  //     this.favorites.notifications.style.display = (count < 1) ? 'none' : '';
+  //     this.favorites.count = count;
+  //   }
+  //   return count;
+  // }
 
 
   toggleSearchField() {

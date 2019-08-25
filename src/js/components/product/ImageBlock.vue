@@ -56,10 +56,25 @@
       },
     },
     methods: {
-      ...mapActions('product', [
-        'toggleFavorites',
+      ...mapActions([
         'addToCompare',
-      ])
+      ]),
+      toggleFavorites(product) {
+        console.log(product);
+        if (product.isFavorite) {
+          product.isFavorite = false;
+          this.$store.dispatch('removeFromFavorites', product.id)
+            .catch(() => {
+              product.isFavorite = true;
+            });
+        } else {
+          product.isFavorite = true;
+          this.$store.dispatch('addToFavorites', product.id)
+            .catch(() => {
+              product.isFavorite = false;
+            });
+        }
+      },
     },
     mounted() {
       // this.canvas = this.$refs.canvas;

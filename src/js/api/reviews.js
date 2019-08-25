@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Utils from '../utils/utils';
 
 export default {
@@ -11,30 +12,41 @@ export default {
       ...review,
     };
 
-    const formData = new FormData();
+    return axios
+      .post('/local/public/product_reviews.php', data)
+      .then((response) => {
+        if (response.status === 'ok') {
+          return response; // { reviewId, status }
+        }
+        const error = new Error(response.error);
+        error.response = response;
+        throw error;
+      });
+  },
+  vote(productId, value) {
+    const data = {
+      id: productId,
+      method: value === 'minus' ? 'voteMinus' : 'votePlus',
+      sessid: Utils.sessid(),
+    };
 
-    Object.keys(data).forEach((key) => {
-      if (data[key]) {
-        formData.append(key, data[key]);
-      }
-    });
-
-    return Utils.sendRequest('/local/public/product_reviews.php', {
-      method: 'post',
-      body: formData,
-    });
+    return axios
+      .post('/local/public/product_reviews.php', data)
+      .then((response) => {
+        if (response.status === 'ok') {
+          return response; // { value, status }
+        }
+        const error = new Error(response.error);
+        error.response = response;
+        throw error;
+      });
   },
   getReviews(productId, page = 0) {
-    const formData = new FormData();
-    formData.append('page', page);
-
-    // console.log(this.requestParam);
-
-    if (this.requestParam) {
-      Object.keys(this.requestParam).forEach((key) => {
-        formData.append(key, this.requestParam[key]);
-      });
-    }
+    const data = {
+      sessid: Utils.sessid(),
+      ...this.requestParam,
+      page,
+    };
 
     if (global.demo) {
       return new Promise((resolve, reject) => {
@@ -70,23 +82,16 @@ export default {
         }, 1000);
       });
     }
-    return Utils.sendRequest(`/ajax/review/byProduct/${productId}/`, {
-      method: 'post',
-      body: formData,
-    });
-  },
-  vote(productId, value) {
-    const formData = new FormData();
-    formData.append('id', productId);
-    formData.append('method', value === 'minus' ? 'voteMinus' : 'votePlus');
 
-    if (global.BX && global.BX.bitrix_sessid) {
-      formData.append('sessid', global.BX.bitrix_sessid());
-    }
-
-    return Utils.sendRequestFull('/local/public/product_reviews.php', {
-      method: 'post',
-      body: formData,
-    });
+    return axios
+      .post(`/ajax/review/byProduct/${productId}/`, data)
+      .then((response) => {
+        if (response.success) {
+          return response;
+        }
+        const error = new Error(response.message);
+        error.response = response;
+        throw error;
+      });
   },
 };

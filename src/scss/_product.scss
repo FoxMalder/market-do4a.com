@@ -587,6 +587,7 @@
   padding-bottom: calc(#{$btn-padding-y-sm} + var(--safe-area-inset-bottom));
   @extend .btn-red;
 
+
   @include media-breakpoint-up(md) {
     height: 70px;
     margin-top: auto;
@@ -595,6 +596,10 @@
     transform: $skew;
     transform-origin: center;
     -webkit-backface-visibility: hidden;
+  }
+
+  &__loading {
+    transform: $skew-reverse;
   }
 
   &__icon {

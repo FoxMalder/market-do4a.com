@@ -30,10 +30,9 @@
     }),
     methods: mapActions('product', {
       nextPage: 'getNextReviews',
-      update: 'updateReviews',
     }),
     created() {
-      this.update();
+      this.$store.dispatch('product/updateReviews');
     }
   }
 </script>

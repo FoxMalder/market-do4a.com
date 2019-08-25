@@ -1,4 +1,5 @@
-import Cart from '../../api/cart';
+// import Cart from '../../api/cart';
+import * as Api from '../../api';
 
 // initial state
 const state = {
@@ -51,7 +52,7 @@ const actions = {
   addProductToCart({ commit }, { productId, productQuantity }) {
     console.log(`Add product ${productId} to cart`);
 
-    return Cart.addProduct({ productId, productQuantity });
+    return Api.addProductToCart({ productId, productQuantity });
   },
   removeProductFromCart({ commit }, product) {
     console.log('remove product: ', product.ID);

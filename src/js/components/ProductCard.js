@@ -1,5 +1,6 @@
 import Utils from '../utils/utils';
 import Api from '../utils/Api';
+import store from '../store';
 
 export default class ProductCard {
   constructor(data, el = null) {
@@ -218,14 +219,12 @@ export default class ProductCard {
   addToFavorites() {
     this.favoriteButtonEl.classList.add('active');
 
-    return Api.favorites
-      .add(this.data.id)
+    store.dispatch('addToFavorites', this.data.id)
       .then(() => {
         this.data.isFavorite = true;
       })
-      .catch((er) => {
+      .catch(() => {
         this.favoriteButtonEl.classList.remove('active');
-        alert(er);
       });
   }
 
@@ -240,18 +239,16 @@ export default class ProductCard {
       this.el.style.display = 'none';
     }
 
-    return Api.favorites
-      .delete(this.data.id)
+    store.dispatch('removeFromFavorites', this.data.id)
       .then(() => {
         this.data.isFavorite = false;
         if (this.removable) {
           this.el.parentNode.removeChild(this.el);
         }
       })
-      .catch((er) => {
+      .catch(() => {
         this.favoriteButtonEl.classList.add('active');
         this.el.style.display = '';
-        alert(er);
       });
   }
 

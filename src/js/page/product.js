@@ -8,11 +8,11 @@ import Sticky from 'sticky-js';
 import '../plugins/Anchor';
 import TextareaAutoHeight from '../plugins/TextareaAutoHeight';
 import Utils from '../utils/utils';
-import Api from '../utils/Api';
 import Reviews from '../api/reviews';
 import Product from '../api/product';
-import Cart from '../api/cart';
+
 import store from '../store';
+import productStore from '../store/modules/product';
 // import ControlCounter from '../components/product/ControlCounter.vue';
 // import ControlSelect from '../components/product/ControlSelect.vue';
 import ProductImage from '../components/product/ImageBlock.vue';
@@ -166,6 +166,7 @@ class ProductPage {
     // };
 
 
+    store.registerModule('product', productStore);
     store.dispatch('product/getAllPacking');
 
     $('.p-review-form').on('submit', this.addReview);
@@ -305,6 +306,8 @@ class ProductPage {
    */
   addReview = (event) => {
     const $el = $(event.currentTarget);
+    const $button = $el.find('[type="submit"]');
+    const buttonHtml = $button.html();
 
     event.preventDefault();
 
@@ -316,7 +319,21 @@ class ProductPage {
       source: $el.find('[name="source"]').val(),
     };
 
-    Reviews.addReview(store.state.product.packingId, data);
+    $button.html('<span class="btn-icon"><span class="spinner-border" role="status"></span></span>');
+
+    Reviews.addReview(store.state.product.packingId, data)
+      .then(() => {
+        $button.removeClass('btn-red');
+        $button.addClass('btn-green');
+        event.currentTarget.reset();
+      })
+      .catch((error) => {
+        alert(error.message || error.response.message);
+      })
+      .finally(() => {
+        $button.html(buttonHtml);
+        $.fancybox.close();
+      });
   };
 }
 
@@ -345,6 +362,6 @@ $(() => {
   initCollapse();
 
 
-  global.app.Cart = Cart;
+  // global.app.Cart = Cart;
   global.app.Product = new ProductPage();
 });

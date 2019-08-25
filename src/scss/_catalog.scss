@@ -1877,6 +1877,7 @@ $multifilter-menu-padding-x: 22px;
       outline: none;
     }
 
+    &.hover,
     &:hover {
       > svg {
         fill-opacity: .3;

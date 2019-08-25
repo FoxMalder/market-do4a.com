@@ -3,7 +3,6 @@
 
 import Reviews from '../../api/reviews';
 import Product from '../../api/product';
-import Api from '../../utils/Api';
 
 // initial state
 const state = {
@@ -103,27 +102,27 @@ const actions = {
     commit('SET_ACTIVE_OFFER_ID', offer);
   },
 
-  toggleFavorites({ commit }, packing) {
-    if (packing.isFavorite) {
-      Api.favorites.delete(packing.id).then(() => {
-        commit('SET_FAVORITES_STATUS', {
-          id: packing.id,
-          status: false,
-        });
-      });
-    } else {
-      Api.favorites.add(packing.id).then(() => {
-        commit('SET_FAVORITES_STATUS', {
-          id: packing.id,
-          status: true,
-        });
-      });
-    }
-  },
-
-  addToCompare({ commit }, packing) {
-    console.log('add to compare');
-  },
+  // toggleFavorites({ commit }, packing) {
+  //   if (packing.isFavorite) {
+  //     Api.favorites.delete(packing.id).then(() => {
+  //       commit('SET_FAVORITES_STATUS', {
+  //         id: packing.id,
+  //         status: false,
+  //       });
+  //     });
+  //   } else {
+  //     Api.favorites.add(packing.id).then(() => {
+  //       commit('SET_FAVORITES_STATUS', {
+  //         id: packing.id,
+  //         status: true,
+  //       });
+  //     });
+  //   }
+  // },
+  //
+  // addToCompare({ commit }, packing) {
+  //   console.log('add to compare');
+  // },
 
   getNextReviews({ state, dispatch }) {
     dispatch('updateReviews', state.reviewsPage + 1);

@@ -99,7 +99,7 @@ const Utils = {
   },
 
   sendRequest(url, options = {}) {
-    console.log(options);
+    // console.log(options);
     return fetch(url, options)
       .then(Utils.checkStatus)
       .then(Utils.parseJSON)
