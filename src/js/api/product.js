@@ -11,6 +11,7 @@ export default {
 
     return axios
       .post(`/ajax/catalog/products/similarByProductId/${productId}/`, data)
+      .then(response => response.data)
       .then((response) => {
         if (response.success) {
           return response;

@@ -14,6 +14,7 @@ export default {
 
     return axios
       .post('/local/public/product_reviews.php', data)
+      .then(response => response.data)
       .then((response) => {
         if (response.status === 'ok') {
           return response; // { reviewId, status }
@@ -32,6 +33,7 @@ export default {
 
     return axios
       .post('/local/public/product_reviews.php', data)
+      .then(response => response.data)
       .then((response) => {
         if (response.status === 'ok') {
           return response; // { value, status }
@@ -85,6 +87,7 @@ export default {
 
     return axios
       .post(`/ajax/review/byProduct/${productId}/`, data)
+      .then(response => response.data)
       .then((response) => {
         if (response.success) {
           return response;

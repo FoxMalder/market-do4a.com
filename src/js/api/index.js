@@ -10,6 +10,7 @@ import Utils from '../utils/utils';
 export function addToFavorites(id) {
   return axios
     .get(`/ajax/favorite/add/${id}/`)
+    .then(response => response.data)
     .then((response) => {
       if (response.success) {
         return response;
@@ -30,6 +31,7 @@ export function addToFavorites(id) {
 export function removeFromFavorites(id) {
   return axios
     .get(`/ajax/favorite/delete/${id}/`)
+    .then(response => response.data)
     .then((response) => {
       if (response.success) {
         return response;
@@ -59,6 +61,7 @@ export function addProductToCart({ productId, productQuantity }, cb) {
 
   return axios
     .post('/local/public_/basket.php', data)
+    .then(response => response.data)
     .then((response) => {
       if (response.status === 'ok') {
         return cb(response);
