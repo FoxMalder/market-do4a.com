@@ -9,7 +9,7 @@ import Utils from '../utils/utils';
  */
 export function addToFavorites(id, cb) {
   return axios
-    .post(`/ajax/favorite/add/${id}/`)
+    .get(`/ajax/favorite/add/${id}/`)
     .then((response) => {
       if (response.success) {
         return response;
@@ -30,7 +30,7 @@ export function addToFavorites(id, cb) {
  */
 export function removeFromFavorites(id, cb) {
   return axios
-    .post(`/ajax/favorite/delete/${id}/`)
+    .get(`/ajax/favorite/delete/${id}/`)
     .then((response) => {
       if (response.success) {
         return response;
