@@ -1,29 +1,34 @@
 // import Cart from '../../api/cart';
 import * as Api from '../../api';
 
-// const v = {
-//   success: '',
-//   message: '',
-//   data: {
-//     items: [{
-//       basketItemId: 984622,
-//       canBy: true,
-//       pack: '454 гр',
-//       picture: '/upload/resizer/37/86081_68x68_3745347102daf8544307ca36782813aa.jpg?1559843654',
-//       price: 1190,
-//       price_benefit: 0,
-//       productId: 83397,
-//       quantity: 1,
-//       quantity_max: 0,
-//       sum: 1190,
-//       url: '/catalog/product/biotech_nitro_pure_whey_454_gr/',
-//     }],
-//   },
-// };
+const v = {
+  success: '',
+  message: '',
+  data: {
+    items: [{
+      basketItemId: 984622,
+      name: 'Название товаара',
+      canBuy: true,
+      pack: '454 гр',
+      picture: '/upload/resizer/37/86081_68x68_3745347102daf8544307ca36782813aa.jpg?1559843654',
+      price: 1190,
+      price_benefit: 0,
+      productId: 83397,
+      quantity: 1,
+      quantity_max: 7,
+      sum: 1190,
+      url: '/catalog/product/biotech_nitro_pure_whey_454_gr/',
+    }],
+    mapping: {
+      83397: 984627,
+    },
+  },
+};
 
 // initial state
 const state = {
   items: [],
+  mapping: {},
   // checkoutStatus: null,
 };
 
@@ -63,61 +68,128 @@ const getters = {
   //   }
   //   return null;
   // },
-  // availableProducts: state => state.items.filter(item => item.canBuy),
-  availableProducts: state => state.items,
+  availableProducts: state => state.items.filter(item => item.canBuy),
+  getBasketItemById: state => id => state.items.find(item => item.basketItemId === id),
+  getBasketItemByProductId: (state, getters) => productId => (
+    Object.prototype.hasOwnProperty.call(state.mapping, productId)
+      ? getters.getBasketItemById(state.mapping[productId])
+      : false
+  ),
+  // availableProducts: state => state.items,
 };
 
 // actions
 const actions = {
+  // setBasket({ commit }, soaData) {
+  //   commit('SET_PRODUCTS', global.soaData.result.GRID.ROWS);
+  //   let =
+  //   if (soaData) {
+  //     commit('SET_PRODUCTS', soaData.result.GRID.ROWS);
+  //   }
+  // },
   getContents({ commit }) {
-    // commit('SET_PRODUCTS', global.soaData.result.GRID.ROWS);
-    Api.getBasketContents((products) => {
-      commit('SET_PRODUCTS', products);
-    });
+    if (global.demo) {
+      commit('SET_BASKET', v.data);
+    } else {
+      Api.getBasketContents(
+        data => commit('SET_BASKET', data),
+      );
+    }
   },
-  clearCart({ commit }) {
-    const savedCartItems = [...state.items];
-    commit('SET_PRODUCTS', []);
+  clearCart({ commit, state }) {
+    // const savedCartItems = [...state.items];
+    const savedCart = { items: state.items, mapping: state.mapping };
+    commit('SET_BASKET', { items: [], mapping: {} });
 
     Api.clearBasket(
-      () => commit('SET_PRODUCTS', []),
-      () => commit('SET_PRODUCTS', savedCartItems),
+      data => commit('SET_BASKET', data),
+      (error) => commit('SET_BASKET', savedCart),
     );
   },
-  addProductToCart({ commit }, product) {
+  // removeProductFromCart({ commit }, product) {
+  //   console.log('remove product: ', product.ID);
+  // },
+  removeFromCart({ commit }, { basketItemId }) {
+    const savedCart = { items: state.items, mapping: state.mapping };
+
+    Api.removeFromBasket(
+      basketItemId,
+      data => commit('SET_BASKET', data),
+      (error) => commit('SET_BASKET', savedCart),
+    );
+  },
+
+  addProductToCart({ commit }, { productId, quantity }) {
     return new Promise((resolve, reject) => {
       Api.addProductToBasket(
-        product,
-        (products) => {
-          commit('SET_PRODUCTS', products);
-          resolve();
+        {
+          productId,
+          quantity,
+          storeId: global.app.storeId,
         },
-        () => reject(),
+        data => commit('SET_BASKET', data) && resolve(),
+        (error) => reject(error),
       );
     });
   },
-  removeProductFromCart({ commit }, product) {
-    console.log('remove product: ', product.ID);
-  },
-  removeFromCart({ commit }, { basketItemId }) {
-    Api.removeFromBasket(basketItemId, (products) => {
-      commit('SET_PRODUCTS', products);
+
+  incrementItemQuantity({ commit, state }, basketItem) {
+    return new Promise((resolve, reject) => {
+      commit('INCREMENT_ITEM_QUANTITY', basketItem);
+
+      Api.setQuantityInBasket(
+        {
+          basketId: basketItem.basketItemId,
+          quantity: basketItem.quantity + 1,
+          storeId: global.app.storeId,
+        },
+        (data) => {
+          commit('SET_BASKET', data);
+          resolve();
+        },
+        (error) => {
+          console.log(basketItem);
+          commit('DECREMENT_ITEM_QUANTITY', basketItem);
+          reject(error);
+        },
+      );
     });
   },
 
-
-  incrementItemQuantity({ commit }, product) {
-    commit('INCREMENT_ITEM_QUANTITY', product);
-  },
-  decrementItemQuantity({ commit }, product) {
-    commit('DECREMENT_ITEM_QUANTITY', product);
+  decrementItemQuantity({ commit, state }, basketItem) {
+    return new Promise((resolve, reject) => {
+      commit('DECREMENT_ITEM_QUANTITY', basketItem);
+      Api.setQuantityInBasket(
+        {
+          basketId: basketItem.basketItemId,
+          quantity: basketItem.quantity - 1,
+          storeId: global.app.storeId,
+        },
+        data => commit('SET_BASKET', data) && resolve(),
+        (error) => {
+          commit('INCREMENT_ITEM_QUANTITY', basketItem);
+          reject(error);
+        },
+      );
+    });
   },
 };
 
 // mutations
 const mutations = {
+  SET_BASKET(state, { items, mapping }) {
+    state.items = items;
+    state.mapping = mapping;
+  },
   SET_PRODUCTS(state, products) {
     state.items = products;
+  },
+  SET_MAPPING(state, mapping) {
+    state.mapping = mapping;
+  },
+  SET_ITEM_QUANTITY(state, basketItemId, quantity) {
+    const cartItem = state.items.find(item => item.basketItemId === basketItemId);
+    cartItem.quantity = quantity;
   },
   INCREMENT_ITEM_QUANTITY(state, { basketItemId }) {
     const cartItem = state.items.find(item => item.basketItemId === basketItemId);

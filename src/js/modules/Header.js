@@ -119,8 +119,6 @@ export default class Header {
       render: h => h(HeaderCollapse),
     }).$mount('.h-navbar-collapse');
 
-    store.dispatch('cart/getContents');
-
     new Vue({
       store,
       render: h => h(HeaderBasket),

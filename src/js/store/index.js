@@ -17,27 +17,43 @@ const state = {
   favoritesCount: 0,
 };
 
-const getters = {};
+const getters = {
+  currentCity() {
+    return global.app.storeManagerData.cities[global.app.storeManagerData.currentCityId];
+  },
+};
 
 const actions = {
   addToCompare({ commit }, product) {
     console.log(`Add to compare: ${product.id}`);
   },
-  addToFavorites({ commit }, id) {
-    return Api.addToFavorites(id)
-      .then((response) => {
-        commit('RECEIVE_FAVORITES', response.data);
-        commit('SET_FAVORITES_COUNT', response.data.length);
-        return response;
-      });
+  addToFavorites({ commit }, productId) {
+    return new Promise((resolve, reject) => {
+      Api.addToFavorites(
+        productId,
+        (data) => {
+          commit('RECEIVE_FAVORITES', data);
+          commit('SET_FAVORITES_COUNT', data.length);
+          resolve();
+        },
+        () => {
+          reject();
+        },
+      );
+    });
   },
-  removeFromFavorites({ commit }, id) {
-    return Api.removeFromFavorites(id)
-      .then((response) => {
-        commit('RECEIVE_FAVORITES', response.data);
-        commit('SET_FAVORITES_COUNT', response.data.length);
-        return response;
-      });
+  removeFromFavorites({ commit }, productId) {
+    return new Promise((resolve, reject) => {
+      Api.removeFromFavorites(
+        productId,
+        (data) => {
+          commit('RECEIVE_FAVORITES', data);
+          commit('SET_FAVORITES_COUNT', data.length);
+          resolve();
+        },
+        () => reject(),
+      );
+    });
   },
 };
 

@@ -21,7 +21,7 @@
     
     <div class="p-detail__row">
       <ProductPrice/>
-      <ControlCounter/>
+      <ControlCounter :isAvailable="isAvailableOffer" :offer="activeOffer"/>
     </div>
     
     <div class="p-detail-delivery" v-if="isAvailableOffer">
@@ -30,15 +30,16 @@
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">
             Самовывоз из
-            <a class="text-link nowrap" data-anchor href="#stores" title="Смотреть магазины">{{ formatUnit(availableStore.length, ['магазина',
-              'магазинов', 'магазинов'])}}</a>
+            <a class="text-link nowrap" data-anchor href="#stores" title="Смотреть магазины">{{
+              formatUnit(availableStore.length, ['магазина', 'магазинов', 'магазинов'])}}
+            </a>
             сегодня
           </div>
           <div class="p-detail-delivery__value">Бесплатно</div>
         </div>
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">Курьером завтра</div>
-          <div class="p-detail-delivery__value">Бесплатно от 2 990 ₽</div>
+          <div class="p-detail-delivery__value">Бесплатно от {{currentCity.priceDelivery || '2 990'}} ₽</div>
         </div>
         <div class="p-detail-delivery-info__bottom">Оплата при получении</div>
       </template>
@@ -46,7 +47,7 @@
       <template v-else-if="activeOffer.count_remote > 0">
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">Курьером</div>
-          <div class="p-detail-delivery__value">Бесплатно от 2 990 ₽</div>
+          <div class="p-detail-delivery__value">Бесплатно от {{currentCity.priceDelivery || '2 990'}} ₽</div>
         </div>
         <div class="p-detail-delivery-info__bottom">
           Оплата картой онлайн <i class="icon icon-visa"></i> <i class="icon icon-mastercard"></i>
@@ -80,11 +81,12 @@
         productName: state => state.name,
         textDelivery: state => state.textDelivery,
       }),
-      ...mapGetters('product', [
-        'activePacking',
-        'activeOffer',
-        'isAvailableOffer'
-      ]),
+      ...mapGetters({
+        currentCity: 'currentCity',
+        activePacking: 'product/activePacking',
+        activeOffer: 'product/activeOffer',
+        isAvailableOffer: 'product/isAvailableOffer'
+      }),
       availableStore() {
         return Object.keys(this.activeOffer.available_store).filter(key => this.activeOffer.available_store[key] > 0)
       },

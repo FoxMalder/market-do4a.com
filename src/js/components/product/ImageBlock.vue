@@ -60,7 +60,6 @@
         'addToCompare',
       ]),
       toggleFavorites(product) {
-        // console.log(product);
         if (product.isFavorite) {
           product.isFavorite = false;
           this.$store.dispatch('removeFromFavorites', product.id)

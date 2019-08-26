@@ -39,12 +39,12 @@
             <div class="h-product-item"
                     v-for="item in items"
                     :key="item.basketItemId"
-                    :class="{ disabled: item.canBuy }">
+                    :class="{ disabled: !item.canBuy }">
               <div class="h-product-item__img">
                 <img :src="item.picture" :alt="item.name">
               </div>
               <div class="h-product-item__info">
-                <a :href="item.url" class="h-product-item__name">{{item.name || 'Название'}}</a>
+                <a :href="item.url" class="h-product-item__name">{{item.name}}</a>
                 <div class="h-product-item__description">{{item.pack}}</div>
               </div>
               <div class="h-product-item__controls">
@@ -57,9 +57,9 @@
                   </button>
                 </div>
                 <div class="input-counter">
-                  <button class="input-counter__down" type="button" @click.prevent="decrement(item)">-</button>
+                  <button class="input-counter__down" type="button" @click="decrement(item)">-</button>
                   <span class="input-counter__count">{{item.quantity}}</span>
-                  <button class="input-counter__up" type="button" @click.prevent="increment(item)">+</button>
+                  <button class="input-counter__up" type="button" @click="increment(item)">+</button>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
     name: "HeaderBasket",
     computed: {
       ...mapState('cart', {
-        items: state => state.items,
+        items: 'items',
       }),
       ...mapGetters('cart', [
         'availableProducts'
@@ -89,11 +89,24 @@
     },
     methods: {
       ...mapActions('cart', {
+        getContents: 'getContents',
         clearCart: 'clearCart',
         increment: 'incrementItemQuantity',
         decrement: 'decrementItemQuantity',
         remove: 'removeFromCart',
-      })
+      }),
+      // increment(item) {
+      //   this.incrementItemQuantity(item)
+      //     .then((i) => console.log(i))
+      //     .catch((err) => console.log('err', err));
+      // },
+      // decrement(item) {
+      //
+      // }
+    },
+    created() {
+      // this.$store.dispatch('cart/getContents');
+      this.getContents();
     }
   }
 </script>

@@ -1,42 +1,54 @@
 import axios from 'axios';
-import Utils from '../utils/utils';
+// import Utils from '../utils/utils';
 
 /**
  * Добавление продукта в избранное
- * @param id - Id продукта
- * @returns {Promise<AxiosResponse<T> | never>}
+ * @param productId - id продукта
+ * @param cb - callback
+ * @param errorCb - callback
  */
-export function addToFavorites(id) {
-  return axios
-    .get(`/ajax/favorite/add/${id}/`)
+export function addToFavorites(productId, cb, errorCb) {
+  axios
+    .get(`/ajax/favorite/add/${productId}/`)
     .then(response => response.data)
     .then((response) => {
-      if (response.success) {
-        return response;
+      if (response.success === 1) {
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
+    })
+    .then(data => cb(data))
+    .catch((error) => {
+      alert(error.message);
+      errorCb(error);
     });
 }
 
 
 /**
- * Удаление продукта из избранное
- * @param id - Id продукта
- * @returns {Promise<AxiosResponse<T> | never>}
+ * Удаление продукта из избранного
+ * @param productId - id продукта
+ * @param cb - callback
+ * @param errorCb - callback
  */
-export function removeFromFavorites(id) {
-  return axios
-    .get(`/ajax/favorite/delete/${id}/`)
+export function removeFromFavorites(productId, cb, errorCb) {
+  axios
+    .get(`/ajax/favorite/delete/${productId}/`)
     .then(response => response.data)
     .then((response) => {
-      if (response.success) {
-        return response;
+      if (response.success === 1) {
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
+    })
+    .then(data => cb(data))
+    .catch((error) => {
+      alert(error.message);
+      errorCb(error);
     });
 }
 
@@ -51,13 +63,13 @@ export function getBasketContents(cb) {
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
-        return response.data.items;
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
     })
-    .then(items => cb(items));
+    .then(data => cb(data));
     // .catch(error => alert(error.message));
 }
 
@@ -73,14 +85,17 @@ export function clearBasket(cb, errorCb) {
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
-        return response.data.items;
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
     })
-    .then(() => cb())
-    .catch(() => errorCb());
+    .then(data => cb(data))
+    .catch((error) => {
+      alert(error.message);
+      errorCb(error);
+    });
 }
 
 
@@ -109,16 +124,16 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
-        return response.data.items;
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
     })
-    .then(items => cb(items))
+    .then(data => cb(data))
     .catch((error) => {
       alert(error.message);
-      errorCb();
+      errorCb(error);
     });
 }
 
@@ -160,14 +175,17 @@ export function setQuantityInBasket({ basketId, quantity, storeId }, cb, errorCb
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
-        return response.data.items;
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
     })
-    .then(items => cb(items))
-    .catch(() => errorCb());
+    .then(data => cb(data))
+    .catch((error) => {
+      alert(error.message);
+      errorCb(error);
+    });
 }
 
 
@@ -182,12 +200,15 @@ export function removeFromBasket(basketId, cb) {
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
-        return response.data.items;
+        return response.data;
       }
       const error = new Error(response.message);
       error.response = response;
       throw error;
     })
-    .then(items => cb(items))
-    .catch(error => alert(error.message));
+    .then(data => cb(data))
+    .catch((error) => {
+      alert(error.message);
+      // errorCb(error);
+    });
 }
