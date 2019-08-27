@@ -1408,14 +1408,14 @@ button.search-fild__loupe {
     height: 70px;
     text-align: center;
     overflow: hidden;
-    //img {
-    //  width: 100%;
-    //  height: 100%;
-    //}
+    img {
+      width: 64px;
+      height: 64px;
+    }
   }
 
   &__info {
-    flex: 0 0 200px;
+    flex: 1 0 auto;
     max-width: 200px;
     padding: 5px 0;
     margin-left: 7px;
@@ -1444,7 +1444,7 @@ button.search-fild__loupe {
   }
 
   &__controls {
-    margin-left: auto;
+    margin-left: 10px;
     flex: 0 0 auto;
   }
 

@@ -34,7 +34,7 @@ const state = {
 
 // getters
 const getters = {
-  availableProducts: state => state.items.filter(item => item.canBuy),
+  availableProducts: state => state.items.filter(item => item.canBuy || item.canBy),
   getBasketItemById: state => id => state.items.find(item => item.basketItemId === id),
   getBasketItemByProductId: (state, getters) => productId => (
     (state.mapping && Object.prototype.hasOwnProperty.call(state.mapping, productId))
