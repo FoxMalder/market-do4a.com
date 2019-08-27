@@ -7,8 +7,8 @@ import './modules/Header';
 import './modules/Input';
 
 global.axios = axios;
-// axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
-// axios.defaults.withCredentials = true;
+axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
+axios.defaults.withCredentials = true;
 axios.defaults.transformRequest = [
   (data, headers) => {
     if (data) {
