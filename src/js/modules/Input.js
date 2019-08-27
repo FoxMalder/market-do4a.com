@@ -34,13 +34,13 @@ export default class Input {
           [].forEach.call(mutation.removedNodes, (removedNode) => {
             if (removedNode.nodeType === 1) {
               if (removedNode.classList.contains('input-field')) {
-                console.log(removedNode);
+                // console.log(removedNode);
                 removedNode.Input && removedNode.Input.unMount();
               } else {
                 [].forEach.call(
                   removedNode.querySelectorAll('.input-field'),
                   (el) => {
-                    console.log(removedNode);
+                    // console.log(removedNode);
                     el.Input && el.Input.unMount();
                   },
                 );

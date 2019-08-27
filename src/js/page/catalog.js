@@ -1,5 +1,6 @@
 import debounce from 'lodash.debounce';
 // import throttle from 'lodash.throttle';
+import catalogControl from '../store/modules/catalogControl';
 
 import Vue from 'vue/dist/vue.esm';
 
@@ -16,6 +17,7 @@ import {
 import store from '../store/index';
 import CategoryListMobile from '../components/CategoryListMobile.vue';
 import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
+import productStore from '../store/modules/product';
 
 
 export default class CatalogControl {
@@ -91,6 +93,8 @@ export default class CatalogControl {
   };
 
   initVue() {
+    store.registerModule('filters', catalogControl);
+
     [].forEach.call(document.querySelectorAll('[data-toggle="m-filter"]'), (button) => {
       button.addEventListener('click', (event) => {
         event.preventDefault();

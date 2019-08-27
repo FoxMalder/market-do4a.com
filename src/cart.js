@@ -25,7 +25,7 @@ Vue.filter('formatPrice', (value) => {
 $(() => {
   store.registerModule('checkout', checkoutStore);
   store.dispatch('checkout/getAll');
-  store.dispatch('cart/getCart');
+  // store.dispatch('cart/getCart');
 
   new Vue({
     store,

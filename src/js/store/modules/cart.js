@@ -80,16 +80,34 @@ const getters = {
 
 // actions
 const actions = {
-  // setBasket({ commit }, soaData) {
-  //   commit('SET_PRODUCTS', global.soaData.result.GRID.ROWS);
-  //   let =
-  //   if (soaData) {
-  //     commit('SET_PRODUCTS', soaData.result.GRID.ROWS);
-  //   }
-  // },
   getContents({ commit }) {
-    if (global.demo) {
-      commit('SET_BASKET', v.data);
+    if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
+      const items = Object.keys(global.soaData.result.GRID.ROWS).map((key) => {
+        const { data } = global.soaData.result.GRID.ROWS[key];
+        return {
+          basketItemId: parseInt(data.ID, 10),
+          productId: parseInt(data.PRODUCT_ID, 10),
+          name: data.NAME,
+          canBuy: data.CAN_BUY === 'Y',
+
+          quantity: parseInt(data.QUANTITY, 10), // Количество
+          quantity_max: 10,
+
+          price: parseFloat(data.PRICE), // Цена за единицу
+          priceBase: parseFloat(data.BASE_PRICE), // Цена за единицу без скидки
+          price_benefit: parseFloat(data.DISCOUNT_PRICE), // Скидка
+          sum: parseFloat(data.SUM_NUM), // Итоговая сумма за N единиц
+          sumBase: parseFloat(data.SUM_BASE), // Итоговая сумма за N единиц без скидки
+
+          url: data.DETAIL_PAGE_URL,
+          picture: data.DETAIL_PICTURE_SRC,
+          picture2x: data.DETAIL_PICTURE_SRC_2X,
+
+          pack: '',
+          measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
+        };
+      });
+      commit('SET_PRODUCTS', items);
     } else {
       Api.getBasketContents(
         data => commit('SET_BASKET', data),
@@ -135,14 +153,15 @@ const actions = {
 
   incrementItemQuantity({ commit, state }, basketItem) {
     return new Promise((resolve, reject) => {
+      const request = {
+        basketId: basketItem.basketItemId,
+        quantity: basketItem.quantity + 1,
+        storeId: global.app.storeId,
+      };
       commit('INCREMENT_ITEM_QUANTITY', basketItem);
 
       Api.setQuantityInBasket(
-        {
-          basketId: basketItem.basketItemId,
-          quantity: basketItem.quantity + 1,
-          storeId: global.app.storeId,
-        },
+        request,
         (data) => {
           commit('SET_BASKET', data);
           resolve();
@@ -158,13 +177,14 @@ const actions = {
 
   decrementItemQuantity({ commit, state }, basketItem) {
     return new Promise((resolve, reject) => {
+      const request = {
+        basketId: basketItem.basketItemId,
+        quantity: basketItem.quantity - 1,
+        storeId: global.app.storeId,
+      };
       commit('DECREMENT_ITEM_QUANTITY', basketItem);
       Api.setQuantityInBasket(
-        {
-          basketId: basketItem.basketItemId,
-          quantity: basketItem.quantity - 1,
-          storeId: global.app.storeId,
-        },
+        request,
         data => commit('SET_BASKET', data) && resolve(),
         (error) => {
           commit('INCREMENT_ITEM_QUANTITY', basketItem);

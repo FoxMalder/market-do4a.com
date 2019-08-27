@@ -41,7 +41,10 @@
                     :key="item.basketItemId"
                     :class="{ disabled: !item.canBuy }">
               <div class="h-product-item__img">
-                <img :src="item.picture" :alt="item.name">
+                <img :src="'https://marketdo4a.com' + item.picture"
+                        :srcset="'https://marketdo4a.com' + (item.picture2x || item.picture2x) + ' 2x'"
+                        :alt="item.name">
+                
               </div>
               <div class="h-product-item__info">
                 <a :href="item.url" class="h-product-item__name">{{item.name}}</a>

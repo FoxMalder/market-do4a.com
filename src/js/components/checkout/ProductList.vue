@@ -7,7 +7,7 @@
     <div class="order-item__list">
       <ProductItem
               v-for="item in products"
-              :key="item.ID"
+              :key="item.basketItemId"
               :item="item"/>
     </div>
     <div class="order-item__amount">
@@ -56,8 +56,8 @@
       ...mapState('checkout', {
         total: state => state.result.TOTAL
       }),
-      ...mapGetters('cart', {
-        products: 'products',
+      ...mapState({
+        products: state => state.cart.items,
       }),
       productCountText() {
         return this.products.length + ' ' + Utils.declOfNum(this.products.length, ['товар', 'товара', 'товаров'])

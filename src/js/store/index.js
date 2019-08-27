@@ -1,14 +1,8 @@
 import Vue from 'vue/dist/vue.esm';
 import Vuex from 'vuex';
-import catalogControl from './modules/catalogControl';
-// import cart from './modules/cart';
-// import productPage from './modules/product';
 import cart from './modules/cart';
-// import checkout from './modules/checkout';
 
 import * as Api from '../api';
-// import favorites from '../api/favorites';
-// import createLogger from '../../../src/plugins/logger';
 
 Vue.use(Vuex);
 
@@ -74,10 +68,7 @@ export default new Vuex.Store({
   actions,
   mutations,
   modules: {
-    filters: catalogControl,
-    // product: productPage,
     cart,
-    // checkout,
   },
   // strict: debug,
   // plugins: debug ? [createLogger()] : [],

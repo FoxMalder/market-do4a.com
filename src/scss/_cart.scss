@@ -27,6 +27,9 @@
 }
 
 .cart {
+  overflow: hidden;
+  padding-bottom: 50px;
+
   &__inner {
 
     @include media-breakpoint-up(xl) {
@@ -52,24 +55,92 @@
   }
 }
 
+.cart-mobile-header {
+  display: flex;
+  padding: 5px $container-padding-right-mobile 5px $container-padding-left-mobile;
+  overflow: auto;
+  list-style: none;
+
+  @include media-breakpoint-up(xl) {
+    display: none;
+  }
+
+  &__item {
+    position: relative;
+    flex: 1 0 auto;
+    padding-right: 30px;
+    color: rgba(#000, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+
+    &.active {
+      > .cart-mobile-header__link {
+        border-bottom-color: $main-color;
+        color: #000;
+      }
+    }
+
+    &:not(:last-of-type) {
+      &::after {
+        content: '->';
+        position: absolute;
+        top: 4px;
+        right: 7px;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 5px 0;
+    border-bottom: 1px solid transparent;
+  }
+}
+
+.cart-mobile-bottom {
+  position: fixed;
+  z-index: $zindex-fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 
 .order-personal-info {
   margin-bottom: 30px;
 
   &__form {
-    padding: 35px (map_get($grid-gutter-width-map, xs) / 2) 25px;
-    background-color: #fff;
+    margin-right: -$container-padding-x;
+    margin-left: -$container-padding-x;
+    padding: 17px $container-padding-right-mobile 25px $container-padding-left-mobile;
+
+    @include media-breakpoint-down(sm) {
+      .input-field_primary .input-field__input {
+        height: 50px;
+        background-color: #fff;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      margin-right: 0;
+      margin-left: 0;
+      background-color: #fff;
+    }
 
     @include media-breakpoint-up(xl) {
       margin-left: -50vw;
+      padding-top: 32px;
       padding-right: 64px;
       padding-left: 50vw;
-      padding-top: 32px;
     }
   }
 
   &__title {
-    @include media-breakpoint-up(xl) {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
       margin-bottom: 24px;
     }
   }
@@ -113,15 +184,16 @@
 }
 
 .order-shiping {
+  margin-right: -$container-padding-x;
   margin-bottom: 30px;
-  padding: 25px (map_get($grid-gutter-width-map, xs) / 2) 51px;
+  margin-left: -$container-padding-x;
+  padding: 25px $container-padding-x 54px;
   background-color: #fff;
 
-  @include media-breakpoint-up(xl) {
+  @include media-breakpoint-up(md) {
+    margin-right: 0;
     margin-left: -50vw;
-    padding-right: 64px;
-    padding-left: 50vw;
-    padding-top: 27px;
+    padding: 27px 64px 51px 50vw;
   }
 
   &__title {
@@ -170,7 +242,14 @@
 }
 
 .order-option {
-  margin-bottom: 13px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 500;
+
+  letter-spacing: -0.01em;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 13px;
+  }
 
   &.active {
     .order-option__header {
@@ -181,9 +260,25 @@
       }
     }
 
-    //.order-option__body {
-    //  height: 630px;
-    //}
+    .order-option__body {
+      display: block;
+    }
+  }
+
+  &__input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:checked {
+      ~ .order-option__header {
+        box-shadow: inset 0 0 0 2px #80c627;
+
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
   }
 
   &__header {
@@ -252,11 +347,14 @@
     position: absolute;
     top: 13px;
     right: 13px;
-    bottom: 13px;
-    width: 64px;
+    //bottom: 13px;
+    //width: 64px;
+    max-width: 64px;
+    max-height: 64px;
   }
 
   &__body {
+    display: none;
     padding: 21px 21px;
     background-color: #f7f7f7;
   }
@@ -269,20 +367,37 @@
     line-height: 18px;
   }
 
-  &__text {
-    margin-bottom: 42px;
+  &__description {
+    margin-bottom: 0;
     color: rgba(#000, 0.6);
     font-size: 12px;
-    letter-spacing: -0.01em;
+    font-weight: normal;
     line-height: 17px;
   }
 }
 
+.order-option-list {
+  &__item {
+
+  }
+
+  &__title {
+
+  }
+
+  &__link {
+    color: rgba(#000, 0.6);
+  }
+}
 
 //
 //
 .order {
   &__title {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
     @include media-breakpoint-up(xl) {
       margin-bottom: 17px;
     }
@@ -316,7 +431,10 @@
   }
 
   &__btn-checkout {
-    flex: 0 0 50%
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 50%
+    }
   }
 
   &__promocode {
@@ -340,10 +458,10 @@
   }
 
   &__footer-note {
+    margin-top: 30px;
     color: rgba(16, 16, 16, 0.7);
     font-size: 13px;
     letter-spacing: -0.01em;
-
     line-height: 19px;
 
     a {
@@ -351,14 +469,21 @@
     }
 
     @include media-breakpoint-up(md) {
+      margin-top: 0;
       margin-left: 30px;
     }
   }
 }
 
 .order-item {
+  margin-right: -$container-padding-x;
   margin-bottom: 10px;
+  margin-left: -$container-padding-x;
   line-height: 1;
+  @include media-breakpoint-up(md) {
+    margin-right: 0;
+    margin-left: 0;
+  }
 
   &__header {
     display: flex;
@@ -380,7 +505,7 @@
   }
 
   &__list {
-    //height: 92px;
+
   }
 
   &__amount {
@@ -388,6 +513,9 @@
     background: #fff;
     font-size: 14px;
     font-weight: 500;
+    //@include media-breakpoint-up(md) {
+    //
+    //}
   }
 
   &__row {
@@ -435,13 +563,25 @@
 
 .order-product {
   display: flex;
+  position: relative;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  height: 90px;
-  margin-bottom: 6px;
-  padding: 10px 10px;
+  height: 128px;
+  margin-bottom: 4px;
+  padding: 15px $container-padding-right-mobile 15px $container-padding-left-mobile;
+  overflow: hidden;
+
   background: #fff;
   line-height: 1;
+
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 90px;
+    margin-bottom: 6px;
+    padding: 10px 75px 10px 10px;
+  }
 
   &__counter {
     display: flex;
@@ -449,58 +589,89 @@
   }
 
   &__count-note {
+    display: none;
     margin-top: 11px;
     color: rgba(#000, 0.6);
     font-size: 12px;
     line-height: 1;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
   }
 
   &__increment,
   &__decrement {
     @extend %button-reset;
     @include title;
-    padding: 6px 18px;
+    padding: 6px 14px;
+    background-color: #f5f5f5;
     font-size: 22px;
     font-style: normal;
     line-height: 1;
+
+    @include media-breakpoint-up(md) {
+      background-color: transparent;
+    }
   }
 
   &__quantity {
     @include title;
     min-width: 43px;
+    margin: 0 8px;
     padding: 6px 0;
     border: 3px solid #101010;
     background: #fff;
     font-size: 18px;
     font-style: normal;
     line-height: 1;
+    @include media-breakpoint-up(md) {
+
+    }
   }
 
   &__col-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 65px;
-    height: 65px;
-    margin-right: 18px;
+    width: 40px;
+    height: 40px;
+    margin-right: 11px;
+    @include media-breakpoint-up(md) {
+      width: 65px;
+      height: 65px;
+      margin-right: 18px;
+    }
   }
 
   &__col-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 190px;
-    height: 100%;
-    padding-top: 7px;
+    max-width: 180px;
+    height: 40px;
+    @include media-breakpoint-up(md) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 190px;
+      height: 100%;
+      padding-top: 7px;
+    }
   }
 
   &__name {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
     color: #000;
-    font-size: 15px;
     font-weight: 500;
     letter-spacing: -0.01em;
-    line-height: 18px;
+    line-height: 17px;
     //max-height: 37px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @include media-breakpoint-up(md) {
+      font-size: 15px;
+      line-height: 18px;
+      white-space: normal;
+    }
   }
 
   &__description {
@@ -511,43 +682,63 @@
   }
 
   &__col-count {
-    margin-left: auto;
     text-align: center;
-    margin-top: 4px;
+    @include media-breakpoint-up(md) {
+      margin-left: auto;
+      padding-top: 4px;
+    }
   }
 
   &__col-price {
     //margin-left: 30px;
     min-width: 110px;
+    margin-left: auto;
     text-align: right;
+    @include media-breakpoint-up(md) {
+      margin-left: 0;
+    }
   }
 
   &__old-price {
     @include title;
     color: rgba(#101010, 0.6);
-    font-size: 15px;
+    font-size: 13px;
+    @include media-breakpoint-up(md) {
+      font-size: 15px;
+
+    }
   }
 
   &__price {
     @include title;
-    margin: 2px 0 8px;
-    font-size: 22px;
+    margin: 2px 0 3px;
+    font-size: 18px;
+    @include media-breakpoint-up(md) {
+      margin: 2px 0 8px;
+      font-size: 22px;
+    }
   }
 
   &__profit {
     color: $main-color;
-    font-size: 12px;
+    font-size: 10px;
+    @include media-breakpoint-up(md) {
+      font-size: 12px;
+    }
   }
 
   &__btn-delete {
-    margin-right: 15px;
-    margin-left: 32px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 18px;
+    height: 20px;
+
     padding: 0;
     transition: color .1s ease;
     border: 0;
     background: none;
     box-shadow: none;
-    font-size: 20px;
 
     &:active,
     &:focus {
@@ -557,14 +748,19 @@
     &:hover {
       color: $main-color;
     }
+
+    @include media-breakpoint-up(md) {
+      top: calc(50% - 10px);
+      right: 25px;
+    }
   }
 }
 
 .order-promocode {
   display: flex;
   margin: 33px 0 26px;
-  transform: $skew;
   padding: 0 5px;
+  transform: $skew;
 
   &__field {
     flex: 0 0 70%;
@@ -599,7 +795,13 @@
 
     .order-amount__value {
       color: $main-color;
-      font-size: 20px;
+      font-size: 16px;
+    }
+
+    @include media-breakpoint-up(md) {
+      .order-amount__value {
+        font-size: 20px;
+      }
     }
   }
 
@@ -611,10 +813,13 @@
     margin-bottom: 10px;
     padding-bottom: 8px;
     border-bottom: 1px solid #101010;
-    font-size: 22px;
+    font-size: 20px;
 
-    .order-amount__value {
-      font-size: 28px;
+    @include media-breakpoint-up(md) {
+      font-size: 22px;
+      .order-amount__value {
+        font-size: 28px;
+      }
     }
   }
 

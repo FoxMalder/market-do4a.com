@@ -117,10 +117,7 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
   // };
 
   axios
-    .post(`/ajax/basket/${productId}/`, {
-      quantity,
-      storeId,
-    })
+    .post(`/ajax/basket/${productId}/?quantity=${quantity}&storeId=${storeId}`)
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
@@ -159,7 +156,8 @@ export function removeProductFromBasket(productId) {
 
 
 /**
- * Установит нужное кол-во для конкретной позиции в корзине, если отправить 0 - удалит товар из корзины
+ * Установит нужное кол-во для конкретной позиции в корзине,
+ * если отправить 0 - удалит товар из корзины
  * @param basketId
  * @param quantity
  * @param storeId
@@ -168,10 +166,7 @@ export function removeProductFromBasket(productId) {
  */
 export function setQuantityInBasket({ basketId, quantity, storeId }, cb, errorCb) {
   axios
-    .put(`/ajax/basket/${basketId}/`, {
-      quantity,
-      storeId,
-    })
+    .put(`/ajax/basket/${basketId}/?quantity=${quantity}&storeId=${storeId}`)
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
