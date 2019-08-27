@@ -24,7 +24,8 @@
       </a>
       
       <div class="header-cart">
-        <div class="header-cart__wrapper" data-simplebar="init" data-simplebar-auto-hide="false">
+        <!--        <div class="header-cart__wrapper" data-simplebar="init" data-simplebar-auto-hide="false">-->
+        <div class="header-cart__wrapper">
           <div class="header-cart__header">
             <div class="header-cart__title">Товары в корзине</div>
             <button class="header-cart__btn-clear" type="button" @click="clearCart">
@@ -39,17 +40,16 @@
             <div class="h-product-item"
                     v-for="item in items"
                     :key="item.basketItemId"
-                    :class="{ disabled: !item.canBuy }">
+                    :class="{ disabled: !item.canBy && !item.canBuy }">
               <div class="h-product-item__img">
                 <img v-if="item.picture"
                         :src="item.picture"
                         :srcset="(item.picture2x || item.picture) + ' 2x'"
                         :alt="item.name">
-                
               </div>
               <div class="h-product-item__info">
-                <a :href="item.url" class="h-product-item__name">{{item.name}}</a>
-                <div class="h-product-item__description">{{item.pack}}</div>
+                <a :href="item.url" class="h-product-item__name">{{item.name || `Товар №${item.productId}`}}</a>
+                <div class="h-product-item__description" v-if="item.pack">{{item.pack}}</div>
               </div>
               <div class="h-product-item__controls">
                 <div class="h-product-item__price-block">

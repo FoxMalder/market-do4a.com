@@ -1318,7 +1318,7 @@ button.search-fild__loupe {
   top: 100%;
 
   right: 7px;
-  width: 430px;
+  width: 438px;
   max-height: 400px;
   overflow: auto;
   //background: #1b1b1b;
@@ -1344,7 +1344,7 @@ button.search-fild__loupe {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 23px 0;
+    padding: 23px 0 32px;
   }
 
   &__title {
@@ -1377,9 +1377,9 @@ button.search-fild__loupe {
 .h-product-item {
   display: flex;
   position: relative;
-  justify-content: space-between;
+  //justify-content: space-between;
 
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   padding: 6px 0;
 
   &_disabled,
@@ -1407,6 +1407,7 @@ button.search-fild__loupe {
     max-width: 70px;
     height: 70px;
     text-align: center;
+    overflow: hidden;
     //img {
     //  width: 100%;
     //  height: 100%;
@@ -1417,6 +1418,7 @@ button.search-fild__loupe {
     flex: 0 0 200px;
     max-width: 200px;
     padding: 5px 0;
+    margin-left: 7px;
   }
 
   &__name {
@@ -1442,6 +1444,7 @@ button.search-fild__loupe {
   }
 
   &__controls {
+    margin-left: auto;
     flex: 0 0 auto;
   }
 
