@@ -11,9 +11,9 @@
         </div>
         <label class="p-control-counter__title" for="product-counter">Количество</label>
         <div class="p-control-counter__row">
-          <div class="p-control-counter__tooltip" v-show="isOpened && offer.count && count > offer.count">
-            Часть товара будет доставлена с центрального склада
-          </div>
+<!--          <div class="p-control-counter__tooltip" v-show="isOpened && offer.count && count > offer.count">-->
+<!--            Часть товара будет доставлена с центрального склада-->
+<!--          </div>-->
           
           <button class="btn btn-white p-control-counter__decrement"
                   type="button"
@@ -99,7 +99,9 @@
         basketItemById: 'cart/getBasketItemByProductId'
       }),
       maxCount() {
-        return this.basketItem ? this.basketItem.quantity_max : this.offer.count + this.offer.count_remote;
+        return (this.basketItem && this.basketItem.quantity_max)
+          ? this.basketItem.quantity_max
+          : (this.offer.count || this.offer.count_remote);
       },
       basketItem() {
         return this.basketItemById(this.offer.id);

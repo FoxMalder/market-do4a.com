@@ -34,44 +34,10 @@ const state = {
 
 // getters
 const getters = {
-  // products: (state) => {
-  //   if (state.all) {
-  //     return Object.keys(state.all).map((key) => {
-  //       const data = state.all[key].data;
-  //       return data;
-  //       // return {
-  //       //   id: data.ID,
-  //       //   name: data.NAME,
-  //       //   url: data.DETAIL_PAGE_URL,
-  //       //   // priceBase:
-  //       //   quantity: data.QUANTITY, // Количество
-  //       //
-  //       //   price: data.PRICE, // Цена за единицу
-  //       //   sum: data.SUM_NUM, // Итоговая сумма
-  //       //   sumBase: data.SUM_BASE, // Итоговая сумма без скидки
-  //       //   // amount: offer.AMOUNT,
-  //       //
-  //       //   imgUrl: data.DETAIL_PICTURE_SRC,
-  //       //   imgUrl2x: data.DETAIL_PICTURE_SRC_2X,
-  //       //
-  //       //   measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
-  //       //   discountPrice: data.DISCOUNT_PRICE
-  //       // };
-  //       // {
-  //       //   id: state.all[key].id,
-  //       //   name: data.NAME,
-  //       //   quantity: 0,
-  //       //   price: 0,
-  //       //   DISCOUNT_PRICE: 120,
-  //       // }
-  //     });
-  //   }
-  //   return null;
-  // },
   availableProducts: state => state.items.filter(item => item.canBuy),
   getBasketItemById: state => id => state.items.find(item => item.basketItemId === id),
   getBasketItemByProductId: (state, getters) => productId => (
-    Object.prototype.hasOwnProperty.call(state.mapping, productId)
+    (state.mapping && Object.prototype.hasOwnProperty.call(state.mapping, productId))
       ? getters.getBasketItemById(state.mapping[productId])
       : false
   ),
@@ -82,8 +48,10 @@ const getters = {
 const actions = {
   getContents({ commit }) {
     if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
+      // const mapping = {};
       const items = Object.keys(global.soaData.result.GRID.ROWS).map((key) => {
         const { data } = global.soaData.result.GRID.ROWS[key];
+        // mapping[data.PRODUCT_ID] = parseInt(data.ID, 10);
         return {
           basketItemId: parseInt(data.ID, 10),
           productId: parseInt(data.PRODUCT_ID, 10),
@@ -108,6 +76,8 @@ const actions = {
         };
       });
       commit('SET_PRODUCTS', items);
+
+      // commit('SET_BASKET', { items, mapping });
     } else {
       Api.getBasketContents(
         data => commit('SET_BASKET', data),
@@ -145,8 +115,11 @@ const actions = {
           quantity,
           storeId: global.app.storeId,
         },
-        data => commit('SET_BASKET', data) && resolve(),
-        (error) => reject(error),
+        (data) => {
+          commit('SET_BASKET', data);
+          resolve();
+        },
+        (error) => reject(),
       );
     });
   },
@@ -167,9 +140,8 @@ const actions = {
           resolve();
         },
         (error) => {
-          console.log(basketItem);
           commit('DECREMENT_ITEM_QUANTITY', basketItem);
-          reject(error);
+          reject();
         },
       );
     });
@@ -185,10 +157,13 @@ const actions = {
       commit('DECREMENT_ITEM_QUANTITY', basketItem);
       Api.setQuantityInBasket(
         request,
-        data => commit('SET_BASKET', data) && resolve(),
+        (data) => {
+          commit('SET_BASKET', data);
+          resolve();
+        },
         (error) => {
           commit('INCREMENT_ITEM_QUANTITY', basketItem);
-          reject(error);
+          reject();
         },
       );
     });

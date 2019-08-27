@@ -32,7 +32,7 @@ const getters = {
     return state.packing.find(item => item.id === state.packingId);
   },
   visibleOffers: (state, getters) => {
-    return getters.activePacking.sku;
+    return getters.activePacking ? getters.activePacking.sku : [];
   },
   availableOffers: (state, getters) => {
     return getters.visibleOffers.filter(item => item.count > 0);
@@ -48,10 +48,14 @@ const getters = {
   },
 
   activeOffer: (state, getters) => {
-    return getters.activePacking.sku.find(item => item.id === state.offerId) || getters.activePacking.sku[0];
+    return getters.activePacking
+      && (getters.activePacking.sku.find(item => item.id === state.offerId)
+        || getters.activePacking.sku[0]);
   },
   isAvailableOffer: (state, getters) => {
-    return getters.activeOffer ? getters.activeOffer.count + getters.activeOffer.count_remote > 0 : true;
+    return getters.activeOffer
+      ? (getters.activeOffer.count + getters.activeOffer.count_remote) > 0
+      : true;
   },
 };
 

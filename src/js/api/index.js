@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 // import Utils from '../utils/utils';
 
 /**
@@ -70,7 +71,7 @@ export function getBasketContents(cb) {
       throw error;
     })
     .then(data => cb(data));
-    // .catch(error => alert(error.message));
+  // .catch(error => alert(error.message));
 }
 
 
@@ -117,7 +118,13 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
   // };
 
   axios
-    .post(`/ajax/basket/${productId}/?quantity=${quantity}&storeId=${storeId}`)
+    // .post(`/ajax/basket/${productId}/?quantity=${quantity}&storeId=${storeId}`)
+    .post(`/ajax/basket/${productId}/`, null, {
+      params: {
+        quantity,
+        storeId,
+      },
+    })
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
@@ -135,24 +142,24 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
 }
 
 
-/**
- * Удалит продукт первый попавшийся в корзине (я хз, что это)
- * @param productId
- * @returns {Promise<AxiosResponse<T> | never>}
- */
-export function removeProductFromBasket(productId) {
-  return axios
-    .delete(`/ajax/basket/product/${productId}/`)
-    .then(response => response.data)
-    .then((response) => {
-      if (response.success === 1) {
-        return response;
-      }
-      const error = new Error(response.message);
-      error.response = response;
-      throw error;
-    });
-}
+// /**
+//  * Удалит продукт первый попавшийся в корзине (я хз, что это)
+//  * @param productId
+//  * @returns {Promise<AxiosResponse<T> | never>}
+//  */
+// export function removeProductFromBasket(productId) {
+//   return axios
+//     .delete(`/ajax/basket/product/${productId}/`)
+//     .then(response => response.data)
+//     .then((response) => {
+//       if (response.success === 1) {
+//         return response;
+//       }
+//       const error = new Error(response.message);
+//       error.response = response;
+//       throw error;
+//     });
+// }
 
 
 /**
@@ -166,7 +173,13 @@ export function removeProductFromBasket(productId) {
  */
 export function setQuantityInBasket({ basketId, quantity, storeId }, cb, errorCb) {
   axios
-    .put(`/ajax/basket/${basketId}/?quantity=${quantity}&storeId=${storeId}`)
+  // .put(`/ajax/basket/${basketId}/?quantity=${quantity}&storeId=${storeId}`, {
+    .put(`/ajax/basket/${basketId}/`, null, {
+      params: {
+        quantity,
+        storeId,
+      },
+    })
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
