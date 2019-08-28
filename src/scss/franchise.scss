@@ -2338,6 +2338,9 @@ p,
 
   &__inner {
     position: relative;
+    @include media-breakpoint-up(xl) {
+      min-height: 832px;
+    }
   }
 
   &__title {
@@ -2482,7 +2485,8 @@ p,
   &__block {
     position: relative;
     z-index: 1;
-    padding: 15px (map_get($grid-gutter-width-map, xs) / 2) 135px;
+    //padding: 15px (map_get($grid-gutter-width-map, xs) / 2) 135px;
+    padding: 15px (map_get($grid-gutter-width-map, xs) / 2);
     background-color: #fff;
     @include media-breakpoint-up(md) {
       padding: 17px 29px 24px;
@@ -3116,6 +3120,9 @@ p,
     @include title;
     font-size: 16px;
     line-height: 18px;
+    &:hover {
+      color: #fff;
+    }
     @include media-breakpoint-up(md) {
       display: inline-block;
       transform: $skew-reverse;

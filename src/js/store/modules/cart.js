@@ -1,29 +1,29 @@
 // import Cart from '../../api/cart';
 import * as Api from '../../api';
 
-const v = {
-  success: '',
-  message: '',
-  data: {
-    items: [{
-      basketItemId: 984622,
-      name: 'Название товаара',
-      canBuy: true,
-      pack: '454 гр',
-      picture: '/upload/resizer/37/86081_68x68_3745347102daf8544307ca36782813aa.jpg?1559843654',
-      price: 1190,
-      price_benefit: 0,
-      productId: 83397,
-      quantity: 1,
-      quantity_max: 7,
-      sum: 1190,
-      url: '/catalog/product/biotech_nitro_pure_whey_454_gr/',
-    }],
-    mapping: {
-      83397: 984627,
-    },
-  },
-};
+// const v = {
+//   success: '',
+//   message: '',
+//   data: {
+//     items: [{
+//       basketItemId: 984622,
+//       name: 'Название товаара',
+//       canBuy: true,
+//       pack: '454 гр',
+//       picture: '/upload/resizer/37/86081_68x68_3745347102daf8544307ca36782813aa.jpg?1559843654',
+//       price: 1190,
+//       price_benefit: 0,
+//       productId: 83397,
+//       quantity: 1,
+//       quantity_max: 7,
+//       sum: 1190,
+//       url: '/catalog/product/biotech_nitro_pure_whey_454_gr/',
+//     }],
+//     mapping: {
+//       83397: 984627,
+//     },
+//   },
+// };
 
 // initial state
 const state = {
