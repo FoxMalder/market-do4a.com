@@ -11,25 +11,31 @@
         </div>
         <label class="p-control-counter__title" for="product-counter">Количество</label>
         <div class="p-control-counter__row">
-<!--          <div class="p-control-counter__tooltip" v-show="isOpened && offer.count && count > offer.count">-->
-<!--            Часть товара будет доставлена с центрального склада-->
-<!--          </div>-->
-          
-          <button class="btn btn-white p-control-counter__decrement"
-                  type="button"
-                  @click="count -= 1"
-                  :disabled="count <= 1">-
-          </button>
-          <input class="input-text p-control-counter__input"
-                  id="product-counter"
-                  type="number"
-                  v-model.number="count"
-                  @blur="onBlur">
-          <button class="btn btn-white p-control-counter__increment"
-                  type="button"
-                  @click="count += 1"
-                  :disabled="count >= maxCount">+
-          </button>
+          <!--          <div class="p-control-counter__tooltip" v-show="isOpened && offer.count && count > offer.count">-->
+          <!--            Часть товара будет доставлена с центрального склада-->
+          <!--          </div>-->
+          <div class="p-control-counter__col">
+            <button class="btn btn-white p-control-counter__decrement" type="button"
+                    @click="decrement"
+                    :disabled="count <= 1">
+              -
+            </button>
+          </div>
+          <div class="p-control-counter__col">
+            <input class="input-text p-control-counter__input" id="product-counter"
+                    type="number"
+                    :min="1"
+                    :max="maxCount"
+                    v-model.number="count"
+                    @change="onChange">
+          </div>
+          <div class="p-control-counter__col">
+            <button class="btn btn-white p-control-counter__increment" type="button"
+                    @click="increment"
+                    :disabled="count >= maxCount">
+              +
+            </button>
+          </div>
         </div>
       </div>
     </transition>
@@ -108,40 +114,27 @@
       }
     },
     watch: {
-      count: function(val, oldVal) {
+      basketItem(item) {
+        if (item && item.quantity) {
+          this.count = this.basketItem.quantity;
+        }
+      },
+      count(val, oldVal) {
+        console.log(`Значение count сменилось с ${oldVal} на ${val}`);
+
         if (val === '') {
           return;
         }
 
         if (val < 1) {
-          return this.count = 1;
-        }
-
-        if (val > this.maxCount) {
-          return this.count = this.maxCount;
-        }
-
-        if (!this.basketItem || val === oldVal) {
+          // return 1;
+          this.count = 1;
           return;
         }
 
-        this.requestStatus = 'loading';
-        if (val > oldVal) {
-          this.incrementItemQuantity(this.basketItem)
-            .catch(() => {
-              this.count = this.basketItem.quantity;
-            })
-            .finally(() => {
-              this.requestStatus = null;
-            });
-        } else {
-          this.decrementItemQuantity(this.basketItem)
-            .catch(() => {
-              this.count = this.basketItem.quantity;
-            })
-            .finally(() => {
-              this.requestStatus = null;
-            });
+        if (val > this.maxCount) {
+          this.count = this.maxCount;
+          return;
         }
       }
     },
@@ -150,6 +143,7 @@
         addProductToCart: 'addProductToCart',
         incrementItemQuantity: 'incrementItemQuantity',
         decrementItemQuantity: 'decrementItemQuantity',
+        setItemQuantity: 'setItemQuantity',
       }),
       subscribe() {
         alert('Подписка на продукт оформлена')
@@ -171,11 +165,54 @@
           });
 
       },
-      onBlur() {
-        if (!this.count) {
-          this.count = 1;
+      increment() {
+        this.count += 1;
+
+        if (this.basketItem) {
+          this.requestStatus = 'loading';
+
+          this.setItemQuantity(this.basketItem, this.count)
+            // .catch(() => {
+            //   this.count = this.basketItem.quantity;
+            // })
+            .finally(() => {
+              this.requestStatus = null;
+            });
         }
       },
+      decrement() {
+        this.count -= 1;
+
+        if (this.basketItem) {
+          this.requestStatus = 'loading';
+
+          this.setItemQuantity(this.basketItem, this.count)
+            // .catch(() => {
+            //   this.count = this.basketItem.quantity;
+            // })
+            .finally(() => {
+              this.requestStatus = null;
+            });
+        }
+      },
+      onChange(event) {
+        if (this.basketItem) {
+          this.requestStatus = 'loading';
+
+          this.setItemQuantity(this.basketItem, this.count)
+            // .catch(() => {
+            //   this.count = this.basketItem.quantity;
+            // })
+            .finally(() => {
+              this.requestStatus = null;
+            });
+        }
+      },
+      // onBlur() {
+      //   if (!this.count) {
+      //     this.count = 1;
+      //   }
+      // },
       handlePan(event) {
         if (document.documentElement.clientWidth >= 768)
           return false;

@@ -122,7 +122,7 @@ export default class Header {
     new Vue({
       store,
       render: h => h(HeaderBasket),
-    }).$mount('.header-control__cart-container');
+    }).$mount('#js-header-basket');
 
     this.header = {
       collapse: Utils.parseTargets('.h-navbar-collapse'),

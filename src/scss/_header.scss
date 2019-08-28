@@ -1092,11 +1092,15 @@
     height: 100%;
     margin-right: 7px;
 
-    //&:hover {
-    //  .header-cart {
-    //    display: block;
-    //  }
-    //}
+    &:hover {
+      .header-cart {
+        display: block;
+      }
+      .button-cart {
+        background-color: #1b1b1b;
+        color: #fff;
+      }
+    }
 
     @include media-breakpoint-up(xl) {
       display: block;

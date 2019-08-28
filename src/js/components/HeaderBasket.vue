@@ -66,11 +66,15 @@
                   </button>
                 </div>
                 <div class="input-counter">
-                  <button class="input-counter__down" type="button" title="Уменьшить количество" @click="decrement(item)">
+                  <button class="input-counter__down" type="button" title="Уменьшить количество"
+                          :disabled="item.quantity <= 1"
+                          @click="decrement(item)">
                     -
                   </button>
                   <span class="input-counter__count">{{item.quantity}}</span>
-                  <button class="input-counter__up" type="button" title="Увеличить количество" @click="increment(item)">
+                  <button class="input-counter__up" type="button" title="Увеличить количество"
+                          :disabled="item.quantity >= item.quantity_max"
+                          @click="increment(item)">
                     +
                   </button>
                 </div>

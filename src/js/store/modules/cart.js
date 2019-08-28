@@ -124,13 +124,42 @@ const actions = {
     });
   },
 
+  setItemQuantity({ commit }, basketItem, newQuantity) {
+    return new Promise((resolve, reject) => {
+      const savedQuantity = basketItem.quantity;
+
+      commit('SET_ITEM_QUANTITY', basketItem, newQuantity);
+
+      Api.setQuantityInBasket(
+        {
+          basketId: basketItem.basketItemId,
+          newQuantity,
+          storeId: global.app.storeId,
+        },
+        (data) => {
+          commit('SET_BASKET', data);
+          resolve();
+        },
+        (error) => {
+          commit('SET_ITEM_QUANTITY', basketItem, savedQuantity);
+          reject();
+        },
+      );
+    });
+  },
+
   incrementItemQuantity({ commit, state }, basketItem) {
     return new Promise((resolve, reject) => {
+      // if (basketItem.quantity >= basketItem.quantity_max) {
+      //   resolve();
+      // }
+
       const request = {
         basketId: basketItem.basketItemId,
         quantity: basketItem.quantity + 1,
         storeId: global.app.storeId,
       };
+
       commit('INCREMENT_ITEM_QUANTITY', basketItem);
 
       Api.setQuantityInBasket(
@@ -149,6 +178,10 @@ const actions = {
 
   decrementItemQuantity({ commit, state }, basketItem) {
     return new Promise((resolve, reject) => {
+      // if (basketItem.quantity <= 0) {
+      //   resolve();
+      // }
+
       const request = {
         basketId: basketItem.basketItemId,
         quantity: basketItem.quantity - 1,
@@ -182,7 +215,7 @@ const mutations = {
   SET_MAPPING(state, mapping) {
     state.mapping = mapping;
   },
-  SET_ITEM_QUANTITY(state, basketItemId, quantity) {
+  SET_ITEM_QUANTITY(state, { basketItemId }, quantity) {
     const cartItem = state.items.find(item => item.basketItemId === basketItemId);
     cartItem.quantity = quantity;
   },

@@ -34,11 +34,32 @@ axios.defaults.transformRequest = [
 ];
 
 
-Vue.filter('formatPrice', (value) => {
+function bindNumberInRange(el, binding, vnode) {
+  console.log(el.min, el.max, binding.value);
+
+  const model = binding.expression;
+  const min = parseInt(el.min, 10);
+  const max = parseInt(el.max, 10);
+  const val = parseInt(binding.value, 10);
+
+  if (Number.isNaN(min) && (min >= val)) {
+    vnode.context[model] = min;
+  } else if (Number.isNaN(max) && (max <= val)) {
+    vnode.context[model] = max;
+  }
+
+  el.value = val;
+}
+
+Vue.directive('range', {
+  bind: bindNumberInRange,
+  componentUpdated: bindNumberInRange,
+});
+
+Vue.filter('formatPrice', value =>
   // if (!value) return '';
   // return value.toLocaleString();
-  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
-});
+  `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`);
 
 
 if (!{}.hasOwnProperty.call(window, 'app')) {
