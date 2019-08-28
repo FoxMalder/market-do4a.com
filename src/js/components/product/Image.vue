@@ -14,6 +14,8 @@
     }),
     watch: {
       src(url, oldUrl) {
+        console.log('watch src');
+        
         if (url === oldUrl) {
           return;
         }
@@ -22,8 +24,10 @@
           const image = this.cacheImages[url];
           this.$el.width = image.naturalWidth;
           this.$el.height = image.naturalHeight;
-          
-          this.ctx.globalAlpha = this.disabled ? 0.5 : 1;
+
+          this.ctx.globalCompositeOperation = 'source-over';
+          this.ctx.globalAlpha = 1;
+          this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
           this.ctx.drawImage(image, 0, 0);
 
           return;
@@ -34,7 +38,6 @@
     },
     mounted() {
       this.ctx = this.$el.getContext('2d');
-      this.ctx.globalCompositeOperation = 'darken';
       this.ctx.fillStyle = '#f7f7f7';
 
       this.img = new Image();
@@ -44,7 +47,9 @@
         this.$el.width = this.img.naturalWidth;
         this.$el.height = this.img.naturalHeight;
         
-        this.ctx.globalAlpha = this.disabled ? 0.5 : 1;
+        this.ctx.globalCompositeOperation = 'darken';
+        this.ctx.globalAlpha = this.disabled ? 0.3 : 1;
+        this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
         this.ctx.drawImage(this.img, 0, 0);
         this.ctx.fillRect(0, 0, this.$el.width, this.$el.height);
 
