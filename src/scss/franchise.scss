@@ -2330,10 +2330,12 @@ p,
 .f-section-director {
   position: relative;
   padding-top: 29px;
+  overflow: hidden;
   @include media-breakpoint-up(md) {
     margin-bottom: 120px;
     padding-top: 114px;
     padding-bottom: 54px;
+    overflow: visible;
   }
 
   &__inner {

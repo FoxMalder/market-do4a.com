@@ -7,6 +7,7 @@ import './bootstrap';
 import './modules/Header';
 import './modules/Input';
 
+global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
 
 if (global.dev) {

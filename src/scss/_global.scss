@@ -839,6 +839,7 @@ textarea.input-text {
     cursor: text;
     pointer-events: none;
     will-change: transform;
+    z-index: 1;
 
     &_active {
       transform: translateY(-50%) scale(.625);
