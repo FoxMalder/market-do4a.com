@@ -1,3 +1,4 @@
+import Vue from 'vue/dist/vue.esm';
 import axios from 'axios';
 import 'simplebar';
 
@@ -7,7 +8,10 @@ import './modules/Header';
 import './modules/Input';
 
 global.axios = axios;
-axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
+
+if (global.dev) {
+  axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
+}
 axios.defaults.withCredentials = true;
 axios.defaults.transformRequest = [
   (data, headers) => {
@@ -27,6 +31,13 @@ axios.defaults.transformRequest = [
     return data;
   },
 ];
+
+
+Vue.filter('formatPrice', (value) => {
+  // if (!value) return '';
+  // return value.toLocaleString();
+  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
+});
 
 
 if (!{}.hasOwnProperty.call(window, 'app')) {

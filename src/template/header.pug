@@ -263,8 +263,8 @@ header.h-navbar-fixed
 
                     // Кнопка корзины для десктопа
                     .header-control__cart
-                        .button-cart.btn.btn-red.btn-skew
-                            .btn-skew__revers.button-cart__inner
+                        .button-cart
+                            .button-cart__inner
                                 .button-cart__num 5
                                 .button-cart__block
                                     .button-cart__title Корзина
@@ -276,7 +276,7 @@ header.h-navbar-fixed
                                     button.header-cart__btn-clear
                                         +sprite('trash.svg')
                                         |  Очистить
-                                .header-cart__item
+                                .header-cart__list
                                     .h-product-item
                                         .h-product-item__img
                                             img(alt='', src=require('./images/cart-product-1.png'))

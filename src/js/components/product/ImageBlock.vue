@@ -2,7 +2,12 @@
   <div class="p-images-block">
     <div class="p-images-block__image" :class="{disabled: !isAvailableOffer}">
       <!--      <img ref="image" :src="activePacking.img" :alt="productName + ' ' + activePacking.pack">-->
-      <canvas class="p-images-block__img" ref="canvas"></canvas>
+      <!--      <canvas class="p-images-block__img" ref="canvas"></canvas>-->
+      
+      <CanvasImage :src="activePacking.img"/>
+<!--      <keep-alive>-->
+<!--        <component :is="currentTab.component" class="tab"></component>-->
+<!--      </keep-alive>-->
       <!--      <div class="p-images-block__img" ref="canvas" :style="{backgroundImage: `url(${activePacking.img})`}"></div>-->
     </div>
     <div class="product-stickers">
@@ -38,9 +43,18 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
+  import CanvasImage from './Image.vue';
 
   export default {
     name: 'ImageBlock',
+    components: {
+      CanvasImage,
+    },
+    // data() {
+    //   return {
+    //     currentImage:
+    //   }
+    // },
     computed: {
       ...mapState('product', {
         productName: state => state.name,
@@ -49,11 +63,6 @@
         'activePacking',
         'isAvailableOffer'
       ])
-    },
-    watch: {
-      activePacking(newPacking) {
-        this.img.src = newPacking.img;
-      },
     },
     methods: {
       ...mapActions([
@@ -75,25 +84,5 @@
         }
       },
     },
-    mounted() {
-      // this.canvas = this.$refs.canvas;
-      this.ctx = this.$refs.canvas.getContext('2d');
-
-      this.img = new Image();
-
-      this.img.onload = () => {
-        this.$refs.canvas.width = this.img.naturalWidth;
-        this.$refs.canvas.height = this.img.naturalHeight;
-        this.ctx.drawImage(this.img, 0, 0);
-
-        this.ctx.globalCompositeOperation = 'darken';
-        this.ctx.fillStyle = '#f7f7f7';
-        this.ctx.fillRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
-      };
-
-      // img.src = 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513';
-      this.img.src = this.activePacking.img;
-
-    }
   }
 </script>

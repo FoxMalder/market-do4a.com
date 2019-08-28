@@ -14,14 +14,6 @@ if (process.env.NODE_ENV !== 'production') {
   require('./cart.pug');
 }
 
-
-Vue.filter('formatPrice', (value) => {
-  // if (!value) return '';
-  // return value.toLocaleString();
-  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
-});
-
-
 $(() => {
   store.registerModule('checkout', checkoutStore);
   store.dispatch('checkout/getAll');
