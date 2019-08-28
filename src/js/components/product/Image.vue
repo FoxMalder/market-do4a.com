@@ -9,7 +9,7 @@
       src: String,
     },
     data: () => ({
-      cacheImages: null,
+      cacheImages: {},
     }),
     watch: {
       src(url, oldUrl) {
@@ -17,7 +17,7 @@
           return;
         }
 
-        if (this.cacheImages && Object.prototype.hasOwnProperty.call(this.cacheImages, url)) {
+        if (Object.prototype.hasOwnProperty.call(this.cacheImages, url)) {
           const image = this.cacheImages[url];
           this.$el.width = image.naturalWidth;
           this.$el.height = image.naturalHeight;
@@ -56,7 +56,7 @@
         //   image: savedImage,
         // });
       }, false);
-
+      
       // img.src = 'https://marketdo4a.com/upload/resizer/eb/86081_380x380_eb3e46411c38f8c29a12f9b64be3e26d.jpg?1534642513';
       // this.img.src = this.activePacking.img;
       this.img.src = this.src;
