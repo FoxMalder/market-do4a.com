@@ -25,5 +25,7 @@ yarn run start
  - [Избранное](dist/favorites.html)
  - [Производители](dist/vendors.html)
  - [Товары производителя](dist/vendor-opened.html)
+ - [Политика конф.](dist/privacy.html)
  - [Карточка товара](dist/product.html)
  - [Корзина](dist/cart.html)
+ - [Франшиза](dist/franchise.html)

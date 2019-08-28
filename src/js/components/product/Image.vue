@@ -16,6 +16,8 @@
       src(url, oldUrl) {
         console.log('watch src');
         
+        url = url.replace('images/', '');
+        
         if (url === oldUrl) {
           return;
         }
@@ -66,8 +68,9 @@
       this.img.addEventListener('error', () => {
         this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
       }, false);
-      
-      this.img.src = this.src;
+
+      // this.img.src = this.src;
+      this.img.src = this.src.replace('images/', '');
     }
   }
 </script>
