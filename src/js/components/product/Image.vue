@@ -10,27 +10,23 @@
       disabled: Boolean,
     },
     data: () => ({
-      cacheImages: {},
+      cachedImages: {},
     }),
     watch: {
       src(url, oldUrl) {
-        console.log('watch src');
+        // console.log('watch src');
         
-        url = url.replace('images/', '');
+        // url = url.replace('images/', '');
         
         if (url === oldUrl) {
           return;
         }
 
-        if (Object.prototype.hasOwnProperty.call(this.cacheImages, url)) {
-          const image = this.cacheImages[url];
+        if (Object.prototype.hasOwnProperty.call(this.cachedImages, url)) {
+          const image = this.cachedImages[url];
           this.$el.width = image.naturalWidth;
           this.$el.height = image.naturalHeight;
-
-          console.log(this.ctx.globalCompositeOperation, this.ctx.globalAlpha, this.ctx.fillStyle);
-
-          this.ctx.globalCompositeOperation = 'source-over';
-          this.ctx.globalAlpha = 1;
+          
           this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
           this.ctx.drawImage(image, 0, 0);
 
@@ -50,27 +46,28 @@
         this.$el.width = this.img.naturalWidth;
         this.$el.height = this.img.naturalHeight;
 
-        console.log(this.ctx.globalCompositeOperation, this.ctx.globalAlpha, this.ctx.fillStyle);
+        this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
         
         this.ctx.globalCompositeOperation = 'darken';
-        this.ctx.globalAlpha = this.disabled ? 0.3 : 1;
         this.ctx.fillStyle = '#f7f7f7';
         
-        this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
+        this.ctx.globalAlpha = this.disabled ? 0.3 : 1;
         this.ctx.drawImage(this.img, 0, 0);
+        
+        this.ctx.globalAlpha = 1;
         this.ctx.fillRect(0, 0, this.$el.width, this.$el.height);
 
         const savedImage = new Image();
         savedImage.src = this.$el.toDataURL('image/png');
-        this.cacheImages[this.img.src] = savedImage;
+        this.cachedImages[this.img.src] = savedImage;
       }, false);
       
       this.img.addEventListener('error', () => {
         this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
       }, false);
 
-      // this.img.src = this.src;
-      this.img.src = this.src.replace('images/', '');
+      this.img.src = this.src;
+      // this.img.src = this.src.replace('images/', '');
     }
   }
 </script>
