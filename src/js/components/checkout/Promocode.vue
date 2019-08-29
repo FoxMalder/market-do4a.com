@@ -7,7 +7,8 @@
       <div class="order-promocode__field">
         <div class="input-field input-field_primary-white">
           <label class="input-field__label">Добавить промокод</label>
-          <input class="input-field__input" type="text" autocomplete="off"
+          <input
+                  class="input-field__input" type="text" autocomplete="off"
                   v-model="promocode"
                   :disabled="status === 'success'">
         </div>
@@ -29,6 +30,8 @@
 </template>
 
 <script>
+  import { mapGetters, mapState, mapActions } from 'vuex';
+
   export default {
     name: "Promocode",
     data() {
@@ -39,18 +42,31 @@
       }
     },
     methods: {
+      ...mapActions({
+        enterCoupon: 'checkout/enterCoupon',
+      }),
       setPromocode() {
         this.status = 'loading';
+
         if (this.promocode === '') {
           this.status = 'failed';
           setTimeout(() => {
             this.status = null;
-          }, 1000);
-        } else {
-          setTimeout(() => {
-            this.status = 'success';
-          }, 1000);
+          }, 300);
+          return;
         }
+
+        this.enterCoupon(this.promocode)
+          .then(() => {
+            this.status = 'success';
+          })
+          .catch(() => {
+            this.status = 'failed';
+            setTimeout(() => {
+              this.status = null;
+            }, 1000);
+          });
+
       }
     }
   }

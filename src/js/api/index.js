@@ -1,4 +1,5 @@
 import axios from 'axios';
+import qs from 'qs';
 
 // import Utils from '../utils/utils';
 
@@ -218,5 +219,25 @@ export function removeFromBasket(basketId, cb) {
     .catch((error) => {
       alert(error.message);
       // errorCb(error);
+    });
+}
+
+
+export function getSoaData(url, data, cb, errorCb) {
+  axios
+    .post(url, qs.stringify(data))
+    .then(response => response.data)
+    .then((result) => {
+      if (!result.error) {
+        return result;
+      }
+      const error = new Error(result.error);
+      error.response = result;
+      throw error;
+    })
+    .then(result => cb(result))
+    .catch((error) => {
+      alert(error.message);
+      errorCb(error);
     });
 }

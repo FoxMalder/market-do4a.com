@@ -2,8 +2,8 @@
   <div class="order-product">
     <div class="order-product__col-image">
       <img class="order-product__img"
-              :src="'https://marketdo4a.com' + item.picture"
-              :srcset="'https://marketdo4a.com' + item.picture2x + ' 2x'"
+              :src="item.picture"
+              :srcset="(item.picture2x || item.picture) + ' 2x'"
               :alt="item.name">
     </div>
     <div class="order-product__col-info">

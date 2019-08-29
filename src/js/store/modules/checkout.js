@@ -1,3 +1,5 @@
+import * as Api from '../../api';
+
 // /**
 //  * Преобразование и сортировка видов доставки
 //  * @param {Object | Array} objDelivery
@@ -59,7 +61,9 @@ const state = {
   paymentMethods: [],
   // selectedPaymentMethodId: null,
   result: null,
+  props: {},
   checkoutStatus: null,
+  soaData: null,
 };
 
 // getters
@@ -103,11 +107,19 @@ const getters = {
 
 // actions
 const actions = {
-  getAll({ commit }) {
-    const data = global.soaData.result;
-    commit('SET_DATA', data);
+  initSoa({ commit, dispatch }, soa) {
+    commit('SET_SOA', soa);
+    dispatch('refreshOrder', soa.result);
+  },
+  refreshOrder({ commit }, order) {
+    if (order.SHOW_AUTH) {
+      console.error(order.ERROR);
+      // this.showErrors(order.ERROR, false);
+    }
 
-    const propertyList = data.ORDER_PROP.properties.map(property => ({
+    commit('SET_DATA', order);
+
+    const propertyList = order.ORDER_PROP.properties.map(property => ({
       id: property.ID,
       name: property.NAME,
       code: property.CODE,
@@ -120,7 +132,7 @@ const actions = {
     commit('SET_PROPERTY_LIST', propertyList);
 
 
-    const deliveryList = Object.values(data.DELIVERY)
+    const deliveryList = Object.values(order.DELIVERY)
       .sort((a, b) => {
         const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
         if (sort === 0) {
@@ -144,7 +156,7 @@ const actions = {
     commit('SET_SHIPPING_METHODS', deliveryList);
 
 
-    const paymentMethods = data.PAY_SYSTEM
+    const paymentMethods = order.PAY_SYSTEM
       .sort((a, b) => {
         const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
         if (sort === 0) {
@@ -186,15 +198,55 @@ const actions = {
   setStep({ commit }, step) {
     commit('SET_CURRENT_STEP', step);
   },
+  enterCoupon({ commit, state, dispatch }, coupon) {
+    const sessid = global.BX && global.BX.bitrix_sessid ? global.BX.bitrix_sessid() : '';
+    const data = {
+      order: {
+        sessid,
+      },
+      via_ajax: 'Y',
+      action: 'enterCoupon', // 'refreshOrderAjax',
+      SITE_ID: state.soaData.siteID,
+      signedParamsString: state.soaData.signedParamsString,
+      sessid,
+      coupon,
+    };
+
+
+    return new Promise((resolve, reject) => {
+      Api.getSoaData(
+        state.soaData.ajaxUrl,
+        data,
+        (resp) => {
+          resolve();
+          dispatch('refreshOrder', resp.order);
+        },
+        (err) => {
+          console.error(err.message);
+          reject();
+        });
+    });
+
+  },
+  removeCoupon({ commit }) {
+
+  },
 };
 
 // mutations
 const mutations = {
-  SET_DATA(state, result) {
+  SET_DATA(state, order) {
     state.result = {
-      TOTAL: result.TOTAL,
-      LOCAL_STORE: result.LOCAL_STORE,
-      CURRENT_STORE: result.CURRENT_STORE,
+      TOTAL: order.TOTAL,
+      LOCAL_STORE: order.LOCAL_STORE,
+      CURRENT_STORE: order.CURRENT_STORE,
+    };
+  },
+  SET_SOA(state, param) {
+    state.soaData = {
+      signedParamsString: param.signedParamsString,
+      siteID: param.siteID,
+      ajaxUrl: param.ajaxUrl,
     };
   },
   SET_CHECKOUT_STATUS(state, status) {

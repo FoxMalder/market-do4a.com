@@ -16,7 +16,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 $(() => {
   store.registerModule('checkout', checkoutStore);
-  store.dispatch('checkout/getAll');
+  // store.dispatch('checkout/getAll', global.soaData.);
+  store.dispatch('checkout/initSoa', global.soaData);
   // store.dispatch('cart/getCart');
 
   new Vue({

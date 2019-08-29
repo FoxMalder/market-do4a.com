@@ -1,5 +1,7 @@
 import Vue from 'vue/dist/vue.esm';
 import axios from 'axios';
+import Qs from 'qs';
+
 import 'simplebar';
 
 import './fancybox';
@@ -9,29 +11,43 @@ import './modules/Input';
 
 global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
+global.qs = Qs;
 
-if (global.dev) {
-  axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
-}
+// if (global.dev) {
+//   axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
+// }
 axios.defaults.withCredentials = true;
 axios.defaults.transformRequest = [
   (data, headers) => {
+    // console.log(data, headers);
     if (data) {
-      if (data instanceof FormData) {
-        return data;
+      if (data instanceof Object) {
+        const formData = new FormData();
+
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+
+        return formData;
       }
-
-      const formData = new FormData();
-
-      Object.keys(data).forEach((key) => {
-        formData.append(key, data[key]);
-      });
-
-      return formData;
+      // if (data instanceof FormData) {
+      //   return data;
+      // }
     }
     return data;
   },
 ];
+
+// const data = { 'bar': 123 };
+// const options = {
+//   method: 'POST',
+//   headers: { 'content-type': 'application/x-www-form-urlencoded' },
+//   data: qs.stringify(data),
+//   url,s
+// };
+// axios(options);
+
+// axios.defaults.paramsSerializer = params => Qs.stringify(params, { arrayFormat: 'brackets' });
 
 
 function bindNumberInRange(el, binding, vnode) {
