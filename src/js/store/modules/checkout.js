@@ -198,8 +198,38 @@ const actions = {
   setStep({ commit }, step) {
     commit('SET_CURRENT_STEP', step);
   },
+  refreshOrderAjax({ dispatch }) {
+    const sessid = global.BX && global.BX.bitrix_sessid
+      ? global.BX.bitrix_sessid()
+      : '';
+
+    const data = {
+      order: {
+        sessid,
+      },
+      via_ajax: 'Y',
+      action: 'refreshOrderAjax',
+      SITE_ID: state.soaData.siteID,
+      signedParamsString: state.soaData.signedParamsString,
+      sessid,
+    };
+
+    Api.getSoaData(
+      state.soaData.ajaxUrl,
+      data,
+      (result) => {
+        dispatch('refreshOrder', result.order);
+      },
+      (err) => {
+        console.error(err.message);
+      },
+    );
+  },
   enterCoupon({ commit, state, dispatch }, coupon) {
-    const sessid = global.BX && global.BX.bitrix_sessid ? global.BX.bitrix_sessid() : '';
+    const sessid = global.BX && global.BX.bitrix_sessid
+      ? global.BX.bitrix_sessid()
+      : '';
+
     const data = {
       order: {
         sessid,
@@ -217,16 +247,22 @@ const actions = {
       Api.getSoaData(
         state.soaData.ajaxUrl,
         data,
-        (resp) => {
-          resolve();
-          dispatch('refreshOrder', resp.order);
+        (result) => {
+          if (result.order) {
+            resolve();
+            dispatch('refreshOrder', result.order);
+            alert('Промокод применён');
+          } else {
+            reject();
+            alert('Промокод не найден, возможно, он работает только в стационарных магазинах');
+          }
         },
         (err) => {
           console.error(err.message);
           reject();
-        });
+        },
+      );
     });
-
   },
   removeCoupon({ commit }) {
 

@@ -8,6 +8,7 @@
           <span class="breadcumps__page">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</span>
         </div>
         <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
+        <button class="btn btn-red btn-skew" type="button" @click="refreshOrderAjax">Обновить значения</button>
       </div>
     </header>
     <section class="cart">
@@ -101,6 +102,7 @@
     methods: {
       ...mapActions('checkout', {
         setStep: 'setStep',
+        refreshOrderAjax: 'refreshOrderAjax',
       }),
     },
   }
