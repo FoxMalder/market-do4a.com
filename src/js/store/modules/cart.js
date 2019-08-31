@@ -44,45 +44,40 @@ const getters = {
   // availableProducts: state => state.items,
 };
 
+
 // actions
 const actions = {
+  getFromSOA({ commit }, order) {
+    const items = Object.keys(order.GRID.ROWS).map((key) => {
+      const { data } = order.GRID.ROWS[key];
+      // mapping[data.PRODUCT_ID] = parseInt(data.ID, 10);
+      return {
+        basketItemId: parseInt(data.ID, 10),
+        productId: parseInt(data.PRODUCT_ID, 10),
+        name: data.NAME,
+        canBuy: data.CAN_BUY === 'Y',
+
+        quantity: parseInt(data.QUANTITY, 10), // Количество
+        quantity_max: 10,
+
+        price: parseFloat(data.PRICE), // Цена за единицу
+        priceBase: parseFloat(data.BASE_PRICE), // Цена за единицу без скидки
+        price_benefit: parseFloat(data.DISCOUNT_PRICE), // Скидка
+        sum: parseFloat(data.SUM_NUM), // Итоговая сумма за N единиц
+        sumBase: parseFloat(data.SUM_BASE), // Итоговая сумма за N единиц без скидки
+
+        url: data.DETAIL_PAGE_URL,
+        picture: data.DETAIL_PICTURE_SRC,
+        picture2x: data.DETAIL_PICTURE_SRC_2X,
+
+        pack: '',
+        measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
+      };
+    });
+    commit('SET_PRODUCTS', items);
+  },
   getContents({ commit }) {
-    if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
-      // const mapping = {};
-      const items = Object.keys(global.soaData.result.GRID.ROWS).map((key) => {
-        const { data } = global.soaData.result.GRID.ROWS[key];
-        // mapping[data.PRODUCT_ID] = parseInt(data.ID, 10);
-        return {
-          basketItemId: parseInt(data.ID, 10),
-          productId: parseInt(data.PRODUCT_ID, 10),
-          name: data.NAME,
-          canBuy: data.CAN_BUY === 'Y',
-
-          quantity: parseInt(data.QUANTITY, 10), // Количество
-          quantity_max: 10,
-
-          price: parseFloat(data.PRICE), // Цена за единицу
-          priceBase: parseFloat(data.BASE_PRICE), // Цена за единицу без скидки
-          price_benefit: parseFloat(data.DISCOUNT_PRICE), // Скидка
-          sum: parseFloat(data.SUM_NUM), // Итоговая сумма за N единиц
-          sumBase: parseFloat(data.SUM_BASE), // Итоговая сумма за N единиц без скидки
-
-          url: data.DETAIL_PAGE_URL,
-          picture: data.DETAIL_PICTURE_SRC,
-          picture2x: data.DETAIL_PICTURE_SRC_2X,
-
-          pack: '',
-          measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
-        };
-      });
-      commit('SET_PRODUCTS', items);
-
-      // commit('SET_BASKET', { items, mapping });
-    } else {
-      Api.getBasketContents(
-        data => commit('SET_BASKET', data),
-      );
-    }
+    Api.getBasketContents(data => commit('SET_BASKET', data));
   },
   clearCart({ commit, state }) {
     // const savedCartItems = [...state.items];

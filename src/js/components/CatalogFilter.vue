@@ -3,11 +3,11 @@
     <div class="filter__list">
       <template v-for="filter in filters">
         <MultifilterCheckboxList
-                v-if="filter.type === 'checkbox'"
-                :filter="filter"/>
+          v-if="filter.type === 'checkbox'"
+          :filter="filter"/>
         
         <dropdown class="multifilter"
-                v-else-if="filter.type === 'range'">
+                  v-else-if="filter.type === 'range'">
           <template slot="btn">
             <span class="multifilter__value">{{filter.label}}</span>
           </template>
@@ -19,8 +19,9 @@
       
       </template>
     </div>
-    <button class="filter__btn-reset" type="reset"
-      @click.prevent="onReset">Сбросить</button>
+    <button class="filter__btn-reset"
+            type="reset"
+            @click.prevent="onReset">Сбросить</button>
   </div>
 </template>
 
@@ -28,7 +29,7 @@
   import Dropdown from './Dropdown.vue';
   import MultifilterPrice from '../components/MultifilterPrice.vue';
   import MultifilterCheckboxList from '../components/MultifilterCheckboxList.vue';
-  
+
   import { mapGetters, mapState, mapActions } from 'vuex';
 
   export default {
@@ -49,7 +50,7 @@
     methods: {
       onReset() {
         this.$root.$emit('filter:reset');
-        
+
         this.onChange();
       },
       onChange() {

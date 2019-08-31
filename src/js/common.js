@@ -9,6 +9,10 @@ import './bootstrap';
 import './modules/Header';
 import './modules/Input';
 
+import Notifications from './components/Notifications.vue';
+import store from './store';
+// import ProductDetail from './components/product/Detail';
+
 global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
 global.qs = Qs;
@@ -37,6 +41,29 @@ axios.defaults.transformRequest = [
     return data;
   },
 ];
+
+
+
+//
+// Vue.components('toast-transition', {
+//   functional: true,
+//   render(h, { children }) {
+//     const data = {
+//       attrs: { tag: 'div', name: 'toast', type: 'transition' },
+//     };
+//     return h('transition-group', data, children);
+//   },
+// });
+
+
+const noty = document.createElement('div');
+document.body.append(noty);
+
+new Vue({
+  store,
+  render: h => h(Notifications),
+}).$mount(noty);
+
 
 // const data = { 'bar': 123 };
 // const options = {

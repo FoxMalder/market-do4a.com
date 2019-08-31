@@ -53,6 +53,9 @@ const cummonConfig = {
     // chunkFilename: 'js/[name].bundle.js',
     // publicPath: '',
   },
+  // resolve: {
+  //   modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
+  // },
 
   externals: {
     app: 'app',

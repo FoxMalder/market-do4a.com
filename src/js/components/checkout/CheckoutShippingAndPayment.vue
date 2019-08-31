@@ -4,27 +4,36 @@
     <div class="order-shiping__shipping-type">
       <h3 class="order-shiping__title">Способ получения</h3>
       <div class="order-option"
-              v-for="item in shippingMethods"
-              :key="item.id"
-              :class="{active: item.checked}">
-        <div class="order-option__header" @click="selectShippingMethod(item)">
-          <img class="order-option__img" v-if="item.logoUrl" :src="item.logoUrl" :alt="item.name">
+           v-for="item in shippingMethods"
+           :key="item.id"
+           :class="{active: item.id === selectedShippingId}">
+        <div class="order-option__header"
+             @click="selectShipping(item)">
+          <img class="order-option__img"
+               v-if="item.logoUrl"
+               :src="item.logoUrl"
+               :alt="item.name">
           <div class="order-option__title">{{item.name}}</div>
           <div class="order-option__info">
-            <span class="green" v-if="item.price === 0">Бесплатная доставка</span>
+            <span class="green"
+                  v-if="item.price === 0">Бесплатная доставка</span>
             <span v-else>{{item.price | formatPrice}}</span>
             <span v-if="item.period">{{item.period}}</span>
           </div>
         </div>
-        <div class="order-option__body" v-if="item.description || item.type === 'P'">
-          <ul class="order-option-list" v-if="item.type === 'P'">
+        <div class="order-option__body"
+             v-if="item.description || item.type === 'P'">
+          <ul class="order-option-list"
+              v-if="item.type === 'P'">
             <li class="order-option-list__item">
               <div class="order-option-list__title">{{currentStore.NAME}}</div>
-              <a class="order-option-list__link" href="#">Показать на карте</a>
+              <a class="order-option-list__link"
+                 href="#">Показать на карте</a>
             </li>
           </ul>
           <!--                  <div class="order-option__subtitle">Срок доставки 14.05 - 17.05</div>-->
-          <p class="order-option__description" v-html="item.description"></p>
+          <p class="order-option__description"
+             v-html="item.description"></p>
         </div>
       </div>
     </div>
@@ -32,17 +41,21 @@
     <div class="order-shiping__payment-type">
       <h3 class="order-shiping__title">Способ оплаты</h3>
       <div class="order-option"
-              v-for="item in paymentMethods"
-              :key="item.id"
-              :class="{ active: item.checked }">
+           v-for="item in paymentMethods"
+           :key="item.id"
+           :class="{ active: item.id === selectedPaymentId }">
         <!--        <input class="order-option__input" type="radio" name="PAY_SYSTEM_ID"-->
         <!--                :value="item.id"-->
         <!--                :checked="item.active"-->
         <!--                v-model="selectedPaymentMethod">-->
-        <div class="order-option__header" @click="selectPaymentMethod(item)">
+        <div class="order-option__header"
+             @click="selectPayment(item)">
           <div class="order-option__title">{{item.name}}</div>
-          <div class="order-option__description" v-if="item.description">{{item.description}}</div>
-          <div class="order-option__info" v-if="!item.isCash">
+          <div class="order-option__description"
+               v-if="item.description">{{item.description}}
+          </div>
+          <div class="order-option__info"
+               v-if="!item.isCash">
             <i class="icon icon-visa"></i><i class="icon icon-mastercard"></i><i class="icon icon-mir"></i>
           </div>
         </div>
@@ -157,18 +170,15 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
+  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD } from './../../store/modules/checkout';
 
   export default {
     name: 'CheckoutShippingAndPayment',
-    data() {
-      return {
-        selectedPaymentMethod: null,
-        selectedShipingMethod: null,
-      }
-    },
     computed: {
       ...mapState('checkout', {
-        paymentMethods: state => state.paymentMethods,
+        selectedShippingId: 'selectedShippingMethodId',
+        selectedPaymentId: 'selectedPaymentMethodId',
+        paymentMethods: 'paymentMethods',
         currentStore: state => state.result.CURRENT_STORE,
       }),
       ...mapGetters('checkout', {
@@ -177,8 +187,8 @@
     },
     methods: {
       ...mapActions('checkout', {
-        selectPaymentMethod: 'selectPaymentMethod',
-        selectShippingMethod: 'selectShippingMethod',
+        selectPayment: SET_PAYMENT_METHOD,
+        selectShipping: SET_SHIPPING_METHOD,
       }),
       // selectShiping({ ID }) {
       //   this.selectedShipingMethod = ID;

@@ -1,6 +1,7 @@
 import Vue from 'vue/dist/vue.esm';
 import Vuex from 'vuex';
 import cart from './modules/cart';
+import notifications from './modules/notifications';
 
 import * as Api from '../api';
 
@@ -69,6 +70,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     cart,
+    notifications,
   },
   // strict: debug,
   // plugins: debug ? [createLogger()] : [],

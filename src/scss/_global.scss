@@ -118,8 +118,8 @@ h2 {
 
 h3 {
   font-size: 15px;
-  line-height: 19px;
   letter-spacing: -0.02em;
+  line-height: 19px;
 }
 
 @include media-breakpoint-up(md) {
@@ -825,11 +825,12 @@ textarea.input-text {
 
   &__label {
     position: absolute;
+    z-index: 1;
     top: 19px;
     left: $input-padding-x + $input-border-width;
     margin-bottom: 0;
-    overflow: hidden;
     //transform: translateY(-50%);
+    overflow: hidden;
     transform-origin: left top;
     transition: transform .15s ease;
     opacity: .4;
@@ -839,7 +840,6 @@ textarea.input-text {
     cursor: text;
     pointer-events: none;
     will-change: transform;
-    z-index: 1;
 
     &_active {
       transform: translateY(-50%) scale(.625);
@@ -1350,14 +1350,15 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 .star-rating {
   display: flex;
   align-items: center;
+
   &__star {
     display: inline-block;
-    color: #e1e1e1;
-    cursor: pointer;
     width: 40px;
     height: 36px;
-    padding-right: 4px;
     margin-bottom: 0;
+    padding-right: 4px;
+    color: #e1e1e1;
+    cursor: pointer;
 
     @include media-breakpoint-up(xl) {
       width: 54px;
@@ -1387,8 +1388,43 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
   &__value {
     @include title;
+    margin-left: 22px;
     font-size: 60px;
     line-height: 1;
-    margin-left: 22px;
   }
 }
+
+
+.notification {
+  //position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 190px;
+  margin-top: 10px;
+  padding: 22px 27px;
+  transition: all .4s ease;
+
+  background: #fff;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.07);
+
+
+  &__btn-close {
+    @extend %button-reset;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+
+  &__title {
+    @include title;
+    margin-bottom: 8px;
+    font-size: 23px;
+    line-height: 31px;
+  }
+
+  &__description {
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+
