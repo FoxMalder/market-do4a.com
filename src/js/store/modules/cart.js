@@ -132,16 +132,19 @@ const actions = {
     return new Promise((resolve, reject) => {
       const savedQuantity = basketItem.quantity;
 
+      const request = {
+        basketId: basketItem.basketItemId,
+        quantity: newQuantity,
+        storeId: global.app.storeManagerData.currentCityId === global.app.storeManagerData.noCityId
+          ? global.app.storeRemoteId
+          : global.app.storeId,
+      };
+      console.log(request);
+
       commit('SET_ITEM_QUANTITY', basketItem, newQuantity);
 
       Api.setQuantityInBasket(
-        {
-          basketId: basketItem.basketItemId,
-          quantity: newQuantity,
-          storeId: global.app.storeManagerData.currentCityId === global.app.storeManagerData.noCityId
-            ? global.app.storeRemoteId
-            : global.app.storeId,
-        },
+        request,
         (data) => {
           commit('SET_BASKET', data);
           resolve();
@@ -163,8 +166,11 @@ const actions = {
       const request = {
         basketId: basketItem.basketItemId,
         quantity: basketItem.quantity + 1,
-        storeId: global.app.storeId,
+        storeId: global.app.storeManagerData.currentCityId === global.app.storeManagerData.noCityId
+          ? global.app.storeRemoteId
+          : global.app.storeId,
       };
+      console.log(request);
 
       commit('INCREMENT_ITEM_QUANTITY', basketItem);
 
@@ -191,8 +197,12 @@ const actions = {
       const request = {
         basketId: basketItem.basketItemId,
         quantity: basketItem.quantity - 1,
-        storeId: global.app.storeId,
+        storeId: global.app.storeManagerData.currentCityId === global.app.storeManagerData.noCityId
+          ? global.app.storeRemoteId
+          : global.app.storeId,
       };
+      console.log(request);
+
       commit('DECREMENT_ITEM_QUANTITY', basketItem);
       Api.setQuantityInBasket(
         request,

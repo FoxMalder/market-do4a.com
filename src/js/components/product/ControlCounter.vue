@@ -172,7 +172,8 @@
         if (this.basketItem) {
           this.requestStatus = 'loading';
 
-          this.setItemQuantity(this.basketItem, this.count)
+          // this.setItemQuantity(this.basketItem, this.count)
+          this.incrementItemQuantity(this.basketItem)
             // .catch(() => {
             //   this.count = this.basketItem.quantity;
             // })
@@ -187,7 +188,8 @@
         if (this.basketItem) {
           this.requestStatus = 'loading';
 
-          this.setItemQuantity(this.basketItem, this.count)
+          // this.setItemQuantity(this.basketItem, this.count)
+          this.decrementItemQuantity(this.basketItem)
             // .catch(() => {
             //   this.count = this.basketItem.quantity;
             // })
