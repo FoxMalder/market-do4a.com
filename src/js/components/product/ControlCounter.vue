@@ -154,6 +154,7 @@
         this.addProductToCart({
             productId: this.offer.id,
             quantity: this.count,
+            isRemote: this.offer.count < 1 && this.offer.count_remote > 0,
           })
           .then(() => {
             if (document.documentElement.clientWidth < 768) {

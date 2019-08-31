@@ -1032,6 +1032,7 @@ window.app = {
     },
   },
   storeId: 24396,
+  storeRemoteId: 130,
 };
 
 // BX.message({

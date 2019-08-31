@@ -7,9 +7,6 @@
              v-for="error in errors.PROPERTY">{{error}}
         </div>
       </template>
-      <div class="order-personal-info__error"
-           v-if="errors.PROPERTY">{{errors.PROPERTY[0]}}
-      </div>
       <div class="order-personal-info__subtitle">Данные покупателя</div>
       
       <div class="order-personal-info__container">

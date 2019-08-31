@@ -111,13 +111,13 @@ const actions = {
     );
   },
 
-  addProductToCart({ commit }, { productId, quantity }) {
+  addProductToCart({ commit }, { productId, quantity, isRemote = true }) {
     return new Promise((resolve, reject) => {
       Api.addProductToBasket(
         {
           productId,
           quantity,
-          storeId: global.app.storeId,
+          storeId: isRemote ? global.app.storeRemoteId : global.app.storeId,
         },
         (data) => {
           commit('SET_BASKET', data);
@@ -137,8 +137,10 @@ const actions = {
       Api.setQuantityInBasket(
         {
           basketId: basketItem.basketItemId,
-          newQuantity,
-          storeId: global.app.storeId,
+          quantity: newQuantity,
+          storeId: global.app.storeManagerData.currentCityId === global.app.storeManagerData.noCityId
+            ? global.app.storeRemoteId
+            : global.app.storeId,
         },
         (data) => {
           commit('SET_BASKET', data);

@@ -134,6 +134,9 @@ const Utils = {
     if (global.BX && global.BX.bitrix_sessid) {
       return global.BX.bitrix_sessid();
     }
+    if (global.app && global.app.bitrix_sessid) {
+      return global.app.bitrix_sessid;
+    }
     return '';
   },
 };
