@@ -1,5 +1,6 @@
 // import Cart from '../../api/cart';
 import * as Api from '../../api';
+import { ADD_TOAST_MESSAGE } from './notifications';
 
 // const v = {
 //   success: '',
@@ -79,10 +80,18 @@ const actions = {
   getContents({ commit }) {
     Api.getBasketContents(data => commit('SET_BASKET', data));
   },
-  clearCart({ commit, state }) {
+  clearCart({ commit, dispatch, state }) {
     // const savedCartItems = [...state.items];
     const savedCart = { items: state.items, mapping: state.mapping };
     commit('SET_BASKET', { items: [], mapping: {} });
+
+    dispatch(ADD_TOAST_MESSAGE, {
+      title: 'корзина очищена',
+      text: 'Но вы еще можете вернуть всё обратно.',
+      onCancel: () => {
+        commit('SET_BASKET', savedCart);
+      },
+    }, { root: true });
 
     Api.clearBasket(
       data => commit('SET_BASKET', data),

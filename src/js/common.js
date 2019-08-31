@@ -43,7 +43,6 @@ axios.defaults.transformRequest = [
 ];
 
 
-
 //
 // Vue.components('toast-transition', {
 //   functional: true,
@@ -54,15 +53,6 @@ axios.defaults.transformRequest = [
 //     return h('transition-group', data, children);
 //   },
 // });
-
-
-const noty = document.createElement('div');
-document.body.append(noty);
-
-new Vue({
-  store,
-  render: h => h(Notifications),
-}).$mount(noty);
 
 
 // const data = { 'bar': 123 };
@@ -108,3 +98,13 @@ Vue.filter('formatPrice', value =>
 if (!{}.hasOwnProperty.call(window, 'app')) {
   window.app = {};
 }
+
+$(() => {
+  const noty = document.createElement('div');
+  document.body.append(noty);
+
+  new Vue({
+    store,
+    render: h => h(Notifications),
+  }).$mount(noty);
+});
