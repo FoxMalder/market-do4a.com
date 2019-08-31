@@ -128,7 +128,7 @@ const getters = {
 const actions = {
   initSoa({ commit, dispatch }, soa) {
     commit('SET_SOA', soa);
-    dispatch('refreshOrder', soa.result);
+    dispatch(REFRESH_ORDER, soa.result);
   },
   [SET_SHIPPING_METHODS]({ commit, getters }, delivery) {
     const deliveryList = Object.values(delivery)
@@ -179,7 +179,7 @@ const actions = {
     commit(SET_PAYMENT_METHODS, paymentMethods);
   },
 
-  refreshOrder({ commit, dispatch, state }, order) {
+  [REFRESH_ORDER]({ commit, dispatch, state }, order) {
     if (order.SHOW_AUTH) {
       console.error(order.ERROR);
       // this.showErrors(order.ERROR, false);
@@ -256,6 +256,7 @@ const actions = {
                 title: 'Промокод не найден',
                 text: 'Возможно, он работает только в стационарных магазинах',
               }, { root: true });
+              reject();
             }
           }
 
@@ -282,8 +283,9 @@ const actions = {
     //   checked: item.id === payment.id,
     // }));
     // commit('SET_PAYMENT_METHODS', paymentMethods);
-    dispatch('sendRequest');
     commit(SET_PAYMENT, id);
+
+    dispatch('sendRequest');
   },
 
   [SET_SHIPPING]({ commit, dispatch }, { id }) {
@@ -293,8 +295,9 @@ const actions = {
     //   checked: item.id === delivery.id,
     // }));
     // commit('SET_SHIPPING_METHODS', shippingMethods);
-    dispatch('sendRequest');
     commit(SET_SHIPPING, id);
+
+    dispatch('sendRequest');
   },
 
   saveOrderAjax({ dispatch }) {
