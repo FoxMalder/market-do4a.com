@@ -56,9 +56,15 @@
       ...mapState('checkout', {
         total: state => state.result.TOTAL
       }),
-      ...mapState({
-        products: state => state.cart.items,
+      // ...mapState({
+      //   products: state => state.cart.items,
+      // }),
+      ...mapGetters({
+        products: 'cart/availableProducts',
       }),
+      // visibleProducts() {
+      //   return this.products.filter(prod => prod.canBuy);
+      // },
       productCountText() {
         return this.products.length + ' ' + Utils.declOfNum(this.products.length, ['товар', 'товара', 'товаров'])
       }

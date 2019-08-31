@@ -2,13 +2,20 @@
   <div class="order-shiping">
     
     <div class="order-shiping__shipping-type">
+      <div class="order-shiping__error" v-if="errors.DELIVERY">{{errors.DELIVERY[0]}}</div>
       <h3 class="order-shiping__title">Способ получения</h3>
       <div class="order-option"
            v-for="item in shippingMethods"
-           :key="item.id"
-           :class="{active: item.id === selectedShippingId}">
-        <div class="order-option__header"
-             @click="selectShipping(item)">
+           :key="item.id">
+        <input class="order-option__input"
+               type="radio"
+               name="DELIVERY_ID"
+               :id="'DELIVERY_' + item.id"
+               :value="item.id"
+               :change="item.id === selectedShippingId"
+               @change="selectShipping(item)">
+        <label class="order-option__header"
+               :for="'DELIVERY_' + item.id">
           <img class="order-option__img"
                v-if="item.logoUrl"
                :src="item.logoUrl"
@@ -20,7 +27,7 @@
             <span v-else>{{item.price | formatPrice}}</span>
             <span v-if="item.period">{{item.period}}</span>
           </div>
-        </div>
+        </label>
         <div class="order-option__body"
              v-if="item.description || item.type === 'P'">
           <ul class="order-option-list"
@@ -39,17 +46,20 @@
     </div>
     
     <div class="order-shiping__payment-type">
+      <div class="order-shiping__error" v-if="errors.PAY_SYSTEM">{{errors.PAY_SYSTEM[0]}}</div>
       <h3 class="order-shiping__title">Способ оплаты</h3>
       <div class="order-option"
            v-for="item in paymentMethods"
-           :key="item.id"
-           :class="{ active: item.id === selectedPaymentId }">
-        <!--        <input class="order-option__input" type="radio" name="PAY_SYSTEM_ID"-->
-        <!--                :value="item.id"-->
-        <!--                :checked="item.active"-->
-        <!--                v-model="selectedPaymentMethod">-->
-        <div class="order-option__header"
-             @click="selectPayment(item)">
+           :key="item.id">
+        <input class="order-option__input"
+               type="radio"
+               name="PAY_SYSTEM_ID"
+               :id="'PAY_SYSTEM_' + item.id"
+               :value="item.id"
+               :checked="item.id === selectedPaymentId"
+               @change="selectPayment(item)">
+        <label class="order-option__header"
+               :for="'PAY_SYSTEM_' + item.id">
           <div class="order-option__title">{{item.name}}</div>
           <div class="order-option__description"
                v-if="item.description">{{item.description}}
@@ -58,7 +68,7 @@
                v-if="!item.isCash">
             <i class="icon icon-visa"></i><i class="icon icon-mastercard"></i><i class="icon icon-mir"></i>
           </div>
-        </div>
+        </label>
       </div>
     </div>
   </div>
@@ -179,23 +189,36 @@
         selectedShippingId: 'selectedShippingMethodId',
         selectedPaymentId: 'selectedPaymentMethodId',
         paymentMethods: 'paymentMethods',
+        errors: 'errors',
         currentStore: state => state.result.CURRENT_STORE,
       }),
       ...mapGetters('checkout', {
         shippingMethods: 'visibleShippingMethods',
       }),
+      // paymentMethod: {
+      //   get() {
+      //     // return this.$store.state.checkout.selectedPaymentMethodId;
+      //     return this.selectedPaymentId;
+      //   },
+      //   set(value) {
+      //     this.$store.dispatch(`checkout/${SET_PAYMENT_METHOD}`, value);
+      //     // this.selectPayment(value);
+      //   }
+      // },
+      // shippingMethod: {
+      //   get() {
+      //     // return this.$store.state.checkout.selectedShippingMethodId;
+      //     return this.selectedShippingId
+      //   },
+      //   set(value) {
+      //     this.$store.dispatch(`checkout/${SET_SHIPPING_METHOD}`, value);
+      //     // this.selectShipping(value);
+      //   }
+      // }
     },
-    methods: {
-      ...mapActions('checkout', {
-        selectPayment: SET_PAYMENT_METHOD,
-        selectShipping: SET_SHIPPING_METHOD,
-      }),
-      // selectShiping({ ID }) {
-      //   this.selectedShipingMethod = ID;
-      // },
-      // selectPayment({ ID }) {
-      //   this.selectedPaymentMethod = ID;
-      // },
-    }
+    methods: mapActions('checkout', {
+      selectPayment: SET_PAYMENT_METHOD,
+      selectShipping: SET_SHIPPING_METHOD,
+    })
   }
 </script>

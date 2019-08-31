@@ -1,4 +1,5 @@
 import * as Api from '../../api';
+import axios from 'axios';
 import { ADD_TOAST_MESSAGE } from './notifications';
 
 const REFRESH_ORDER = 'REFRESH_ORDER';
@@ -82,6 +83,12 @@ const state = {
   props: {},
   checkoutStatus: null,
   soaData: null,
+  errors: {
+    PROPERTY: [],
+    PAY_SYSTEM: [],
+    DELIVERY: [],
+    AUTH: [],
+  },
 };
 
 // getters
@@ -121,6 +128,23 @@ const getters = {
     }
 
     return state.delivery.filter(item => !item.errors);
+  },
+  getAllFormData: (state) => {
+    const data = {
+      DELIVERY_ID: state.selectedShippingMethodId,
+      PAY_SYSTEM_ID: state.selectedPaymentMethodId,
+      BUYER_STORE: state.result.BUYER_STORE,
+      PERSON_TYPE: state.personType,
+      action: 'saveOrderAjax',
+      location_type: 'code',
+      sessid: global.BX && global.BX.bitrix_sessid ? global.BX.bitrix_sessid() : '',
+    };
+
+    state.propertyList.forEach((item) => {
+      data[item.fieldName] = item.value;
+    });
+
+    return data;
   },
 };
 
@@ -212,21 +236,13 @@ const actions = {
   },
 
 
-  sendRequest({ state, dispatch }, data) {
+  sendRequest({ state, getters, dispatch }, data) {
     const sessid = global.BX && global.BX.bitrix_sessid
       ? global.BX.bitrix_sessid()
       : '';
 
     const request = {
-      order: {
-        DELIVERY_ID: state.selectedShippingMethodId,
-        PAY_SYSTEM_ID: state.selectedPaymentMethodId,
-        BUYER_STORE: state.result.BUYER_STORE,
-        PERSON_TYPE: state.personType,
-        action: 'saveOrderAjax',
-        location_type: 'code',
-        sessid,
-      },
+      order: getters.getAllFormData,
       via_ajax: 'Y',
       action: 'refreshOrderAjax',
       SITE_ID: state.soaData.siteID,
@@ -234,10 +250,6 @@ const actions = {
       sessid,
       ...data,
     };
-
-    state.propertyList.forEach((item) => {
-      request.order[item.fieldName] = item.value;
-    });
 
     return new Promise((resolve, reject) => {
       Api.getSoaData(
@@ -319,16 +331,60 @@ const actions = {
     }
   },
 
-  checkout({ commit, dispatch, state }) {
+  checkout({ commit, dispatch, state, getters }) {
+    const err = {};
     if (!state.selectedPaymentMethodId) {
-      dispatch(ADD_TOAST_MESSAGE, { title: 'Не выбран метод оплаты' }, { root: true });
-      return 0;
+      err.PAY_SYSTEM = ['Не выбран метод оплаты'];
     }
+
     if (!state.selectedShippingMethodId) {
-      dispatch(ADD_TOAST_MESSAGE, { title: 'Не выбран способ доставки' }, { root: true });
-      return 0;
+      err.DELIVERY = ['Не выбран способ доставки'];
     }
-    return 0;
+
+    if (Object.keys(err).length) {
+      // dispatch('showErrors', err);
+      commit('SET_ERRORS', err);
+      return;
+    }
+
+    commit('SET_CHECKOUT_STATUS', 'loading');
+
+    axios
+      .post('/checkout/', getters.getAllFormData)
+      .then(response => response.data)
+      .then((result) => {
+        if (result && result.order) {
+          const { order } = result;
+
+          if (result.SHOW_AUTH) {
+            console.error('SHOW_AUTH not implemented');
+          } else {
+            if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
+              document.location.href = order.REDIRECT_URL;
+            }
+
+            if (result.ERROR) {
+              commit('SET_ERRORS', result.ERROR);
+              // dispatch('showErrors', result.ERROR);
+            }
+          }
+        }
+
+        commit('SET_CHECKOUT_STATUS', null);
+      });
+  },
+
+  showErrors({ commit, dispatch }, error) {
+    Object.keys(error).forEach(key => {
+      const message = error[key];
+      if (Array.isArray(message)) {
+        message.forEach((item) => {
+          dispatch(ADD_TOAST_MESSAGE, { title: item }, { root: true });
+        });
+      } else {
+        dispatch(ADD_TOAST_MESSAGE, { title: message }, { root: true });
+      }
+    });
   },
 };
 
@@ -378,6 +434,10 @@ const mutations = {
 
   SET_PERSON_TYPE(state, id) {
     state.personType = id;
+  },
+
+  SET_ERRORS(state, errors) {
+    state.errors = errors;
   },
 };
 

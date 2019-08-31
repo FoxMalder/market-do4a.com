@@ -56,12 +56,18 @@
     },
     computed: {
       ...mapState({
-        products: state => state.cart.items,
+        // products: state => state.cart.items,
         total: state => state.checkout.result.TOTAL,
       }),
       ...mapGetters('checkout', {
         nextStepButton: 'nextStepButton',
       }),
+      ...mapGetters({
+        products: 'cart/availableProducts',
+      }),
+      // visibleProducts() {
+      //   return this.products.filter(prod => prod.canBuy);
+      // },
       productCountText() {
         return this.products.length + ' ' + Utils.declOfNum(this.products.length, ['товар', 'товара', 'товаров'])
       }
