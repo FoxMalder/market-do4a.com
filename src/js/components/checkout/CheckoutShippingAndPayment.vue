@@ -2,7 +2,14 @@
   <div class="order-shiping">
     
     <div class="order-shiping__shipping-type">
-      <div class="order-shiping__error" v-if="errors.DELIVERY">{{errors.DELIVERY[0]}}</div>
+      
+      <template v-if="errors.DELIVERY && errors.DELIVERY.length">
+        <div class="order-shiping__error"
+             v-for="error in errors.DELIVERY">
+          {{error}}
+        </div>
+      </template>
+      
       <h3 class="order-shiping__title">Способ получения</h3>
       <div class="order-option"
            v-for="item in shippingMethods"
@@ -46,7 +53,13 @@
     </div>
     
     <div class="order-shiping__payment-type">
-      <div class="order-shiping__error" v-if="errors.PAY_SYSTEM">{{errors.PAY_SYSTEM[0]}}</div>
+      <template v-if="errors.PAY_SYSTEM && errors.PAY_SYSTEM.length">
+        <div class="order-shiping__error"
+             v-for="error in errors.PAY_SYSTEM">
+          {{error}}
+        </div>
+      </template>
+      
       <h3 class="order-shiping__title">Способ оплаты</h3>
       <div class="order-option"
            v-for="item in paymentMethods"

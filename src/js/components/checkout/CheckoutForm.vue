@@ -2,6 +2,11 @@
   <div class="order-personal-info">
     <h3 class="order-personal-info__title">Ваши данные</h3>
     <div class="order-personal-info__form">
+      <template v-if="errors.PROPERTY && errors.PROPERTY.length">
+        <div class="order-personal-info__error"
+             v-for="error in errors.PROPERTY">{{error}}
+        </div>
+      </template>
       <div class="order-personal-info__error"
            v-if="errors.PROPERTY">{{errors.PROPERTY[0]}}
       </div>

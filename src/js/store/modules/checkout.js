@@ -107,9 +107,9 @@ const getters = {
       text: 'Оформить заказ',
     };
   },
-  getLocationProperty: (state) => {
-    state.propertyList.find;
-  },
+  // getLocationProperty: (state) => {
+  //   state.propertyList.find;
+  // },
   visibleShippingMethods: (state) => {
     if (state.result.LOCAL_STORE) {
       let courier = null;
@@ -363,9 +363,9 @@ const actions = {
               document.location.href = order.REDIRECT_URL;
             }
 
-            if (result.ERROR) {
-              commit('SET_ERRORS', result.ERROR);
-              // dispatch('showErrors', result.ERROR);
+            if (order.ERROR) {
+              commit('SET_ERRORS', order.ERROR);
+              // dispatch('showErrors', order.ERROR);
             }
           }
         }
