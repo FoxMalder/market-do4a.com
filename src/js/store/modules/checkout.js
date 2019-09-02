@@ -153,11 +153,11 @@ const getters = {
       PERSON_TYPE: state.personType,
       action: 'saveOrderAjax',
       location_type: 'code',
-      sessid: global.BX && global.BX.bitrix_sessid ? global.BX.bitrix_sessid() : '',
+      sessid: Utils.sessid(),
     };
 
     state.propertyList.forEach((item) => {
-      data[item.fieldName] = item.value;
+      data[item.name] = item.value;
     });
 
     return data;
@@ -330,17 +330,13 @@ const actions = {
 
 
   sendRequest({ state, getters, dispatch }, data) {
-    const sessid = global.BX && global.BX.bitrix_sessid
-      ? global.BX.bitrix_sessid()
-      : '';
-
     const request = {
       order: getters.getAllFormData,
       via_ajax: 'Y',
       action: 'refreshOrderAjax',
       SITE_ID: state.soaData.siteID,
       signedParamsString: state.soaData.signedParamsString,
-      sessid,
+      sessid: Utils.sessid(),
       ...data,
     };
 

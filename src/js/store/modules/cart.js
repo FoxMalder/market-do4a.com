@@ -79,7 +79,7 @@ const actions = {
   },
   async getContents({ commit, dispatch }) {
     if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
-      dispatch('getFromSOA', global.soaData.result);
+      await dispatch('getFromSOA', global.soaData.result);
     } else {
       await Api.getBasketContents(data => commit('SET_BASKET', data));
     }
