@@ -127,7 +127,7 @@ export default class Header {
 
     store.dispatch('cart/getContents').then(() => {
       console.log('mount basket');
-      // this.basket.$mount('#js-header-basket');
+      this.basket.$mount('#js-header-basket');
     });
 
 

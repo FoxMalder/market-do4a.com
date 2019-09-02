@@ -77,10 +77,3 @@
     }
   }
 </script>
-
-<style>
-  .slide-enter,
-  .slide-leave-to {
-    height: 0;
-  }
-</style>
