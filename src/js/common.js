@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import axios from 'axios';
 import Qs from 'qs';
 

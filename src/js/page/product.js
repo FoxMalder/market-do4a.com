@@ -2,7 +2,7 @@ import 'popper.js';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/tooltip';
 
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import Sticky from 'sticky-js';
 
 import '../plugins/Anchor';

@@ -6,7 +6,7 @@ import './scss/main.scss';
 import Macy from 'macy';
 // import Vue from 'vue';
 // import Vuex from 'vuex';
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import {
   CheckboxFilter,
   Multifilter,

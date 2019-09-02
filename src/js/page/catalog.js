@@ -2,7 +2,7 @@ import debounce from 'lodash.debounce';
 // import throttle from 'lodash.throttle';
 import catalogControl from '../store/modules/catalogControl';
 
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 
 import Utils from '../utils/utils';
 import Api from '../utils/Api';

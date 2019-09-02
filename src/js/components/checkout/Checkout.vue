@@ -8,7 +8,6 @@
           <span class="breadcumps__page">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</span>
         </div>
         <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
-        <button class="btn btn-red btn-skew" type="button" @click="refreshOrderAjax">Сохранить значения</button>
       </div>
     </header>
     <section class="cart">
@@ -67,6 +66,8 @@
   import CheckoutAlert from './CheckoutAlert.vue';
   import CheckoutFinal from './CheckoutFinal.vue';
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
+  
+  import Utils from './../../utils/utils';
 
   export default {
     name: "Checkout",
@@ -88,6 +89,7 @@
         products: state => state.cart.items,
         steps: state => state.checkout.steps,
         currentStep: state => state.checkout.currentStepName,
+        checkoutStatus: state => state.checkout.checkoutStatus
       }),
       ...mapGetters('checkout', {
         nextStepButton: 'nextStepButton',
@@ -104,6 +106,11 @@
         setStep: 'setStep',
         refreshOrderAjax: 'refreshOrderAjax',
       }),
+      
+      // validate() {
+      //   Utils.scrollTo(this.$refs.form.$el)
+      //   Utils.scrollTo(this.$refs.shippingAndPayment.$el)
+      // }
     },
   }
 </script>

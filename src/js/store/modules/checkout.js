@@ -1,13 +1,28 @@
-import * as Api from '../../api';
 import axios from 'axios';
+import { validate, extend } from 'vee-validate';
+import { required, email } from 'vee-validate/dist/rules';
+
+import * as Api from '../../api';
+import Utils from '../../utils/utils';
 import { ADD_TOAST_MESSAGE } from './notifications';
 
 const REFRESH_ORDER = 'REFRESH_ORDER';
+const SET_USER_PROPERTIES = 'SET_USER_PROPERTIES';
 const SET_SHIPPING_METHODS = 'SET_SHIPPING_METHODS';
 const SET_PAYMENT_METHODS = 'SET_PAYMENT_METHODS';
 const SET_SHIPPING = 'SET_SELECTED_SHIPPING_METHOD_ID';
 const SET_PAYMENT = 'SET_PAYMENT_SHIPPING_METHOD_ID';
 
+extend('required', {
+  ...required,
+  message: 'Поле "{_field_}" должно быть заполнено',
+});
+
+
+extend('email', {
+  ...email,
+  message: 'Введите корректный email',
+});
 
 export {
   SET_SHIPPING as SET_SHIPPING_METHOD,
@@ -83,6 +98,7 @@ const state = {
   props: {},
   checkoutStatus: null,
   soaData: null,
+  personType: null, // order.PERSON_TYPE[].ID
   errors: {
     PROPERTY: [],
     PAY_SYSTEM: [],
@@ -154,6 +170,94 @@ const actions = {
     commit('SET_SOA', soa);
     dispatch(REFRESH_ORDER, soa.result);
   },
+
+  [SET_USER_PROPERTIES]({ commit }, properties) {
+    const propertyList = properties
+      .sort((a, b) => a.SORT - b.SORT)
+      .map((property) => {
+        const prop = {
+          id: parseInt(property.ID, 10),
+          title: property.NAME || '',
+          description: property.DESCRIPTION || '',
+          value: property.VALUE[0],
+          personTypeId: parseInt(property.PERSON_TYPE_ID, 10),
+          propsGroupId: parseInt(property.PROPS_GROUP_ID, 10),
+          required: property.REQUIRED === 'Y',
+          name: `ORDER_PROP_${property.ID}`,
+          isUserProps: property.USER_PROPS === 'Y',
+          isLocation: property.IS_LOCATION === 'Y',
+          type: '',
+          inputmode: '',
+          autocomplete: '',
+          isValid: false,
+          // pattern: property.PATTERN,
+          // minlength: parseInt(property.MINLENGTH, 10),
+          // maxlength: parseInt(property.MAXLENGTH, 10),
+          // multiple: property.MULTIPLE === 'Y',
+          // multiline: property.MULTILINE === 'Y',
+        };
+
+        switch (property.TYPE) {
+          case 'DATE':
+            prop.type = 'date';
+            break;
+          case 'NUMBER':
+            prop.type = 'number';
+            break;
+          default:
+            prop.type = 'text';
+        }
+
+
+        let type = property.CODE;
+
+        if (property.IS_EMAIL === 'Y') type = 'EMAIL';
+        if (property.IS_PHONE === 'Y') type = 'PHONE';
+        if (property.IS_ZIP === 'Y') type = 'INDEX';
+        if (property.IS_ADDRESS === 'Y') type = 'ADDRESS';
+
+        switch (type) {
+          case 'FIO':
+            prop.autocomplete = 'name';
+            break;
+          case 'EMAIL':
+            prop.type = 'email';
+            prop.autocomplete = 'email';
+            prop.inputmode = 'email';
+            break;
+          case 'PHONE':
+            prop.type = 'tel';
+            prop.autocomplete = 'tel';
+            prop.inputmode = 'tel';
+            break;
+          case 'INDEX':
+            prop.autocomplete = 'shipping postal-code';
+            prop.inputmode = 'numeric';
+            break;
+          case 'ADDRESS':
+            prop.autocomplete = 'shipping street-address';
+            break;
+          case 'STREET':
+            prop.autocomplete = 'shipping address-line1';
+            break;
+          case 'HOUSE':
+            prop.autocomplete = '';
+            break;
+          case 'CITY':
+            prop.autocomplete = 'shipping address-level2';
+            break;
+          case 'FLAT':
+            prop.autocomplete = 'shipping address-line2';
+            break;
+          default:
+            break;
+        }
+
+        return prop;
+      });
+    commit('SET_PROPERTY_LIST', propertyList);
+  },
+
   [SET_SHIPPING_METHODS]({ commit, getters }, delivery) {
     const deliveryList = Object.values(delivery)
       .sort((a, b) => {
@@ -181,6 +285,7 @@ const actions = {
     // commit('SET_SELECTED_SHIPPING_METHOD_ID', deliveryList.find(item => item.checked));
     // commit('SET_SELECTED_SHIPPING_METHOD_ID', deliveryList.find(item => item.checked));
   },
+
   [SET_PAYMENT_METHODS]({ commit }, payments) {
     const paymentMethods = payments
       .sort((a, b) => {
@@ -214,23 +319,11 @@ const actions = {
     commit('SET_DATA', order);
 
 
-    // const locationProperty = order.ORDER_PROP.properties.find(property => property.IS_LOCATION === 'Y');
-    const propertyList = order.ORDER_PROP.properties.map(property => ({
-      id: property.ID,
-      name: property.NAME,
-      code: property.CODE,
-      description: property.DESCRIPTION,
-      fieldName: `ORDER_PROP_${property.ID}`,
-      value: property.VALUE[0],
-      required: property.REQUIRED === 'Y',
-      isLocation: property.IS_LOCATION === 'Y',
-    }));
-    commit('SET_PROPERTY_LIST', propertyList);
-
-
+    dispatch(SET_USER_PROPERTIES, order.ORDER_PROP.properties);
     dispatch(SET_SHIPPING_METHODS, order.DELIVERY);
     dispatch(SET_PAYMENT_METHODS, order.PAY_SYSTEM);
 
+    // order.PERSON_TYPE{}
     const person = Object.values(order.PERSON_TYPE).find(item => item.CHECKED === 'Y');
     commit('SET_PERSON_TYPE', person.ID);
   },
@@ -289,6 +382,8 @@ const actions = {
 
 
   [SET_PAYMENT]({ commit, dispatch }, { id }) {
+
+    commit('SET_ERRORS', { PAY_SYSTEM: [] });
     // const savedPaymentMethods = [...state.paymentMethods];
     // const paymentMethods = savedPaymentMethods.map(item => ({
     //   ...item,
@@ -307,9 +402,27 @@ const actions = {
     //   checked: item.id === delivery.id,
     // }));
     // commit('SET_SHIPPING_METHODS', shippingMethods);
+    commit('SET_ERRORS', { DELIVERY: [] });
     commit(SET_SHIPPING, id);
 
     dispatch('sendRequest');
+  },
+
+  async validatePropsData({ state, dispatch }) {
+    const error = [];
+    state.propertyList.forEach(async (item) => {
+      const { errors } = await validate(item.value, {
+        required: item.required,
+        email: item.type === 'email',
+      }, {
+        name: item.title,
+      });
+
+      if (errors.length) {
+        error.push(errors[0]);
+      }
+    });
+    dispatch('SET_ERRORS', { PROPERTY: error });
   },
 
   saveOrderAjax({ dispatch }) {
@@ -331,26 +444,72 @@ const actions = {
     }
   },
 
-  checkout({ commit, dispatch, state, getters }) {
-    const err = {};
-    if (!state.selectedPaymentMethodId) {
-      err.PAY_SYSTEM = ['Не выбран метод оплаты'];
-    }
+  SET_ERRORS({ commit }, errors) {
+    commit('SET_ERRORS', errors);
 
-    if (!state.selectedShippingMethodId) {
-      err.DELIVERY = ['Не выбран способ доставки'];
-    }
-
-    if (Object.keys(err).length) {
-      // dispatch('showErrors', err);
-      commit('SET_ERRORS', err);
+    if (errors.PROPERTY && errors.PROPERTY.length) {
+      commit('SET_CURRENT_STEP', 'form');
+      Utils.scrollTo(document.getElementById('order-props'));
       return;
     }
 
-    commit('SET_CHECKOUT_STATUS', 'loading');
+    if (errors.DELIVERY && errors.DELIVERY.length) {
+      commit('SET_CURRENT_STEP', 'shipping-and-payment');
+      Utils.scrollTo(document.getElementById('order-shipping'));
+      return;
+    }
+
+    if (errors.PAY_SYSTEM && errors.PAY_SYSTEM.length) {
+      commit('SET_CURRENT_STEP', 'shipping-and-payment');
+      Utils.scrollTo(document.getElementById('order-payment'));
+    }
+  },
+
+  async validate({ state, dispatch }) {
+    const err = {
+      PROPERTY: [],
+      PAY_SYSTEM: [],
+      DELIVERY: [],
+    };
+
+    await Promise.all(state.propertyList.map(async (item) => {
+      const { errors } = await validate(item.value, {
+        required: item.required,
+        email: item.type === 'email',
+      }, {
+        name: item.title,
+      });
+
+      if (errors.length) {
+        err.PROPERTY.push(errors[0]);
+      }
+    }));
+
+    if (!state.selectedPaymentMethodId) {
+      err.PAY_SYSTEM.push('Не выбран метод оплаты');
+    }
+
+    if (!state.selectedShippingMethodId) {
+      err.DELIVERY.push('Не выбран способ доставки');
+    }
+
+    if (err.PROPERTY.length || err.PAY_SYSTEM.length || err.DELIVERY.length) {
+      dispatch('SET_ERRORS', err);
+      return false;
+    }
+    return true;
+  },
+
+  async checkout(context) {
+    const valid = await context.dispatch('validate');
+    if (!valid) {
+      return;
+    }
+
+    context.commit('SET_CHECKOUT_STATUS', 'loading');
 
     axios
-      .post('/checkout/', getters.getAllFormData)
+      .post('/checkout/', context.getters.getAllFormData)
       .then(response => response.data)
       .then((result) => {
         if (result && result.order) {
@@ -364,28 +523,32 @@ const actions = {
             }
 
             if (order.ERROR) {
-              commit('SET_ERRORS', order.ERROR);
+              context.commit('SET_ERRORS', order.ERROR);
               // dispatch('showErrors', order.ERROR);
             }
           }
         }
 
-        commit('SET_CHECKOUT_STATUS', null);
+        context.commit('SET_CHECKOUT_STATUS', null);
+      })
+      .catch(() => {
+        context.commit('SET_CHECKOUT_STATUS', 'error');
+        setTimeout(() => context.commit('SET_CHECKOUT_STATUS', null), 1000);
       });
   },
 
-  showErrors({ commit, dispatch }, error) {
-    Object.keys(error).forEach(key => {
-      const message = error[key];
-      if (Array.isArray(message)) {
-        message.forEach((item) => {
-          dispatch(ADD_TOAST_MESSAGE, { title: item }, { root: true });
-        });
-      } else {
-        dispatch(ADD_TOAST_MESSAGE, { title: message }, { root: true });
-      }
-    });
-  },
+  // showErrors({ commit, dispatch }, error) {
+  //   Object.keys(error).forEach(key => {
+  //     const message = error[key];
+  //     if (Array.isArray(message)) {
+  //       message.forEach((item) => {
+  //         dispatch(ADD_TOAST_MESSAGE, { title: item }, { root: true });
+  //       });
+  //     } else {
+  //       dispatch(ADD_TOAST_MESSAGE, { title: message }, { root: true });
+  //     }
+  //   });
+  // },
 };
 
 // mutations
@@ -437,7 +600,10 @@ const mutations = {
   },
 
   SET_ERRORS(state, errors) {
-    state.errors = errors;
+    state.errors = {
+      ...state.errors,
+      ...errors,
+    };
   },
 };
 

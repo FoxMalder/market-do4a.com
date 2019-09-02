@@ -1,4 +1,4 @@
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import Vuex from 'vuex';
 import cart from './modules/cart';
 import notifications from './modules/notifications';

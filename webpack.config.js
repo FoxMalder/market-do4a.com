@@ -10,7 +10,7 @@ const CssUrlRelativePlugin = require('css-url-relative-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const IconfontPlugin = require('iconfont-plugin-webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const distPath = path.resolve(__dirname, 'dist');
 
@@ -216,6 +216,11 @@ const cummonConfig = {
 
 const devConfig = {
   mode: 'development',
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.esm.js',
+    },
+  },
   module: {
     rules: [
       {
@@ -226,13 +231,15 @@ const devConfig = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
       },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: [
-          { loader: 'babel-loader', options: { cacheDirectory: true } },
+          {
+            loader: 'babel-loader',
+          },
         ],
       },
       {
@@ -302,6 +309,7 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
+  devtool: 'eval-source-map',
   // output: {
   //   publicPath: '/static/dist/',
   // },

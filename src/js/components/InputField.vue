@@ -1,51 +1,83 @@
 <template>
-  <div class="input-field input-field_primary" :class="{active: isActive}">
-    <label class="input-field__label"
-            :for="'property-' + prop.id">{{prop.required ? prop.name + '*' : prop.name}}</label>
-    <input class="input-field__input"
-            :value="value"
-            @input="$emit('input', $event.target.value)"
-            @focus="isActive = true"
-            @blur="$event.target.value === '' && (isActive = false)"
-            :id="'property-' + prop.id"
-            :name="prop.fieldName"
-            :type="type"
-            :autocomplete="autocomplete"
-            :required="prop.required">
+  <div class="input-field input-field_primary"
+       :class="{active: isActive}">
+      <label class="input-field__label"
+             :for="'property-' + prop.id">
+        {{ prop.title }}{{ prop.required && '*' }}
+      </label>
+      <input class="input-field__input"
+             ref="input"
+             v-model="prop.value"
+             @focus="onFocus"
+             @change="check"
+             @blur="check"
+             :id="'property-' + prop.id"
+             :name="prop.name"
+             :type="prop.type"
+             :autocomplete="prop.autocomplete"
+             :inputmode="prop.inputmode"
+             :required="prop.required">
   </div>
 </template>
 
 <script>
+  // import { ValidationProvider, extend } from 'vee-validate';
+  // import { required, email } from 'vee-validate/dist/rules';
+  //
+  // extend('required', {
+  //   ...required,
+  //   message: 'field is required'
+  // });
+  //
+  //
+  // extend('email', {
+  //   ...email,
+  //   message: 'field is email'
+  // });
+
+
   export default {
     name: "InputField",
-    props: ['prop', 'value'],
+    props: {
+      prop: Object,
+    },
+    // components: {
+    //   ValidationProvider,
+    // },
     data() {
       return {
         isActive: this.value !== '',
-        type: null,
-        autocomplete: null,
+      }
+    },
+    computed: {
+      rules() {
+        return { required: this.prop.required, email: this.prop.type === 'email' };
       }
     },
     mounted() {
-      
-      switch (this.prop.code) {
-        case 'EMAIL':
-          this.type = 'email';
-          this.autocomplete = 'email';
-          break;
-        case 'FIO':
-          this.type = 'text';
-          this.autocomplete = 'name';
-          break;
-        case 'PHONE':
-          this.type = 'tel';
-          this.autocomplete = 'tel';
-          break;
-        default:
-          this.type = 'text';
-          this.autocomplete = 'false';
-          break;
-      }
+      this.check();
+    },
+    methods: {
+      // castom({ errors, flags }) {
+      //   this.prop.isValid = flags.valid;
+      //
+      //   if (errors.length) {
+      //     return {
+      //       on: ['input', 'change']
+      //     };
+      //   }
+      //
+      //   return {
+      //     on: ['change', 'blur']
+      //   };
+      // },
+      check() {
+        this.isActive = this.value !== '';
+        this.prop.isValid = this.$refs.input.checkValidity();
+      },
+      onFocus() {
+        this.isActive = true;
+      },
     }
   }
 </script>

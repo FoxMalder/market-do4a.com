@@ -1,7 +1,7 @@
 <template>
   <div class="order-shiping">
     
-    <div class="order-shiping__shipping-type">
+    <div class="order-shiping__shipping-type" id="order-shipping">
       
       <template v-if="errors.DELIVERY && errors.DELIVERY.length">
         <div class="order-shiping__error"
@@ -52,7 +52,7 @@
       </div>
     </div>
     
-    <div class="order-shiping__payment-type">
+    <div class="order-shiping__payment-type" id="order-payment">
       <template v-if="errors.PAY_SYSTEM && errors.PAY_SYSTEM.length">
         <div class="order-shiping__error"
              v-for="error in errors.PAY_SYSTEM">

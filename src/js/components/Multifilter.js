@@ -1,7 +1,7 @@
 // import SimpleBar from 'simplebar';
 import noUiSlider from 'nouislider';
 
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Dropdown from './Dropdown.vue';
 // import MultifilterRadio from './MultifilterRadio.vue';

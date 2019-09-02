@@ -142,7 +142,6 @@
     },
     methods: {
       ...mapActions('cart', {
-        getContents: 'getContents',
         clearCart: 'clearCart',
         increment: 'incrementItemQuantity',
         decrement: 'decrementItemQuantity',
@@ -167,14 +166,5 @@
         }, 200);
       }
     },
-    created() {
-      if (!Object.prototype.hasOwnProperty.call(global, 'soaData')) {
-        this.getContents();
-      }
-    }
   }
 </script>
-
-<style scoped>
-
-</style>

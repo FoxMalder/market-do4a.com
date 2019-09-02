@@ -1,8 +1,9 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 // import Tooltip from 'tooltip.js';
-import Vue from 'vue/dist/vue.esm';
+import Vue from 'vue';
 // import Vue from 'vue';
 import Utils from '../utils/utils';
+import Api from '../api';
 import store from '../store';
 import HeaderCollapse from '../components/HeaderCollapse.vue';
 import HeaderBasket from '../components/HeaderBasket.vue';
@@ -119,10 +120,15 @@ export default class Header {
       render: h => h(HeaderCollapse),
     }).$mount('.h-navbar-collapse');
 
-    new Vue({
+    this.basket = new Vue({
       store,
       render: h => h(HeaderBasket),
-    }).$mount('#js-header-basket');
+    });
+
+    store.dispatch('cart/getContents').then(() => {
+      this.basket.$mount('#js-header-basket');
+    });
+
 
     this.header = {
       collapse: Utils.parseTargets('.h-navbar-collapse'),

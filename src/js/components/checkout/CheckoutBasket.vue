@@ -2,7 +2,9 @@
   <div class="order">
     <h3 class="order__title">В заказе {{productCountText}}</h3>
     <div class="order__subtitle">
-      <button class="order__btn-clear" type="button" @click.prevent="clearCart">
+      <button class="order__btn-clear"
+              type="button"
+              @click.prevent="clearCart">
         <i class="icon icon-delete"></i> <span>Очистить корзину</span>
       </button>
     </div>
@@ -29,7 +31,15 @@
     </div>
     
     <div class="order__footer">
-      <button class="order__btn-checkout btn btn-red btn-skew" type="submit" @click.prevent="setStep(nextStepButton)">{{nextStepButton.text}}</button>
+      <button class="order__btn-checkout btn btn-red btn-skew"
+              v-if="checkoutStatus === 'loading'"
+              type="submit"
+              disabled><span class="spinner-border spinner-border-sm"
+                             role="status"></span></button>
+      <button class="order__btn-checkout btn btn-red btn-skew"
+              v-else
+              type="submit"
+              @click.prevent="setStep(nextStepButton)">{{nextStepButton.text}}</button>
       <div class="order__footer-note">
         Нажимая на кнопку, вы подтверждаете согласие на обработку
         <a href="#"> персональных данных</a>
@@ -58,6 +68,7 @@
       ...mapState({
         // products: state => state.cart.items,
         total: state => state.checkout.result.TOTAL,
+        checkoutStatus: state => state.checkout.checkoutStatus
       }),
       ...mapGetters('checkout', {
         nextStepButton: 'nextStepButton',
