@@ -6,7 +6,6 @@ import Checkout from '../components/checkout/Checkout.vue';
 
 
 store.registerModule('checkout', checkoutStore);
-store.dispatch('checkout/initSoa', global.soaData);
 
 const CheckoutVue = new Vue({
   store,
@@ -16,5 +15,6 @@ const CheckoutVue = new Vue({
 global.app.Checkout = CheckoutVue;
 
 $(() => {
+  store.dispatch('checkout/initSoa', global.soaData);
   CheckoutVue.$mount('#vueTest');
 });
