@@ -1,5 +1,6 @@
 // import Cart from '../../api/cart';
 import * as Api from '../../api';
+import Utils from '../../utils/utils';
 import { ADD_TOAST_MESSAGE } from './notifications';
 
 // const v = {
@@ -77,36 +78,80 @@ const actions = {
     });
     commit('SET_PRODUCTS', items);
   },
+
+  /**
+   *
+   * @param commit
+   * @param dispatch
+   * @returns {Promise<void>}
+   */
   async getContents({ commit, dispatch }) {
     console.log('cart/getContents');
+
     if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
       await dispatch('getFromSOA', global.soaData.result);
+      console.log('set from soaData');
     } else {
-      commit('SET_BASKET', await Api.getBasketContents());
+      let basket = null;
+
+      if (localStorage.getItem('basket')) {
+        try {
+          basket = JSON.parse(localStorage.getItem('basket'));
+        } catch (e) {
+          localStorage.removeItem('basket');
+        }
+      }
+
+      if (basket) {
+        commit('SET_BASKET', basket);
+        console.log('set from localStorage');
+      }
+
+      basket = await Api.getBasketContents();
+      commit('SET_BASKET', basket);
+      localStorage.setItem('basket', JSON.stringify(basket));
+      console.log('set from api');
     }
   },
+
+
+  /**
+   * Очистить корзину
+   *
+   * @param commit
+   * @param dispatch
+   * @param state
+   */
   clearCart({ commit, dispatch, state }) {
     // const savedCartItems = [...state.items];
     const savedCart = { items: state.items, mapping: state.mapping };
     commit('SET_BASKET', { items: [], mapping: {} });
 
     dispatch(ADD_TOAST_MESSAGE, {
-      title: 'корзина очищена',
+      title: 'Корзина очищена',
       text: 'Но вы еще можете вернуть всё обратно.',
       onCancel: () => {
         commit('SET_BASKET', savedCart);
       },
       onTimeout: () => {
         Api.clearBasket(
-          data => commit('SET_BASKET', data),
-          (error) => commit('SET_BASKET', savedCart),
+          (data) => {
+            localStorage.removeItem('basket');
+            // commit('SET_BASKET', data);
+          },
+          () => commit('SET_BASKET', savedCart),
         );
       },
     }, { root: true });
   },
-  // removeProductFromCart({ commit }, product) {
-  //   console.log('remove product: ', product.ID);
-  // },
+
+  /**
+   * Удаление заказа из корзины
+   *
+   * @param commit
+   * @param state
+   * @param basketItemId
+   */
   removeFromCart({ commit, state }, { basketItemId }) {
     const savedCart = { items: state.items, mapping: state.mapping };
 
@@ -115,7 +160,10 @@ const actions = {
 
     Api.removeFromBasket(
       basketItemId,
-      data => commit('SET_BASKET', data),
+      (data) => {
+        localStorage.setItem('basket', JSON.stringify(data));
+        commit('SET_BASKET', data);
+      },
       (error) => commit('SET_BASKET', savedCart),
     );
   },
@@ -129,6 +177,7 @@ const actions = {
           storeId: isRemote ? global.app.storeRemoteId : global.app.storeId,
         },
         (data) => {
+          localStorage.setItem('basket', JSON.stringify(data));
           commit('SET_BASKET', data);
           resolve();
         },
@@ -156,7 +205,8 @@ const actions = {
       Api.setQuantityInBasket(
         request,
         (data) => {
-          commit('SET_BASKET', data);
+          localStorage.setItem('basket', JSON.stringify(data));
+          // commit('SET_BASKET', data);
           resolve();
         },
         (error) => {
@@ -187,7 +237,8 @@ const actions = {
       Api.setQuantityInBasket(
         request,
         (data) => {
-          commit('SET_BASKET', data);
+          localStorage.setItem('basket', JSON.stringify(data));
+          // commit('SET_BASKET', data);
           resolve();
         },
         (error) => {
@@ -217,7 +268,8 @@ const actions = {
       Api.setQuantityInBasket(
         request,
         (data) => {
-          commit('SET_BASKET', data);
+          localStorage.setItem('basket', JSON.stringify(data));
+          // commit('SET_BASKET', data);
           resolve();
         },
         (error) => {

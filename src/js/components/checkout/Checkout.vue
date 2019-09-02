@@ -10,16 +10,17 @@
         <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
       </div>
     </header>
+  
+<!--    <div class="container">-->
+<!--      <CheckoutFinal/>-->
+<!--    </div>-->
+    
     <section class="cart">
-      <div class="container">
-        <CheckoutFinal/>
-      </div>
       <CheckoutEmptyBasket v-if="!products.length"/>
       
       <template v-else-if="!isMobile">
         <div class="container">
-          <CheckoutFinal v-if="currentStep === 'final'"/>
-          <div class="cart__inner" v-else>
+          <div class="cart__inner">
             <div class="cart__col-left">
               <CheckoutForm/>
               <!-- <CheckoutAlert/> -->
@@ -117,8 +118,3 @@
     },
   }
 </script>
-
-
-<style scoped>
-
-</style>

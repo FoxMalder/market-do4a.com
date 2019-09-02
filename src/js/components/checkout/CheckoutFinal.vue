@@ -149,7 +149,3 @@
     name: "CheckoutFinal"
   }
 </script>
-
-<style scoped>
-
-</style>
