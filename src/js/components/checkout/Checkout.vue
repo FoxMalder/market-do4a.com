@@ -11,6 +11,9 @@
       </div>
     </header>
     <section class="cart">
+      <div class="container">
+        <CheckoutFinal/>
+      </div>
       <CheckoutEmptyBasket v-if="!products.length"/>
       
       <template v-else-if="!isMobile">
