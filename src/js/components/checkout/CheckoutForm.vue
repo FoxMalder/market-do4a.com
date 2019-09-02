@@ -45,8 +45,8 @@
     </div>
     <input type="hidden"
            name="PERSON_TYPE"
-           v-if="personType"
-           :value="personType"/>
+           v-if="personTypeId"
+           :value="personTypeId"/>
   
   </div>
 </template>
@@ -67,7 +67,7 @@
     computed: {
       ...mapState('checkout', {
         propertyList: 'propertyList',
-        personType: 'personType',
+        personTypeId: state => state.param.personTypeId,
         errors: 'errors',
       }),
 

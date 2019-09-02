@@ -60,7 +60,7 @@ export function removeFromFavorites(productId, cb, errorCb) {
  * @param cb
  */
 export function getBasketContents(cb) {
-  axios
+  return axios
     .get('/ajax/basket/')
     .then(response => response.data)
     .then((response) => {
@@ -71,7 +71,7 @@ export function getBasketContents(cb) {
       error.response = response;
       throw error;
     })
-    .then(data => cb(data));
+    // .then(data => cb(data));
   // .catch(error => alert(error.message));
 }
 

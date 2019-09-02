@@ -4,13 +4,18 @@
     <!--      <div class="order-item__title">Доставка с центрального склада</div>-->
     <!--      <div class="order-number-badge" :class="{'order-number-badge_dark': i % 2 !== 0}">Отправление {{i}}</div>-->
     <!--    </div>-->
-    <div class="order-item__list">
-      <ProductItem
-              v-for="item in products"
-              :key="item.basketItemId"
-              :item="item"/>
-    </div>
-    <div class="order-item__amount">
+    <transition-group
+      class="order-item__list"
+      tag="div"
+      name="slide">
+      <div class="order-item__product"
+           v-for="item in products"
+           :key="item.basketItemId">
+        <ProductItem :item="item"/>
+      </div>
+    </transition-group>
+    <div class="order-item__amount"
+         v-if="total">
       <div class="order-item__row">
         <div class="order-item__key">Товары</div>
         <div class="order-item__value">
@@ -24,7 +29,8 @@
           <b>{{total.DELIVERY_PRICE > 0 ? total.DELIVERY_PRICE : 'Бесплатно'}}</b>
         </div>
       </div>
-      <div class="order-item__row" v-if="total.DISCOUNT_PRICE > 0">
+      <div class="order-item__row"
+           v-if="total.DISCOUNT_PRICE > 0">
         <div class="order-item__key">Скидка</div>
         <div class="order-item__value"><b class="red">{{total.DISCOUNT_PRICE | formatPrice}}</b>
         </div>
@@ -45,8 +51,8 @@
 
   import Utils from '../../utils/utils';
   import ProductItem from './ProductItem.vue';
-  
-  
+
+
   export default {
     name: "ProductList",
     components: {
@@ -54,7 +60,7 @@
     },
     computed: {
       ...mapState('checkout', {
-        total: state => state.result.TOTAL
+        total: 'total',
       }),
       // ...mapState({
       //   products: state => state.cart.items,
@@ -71,3 +77,10 @@
     }
   }
 </script>
+
+<style>
+  .slide-enter,
+  .slide-leave-to {
+    height: 0;
+  }
+</style>

@@ -12,9 +12,12 @@ const CheckoutVue = new Vue({
   render: h => h(Checkout),
 });
 
-global.app.Checkout = CheckoutVue;
 
 $(() => {
-  store.dispatch('checkout/initSoa', global.soaData);
   CheckoutVue.$mount('#vueTest');
+  global.app.Checkout = CheckoutVue;
+
+  if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
+    store.dispatch('checkout/initSoa', global.soaData);
+  }
 });

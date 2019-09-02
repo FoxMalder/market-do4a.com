@@ -6,10 +6,13 @@ import * as Api from '../../api';
 import Utils from '../../utils/utils';
 import { ADD_TOAST_MESSAGE } from './notifications';
 
-const REFRESH_ORDER = 'REFRESH_ORDER';
+// const REFRESH_ORDER = 'REFRESH_ORDER';
+const SET_TOTAL = 'SET_TOTAL';
+const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
 const SET_USER_PROPERTIES = 'SET_USER_PROPERTIES';
 const SET_SHIPPING_METHODS = 'SET_SHIPPING_METHODS';
 const SET_PAYMENT_METHODS = 'SET_PAYMENT_METHODS';
+
 const SET_SHIPPING = 'SET_SELECTED_SHIPPING_METHOD_ID';
 const SET_PAYMENT = 'SET_PAYMENT_SHIPPING_METHOD_ID';
 
@@ -28,31 +31,6 @@ export {
   SET_SHIPPING as SET_SHIPPING_METHOD,
   SET_PAYMENT as SET_PAYMENT_METHOD,
 };
-
-// /**
-//  * Преобразование и сортировка видов доставки
-//  * @param {Object | Array} objDelivery
-//  * @returns {Array}
-//  */
-// function getDeliverySortedArray(objDelivery) {
-//   let arDelivery = [];
-//
-//   if (Array.isArray(objDelivery)) {
-//     arDelivery = objDelivery;
-//   } else {
-//     arDelivery = Object.keys(objDelivery).map((key) => objDelivery[key]);
-//   }
-//
-//   arDelivery.sort((a, b) => {
-//     const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
-//     if (sort === 0) {
-//       return a.OWN_NAME.toLowerCase() > b.OWN_NAME.toLowerCase() ? 1 : (a.OWN_NAME.toLowerCase() < b.OWN_NAME.toLowerCase() ? -1 : 0);
-//     }
-//     return sort;
-//   });
-//
-//   return arDelivery;
-// }
 
 
 // initial state
@@ -88,17 +66,25 @@ const state = {
 
   delivery: [],
   selectedShippingMethodId: null,
-  selectedShippingMethod: null,
+  // selectedShippingMethod: null,
 
   paymentMethods: [],
   selectedPaymentMethodId: null,
-  selectedPaymentMethod: null,
+  // selectedPaymentMethod: null,
 
-  result: null,
-  props: {},
   checkoutStatus: null,
-  soaData: null,
-  personType: null, // order.PERSON_TYPE[].ID
+
+  total: null,
+  currentStore: null,
+
+  param: {
+    signedParamsString: null,
+    siteID: null,
+    ajaxUrl: null,
+    personTypeId: null, // order.PERSON_TYPE[].ID
+    isLocaleStore: false,
+    buyerStore: null, // BUYER_STORE
+  },
   errors: {
     PROPERTY: [],
     PAY_SYSTEM: [],
@@ -127,7 +113,7 @@ const getters = {
   //   state.propertyList.find;
   // },
   visibleShippingMethods: (state) => {
-    if (state.result.LOCAL_STORE) {
+    if (state.param.isLocaleStore) {
       let courier = null;
       let pickup = null;
 
@@ -149,8 +135,8 @@ const getters = {
     const data = {
       DELIVERY_ID: state.selectedShippingMethodId,
       PAY_SYSTEM_ID: state.selectedPaymentMethodId,
-      BUYER_STORE: state.result.BUYER_STORE,
-      PERSON_TYPE: state.personType,
+      BUYER_STORE: state.param.buyerStore,
+      PERSON_TYPE: state.param.personTypeId,
       action: 'saveOrderAjax',
       location_type: 'code',
       sessid: Utils.sessid(),
@@ -167,8 +153,18 @@ const getters = {
 // actions
 const actions = {
   initSoa({ commit, dispatch }, soa) {
-    commit('SET_SOA', soa);
-    dispatch(REFRESH_ORDER, soa.result);
+    const person = Object.values(soa.result.PERSON_TYPE).find(item => item.CHECKED === 'Y');
+
+    commit('SET_PARAM', {
+      signedParamsString: soa.signedParamsString,
+      siteID: soa.siteID,
+      ajaxUrl: soa.ajaxUrl,
+      isLocaleStore: soa.result.LOCAL_STORE === 'Y',
+      personTypeId: parseInt(person.ID, 10),
+      buyerStore: parseInt(soa.result.BUYER_STORE, 10),
+    });
+
+    dispatch('refreshOrder', soa.result);
   },
 
   [SET_USER_PROPERTIES]({ commit }, properties) {
@@ -255,7 +251,8 @@ const actions = {
 
         return prop;
       });
-    commit('SET_PROPERTY_LIST', propertyList);
+
+    commit(SET_USER_PROPERTIES, propertyList);
   },
 
   [SET_SHIPPING_METHODS]({ commit, getters }, delivery) {
@@ -308,24 +305,18 @@ const actions = {
     commit(SET_PAYMENT_METHODS, paymentMethods);
   },
 
-  [REFRESH_ORDER]({ commit, dispatch, state }, order) {
+  refreshOrder({ dispatch, commit }, order) {
     if (order.SHOW_AUTH) {
       console.error(order.ERROR);
-      // this.showErrors(order.ERROR, false);
     }
 
     dispatch('cart/getFromSOA', order, { root: true });
 
-    commit('SET_DATA', order);
 
-
+    commit(SET_TOTAL, order.TOTAL);
     dispatch(SET_USER_PROPERTIES, order.ORDER_PROP.properties);
     dispatch(SET_SHIPPING_METHODS, order.DELIVERY);
     dispatch(SET_PAYMENT_METHODS, order.PAY_SYSTEM);
-
-    // order.PERSON_TYPE{}
-    const person = Object.values(order.PERSON_TYPE).find(item => item.CHECKED === 'Y');
-    commit('SET_PERSON_TYPE', person.ID);
   },
 
 
@@ -334,19 +325,19 @@ const actions = {
       order: getters.getAllFormData,
       via_ajax: 'Y',
       action: 'refreshOrderAjax',
-      SITE_ID: state.soaData.siteID,
-      signedParamsString: state.soaData.signedParamsString,
+      SITE_ID: state.param.siteID,
+      signedParamsString: state.param.signedParamsString,
       sessid: Utils.sessid(),
       ...data,
     };
 
     return new Promise((resolve, reject) => {
       Api.getSoaData(
-        state.soaData.ajaxUrl,
+        state.param.ajaxUrl,
         request,
         (result) => {
           if (result.order) {
-            dispatch('REFRESH_ORDER', result.order);
+            dispatch('refreshOrder', result.order);
           }
 
           if (request.action === 'enterCoupon') {
@@ -406,7 +397,7 @@ const actions = {
 
   async validatePropsData({ state, dispatch }) {
     const error = [];
-    state.propertyList.forEach(async (item) => {
+    await Promise.all(state.propertyList.map(async (item) => {
       const { errors } = await validate(item.value, {
         required: item.required,
         email: item.type === 'email',
@@ -417,7 +408,7 @@ const actions = {
       if (errors.length) {
         error.push(errors[0]);
       }
-    });
+    }));
     dispatch('SET_ERRORS', { PROPERTY: error });
   },
 
@@ -532,46 +523,33 @@ const actions = {
         setTimeout(() => context.commit('SET_CHECKOUT_STATUS', null), 1000);
       });
   },
-
-  // showErrors({ commit, dispatch }, error) {
-  //   Object.keys(error).forEach(key => {
-  //     const message = error[key];
-  //     if (Array.isArray(message)) {
-  //       message.forEach((item) => {
-  //         dispatch(ADD_TOAST_MESSAGE, { title: item }, { root: true });
-  //       });
-  //     } else {
-  //       dispatch(ADD_TOAST_MESSAGE, { title: message }, { root: true });
-  //     }
-  //   });
-  // },
 };
 
 // mutations
 const mutations = {
-  SET_DATA(state, order) {
-    state.result = {
-      TOTAL: order.TOTAL,
-      LOCAL_STORE: order.LOCAL_STORE === 'Y',
-      CURRENT_STORE: order.CURRENT_STORE,
-      BUYER_STORE: order.BUYER_STORE,
+  SET_PARAM(state, param) {
+    state.param = {
+      ...state.param,
+      ...param,
     };
   },
-  SET_SOA(state, param) {
-    state.soaData = {
-      signedParamsString: param.signedParamsString,
-      siteID: param.siteID,
-      ajaxUrl: param.ajaxUrl,
-    };
-  },
+
   SET_CHECKOUT_STATUS(state, status) {
     state.checkoutStatus = status;
   },
   SET_CURRENT_STEP(state, { key }) {
     state.currentStepName = key;
   },
-  SET_PROPERTY_LIST(state, propertyList) {
+
+  [SET_USER_PROPERTIES](state, propertyList) {
     state.propertyList = propertyList;
+  },
+
+  [SET_CURRENT_STORE](state, store) {
+    state.currentStore = {
+      ...state.currentStore,
+      ...store,
+    };
   },
 
   [SET_SHIPPING_METHODS](state, deliveryList) {
@@ -587,13 +565,16 @@ const mutations = {
   [SET_PAYMENT](state, id) {
     state.selectedPaymentMethodId = id;
   },
+  [SET_TOTAL](state, total) {
+    state.total = total;
+  },
   // SET_SELECTED_PAYMENT_METHOD(state, { id }) {
   //   state.selectedPaymentMethod = id;
   // },
 
-  SET_PERSON_TYPE(state, id) {
-    state.personType = id;
-  },
+  // SET_PERSON_TYPE(state, id) {
+  //   state.personType = id;
+  // },
 
   SET_ERRORS(state, errors) {
     state.errors = {

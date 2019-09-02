@@ -126,7 +126,8 @@ export default class Header {
     });
 
     store.dispatch('cart/getContents').then(() => {
-      this.basket.$mount('#js-header-basket');
+      console.log('mount basket');
+      // this.basket.$mount('#js-header-basket');
     });
 
 

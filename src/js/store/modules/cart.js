@@ -63,7 +63,7 @@ const actions = {
 
         price: parseFloat(data.PRICE), // Цена за единицу
         priceBase: parseFloat(data.BASE_PRICE), // Цена за единицу без скидки
-        price_benefit: parseFloat(data.DISCOUNT_PRICE), // Скидка
+        price_benefit: parseFloat(data.DISCOUNT_PRICE), // Скидка за единицу
         sum: parseFloat(data.SUM_NUM), // Итоговая сумма за N единиц
         sumBase: parseFloat(data.SUM_BASE), // Итоговая сумма за N единиц без скидки
 
@@ -78,10 +78,11 @@ const actions = {
     commit('SET_PRODUCTS', items);
   },
   async getContents({ commit, dispatch }) {
+    console.log('cart/getContents');
     if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
       await dispatch('getFromSOA', global.soaData.result);
     } else {
-      await Api.getBasketContents(data => commit('SET_BASKET', data));
+      commit('SET_BASKET', await Api.getBasketContents());
     }
   },
   clearCart({ commit, dispatch, state }) {
@@ -95,18 +96,22 @@ const actions = {
       onCancel: () => {
         commit('SET_BASKET', savedCart);
       },
+      onTimeout: () => {
+        Api.clearBasket(
+          data => commit('SET_BASKET', data),
+          (error) => commit('SET_BASKET', savedCart),
+        );
+      },
     }, { root: true });
-
-    Api.clearBasket(
-      data => commit('SET_BASKET', data),
-      (error) => commit('SET_BASKET', savedCart),
-    );
   },
   // removeProductFromCart({ commit }, product) {
   //   console.log('remove product: ', product.ID);
   // },
-  removeFromCart({ commit }, { basketItemId }) {
+  removeFromCart({ commit, state }, { basketItemId }) {
     const savedCart = { items: state.items, mapping: state.mapping };
+
+    // const items = state.items.filter(item => item.basketItemId !== basketItemId);
+    // commit('SET_BASKET', { items });
 
     Api.removeFromBasket(
       basketItemId,

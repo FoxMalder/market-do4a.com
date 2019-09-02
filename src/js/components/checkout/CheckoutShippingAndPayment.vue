@@ -39,7 +39,7 @@
              v-if="item.description || item.type === 'P'">
           <ul class="order-option-list"
               v-if="item.type === 'P'">
-            <li class="order-option-list__item">
+            <li class="order-option-list__item" v-if="currentStore">
               <div class="order-option-list__title">{{currentStore.NAME}}</div>
               <a class="order-option-list__link"
                  href="#">Показать на карте</a>
@@ -203,7 +203,7 @@
         selectedPaymentId: 'selectedPaymentMethodId',
         paymentMethods: 'paymentMethods',
         errors: 'errors',
-        currentStore: state => state.result.CURRENT_STORE,
+        currentStore: 'currentStore',
       }),
       ...mapGetters('checkout', {
         shippingMethods: 'visibleShippingMethods',

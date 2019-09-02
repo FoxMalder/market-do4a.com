@@ -51,6 +51,9 @@
               this.time -= 1;
             } else {
               this.close();
+              if (typeof this.item.onTimeout === 'function') {
+                this.item.onTimeout();
+              }
             }
           }, 1000)
         }

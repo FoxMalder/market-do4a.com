@@ -12,7 +12,7 @@
     <ProductList/>
     <Promocode/>
     
-    <div class="order-amount">
+    <div class="order-amount" v-if="total">
       <div class="order-amount__sale">
         <div class="order-amount__key">ваша Скидка</div>
         <div class="order-amount__value">{{total.DISCOUNT_PRICE | formatPrice}}</div>
@@ -65,10 +65,9 @@
       Promocode,
     },
     computed: {
-      ...mapState({
-        // products: state => state.cart.items,
-        total: state => state.checkout.result.TOTAL,
-        checkoutStatus: state => state.checkout.checkoutStatus
+      ...mapState('checkout', {
+        total: 'total',
+        checkoutStatus: 'checkoutStatus'
       }),
       ...mapGetters('checkout', {
         nextStepButton: 'nextStepButton',

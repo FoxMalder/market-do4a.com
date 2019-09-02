@@ -72,12 +72,13 @@
   .notifications__wrapper {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    position: relative;
   }
   
   .notifications__item {
     transition: all .4s;
     margin-top: 10px;
+    width: 100%;
   }
   
   .notifications-enter,

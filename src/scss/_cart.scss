@@ -522,7 +522,17 @@
   }
 
   &__list {
+  }
 
+  &__product {
+    transition: all .3s ease;
+    overflow: hidden;
+    height: 128px;
+    margin-bottom: 4px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 6px;
+      height: 90px;
+    }
   }
 
   &__amount {
@@ -584,19 +594,16 @@
   flex-wrap: wrap;
   align-items: center;
   height: 128px;
-  margin-bottom: 4px;
   padding: 15px $container-padding-right-mobile 15px $container-padding-left-mobile;
   overflow: hidden;
 
   background: #fff;
   line-height: 1;
 
-
   @include media-breakpoint-up(md) {
     flex-wrap: nowrap;
     justify-content: space-between;
     height: 90px;
-    margin-bottom: 6px;
     padding: 10px 75px 10px 10px;
   }
 
