@@ -63,6 +63,7 @@ const state = {
     },
   ],
   propertyList: [],
+  propertyDescription: '',
 
   delivery: [],
   selectedShippingMethodId: null,

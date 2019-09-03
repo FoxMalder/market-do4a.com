@@ -17,7 +17,6 @@
           <InputField :prop="item"/>
         </div>
       </div>
-      
       <template v-if="addressProps.length">
         <div class="order-personal-info__subtitle">Адрес доставки</div>
         <div class="order-personal-info__container">
@@ -42,6 +41,25 @@
           <!--        </div>-->
         </div>
       </template>
+      
+      <div class="order-personal-info__subtitle">Комментарий</div>
+      <div class="order-personal-info__container">
+        <div class="form-group">
+          <div class="input-field input-field_primary">
+            <label
+              for="property-description"
+              class="input-field__label">
+              Комментарий
+            </label>
+            <textarea
+              class="input-field__input"
+              id="property-description"
+              name="ORDER_DESCRIPTION"
+              v-model="propertyDescription"></textarea>
+          </div>
+        </div>
+        <small>Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом</small>
+      </div>
     </div>
     <input type="hidden"
            name="PERSON_TYPE"
@@ -67,6 +85,7 @@
     computed: {
       ...mapState('checkout', {
         propertyList: 'propertyList',
+        propertyDescription: 'propertyDescription',
         personTypeId: state => state.param.personTypeId,
         errors: 'errors',
       }),

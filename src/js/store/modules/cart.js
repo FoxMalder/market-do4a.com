@@ -8,7 +8,7 @@ import { ADD_TOAST_MESSAGE } from './notifications';
 const state = {
   items: [],
   mapping: {},
-  // checkoutStatus: null,
+  basketStatus: null,
 };
 
 // getters
@@ -167,7 +167,7 @@ const actions = {
       Api.setQuantityInBasket(request)
         .then((data) => {
           localStorage.setItem('basket', JSON.stringify(data));
-          // commit('SET_BASKET', data);
+          commit('SET_BASKET', data);
           resolve();
         })
         .catch((error) => {
@@ -190,7 +190,7 @@ const actions = {
       Api.setQuantityInBasket(request)
         .then((data) => {
           localStorage.setItem('basket', JSON.stringify(data));
-          // commit('SET_BASKET', data);
+          commit('SET_BASKET', data);
           resolve();
         })
         .catch((error) => {
@@ -213,7 +213,7 @@ const actions = {
       Api.setQuantityInBasket(request)
         .then((data) => {
           localStorage.setItem('basket', JSON.stringify(data));
-          // commit('SET_BASKET', data);
+          commit('SET_BASKET', data);
           resolve();
         })
         .catch((error) => {
@@ -226,6 +226,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  SET_STATUS: (state, status) => {
+    state.basketStatus = status;
+  },
   SET_BASKET: (state, { items, mapping }) => {
     state.items = items;
     state.mapping = mapping;
