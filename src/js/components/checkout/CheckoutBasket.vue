@@ -1,19 +1,24 @@
 <template>
   <div class="order">
     <h3 class="order__title">В заказе {{productCountText}}</h3>
-    <div class="order__subtitle">
+    
+    <div class="order__header">
       <button class="order__btn-clear"
               type="button"
-              @click.prevent="clearCart">
-        <i class="icon icon-delete"></i> <span>Очистить корзину</span>
-      </button>
+              @click.prevent="clearCart"
+      ><i class="icon icon-delete"></i> Очистить корзину</button>
     </div>
     
-    <ProductList/>
-    <Promocode/>
+    <div class="order__list">
+      <ProductList/>
+    </div>
+    
+    <div class="order__promocode">
+      <Promocode/>
+    </div>
     
     <div class="order-amount" v-if="total">
-      <div class="order-amount__sale">
+      <div class="order-amount__sale" v-show="total.DISCOUNT_PRICE">
         <div class="order-amount__key">ваша Скидка</div>
         <div class="order-amount__value">{{total.DISCOUNT_PRICE | formatPrice}}</div>
       </div>
@@ -31,15 +36,19 @@
     </div>
     
     <div class="order__footer">
+      
       <button class="order__btn-checkout btn btn-red btn-skew"
+              type="submit"
+              disabled
               v-if="checkoutStatus === 'loading'"
-              type="submit"
-              disabled><span class="spinner-border spinner-border-sm"
-                             role="status"></span></button>
+      ><span class="spinner-border spinner-border-sm" role="status"></span></button>
+      
       <button class="order__btn-checkout btn btn-red btn-skew"
-              v-else
               type="submit"
-              @click.prevent="setStep(nextStepButton)">{{nextStepButton.text}}</button>
+              v-else
+              @click.prevent="setStep(nextStepButton)"
+      >{{nextStepButton.text}}</button>
+      
       <div class="order__footer-note">
         Нажимая на кнопку, вы подтверждаете согласие на обработку
         <a href="#"> персональных данных</a>

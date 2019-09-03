@@ -234,7 +234,7 @@ h3 {
 $input-height: 62px;
 $input-font-size: 16px;
 $input-line-height: 1.5;
-$input-padding-x: 16px;
+$input-padding-x: 22px;
 $input-padding-y: 19px;
 $input-border-width: 3px;
 
@@ -242,12 +242,11 @@ $input-border-width: 3px;
   display: block;
   width: 100%;
   height: $input-height;
-  padding: ($input-padding-y - $input-border-width) $input-padding-x;
-  //padding: $input-padding-y $input-padding-x;
-  border: $input-border-width solid #000;
+  padding: $input-padding-y $input-padding-x;
+  border: 0;
   border-radius: 0;
   background-color: #fff;
-  box-shadow: none;
+  //box-shadow: inset 0 0 0 $input-border-width #000;
   color: #1a1a1a;
   font-family: $font-family-bender;
   font-size: $input-font-size;
@@ -269,13 +268,11 @@ $input-border-width: 3px;
     background-color: transparent;
   }
 
-  &:hover {
-    border-color: $main-color;
-  }
-
+  &:hover,
   &:focus {
-    border-color: $main-color;
+    //border-color: $main-color;
     outline: 0;
+    box-shadow: inset 0 0 0 $input-border-width #101010;
   }
 
   &::placeholder {
@@ -781,7 +778,7 @@ textarea.input-text {
   position: relative;
   //height: $input-height;
   overflow: hidden;
-  background-color: #fff;
+  //background-color: #fff;
   color: #1a1a1a;
   font-family: $font-family-bender;
   font-size: $input-font-size;
@@ -823,11 +820,17 @@ textarea.input-text {
   &_focused {
   }
 
+  &_invalid {
+    .input-field__input {
+      box-shadow: inset 0 0 0 1px $main-color;
+    }
+  }
+
   &__label {
     position: absolute;
     z-index: 1;
     top: 19px;
-    left: $input-padding-x + $input-border-width;
+    left: $input-padding-x;
     margin-bottom: 0;
     //transform: translateY(-50%);
     overflow: hidden;
@@ -851,7 +854,6 @@ textarea.input-text {
     align-self: flex-end;
     width: 100%;
     //height: 100%;
-    -webkit-backface-visibility: hidden
   }
 
   &__button {
@@ -861,6 +863,39 @@ textarea.input-text {
     width: 36px;
     height: 36px;
     padding: 0;
+  }
+
+  &__alert {
+    @include title;
+    display: flex;
+    position: absolute;
+    top: 5px;
+    right: 16px;
+    bottom: 5px;
+    align-items: center;
+    max-width: 140px;
+    padding-right: 40px;
+    padding-left: 30px;
+    background: linear-gradient(270deg, #F7F7F7 50%, transparent 100%);
+    font-size: 10px;
+    line-height: 1;
+    text-align: right;
+    font-style: normal;
+    pointer-events: none;
+
+    //transform: translateX(10px);
+    //opacity: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      margin-top: -15px;
+      background: $main-color url("../img/input-error.svg") center no-repeat;
+    }
   }
 }
 
@@ -1338,13 +1373,27 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .1s ease-in-out;
+  transition: opacity .2s ease-in-out;
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
+
+
+
+.fade-left-enter-active,
+.fade-left-leave-active {
+  transition: all .2s ease-in-out;
+}
+
+.fade-left-enter,
+.fade-left-leave-to {
+  opacity: 0;
+  transform: translateX(10%);
+}
+
 
 
 .star-rating {

@@ -1,23 +1,26 @@
 import Vue from 'vue';
 import store from '../store';
+import Utils from '../utils/utils';
 import checkoutStore from '../store/modules/checkout';
 
 import Checkout from '../components/checkout/Checkout.vue';
 
+try {
+  Utils.log('Checkout', 'Registration storage module');
+  store.registerModule('checkout', checkoutStore(global.soaData));
 
-store.registerModule('checkout', checkoutStore);
+  Utils.log('Checkout', 'Creating a new Vue instance');
+  const checkoutVM = new Vue({
+    store,
+    render: h => h(Checkout),
+  });
 
-const CheckoutVue = new Vue({
-  store,
-  render: h => h(Checkout),
-});
+  document.addEventListener('DOMContentLoaded', () => {
+    Utils.log('Checkout', 'Mounting Vue');
+    checkoutVM.$mount('#vueTest');
+  });
 
-
-$(() => {
-  CheckoutVue.$mount('#vueTest');
-  global.app.Checkout = CheckoutVue;
-
-  if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
-    store.dispatch('checkout/initSoa', global.soaData);
-  }
-});
+  global.app.checkoutVM = checkoutVM;
+} catch (e) {
+  console.error(e);
+}

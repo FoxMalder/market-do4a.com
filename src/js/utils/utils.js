@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const Utils = {
   isObject(o) {
     return typeof o === 'object' && o !== null && o.constructor && o.constructor === Object;
@@ -138,6 +139,68 @@ const Utils = {
       return global.app.bitrix_sessid;
     }
     return '';
+  },
+
+  log(title = '', message = '') {
+    console.log(
+      `%c ${title} %c ${message} %c`,
+      'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
+      'background:#4D4D4D ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
+      'background:transparent',
+    );
+  },
+
+  htmlspecialchars(str) {
+    if (typeof str !== 'string' || !str.replace) {
+      return str;
+    }
+
+    return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  },
+
+  wrapSubstring(haystack, chunks = '', wrapTagName = 'span', escapeParts = true) {
+    if (haystack.length === 0) {
+      return '';
+    }
+
+    if (escapeParts) {
+      haystack = this.htmlspecialchars(haystack);
+      wrapTagName = this.htmlspecialchars(wrapTagName);
+    }
+
+    if (chunks.length === 0 || chunks === '') {
+      return haystack;
+    }
+
+    if (typeof chunks === 'string') {
+      chunks = [chunks];
+    }
+
+
+    // let scan = '';
+    // let search = '';
+    const searched = {};
+
+    chunks.forEach((chunk) => {
+      const search = chunk.toString().toLowerCase();
+      const scan = haystack.toLowerCase();
+
+      if (typeof searched[search] !== 'undefined') return;
+
+      const i = scan.indexOf(search);
+
+      if (i >= 0) {
+        const left = haystack.slice(0, i);
+        const middle = haystack.slice(i, i + search.length);
+        const right = haystack.slice(i + search.length, haystack.length);
+
+        haystack = `${left}#A#${middle}#B#${right}`;
+      }
+
+      searched[search] = true;
+    });
+
+    return haystack.replace(/#A#/g, `<${wrapTagName}>`).replace(/#B#/g, `</${wrapTagName}>`);
   },
 };
 export default Utils;

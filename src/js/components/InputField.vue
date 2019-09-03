@@ -1,29 +1,35 @@
 <template>
-  <div class="input-field input-field_primary"
-       :class="{active: isActive}">
-      <label class="input-field__label"
-             :for="'property-' + prop.id">
-        {{ prop.title }}{{ prop.required && '*' }}
-      </label>
-      <input class="input-field__input"
-             ref="input"
-             v-model="prop.value"
-             @focus="onFocus"
-             @change="check"
-             @blur="check"
-             :id="'property-' + prop.id"
-             :name="prop.name"
-             :type="prop.type"
-             :autocomplete="prop.autocomplete"
-             :inputmode="prop.inputmode"
-             :required="prop.required">
+  <div
+    :class="['input-field', {
+      'input-field_invalid': prop.error,
+      'input-field_primary': true,
+    }]">
+    <label
+      class="input-field__label"
+      :for="'property-' + prop.id"
+    >{{ prop.title }}{{ prop.required && '*' }}</label>
+    <input class="input-field__input"
+           ref="input"
+           v-model="value"
+           @focus="onFocus"
+           @change="check"
+           @blur="check"
+           :id="'property-' + prop.id"
+           :name="prop.name"
+           :type="prop.type"
+           :autocomplete="prop.autocomplete"
+           :inputmode="prop.inputmode"
+           :required="prop.required">
+    <transition name="fade-left">
+      <div class="input-field__alert" v-if="prop.error">{{prop.error}}</div>
+    </transition>
   </div>
 </template>
 
 <script>
-  // import { ValidationProvider, extend } from 'vee-validate';
+  import { ValidationProvider, extend, validate } from 'vee-validate';
   // import { required, email } from 'vee-validate/dist/rules';
-  //
+
   // extend('required', {
   //   ...required,
   //   message: 'field is required'
@@ -46,7 +52,8 @@
     // },
     data() {
       return {
-        isActive: this.value !== '',
+        isActive: this.prop.value !== '',
+        value: this.prop.value,
       }
     },
     computed: {
@@ -54,9 +61,9 @@
         return { required: this.prop.required, email: this.prop.type === 'email' };
       }
     },
-    mounted() {
-      this.check();
-    },
+    // mounted() {
+    //   this.check();
+    // },
     methods: {
       // castom({ errors, flags }) {
       //   this.prop.isValid = flags.valid;
@@ -73,10 +80,44 @@
       // },
       check() {
         this.isActive = this.value !== '';
-        this.prop.isValid = this.$refs.input.checkValidity();
+
+        this.prop.error = '';
+
+        // validate(this.value, 'email').then(({ errors }) => {
+        //   if (errors.length) {
+        //     this.prop.error = 'Введите верный email';
+        //   }
+        // });
+
+        if (this.prop.required && this.value === '') {
+          return this.prop.error = 'Заполните это поле';
+        }
+
+        if (this.prop.type === 'email' && !this.$refs.input.checkValidity()) {
+          return this.prop.error = 'Введите верный email';
+        }
+
+        if (this.prop.type === 'tel' && !this.$refs.input.checkValidity()) {
+          return this.prop.error = 'Введите верный телефон';
+        }
+
+        // this.prop.error = error;
+
       },
+      // onInput(e) {
+      //   const value = e.target.value.trim();
+      //
+      //   if (this.value !== '') {
+      //     this.prop.error = '';
+      //   }
+      //
+      //   this.value = value;
+      //   this.prop.value = value;
+      // },
       onFocus() {
         this.isActive = true;
+        // this.prop.isValid = true;
+        this.prop.error = '';
       },
     }
   }

@@ -116,5 +116,8 @@
       //   Utils.scrollTo(this.$refs.shippingAndPayment.$el)
       // }
     },
+    created () {
+      this.$store.dispatch('checkout/getAll')
+    }
   }
 </script>

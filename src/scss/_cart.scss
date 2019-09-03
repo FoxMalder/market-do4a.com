@@ -149,9 +149,7 @@
 
     @include media-breakpoint-up(xl) {
       margin-left: -50vw;
-      padding-top: 32px;
-      padding-right: 64px;
-      padding-left: 50vw;
+      padding: 32px 64px 68px 50vw;
     }
   }
 
@@ -181,10 +179,23 @@
     margin-bottom: 40px;
   }
 
+  &__description {
+    margin-top: 58px;
+  }
+
+  //&__note {
+  //  margin-top: 60px;
+  //  color: rgba(#000, 0.5);
+  //  font-size: 12px;
+  //}
+
   &__note {
-    margin-top: 60px;
-    color: rgba(#000, 0.5);
-    font-size: 12px;
+    margin-top: 25px;
+    color: rgba(#101010, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 20px;
   }
 }
 
@@ -448,7 +459,7 @@
     }
   }
 
-  &__subtitle {
+  &__header {
     margin-bottom: 18px;
 
     @include media-breakpoint-up(md) {
@@ -486,18 +497,25 @@
     }
   }
 
+  // Список заказов
+  &__list {
+    margin-bottom: 30px;
+  }
+
+  // Промокод
   &__promocode {
-
+    margin-bottom: 26px;
   }
 
+  // Итоговая сумма по заказам
   &__amount {
-
+    margin-bottom: 36px;
   }
 
+  // Кнопка купить и примечание
   &__footer {
     display: flex;
     flex-direction: column;
-    margin-top: 35px;
 
     @include media-breakpoint-up(md) {
       flex-direction: row;
@@ -829,7 +847,6 @@
 
 .order-promocode {
   display: flex;
-  margin: 33px 0 26px;
   padding: 0 5px;
   transform: $skew;
 
@@ -956,5 +973,101 @@
   &_dark {
     background-color: #4d4d4d;
     color: #fff;
+  }
+}
+
+
+.checkout-location {
+  position: relative;
+  height: $input-height;
+  padding: $input-padding-y 19px $input-padding-y 41px;
+  overflow: hidden;
+  background: #f7f7f7;
+  color: #1a1a1a;
+  //@extend .form-group;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 17px;
+    width: 13px;
+    height: 18px;
+    transform: translateY(-50%) $skew-reverse;
+    background: url("../img/small-marker.svg") no-repeat;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 200px;
+    background: linear-gradient(270deg, #f7f7f7 50%, transparent 100%);
+  }
+
+  &__name {
+    @include title;
+    font-style: normal;
+    white-space: nowrap;
+  }
+
+  &__button {
+    @extend %button-reset;
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    right: 30px;
+
+    transform: translateY(-50%) $skew-reverse;
+    border-bottom: 1px dashed rgba(#101010, 0.4);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 17px;
+  }
+}
+
+
+.checkout-location-search {
+  position: relative;
+
+  &__list {
+    //width: 100%;
+    max-width: none;
+    padding: 4px 0;
+    //transform: skew(9deg);
+    //transform-origin: top;
+    right: tan(9deg) * 62px;
+    //margin-left: tan(9deg) * 62px / 2;
+    background: #fff;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  &__item {
+    margin-bottom: 0;
+    padding: 15px 23px 15px;
+    transition: all .3s ease;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    color: rgba(#000, 0.4);
+    > span {
+      color: #101010;
+      transition: all .3s ease;
+    }
+
+    &.active {
+      color: rgba(#fff, 0.4);
+      background: $main-color;
+      > span {
+        color: #fff;
+      }
+    }
+  }
+
+  &__field {
+    //@extend .form-group;
   }
 }

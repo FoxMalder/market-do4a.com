@@ -12,10 +12,14 @@
       <div class="order-personal-info__subtitle">Данные покупателя</div>
       
       <div class="order-personal-info__container">
-        <div class="form-group"
-             v-for="item in userProps">
-          <InputField :prop="item"/>
-        </div>
+        <template v-for="item in userProps">
+          <CheckoutLocation v-if="item.isLocation"
+                            :item="item"/>
+          <div v-else
+               class="form-group">
+            <InputField :prop="item"/>
+          </div>
+        </template>
       </div>
       <template v-if="addressProps.length">
         <div class="order-personal-info__subtitle">Адрес доставки</div>
@@ -42,23 +46,23 @@
         </div>
       </template>
       
-      <div class="order-personal-info__subtitle">Комментарий</div>
-      <div class="order-personal-info__container">
-        <div class="form-group">
+      <div class="order-personal-info__description">
+        <div class="form-group" v-skew="10">
           <div class="input-field input-field_primary">
             <label
               for="property-description"
-              class="input-field__label">
-              Комментарий
-            </label>
+              class="input-field__label">Комментарий</label>
             <textarea
               class="input-field__input"
               id="property-description"
               name="ORDER_DESCRIPTION"
+              rows="5"
               v-model="propertyDescription"></textarea>
           </div>
         </div>
-        <small>Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом</small>
+        <div class="order-personal-info__note">
+          Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом
+        </div>
       </div>
     </div>
     <input type="hidden"
@@ -75,12 +79,28 @@
 
   import { mapGetters, mapState, mapActions } from 'vuex';
   import InputField from './../InputField.vue';
+  import CheckoutLocation from './CheckoutLocation.vue';
+  // import TransformSkew from './../TransformSkew.vue';
 
 
   export default {
     name: "CheckoutForm",
     components: {
       InputField,
+      CheckoutLocation,
+    },
+    directives: {
+      skew: {
+        inserted(el, { value = 10 }) {
+          console.log(el.clientHeight);
+          el.style.transform = `matrix(1, 0, ${value * -2 / 158}, 1, 0, 0)`;
+          el.style.marginLeft = `${value}px`;
+          el.style.marginRight = `${value}px`;
+        },
+        // unbind(el) {
+        //   console.log(el);
+        // },
+      },
     },
     computed: {
       ...mapState('checkout', {

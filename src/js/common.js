@@ -11,11 +11,14 @@ import './modules/Input';
 
 import Notifications from './components/Notifications.vue';
 import store from './store';
+import Utils from './utils/utils';
 // import ProductDetail from './components/product/Detail';
 
 global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
 global.qs = Qs;
+global.store = store;
+global.utils = Utils;
 
 // if (global.dev) {
 //   axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
