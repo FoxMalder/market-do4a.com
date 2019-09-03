@@ -66,11 +66,9 @@ const state = {
 
   delivery: [],
   selectedShippingMethodId: null,
-  // selectedShippingMethod: null,
 
   paymentMethods: [],
   selectedPaymentMethodId: null,
-  // selectedPaymentMethod: null,
 
   checkoutStatus: null,
 
@@ -255,7 +253,7 @@ const actions = {
     commit(SET_USER_PROPERTIES, propertyList);
   },
 
-  [SET_SHIPPING_METHODS]({ commit, getters }, delivery) {
+  [SET_SHIPPING_METHODS]({ commit }, delivery) {
     const deliveryList = Object.values(delivery)
       .sort((a, b) => {
         const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
@@ -332,10 +330,8 @@ const actions = {
     };
 
     return new Promise((resolve, reject) => {
-      Api.getSoaData(
-        state.param.ajaxUrl,
-        request,
-        (result) => {
+      Api.fetchSaleOrderAjax(state.param.ajaxUrl, request)
+        .then((result) => {
           if (result.order) {
             dispatch('refreshOrder', result.order);
           }
@@ -358,13 +354,21 @@ const actions = {
           }
 
           resolve();
-        },
-        (err) => {
-          console.error(err.message);
-          reject();
-        },
-      );
+        })
+        .catch((error) => {
+          reject(error);
+        });
     });
+  },
+
+  saveOrderAjax({ dispatch }) {
+    return dispatch('sendRequest', { action: 'saveOrderAjax' });
+  },
+  enterCoupon({ dispatch }, coupon) {
+    return dispatch('sendRequest', { action: 'enterCoupon', coupon });
+  },
+  removeCoupon({ dispatch }) {
+    return dispatch('sendRequest', { action: 'removeCoupon' });
   },
 
 
@@ -410,16 +414,6 @@ const actions = {
       }
     }));
     dispatch('SET_ERRORS', { PROPERTY: error });
-  },
-
-  saveOrderAjax({ dispatch }) {
-    return dispatch('sendRequest', { action: 'saveOrderAjax' });
-  },
-  enterCoupon({ dispatch }, coupon) {
-    return dispatch('sendRequest', { action: 'enterCoupon', coupon });
-  },
-  removeCoupon({ dispatch }) {
-    return dispatch('sendRequest', { action: 'removeCoupon' });
   },
 
 
@@ -527,46 +521,49 @@ const actions = {
 
 // mutations
 const mutations = {
-  SET_PARAM(state, param) {
+  SET_PARAM: (state, param) => {
     state.param = {
       ...state.param,
       ...param,
     };
   },
 
-  SET_CHECKOUT_STATUS(state, status) {
+  SET_CHECKOUT_STATUS: (state, status) => {
     state.checkoutStatus = status;
   },
   SET_CURRENT_STEP(state, { key }) {
     state.currentStepName = key;
   },
 
-  [SET_USER_PROPERTIES](state, propertyList) {
+  [SET_USER_PROPERTIES]: (state, propertyList) => {
     state.propertyList = propertyList;
   },
 
-  [SET_CURRENT_STORE](state, store) {
+  [SET_CURRENT_STORE]: (state, store) => {
     state.currentStore = {
       ...state.currentStore,
       ...store,
     };
   },
 
-  [SET_SHIPPING_METHODS](state, deliveryList) {
+  [SET_SHIPPING_METHODS]: (state, deliveryList) => {
     state.delivery = deliveryList;
   },
-  [SET_SHIPPING](state, id) {
+  [SET_SHIPPING]: (state, id) => {
     state.selectedShippingMethodId = id;
   },
 
-  [SET_PAYMENT_METHODS](state, paymentMethods) {
+  [SET_PAYMENT_METHODS]: (state, paymentMethods) => {
     state.paymentMethods = paymentMethods;
   },
-  [SET_PAYMENT](state, id) {
+  [SET_PAYMENT]: (state, id) => {
     state.selectedPaymentMethodId = id;
   },
-  [SET_TOTAL](state, total) {
-    state.total = total;
+  [SET_TOTAL]: (state, total) => {
+    state.total = {
+      ...state.total,
+      ...total,
+    };
   },
   // SET_SELECTED_PAYMENT_METHOD(state, { id }) {
   //   state.selectedPaymentMethod = id;

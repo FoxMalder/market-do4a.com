@@ -1,15 +1,20 @@
 //
 //body {
-//  background: url("../img/rm/checkout-1920.png") center top no-repeat;
+//  //background: url("../img/rm/checkout-basket-320.png") center top no-repeat;
+//  background: url("../img/rm/checkout-basket-320.png") center -165px no-repeat;
 //
 //  > * {
 //    opacity: 0.5;
+//  }
+//
+//  @include media-breakpoint-up(xl) {
+//    background: url("../img/rm/checkout-1920.png") center top no-repeat;
 //  }
 //}
 
 .cart-section-header {
   padding-top: 20px;
-  padding-bottom: 30px;
+  padding-bottom: 0;
   @include media-breakpoint-up(md) {
     padding-bottom: 60px;
   }
@@ -19,16 +24,29 @@
   }
 
   &__title {
+    margin-bottom: 16px;
+    font-size: 24px;
+    line-height: 28px;
 
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
     @include media-breakpoint-up(xl) {
       margin-top: 24px;
+      font-size: 40px;
+      line-height: 1;
     }
   }
 }
 
 .cart {
   padding-bottom: 50px;
-  overflow: hidden;
+
+  @include media-breakpoint-up(xl) {
+
+    overflow: hidden;
+  }
 
   &__inner {
 
@@ -410,10 +428,19 @@
 //
 //
 .order {
+  position: relative;
+
   &__title {
-    display: none;
+    position: absolute;
+    top: -39px;
+    right: 0;
+    color: rgba(#101010, 0.4);
+    font-size: 16px;
+    line-height: 22px;
     @include media-breakpoint-up(md) {
-      display: block;
+      position: relative;
+      font-size: 23px;
+      line-height: 31px;
     }
     @include media-breakpoint-up(xl) {
       margin-bottom: 17px;
@@ -421,7 +448,11 @@
   }
 
   &__subtitle {
-    margin-bottom: 29px;
+    margin-bottom: 18px;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 29px;
+    }
   }
 
   &__btn-clear {
@@ -637,15 +668,18 @@
     font-size: 22px;
     font-style: normal;
     line-height: 1;
+    width: 46px;
 
     @include media-breakpoint-up(md) {
+      padding: 6px 14px;
       background-color: transparent;
     }
   }
 
   &__quantity {
     @include title;
-    min-width: 43px;
+    width: 56px;
+    //min-width: 43px;
     margin: 0 8px;
     padding: 6px 0;
     border: 3px solid #101010;
@@ -654,7 +688,7 @@
     font-style: normal;
     line-height: 1;
     @include media-breakpoint-up(md) {
-
+      width: 43px;
     }
   }
 
@@ -664,7 +698,8 @@
     justify-content: center;
     width: 40px;
     height: 40px;
-    margin-right: 11px;
+    margin-right: 8px;
+    overflow: hidden;
     @include media-breakpoint-up(md) {
       width: 65px;
       height: 65px;
@@ -711,8 +746,12 @@
   }
 
   &__col-count {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
     text-align: center;
     @include media-breakpoint-up(md) {
+      position: relative;
       margin-left: auto;
       padding-top: 4px;
     }

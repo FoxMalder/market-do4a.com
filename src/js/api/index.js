@@ -57,9 +57,10 @@ export function removeFromFavorites(productId, cb, errorCb) {
 
 /**
  * Получить актуальный список товаров в корзине
- * @param cb
+ *
+ * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function getBasketContents(cb) {
+export function getBasketContents() {
   return axios
     .get('/ajax/basket/')
     .then(response => response.data)
@@ -70,19 +71,17 @@ export function getBasketContents(cb) {
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    // .then(data => cb(data));
-  // .catch(error => alert(error.message));
+    });
 }
 
 
 /**
  * Очистить корзину
- * @param cb
- * @param errorCb
+ *
+ * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function clearBasket(cb, errorCb) {
-  axios
+export function clearBasket() {
+  return axios
     .delete('/ajax/basket/')
     .then(response => response.data)
     .then((response) => {
@@ -92,11 +91,6 @@ export function clearBasket(cb, errorCb) {
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(data => cb(data))
-    .catch((error) => {
-      alert(error.message);
-      errorCb(error);
     });
 }
 
@@ -106,10 +100,9 @@ export function clearBasket(cb, errorCb) {
  * @param productId - ID продукта
  * @param productQuantity - Добавляемое количество
  * @param storeId
- * @param cb
- * @param errorCb
+ * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb) {
+export function addProductToBasket({ productId, quantity, storeId }) {
   // const data = {
   //   method: 'add',
   //   id: productId,
@@ -118,14 +111,11 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
   //   sessid: Utils.sessid(),
   // };
 
-  axios
-    // .post(`/ajax/basket/${productId}/?quantity=${quantity}&storeId=${storeId}`)
-    .post(`/ajax/basket/${productId}/`, null, {
-      params: {
-        quantity,
-        storeId,
-      },
-    })
+  return axios({
+    method: 'post',
+    url: `/ajax/basket/${productId}/`,
+    params: { quantity, storeId },
+  })
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
@@ -134,11 +124,6 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(data => cb(data))
-    .catch((error) => {
-      alert(error.message);
-      errorCb(error);
     });
 }
 
@@ -166,21 +151,21 @@ export function addProductToBasket({ productId, quantity, storeId }, cb, errorCb
 /**
  * Установит нужное кол-во для конкретной позиции в корзине,
  * если отправить 0 - удалит товар из корзины
+ *
  * @param basketId
  * @param quantity
  * @param storeId
- * @param cb
- * @param errorCb
+ * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function setQuantityInBasket({ basketId, quantity, storeId }, cb, errorCb) {
-  axios
-  // .put(`/ajax/basket/${basketId}/?quantity=${quantity}&storeId=${storeId}`, {
-    .put(`/ajax/basket/${basketId}/`, null, {
-      params: {
-        quantity,
-        storeId,
-      },
-    })
+export function setQuantityInBasket({ basketId, quantity, storeId }) {
+  return axios({
+    method: 'put',
+    url: `/ajax/basket/${basketId}/`,
+    params: {
+      quantity,
+      storeId,
+    },
+  })
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {
@@ -189,22 +174,18 @@ export function setQuantityInBasket({ basketId, quantity, storeId }, cb, errorCb
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(data => cb(data))
-    .catch((error) => {
-      alert(error.message);
-      errorCb(error);
     });
 }
 
 
 /**
  * Удалит конкретную позицию в корзине
+ *
  * @param basketId
- * @param cb
+ * @returns {Promise<AxiosResponse<T> | never>}
  */
-export function removeFromBasket(basketId, cb) {
-  axios
+export function removeFromBasket(basketId) {
+  return axios
     .delete(`/ajax/basket/${basketId}/`)
     .then(response => response.data)
     .then((response) => {
@@ -214,17 +195,18 @@ export function removeFromBasket(basketId, cb) {
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(data => cb(data))
-    .catch((error) => {
-      alert(error.message);
-      // errorCb(error);
     });
 }
 
 
-export function getSoaData(url, data, cb, errorCb) {
-  axios
+/**
+ *
+ * @param url
+ * @param data
+ * @returns {Promise<AxiosResponse<T> | never>}
+ */
+export function fetchSaleOrderAjax(url, data) {
+  return axios
     .post(url, qs.stringify(data))
     .then(response => response.data)
     .then((result) => {
@@ -234,10 +216,5 @@ export function getSoaData(url, data, cb, errorCb) {
       const error = new Error(result.error);
       error.response = result;
       throw error;
-    })
-    .then(result => cb(result))
-    .catch((error) => {
-      alert(error.message);
-      errorCb(error);
     });
 }

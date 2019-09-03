@@ -115,23 +115,21 @@ class Menu {
 
 export default class Header {
   constructor() {
-    store.dispatch('cart/getContents');
-
     this.basket = new Vue({
       store,
       render: h => h(HeaderBasket),
-    }).$mount('#js-header-basket');
+    });
+
+    store.dispatch('cart/getContents').then(() => {
+      console.log('mount basket');
+      this.basket.$mount('#js-header-basket');
+    });
+
 
     this.collapse = new Vue({
       store,
       render: h => h(HeaderCollapse),
     }).$mount('.h-navbar-collapse');
-
-
-    // store.dispatch('cart/getContents').then(() => {
-    //   console.log('mount basket');
-    //   this.basket.$mount('#js-header-basket');
-    // });
 
 
     this.header = {
