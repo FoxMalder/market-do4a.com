@@ -364,13 +364,21 @@ export default function createModule(options) {
         console.error(order.ERROR);
       }
 
-      dispatch('cart/getFromSOA', order, { root: true });
-
-
-      commit(SET_TOTAL, order.TOTAL);
-      dispatch(SET_USER_PROPERTIES, order.ORDER_PROP.properties);
-      dispatch(SET_SHIPPING_METHODS, order.DELIVERY);
-      dispatch(SET_PAYMENT_METHODS, order.PAY_SYSTEM);
+      if (order.ROWS) {
+        dispatch('cart/getFromSOA', order, { root: true });
+      }
+      if (order.TOTAL) {
+        commit(SET_TOTAL, order.TOTAL);
+      }
+      if (order.ORDER_PROP) {
+        dispatch(SET_USER_PROPERTIES, order.ORDER_PROP.properties);
+      }
+      if (order.DELIVERY) {
+        dispatch(SET_SHIPPING_METHODS, order.DELIVERY);
+      }
+      if (order.PAY_SYSTEM) {
+        dispatch(SET_PAYMENT_METHODS, order.PAY_SYSTEM);
+      }
     },
 
 
@@ -385,11 +393,17 @@ export default function createModule(options) {
         ...data,
       };
 
+      // return Api.fetchSaleOrderAjax(param.ajaxUrl, request);
+
       return new Promise((resolve, reject) => {
         Api.fetchSaleOrderAjax(param.ajaxUrl, request)
           .then((result) => {
             if (result.order) {
               dispatch('refreshOrder', result.order);
+
+              if (result.order.ERROR) {
+                dispatch('SET_ERRORS', result.order.ERROR);
+              }
             }
 
             if (request.action === 'enterCoupon') {
@@ -417,6 +431,9 @@ export default function createModule(options) {
       });
     },
 
+    refreshOrderAjax({ dispatch }) {
+      return dispatch('sendRequest', { action: 'refreshOrderAjax' });
+    },
     saveOrderAjax({ dispatch }) {
       return dispatch('sendRequest', { action: 'saveOrderAjax' });
     },

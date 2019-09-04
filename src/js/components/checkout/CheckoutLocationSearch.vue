@@ -125,7 +125,7 @@
         } else {
           this.item.value = null;
         }
-        this.$store.dispatch('checkout/saveOrderAjax');
+        this.$store.dispatch('checkout/refreshOrderAjax');
       },
       // getFullName(city) {
       //
