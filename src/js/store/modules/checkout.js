@@ -1,4 +1,4 @@
-/* eslint-disable no-shadow */
+/* eslint-disable no-shadow,no-param-reassign */
 import axios from 'axios';
 import { validate, extend } from 'vee-validate';
 import { required, email } from 'vee-validate/dist/rules';
@@ -15,7 +15,7 @@ const SET_SHIPPING_METHODS = 'SET_SHIPPING_METHODS';
 const SET_PAYMENT_METHODS = 'SET_PAYMENT_METHODS';
 
 const SET_SHIPPING = 'SET_SELECTED_SHIPPING_METHOD_ID';
-const SET_PAYMENT = 'SET_PAYMENT_SHIPPING_METHOD_ID';
+const SET_PAYMENT = 'SET_SELECTED_PAYMENT_METHOD_ID';
 
 extend('required', {
   ...required,
@@ -93,16 +93,18 @@ export default function createModule(options) {
     total: null,
     currentStore: null,
 
+    buyerStore: null,
+    personTypeId: null,
     isLocaleStore: false,
     locationName: '',
     isKnownCity: false,
     knownCityName: [],
 
-    param: {
-      personTypeId: null, // order.PERSON_TYPE[].ID
-      isLocaleStore: false,
-      buyerStore: null, // BUYER_STORE
-    },
+    // param: {
+    //   personTypeId: null, // order.PERSON_TYPE[].ID
+    //   isLocaleStore: false,
+    //   buyerStore: null, // BUYER_STORE
+    // },
 
     errors: {
       PROPERTY: [],
@@ -131,7 +133,7 @@ export default function createModule(options) {
     //   state.propertyList.find;
     // },
     visibleShippingMethods: (state) => {
-      if (state.param.isLocaleStore) {
+      if (state.isLocaleStore) {
         let courier = null;
         let pickup = null;
 
@@ -153,8 +155,8 @@ export default function createModule(options) {
       const data = {
         DELIVERY_ID: state.selectedShippingMethodId,
         PAY_SYSTEM_ID: state.selectedPaymentMethodId,
-        BUYER_STORE: state.param.buyerStore,
-        PERSON_TYPE: state.param.personTypeId,
+        BUYER_STORE: state.buyerStore,
+        PERSON_TYPE: state.personTypeId,
         action: 'saveOrderAjax',
         location_type: 'code',
         sessid: Utils.sessid(),
@@ -170,8 +172,6 @@ export default function createModule(options) {
 
   const actions = {
     getAll({ commit, dispatch }) {
-      const person = Object.values(options.result.PERSON_TYPE).find(item => item.CHECKED === 'Y');
-
       commit('SET_PARAM', options.result);
 
       dispatch('refreshOrder', options.result);
@@ -265,7 +265,7 @@ export default function createModule(options) {
       commit(SET_USER_PROPERTIES, propertyList);
     },
 
-    [SET_SHIPPING_METHODS]({ commit }, delivery) {
+    [SET_SHIPPING_METHODS]({ commit, state, dispatch }, delivery) {
       const deliveryList = Object.values(delivery)
         .sort((a, b) => {
           const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
@@ -281,11 +281,43 @@ export default function createModule(options) {
           checked: item.CHECKED === 'Y',
           price: parseFloat(item.PRICE),
           name: item.NAME,
-          description: item.DESCRIPTION,
-          period: item.PERIOD_TEXT,
+          description: item.DESCRIPTION || null,
+          period: item.PERIOD_TEXT || null,
           type: item.TYPE,
           logoUrl: item.LOGOTIP ? item.LOGOTIP.SRC : '',
         }));
+
+
+      let visibleDeliveryList = [];
+
+      if (state.isLocaleStore) {
+        let courier = null;
+        let pickup = null;
+
+        deliveryList.forEach((item) => {
+          if (item.type === 'C') {
+            courier = item;
+          }
+          if (item.type === 'P') {
+            pickup = item;
+          }
+        });
+
+        visibleDeliveryList = [pickup, courier].filter(item => item);
+      } else {
+        visibleDeliveryList = deliveryList.filter(item => !item.errors);
+      }
+
+      if (visibleDeliveryList.length) {
+        const activeDelivery = visibleDeliveryList.find(item => item.checked);
+
+        if (!activeDelivery) {
+          // dispatch(SET_SHIPPING, visibleDeliveryList[0]);
+        } else {
+          // dispatch(SET_SHIPPING, activeDelivery);
+          commit(SET_SHIPPING, activeDelivery.id);
+        }
+      }
 
       commit(SET_SHIPPING_METHODS, deliveryList);
 
@@ -311,7 +343,18 @@ export default function createModule(options) {
           isCash: item.IS_CASH === 'Y',
         }));
 
-      // commit('SET_SELECTED_PAYMENT_METHOD_ID', paymentMethods.find(item => item.checked));
+
+      // if (paymentMethods.length) {
+      //   const activeDelivery = paymentMethods.find(item => item.checked);
+      //
+      //   if (!activeDelivery) {
+      //     commit(SET_PAYMENT, paymentMethods[0].id);
+      //   } else {
+      //     commit(SET_PAYMENT, activeDelivery.id);
+      //   }
+      // }
+
+      commit(SET_PAYMENT, paymentMethods.find(item => item.checked).id);
       commit(SET_PAYMENT_METHODS, paymentMethods);
     },
 
@@ -330,19 +373,19 @@ export default function createModule(options) {
     },
 
 
-    sendRequest({ state, getters, dispatch }, data) {
+    sendRequest({ getters, dispatch }, data) {
       const request = {
         order: getters.getAllFormData,
         via_ajax: 'Y',
         action: 'refreshOrderAjax',
-        SITE_ID: siteID,
-        signedParamsString,
+        SITE_ID: param.siteID,
+        signedParamsString: param.signedParamsString,
         sessid: Utils.sessid(),
         ...data,
       };
 
       return new Promise((resolve, reject) => {
-        Api.fetchSaleOrderAjax(ajaxUrl, request)
+        Api.fetchSaleOrderAjax(param.ajaxUrl, request)
           .then((result) => {
             if (result.order) {
               dispatch('refreshOrder', result.order);
@@ -385,7 +428,6 @@ export default function createModule(options) {
 
 
     [SET_PAYMENT]({ commit, dispatch }, { id }) {
-
       commit('SET_ERRORS', { PAY_SYSTEM: [] });
       // const savedPaymentMethods = [...state.paymentMethods];
       // const paymentMethods = savedPaymentMethods.map(item => ({
@@ -411,21 +453,28 @@ export default function createModule(options) {
       dispatch('sendRequest');
     },
 
-    async validatePropsData({ state, dispatch }) {
-      const error = [];
-      await Promise.all(state.propertyList.map(async (item) => {
-        const { errors } = await validate(item.value, {
-          required: item.required,
-          email: item.type === 'email',
-        }, {
-          name: item.title,
-        });
+    async validatePropsData({ state }) {
+      let error = false;
 
-        if (errors.length) {
-          error.push(errors[0]);
+      await Promise.all(state.propertyList.map(async (item) => {
+
+        if (item.required && item.value === '') {
+          item.error = 'Заполните это поле';
+          error = true;
+          return;
+        }
+
+        if (item.type === 'email') {
+          const { errors } = await validate(item.value, 'email');
+
+          if (errors.length > 0) {
+            item.error = 'Введите верный email';
+            error = true;
+          }
         }
       }));
-      dispatch('SET_ERRORS', { PROPERTY: error });
+
+      return error;
     },
 
 
@@ -458,49 +507,29 @@ export default function createModule(options) {
       }
     },
 
-    async validate({ state, dispatch }) {
-      const err = {
-        PROPERTY: [],
-        PAY_SYSTEM: [],
-        DELIVERY: [],
-      };
-
-      await Promise.all(state.propertyList.map(async (item) => {
-        const { errors } = await validate(item.value, {
-          required: item.required,
-          email: item.type === 'email',
-        }, {
-          name: item.title,
-        });
-
-        if (errors.length) {
-          err.PROPERTY.push(errors[0]);
-        }
-      }));
-
-      if (!state.selectedPaymentMethodId) {
-        err.PAY_SYSTEM.push('Не выбран метод оплаты');
+    async checkout(context) {
+      if (await context.dispatch('validatePropsData')) {
+        Utils.scrollTo(document.getElementById('order-props'));
+        return;
       }
+
+
+      const err = {};
 
       if (!state.selectedShippingMethodId) {
-        err.DELIVERY.push('Не выбран способ доставки');
+        err.DELIVERY = ['Не выбран способ доставки'];
       }
 
-      if (err.PROPERTY.length || err.PAY_SYSTEM.length || err.DELIVERY.length) {
-        dispatch('SET_ERRORS', err);
-        return false;
+      if (!state.selectedPaymentMethodId) {
+        err.PAY_SYSTEM = ['Не выбран метод оплаты'];
       }
-      return true;
-    },
 
-    async checkout(context) {
-      const valid = await context.dispatch('validate');
-      if (!valid) {
+      if (err.PAY_SYSTEM || err.DELIVERY) {
+        context.dispatch('SET_ERRORS', err);
         return;
       }
 
       context.commit('SET_CHECKOUT_STATUS', 'loading');
-
       axios
         .post('/checkout/', context.getters.getAllFormData)
         .then(response => response.data)
@@ -538,11 +567,13 @@ export default function createModule(options) {
       state.isKnownCity = result.KNOWN_CITY === 'Y';
       state.knownCityName = result.KNOWN_CITY_NAME_DECLENSION || [];
       state.buyerStore = parseInt(result.BUYER_STORE, 10);
-      state.param = {
-        isLocaleStore: result.LOCAL_STORE === 'Y',
-        personTypeId: 1, // parseInt(person.ID, 10),
-        buyerStore: parseInt(result.BUYER_STORE, 10),
-      };
+      state.personTypeId = Object.values(result.PERSON_TYPE).find(item => item.CHECKED === 'Y').ID;
+
+      // state.param = {
+      // isLocaleStore: result.LOCAL_STORE === 'Y',
+      // personTypeId: Object.values(result.PERSON_TYPE).find(item => item.CHECKED === 'Y').ID,
+      // buyerStore: parseInt(result.BUYER_STORE, 10),
+      // };
     },
 
     SET_CHECKOUT_STATUS: (state, status) => {

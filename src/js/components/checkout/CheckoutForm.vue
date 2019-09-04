@@ -13,8 +13,19 @@
       
       <div class="order-personal-info__container">
         <template v-for="item in userProps">
-          <CheckoutLocation v-if="item.isLocation"
-                            :item="item"/>
+          <template v-if="item.isLocation">
+            
+            <CheckoutLocationSearch
+              v-if="!isLocaleStore"
+              :item="item"/>
+            
+            <div v-else
+                 class="form-group">
+              <CheckoutLocation/>
+            </div>
+            
+            <input type="hidden" :value="item.value">
+          </template>
           <div v-else
                class="form-group">
             <InputField :prop="item"/>
@@ -24,10 +35,26 @@
       <template v-if="addressProps.length">
         <div class="order-personal-info__subtitle">Адрес доставки</div>
         <div class="order-personal-info__container">
-          <div class="form-group"
-               v-for="item in addressProps">
-            <InputField :prop="item"/>
-          </div>
+          <template v-for="item in addressProps">
+            <template v-if="item.isLocation">
+    
+              <CheckoutLocationSearch
+                v-if="!isLocaleStore"
+                :item="item"/>
+    
+              <div v-else
+                   class="form-group">
+                <CheckoutLocation/>
+              </div>
+    
+              <input type="hidden" :value="item.value">
+            </template>
+            <div
+              v-else
+              class="form-group">
+              <InputField :prop="item"/>
+            </div>
+          </template>
           <!--        <div class="form-group form-group_row">-->
           <!--          <div class="input-field input-field_primary">-->
           <!--            <label class="input-field__label">Дом</label>-->
@@ -80,6 +107,7 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import InputField from './../InputField.vue';
   import CheckoutLocation from './CheckoutLocation.vue';
+  import CheckoutLocationSearch from './CheckoutLocationSearch.vue';
   // import TransformSkew from './../TransformSkew.vue';
 
 
@@ -88,6 +116,7 @@
     components: {
       InputField,
       CheckoutLocation,
+      CheckoutLocationSearch,
     },
     directives: {
       skew: {
@@ -106,8 +135,9 @@
       ...mapState('checkout', {
         propertyList: 'propertyList',
         propertyDescription: 'propertyDescription',
-        personTypeId: state => state.param.personTypeId,
+        personTypeId: 'personTypeId',
         errors: 'errors',
+        isLocaleStore: 'isLocaleStore',
       }),
 
       userProps() {

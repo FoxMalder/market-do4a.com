@@ -19,7 +19,7 @@
                name="DELIVERY_ID"
                :id="'DELIVERY_' + item.id"
                :value="item.id"
-               :change="item.id === selectedShippingId"
+               :checked="item.id === selectedShippingId"
                @change="selectShipping(item)">
         <label class="order-option__header"
                :for="'DELIVERY_' + item.id">
@@ -75,8 +75,7 @@
                :for="'PAY_SYSTEM_' + item.id">
           <div class="order-option__title">{{item.name}}</div>
           <div class="order-option__description"
-               v-if="item.description">{{item.description}}
-          </div>
+               v-html="item.description"></div>
           <div class="order-option__info"
                v-if="!item.isCash">
             <i class="icon icon-visa"></i><i class="icon icon-mastercard"></i><i class="icon icon-mir"></i>

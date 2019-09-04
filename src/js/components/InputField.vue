@@ -10,7 +10,7 @@
     >{{ prop.title }}{{ prop.required && '*' }}</label>
     <input class="input-field__input"
            ref="input"
-           v-model="value"
+           v-model="prop.value"
            @focus="onFocus"
            @change="check"
            @blur="check"
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import { ValidationProvider, extend, validate } from 'vee-validate';
+  // import { ValidationProvider, extend, validate } from 'vee-validate';
   // import { required, email } from 'vee-validate/dist/rules';
 
   // extend('required', {
@@ -50,17 +50,17 @@
     // components: {
     //   ValidationProvider,
     // },
-    data() {
-      return {
-        isActive: this.prop.value !== '',
-        value: this.prop.value,
-      }
-    },
-    computed: {
-      rules() {
-        return { required: this.prop.required, email: this.prop.type === 'email' };
-      }
-    },
+    // data() {
+    //   return {
+    //     isActive: this.prop.value !== '',
+    //     value: this.prop.value,
+    //   }
+    // },
+    // computed: {
+    //   rules() {
+    //     return { required: this.prop.required, email: this.prop.type === 'email' };
+    //   }
+    // },
     // mounted() {
     //   this.check();
     // },
@@ -79,7 +79,7 @@
       //   };
       // },
       check() {
-        this.isActive = this.value !== '';
+        // this.isActive = this.prop.value !== '';
 
         this.prop.error = '';
 
@@ -89,7 +89,7 @@
         //   }
         // });
 
-        if (this.prop.required && this.value === '') {
+        if (this.prop.required && this.prop.value === '') {
           return this.prop.error = 'Заполните это поле';
         }
 
@@ -115,7 +115,7 @@
       //   this.prop.value = value;
       // },
       onFocus() {
-        this.isActive = true;
+        // this.isActive = true;
         // this.prop.isValid = true;
         this.prop.error = '';
       },

@@ -116,7 +116,12 @@ const actions = {
     }, { root: true });
   },
 
-  removeFromCart({ commit, state }, { basketItemId }) {
+  removeFromCart({ dispatch, commit, state }, { basketItemId }) {
+    if (state.items.length <= 1) {
+      dispatch('clearCart');
+      return;
+    }
+
     const savedCart = {
       items: [...state.items],
       mapping: { ...state.mapping },
