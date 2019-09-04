@@ -43,7 +43,7 @@ export const param = {
 
 
 export default function createModule(options) {
-  param.locale = options.locale;
+  // param.locale = options.locale;
   param.siteID = options.siteID;
   param.ajaxUrl = options.ajaxUrl;
   param.signedParamsString = options.signedParamsString;
