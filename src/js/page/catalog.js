@@ -31,6 +31,9 @@ export default class CatalogControl {
     },
     options = {},
   ) {
+    store.registerModule('filters', catalogControl);
+
+
     this.filterEl = elements.filter || document.querySelector('.filter');
     this.filterList = {};
 
@@ -72,7 +75,6 @@ export default class CatalogControl {
     this.debouncedUpdate = debounce(this.update, 500);
 
 
-    store.registerModule('filters', catalogControl);
     this.init();
     this.initVue();
   }
