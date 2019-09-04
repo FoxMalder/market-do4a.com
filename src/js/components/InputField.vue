@@ -1,9 +1,7 @@
 <template>
   <div
-    :class="['input-field', {
-      'input-field_invalid': prop.error,
-      'input-field_primary': true,
-    }]">
+    class="input-field"
+    :class="{'input-field_invalid': prop.error}">
     <label
       class="input-field__label"
       :for="'property-' + prop.id"

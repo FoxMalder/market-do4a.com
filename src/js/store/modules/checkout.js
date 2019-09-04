@@ -495,12 +495,19 @@ export default function createModule(options) {
       return error;
     },
 
-
-    setStep({ commit, dispatch }, step) {
+    async setStep({ commit, dispatch }, step) {
       if (step.key === 'final') {
         dispatch('checkout');
-      } else {
+      } else if (step.key === 'shipping-and-payment') {
+        if (await dispatch('validatePropsData')) {
+          Utils.scrollTo(document.getElementById('order-props'));
+          return;
+        }
         commit('SET_CURRENT_STEP', step);
+        Utils.scrollTo(document.querySelector('.cart'));
+      } else if (step.key === 'form') {
+        commit('SET_CURRENT_STEP', step);
+        Utils.scrollTo(document.querySelector('.cart'));
       }
     },
 

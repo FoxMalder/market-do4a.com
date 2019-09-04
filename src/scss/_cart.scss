@@ -134,12 +134,12 @@
     margin-left: -$container-padding-x;
     padding: 17px $container-padding-right-mobile 25px $container-padding-left-mobile;
 
-    @include media-breakpoint-down(sm) {
-      .input-field_primary .input-field__input {
-        height: 50px;
-        background-color: #fff;
-      }
-    }
+    //@include media-breakpoint-down(sm) {
+    //  .input-field_primary .input-field__input {
+    //    height: 50px;
+    //    background-color: #fff;
+    //  }
+    //}
 
     @include media-breakpoint-up(md) {
       margin-right: 0;
@@ -978,13 +978,16 @@
 
 
 .checkout-location {
+  display: flex;
+  align-items: center;
   position: relative;
   height: $input-height;
   padding: $input-padding-y 19px $input-padding-y 41px;
   overflow: hidden;
-  background: #f7f7f7;
+  background: #fff;
   color: #1a1a1a;
   //@extend .form-group;
+
 
   &::before {
     content: '';
@@ -1004,7 +1007,15 @@
     right: 0;
     bottom: 0;
     width: 200px;
-    background: linear-gradient(270deg, #f7f7f7 50%, transparent 100%);
+    background: linear-gradient(270deg, #fff 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  @include media-breakpoint-up(md) {
+    background: #f7f7f7;
+    &::after {
+      background: linear-gradient(270deg, #f7f7f7 50%, transparent 100%);
+    }
   }
 
   &__name {

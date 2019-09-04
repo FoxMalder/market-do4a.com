@@ -12,7 +12,7 @@
         <div class="order-personal-info__subtitle">Данные покупателя</div>
         <div class="order-personal-info__container">
           <div class="form-group" v-for="item in userProps">
-            <InputField :prop="item"/>
+            <InputField :class="{'input-field_primary': !isMobile}" :prop="item"/>
           </div>
         </div>
       </template>
@@ -37,7 +37,7 @@
             <div
               v-else
               class="form-group">
-              <InputField :prop="item"/>
+              <InputField :class="{'input-field_primary': !isMobile}" :prop="item"/>
             </div>
           </template>
           <!--        <div class="form-group form-group_row">-->
@@ -60,7 +60,8 @@
       
       <div class="order-personal-info__description">
         <div class="form-group" v-skew="10">
-          <div class="input-field input-field_primary">
+          <div class="input-field"
+               :class="{'input-field_primary': !isMobile}">
             <label
               for="property-description"
               class="input-field__label">Комментарий</label>
@@ -115,6 +116,11 @@
         //   console.log(el);
         // },
       },
+    },
+    data() {
+      return {
+        isMobile: document.documentElement.clientWidth < 768,
+      }
     },
     computed: {
       ...mapState('checkout', {
