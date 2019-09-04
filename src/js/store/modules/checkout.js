@@ -157,6 +157,7 @@ export default function createModule(options) {
         PAY_SYSTEM_ID: state.selectedPaymentMethodId,
         BUYER_STORE: state.buyerStore,
         PERSON_TYPE: state.personTypeId,
+        ORDER_DESCRIPTION: state.propertyDescription,
         action: 'saveOrderAjax',
         location_type: 'code',
         sessid: Utils.sessid(),

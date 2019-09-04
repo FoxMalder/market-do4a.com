@@ -219,6 +219,13 @@ export function fetchSaleOrderAjax(url, data) {
     });
 }
 
+
+/**
+ * Поиск города по строке
+ *
+ * @param options
+ * @returns {Promise<AxiosResponse<T> | never>}
+ */
 export function locationSearch(options = {}) {
   const {
     page = 0,

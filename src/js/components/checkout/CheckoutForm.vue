@@ -1,6 +1,5 @@
 <template>
-  <div class="order-personal-info"
-       id="order-props">
+  <div id="order-props" class="order-personal-info">
     <h3 class="order-personal-info__title">Ваши данные</h3>
     <div class="order-personal-info__form">
       
@@ -9,44 +8,30 @@
         <li v-for="error in errors.PROPERTY">{{error}}</li>
       </ul>
       
-      <div class="order-personal-info__subtitle">Данные покупателя</div>
-      
-      <div class="order-personal-info__container">
-        <template v-for="item in userProps">
-          <template v-if="item.isLocation">
-            
-            <CheckoutLocationSearch
-              v-if="!isLocaleStore"
-              :item="item"/>
-            
-            <div v-else
-                 class="form-group">
-              <CheckoutLocation/>
-            </div>
-            
-            <input type="hidden" :value="item.value">
-          </template>
-          <div v-else
-               class="form-group">
+      <template v-show="userProps.length">
+        <div class="order-personal-info__subtitle">Данные покупателя</div>
+        <div class="order-personal-info__container">
+          <div class="form-group" v-for="item in userProps">
             <InputField :prop="item"/>
           </div>
-        </template>
-      </div>
-      <template v-if="addressProps.length">
+        </div>
+      </template>
+      
+      <template v-show="addressProps.length">
         <div class="order-personal-info__subtitle">Адрес доставки</div>
         <div class="order-personal-info__container">
           <template v-for="item in addressProps">
             <template v-if="item.isLocation">
-    
+              
               <CheckoutLocationSearch
                 v-if="!isLocaleStore"
                 :item="item"/>
-    
+              
               <div v-else
                    class="form-group">
-                <CheckoutLocation/>
+                <CheckoutLocation :name="locationName"/>
               </div>
-    
+              
               <input type="hidden" :value="item.value">
             </template>
             <div
@@ -138,23 +123,24 @@
         personTypeId: 'personTypeId',
         errors: 'errors',
         isLocaleStore: 'isLocaleStore',
+        locationName: 'locationName',
       }),
 
       userProps() {
-        return this.propertyList.filter(item => item.isUserProps);
+        return this.propertyList.filter(item => item.isUserProps && !item.isLocation);
       },
       addressProps() {
-        return this.propertyList.filter(item => !item.isUserProps);
+        return this.propertyList.filter(item => !item.isUserProps || item.isLocation);
       }
       // getPersonTypeId() {
       //   return window.soaData.result.PERSON_TYPE[Object.keys(window.soaData.result.PERSON_TYPE).filter((key) => window.soaData.result.PERSON_TYPE[key].CHECKED === 'Y')[0]].ID
       // },
     },
-    methods: {
-      ...mapActions('checkout', {
-        validate: 'validatePropsData',
-      })
-    }
+    // methods: {
+    // ...mapActions('checkout', {
+    //   validate: 'validatePropsData',
+    // })
+    // }
   }
 </script>
 

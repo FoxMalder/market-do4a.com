@@ -18,7 +18,7 @@
     </div>
     
     <div class="order-amount" v-if="total">
-      <div class="order-amount__sale" v-show="total.DISCOUNT_PRICE">
+      <div class="order-amount__sale" v-show="total.DISCOUNT_PRICE > 0">
         <div class="order-amount__key">ваша Скидка</div>
         <div class="order-amount__value">{{total.DISCOUNT_PRICE | formatPrice}}</div>
       </div>

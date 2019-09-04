@@ -48,7 +48,7 @@
   import { locationSearch } from '../../api';
   import Utils from '../../utils/utils';
   import { param } from '../../store/modules/checkout';
-  
+
   export default {
     name: "CheckoutLocationSearch",
     directives: {
@@ -125,6 +125,7 @@
         } else {
           this.item.value = null;
         }
+        this.$store.dispatch('checkout/saveOrderAjax');
       },
       // getFullName(city) {
       //
