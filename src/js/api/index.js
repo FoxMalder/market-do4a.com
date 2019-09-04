@@ -263,3 +263,19 @@ export function locationSearch(options = {}) {
       throw error;
     });
 }
+
+
+export function getFiltredCatalog(formData, page = 1) {
+  formData.append('page', page.toString());
+
+  return axios.post('/local/public/catalog.php', formData)
+    .then(response => response.data)
+    .then((response) => {
+      if (response.success === 1) {
+        return response.data;
+      }
+      const error = new Error(response.message);
+      error.response = response;
+      throw error;
+    });
+}

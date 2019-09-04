@@ -1,11 +1,12 @@
+import Vue from 'vue';
 import debounce from 'lodash.debounce';
 // import throttle from 'lodash.throttle';
+
+
 import catalogControl from '../store/modules/catalogControl';
-
-import Vue from 'vue';
-
 import Utils from '../utils/utils';
-import Api from '../utils/Api';
+// import Api from '../utils/Api';
+import { getFiltredCatalog } from '../api';
 import ProductCard from '../components/ProductCard';
 import {
   Multifilter,
@@ -17,7 +18,6 @@ import {
 import store from '../store/index';
 import CategoryListMobile from '../components/CategoryListMobile.vue';
 import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
-import productStore from '../store/modules/product';
 
 
 export default class CatalogControl {
@@ -72,6 +72,7 @@ export default class CatalogControl {
     this.debouncedUpdate = debounce(this.update, 500);
 
 
+    store.registerModule('filters', catalogControl);
     this.init();
     this.initVue();
   }
@@ -93,7 +94,6 @@ export default class CatalogControl {
   };
 
   initVue() {
-    store.registerModule('filters', catalogControl);
 
     [].forEach.call(document.querySelectorAll('[data-toggle="m-filter"]'), (button) => {
       button.addEventListener('click', (event) => {
@@ -310,7 +310,8 @@ export default class CatalogControl {
 
   // TODO: Вынести в api
   sendRequest(page) {
-    Api.catalog.send(this.options.action, new FormData(this.formEl), page)
+    // Api.catalog.send(this.options.action, new FormData(this.formEl), page);
+    getFiltredCatalog(new FormData(this.formEl), page)
       .then((data) => {
         this.currentPage = page;
         this.shownCards = (page === 1)
