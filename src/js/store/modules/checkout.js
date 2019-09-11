@@ -522,9 +522,12 @@ export default function createModule(options) {
         Object.assign(propertyGroups, order.ORDER_PROP.groups);
 
         // order.ORDER_PROP.properties: Array
-        order.ORDER_PROP.properties.forEach((group) => {
-          if (propertyList.find(item => item.id === group.id) === 'undefined') {
-            propertyList.push(group);
+        order.ORDER_PROP.properties.forEach((prop) => {
+          const currentProp = propertyList.find(item => parseInt(item.id, 10) === parseInt(prop.id, 10));
+          if (currentProp) {
+            propertyList.push(prop);
+          } else {
+            Object.assign(currentProp, prop);
           }
         });
 
