@@ -19,7 +19,7 @@
            :inputmode="prop.inputmode"
            :required="prop.required">
     <transition name="fade-left">
-      <div class="input-field__alert" v-if="prop.error">{{prop.error}}</div>
+      <div class="input-field__alert" v-show="prop.error">{{ prop.error }}</div>
     </transition>
   </div>
 </template>
@@ -59,9 +59,11 @@
     //     return { required: this.prop.required, email: this.prop.type === 'email' };
     //   }
     // },
-    // mounted() {
-    //   this.check();
-    // },
+    mounted() {
+       if (this.$el.Input) {
+         this.$el.Input.unMount();
+       }
+    },
     methods: {
       // castom({ errors, flags }) {
       //   this.prop.isValid = flags.valid;

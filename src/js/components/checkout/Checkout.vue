@@ -10,20 +10,19 @@
         <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
       </div>
     </header>
-  
-<!--    <div class="container">-->
-<!--      <CheckoutFinal/>-->
-<!--    </div>-->
+    
+    <!--    <div class="container">-->
+    <!--      <CheckoutFinal/>-->
+    <!--    </div>-->
     
     <section class="cart">
-      <CheckoutEmptyBasket v-if="!products.length"/>
+      <CheckoutEmptyBasket v-if="productTotalCount < 1"/>
       
       <template v-else-if="!isMobile">
         <div class="container">
           <div class="cart__inner">
             <div class="cart__col-left">
               <CheckoutForm/>
-              <!-- <CheckoutAlert/> -->
               <CheckoutShippingAndPayment/>
             </div>
             <div class="cart__col-right">
@@ -36,12 +35,12 @@
       <template v-else>
         <ul class="cart-mobile-header" v-if="currentStep !== 'basket'">
           <li
-                  v-for="step in steps"
-                  :key="step.key"
-                  v-if="step.key !== 'basket'"
-                  :class="['cart-mobile-header__item', { active: currentStep === step.key }]">
+            v-for="step in steps"
+            :key="step.key"
+            v-if="step.key !== 'basket'"
+            :class="['cart-mobile-header__item', { active: currentStep === step.key }]">
             <a href="#" class="cart-mobile-header__link"
-                    @click.prevent="setStep(step)">{{ step.title }}
+               @click.prevent="setStep(step)">{{ step.title }}
             </a>
           </li>
         </ul>
@@ -52,9 +51,8 @@
         </div>
         <div class="cart-mobile-bottom">
           <button class="cart-mobile-bottom__button btn btn-red btn-block" type="button"
-                  @click="setStep(nextStepButton)">
-            {{ nextStepButton.text }}
-          </button>
+                  @click="setStep(nextStepButton)"
+          >{{ nextStepButton.text }}</button>
         </div>
       </template>
     </section>
@@ -67,16 +65,15 @@
   import CheckoutForm from './CheckoutForm.vue';
   import CheckoutShippingAndPayment from './CheckoutShippingAndPayment.vue';
   import CheckoutBasket from './CheckoutBasket.vue';
-  import CheckoutAlert from './CheckoutAlert.vue';
   import CheckoutFinal from './CheckoutFinal.vue';
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
-  
+
   import Utils from './../../utils/utils';
+
 
   export default {
     name: "Checkout",
     components: {
-      CheckoutAlert,
       CheckoutForm,
       CheckoutShippingAndPayment,
       CheckoutBasket,
@@ -90,12 +87,12 @@
     },
     computed: {
       ...mapState({
-        products: state => state.cart.items,
         steps: state => state.checkout.steps,
         currentStep: state => state.checkout.currentStepName,
-        checkoutStatus: state => state.checkout.checkoutStatus
+        checkoutStatus: state => state.checkout.checkoutStatus,
       }),
       ...mapGetters('checkout', {
+        productTotalCount: 'productTotalCount',
         nextStepButton: 'nextStepButton',
       }),
       currentTabComponent() {
@@ -108,15 +105,15 @@
     methods: {
       ...mapActions('checkout', {
         setStep: 'setStep',
-        refreshOrderAjax: 'refreshOrderAjax',
+        // refreshOrderAjax: 'refreshOrderAjax',
       }),
-      
+
       // validate() {
       //   Utils.scrollTo(this.$refs.form.$el)
       //   Utils.scrollTo(this.$refs.shippingAndPayment.$el)
       // }
     },
-    created () {
+    created() {
       this.$store.dispatch('checkout/getAll')
     }
   }

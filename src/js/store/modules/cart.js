@@ -26,71 +26,32 @@ const getters = {
 
 // actions
 const actions = {
-  getFromSOA({ commit }, order) {
-    const items = Object.keys(order.GRID.ROWS).map((key) => {
-      const { data } = order.GRID.ROWS[key];
-      // mapping[data.PRODUCT_ID] = parseInt(data.ID, 10);
-      return {
-        basketItemId: parseInt(data.ID, 10),
-        productId: parseInt(data.PRODUCT_ID, 10),
-        name: data.NAME,
-        canBuy: data.CAN_BUY === 'Y',
-
-        quantity: parseInt(data.QUANTITY, 10), // Количество
-        quantity_max: 10,
-
-        price: parseFloat(data.PRICE), // Цена за единицу
-        priceBase: parseFloat(data.BASE_PRICE), // Цена за единицу без скидки
-        price_benefit: parseFloat(data.DISCOUNT_PRICE), // Скидка за единицу
-        sum: parseFloat(data.SUM_NUM), // Итоговая сумма за N единиц
-        sumBase: parseFloat(data.SUM_BASE), // Итоговая сумма за N единиц без скидки
-
-        url: data.DETAIL_PAGE_URL,
-        picture: data.DETAIL_PICTURE_SRC,
-        picture2x: data.DETAIL_PICTURE_SRC_2X,
-
-        pack: '',
-        measureName: data.MEASURE_NAME, // Единица измерения ("шт" и т.д)
-      };
-    });
-    commit('SET_PRODUCTS', items);
-  },
-
   getContents({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
-      console.log('cart/getContents');
+      let basket = null;
 
-      if (Object.prototype.hasOwnProperty.call(global, 'soaData')) {
-        dispatch('getFromSOA', global.soaData.result).then(() => {
-          resolve();
-          console.log('set from soaData');
-        });
-      } else {
-        let basket = null;
-
-        if (localStorage.getItem('basket')) {
-          try {
-            basket = JSON.parse(localStorage.getItem('basket'));
-          } catch (e) {
-            localStorage.removeItem('basket');
-          }
+      if (localStorage.getItem('basket')) {
+        try {
+          basket = JSON.parse(localStorage.getItem('basket'));
+        } catch (e) {
+          localStorage.removeItem('basket');
         }
-
-        if (basket) {
-          commit('SET_BASKET', basket);
-          resolve();
-          console.log('set from localStorage');
-        }
-
-        Api.getBasketContents()
-          .then((data) => {
-            commit('SET_BASKET', data);
-            resolve();
-            localStorage.setItem('basket', JSON.stringify(data));
-            console.log('set from api');
-          })
-          .catch(error => reject(error));
       }
+
+      if (basket) {
+        commit('SET_BASKET', basket);
+        resolve();
+        Utils.log('Basket', 'Load from localStorage');
+      }
+
+      Api.getBasketContents()
+        .then((data) => {
+          commit('SET_BASKET', data);
+          resolve();
+          localStorage.setItem('basket', JSON.stringify(data));
+          Utils.log('Basket', 'Updated from API');
+        })
+        .catch(error => reject(error));
     });
   },
 

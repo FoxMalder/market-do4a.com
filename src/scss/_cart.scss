@@ -126,7 +126,7 @@
 }
 
 
-.order-personal-info {
+.order-props {
   margin-bottom: 30px;
 
   &__form {
@@ -168,15 +168,27 @@
     font-weight: 500;
   }
 
+  &__group {
+    margin-bottom: 25px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 40px;
+    }
+  }
+
   &__subtitle {
-    margin-bottom: 18px;
-    font-size: 15px;
+    margin-bottom: 16px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 18px;
+    letter-spacing: -0.01em;
+    line-height: 15px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 20px;
+      font-size: 15px;
+      line-height: 18px;
+    }
   }
 
   &__container {
-    margin-bottom: 40px;
   }
 
   &__description {
@@ -979,8 +991,8 @@
 
 .checkout-location {
   display: flex;
-  align-items: center;
   position: relative;
+  align-items: center;
   height: $input-height;
   padding: $input-padding-y 19px $input-padding-y 41px;
   overflow: hidden;
@@ -1046,34 +1058,36 @@
 
   &__list {
     //width: 100%;
+    right: tan(9deg) * 62px;
     max-width: none;
-    padding: 4px 0;
     //transform: skew(9deg);
     //transform-origin: top;
-    right: tan(9deg) * 62px;
+    max-height: 300px;
     //margin-left: tan(9deg) * 62px / 2;
+    padding: 4px 0;
+    overflow: auto;
     background: #fff;
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
-    max-height: 300px;
-    overflow: auto;
   }
 
   &__item {
     margin-bottom: 0;
     padding: 15px 23px 15px;
     transition: all .3s ease;
+    color: rgba(#000, 0.4);
     font-size: 1rem;
     line-height: 1;
     cursor: pointer;
-    color: rgba(#000, 0.4);
+
     > span {
-      color: #101010;
       transition: all .3s ease;
+      color: #101010;
     }
 
     &.active {
-      color: rgba(#fff, 0.4);
       background: $main-color;
+      color: rgba(#fff, 0.4);
+
       > span {
         color: #fff;
       }
@@ -1082,5 +1096,9 @@
 
   &__field {
     //@extend .form-group;
+    margin-right: tan(9deg) * 62px / 2;
+    margin-left: tan(9deg) * 62px / 2;
+    transform: $skew;
+    -webkit-backface-visibility: hidden;
   }
 }

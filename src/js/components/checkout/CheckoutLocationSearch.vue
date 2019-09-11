@@ -4,25 +4,23 @@
        @keydown="keyboardNav"
        v-click-outside="clickedOutside">
     <div class="checkout-location-search__field">
-      <div class="form-group">
-        <div class="input-field input-field_primary"
-             :class="{'input-field_invalid': item.error}">
-          <label class="input-field__label"
-                 :class="{'input-field__label_active': value !== ''}"
-                 for="property-location"
-          >{{ item.title }}{{ item.required && '*' }}</label>
-          <input class="input-field__input"
-                 id="property-location"
-                 type="text"
-                 autocomplete="off"
-                 :value="value"
-                 @input="onInput"
-                 @focus="onFocus"
-                 :required="item.required">
-          <transition name="fade-left">
-            <div class="input-field__alert" v-if="item.error">{{item.error}}</div>
-          </transition>
-        </div>
+      <div class="input-field input-field_primary"
+           :class="{'input-field_invalid': item.error}">
+        <label class="input-field__label"
+               :class="{'input-field__label_active': value !== ''}"
+               for="property-location"
+        >{{ item.title }}{{ item.required && '*' }}</label>
+        <input class="input-field__input"
+               id="property-location"
+               type="text"
+               autocomplete="off"
+               :value="value"
+               @input="onInput"
+               @focus="onFocus"
+               :required="item.required">
+        <transition name="fade-left">
+          <div class="input-field__alert" v-if="item.error">{{item.error}}</div>
+        </transition>
       </div>
     </div>
     <div ref="list"
@@ -48,6 +46,7 @@
   import { locationSearch } from '../../api';
   import Utils from '../../utils/utils';
   import { param } from '../../store/modules/checkout';
+
 
   export default {
     name: "CheckoutLocationSearch",
