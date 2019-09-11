@@ -15,7 +15,7 @@
     <!--      <CheckoutFinal/>-->
     <!--    </div>-->
     
-    <section class="cart">
+    <section class="cart" :class="{'cart_loading': checkoutStatus === 'loading'}">
       <CheckoutEmptyBasket v-if="productTotalCount < 1"/>
       
       <template v-else-if="!isMobile">

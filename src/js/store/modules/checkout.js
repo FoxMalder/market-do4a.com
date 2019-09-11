@@ -525,9 +525,9 @@ export default function createModule(options) {
         order.ORDER_PROP.properties.forEach((prop) => {
           const currentProp = propertyList.find(item => parseInt(item.id, 10) === parseInt(prop.id, 10));
           if (currentProp) {
-            propertyList.push(prop);
-          } else {
             Object.assign(currentProp, prop);
+          } else {
+            propertyList.push(prop);
           }
         });
 
