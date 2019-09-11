@@ -38,7 +38,7 @@
         <div class="order-item__value"><b class="red">{{order.total.DISCOUNT_PRICE | formatPrice}}</b>
         </div>
       </div>
-      <div class="order-item__row" v-if="multiple">
+      <div class="order-item__row" v-if="multiple && order.payment">
         <div class="order-item__key">Оплата</div>
         <!--        <div class="order-item__value">-->
         <!--          <i class="icon icon-visa"></i> <i class="icon icon-mastercard"></i> <i class="icon icon-mir"></i> Картой-->

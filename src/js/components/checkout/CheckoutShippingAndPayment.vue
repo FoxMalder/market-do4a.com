@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="order-delivery">
     <CheckoutAlert v-if="multiple"/>
     <div class="order-shiping" v-for="order in orderList">
       <template v-if="multiple">
@@ -10,10 +10,10 @@
           </button>
         </div>
         <div class="order-shiping__quantity">{{ order.productList.length }} товара</div>
-        <div class="order-shiping__list"></div>
+<!--        <div class="order-shiping__list"></div>-->
       </template>
       
-      <div class="order-shiping__shipping-type" id="order-shipping">
+      <div class="order-shiping__shipping-type">
         
         <template v-if="errors.DELIVERY && errors.DELIVERY.length">
           <div class="order-shiping__error"
@@ -69,7 +69,7 @@
         </div>
       </div>
       
-      <div class="order-shiping__payment-type" id="order-payment">
+      <div class="order-shiping__payment-type">
         <template v-if="errors.PAY_SYSTEM && errors.PAY_SYSTEM.length">
           <div class="order-shiping__error"
                v-for="error in errors.PAY_SYSTEM">

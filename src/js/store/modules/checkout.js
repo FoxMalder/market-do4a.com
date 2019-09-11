@@ -10,7 +10,7 @@ import { ADD_TOAST_MESSAGE } from './notifications';
 
 // const REFRESH_ORDER = 'REFRESH_ORDER';
 // const SET_TOTAL = 'SET_TOTAL';
-const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
+// const SET_CURRENT_STORE = 'SET_CURRENT_STORE';
 
 const SET_PROPERTY_LIST = 'SET_PROPERTY_LIST';
 const SET_PROPERTY_GROUPS = 'SET_PROPERTY_GROUPS';
@@ -778,13 +778,13 @@ export default function createModule(options) {
 
       if (errors.DELIVERY && errors.DELIVERY.length) {
         commit('SET_CURRENT_STEP', 'shipping-and-payment');
-        Utils.scrollTo(document.getElementById('order-shipping'));
+        Utils.scrollTo(document.getElementById('order-delivery'));
         return;
       }
 
       if (errors.PAY_SYSTEM && errors.PAY_SYSTEM.length) {
         commit('SET_CURRENT_STEP', 'shipping-and-payment');
-        Utils.scrollTo(document.getElementById('order-payment'));
+        Utils.scrollTo(document.getElementById('order-delivery'));
       }
     },
 
@@ -925,10 +925,12 @@ export default function createModule(options) {
     },
 
     [SET_PROPERTY_GROUPS]: (state, propertyGroups) => {
+      console.log(propertyGroups);
       state.propertyGroups = propertyGroups;
     },
 
     [SET_PROPERTY_LIST]: (state, propertyList) => {
+      console.log(propertyList);
       state.propertyList = propertyList;
     },
   };

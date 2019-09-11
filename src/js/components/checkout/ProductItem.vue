@@ -17,7 +17,7 @@
         <button class="order-product__increment" type="button" @click.prevent="increment(item)">+</button>
       </div>
 <!--      <div class="order-product__count-note">{{item.SUM_NUM | formatPrice}}/{{item.MEASURE_NAME}}.</div>-->
-      <div class="order-product__count-note">{{item.price | formatPrice}}/{{item.MEASURE_NAME || 'шт'}}</div>
+      <div class="order-product__count-note">{{item.priceBase | formatPrice}}/{{item.MEASURE_NAME || 'шт'}}</div>
     </div>
     <div class="order-product__col-price">
       <del class="order-product__old-price" v-if="item.price_benefit > 0">{{item.sumBase | formatPrice}}</del>
