@@ -470,7 +470,7 @@ export default function createModule(options) {
           storeId: window.app.storeRemoteId,
         };
 
-        propertyList.forEach((prop) => {
+        Object.values(propertyList).forEach((prop) => {
           // eslint-disable-next-line prefer-destructuring
           request.order[`ORDER_PROP_${prop.ID}`] = prop.VALUE[0];
         });
