@@ -476,7 +476,7 @@ export default function createModule(options) {
 
         // order.ORDER_PROP.properties: Array
         order.ORDER_PROP.properties.forEach((group) => {
-          if (propertyList.find(item => item.id === group.id) === 'undefined') {
+          if (!propertyList.find(item => parseInt(item.id, 10) === parseInt(group.id, 10))) {
             propertyList.push(group);
           }
         });
@@ -524,9 +524,7 @@ export default function createModule(options) {
         // order.ORDER_PROP.properties: Array
         order.ORDER_PROP.properties.forEach((prop) => {
           const currentProp = propertyList.find(item => parseInt(item.id, 10) === parseInt(prop.id, 10));
-          if (currentProp) {
-            Object.assign(currentProp, prop);
-          } else {
+          if (!currentProp) {
             propertyList.push(prop);
           }
         });

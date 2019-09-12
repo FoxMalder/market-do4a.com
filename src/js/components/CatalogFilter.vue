@@ -60,6 +60,6 @@
   }
 </script>
 
-<!--<style scoped>-->
+<style scoped>
 
-<!--</style>-->
+</style>

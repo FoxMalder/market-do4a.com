@@ -149,11 +149,15 @@ export class PriceFilter {
     }
 
     if (container.querySelector('.multifilter-price__num .multifilter-price__start')) {
-      option.data.priceMin = parseInt(container.querySelector('.multifilter-price__num .multifilter-price__start').textContent.replace(/[^0-9]/g, ''), 10) || 0;
+      option.data.priceMin = parseInt(container.querySelector('.multifilter-price__num .multifilter-price__start')
+        .textContent
+        .replace(/[^0-9]/g, ''), 10) || 0;
     }
 
     if (container.querySelector('.multifilter-price__num .multifilter-price__end')) {
-      option.data.priceMax = parseInt(container.querySelector('.multifilter-price__num .multifilter-price__end').textContent.replace(/[^0-9]/g, ''), 10) || 10000;
+      option.data.priceMax = parseInt(container.querySelector('.multifilter-price__num .multifilter-price__end')
+        .textContent
+        .replace(/[^0-9]/g, ''), 10) || 10000;
     }
 
     if (option.data.priceFrom < option.data.priceMin) {
@@ -175,16 +179,11 @@ export class CheckboxFilter {
     this.filterSettings = CheckboxFilter.parseSettings(this.el);
     store.commit('filters/pushFilterToContainer', { container: this.container, filter: this.filterSettings });
 
-
     new Vue({
       store,
-      computed: mapState('filters', {
-        filter: state => state[this.container][this.filterSettings.name],
-        // filter: 'filterByName',
+      render: h => h(MultifilterContainer, {
+        props: { filter: store.state.filters[this.container][this.filterSettings.name] },
       }),
-      template: '<MultifilterContainer :filter="filter"/>',
-      components: { MultifilterContainer },
-      // render: h => h(MultifilterContainer),
     }).$mount(this.el);
   }
 
