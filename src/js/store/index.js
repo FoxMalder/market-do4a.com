@@ -5,13 +5,14 @@ import notifications from './modules/notifications';
 
 import * as Api from '../api';
 
+
 Vue.use(Vuex);
 
 const state = {
   favorites: [],
   favoritesCount: 0,
-  storeId: global.app.storeId,
-  isLocaleStore: global.app.storeId === global.app.storeRemoteId,
+  storeId: 0,
+  isLocaleStore: false,
 };
 
 const getters = {
@@ -61,11 +62,15 @@ const mutations = {
   SET_FAVORITES_COUNT(state, count) {
     state.favoritesCount = count;
   },
+  SET_APP_PARAMS(state, app) {
+    state.storeId = app.storeId;
+    state.isLocaleStore = app.storeId === app.storeRemoteId;
+  },
 };
 
 // const debug = process.env.NODE_ENV !== 'production';
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state,
   getters,
   actions,
@@ -77,3 +82,5 @@ export default new Vuex.Store({
   // strict: debug,
   // plugins: debug ? [createLogger()] : [],
 });
+
+export default store;

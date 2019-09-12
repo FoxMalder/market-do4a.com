@@ -110,5 +110,6 @@ const NotifyVM = new Vue({
 
 
 $(() => {
+  store.commit('SET_APP_PARAMS', window.app);
   document.body.appendChild(NotifyVM.$el);
 });

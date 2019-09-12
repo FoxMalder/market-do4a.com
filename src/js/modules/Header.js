@@ -1,12 +1,14 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // import Tooltip from 'tooltip.js';
 import Vue from 'vue';
 // import Vue from 'vue';
 import Utils from '../utils/utils';
-import Api from '../api';
+// import Api from '../api';
 import store from '../store';
 import HeaderCollapse from '../components/HeaderCollapse.vue';
 import HeaderBasket from '../components/HeaderBasket.vue';
+import HeaderControlFavorites from '../components/HeaderControlFavorites.vue';
 // import ProductDetailHeader from '../components/product/DetailHeader';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
@@ -87,7 +89,7 @@ class Menu {
   }
 
   open() {
-    document.body.style.overflow = 'hidden';
+    disableBodyScroll(this.el);
 
     this.el.classList.add('active');
     [].forEach.call(this.controls, item => item.classList.add('active'));
@@ -104,7 +106,7 @@ class Menu {
   }
 
   close() {
-    document.body.style.overflow = '';
+    enableBodyScroll(this.el);
 
     this.el.classList.remove('active');
     [].forEach.call(this.controls, item => item.classList.remove('active'));
@@ -115,18 +117,14 @@ class Menu {
 
 export default class Header {
   constructor() {
-    this.basket = new Vue({
+    store.dispatch('cart/getContents');
+
+    this.basketVM = new Vue({
       store,
       render: h => h(HeaderBasket),
-    });
+    }).$mount('#js-header-basket');
 
-    store.dispatch('cart/getContents').then(() => {
-      console.log('mount basket');
-      this.basket.$mount('#js-header-basket');
-    });
-
-
-    this.collapse = new Vue({
+    this.collapseVM = new Vue({
       store,
       render: h => h(HeaderCollapse),
     }).$mount('.h-navbar-collapse');
@@ -141,8 +139,6 @@ export default class Header {
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,
     };
-
-    this.favorites = {};
 
     this.search = {
       targets: document.querySelector('.header-control__search'),
@@ -237,47 +233,21 @@ export default class Header {
     }
 
     // Количество избранного
-    this.favorites.button = document.querySelector('.header-control__button_favorites');
-    if (this.favorites.button) {
-      this.favorites.notifications = this.favorites.button.querySelector('.header-control__notifications');
-      if (!this.favorites.notifications) {
-        this.favorites.notifications = document.createElement('span');
-        this.favorites.notifications.classList.add('header-control__notifications');
-        this.favorites.button.appendChild(this.favorites.notifications);
+    const favoritesButton = document.querySelector('.header-control__button_favorites');
+    if (favoritesButton) {
+      const favoritesNotifications = favoritesButton.querySelector('.header-control__notifications');
+      if (favoritesNotifications) {
+        store.commit('SET_FAVORITES_COUNT', parseInt(favoritesNotifications.innerHTML, 10) || 0);
       }
-      // this.favorites.count = parseInt(this.favorites.notifications.innerHTML, 10) || 0;
-      // this.favorites.notifications.style.display = (this.favorites.count < 1) ? 'none' : '';
 
-      store.commit('SET_FAVORITES_COUNT', parseInt(this.favorites.notifications.innerHTML, 10) || 0);
-      new Vue({
+      this.favoritesVM = new Vue({
         store,
-        // computed: {
-        //   count() {
-        //     this.$store.state.favoritesCount,
-        //   },
-        // },
-        template: '<span class="header-control__notifications" v-show="$store.state.favoritesCount > 0">{{ $store.state.favoritesCount }}</span>',
-        // render: h => h(ProductDetailHeader),
-      }).$mount(this.favorites.notifications);
+        render: h => h(HeaderControlFavorites, {
+          attrs: { href: favoritesButton.getAttribute('href') },
+        }),
+      }).$mount(favoritesButton);
     }
-    // window.addEventListener('favorites', event => this.setFavorites(event.detail.length));
   }
-
-  // /**
-  //  * Установить количество товаров в избранном
-  //  *
-  //  * @param {Number} count - Устанавливаемое число
-  //  * @returns {*}
-  //  */
-  // setFavorites(count) {
-  //   if (this.favorites.button && this.favorites.count !== count) {
-  //     this.favorites.notifications.innerHTML = String(count);
-  //     this.favorites.notifications.style.display = (count < 1) ? 'none' : '';
-  //     this.favorites.count = count;
-  //   }
-  //   return count;
-  // }
-
 
   toggleSearchField() {
     if (this.search.targets.classList.contains('active')) {
