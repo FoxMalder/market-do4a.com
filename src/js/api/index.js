@@ -265,6 +265,12 @@ export function locationSearch(options = {}) {
 }
 
 
+/**
+ *
+ * @param {String} url
+ * @param {FormData} formData
+ * @returns {Promise<AxiosResponse<T>>}
+ */
 export function getFiltredCatalog(url, formData) {
   return axios.post(url, formData)
     .then(response => response.data)

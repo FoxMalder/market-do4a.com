@@ -16,7 +16,7 @@ import Utils from './utils/utils';
 
 Vue.config.devtools = true;
 
-global.baseURL = 'https://marketdo4a.com/';
+// global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
 global.qs = Qs;
 global.store = store;
@@ -29,16 +29,14 @@ axios.defaults.withCredentials = true;
 axios.defaults.transformRequest = [
   (data, headers) => {
     // console.log(data, headers);
-    if (data) {
-      if (data instanceof Object) {
-        const formData = new FormData();
+    if (data && data instanceof Object) {
+      const formData = new FormData();
 
-        Object.keys(data).forEach((key) => {
-          formData.append(key, data[key]);
-        });
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
 
-        return formData;
-      }
+      return formData;
       // if (data instanceof FormData) {
       //   return data;
       // }
