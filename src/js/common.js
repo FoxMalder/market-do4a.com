@@ -1,4 +1,8 @@
 import Vue from 'vue';
+
+
+Vue.config.devtools = true;
+
 import axios from 'axios';
 import Qs from 'qs';
 
@@ -14,7 +18,6 @@ import store from './store';
 import Utils from './utils/utils';
 // import ProductDetail from './components/product/Detail';
 
-Vue.config.devtools = true;
 
 // global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
@@ -25,25 +28,25 @@ global.utils = Utils;
 // if (global.dev) {
 //   axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
 // }
-axios.defaults.withCredentials = true;
-axios.defaults.transformRequest = [
-  (data, headers) => {
-    // console.log(data, headers);
-    if (data && data instanceof Object) {
-      const formData = new FormData();
-
-      Object.keys(data).forEach((key) => {
-        formData.append(key, data[key]);
-      });
-
-      return formData;
-      // if (data instanceof FormData) {
-      //   return data;
-      // }
-    }
-    return data;
-  },
-];
+// axios.defaults.withCredentials = true;
+// axios.defaults.transformRequest = [
+//   (data, headers) => {
+//     // console.log(data, headers);
+//     if (data && data instanceof Object) {
+//       const formData = new FormData();
+//
+//       Object.keys(data).forEach((key) => {
+//         formData.append(key, data[key]);
+//       });
+//
+//       return formData;
+//       // if (data instanceof FormData) {
+//       //   return data;
+//       // }
+//     }
+//     return data;
+//   },
+// ];
 
 
 //
@@ -92,22 +95,23 @@ Vue.directive('range', {
   componentUpdated: bindNumberInRange,
 });
 
-Vue.filter('formatPrice', value =>
+Vue.filter('formatPrice', (value) => {
   // if (!value) return '';
   // return value.toLocaleString();
-  `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`);
+  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
+});
 
 
 if (!{}.hasOwnProperty.call(window, 'app')) {
   window.app = {};
 }
 
-$(() => {
-  const noty = document.createElement('div');
-  document.body.append(noty);
+const NotifyVM = new Vue({
+  store,
+  render: h => h(Notifications),
+}).$mount();
 
-  new Vue({
-    store,
-    render: h => h(Notifications),
-  }).$mount(noty);
+
+$(() => {
+  document.body.appendChild(NotifyVM.$el);
 });
