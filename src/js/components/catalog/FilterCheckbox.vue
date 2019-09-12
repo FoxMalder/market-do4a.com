@@ -20,15 +20,18 @@
 </template>
 
 <script>
-  import { mapGetters, mapState, mapActions } from 'vuex'
+  // import { mapGetters, mapState, mapActions } from 'vuex'
   // import simplebar from 'simplebar-vue';
   // import 'simplebar/dist/simplebar.min.css';
-  import Dropdown from './Dropdown.vue';
+  import Dropdown from './../Dropdown.vue';
   import MultifilterCheckboxList from './MultifilterCheckboxList.vue';
+
 
   export default {
     name: "Multifilter",
-    props: ['filter'],
+    props: {
+      filter: Object,
+    },
     components: {
       MultifilterCheckboxList,
       Dropdown

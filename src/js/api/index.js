@@ -265,10 +265,8 @@ export function locationSearch(options = {}) {
 }
 
 
-export function getFiltredCatalog(formData, page = 1) {
-  formData.append('page', page.toString());
-
-  return axios.post('/local/public/catalog.php', formData)
+export function getFiltredCatalog(url, formData) {
+  return axios.post(url, formData)
     .then(response => response.data)
     .then((response) => {
       if (response.success === 1) {

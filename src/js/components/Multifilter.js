@@ -1,14 +1,19 @@
 // import SimpleBar from 'simplebar';
-import noUiSlider from 'nouislider';
+// import noUiSlider from 'nouislider';
 
 import Vue from 'vue';
-import { mapGetters, mapState, mapActions } from 'vuex';
-import Dropdown from './Dropdown.vue';
-// import MultifilterRadio from './MultifilterRadio.vue';
-import MultifilterPrice from './MultifilterPrice.vue';
-import MultifilterContainer from './Multifilter.vue';
+
+// import MultifilterRadio from './catalog/MultifilterRadio.vue';
+import FilterCheckbox from './catalog/FilterCheckbox.vue';
+import FilterSelect from './catalog/FilterSelect.vue';
+import FilterPrice from './catalog/FilterPrice.vue';
+
 import store from '../store';
 
+
+/*
+ Прости меня господь за эту хуиту ((
+ */
 
 export class Multifilter {
   constructor(el, callback, options = {}) {
@@ -98,6 +103,40 @@ export class Multifilter {
   }
 }
 
+/**
+ * RadioFilter
+ */
+export class RadioFilter extends Multifilter {
+  constructor(el, callback) {
+    super(el, callback, { type: 'radio' });
+
+    this.el.addEventListener('change', this.onChange);
+
+    this.defaultInput = this.el.querySelector('input[checked]');
+    super.updateTitle(this.defaultInput.nextElementSibling.textContent);
+
+    if (this.inputList.length > 9) {
+      super.initScrollbar();
+    }
+  }
+
+  onChange = (event) => {
+    super.updateTitle(event.target.nextElementSibling.textContent);
+    this.callback(this);
+  };
+
+  reset() {
+    super.reset();
+    // this.defaultInput.checked = true;
+    super.updateTitle(this.defaultInput.nextElementSibling.textContent);
+    // this.callback(this);
+  }
+}
+
+
+/**
+ * PriceFilter
+ */
 export class PriceFilter {
   constructor(el, container = 'filters') {
     this.el = el;
@@ -108,20 +147,9 @@ export class PriceFilter {
 
     new Vue({
       store,
-      computed: mapState('filters', {
-        filter: state => state[this.container][this.filterSettings.name],
+      render: h => h(FilterPrice, {
+        props: { filter: store.state.filters[this.container][this.filterSettings.name] },
       }),
-      template: `
-        <dropdown class="multifilter">
-          <template slot="btn">
-            <span class="multifilter__value">{{filter.label}}</span>
-          </template>
-          
-          <template slot="body">
-            <MultifilterPrice :slider="filter.data" @change="$store.dispatch('filters/onChange')"/>
-          </template>
-        </dropdown>`,
-      components: { Dropdown, MultifilterPrice },
     }).$mount(this.el);
   }
 
@@ -172,6 +200,9 @@ export class PriceFilter {
   }
 }
 
+/**
+ * CheckboxFilter
+ */
 export class CheckboxFilter {
   constructor(el, container = 'filters') {
     this.el = el;
@@ -181,7 +212,7 @@ export class CheckboxFilter {
 
     new Vue({
       store,
-      render: h => h(MultifilterContainer, {
+      render: h => h(FilterCheckbox, {
         props: { filter: store.state.filters[this.container][this.filterSettings.name] },
       }),
     }).$mount(this.el);
@@ -237,33 +268,9 @@ export class CheckboxFilter {
   }
 }
 
-export class RadioFilter extends Multifilter {
-  constructor(el, callback) {
-    super(el, callback, { type: 'radio' });
-
-    this.el.addEventListener('change', this.onChange);
-
-    this.defaultInput = this.el.querySelector('input[checked]');
-    super.updateTitle(this.defaultInput.nextElementSibling.textContent);
-
-    if (this.inputList.length > 9) {
-      super.initScrollbar();
-    }
-  }
-
-  onChange = (event) => {
-    super.updateTitle(event.target.nextElementSibling.textContent);
-    this.callback(this);
-  };
-
-  reset() {
-    super.reset();
-    // this.defaultInput.checked = true;
-    super.updateTitle(this.defaultInput.nextElementSibling.textContent);
-    // this.callback(this);
-  }
-}
-
+/**
+ * SelectFilter
+ */
 export class SelectFilter {
   constructor(el, container = 'sort') {
     this.el = el;
@@ -273,36 +280,12 @@ export class SelectFilter {
 
     store.commit('filters/pushFilterToContainer', { container: this.container, filter: this.filterSettings });
 
+
     new Vue({
       store,
-      computed: mapState('filters', {
-        filter: state => state[this.container][this.filterSettings.name],
+      render: h => h(FilterSelect, {
+        props: { filter: store.state.filters[this.container][this.filterSettings.name] },
       }),
-      template: `
-        <dropdown class="multifilter">
-          <template slot="btn">
-            <span class="multifilter__value">{{filter.label}}</span>
-          </template>
-
-          <template slot="body">
-            <label class="multifilter-radio" v-for="item in filter.data">
-              <input class="multifilter-radio__input" 
-                    type="radio" 
-                    :name="item.name" 
-                    :value="item.value" 
-                    v-model="filter.selected" 
-                    @change="onChange(item)">
-              <span class="multifilter-radio__label">{{item.label}}</span>
-            </label>
-          </template>
-        </dropdown>`,
-      methods: {
-        onChange(item) {
-          this.filter.label = item.label;
-          this.$store.dispatch('filters/onChange');
-        },
-      },
-      components: { Dropdown },
     }).$mount(this.el);
   }
 

@@ -27,8 +27,8 @@
 
 <script>
   import Dropdown from './Dropdown.vue';
-  import MultifilterPrice from '../components/MultifilterPrice.vue';
-  import MultifilterCheckboxList from '../components/MultifilterCheckboxList.vue';
+  import MultifilterPrice from './catalog/MultifilterPrice.vue';
+  import MultifilterCheckboxList from './catalog/MultifilterCheckboxList.vue';
 
   import { mapGetters, mapState, mapActions } from 'vuex';
 

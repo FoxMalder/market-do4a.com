@@ -97,9 +97,9 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  import MultifilterCheckboxList from './MultifilterCheckboxList.vue';
-  import MultifilterRadio from './MultifilterRadio.vue';
-  import MultifilterPrice from './MultifilterPrice.vue';
+  import MultifilterCheckboxList from './catalog/MultifilterCheckboxList.vue';
+  import MultifilterRadio from './catalog/MultifilterRadio.vue';
+  import MultifilterPrice from './catalog/MultifilterPrice.vue';
 
   export default {
     name: "CatalogFilterMobile",

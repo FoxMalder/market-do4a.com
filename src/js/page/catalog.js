@@ -96,7 +96,6 @@ export default class CatalogControl {
   };
 
   initVue() {
-
     [].forEach.call(document.querySelectorAll('[data-toggle="m-filter"]'), (button) => {
       button.addEventListener('click', (event) => {
         event.preventDefault();
@@ -115,15 +114,24 @@ export default class CatalogControl {
       }
     });
 
-    document.querySelector('.catalog-control').insertBefore(new Vue({
-      store,
-      render: h => h(CategoryListMobile),
-    }).$mount().$el, document.querySelector('.catalog-control').firstChild);
 
-    new Vue({
+    // Управление каталогом для мобилок
+    const CatalogControlMobileVM = new Vue({
       store,
       render: h => h(CatalogFilterMobile),
-    }).$mount('#mobile-filter');
+    }).$mount();
+    document.body.appendChild(CatalogControlMobileVM.$el);
+
+    // Список категорий для мобилок
+    const CategoryListMobileVM = new Vue({
+      store,
+      render: h => h(CategoryListMobile),
+    }).$mount();
+
+    const catalogControlEl = document.querySelector('.catalog-control');
+    if (catalogControlEl) {
+      catalogControlEl.insertBefore(CategoryListMobileVM.$el, catalogControlEl.firstChild);
+    }
   }
 
   init() {
@@ -178,7 +186,11 @@ export default class CatalogControl {
     this.shownCards = Math.min(num, total);
 
     if (this.quantityEl) {
-      this.quantityEl.innerHTML = `${this.totalCards} ${Utils.declOfNum(this.totalCards, ['товар', 'товара', 'товаров'])}`;
+      this.quantityEl.innerHTML = `${this.totalCards} ${Utils.declOfNum(this.totalCards, [
+        'товар',
+        'товара',
+        'товаров',
+      ])}`;
     }
     if (this.showMoreEl) {
       if (this.shownCards < this.totalCards) {
@@ -247,7 +259,7 @@ export default class CatalogControl {
    * Моментальное обновление
    */
   update = () => {
-    console.log('Обновляем');
+    Utils.log('Каталог', 'Обновление по фильтру');
     try {
       this.containerEl.classList.add(this.classNames.cardListLoading);
 
@@ -311,9 +323,12 @@ export default class CatalogControl {
   }
 
   // TODO: Вынести в api
-  sendRequest(page) {
+  sendRequest(page = 1) {
     // Api.catalog.send(this.options.action, new FormData(this.formEl), page);
-    getFiltredCatalog(new FormData(this.formEl), page)
+    const formData = new FormData(this.formEl);
+    formData.append('page', page.toString());
+
+    getFiltredCatalog(this.options.action, formData)
       .then((data) => {
         this.currentPage = page;
         this.shownCards = (page === 1)

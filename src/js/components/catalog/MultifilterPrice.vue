@@ -18,13 +18,13 @@
 
 <script>
   import noUiSlider from 'nouislider';
-  import Dropdown from './Dropdown.vue';
+  // import Dropdown from './Dropdown.vue';
 
   export default {
     name: "MultifilterPrice",
-    components: {
-      Dropdown,
-    },
+    // components: {
+    //   Dropdown,
+    // },
     props: {
       slider: {
         default: false,

@@ -14,6 +14,8 @@ import store from './store';
 import Utils from './utils/utils';
 // import ProductDetail from './components/product/Detail';
 
+Vue.config.devtools = true;
+
 global.baseURL = 'https://marketdo4a.com/';
 global.axios = axios;
 global.qs = Qs;
