@@ -64,7 +64,7 @@ const mutations = {
   },
   SET_APP_PARAMS(state, app) {
     state.storeId = app.storeId;
-    state.isLocaleStore = app.storeId === app.storeRemoteId;
+    state.isLocaleStore = app.storeId !== app.storeRemoteId;
   },
 };
 

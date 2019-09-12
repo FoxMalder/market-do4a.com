@@ -10,7 +10,7 @@
           </button>
         </div>
         <div class="order-shiping__quantity">{{ order.productList.length }} товара</div>
-<!--        <div class="order-shiping__list"></div>-->
+        <div class="order-shiping__list"></div>
       </template>
       
       <div class="order-shiping__shipping-type">
@@ -25,14 +25,15 @@
         <h3 class="order-shiping__title">Способ получения</h3>
         <div class="order-option"
              v-for="item in order.deliveryMethods"
-             :key="item.id">
-          <input class="order-option__input"
-                 type="radio"
-                 name="DELIVERY_ID"
-                 :id="'DELIVERY_' + item.id"
-                 :value="item.id"
-                 :checked="item.id === order.deliveryId"
-                 @change="selectShipping({ id: item.id, storeId: order.storeId })">
+             :key="item.id"
+             :class="{ active: item.id === order.deliveryId }">
+          <!--          <input class="order-option__input"-->
+          <!--                 type="radio"-->
+          <!--                 name="DELIVERY_ID"-->
+          <!--                 :id="'DELIVERY_' + item.id"-->
+          <!--                 :value="item.id"-->
+          <!--                 :checked="item.id === order.deliveryId"-->
+          <!--                 @change="selectShipping({ id: item.id, storeId: order.storeId })">-->
           <!--          <input class="order-option__input"-->
           <!--                 type="radio"-->
           <!--                 name="DELIVERY_ID"-->
@@ -40,8 +41,8 @@
           <!--                 :value="item.id"-->
           <!--                 :checked="item.id === order.deliveryId"-->
           <!--                 v-model="order.deliveryId">-->
-          <label class="order-option__header"
-                 :for="'DELIVERY_' + item.id">
+          <div class="order-option__header"
+               @click="selectShipping({ id: item.id, storeId: order.storeId })">
             <img class="order-option__img"
                  v-if="item.logoUrl"
                  :src="item.logoUrl"
@@ -52,7 +53,7 @@
               <span v-else>{{ item.price | formatPrice }}</span>
               <span v-if="item.period">{{ item.period }}</span>
             </div>
-          </label>
+          </div>
           <div class="order-option__body"
                v-if="item.description">
             <!--          <ul class="order-option-list"-->
@@ -80,22 +81,23 @@
         <h3 class="order-shiping__title">Способ оплаты</h3>
         <div class="order-option"
              v-for="item in order.paymentMethods"
-             :key="item.id">
-          <input class="order-option__input"
-                 type="radio"
-                 name="PAY_SYSTEM_ID"
-                 :id="'PAY_SYSTEM_' + item.id"
-                 :value="item.id"
-                 :checked="item.id === order.paymentId"
-                 @change="selectPayment({ id: item.id, storeId: order.storeId })">
+             :key="item.id"
+             :class="{ active: item.id === order.paymentId }">
+          <!--          <input class="order-option__input"-->
+          <!--                 type="radio"-->
+          <!--                 name="PAY_SYSTEM_ID"-->
+          <!--                 :id="'PAY_SYSTEM_' + item.id"-->
+          <!--                 :value="item.id"-->
+          <!--                 :checked="item.id === order.paymentId"-->
+          <!--                 @change="selectPayment({ id: item.id, storeId: order.storeId })">-->
           <!--          <input class="order-option__input"-->
           <!--                 type="radio"-->
           <!--                 name="PAY_SYSTEM_ID"-->
           <!--                 :id="'PAY_SYSTEM_' + item.id"-->
           <!--                 :value="item.id"-->
           <!--                 v-model="order.paymentId">-->
-          <label class="order-option__header"
-                 :for="'PAY_SYSTEM_' + item.id">
+          <div class="order-option__header"
+               @click="selectPayment({ id: item.id, storeId: order.storeId })">
             <div class="order-option__title">{{ item.name }}</div>
             <div class="order-option__description"
                  v-html="item.description"></div>
@@ -103,7 +105,7 @@
                  v-if="!item.isCash">
               <i class="icon icon-visa"></i><i class="icon icon-mastercard"></i><i class="icon icon-mir"></i>
             </div>
-          </label>
+          </div>
         </div>
       </div>
     </div>

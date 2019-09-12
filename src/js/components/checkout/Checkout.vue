@@ -17,7 +17,9 @@
     
     <section class="cart" :class="{'cart_loading': checkoutStatus === 'loading' || basketStatus === 'loading'}">
       <div class="cart-loading" v-if="checkoutStatus === 'initialization'">
-        Загрузка...
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Загрузка...</span>
+        </div>
       </div>
       
       <CheckoutEmptyBasket v-else-if="productTotalCount < 1"/>
