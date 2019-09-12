@@ -119,7 +119,7 @@ function initCollapse() {
     if (item.clientHeight > lineHeight * maxLineCount) {
       const container = document.createElement('div');
       container.classList.add('p-collapse__text');
-      container.innerHTML = item.innerHTML;
+      container.innerHTML = item.innerHTML.trim();
       container.style.height = `${lineHeight * maxLineCount}px`;
 
       const button = document.createElement('button');

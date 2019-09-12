@@ -1,7 +1,10 @@
 <template>
   <div class="p-images-block">
     <div class="p-images-block__image">
-      <CanvasImage :src="activePacking.img" :disabled="!isAvailableOffer"/>
+      <CanvasImage v-if="activePacking.gallery && activePacking.gallery.length > 0"
+                   :src="activePacking.gallery[0].img.src"
+                   :src2x="activePacking.gallery[0].img.src2x"
+                   :disabled="!isAvailableOffer"/>
     </div>
     <div class="product-stickers">
       <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">-->
@@ -14,11 +17,16 @@
       <div class="product-stickers__item product-stickers__item_red" v-if="activePacking.isHit">Хит!</div>
     </div>
     <div class="product-control">
-      <button class="product-control__favorites" type="button" title="Добавить в избранное"
+      <button class="product-control__favorites"
+              type="button"
+              title="Добавить в избранное"
               :class="{active: activePacking.isFavorite}"
               @click="toggleFavorites(activePacking)">
         <svg viewBox="0 0 31 27" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14.1065 3.81673L15.213 4.99927L16.3074 3.80551C17.6287 2.36432 19.5549 1.5 21.6674 1.5C25.6637 1.5 28.9273 4.75892 28.9337 8.7695C28.9367 10.7119 28.182 12.5375 26.7977 13.9221C26.7972 13.9226 26.7967 13.9231 26.7962 13.9235L15.1759 25.4703L3.63848 13.9236L3.63848 13.9236L3.63448 13.9196C2.2583 12.5527 1.5 10.7308 1.5 8.77825C1.5 4.74155 4.78042 1.50409 8.7695 1.50409C10.8195 1.50409 12.7446 2.36126 14.1065 3.81673ZM15.2282 25.5227L15.2277 25.5222C15.2279 25.5223 15.228 25.5225 15.2282 25.5227Z" fill="currentColor" stroke="currentColor" stroke-width="3"/>
+          <path d="M14.1065 3.81673L15.213 4.99927L16.3074 3.80551C17.6287 2.36432 19.5549 1.5 21.6674 1.5C25.6637 1.5 28.9273 4.75892 28.9337 8.7695C28.9367 10.7119 28.182 12.5375 26.7977 13.9221C26.7972 13.9226 26.7967 13.9231 26.7962 13.9235L15.1759 25.4703L3.63848 13.9236L3.63848 13.9236L3.63448 13.9196C2.2583 12.5527 1.5 10.7308 1.5 8.77825C1.5 4.74155 4.78042 1.50409 8.7695 1.50409C10.8195 1.50409 12.7446 2.36126 14.1065 3.81673ZM15.2282 25.5227L15.2277 25.5222C15.2279 25.5223 15.228 25.5225 15.2282 25.5227Z"
+                fill="currentColor"
+                stroke="currentColor"
+                stroke-width="3"/>
         </svg>
       </button>
       <!--      <button class="product-control__compare" type="button" @click="addToCompare(activePacking)" title="Сравнить">-->
@@ -37,6 +45,7 @@
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
   import CanvasImage from './Image.vue';
+
 
   export default {
     name: 'ImageBlock',

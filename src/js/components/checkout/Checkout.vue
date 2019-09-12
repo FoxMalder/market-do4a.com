@@ -15,8 +15,12 @@
     <!--      <CheckoutFinal/>-->
     <!--    </div>-->
     
-    <section class="cart" :class="{'cart_loading': checkoutStatus === 'loading'}">
-      <CheckoutEmptyBasket v-if="productTotalCount < 1"/>
+    <section class="cart" :class="{'cart_loading': checkoutStatus === 'loading' || basketStatus === 'loading'}">
+      <div class="cart-loading" v-if="checkoutStatus === 'initialization'">
+        Загрузка...
+      </div>
+      
+      <CheckoutEmptyBasket v-else-if="productTotalCount < 1"/>
       
       <template v-else-if="!isMobile">
         <div class="container">
@@ -39,9 +43,10 @@
             :key="step.key"
             v-if="step.key !== 'basket'"
             :class="['cart-mobile-header__item', { active: currentStep === step.key }]">
-            <a href="#" class="cart-mobile-header__link"
-               @click.prevent="setStep(step)">{{ step.title }}
-            </a>
+            <a href="#"
+               class="cart-mobile-header__link"
+               @click.prevent="setStep(step)"
+            >{{ step.title }}</a>
           </li>
         </ul>
         <div class="container">
@@ -90,6 +95,7 @@
         steps: state => state.checkout.steps,
         currentStep: state => state.checkout.currentStepName,
         checkoutStatus: state => state.checkout.checkoutStatus,
+        basketStatus: state => state.cart.status,
       }),
       ...mapGetters('checkout', {
         productTotalCount: 'productTotalCount',
@@ -114,7 +120,13 @@
       // }
     },
     created() {
-      this.$store.dispatch('checkout/getAll')
+      this.$store.dispatch('checkout/getAll');
+      // SET_BASKET
+      this.$store.subscribe((mutation, state) => {
+        if (mutation.type === 'cart/SET_BASKET' && this.checkoutStatus !== 'initialization') {
+          this.$store.dispatch('checkout/refreshOrderAjax');
+        }
+      });
     }
   }
 </script>

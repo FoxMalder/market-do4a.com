@@ -59,7 +59,8 @@ export const param = {
 /**
  * Преобразует и сортирует список методов оплаты
  *
- * @param payments { Array } - Список в формате Битрикса ( order.PAY_SYSTEM )
+ * @param   { Array } payments - Список в формате Битрикса ( order.PAY_SYSTEM )
+ *
  * @returns { Array } - Список в собственном формате
  */
 function mappingPaymentMethods(payments) {
@@ -85,8 +86,9 @@ function mappingPaymentMethods(payments) {
 /**
  * Преобразует, сортирует и фильтрует список методов доставки
  *
- * @param deliveryMethods { Object } - Список в формате Битрикса ( order.DELIVERY )
- * @param isLocaleStore { Boolean } - Тип заказа (магазин или ЦС)
+ * @param   { Object }  deliveryMethods - Список в формате Битрикса ( order.DELIVERY )
+ * @param   { Boolean } isLocaleStore   - Тип заказа (магазин или ЦС)
+ *
  * @returns { Array } - Список в собственном формате
  */
 function mappingDeliveryMethods(deliveryMethods, isLocaleStore = false) {
@@ -133,7 +135,8 @@ function mappingDeliveryMethods(deliveryMethods, isLocaleStore = false) {
 /**
  * Преобразует список итоговых цен
  *
- * @param total { Object } - Список в формате Битрикса ( order.TOTAL )
+ * @param   { Object } total - Список в формате Битрикса ( order.TOTAL )
+ *
  * @returns { Object } - Список в собственном формате
  */
 function convertTotal(total) {
@@ -150,7 +153,8 @@ function convertTotal(total) {
 /**
  * Преобразует список товаров в заказе
  *
- * @param rows { Object } - Список в формате Битрикса ( order.GRID.ROWS )
+ * @param   { Object } rows - Список в формате Битрикса ( order.GRID.ROWS )
+ *
  * @returns { Array } - Список в собственном формате
  */
 function convertProducts(rows) {
@@ -186,7 +190,8 @@ function convertProducts(rows) {
 /**
  * Преобразует и сортирует группы свойств
  *
- * @param groups { Object } - Список в формате Битрикса ( order.ORDER_PROP.groups )
+ * @param   { Object } groups - Список в формате Битрикса ( order.ORDER_PROP.groups )
+ *
  * @returns { Array } - Список в собственном формате
  */
 function convertPropertyGroups(groups) {
@@ -203,11 +208,12 @@ function convertPropertyGroups(groups) {
 /**
  * Преобразует и сортирует список свойств
  *
- * @param properties { Array } - Список в формате Битрикса ( order.ORDER_PROP.properties )
- * @returns { Array } - Список в собственном формате
+ * @param   { Array|Object } properties Список в формате Битрикса ( order.ORDER_PROP.properties )
+ *
+ * @return  { Array } Список в собственном формате
  */
 function convertPropertyList(properties) {
-  return properties
+  return (Array.isArray(properties) ? properties : Object.values(properties))
     .sort((a, b) => parseInt(a.SORT, 10) - parseInt(b.SORT, 10))
     .map((property) => {
       const prop = {
@@ -388,7 +394,7 @@ export default function createModule(options) {
 
 
     // New
-    productTotalCount: state => state.orderList.reduce((accumulator, order) => accumulator + order.productList.length, 0),
+    productTotalCount: state => state.orderList.reduce((c, order) => c + order.productList.length, 0),
     getAllFormData: state => (storeId) => {
       const order = state.orderList.find(item => item.storeId === storeId);
 
@@ -414,14 +420,23 @@ export default function createModule(options) {
   const actions = {
     async getAll({ commit, dispatch }) {
       commit('SET_PARAM', param.result);
-      commit('SET_CHECKOUT_STATUS', 'loading');
+      commit('SET_CHECKOUT_STATUS', 'initialization');
 
       const orderList = [];
-      const propertyGroups = { ...param.result.ORDER_PROP.groups };
-      const propertyList = [...param.result.ORDER_PROP.properties];
+      const propertyGroups = {};
+      const propertyList = {};
+      const isLocaleStore = param.result.LOCAL_STORE === 'Y';
+
+      // order.ORDER_PROP.groups: Object
+      Object.assign(propertyGroups, param.result.ORDER_PROP.groups);
+
+      // order.ORDER_PROP.properties: Array
+      param.result.ORDER_PROP.properties.forEach((prop) => {
+        propertyList[prop.ID] = prop;
+      });
 
       // order.DELIVERY: Object
-      const deliveryMethods = mappingDeliveryMethods(param.result.DELIVERY, param.result.LOCAL_STORE === 'Y');
+      const deliveryMethods = mappingDeliveryMethods(param.result.DELIVERY, isLocaleStore);
       const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
 
       // order.PAY_SYSTEM: Array
@@ -431,16 +446,16 @@ export default function createModule(options) {
       orderList.push({
         index: 1,
         storeId: window.app.storeId,
-        isLocaleStore: param.result.LOCAL_STORE === 'Y',
-        productList: convertProducts(param.result.GRID.ROWS),
         total: convertTotal(param.result.TOTAL),
+        productList: convertProducts(param.result.GRID.ROWS),
+        isLocaleStore,
         deliveryMethods,
         paymentMethods,
         deliveryId: checkedDelivery ? checkedDelivery.id : null,
         paymentId: checkedPayment ? checkedPayment.id : null,
       });
 
-      if (options.basketHasRemoteProducts) {
+      if (options.basketHasRemoteProducts && isLocaleStore) {
         const request = {
           order: {
             sessid: Utils.sessid(),
@@ -475,10 +490,8 @@ export default function createModule(options) {
         Object.assign(propertyGroups, order.ORDER_PROP.groups);
 
         // order.ORDER_PROP.properties: Array
-        order.ORDER_PROP.properties.forEach((group) => {
-          if (!propertyList.find(item => parseInt(item.id, 10) === parseInt(group.id, 10))) {
-            propertyList.push(group);
-          }
+        order.ORDER_PROP.properties.forEach((prop) => {
+          propertyList[prop.ID] = prop;
         });
 
         orderList.push({
@@ -505,7 +518,7 @@ export default function createModule(options) {
 
     refreshOrder({ commit, dispatch }, payloads) {
       const propertyGroups = {};
-      const propertyList = [];
+      const propertyList = {};
 
       const orderList = payloads.map((result) => {
         const { order, oldOrderData } = result;
@@ -523,10 +536,7 @@ export default function createModule(options) {
 
         // order.ORDER_PROP.properties: Array
         order.ORDER_PROP.properties.forEach((prop) => {
-          const currentProp = propertyList.find(item => parseInt(item.id, 10) === parseInt(prop.id, 10));
-          if (!currentProp) {
-            propertyList.push(prop);
-          }
+          propertyList[prop.ID] = prop;
         });
 
         // order.DELIVERY: Object
@@ -578,6 +588,7 @@ export default function createModule(options) {
     },
 
     [SET_PROPERTY_LIST]({ commit }, properties) {
+      console.log('До', properties);
       commit(SET_PROPERTY_LIST, convertPropertyList(properties));
     },
 
@@ -655,7 +666,8 @@ export default function createModule(options) {
       let notify = null;
 
       if (order) {
-        switch (order.COUPON_LIST[order.COUPON_LIST.length].JS_STATUS) {
+        const lastCoupon = order.COUPON_LIST[order.COUPON_LIST.length];
+        switch (lastCoupon.JS_STATUS) {
           case 'ENTERED':
             notify = {
               title: 'Промокод не применён',
@@ -669,7 +681,7 @@ export default function createModule(options) {
           case 'BAD':
             notify = {
               title: 'Промокод не применён',
-              text: order.COUPON_LIST[order.COUPON_LIST.length].STATUS_TEXT,
+              text: lastCoupon.STATUS_TEXT,
             };
             break;
           default:
@@ -677,7 +689,6 @@ export default function createModule(options) {
               title: 'Промокод не найден',
               text: 'Возможно, он работает только в стационарных магазинах',
             };
-
         }
       } else {
         notify = {
@@ -704,26 +715,12 @@ export default function createModule(options) {
 
 
     [SET_PAYMENT]({ commit, dispatch }, { id, storeId }) {
-      commit('SET_ERRORS', { PAY_SYSTEM: [] });
-      // const savedPaymentMethods = [...state.paymentMethods];
-      // const paymentMethods = savedPaymentMethods.map(item => ({
-      //   ...item,
-      //   checked: item.id === payment.id,
-      // }));
-      // commit('SET_PAYMENT_METHODS', paymentMethods);
       commit(SET_PAYMENT, { id, storeId });
 
       dispatch('refreshOrderAjax');
     },
 
     [SET_SHIPPING]({ commit, dispatch }, { id, storeId }) {
-      // const savedShippingMethods = [...state.delivery];
-      // const shippingMethods = savedShippingMethods.map(item => ({
-      //   ...item,
-      //   checked: item.id === delivery.id,
-      // }));
-      // commit('SET_SHIPPING_METHODS', shippingMethods);
-      commit('SET_ERRORS', { DELIVERY: [] });
       commit(SET_SHIPPING, { id, storeId });
 
       dispatch('refreshOrderAjax');
@@ -926,12 +923,11 @@ export default function createModule(options) {
     },
 
     [SET_PROPERTY_GROUPS]: (state, propertyGroups) => {
-      console.log(propertyGroups);
       state.propertyGroups = propertyGroups;
     },
 
     [SET_PROPERTY_LIST]: (state, propertyList) => {
-      console.log(propertyList);
+      console.log('После', propertyList);
       state.propertyList = propertyList;
     },
   };

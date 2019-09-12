@@ -3,8 +3,8 @@
     
     <div class="n-form-group__field" v-if="isLocaleStore && locationName">
       <div class="checkout-location">
-        <div class="checkout-location__name">{{locationName}}</div>
-        <button class="checkout-location__button" @click="editCity">Изменить</button>
+        <div class="checkout-location__name">{{ locationName }}</div>
+        <button class="checkout-location__button" type="button" @click="editCity">Изменить</button>
       </div>
     </div>
     <CheckoutLocationSearch v-else :item="prop"/>
@@ -30,9 +30,14 @@
     },
     computed: {
       ...mapState('checkout', {
-        isLocaleStore: 'isLocaleStore',
         locationName: 'locationName',
       }),
+      ...mapState({
+        isLocaleStore: 'isLocaleStore',
+      })
+      // isLocaleStore() {
+      //
+      // }
     },
     methods: {
       editCity() {

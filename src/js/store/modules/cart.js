@@ -8,7 +8,7 @@ import { ADD_TOAST_MESSAGE } from './notifications';
 const state = {
   items: [],
   mapping: {},
-  basketStatus: null,
+  status: null,
 };
 
 // getters
@@ -69,34 +69,40 @@ const actions = {
         commit('SET_BASKET', savedCart);
       },
       onTimeout: () => {
-        Api.clearBasket().then((data) => {
-          localStorage.removeItem('basket');
-          // commit('SET_BASKET', data);
-        }).catch(() => commit('SET_BASKET', savedCart));
+        Api.clearBasket()
+          .then((data) => {
+            localStorage.removeItem('basket');
+            // commit('SET_BASKET', data);
+          })
+          .catch(() => commit('SET_BASKET', savedCart));
       },
     }, { root: true });
   },
 
-  removeFromCart({ dispatch, commit, state }, { basketItemId }) {
-    if (state.items.length <= 1) {
-      dispatch('clearCart');
-      return;
-    }
+  removeFromCart({ dispatch, commit }, { basketItemId }) {
+    return new Promise((resolve, reject) => {
+      const savedCart = {
+        items: [...state.items],
+        mapping: { ...state.mapping },
+      };
 
-    const savedCart = {
-      items: [...state.items],
-      mapping: { ...state.mapping },
-    };
+      commit('SET_STATUS', 'loading');
 
-    // const items = state.items.filter(item => item.basketItemId !== basketItemId);
-    // commit('SET_BASKET', { items });
-
-    Api.removeFromBasket(basketItemId)
-      .then((data) => {
-        localStorage.setItem('basket', JSON.stringify(data));
-        commit('SET_BASKET', data);
-      })
-      .catch(() => commit('SET_BASKET', savedCart));
+      Api.removeFromBasket(basketItemId)
+        .then((data) => {
+          if (data.items.length === 0) {
+            dispatch(ADD_TOAST_MESSAGE, { title: 'Корзина очищена' }, { root: true });
+          }
+          localStorage.setItem('basket', JSON.stringify(data));
+          commit('SET_BASKET', data);
+          resolve();
+        })
+        .catch(() => {
+          commit('SET_BASKET', savedCart);
+          reject();
+        })
+        .finally(() => commit('SET_STATUS', null));
+    });
   },
 
   addProductToCart({ commit }, { productId, quantity, isRemote = true }) {
@@ -107,28 +113,33 @@ const actions = {
         storeId: isRemote ? global.app.storeRemoteId : global.app.storeId,
       };
 
+      commit('SET_STATUS', 'loading');
+
       Api.addProductToBasket(request)
         .then((data) => {
           localStorage.setItem('basket', JSON.stringify(data));
           commit('SET_BASKET', data);
           resolve();
         })
-        .catch(error => reject(error));
+        .catch(error => reject(error))
+        .finally(() => commit('SET_STATUS', null));
     });
   },
 
-  setItemQuantity({ commit, state }, basketItem, newQuantity) {
+  setItemQuantity({ commit, state }, { basketItemId, quantity }) {
     return new Promise((resolve, reject) => {
-      const currentItem = state.items.find(item => item.basketItemId === basketItem.basketItemId);
-      const savedQuantity = currentItem.quantity;
+      // const currentItem = state.items.find(item => item.basketItemId === basketItem.basketItemId);
+      // const savedQuantity = currentItem.quantity;
 
       const request = {
-        basketId: basketItem.basketItemId,
-        quantity: newQuantity,
+        basketId: basketItemId,
+        quantity,
         // storeId: 0
       };
 
-      commit('SET_ITEM_QUANTITY', basketItem, newQuantity);
+      // commit('SET_ITEM_QUANTITY', basketItem, newQuantity);
+
+      commit('SET_STATUS', 'loading');
 
       Api.setQuantityInBasket(request)
         .then((data) => {
@@ -136,10 +147,8 @@ const actions = {
           commit('SET_BASKET', data);
           resolve();
         })
-        .catch((error) => {
-          commit('SET_ITEM_QUANTITY', basketItem, savedQuantity);
-          reject(error);
-        });
+        .catch(error => reject(error))
+        .finally(() => commit('SET_STATUS', null));
     });
   },
 
@@ -193,7 +202,7 @@ const actions = {
 // mutations
 const mutations = {
   SET_STATUS: (state, status) => {
-    state.basketStatus = status;
+    state.status = status;
   },
   SET_BASKET: (state, { items, mapping }) => {
     state.items = items;

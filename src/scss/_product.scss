@@ -1425,6 +1425,7 @@
   }
 
   &__value {
+    white-space: pre-line;
     margin-bottom: 0;
     @include media-breakpoint-up(md) {
       flex: 0 0 (708 - 293px);

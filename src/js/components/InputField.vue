@@ -5,7 +5,7 @@
     <label
       class="input-field__label"
       :for="'property-' + prop.id"
-    >{{ prop.title }}{{ prop.required && '*' }}</label>
+    >{{ prop.title + (prop.required ? '*' : '') }}</label>
     <input class="input-field__input"
            ref="input"
            v-model="prop.value"
@@ -59,11 +59,11 @@
     //     return { required: this.prop.required, email: this.prop.type === 'email' };
     //   }
     // },
-    mounted() {
-       if (this.$el.Input) {
-         this.$el.Input.unMount();
-       }
-    },
+    // mounted() {
+    //    if (this.$el.Input) {
+    //      this.$el.Input.unMount();
+    //    }
+    // },
     methods: {
       // castom({ errors, flags }) {
       //   this.prop.isValid = flags.valid;

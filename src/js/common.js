@@ -1,8 +1,5 @@
 import Vue from 'vue';
 
-
-Vue.config.devtools = true;
-
 import axios from 'axios';
 import Qs from 'qs';
 

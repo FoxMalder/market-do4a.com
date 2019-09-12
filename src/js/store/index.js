@@ -10,6 +10,8 @@ Vue.use(Vuex);
 const state = {
   favorites: [],
   favoritesCount: 0,
+  storeId: global.app.storeId,
+  isLocaleStore: global.app.storeId === global.app.storeRemoteId,
 };
 
 const getters = {
