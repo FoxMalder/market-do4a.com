@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow,no-param-reassign */
 import axios from 'axios';
-import unionBy from 'lodash.unionby';
+// import unionBy from 'lodash.unionby';
 import { validate, extend } from 'vee-validate';
 import { required, email } from 'vee-validate/dist/rules';
 
@@ -34,7 +34,7 @@ extend('email', {
 });
 
 
-const Id = (i => () => i += 1)(0);
+// const Id = (i => () => i += 1)(0);
 
 export {
   SET_SHIPPING as SET_SHIPPING_METHOD,

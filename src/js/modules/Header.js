@@ -1,22 +1,13 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
-// import Tooltip from 'tooltip.js';
 import Vue from 'vue';
-// import Vue from 'vue';
-import Utils from '../utils/utils';
-// import Api from '../api';
 import store from '../store';
-import HeaderCollapse from '../components/HeaderCollapse.vue';
 import HeaderBasket from '../components/HeaderBasket.vue';
+import HeaderCollapse from '../components/HeaderCollapse.vue';
 import HeaderControlFavorites from '../components/HeaderControlFavorites.vue';
-// import ProductDetailHeader from '../components/product/DetailHeader';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
 
-// Vue.component('header-notifications', {
-//   props: ['count'],
-//   template: '<span class="header-control__notifications" v-if="count > 0">{{ count }}</span>',
-// });
 
 class Menu {
   constructor(menu, controls) {
@@ -115,9 +106,9 @@ class Menu {
   }
 }
 
-export default class Header {
+class Header {
   constructor() {
-    store.dispatch('cart/getContents');
+    store.dispatch('cart/init');
 
     this.basketVM = new Vue({
       store,
@@ -131,10 +122,10 @@ export default class Header {
 
 
     this.header = {
-      collapse: Utils.parseTargets('.h-navbar-collapse'),
+      // collapse: Utils.parseTargets('.h-navbar-collapse'),
       fixedTargets: document.querySelector('.h-navbar-fixed'),
       // Список элементов в не фиксированной области над фиксированной
-      fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.h-navbar-top']),
+      // fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.h-navbar-top']),
       // Высота не фиксированной области над фиксированной
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,

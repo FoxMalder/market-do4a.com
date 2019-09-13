@@ -26,7 +26,7 @@ const getters = {
 
 // actions
 const actions = {
-  getContents({ commit, dispatch }) {
+  init({ commit, dispatch }) {
     return new Promise((resolve, reject) => {
       let basket = null;
 
