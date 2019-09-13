@@ -394,14 +394,34 @@ export default function createModule(options) {
 
 
     // New
-    productTotalCount: state => state.orderList.reduce((c, order) => c + order.productList.length, 0),
+    totalQuantity: (state) => {
+      return state.orderList.reduce((c, order) => c + order.productList.length, 0);
+    },
+    totalQuantityText: (state, getters) => {
+      return `${getters.totalQuantity} ${Utils.declOfNum(getters.totalQuantity, [
+        'товар',
+        'товара',
+        'товаров',
+      ])}`;
+    },
+    orderList: state => state.orderList.map(order => ({
+      ...order,
+      quantity: order.productList.length,
+      quantityText: `${order.productList.length} ${Utils.declOfNum(order.productList.length, [
+        'товар',
+        'товара',
+        'товаров',
+      ])}`,
+      paymentItem: order.paymentMethods.find(item => item.id === order.paymentId),
+      deliveryItem: order.deliveryMethods.find(item => item.id === order.deliveryId),
+    })),
     getAllFormData: state => (storeId) => {
       const order = state.orderList.find(item => item.storeId === storeId);
 
       const data = {
         DELIVERY_ID: order.deliveryId,
         PAY_SYSTEM_ID: order.paymentId,
-        // BUYER_STORE: state.buyerStore,
+        // BUYER_STORE: order.buyerStore,
         PERSON_TYPE: state.personTypeId,
         ORDER_DESCRIPTION: state.propertyDescription,
         action: 'saveOrderAjax',
@@ -425,37 +445,41 @@ export default function createModule(options) {
       const orderList = [];
       const propertyGroups = {};
       const propertyList = {};
-      const isLocaleStore = param.result.LOCAL_STORE === 'Y';
 
-      // order.ORDER_PROP.groups: Object
-      Object.assign(propertyGroups, param.result.ORDER_PROP.groups);
 
-      // order.ORDER_PROP.properties: Array
-      param.result.ORDER_PROP.properties.forEach((prop) => {
-        propertyList[prop.ID] = prop;
-      });
+      if (!param.result.SHOW_EMPTY_BASKET) {
+        const isLocaleStore = param.result.LOCAL_STORE === 'Y';
 
-      // order.DELIVERY: Object
-      const deliveryMethods = mappingDeliveryMethods(param.result.DELIVERY, isLocaleStore);
-      const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
+        // order.ORDER_PROP.groups: Object
+        Object.assign(propertyGroups, param.result.ORDER_PROP.groups);
 
-      // order.PAY_SYSTEM: Array
-      const paymentMethods = mappingPaymentMethods(param.result.PAY_SYSTEM);
-      const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
+        // order.ORDER_PROP.properties: Array
+        param.result.ORDER_PROP.properties.forEach((prop) => {
+          propertyList[prop.ID] = prop;
+        });
 
-      orderList.push({
-        index: 1,
-        storeId: window.app.storeId,
-        total: convertTotal(param.result.TOTAL),
-        productList: convertProducts(param.result.GRID.ROWS),
-        isLocaleStore,
-        deliveryMethods,
-        paymentMethods,
-        deliveryId: checkedDelivery ? checkedDelivery.id : null,
-        paymentId: checkedPayment ? checkedPayment.id : null,
-      });
+        // order.DELIVERY: Object
+        const deliveryMethods = mappingDeliveryMethods(param.result.DELIVERY, isLocaleStore);
+        const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
 
-      if (options.basketHasRemoteProducts && isLocaleStore) {
+        // order.PAY_SYSTEM: Array
+        const paymentMethods = mappingPaymentMethods(param.result.PAY_SYSTEM);
+        const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
+
+        orderList.push({
+          index: 1,
+          storeId: window.app.storeId,
+          total: convertTotal(param.result.TOTAL),
+          productList: convertProducts(param.result.GRID.ROWS),
+          isLocaleStore,
+          deliveryMethods,
+          paymentMethods,
+          deliveryId: checkedDelivery ? checkedDelivery.id : null,
+          paymentId: checkedPayment ? checkedPayment.id : null,
+        });
+      }
+
+      if (options.basketHasRemoteProducts) {
         const request = {
           order: {
             sessid: Utils.sessid(),
@@ -786,7 +810,7 @@ export default function createModule(options) {
       }
     },
 
-    async checkout({ state, commit, dispatch }) {
+    async checkout({ state, commit, dispatch, getters }) {
       if (await dispatch('validatePropsData')) {
         Utils.scrollTo(document.getElementById('order-props'));
         return;
@@ -807,7 +831,26 @@ export default function createModule(options) {
       }
 
       commit('SET_CHECKOUT_STATUS', 'loading');
-      const resultList = await dispatch('sendRequest', { action: 'saveOrderAjax' });
+      // Не работает
+      // const resultList = await dispatch('sendRequest', { action: 'saveOrderAjax' });
+
+      const resultList = await Promise.all(state.orderList.map(async (order) => {
+        const request = {
+          ...getters.getAllFormData(order.storeId),
+          // save: 'Y', // ???
+        };
+
+        const formData = new FormData();
+        Object.keys(request).forEach((key) => {
+          formData.append(key, request[key]);
+        });
+
+        await axios
+          .post('/checkout/', formData)
+          .then(response => response.data);
+      }));
+
+      commit('SET_CHECKOUT_STATUS', null);
 
       resultList.forEach((result) => {
         console.log(result);

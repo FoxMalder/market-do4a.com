@@ -22,7 +22,7 @@
                 @click.prevent="increment(item)"
         >+</button>
       </div>
-      <div class="order-product__count-note">{{item.priceBase | formatPrice}}/{{item.MEASURE_NAME || 'шт'}}</div>
+      <div class="order-product__count-note">{{item.priceBase | formatPrice}}/{{item.measureName || 'шт'}}</div>
     </div>
     <div class="order-product__col-price">
       <del class="order-product__old-price" v-if="item.price_benefit > 0">{{item.sumBase | formatPrice}}</del>

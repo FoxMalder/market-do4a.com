@@ -1,6 +1,6 @@
 <template>
   <div class="order">
-    <h3 class="order__title">В заказе {{productCountText}}</h3>
+    <h3 class="order__title">{{ isMobile ? totalQuantityText : `В заказе ${totalQuantityText}` }}</h3>
     
     <div class="order__header">
       <button class="order__btn-clear"
@@ -37,7 +37,7 @@
              :key="order.storeId">
           <div class="order-amount__key">
             <span class="order-number-badge order-number-badge_dark">Отправление {{ order.index }}</span>
-            {{ order.payment ? order.payment.name : 'Способ оплаты не выбран' }}
+            {{ order.paymentItem ? order.payment.name : 'Способ оплаты не выбран' }}
           </div>
           <div class="order-amount__value">{{ order.total.ORDER_TOTAL_PRICE | formatPrice }}</div>
         </div>
@@ -83,24 +83,20 @@
       ProductList,
       Promocode,
     },
+    data() {
+      return {
+        isMobile: document.documentElement.clientWidth < 768,
+      }
+    },
     computed: {
       ...mapState('checkout', {
-        // orderList(state) {
-        //
-        // },
-        orderList: state => state.orderList.map(order => {
-          return {
-            ...order,
-            payment: order.paymentMethods.find(item => item.id === order.paymentId),
-            delivery: order.deliveryMethods.find(item => item.id === order.deliveryId),
-          }
-        }),
-        // total: 'total',
         checkoutStatus: 'checkoutStatus'
       }),
       ...mapGetters('checkout', {
         nextStepButton: 'nextStepButton',
-        productTotalCount: 'productTotalCount',
+        orderList: 'orderList',
+        totalQuantity: 'totalQuantity',
+        totalQuantityText: 'totalQuantityText',
       }),
       // ...mapGetters({
       //   products: 'cart/availableProducts',
@@ -111,12 +107,6 @@
       totalDiscount() {
         return this.orderList.reduce((accumulator, order) => accumulator + order.total.DISCOUNT_PRICE, 0);
       },
-      // visibleProducts() {
-      //   return this.products.filter(prod => prod.canBuy);
-      // },
-      productCountText() {
-        return this.productTotalCount + ' ' + Utils.declOfNum(this.productTotalCount, ['товар', 'товара', 'товаров'])
-      }
     },
     methods: {
       ...mapActions({

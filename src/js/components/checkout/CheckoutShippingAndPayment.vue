@@ -9,8 +9,20 @@
             <i class="icon icon-delete"></i> Удалить отправление
           </button>
         </div>
-        <div class="order-shiping__quantity">{{ order.productList.length }} товара</div>
-        <div class="order-shiping__list"></div>
+        <div class="order-shiping__quantity">{{ order.quantityText }}</div>
+        <div class="order-shiping__list">
+          <div class="order-mini-product"
+               v-for="product in order.productList"
+               :key="product.basketItemId">
+            <div class="order-mini-product__photo">
+              <img class="order-mini-product__img"
+                   :src="product.picture"
+                   :srcset="product.picture2x + ' 2x'"
+                   :alt="product.name">
+            </div>
+            <div class="order-mini-product__caption">{{ `${product.quantity} ${item.measureName || 'шт'}` }}</div>
+          </div>
+        </div>
       </template>
       
       <div class="order-shiping__shipping-type">
@@ -229,19 +241,19 @@
     },
     computed: {
       ...mapState('checkout', {
-        orderList: 'orderList',
+        // orderList: 'orderList',
         // selectedShippingId: 'selectedShippingMethodId',
         // selectedPaymentId: 'selectedPaymentMethodId',
         // paymentMethods: 'paymentMethods',
         errors: 'errors',
         // currentStore: 'currentStore',
       }),
+      ...mapGetters('checkout', {
+        orderList: 'orderList',
+      }),
       multiple() {
         return this.orderList.length > 1;
       }
-      // ...mapGetters('checkout', {
-      //   shippingMethods: 'visibleShippingMethods',
-      // }),
       // paymentMethod: {
       //   get() {
       //     // return this.$store.state.checkout.selectedPaymentMethodId;

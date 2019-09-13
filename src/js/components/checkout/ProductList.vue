@@ -22,14 +22,14 @@
       <div class="order-item__row">
         <div class="order-item__key">Товары</div>
         <div class="order-item__value">
-          <small class="gray">{{productCountText}}</small>
-          <b>{{order.total.ORDER_PRICE | formatPrice}}</b>
+          <small class="gray">{{ order.quantityText }}</small>
+          <b>{{ order.total.ORDER_PRICE | formatPrice }}</b>
         </div>
       </div>
       <div class="order-item__row">
         <div class="order-item__key">Доставка</div>
         <div class="order-item__value">
-          <b>{{order.total.DELIVERY_PRICE > 0 ? order.total.DELIVERY_PRICE : 'Бесплатно'}}</b>
+          <b>{{order.total.DELIVERY_PRICE > 0 ? (order.total.DELIVERY_PRICE | formatPrice) : 'Бесплатно'}}</b>
         </div>
       </div>
       <div class="order-item__row"
@@ -38,13 +38,13 @@
         <div class="order-item__value"><b class="red">{{order.total.DISCOUNT_PRICE | formatPrice}}</b>
         </div>
       </div>
-      <div class="order-item__row" v-if="multiple && order.payment">
+      <div class="order-item__row" v-if="multiple && order.paymentItem">
         <div class="order-item__key">Оплата</div>
         <!--        <div class="order-item__value">-->
         <!--          <i class="icon icon-visa"></i> <i class="icon icon-mastercard"></i> <i class="icon icon-mir"></i> Картой-->
         <!--          онлайн-->
         <!--        </div>-->
-        <div class="order-item__value">{{ order.payment.name }}</div>
+        <div class="order-item__value">{{ order.paymentItem.name }}</div>
       </div>
     </div>
   </div>
@@ -75,22 +75,6 @@
       ...mapState('checkout', {
         total: 'total',
       }),
-      // ...mapState({
-      //   products: state => state.cart.items,
-      // }),
-      // ...mapGetters({
-      //   products: 'cart/availableProducts',
-      // }),
-      // visibleProducts() {
-      //   return this.products.filter(prod => prod.canBuy);
-      // },
-      productCountText() {
-        return this.order.productList.length + ' ' + Utils.declOfNum(this.order.productList.length, [
-          'товар',
-          'товара',
-          'товаров'
-        ])
-      }
     }
   }
 </script>

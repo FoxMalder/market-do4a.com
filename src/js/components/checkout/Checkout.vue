@@ -22,7 +22,7 @@
         </div>
       </div>
       
-      <CheckoutEmptyBasket v-else-if="productTotalCount < 1"/>
+      <CheckoutEmptyBasket v-else-if="totalQuantity < 1"/>
       
       <template v-else-if="!isMobile">
         <div class="container">
@@ -100,7 +100,7 @@
         basketStatus: state => state.cart.status,
       }),
       ...mapGetters('checkout', {
-        productTotalCount: 'productTotalCount',
+        totalQuantity: 'totalQuantity',
         nextStepButton: 'nextStepButton',
       }),
       currentTabComponent() {

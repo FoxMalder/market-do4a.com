@@ -1494,6 +1494,33 @@ button.search-fild__loupe {
   }
 }
 
+.h-basket-counter {
+  margin-top: 6px;
+  padding-right: 11px;
+  font-family: $font-family-bender;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 900;
+  text-align: right;
+
+  &__button {
+    @extend %button-reset;
+    color: $main-color;
+
+    &:hover {
+      color: #1B1B1B;
+    }
+
+    &:disabled {
+      color: $main-color;
+      opacity: 0.5;
+    }
+  }
+
+  &__count {
+    margin: 0 8px;
+  }
+}
 
 //
 // Список категорий в шапке

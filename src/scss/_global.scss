@@ -692,6 +692,9 @@ textarea.input-text {
 
   &__description {
     color: rgba(#101010, 0.5);
+    display: block;
+    margin-right: 15px;
+    margin-top: 5px;
   }
 }
 
@@ -1126,30 +1129,30 @@ textarea.input-text {
   }
 }
 
-.input-counter {
-  margin-top: 6px;
-  padding-right: 11px;
-  font-family: $font-family-bender;
-  font-size: 20px;
-  font-style: italic;
-  font-weight: 900;
-  text-align: right;
-
-  &__up {
-    @extend %button-reset;
-    color: $main-color;
-  }
-
-  &__down {
-    @extend %button-reset;
-    color: $main-color;
-  }
-
-  &__count {
-
-    margin: 0 8px;
-  }
-}
+//.input-counter {
+//  margin-top: 6px;
+//  padding-right: 11px;
+//  font-family: $font-family-bender;
+//  font-size: 20px;
+//  font-style: italic;
+//  font-weight: 900;
+//  text-align: right;
+//
+//  &__up {
+//    @extend %button-reset;
+//    color: $main-color;
+//  }
+//
+//  &__down {
+//    @extend %button-reset;
+//    color: $main-color;
+//  }
+//
+//  &__count {
+//
+//    margin: 0 8px;
+//  }
+//}
 
 .map-balloon {
 

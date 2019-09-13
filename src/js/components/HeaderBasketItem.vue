@@ -27,14 +27,14 @@
         </button>
       </div>
       <div class="input-counter">
-        <button class="input-counter__down"
+        <button class="input-counter__button"
                 type="button"
                 title="Уменьшить количество"
                 :disabled="item.quantity <= 1 || status === 'loading'"
                 @click="decrement"
         >-</button>
         <span class="input-counter__count">{{ item.quantity }}</span>
-        <button class="input-counter__up"
+        <button class="input-counter__button"
                 type="button"
                 title="Увеличить количество"
                 :disabled="item.quantity >= item.quantity_max || status === 'loading'"
