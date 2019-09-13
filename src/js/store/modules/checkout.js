@@ -394,16 +394,12 @@ export default function createModule(options) {
 
 
     // New
-    totalQuantity: (state) => {
-      return state.orderList.reduce((c, order) => c + order.productList.length, 0);
-    },
-    totalQuantityText: (state, getters) => {
-      return `${getters.totalQuantity} ${Utils.declOfNum(getters.totalQuantity, [
-        'товар',
-        'товара',
-        'товаров',
-      ])}`;
-    },
+    totalQuantity: state => state.orderList.reduce((c, order) => c + order.productList.length, 0),
+    totalQuantityText: (state, getters) => `${getters.totalQuantity} ${Utils.declOfNum(getters.totalQuantity, [
+      'товар',
+      'товара',
+      'товаров',
+    ])}`,
     orderList: state => state.orderList.map(order => ({
       ...order,
       quantity: order.productList.length,
@@ -810,7 +806,9 @@ export default function createModule(options) {
       }
     },
 
-    async checkout({ state, commit, dispatch, getters }) {
+    async checkout({
+      state, commit, dispatch, getters,
+    }) {
       if (await dispatch('validatePropsData')) {
         Utils.scrollTo(document.getElementById('order-props'));
         return;
@@ -837,6 +835,7 @@ export default function createModule(options) {
       const resultList = await Promise.all(state.orderList.map(async (order) => {
         const request = {
           ...getters.getAllFormData(order.storeId),
+          storeId: order.storeId,
           // save: 'Y', // ???
         };
 
@@ -853,6 +852,24 @@ export default function createModule(options) {
       commit('SET_CHECKOUT_STATUS', null);
 
       resultList.forEach((result) => {
+        // const b = {
+        //   order: {
+        //     REDIRECT_URL: '\/checkout\/?ORDER_ID=77341',
+        //     ID: 77341,
+        //     DELIVERY: null,
+        //     LOCAL_STORE: 'Y',
+        //     LOCKED_LOCATION_NAME: '',
+        //     CURRENT_STORE: {
+        //       ID: '24390',
+        //       NAME: 'ул. Кирова, д. 27',
+        //       SHORT_ADDRESS: 'м.Октябрьская, между Бахетле и ГПНТБ',
+        //       ADDRESS: 'ул. Кирова, д. 27',
+        //       COORDS: '55.018122402267,82.944041570144',
+        //       WAY_ON_FOOT: '\u0412\u044b\u0445\u043e\u0434 \u043c\u0435\u0442\u0440\u043e \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0413\u041f\u041d\u0422\u0411. \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043a\u0430 \u0441\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043d\u0430\u043b\u0435\u0432\u043e.',
+        //       WAY_ON_CAR: '\u0417\u0430\u0435\u0437\u0434 \u0447\u0435\u0440\u0435\u0437 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043e\u043a \u041a\u0438\u0440\u043e\u0432\u0430 \/ \u0421\u0430\u043a\u043a\u043e \u0412\u0430\u043d\u0446\u0435\u0442\u0442\u0438. \r\n\r\n\u041f\u0440\u0438\u043f\u0430\u0440\u043a\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u043f\u0440\u043e\u0442\u0438\u0432 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430 \u0438\u043b\u0438 \u0432\u043e\u0437\u043b\u0435 \u0411\u0430\u0445\u0435\u0442\u043b\u0435.',
+        //     },
+        //   },
+        // };
         console.log(result);
         const { order } = result;
 

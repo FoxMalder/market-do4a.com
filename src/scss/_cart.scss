@@ -303,16 +303,25 @@
   }
 
   &__quantity {
-    margin-bottom: 141px;
+    margin-bottom: 5px;
     color: rgba(#000, 0.5);
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: -0.01em;
     line-height: 1;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
   }
 
   &__list {
     display: flex;
     overflow: auto;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 30px;
+    }
   }
 
   &__shipping-type {
@@ -333,9 +342,8 @@
     height: 38px;
     overflow: hidden;
     @include media-breakpoint-up(md) {
-      width: 50px;
-      height: 50px;
-      margin-right: 18px;
+      width: 55px;
+      height: 55px;
     }
   }
 
