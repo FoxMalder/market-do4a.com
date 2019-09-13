@@ -5,7 +5,7 @@
     </div>
     
     <transition>
-      <div class="p-detail__availability" v-if="activeOffer.count > 0">
+      <div class="p-detail__availability" v-if="activeOffer.count_city > 0">
         <i class="icon icon-available"></i> В наличии сейчас в
         <a class="text-link" data-anchor href="#stores">
           {{formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])}}
@@ -26,7 +26,7 @@
     
     <div class="p-detail-delivery" v-if="isAvailableOffer">
       
-      <template v-if="activeOffer.count > 0">
+      <template v-if="activeOffer.count_city > 0">
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">
             Самовывоз из

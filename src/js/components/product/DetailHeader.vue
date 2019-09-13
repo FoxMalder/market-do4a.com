@@ -1,9 +1,9 @@
 <template>
   <div class="p-detail-header">
-    <h1 class="p-detail-header__name">{{activePacking.name}}</h1>
+    <h1 class="p-detail-header__name">{{ activePacking.name }}</h1>
     <div class="p-detail-header__note">
       <transition name="fade">
-        <span v-show="!activeOffer.count && activeOffer.count_remote">Доставка с центрального склада</span>
+        <span v-show="!activeOffer.count_city && activeOffer.count_remote">Доставка с центрального склада</span>
       </transition>
     </div>
   </div>
