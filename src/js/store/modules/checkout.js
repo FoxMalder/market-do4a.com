@@ -625,7 +625,7 @@ export default function createModule(options) {
       console.log(order);
 
       if (order) {
-        const lastCoupon = order.COUPON_LIST[order.COUPON_LIST.length];
+        const lastCoupon = order.COUPON_LIST[order.COUPON_LIST.length - 1];
         switch (lastCoupon.JS_STATUS) {
           case 'ENTERED':
             notify = {
@@ -670,6 +670,33 @@ export default function createModule(options) {
     //       }
     //     });
     // },
+
+    clearCheckout({ state, commit, dispatch }) {
+      const savedOrders = [...state.orderList];
+
+      commit('SET_ORDER_LIST', []);
+
+      dispatch(ADD_TOAST_MESSAGE, {
+        title: 'Корзина очищена',
+        text: 'Но вы еще можете вернуть всё обратно.',
+        onCancel: () => {
+          commit('SET_ORDER_LIST', savedOrders);
+        },
+        onTimeout: () => {
+          Api.clearBasket()
+            .then(() => {
+              localStorage.removeItem('basket');
+            })
+            .catch(() => {
+              dispatch(ADD_TOAST_MESSAGE, {
+                title: 'Ошибка',
+                text: 'Не удалось очистить корзину',
+              }, { root: true });
+              commit('SET_ORDER_LIST', savedOrders);
+            });
+        },
+      }, { root: true });
+    },
 
     [SET_PROPERTY_GROUPS]({ commit }, groups) {
       commit(SET_PROPERTY_GROUPS, convertPropertyGroups(groups));

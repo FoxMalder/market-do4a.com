@@ -74,7 +74,13 @@ const actions = {
             localStorage.removeItem('basket');
             // commit('SET_BASKET', data);
           })
-          .catch(() => commit('SET_BASKET', savedCart));
+          .catch(() => {
+            dispatch(ADD_TOAST_MESSAGE, {
+              title: 'Ошибка',
+              text: 'Не удалось очистить корзину',
+            }, { root: true });
+            commit('SET_BASKET', savedCart);
+          });
       },
     }, { root: true });
   },
@@ -99,6 +105,10 @@ const actions = {
         })
         .catch(() => {
           commit('SET_BASKET', savedCart);
+          dispatch(ADD_TOAST_MESSAGE, {
+            title: 'Ошибка',
+            text: 'Не удалось удалить продукт',
+          }, { root: true });
           reject();
         })
         .finally(() => commit('SET_STATUS', null));

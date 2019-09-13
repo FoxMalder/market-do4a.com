@@ -1104,14 +1104,14 @@
     right: 0;
     bottom: 0;
     width: 200px;
-    background: linear-gradient(270deg, #fff 50%, transparent 100%);
+    background: linear-gradient(270deg, #fff 50%, rgba(#fff, 0) 100%);
     pointer-events: none;
   }
 
   @include media-breakpoint-up(md) {
     background: #f7f7f7;
     &::after {
-      background: linear-gradient(270deg, #f7f7f7 50%, transparent 100%);
+      background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
     }
   }
 

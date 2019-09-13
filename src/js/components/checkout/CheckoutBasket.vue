@@ -110,7 +110,7 @@
     },
     methods: {
       ...mapActions({
-        clearCart: 'cart/clearCart',
+        clearCart: 'checkout/clearCheckout',
         setStep: 'checkout/setStep',
       }),
     }
