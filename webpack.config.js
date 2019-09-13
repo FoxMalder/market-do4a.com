@@ -33,19 +33,20 @@ const distPath = path.resolve(__dirname, 'dist');
 
 const cummonConfig = {
   entry: {
-    index: './src/index.js',
-    catalog: './src/catalog.js',
-    firstLevel: './src/first-level.js',
-    favorites: './src/favorites.js',
-    vendors: './src/vendors.js',
-    vendorOpened: './src/vendor-opened.js',
-    product: './src/product.js',
-    cart: './src/cart.js',
-    franchise: './src/franchise.js',
-    privacy: './src/privacy.js',
+    // index: './src/index.js',
+    // catalog: './src/catalog.js',
+    // firstLevel: './src/first-level.js',
+    // favorites: './src/favorites.js',
+    // vendors: './src/vendors.js',
+    // vendorOpened: './src/vendor-opened.js',
+    // product: './src/product.js',
+    // cart: './src/cart.js',
+    // franchise: './src/franchise.js',
+    // privacy: './src/privacy.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
+    header: './src/Header.js',
   },
   output: {
     path: distPath,
@@ -124,85 +125,85 @@ const cummonConfig = {
       },
     }),
 
-    new HtmlWebpackPlugin({
-      title: 'Главная',
-      filename: 'main.html',
-      template: path.resolve(__dirname, 'src/index.pug'),
-      chunks: ['index', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Каталог',
-      filename: 'catalog.html',
-      template: path.resolve(__dirname, 'src/catalog.pug'),
-      chunks: ['catalog', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Каталог / Первый уровень',
-      filename: 'first-level.html',
-      template: path.resolve(__dirname, 'src/first-level.pug'),
-      chunks: ['firstLevel', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Избранное',
-      filename: 'favorites.html',
-      template: path.resolve(__dirname, 'src/favorites.pug'),
-      chunks: ['favorites', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Производители',
-      filename: 'vendors.html',
-      template: path.resolve(__dirname, 'src/vendors.pug'),
-      chunks: ['vendors', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Производитель',
-      filename: 'vendor-opened.html',
-      template: path.resolve(__dirname, 'src/vendor-opened.pug'),
-      chunks: ['vendorOpened', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Карточка товара',
-      filename: 'product.html',
-      template: path.resolve(__dirname, 'src/product.pug'),
-      chunks: ['product', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Корзина',
-      filename: 'cart.html',
-      template: path.resolve(__dirname, 'src/cart.pug'),
-      chunks: ['cart', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Франшиза',
-      filename: 'franchise.html',
-      template: path.resolve(__dirname, 'src/franchise.pug'),
-      chunks: ['franchise', 'common', 'runtime'],
-      minify: false,
-    }),
-
-    new HtmlWebpackPlugin({
-      title: 'Политика приватности',
-      filename: 'privacy.html',
-      template: path.resolve(__dirname, 'src/privacy.pug'),
-      chunks: ['privacy', 'common', 'runtime'],
-      minify: false,
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Главная',
+    //   filename: 'main.html',
+    //   template: path.resolve(__dirname, 'src/index.pug'),
+    //   chunks: ['index', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Каталог',
+    //   filename: 'catalog.html',
+    //   template: path.resolve(__dirname, 'src/catalog.pug'),
+    //   chunks: ['catalog', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Каталог / Первый уровень',
+    //   filename: 'first-level.html',
+    //   template: path.resolve(__dirname, 'src/first-level.pug'),
+    //   chunks: ['firstLevel', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Избранное',
+    //   filename: 'favorites.html',
+    //   template: path.resolve(__dirname, 'src/favorites.pug'),
+    //   chunks: ['favorites', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Производители',
+    //   filename: 'vendors.html',
+    //   template: path.resolve(__dirname, 'src/vendors.pug'),
+    //   chunks: ['vendors', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Производитель',
+    //   filename: 'vendor-opened.html',
+    //   template: path.resolve(__dirname, 'src/vendor-opened.pug'),
+    //   chunks: ['vendorOpened', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Карточка товара',
+    //   filename: 'product.html',
+    //   template: path.resolve(__dirname, 'src/product.pug'),
+    //   chunks: ['product', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Корзина',
+    //   filename: 'cart.html',
+    //   template: path.resolve(__dirname, 'src/cart.pug'),
+    //   chunks: ['cart', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Франшиза',
+    //   filename: 'franchise.html',
+    //   template: path.resolve(__dirname, 'src/franchise.pug'),
+    //   chunks: ['franchise', 'common', 'runtime'],
+    //   minify: false,
+    // }),
+    //
+    // new HtmlWebpackPlugin({
+    //   title: 'Политика приватности',
+    //   filename: 'privacy.html',
+    //   template: path.resolve(__dirname, 'src/privacy.pug'),
+    //   chunks: ['privacy', 'common', 'runtime'],
+    //   minify: false,
+    // }),
 
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
@@ -309,7 +310,7 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
   // output: {
   //   publicPath: '/static/dist/',
   // },
@@ -413,19 +414,19 @@ const prodConfig = {
 
     // new webpack.HotModuleReplacementPlugin(),
 
-    new HtmlBeautifyPlugin({
-      config: {
-        html: {
-          // end_with_newline: true,
-          indent_size: 2,
-          // indent_with_tabs: true,
-          // indent_inner_html: true,
-          // preserve_newlines: true,
-          // unformatted: ['p', 'i', 'b', 'span'],
-        },
-      },
-      replace: [' type="text/javascript"'],
-    }),
+    // new HtmlBeautifyPlugin({
+    //   config: {
+    //     html: {
+    //       // end_with_newline: true,
+    //       indent_size: 2,
+    //       // indent_with_tabs: true,
+    //       // indent_inner_html: true,
+    //       // preserve_newlines: true,
+    //       // unformatted: ['p', 'i', 'b', 'span'],
+    //     },
+    //   },
+    //   replace: [' type="text/javascript"'],
+    // }),
   ],
   optimization: {
     // runtimeChunk: {

@@ -165,7 +165,7 @@
     @extend %button-reset;
     //width: 28px;
     //height: 28px;
-    @include iconfont('back-left');
+    //@include iconfont('back-left');
   }
 
   &__title {
