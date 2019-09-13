@@ -616,9 +616,13 @@ export default function createModule(options) {
     async enterCoupon({ commit, dispatch }, coupon) {
       commit('SET_CHECKOUT_STATUS', 'loading');
       const resultList = await dispatch('sendRequest', { action: 'enterCoupon', coupon });
+      commit('SET_CHECKOUT_STATUS', null);
+
+      console.log(resultList);
 
       const { order } = resultList[0];
       let notify = null;
+      console.log(order);
 
       if (order) {
         const lastCoupon = order.COUPON_LIST[order.COUPON_LIST.length];
@@ -655,7 +659,6 @@ export default function createModule(options) {
       dispatch(ADD_TOAST_MESSAGE, notify, { root: true });
 
       await dispatch('refreshOrder', resultList);
-      commit('SET_CHECKOUT_STATUS', null);
     },
 
     // removeCoupon({ dispatch }) {
