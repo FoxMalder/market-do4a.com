@@ -834,6 +834,7 @@ export default function createModule(options) {
       // Не работает
       // const resultList = await dispatch('sendRequest', { action: 'saveOrderAjax' });
 
+      Utils.log('Checkout', 'Отправка заказов');
       const resultList = await Promise.all(state.orderList.map(async (order) => {
         const request = {
           ...getters.getAllFormData(order.storeId),
@@ -846,90 +847,84 @@ export default function createModule(options) {
           formData.append(key, request[key]);
         });
 
-        await axios
+
+        Utils.log('Checkout', `Отправка заказа ${order.index}`);
+
+        return axios
           .post('/checkout/', formData)
-          .then(response => response.data);
+          .then((response) => {
+            Utils.log('Checkout', `Ответ по заказу ${order.index} получен`);
+            return response.data;
+          });
       }));
+
+      // const b = {
+      //   order: {
+      //     REDIRECT_URL: '\/checkout\/?ORDER_ID=77341',
+      //     ID: 77341,
+      //     DELIVERY: null,
+      //     LOCAL_STORE: 'Y',
+      //     LOCKED_LOCATION_NAME: '',
+      //     CURRENT_STORE: {
+      //       ID: '24390',
+      //       NAME: 'ул. Кирова, д. 27',
+      //       SHORT_ADDRESS: 'м.Октябрьская, между Бахетле и ГПНТБ',
+      //       ADDRESS: 'ул. Кирова, д. 27',
+      //       COORDS: '55.018122402267,82.944041570144',
+      //       WAY_ON_FOOT: '\u0412\u044b\u0445\u043e\u0434 \u043c\u0435\u0442\u0440\u043e \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0413\u041f\u041d\u0422\u0411. \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043a\u0430 \u0441\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043d\u0430\u043b\u0435\u0432\u043e.',
+      //       WAY_ON_CAR: '\u0417\u0430\u0435\u0437\u0434 \u0447\u0435\u0440\u0435\u0437 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043e\u043a \u041a\u0438\u0440\u043e\u0432\u0430 \/ \u0421\u0430\u043a\u043a\u043e \u0412\u0430\u043d\u0446\u0435\u0442\u0442\u0438. \r\n\r\n\u041f\u0440\u0438\u043f\u0430\u0440\u043a\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u043f\u0440\u043e\u0442\u0438\u0432 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430 \u0438\u043b\u0438 \u0432\u043e\u0437\u043b\u0435 \u0411\u0430\u0445\u0435\u0442\u043b\u0435.',
+      //     },
+      //   },
+      // };
+
 
       commit('SET_CHECKOUT_STATUS', null);
 
       let redirect = false;
-      const orders = [];
 
-      resultList.forEach((result) => {
-        // const b = {
-        //   order: {
-        //     REDIRECT_URL: '\/checkout\/?ORDER_ID=77341',
-        //     ID: 77341,
-        //     DELIVERY: null,
-        //     LOCAL_STORE: 'Y',
-        //     LOCKED_LOCATION_NAME: '',
-        //     CURRENT_STORE: {
-        //       ID: '24390',
-        //       NAME: 'ул. Кирова, д. 27',
-        //       SHORT_ADDRESS: 'м.Октябрьская, между Бахетле и ГПНТБ',
-        //       ADDRESS: 'ул. Кирова, д. 27',
-        //       COORDS: '55.018122402267,82.944041570144',
-        //       WAY_ON_FOOT: '\u0412\u044b\u0445\u043e\u0434 \u043c\u0435\u0442\u0440\u043e \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0413\u041f\u041d\u0422\u0411. \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043a\u0430 \u0441\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043d\u0430\u043b\u0435\u0432\u043e.',
-        //       WAY_ON_CAR: '\u0417\u0430\u0435\u0437\u0434 \u0447\u0435\u0440\u0435\u0437 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043e\u043a \u041a\u0438\u0440\u043e\u0432\u0430 \/ \u0421\u0430\u043a\u043a\u043e \u0412\u0430\u043d\u0446\u0435\u0442\u0442\u0438. \r\n\r\n\u041f\u0440\u0438\u043f\u0430\u0440\u043a\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u043f\u0440\u043e\u0442\u0438\u0432 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430 \u0438\u043b\u0438 \u0432\u043e\u0437\u043b\u0435 \u0411\u0430\u0445\u0435\u0442\u043b\u0435.',
-        //     },
-        //   },
-        // };
-        console.log(result);
+      Utils.log('Checkout', 'Разбор ответов');
 
+      if (resultList.length === 1) {
+        const { order } = resultList[0];
 
-        const { order } = result;
+        if (order) {
+          if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
+            document.location.href = order.REDIRECT_URL;
+          }
 
-        if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
-          redirect = true;
+          if (order.ERROR) {
+            dispatch('SET_ERRORS', order.ERROR);
+          }
         }
-
-        if (!order) {
-          alert('Ошибка!');
-          return;
-        }
-
-        if (order.ERROR) {
-          commit('SET_ERRORS', order.ERROR);
-          return;
-        }
-
-        if (order.ID) {
-          orders.push(order.ID);
-        }
-      });
-
-      if (orders.length > 0) {
-        document.location.href = `/checkout/?ORDER_ID=${orders.join(',')}`;
+        return;
       }
 
-      // axios
-      //   .post('/checkout/', context.getters.getAllFormData)
-      //   .then(response => response.data)
-      //   .then((result) => {
-      //     if (result && result.order) {
-      //       const { order } = result;
-      //
-      //       if (result.SHOW_AUTH) {
-      //         console.error('SHOW_AUTH not implemented');
-      //       } else {
-      //         if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
-      //           document.location.href = order.REDIRECT_URL;
-      //         }
-      //
-      //         if (order.ERROR) {
-      //           context.commit('SET_ERRORS', order.ERROR);
-      //           // dispatch('showErrors', order.ERROR);
-      //         }
-      //       }
-      //     }
-      //
-      //     context.commit('SET_CHECKOUT_STATUS', null);
-      //   })
-      //   .catch(() => {
-      //     context.commit('SET_CHECKOUT_STATUS', 'error');
-      //     setTimeout(() => context.commit('SET_CHECKOUT_STATUS', null), 1000);
-      //   });
+      if (resultList.length > 1) {
+        const orders = [];
+
+        resultList.forEach((result) => {
+          const { order } = result;
+
+          if (!order) {
+            return;
+          }
+
+          if (order.REDIRECT_URL && order.ID) {
+            orders.push(order.ID);
+            return;
+          }
+
+          if (order.ERROR) {
+            dispatch('SET_ERRORS', order.ERROR);
+          }
+        });
+
+        if (orders.length > 0) {
+          document.location.href = `/checkout/?ORDER_ID=${orders.join(',')}`;
+        } else {
+          alert('Что-то пошло не так(');
+        }
+      }
     },
   };
 

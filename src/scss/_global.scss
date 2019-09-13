@@ -899,6 +899,7 @@ textarea.input-text {
     transform: $skew-reverse;
     font-family: inherit;
     font-weight: inherit;
+    text-transform: uppercase;
     font-style: italic;
     padding: $input-padding-y ($input-padding-x + 10px);
     margin-left: -10px;
