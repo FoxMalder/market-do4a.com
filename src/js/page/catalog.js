@@ -3,10 +3,10 @@ import debounce from 'lodash.debounce';
 // import throttle from 'lodash.throttle';
 
 
-import catalogControl from '../store/modules/catalogControl';
 import Utils from '../utils/utils';
 // import Api from '../utils/Api';
 import { getFiltredCatalog } from '../api';
+
 import ProductCard from '../components/ProductCard';
 import {
   Multifilter,
@@ -15,7 +15,9 @@ import {
   RadioFilter,
   SelectFilter,
 } from '../components/Multifilter';
-import store from '../store/index';
+
+import store from '../store';
+import catalogControl from '../store/modules/catalogControl';
 import CategoryListMobile from '../components/CategoryListMobile.vue';
 import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
 

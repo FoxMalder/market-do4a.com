@@ -22,24 +22,11 @@ import ProductDetail from '../components/product/Detail.vue';
 import ProductReviews from '../components/product/Reviews.vue';
 import ProductSimilar from '../components/product/Similar.vue';
 
-Vue.filter('formatNumber', (value) => {
-  // if (!value) return '';
-  // return value.toLocaleString();
-  return `@${value.toString()}`;
-});
-
-Vue.filter('formatPrice', (value) => {
-  // if (!value) return '';
-  // return value.toLocaleString();
-  return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
-});
-
 
 /**
  * Высплывашка с информацией о магазине
  */
 function initStoreInfo() {
-
   function onScroll(event) {
     console.log(event);
   }
@@ -167,7 +154,7 @@ class ProductPage {
 
 
     store.registerModule('product', productStore);
-    store.dispatch('product/getAllPacking');
+    store.dispatch('product/init', global.product);
 
     $('.p-review-form').on('submit', this.addReview);
     $('.p-modal-form').on('submit', this.addReview);

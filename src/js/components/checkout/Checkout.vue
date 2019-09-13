@@ -122,7 +122,7 @@
       // }
     },
     created() {
-      this.$store.dispatch('checkout/getAll');
+      this.$store.dispatch('checkout/init');
       // SET_BASKET
       this.$store.subscribe((mutation, state) => {
         if (mutation.type === 'cart/SET_BASKET' && this.checkoutStatus !== 'initialization') {

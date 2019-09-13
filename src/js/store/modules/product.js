@@ -4,6 +4,8 @@
 import Reviews from '../../api/reviews';
 import Product from '../../api/product';
 
+
+// export default function createModule(options) {
 // initial state
 const state = {
   packingId: 0,
@@ -35,13 +37,13 @@ const getters = {
     return getters.activePacking ? getters.activePacking.sku : [];
   },
   availableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count > 0);
+    return getters.visibleOffers.filter(item => item.count > 0 && item.count_city > 0);
   },
   availableDeliveryOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count === 0 && item.count_remote > 0);
+    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote > 0);
   },
   notAvailableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count === 0 && item.count_remote === 0);
+    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote === 0);
   },
   isAvailablePacking: (state, getters) => {
     return getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0;
@@ -61,12 +63,12 @@ const getters = {
 
 // actions
 const actions = {
-  getAllPacking({ dispatch, commit }) {
-    if (!Array.isArray(global.product.packing)) {
-      global.product.packing = Object.values(global.product.packing);
+  init({ commit }, product) {
+    if (!Array.isArray(product.packing)) {
+      product.packing = Object.values(product.packing);
     }
 
-    global.product.packing.forEach((item) => {
+    product.packing.forEach((item) => {
       if (!Array.isArray(item.sku)) {
         // item.sku = Object.values(item.sku);
         item.sku = Object.keys(item.sku).map(key => ({
@@ -76,13 +78,11 @@ const actions = {
       }
     });
 
-    // commit('SET_ALL', global.product);
-
     // commit('SET_NAME', { name: global.product.name });
-    commit('SET_TEXT_DELIVERY', { textDelivery: global.product.textDelivery });
-    commit('SET_PACKING', { packing: global.product.packing });
-    commit('SET_ACTIVE_OFFER_ID', { id: global.product.offerId });
-    commit('SET_ACTIVE_PACKING_ID', { id: global.product.productId });
+    commit('SET_TEXT_DELIVERY', { textDelivery: product.textDelivery });
+    commit('SET_PACKING', { packing: product.packing });
+    commit('SET_ACTIVE_OFFER_ID', { id: product.offerId });
+    commit('SET_ACTIVE_PACKING_ID', { id: product.productId });
   },
 
   selectPacking({ dispatch, commit }, packing) {
@@ -105,28 +105,6 @@ const actions = {
   selectOffer({ commit }, offer) {
     commit('SET_ACTIVE_OFFER_ID', offer);
   },
-
-  // toggleFavorites({ commit }, packing) {
-  //   if (packing.isFavorite) {
-  //     Api.favorites.delete(packing.id).then(() => {
-  //       commit('SET_FAVORITES_STATUS', {
-  //         id: packing.id,
-  //         status: false,
-  //       });
-  //     });
-  //   } else {
-  //     Api.favorites.add(packing.id).then(() => {
-  //       commit('SET_FAVORITES_STATUS', {
-  //         id: packing.id,
-  //         status: true,
-  //       });
-  //     });
-  //   }
-  // },
-  //
-  // addToCompare({ commit }, packing) {
-  //   console.log('add to compare');
-  // },
 
   getNextReviews({ state, dispatch }) {
     dispatch('updateReviews', state.reviewsPage + 1);
@@ -181,6 +159,7 @@ const mutations = {
       ...product,
     };
   },
+
   SET_NAME(state, { name }) {
     state.name = name;
   },
@@ -226,7 +205,6 @@ const mutations = {
     state.reviewsLoading = isLoading;
   },
 
-
   SET_SIMILAR(state, similar) {
     state.similar = similar;
   },
@@ -243,3 +221,4 @@ export default {
   actions,
   mutations,
 };
+// }

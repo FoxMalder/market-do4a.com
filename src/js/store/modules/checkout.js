@@ -20,6 +20,7 @@ const SET_PROPERTY_GROUPS = 'SET_PROPERTY_GROUPS';
 
 const SET_SHIPPING = 'SET_SELECTED_SHIPPING_METHOD_ID';
 const SET_PAYMENT = 'SET_SELECTED_PAYMENT_METHOD_ID';
+const REMOVE_ORDER = 'REMOVE_ORDER';
 
 extend('required', {
   ...required,
@@ -38,6 +39,7 @@ const Id = (i => () => i += 1)(0);
 export {
   SET_SHIPPING as SET_SHIPPING_METHOD,
   SET_PAYMENT as SET_PAYMENT_METHOD,
+  REMOVE_ORDER,
 };
 
 export const param = {
@@ -434,7 +436,7 @@ export default function createModule(options) {
   };
 
   const actions = {
-    async getAll({ commit, dispatch }) {
+    async init({ commit, dispatch }) {
       commit('SET_PARAM', param.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
 
@@ -605,80 +607,11 @@ export default function createModule(options) {
       ));
     },
 
-    [SET_PROPERTY_GROUPS]({ commit }, groups) {
-      commit(SET_PROPERTY_GROUPS, convertPropertyGroups(groups));
-    },
-
-    [SET_PROPERTY_LIST]({ commit }, properties) {
-      console.log('До', properties);
-      commit(SET_PROPERTY_LIST, convertPropertyList(properties));
-    },
-
-
-    // refreshOrder({ dispatch, commit }, order) {
-    //   if (order.SHOW_AUTH) {
-    //     console.error(order.ERROR);
-    //   }
-    //
-    //   if (order.ROWS) {
-    //     dispatch('cart/getFromSOA', order, { root: true });
-    //   }
-    //   if (order.TOTAL) {
-    //     commit(SET_TOTAL, order.TOTAL);
-    //   }
-    //   if (order.ORDER_PROP) {
-    //     dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
-    //   }
-    //   if (order.DELIVERY) {
-    //     dispatch(SET_SHIPPING_METHODS, order.DELIVERY);
-    //   }
-    //   if (order.PAY_SYSTEM) {
-    //     dispatch(SET_PAYMENT_METHODS, order.PAY_SYSTEM);
-    //   }
-    // },
-
-
-    // sendRequest({ getters, dispatch }, data, orderId = 0) {
-    //   const request = {
-    //     order: getters.getAllFormData,
-    //     via_ajax: 'Y',
-    //     action: 'refreshOrderAjax',
-    //     SITE_ID: param.siteID,
-    //     signedParamsString: param.signedParamsString,
-    //     sessid: Utils.sessid(),
-    //     ...data,
-    //   };
-    //
-    //   // return Api.fetchSaleOrderAjax(param.ajaxUrl, request);
-    //
-    //   return new Promise((resolve, reject) => {
-    //     Api.fetchSaleOrderAjax(param.ajaxUrl, request)
-    //       .then((result) => {
-    //         if (result.order) {
-    //           dispatch('refreshOrder', result.order);
-    //
-    //           if (result.order.ERROR) {
-    //             dispatch('SET_ERRORS', result.order.ERROR);
-    //           }
-    //         }
-    //
-    //         resolve(result);
-    //       })
-    //       .catch((error) => {
-    //         reject(error);
-    //       });
-    //   });
-    // },
-
     async refreshOrderAjax({ commit, dispatch }) {
       commit('SET_CHECKOUT_STATUS', 'loading');
       await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }));
       commit('SET_CHECKOUT_STATUS', null);
     },
-
-    // saveOrderAjax({ dispatch }) {
-    //   return dispatch('sendRequest', { action: 'saveOrderAjax' })
-    // },
 
     async enterCoupon({ commit, dispatch }, coupon) {
       commit('SET_CHECKOUT_STATUS', 'loading');
@@ -735,6 +668,13 @@ export default function createModule(options) {
     //     });
     // },
 
+    [SET_PROPERTY_GROUPS]({ commit }, groups) {
+      commit(SET_PROPERTY_GROUPS, convertPropertyGroups(groups));
+    },
+
+    [SET_PROPERTY_LIST]({ commit }, properties) {
+      commit(SET_PROPERTY_LIST, convertPropertyList(properties));
+    },
 
     [SET_PAYMENT]({ commit, dispatch }, { id, storeId }) {
       commit(SET_PAYMENT, { id, storeId });
@@ -744,6 +684,12 @@ export default function createModule(options) {
 
     [SET_SHIPPING]({ commit, dispatch }, { id, storeId }) {
       commit(SET_SHIPPING, { id, storeId });
+
+      dispatch('refreshOrderAjax');
+    },
+
+    [REMOVE_ORDER]({ commit, dispatch }, { storeId }) {
+      commit(REMOVE_ORDER, storeId);
 
       dispatch('refreshOrderAjax');
     },
@@ -831,10 +777,9 @@ export default function createModule(options) {
       }
 
       commit('SET_CHECKOUT_STATUS', 'loading');
-      // Не работает
-      // const resultList = await dispatch('sendRequest', { action: 'saveOrderAjax' });
 
       Utils.log('Checkout', 'Отправка заказов');
+
       const resultList = await Promise.all(state.orderList.map(async (order) => {
         const request = {
           ...getters.getAllFormData(order.storeId),
@@ -879,8 +824,6 @@ export default function createModule(options) {
 
 
       commit('SET_CHECKOUT_STATUS', null);
-
-      let redirect = false;
 
       Utils.log('Checkout', 'Разбор ответов');
 
@@ -945,46 +888,6 @@ export default function createModule(options) {
       state.currentStepName = key;
     },
 
-    // [SET_PROPERTY_LIST]: (state, propertyList) => {
-    //   state.propertyList = propertyList;
-    // },
-    //
-    // [SET_CURRENT_STORE]: (state, store) => {
-    //   state.currentStore = {
-    //     ...state.currentStore,
-    //     ...store,
-    //   };
-    // },
-
-    // [SET_SHIPPING_METHODS]: (state, deliveryList) => {
-    //   state.delivery = deliveryList;
-    // },
-    [SET_SHIPPING]: (state, { id, storeId }) => {
-      const currentOrder = state.orderList.find(item => item.storeId === storeId);
-      currentOrder.deliveryId = id;
-    },
-
-    // [SET_PAYMENT_METHODS]: (state, paymentMethods) => {
-    //   state.paymentMethods = paymentMethods;
-    // },
-    [SET_PAYMENT]: (state, { id, storeId }) => {
-      const currentOrder = state.orderList.find(item => item.storeId === storeId);
-      currentOrder.paymentId = id;
-    },
-    // [SET_TOTAL]: (state, total) => {
-    //   state.total = {
-    //     ...state.total,
-    //     ...total,
-    //   };
-    // },
-    // SET_SELECTED_PAYMENT_METHOD(state, { id }) {
-    //   state.selectedPaymentMethod = id;
-    // },
-
-    // SET_PERSON_TYPE(state, id) {
-    //   state.personType = id;
-    // },
-
     SET_ERRORS(state, errors) {
       state.errors = {
         ...state.errors,
@@ -998,12 +901,25 @@ export default function createModule(options) {
       state.orderList = orderList;
     },
 
+    [REMOVE_ORDER]: (state, storeId) => {
+      state.orderList = state.orderList.filter(order => order.storeId !== storeId);
+    },
+
+    [SET_SHIPPING]: (state, { id, storeId }) => {
+      const currentOrder = state.orderList.find(item => item.storeId === storeId);
+      currentOrder.deliveryId = id;
+    },
+
+    [SET_PAYMENT]: (state, { id, storeId }) => {
+      const currentOrder = state.orderList.find(item => item.storeId === storeId);
+      currentOrder.paymentId = id;
+    },
+
     [SET_PROPERTY_GROUPS]: (state, propertyGroups) => {
       state.propertyGroups = propertyGroups;
     },
 
     [SET_PROPERTY_LIST]: (state, propertyList) => {
-      console.log('После', propertyList);
       state.propertyList = propertyList;
     },
   };

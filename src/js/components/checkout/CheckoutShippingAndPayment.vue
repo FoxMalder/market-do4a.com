@@ -5,8 +5,11 @@
       <template v-if="multiple">
         <div class="order-shiping__header">
           <div class="order-shiping__name">Отправление {{ order.index }}</div>
-          <button class="order-shiping__btn-delete" type="button">
-            <i class="icon icon-delete"></i> Удалить отправление
+          <button class="order-shiping__btn-delete"
+                  type="button"
+                  @click="removeOrder(order)">
+            <i class="icon icon-delete"></i>
+            Удалить отправление
           </button>
         </div>
         <div class="order-shiping__quantity">{{ order.quantityText }}</div>
@@ -230,7 +233,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD } from './../../store/modules/checkout';
+  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
   import CheckoutAlert from './CheckoutAlert.vue';
 
 
@@ -254,30 +257,11 @@
       multiple() {
         return this.orderList.length > 1;
       }
-      // paymentMethod: {
-      //   get() {
-      //     // return this.$store.state.checkout.selectedPaymentMethodId;
-      //     return this.selectedPaymentId;
-      //   },
-      //   set(value) {
-      //     this.$store.dispatch(`checkout/${SET_PAYMENT_METHOD}`, value);
-      //     // this.selectPayment(value);
-      //   }
-      // },
-      // shippingMethod: {
-      //   get() {
-      //     // return this.$store.state.checkout.selectedShippingMethodId;
-      //     return this.selectedShippingId
-      //   },
-      //   set(value) {
-      //     this.$store.dispatch(`checkout/${SET_SHIPPING_METHOD}`, value);
-      //     // this.selectShipping(value);
-      //   }
-      // }
     },
     methods: mapActions('checkout', {
       selectPayment: SET_PAYMENT_METHOD,
       selectShipping: SET_SHIPPING_METHOD,
+      removeOrder: REMOVE_ORDER,
     })
   }
 </script>
