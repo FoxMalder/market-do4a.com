@@ -26,15 +26,15 @@
           </svg>
         </button>
       </div>
-      <div class="input-counter">
-        <button class="input-counter__button"
+      <div class="h-basket-counter">
+        <button class="h-basket-counter__button"
                 type="button"
                 title="Уменьшить количество"
                 :disabled="item.quantity <= 1 || status === 'loading'"
                 @click="decrement"
         >-</button>
-        <span class="input-counter__count">{{ item.quantity }}</span>
-        <button class="input-counter__button"
+        <span class="h-basket-counter__count">{{ item.quantity }}</span>
+        <button class="h-basket-counter__button"
                 type="button"
                 title="Увеличить количество"
                 :disabled="item.quantity >= item.quantity_max || status === 'loading'"

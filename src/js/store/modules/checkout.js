@@ -306,7 +306,7 @@ function convertPropertyList(properties) {
 
 
 export default function createModule(options) {
-  // param.locale = options.locale;
+  param.locations = options.locations;
   param.siteID = options.siteID;
   param.ajaxUrl = options.ajaxUrl;
   param.signedParamsString = options.signedParamsString;
@@ -443,9 +443,7 @@ export default function createModule(options) {
       const propertyList = {};
 
 
-      if (!param.result.SHOW_EMPTY_BASKET) {
-        const isLocaleStore = param.result.LOCAL_STORE === 'Y';
-
+      if (param.result.ORDER_PROP) {
         // order.ORDER_PROP.groups: Object
         Object.assign(propertyGroups, param.result.ORDER_PROP.groups);
 
@@ -453,6 +451,10 @@ export default function createModule(options) {
         param.result.ORDER_PROP.properties.forEach((prop) => {
           propertyList[prop.ID] = prop;
         });
+      }
+
+      if (!param.result.SHOW_EMPTY_BASKET) {
+        const isLocaleStore = param.result.LOCAL_STORE === 'Y';
 
         // order.DELIVERY: Object
         const deliveryMethods = mappingDeliveryMethods(param.result.DELIVERY, isLocaleStore);
@@ -851,6 +853,9 @@ export default function createModule(options) {
 
       commit('SET_CHECKOUT_STATUS', null);
 
+      let redirect = false;
+      const orders = [];
+
       resultList.forEach((result) => {
         // const b = {
         //   order: {
@@ -871,16 +876,32 @@ export default function createModule(options) {
         //   },
         // };
         console.log(result);
+
+
         const { order } = result;
 
+        if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
+          redirect = true;
+        }
+
         if (!order) {
+          alert('Ошибка!');
           return;
         }
 
         if (order.ERROR) {
           commit('SET_ERRORS', order.ERROR);
+          return;
+        }
+
+        if (order.ID) {
+          orders.push(order.ID);
         }
       });
+
+      if (orders.length > 0) {
+        document.location.href = `/checkout/?ORDER_ID=${orders.join(',')}`;
+      }
 
       // axios
       //   .post('/checkout/', context.getters.getAllFormData)
