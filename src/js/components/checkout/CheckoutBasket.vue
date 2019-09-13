@@ -37,7 +37,7 @@
              :key="order.storeId">
           <div class="order-amount__key">
             <span class="order-number-badge order-number-badge_dark">Отправление {{ order.index }}</span>
-            {{ order.paymentItem ? order.payment.name : 'Способ оплаты не выбран' }}
+            {{ order.paymentItem ? order.paymentItem.name : 'Способ оплаты не выбран' }}
           </div>
           <div class="order-amount__value">{{ order.total.ORDER_TOTAL_PRICE | formatPrice }}</div>
         </div>

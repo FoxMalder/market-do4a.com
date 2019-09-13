@@ -20,7 +20,7 @@
                    :srcset="product.picture2x + ' 2x'"
                    :alt="product.name">
             </div>
-            <div class="order-mini-product__caption">{{ `${product.quantity} ${item.measureName || 'шт'}` }}</div>
+            <div class="order-mini-product__caption">{{ `${product.quantity} ${product.measureName || 'шт'}` }}</div>
           </div>
         </div>
       </template>
