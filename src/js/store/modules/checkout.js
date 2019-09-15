@@ -908,6 +908,10 @@ export default function createModule(options) {
       state.currentStepName = key;
     },
 
+    SET_DESCRIPTION(state, message) {
+      state.propertyDescription = message;
+    },
+
     SET_ERRORS(state, errors) {
       state.errors = {
         ...state.errors,

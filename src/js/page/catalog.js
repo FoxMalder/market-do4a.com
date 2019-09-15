@@ -118,21 +118,21 @@ export default class CatalogControl {
 
 
     // Управление каталогом для мобилок
-    const CatalogControlMobileVM = new Vue({
+    this.catalogControlMobileVM = new Vue({
       store,
       render: h => h(CatalogFilterMobile),
     }).$mount();
-    document.body.appendChild(CatalogControlMobileVM.$el);
+    document.body.appendChild(this.catalogControlMobileVM.$el);
 
     // Список категорий для мобилок
-    const CategoryListMobileVM = new Vue({
+    this.categoryListMobileVM = new Vue({
       store,
       render: h => h(CategoryListMobile),
     }).$mount();
 
     const catalogControlEl = document.querySelector('.catalog-control');
     if (catalogControlEl) {
-      catalogControlEl.insertBefore(CategoryListMobileVM.$el, catalogControlEl.firstChild);
+      catalogControlEl.insertBefore(this.categoryListMobileVM.$el, catalogControlEl.firstChild);
     }
   }
 
@@ -214,10 +214,12 @@ export default class CatalogControl {
   setBreadcumps(array, title = '', h1 = '') {
     let html = '';
     array.forEach((item, i) => {
-      if (i < array.length - 1) {
+      if (i === 0) {
         html += `<a class="breadcumps__link red" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
-      } else {
+      } else if (i === array.length - 1) {
         html += `<span class="breadcumps__page">${item.name}</span>`;
+      } else {
+        html += `<a class="breadcumps__link" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
       }
     });
     this.breadcumps.innerHTML = html;

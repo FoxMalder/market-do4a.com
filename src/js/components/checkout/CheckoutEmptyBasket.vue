@@ -3,7 +3,7 @@
     <div class="container">
       <h3>Ваша корзина пуста</h3>
       <p>Добавьте покупки, чтобы начать оформление заказа</p>
-      <button class="btn btn-red btn-skew">Начать покупать</button>
+      <a href="/catalog/" class="btn btn-red btn-skew">Начать покупать</a>
     </div>
   </div>
 </template>

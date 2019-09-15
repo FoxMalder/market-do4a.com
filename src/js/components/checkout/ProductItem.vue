@@ -5,7 +5,8 @@
     </div>
     <div class="order-product__col-info">
       <a :href="item.url" class="order-product__name">{{ item.name }}</a>
-      <div class="order-product__description">{{ item.pack || '' }}</div>
+      <!--      <div class="order-product__description">{{ item.pack }}</div>-->
+      <div class="order-product__description" v-if="basketItem">{{ basketItem.pack }}</div>
     </div>
     <div class="order-product__col-count">
       <div class="order-product__counter">
@@ -17,7 +18,7 @@
         <div class="order-product__quantity">{{ item.quantity }}</div>
         <button class="order-product__increment"
                 type="button"
-                :disabled="!item.quantity_max || item.quantity >= item.quantity_max"
+                :disabled="!basketItem || item.quantity >= basketItem.quantity_max"
                 @click.prevent="increment(item)"
         >+</button>
       </div>
@@ -55,11 +56,11 @@
         required: true
       },
     },
-    // computed: {
-    //   basketItem() {
-    //     return this.$store.getters['cart/getBasketItemById'](this.item.basketItemId);
-    //   }
-    // },
+    computed: {
+      basketItem() {
+        return this.$store.getters['cart/getBasketItemById'](this.item.basketItemId);
+      }
+    },
     created() {
       this.debouncedSetQuantity = debounce(this.setQuantity, 300);
     },
@@ -70,7 +71,7 @@
         })
       },
       increment() {
-        if (this.item.quantity_max && this.item.quantity < this.item.quantity_max) {
+        if (this.basketItem && this.item.quantity < this.basketItem.quantity_max) {
           this.item.quantity += 1;
           this.debouncedSetQuantity();
         }

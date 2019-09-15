@@ -1,4 +1,6 @@
 import axios from 'axios';
+import qs from 'qs';
+
 import Utils from '../utils/utils';
 
 export default {
@@ -10,7 +12,7 @@ export default {
     };
 
     return axios
-      .post(`/ajax/catalog/products/similarByProductId/${productId}/`, data)
+      .post(`/ajax/catalog/products/similarByProductId/${productId}/`, qs.stringify(data))
       .then(response => response.data)
       .then((response) => {
         if (response.success) {

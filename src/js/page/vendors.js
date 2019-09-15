@@ -4,15 +4,18 @@ import Macy from 'macy';
 import store from '../store';
 import { CheckboxFilter, Multifilter, PriceFilter } from '../components/Multifilter';
 import CategoryListMobile from '../components/CategoryListMobile.vue';
+import catalogControl from '../store/modules/catalogControl';
 
 
 export default class Vendors {
   constructor() {
+    store.registerModule('filters', catalogControl);
+
     this.searchField = document.querySelector('.page-header .search-fild__input');
 
     this.searchFieldText = this.searchField.value.trim().toLowerCase();
-    this.vendors = null;
-    this.filter = null;
+    this.vendors = [];
+    this.filter = [];
     this.macy = null; // Masonry
 
     this.parse();
@@ -27,7 +30,7 @@ export default class Vendors {
       sections: item.dataset.sectionsId ? item.dataset.sectionsId.split(',') : [],
     }));
 
-    this.filter = [].map.call(document.querySelectorAll('fieldset.multifilter'), (filter) => {
+    [].map.call(document.querySelectorAll('fieldset.multifilter'), (filter) => {
       if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, 'filters');
       // if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.filterItems);
       if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter, 'filters');
@@ -42,13 +45,16 @@ export default class Vendors {
       }
     });
 
-    document.querySelector('.catalog-control').insertBefore(
-      new Vue({
-        store,
-        render: h => h(CategoryListMobile),
-      }).$mount().$el,
-      document.querySelector('.catalog-control').firstChild,
-    );
+
+    this.categoryListMobileVM = new Vue({
+      store,
+      render: h => h(CategoryListMobile),
+    }).$mount();
+
+    const catalogControlEl = document.querySelector('.catalog-control');
+    if (catalogControlEl) {
+      catalogControlEl.insertBefore(this.categoryListMobileVM.$el, catalogControlEl.firstChild);
+    }
 
     this.searchField.addEventListener('input', this.onSearch);
     this.searchField.addEventListener('change', this.onSearch);
@@ -91,9 +97,11 @@ export default class Vendors {
       if (
         (item.name.indexOf(this.searchFieldText) !== -1 || this.searchFieldText.length === 0)
         // && selected.every(checkedItems => checkedItems.every(id => item.sections.includes(id)))
-        && selected.every(checkedItems => (checkedItems.length > 0
-        ? checkedItems.some(id => item.sections.includes(id))
-        : true))
+        && selected.every(checkedItems => (
+          checkedItems.length > 0
+            ? checkedItems.some(id => item.sections.includes(id))
+            : true
+        ))
       ) {
         item.el.style.display = '';
       } else {

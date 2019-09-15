@@ -1,4 +1,6 @@
 /* eslint-disable no-param-reassign */
+// import App from '../App';
+
 const Utils = {
   isObject(o) {
     return typeof o === 'object' && o !== null && o.constructor && o.constructor === Object;
@@ -125,9 +127,10 @@ const Utils = {
    */
   scrollTo(element, duration = 1000) {
     const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
+    const fixedContainer = document.querySelector('.h-navbar-fixed');
 
     $('html, body').animate({
-      scrollTop: offsetTop - global.app.Header.header.fixedTargets.clientHeight,
+      scrollTop: offsetTop - (fixedContainer ? fixedContainer.getBoundingClientRect().height : 0),
     }, duration);
   },
 

@@ -5,6 +5,7 @@ import store from '../store';
 import HeaderBasket from '../components/HeaderBasket.vue';
 import HeaderCollapse from '../components/HeaderCollapse.vue';
 import HeaderControlFavorites from '../components/HeaderControlFavorites.vue';
+// import ready from 'domready';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
 
@@ -70,7 +71,6 @@ class Menu {
   }
 
   back() {
-    console.log(this.activeSubMenu);
     if (this.activeSubMenu.length > 0) {
       const el = this.activeSubMenu[this.activeSubMenu.length - 1];
 
@@ -85,7 +85,7 @@ class Menu {
     this.el.classList.add('active');
     [].forEach.call(this.controls, item => item.classList.add('active'));
 
-    const offsetTop = window.app.Header.header.fixedTargets.getBoundingClientRect().top;
+    const offsetTop = document.querySelector('.h-navbar-fixed').getBoundingClientRect().top;
 
     if (offsetTop > 0) {
       $('html, body').animate({
@@ -121,11 +121,10 @@ export default class Header {
     }).$mount('.h-navbar-collapse');
 
 
+    this.fixedContainerEl = document.querySelector('.h-navbar-fixed');
+
     this.header = {
-      // collapse: Utils.parseTargets('.h-navbar-collapse'),
-      fixedTargets: document.querySelector('.h-navbar-fixed'),
-      // Список элементов в не фиксированной области над фиксированной
-      // fixedOffsetTargets: Utils.parseTargets(['.header-banner', '.h-navbar-top']),
+      // fixedTargets: document.querySelector('.h-navbar-fixed'),
       // Высота не фиксированной области над фиксированной
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,
@@ -178,15 +177,15 @@ export default class Header {
     //
 
     // Stickyfill.forceSticky();
-    Stickyfill.add(this.header.fixedTargets);
+    Stickyfill.add(this.fixedContainerEl);
 
 
     window.addEventListener('scroll', () => {
-      if (this.header.fixedTargets.getBoundingClientRect().top === 0) {
+      if (this.fixedContainerEl.getBoundingClientRect().top === 0) {
         // this.header.fixedTargets.style.height = this.header.fixedTargets.clientHeight;
-        this.header.fixedTargets.classList.add('fixed');
+        this.fixedContainerEl.classList.add('fixed');
       } else {
-        this.header.fixedTargets.classList.remove('fixed');
+        this.fixedContainerEl.classList.remove('fixed');
       }
       // if (this.header.fixedTargets.getBoundingClientRect().top === 0) {
       //   this.header.fixedTargets.classList.add('fixed');
@@ -258,6 +257,3 @@ export default class Header {
     };
   }
 }
-
-
-// Header.initHtmlApi();

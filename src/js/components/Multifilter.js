@@ -268,6 +268,19 @@ export class CheckboxFilter {
   }
 }
 
+// export function getFilterCheckbox(el, container = 'filters') {
+//   const settings = CheckboxFilter.parseSettings(el);
+//   store.commit('filters/pushFilterToContainer', { container, filter: settings });
+//
+//   return new Vue({
+//     store,
+//     render: h => h(FilterCheckbox, {
+//       props: { filter: store.state.filters[container][settings.name] },
+//     }),
+//   }).$mount(el);
+// }
+
+
 /**
  * SelectFilter
  */

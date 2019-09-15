@@ -34,7 +34,9 @@
               class="input-field__input"
               name="ORDER_DESCRIPTION"
               rows="5"
-              v-model="propertyDescription"></textarea>
+              :value="propertyDescription"
+              @input="updateDescription"
+            ></textarea>
           </div>
         </div>
         <div class="order-props__note">
@@ -102,6 +104,7 @@
     data() {
       return {
         isMobile: document.documentElement.clientWidth < 768,
+        description: '',
       }
     },
     computed: {
@@ -109,7 +112,7 @@
         propertyList: 'propertyList',
         propertyGroups: 'propertyGroups',
         // Old
-        propertyDescription: 'propertyDescription',
+        propertyDescription: state => state.propertyDescription,
         errors: 'errors',
       }),
       groups() {
@@ -119,5 +122,10 @@
         }))
       }
     },
+    methods: {
+      updateDescription(e) {
+        this.$store.commit('checkout/SET_DESCRIPTION', e.target.value)
+      }
+    }
   }
 </script>
