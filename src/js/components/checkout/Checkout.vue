@@ -124,19 +124,19 @@
     created() {
       this.$store.dispatch('checkout/init');
       
-      this.$store.subscribeAction((action, state) => {
-        if (action.type === 'cart/clearCart') {
-          console.log(action.type);
-        } else if (action.type === 'cart/removeFromCart') {
-          // removeFromCart
-          console.log(action.type);
-          this.$store.dispatch('checkout/refreshOrderAjax');
-        } else if (action.type === 'cart/setItemQuantity') {
-          // setItemQuantity
-          console.log(action.type);
-          this.$store.dispatch('checkout/refreshOrderAjax');
-        }
-      });
+      // this.$store.subscribeAction((action, state) => {
+      //   if (action.type === 'cart/clearCart') {
+      //     console.log(action.type);
+      //   } else if (action.type === 'cart/removeFromCart') {
+      //     // removeFromCart
+      //     console.log(action.type);
+      //     this.$store.dispatch('checkout/refreshOrderAjax');
+      //   } else if (action.type === 'cart/setItemQuantity') {
+      //     // setItemQuantity
+      //     console.log(action.type);
+      //     this.$store.dispatch('checkout/refreshOrderAjax');
+      //   }
+      // });
       
       // SET_BASKET
       // this.$store.subscribe((mutation, state) => {

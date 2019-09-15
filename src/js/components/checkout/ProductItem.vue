@@ -70,7 +70,7 @@
         })
       },
       increment() {
-        if (item.quantity_max && this.item.quantity < item.quantity_max) {
+        if (this.item.quantity_max && this.item.quantity < this.item.quantity_max) {
           this.item.quantity += 1;
           this.debouncedSetQuantity();
         }

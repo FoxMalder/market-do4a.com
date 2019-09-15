@@ -107,6 +107,8 @@ const actions = {
           if (data.items.length === 0) {
             dispatch(ADD_TOAST_MESSAGE, { title: 'Корзина очищена' }, { root: true });
           }
+
+          dispatch('checkout/refreshOrderAjax', null, { root: true });
           localStorage.setItem('basket', JSON.stringify(data));
           commit('SET_BASKET', data);
           resolve();
@@ -144,7 +146,7 @@ const actions = {
     });
   },
 
-  setItemQuantity({ commit }, { basketItemId, quantity }) {
+  setItemQuantity({ commit, dispatch }, { basketItemId, quantity }) {
     return new Promise((resolve, reject) => {
       // const currentItem = state.items.find(item => item.basketItemId === basketItem.basketItemId);
       // const savedQuantity = currentItem.quantity;
@@ -162,6 +164,7 @@ const actions = {
       Api.setQuantityInBasket(request)
         .then((data) => {
           localStorage.setItem('basket', JSON.stringify(data));
+          dispatch('checkout/refreshOrderAjax', null, { root: true });
           commit('SET_BASKET', data);
           resolve();
         })
