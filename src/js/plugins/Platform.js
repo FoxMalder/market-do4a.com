@@ -231,6 +231,4 @@ const Platform = {
   ...getClientProperties(),
 };
 
-global.app.Platform = Platform;
-
 export default Platform;

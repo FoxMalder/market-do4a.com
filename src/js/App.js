@@ -3,6 +3,7 @@ import store from './store';
 import Header from './modules/Header';
 import Notifications from './components/Notifications.vue';
 import { ADD_TOAST_MESSAGE } from './store/modules/notifications';
+import Platform from './plugins/Platform';
 
 
 class App {
@@ -10,6 +11,7 @@ class App {
     this.debug = true;
 
     this.store = store;
+    this.platform = Platform;
   }
 
   init() {
