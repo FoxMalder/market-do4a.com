@@ -113,6 +113,7 @@ function mappingDeliveryMethods(deliveryMethods, isLocaleStore = false) {
       period: item.PERIOD_TEXT || null,
       type: item.TYPE,
       logoUrl: item.LOGOTIP ? item.LOGOTIP.SRC : '',
+      category: item.CATEGORY,
     }));
 
   if (isLocaleStore) {

@@ -70,7 +70,7 @@
             </div>
           </div>
           <div class="order-option__body"
-               v-if="item.description">
+               v-if="item.description || item.category === 'sdek.pickup'">
             <!--          <ul class="order-option-list"-->
             <!--              v-if="item.type === 'P'">-->
             <!--            <li class="order-option-list__item" v-if="currentStore">-->
@@ -81,6 +81,7 @@
             <!--          </ul>-->
             <!--                  <div class="order-option__subtitle">Срок доставки 14.05 - 17.05</div>-->
             <p class="order-option__description" v-html="item.description"></p>
+            <div id="moreInfo_sdek-pickup" v-if="item.category === 'sdek.pickup'"></div>
           </div>
         </div>
       </div>
