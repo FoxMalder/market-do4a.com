@@ -60,9 +60,19 @@ const cummonConfig = {
   externals: {
     app: 'app',
     jquery: 'jQuery',
+    BX: 'BX',
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
+
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      BX: 'BX',
+      'window.BX': 'BX',
+    }),
+
     new VueLoaderPlugin(),
     new CopyPlugin([
       { from: './src/static', to: 'static' },
@@ -310,9 +320,9 @@ const devConfig = {
 const prodConfig = {
   mode: 'production',
   devtool: 'eval-source-map',
-  // output: {
-  //   publicPath: '/static/dist/',
-  // },
+  output: {
+    publicPath: '/static/dist/',
+  },
   module: {
     rules: [
       {
@@ -452,7 +462,7 @@ const prodConfig = {
           // test: /\.js$/,
           filename: 'js/[name].bundle.js',
           chunks: 'initial',
-          minChunks: 2,
+          minChunks: 3,
         },
       },
     },

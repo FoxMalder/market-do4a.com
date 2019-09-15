@@ -1,8 +1,16 @@
+import ready from 'domready';
+
 import './js/common';
 import './scss/main.scss';
 
-import './js/page/checkout';
+import App from './js/App';
+import PageCheckout from './js/page/checkout';
 
-if (process.env.NODE_ENV !== 'production') {
-  require('./cart.pug');
-}
+
+ready(() => {
+  global.App = App;
+  global.App.init();
+
+  global.PageCheckout = new PageCheckout();
+  global.PageCheckout.init();
+});

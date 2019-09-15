@@ -5,7 +5,7 @@
     <div class="order__header">
       <button class="order__btn-clear"
               type="button"
-              @click.prevent="clearCart"
+              @click.prevent="clear"
       ><i class="icon icon-delete"></i> Очистить корзину</button>
     </div>
     
@@ -110,9 +110,13 @@
     },
     methods: {
       ...mapActions({
-        clearCart: 'checkout/clearCheckout',
+        // clear: 'checkout/clearCheckout',
         setStep: 'checkout/setStep',
       }),
+      
+      clear() {
+        this.$store.dispatch('cart/clearCart');
+      }
     }
   }
 </script>

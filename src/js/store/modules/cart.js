@@ -30,6 +30,8 @@ const actions = {
     return new Promise((resolve, reject) => {
       let basket = null;
 
+      commit('SET_STATUS', 'initialization');
+
       if (localStorage.getItem('basket')) {
         try {
           basket = JSON.parse(localStorage.getItem('basket'));
@@ -51,7 +53,8 @@ const actions = {
           localStorage.setItem('basket', JSON.stringify(data));
           Utils.log('Basket', 'Updated from API');
         })
-        .catch(error => reject(error));
+        .catch(error => reject(error))
+        .finally(() => commit('SET_STATUS', null));
     });
   },
 
@@ -62,27 +65,32 @@ const actions = {
     };
     commit('SET_BASKET', { items: [], mapping: {} });
 
-    dispatch(ADD_TOAST_MESSAGE, {
-      title: 'Корзина очищена',
-      text: 'Но вы еще можете вернуть всё обратно.',
-      onCancel: () => {
-        commit('SET_BASKET', savedCart);
-      },
-      onTimeout: () => {
-        Api.clearBasket()
-          .then((data) => {
-            localStorage.removeItem('basket');
-            // commit('SET_BASKET', data);
-          })
-          .catch(() => {
-            dispatch(ADD_TOAST_MESSAGE, {
-              title: 'Ошибка',
-              text: 'Не удалось очистить корзину',
-            }, { root: true });
-            commit('SET_BASKET', savedCart);
-          });
-      },
-    }, { root: true });
+    return new Promise((resolve, reject) => {
+      dispatch(ADD_TOAST_MESSAGE, {
+        title: 'Корзина очищена',
+        text: 'Но вы еще можете вернуть всё обратно.',
+        onCancel: () => {
+          commit('SET_BASKET', savedCart);
+          reject();
+        },
+        onTimeout: () => {
+          Api.clearBasket()
+            .then((data) => {
+              localStorage.removeItem('basket');
+              // commit('SET_BASKET', data);
+              resolve();
+            })
+            .catch(() => {
+              reject();
+              dispatch(ADD_TOAST_MESSAGE, {
+                title: 'Ошибка',
+                text: 'Не удалось очистить корзину',
+              }, { root: true });
+              commit('SET_BASKET', savedCart);
+            });
+        },
+      }, { root: true });
+    });
   },
 
   removeFromCart({ dispatch, commit }, { basketItemId }) {
@@ -115,12 +123,12 @@ const actions = {
     });
   },
 
-  addProductToCart({ commit }, { productId, quantity, isRemote = true }) {
+  addProductToCart({ commit, rootState }, { productId, quantity, isRemote = true }) {
     return new Promise((resolve, reject) => {
       const request = {
         productId,
         quantity,
-        storeId: isRemote ? global.app.storeRemoteId : global.app.storeId,
+        storeId: isRemote ? rootState.storeRemoteId : rootState.storeId,
       };
 
       commit('SET_STATUS', 'loading');
@@ -136,7 +144,7 @@ const actions = {
     });
   },
 
-  setItemQuantity({ commit, state }, { basketItemId, quantity }) {
+  setItemQuantity({ commit }, { basketItemId, quantity }) {
     return new Promise((resolve, reject) => {
       // const currentItem = state.items.find(item => item.basketItemId === basketItem.basketItemId);
       // const savedQuantity = currentItem.quantity;

@@ -5,19 +5,20 @@ import checkoutStore from '../store/modules/checkout';
 
 import Checkout from '../components/checkout/Checkout.vue';
 
-document.addEventListener('DOMContentLoaded', () => {
-  try {
+
+export default class PageCheckout {
+  constructor() {
+
+  }
+
+  init() {
     Utils.log('Checkout', 'Registration storage module');
     store.registerModule('checkout', checkoutStore(global.soaData));
 
     Utils.log('Checkout', 'Creating a new Vue instance');
-    const checkoutVM = new Vue({ store, render: h => h(Checkout) });
+    this.vm = new Vue({ store, render: h => h(Checkout) });
 
     Utils.log('Checkout', 'Mounting Vue');
-    checkoutVM.$mount('#vueTest');
-
-    global.app.checkoutVM = checkoutVM;
-  } catch (e) {
-    console.error(e);
+    this.vm.$mount('#vueTest');
   }
-});
+}

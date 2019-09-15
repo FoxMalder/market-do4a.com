@@ -126,7 +126,7 @@ function initCollapse() {
 }
 
 
-class ProductPage {
+export default class PageProduct {
   constructor() {
     this.rectRatingHTML = {
       0: '<div class="rect-rating"><i class="rect-rating__item"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i><i class="rect-rating__item"></i></div>',
@@ -139,18 +139,44 @@ class ProductPage {
 
 
     this.elements = {
+      detailReviewsCount: null,
+      reviewsCount: null,
+      availability: null,
+      breadcumpsThisPage: null,
+    };
+  }
+
+  init() {
+    $('[data-toggle="tooltip"]').tooltip();
+    $('.p-control-select__header').dropdown({ display: 'static' });
+
+
+    // Фиксация блока с фото на планшете
+    if (document.documentElement.clientWidth >= 768
+      && document.documentElement.clientWidth < 1240) {
+      new Sticky('.p-detail__left-block', {
+        marginTop: 90,
+        // stickyClass: 'is-sticky',
+        stickyContainer: '.p-detail',
+      });
+    }
+
+    // Подстройка высоты textarea под высоту содержимого
+    Array.prototype.forEach.call(document.querySelectorAll('textarea.autoheight'), (element) => {
+      new TextareaAutoHeight(element);
+    });
+
+
+    initStoreInfo();
+    initCollapse();
+
+
+    this.elements = {
       detailReviewsCount: document.querySelector('.p-detail__reviews'),
       reviewsCount: document.querySelector('.p-reviews-header__count'),
       availability: document.querySelector('.p-section-availability'),
       breadcumpsThisPage: document.querySelector('.breadcumps__page'),
     };
-
-    // this.$elements = {
-    //   detailReviewsCount: $('.p-detail__reviews'),
-    //   reviewsCount: $('.p-reviews-header__count'),
-    //   availability: $('.p-section-availability'),
-    //   breadcumpsThisPage: $('.breadcumps__page'),
-    // };
 
 
     store.registerModule('product', productStore);
@@ -158,6 +184,7 @@ class ProductPage {
 
     $('.p-review-form').on('submit', this.addReview);
     $('.p-modal-form').on('submit', this.addReview);
+
 
     this.initVue(true);
   }
@@ -239,10 +266,16 @@ class ProductPage {
     }
 
     if (this.elements.breadcumpsThisPage) this.elements.breadcumpsThisPage.innerHTML = activePacking.name;
-    if (this.elements.detailReviewsCount) this.elements.detailReviewsCount.innerHTML = activePacking.review
-      ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
-      : 'Нет отзывов';
-    if (this.elements.reviewsCount) this.elements.reviewsCount.innerHTML = `${activePacking.review > 0 ? activePacking.review : ''}`;
+    if (this.elements.detailReviewsCount) {
+      this.elements.detailReviewsCount.innerHTML = activePacking.review
+        ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
+        : 'Нет отзывов';
+    }
+    if (this.elements.reviewsCount) {
+      this.elements.reviewsCount.innerHTML = `${activePacking.review > 0
+        ? activePacking.review
+        : ''}`;
+    }
   };
 
   /**
@@ -323,32 +356,3 @@ class ProductPage {
       });
   };
 }
-
-$(() => {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('.p-control-select__header').dropdown({ display: 'static' });
-
-
-  // Фиксация блока с фото на планшете
-  if (document.documentElement.clientWidth >= 768
-    && document.documentElement.clientWidth < 1240) {
-    new Sticky('.p-detail__left-block', {
-      marginTop: 90,
-      // stickyClass: 'is-sticky',
-      stickyContainer: '.p-detail',
-    });
-  }
-
-  // Подстройка высоты textarea под высоту содержимого
-  Array.prototype.forEach.call(document.querySelectorAll('textarea.autoheight'), (element) => {
-    new TextareaAutoHeight(element);
-  });
-
-
-  initStoreInfo();
-  initCollapse();
-
-
-  // global.app.Cart = Cart;
-  global.app.Product = new ProductPage();
-});

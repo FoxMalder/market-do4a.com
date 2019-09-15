@@ -106,7 +106,7 @@ class Menu {
   }
 }
 
-class Header {
+export default class Header {
   constructor() {
     store.dispatch('cart/init');
 
@@ -144,33 +144,33 @@ class Header {
     this.init();
   }
 
-  static initHtmlApi() {
-    // Taken from jQuery `ready` function
-    // Instantiate elements already present on the page
-    if (
-      document.readyState === 'complete'
-      || (document.readyState !== 'loading' && !document.documentElement.doScroll)
-    ) {
-      // Handle it asynchronously to allow scripts the opportunity to delay init
-      window.setTimeout(this.initDOMLoadedElements);
-    } else {
-      document.addEventListener('DOMContentLoaded', this.initDOMLoadedElements);
-      window.addEventListener('load', this.initDOMLoadedElements);
-    }
-  }
-
-  static initDOMLoadedElements() {
-    document.removeEventListener('DOMContentLoaded', this.initDOMLoadedElements);
-    window.removeEventListener('load', this.initDOMLoadedElements);
-
-    if (!{}.hasOwnProperty.call(global, 'app')) {
-      global.app = {};
-    }
-
-    if (!global.app.Header) {
-      global.app.Header = new Header();
-    }
-  }
+  // static initHtmlApi() {
+  //   // Taken from jQuery `ready` function
+  //   // Instantiate elements already present on the page
+  //   if (
+  //     document.readyState === 'complete'
+  //     || (document.readyState !== 'loading' && !document.documentElement.doScroll)
+  //   ) {
+  //     // Handle it asynchronously to allow scripts the opportunity to delay init
+  //     window.setTimeout(this.initDOMLoadedElements);
+  //   } else {
+  //     document.addEventListener('DOMContentLoaded', this.initDOMLoadedElements);
+  //     window.addEventListener('load', this.initDOMLoadedElements);
+  //   }
+  // }
+  //
+  // static initDOMLoadedElements() {
+  //   document.removeEventListener('DOMContentLoaded', this.initDOMLoadedElements);
+  //   window.removeEventListener('load', this.initDOMLoadedElements);
+  //
+  //   if (!{}.hasOwnProperty.call(global, 'app')) {
+  //     global.app = {};
+  //   }
+  //
+  //   if (!global.app.Header) {
+  //     global.app.Header = new Header();
+  //   }
+  // }
 
   init() {
     // this.initCityContainer();
@@ -260,4 +260,4 @@ class Header {
 }
 
 
-Header.initHtmlApi();
+// Header.initHtmlApi();

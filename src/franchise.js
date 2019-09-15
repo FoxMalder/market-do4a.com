@@ -1,25 +1,30 @@
-import './js/common';
-
+import { Mousewheel, Scrollbar, Swiper } from 'swiper/dist/js/swiper.esm';
 import enableInlineVideo from 'iphone-inline-video';
+import Sticky from 'sticky-js';
+import ready from 'domready';
 import AOS from 'aos';
+
+import './js/common';
 
 import 'aos/dist/aos.css';
 import './scss/main.scss';
 import './scss/franchise.scss';
-import Sticky from 'sticky-js';
-import {
-  Mousewheel,
-  Scrollbar,
-  Swiper,
-} from 'swiper/dist/js/swiper.esm';
 
+
+import App from './js/App';
 import Parallax from './js/modules/Parallax';
+
 
 if (process.env.NODE_ENV !== 'production') {
   require('./franchise.pug');
 }
 
-Swiper.use([Scrollbar, Mousewheel]);
+
+Swiper.use([
+  Scrollbar,
+  Mousewheel,
+]);
+
 AOS.init({
   duration: 500,
   easing: 'ease-in-out',
@@ -233,7 +238,12 @@ function initForms() {
   });
 }
 
-$(() => {
+
+ready(() => {
+  window.App = App;
+  window.App.init();
+
+
   initVideo();
   initProgramList();
   initForms();

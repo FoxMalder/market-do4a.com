@@ -5,12 +5,13 @@ import qs from 'qs';
 
 /**
  * Добавление продукта в избранное
- * @param productId - id продукта
- * @param cb - callback
- * @param errorCb - callback
+ *
+ * @param {Number} productId - id продукта
+ *
+ * @returns {Promise<AxiosResponse<T>>}
  */
-export function addToFavorites(productId, cb, errorCb) {
-  axios
+export function addToFavorites(productId) {
+  return axios
     .get(`/ajax/favorite/add/${productId}/`)
     .then(response => response.data)
     .then((response) => {
@@ -20,23 +21,19 @@ export function addToFavorites(productId, cb, errorCb) {
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(data => cb(data))
-    .catch((error) => {
-      alert(error.message);
-      errorCb(error);
     });
 }
 
 
 /**
  * Удаление продукта из избранного
- * @param productId - id продукта
- * @param cb - callback
- * @param errorCb - callback
+ *
+ * @param {Number} productId - id продукта
+ *
+ * @returns {Promise<AxiosResponse<T>>}
  */
-export function removeFromFavorites(productId, cb, errorCb) {
-  axios
+export function removeFromFavorites(productId) {
+  return axios
     .get(`/ajax/favorite/delete/${productId}/`)
     .then(response => response.data)
     .then((response) => {
@@ -46,11 +43,6 @@ export function removeFromFavorites(productId, cb, errorCb) {
       const error = new Error(response.message);
       error.response = response;
       throw error;
-    })
-    .then(data => cb(data))
-    .catch((error) => {
-      alert(error.message);
-      errorCb(error);
     });
 }
 
@@ -182,7 +174,7 @@ export function setQuantityInBasket({ basketId, quantity, storeId }) {
  * Удалит конкретную позицию в корзине
  *
  * @param basketId
- * @returns {Promise<AxiosResponse<T> | never>}
+ * @returns {Promise<AxiosResponse<T>>}
  */
 export function removeFromBasket(basketId) {
   return axios
@@ -203,7 +195,7 @@ export function removeFromBasket(basketId) {
  *
  * @param url
  * @param data
- * @returns {Promise<AxiosResponse<T> | never>}
+ * @returns {Promise<AxiosResponse<T>>}
  */
 export function fetchSaleOrderAjax(url, data) {
   return axios
@@ -224,7 +216,7 @@ export function fetchSaleOrderAjax(url, data) {
  * Поиск города по строке
  *
  * @param options
- * @returns {Promise<AxiosResponse<T> | never>}
+ * @returns {Promise<AxiosResponse<T>>}
  */
 export function locationSearch(options = {}) {
   const {

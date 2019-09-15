@@ -22,7 +22,7 @@
         </div>
       </div>
       
-      <CheckoutEmptyBasket v-else-if="totalQuantity < 1"/>
+      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basket.items.length === 0"/>
       
       <template v-else-if="!isMobile">
         <div class="container">
@@ -97,7 +97,7 @@
         steps: state => state.checkout.steps,
         currentStep: state => state.checkout.currentStepName,
         checkoutStatus: state => state.checkout.checkoutStatus,
-        basketStatus: state => state.cart.status,
+        basket: state => state.cart,
       }),
       ...mapGetters('checkout', {
         totalQuantity: 'totalQuantity',
@@ -123,12 +123,27 @@
     },
     created() {
       this.$store.dispatch('checkout/init');
-      // SET_BASKET
-      this.$store.subscribe((mutation, state) => {
-        if (mutation.type === 'cart/SET_BASKET' && this.checkoutStatus !== 'initialization') {
+      
+      this.$store.subscribeAction((action, state) => {
+        if (action.type === 'cart/clearCart') {
+          console.log(action.type);
+        } else if (action.type === 'cart/removeFromCart') {
+          // removeFromCart
+          console.log(action.type);
+          this.$store.dispatch('checkout/refreshOrderAjax');
+        } else if (action.type === 'cart/setItemQuantity') {
+          // setItemQuantity
+          console.log(action.type);
           this.$store.dispatch('checkout/refreshOrderAjax');
         }
       });
+      
+      // SET_BASKET
+      // this.$store.subscribe((mutation, state) => {
+      //   if (mutation.type === 'cart/SET_BASKET' && this.checkoutStatus !== 'initialization') {
+      //     this.$store.dispatch('checkout/refreshOrderAjax');
+      //   }
+      // });
     }
   }
 </script>

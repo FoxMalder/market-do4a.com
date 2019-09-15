@@ -1,5 +1,4 @@
 import Utils from '../utils/utils';
-import Api from '../utils/Api';
 import store from '../store';
 
 export default class ProductCard {

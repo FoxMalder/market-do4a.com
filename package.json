@@ -19,6 +19,7 @@
     "body-scroll-lock": "^2.6.4",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.26",
+    "domready": "^1.0.8",
     "iphone-inline-video": "^2.2.2",
     "jquery": "^3.3.1",
     "lodash.debounce": "^4.0.8",

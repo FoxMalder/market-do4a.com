@@ -164,6 +164,7 @@ export default class MainPage {
       marginTop: 150,
       stickyClass: 'is-sticky',
     });
+
     return new Swiper(mainStarSliderEl, {
       slidesPerView: 'auto',
       freeMode: true,
@@ -266,15 +267,3 @@ export default class MainPage {
     });
   }
 }
-
-function ready(fn) {
-  if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
-}
-
-ready(() => {
-  window.page = new MainPage();
-});

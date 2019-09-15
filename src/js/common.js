@@ -2,25 +2,24 @@ import Vue from 'vue';
 
 import axios from 'axios';
 import Qs from 'qs';
+import ready from 'domready';
 
 import 'simplebar';
 
 import './fancybox';
 import './bootstrap';
-import './modules/Header';
 import './modules/Input';
 
-import Notifications from './components/Notifications.vue';
-import store from './store';
+
+import App from './App';
 import Utils from './utils/utils';
 // import ProductDetail from './components/product/Detail';
 
 
 // global.baseURL = 'https://marketdo4a.com/';
+global.utils = Utils;
 global.axios = axios;
 global.qs = Qs;
-global.store = store;
-global.utils = Utils;
 
 // if (global.dev) {
 //   axios.defaults.baseURL = 'http://dev1.marketdo4a.com/';
@@ -69,47 +68,31 @@ global.utils = Utils;
 
 // axios.defaults.paramsSerializer = params => Qs.stringify(params, { arrayFormat: 'brackets' });
 
-
-function bindNumberInRange(el, binding, vnode) {
-  console.log(el.min, el.max, binding.value);
-
-  const model = binding.expression;
-  const min = parseInt(el.min, 10);
-  const max = parseInt(el.max, 10);
-  const val = parseInt(binding.value, 10);
-
-  if (Number.isNaN(min) && (min >= val)) {
-    vnode.context[model] = min;
-  } else if (Number.isNaN(max) && (max <= val)) {
-    vnode.context[model] = max;
-  }
-
-  el.value = val;
-}
-
-Vue.directive('range', {
-  bind: bindNumberInRange,
-  componentUpdated: bindNumberInRange,
-});
+//
+// function bindNumberInRange(el, binding, vnode) {
+//   console.log(el.min, el.max, binding.value);
+//
+//   const model = binding.expression;
+//   const min = parseInt(el.min, 10);
+//   const max = parseInt(el.max, 10);
+//   const val = parseInt(binding.value, 10);
+//
+//   if (Number.isNaN(min) && (min >= val)) {
+//     vnode.context[model] = min;
+//   } else if (Number.isNaN(max) && (max <= val)) {
+//     vnode.context[model] = max;
+//   }
+//
+//   el.value = val;
+// }
+//
+// Vue.directive('range', {
+//   bind: bindNumberInRange,
+//   componentUpdated: bindNumberInRange,
+// });
 
 Vue.filter('formatPrice', (value) => {
   // if (!value) return '';
   // return value.toLocaleString();
   return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
-});
-
-
-if (!{}.hasOwnProperty.call(window, 'app')) {
-  window.app = {};
-}
-
-const NotifyVM = new Vue({
-  store,
-  render: h => h(Notifications),
-}).$mount();
-
-
-$(() => {
-  store.commit('SET_APP_PARAMS', window.app);
-  document.body.appendChild(NotifyVM.$el);
 });

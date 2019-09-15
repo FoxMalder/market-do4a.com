@@ -402,17 +402,25 @@ export default function createModule(options) {
       'товара',
       'товаров',
     ])}`,
-    orderList: state => state.orderList.map(order => ({
-      ...order,
-      quantity: order.productList.length,
-      quantityText: `${order.productList.length} ${Utils.declOfNum(order.productList.length, [
-        'товар',
-        'товара',
-        'товаров',
-      ])}`,
-      paymentItem: order.paymentMethods.find(item => item.id === order.paymentId),
-      deliveryItem: order.deliveryMethods.find(item => item.id === order.deliveryId),
-    })),
+
+    orderList(state, getters, rootState, rootGetters) {
+      return state.orderList.map(order => ({
+        ...order,
+        productList: order.productList.map(product => ({
+          ...rootGetters['cart/getBasketItemById'](product.basketItemId),
+          ...product,
+        })),
+        quantity: order.productList.length,
+        quantityText: `${order.productList.length} ${Utils.declOfNum(order.productList.length, [
+          'товар',
+          'товара',
+          'товаров',
+        ])}`,
+        paymentItem: order.paymentMethods.find(item => item.id === order.paymentId),
+        deliveryItem: order.deliveryMethods.find(item => item.id === order.deliveryId),
+      }));
+    },
+
     getAllFormData: state => (storeId) => {
       const order = state.orderList.find(item => item.storeId === storeId);
 
@@ -676,26 +684,8 @@ export default function createModule(options) {
 
       commit('SET_ORDER_LIST', []);
 
-      dispatch(ADD_TOAST_MESSAGE, {
-        title: 'Корзина очищена',
-        text: 'Но вы еще можете вернуть всё обратно.',
-        onCancel: () => {
-          commit('SET_ORDER_LIST', savedOrders);
-        },
-        onTimeout: () => {
-          Api.clearBasket()
-            .then(() => {
-              localStorage.removeItem('basket');
-            })
-            .catch(() => {
-              dispatch(ADD_TOAST_MESSAGE, {
-                title: 'Ошибка',
-                text: 'Не удалось очистить корзину',
-              }, { root: true });
-              commit('SET_ORDER_LIST', savedOrders);
-            });
-        },
-      }, { root: true });
+      dispatch('cart/clearCart', null, { root: true })
+        .catch(() => commit('SET_ORDER_LIST', savedOrders));
     },
 
     [SET_PROPERTY_GROUPS]({ commit }, groups) {
