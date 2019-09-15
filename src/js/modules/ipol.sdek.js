@@ -944,7 +944,7 @@ var IPOLSDEK_pvz = {
   },
 
   onLoad: function(ajaxAns) {
-    // �����, ��� ����� ������ "������� ���"
+    // место, где будет кнопка "выбрать ПВЗ"
     var tag = false;
 
     IPOLSDEK_pvz.ready = false;

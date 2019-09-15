@@ -407,10 +407,10 @@ export default function createModule(options) {
     orderList(state, getters, rootState, rootGetters) {
       return state.orderList.map(order => ({
         ...order,
-        productList: order.productList.map(product => ({
-          ...rootGetters['cart/getBasketItemById'](product.basketItemId),
-          ...product,
-        })),
+        // productList: order.productList.map(product => ({
+        //   ...rootGetters['cart/getBasketItemById'](product.basketItemId),
+        //   ...product,
+        // })),
         quantity: order.productList.length,
         quantityText: `${order.productList.length} ${Utils.declOfNum(order.productList.length, [
           'товар',
@@ -549,11 +549,11 @@ export default function createModule(options) {
       commit('SET_CHECKOUT_STATUS', null);
     },
 
-    refreshOrder({ commit, dispatch }, payloads) {
+    refreshOrder({ commit, dispatch }, payload) {
       const propertyGroups = {};
       const propertyList = {};
 
-      const orderList = payloads.map((result) => {
+      const orderList = payload.map((result) => {
         const { order, oldOrderData } = result;
 
         if (!order) {

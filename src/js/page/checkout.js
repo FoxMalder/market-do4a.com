@@ -20,5 +20,11 @@ export default class PageCheckout {
 
     Utils.log('Checkout', 'Mounting Vue');
     this.vm.$mount('#vueTest');
+
+    store.subscribeAction((action, state) => {
+      if (action.type === 'checkout/refreshOrder') {
+        global.IPOLSDEK_pvz.onLoad(action.payload);
+      }
+    });
   }
 }
