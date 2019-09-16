@@ -19,7 +19,7 @@ export default class ProductCard {
       "img2x": "/upload/resizer/d8/74192_270x270_d86ce530901ce4ded23bec779e0a93d5.jpg?1534609372",
       "review": 69,
       "rating": 4.6,
-      "inAvailable": true,
+      "isAvailable": true,
       "isFavorite": true,
       "section": "Сывороточный"
     }
@@ -170,10 +170,10 @@ export default class ProductCard {
         <div class="product-card__row">
           <div class="product-card__reviews">
             ${ProductCard.getRatingEl(this.data.rating)}
-            <span>${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
+            <span style="${this.data.review === 0 ? 'display: none' : ''}">${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
           </div>                
           <div class="product-card__stock">
-            <div class="${this.data.inAvailable ? 'green' : 'red'}">${this.data.inAvailable ? 'В наличии' : 'Нет в наличии'}</div>
+            <div class="${this.data.isAvailable ? 'green' : 'red'}">${this.data.isAvailable ? 'В наличии' : 'Нет в наличии'}</div>
             <div style="${this.data.pack_count === 0 ? 'display: none' : ''}">${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
           </div>
         </div>
