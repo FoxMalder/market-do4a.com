@@ -449,12 +449,12 @@ export default function createModule(options) {
       });
 
       if (order.deliveryItem && order.deliveryItem.category === 'sdek') {
-        const flat = state.propertyList.find(prop => prop.code === 'FLAT').value;
-        const house = state.propertyList.find(prop => prop.code === 'HOUSE').value;
-        const street = state.propertyList.find(prop => prop.code === 'STREET').value;
+        const flat = state.propertyList.find(prop => prop.code === 'FLAT');
+        const house = state.propertyList.find(prop => prop.code === 'HOUSE');
+        const street = state.propertyList.find(prop => prop.code === 'STREET');
 
         // для сдек свои поля для улицы, кв, дом. ИХ нужно собрать для поля Адрес
-        data.ORDER_PROP_5 = `${street}, ${house}, ${flat}`;
+        data.ORDER_PROP_5 = `${street && street.value}, ${house && house.value}, ${flat && flat.value}`;
       }
 
       return data;
@@ -946,7 +946,9 @@ export default function createModule(options) {
 
     SET_PROPERTY(state, { name, value }) {
       const currentProp = state.staticPropertyList.find(prop => prop.name === name);
-      currentProp.value = value;
+      if (currentProp) {
+        currentProp.value = value;
+      }
     },
 
     SET_ERRORS(state, errors) {

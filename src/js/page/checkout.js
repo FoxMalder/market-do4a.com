@@ -23,42 +23,44 @@ export default class PageCheckout {
 
 
     if (global.IPOLSDEK_pvz) {
-      const Sdek = global.IPOLSDEK_pvz;
+      const SDEK = global.IPOLSDEK_pvz;
 
-      Sdek.choozePVZ = (pvzId, isAjax = false) => { // выбрали ПВЗ
-        const point = Sdek[Sdek.curMode][Sdek.city][pvzId];
+      SDEK.choozePVZ = (pvzId, isAjax = false) => { // выбрали ПВЗ
+        const point = SDEK[SDEK.curMode][SDEK.city][pvzId];
         if (!point) return;
 
-        Sdek.pvzAdress = `${Sdek.city}, ${point.Address} #S${pvzId}`;
-        Sdek.pvzId = pvzId;
+        SDEK.pvzAdress = `${SDEK.city}, ${point.Address} #S${pvzId}`;
+        SDEK.pvzId = pvzId;
 
-        Sdek.markUnable();
+        SDEK.markUnable();
 
         if (!isAjax) { // Перезагружаем форму (с применением новой стоимости доставки)
           store.dispatch('checkout/refreshOrderAjax');
-          Sdek.close(true);
+          SDEK.close(true);
         }
       };
 
-      Sdek.markUnable = () => {
-        Sdek.pvzInputs.some((item) => {
+      SDEK.markUnable = () => {
+        SDEK.pvzInputs.some((item) => {
           if (typeof item === 'function') {
             return false;
           }
 
           store.commit('checkout/SET_PROPERTY', {
             name: `ORDER_PROP_${item}`,
-            value: Sdek.pvzAdress,
+            value: SDEK.pvzAdress,
           });
 
           return true;
         });
       };
+
+      store.subscribeAction((action, state) => {
+        if (action.type === 'checkout/refreshOrder') {
+          const response = action.payload[0];
+          SDEK.onLoad(response);
+        }
+      });
     }
-    store.subscribeAction((action, state) => {
-      if (action.type === 'checkout/refreshOrder') {
-        global.IPOLSDEK_pvz.onLoad(action.payload);
-      }
-    });
   }
 }

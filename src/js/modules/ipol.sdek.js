@@ -1064,20 +1064,33 @@ var IPOLSDEK_pvz = {
     return false;
   },
 
-  labelPzv: function(i, mode) {
-    // �������� ������ �� ����� ��� � �������
-    if (typeof (IPOLSDEK_pvz.deliveries[mode][i]) == 'undefined') {
-      return false;
+  labelPzv(i, mode) {
+    // вставить ссылку на выбор ПВЗ и подпись
+    const settings = IPOLSDEK_pvz.deliveries[mode][i];
+
+    if (!settings) {
+      return;
     }
-    var tmpHTML = '<div class=\'sdek_pvzLair\'>' + IPOLSDEK_pvz['button' + mode].replace('#id#', i) + '<br>';
-    if (IPOLSDEK_pvz.pvzId && typeof (IPOLSDEK_pvz[mode][IPOLSDEK_pvz.city][IPOLSDEK_pvz.pvzId]) != 'undefined') {
-      tmpHTML += '<span class=\'sdek_pvzAddr\'>' + IPOLSDEK_pvz[mode][IPOLSDEK_pvz.city][IPOLSDEK_pvz.pvzId].Address + '</span><br>';
+    // if (typeof IPOLSDEK_pvz.deliveries[mode][i] === 'undefined') {
+    //   return false;
+    // }
+
+    let tmpHTML = `<div class="sdek_pvzLair">${IPOLSDEK_pvz[`button${mode}`].replace('#id#', i)}<br>`;
+
+    if (IPOLSDEK_pvz.pvzId) {
+      const point = IPOLSDEK_pvz[mode][IPOLSDEK_pvz.city][IPOLSDEK_pvz.pvzId];
+      if (point) {
+        tmpHTML += `<span class="sdek_pvzAddr">${point.Address}</span><br>`;
+      }
     }
-    if (IPOLSDEK_pvz.deliveries[mode][i].price) {
-      tmpHTML += IPOLSDEK_pvz.deliveries[mode][i].price;
+
+    if (settings.price) {
+      tmpHTML += settings.price;
     }
+
     tmpHTML += '</div>';
-    IPOLSDEK_pvz.deliveries[mode][i].tag.html(tmpHTML);
+
+    settings.tag.html(tmpHTML);
     if (!IPOLSDEK_pvz.oldTemplate) {
       $('.sdek_pvzLair .SDEK_selectPVZ').addClass('btn btn-default');
     }
@@ -1220,8 +1233,6 @@ var IPOLSDEK_pvz = {
       } else if (!IPOLSDEK_pvz.oldTemplate) {
         if (BX.Sale && BX.Sale.OrderAjaxComponent) {
           BX.Sale.OrderAjaxComponent.sendRequest();
-        } else {
-
         }
       }
 
