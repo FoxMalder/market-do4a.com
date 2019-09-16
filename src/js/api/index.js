@@ -47,6 +47,21 @@ export function removeFromFavorites(productId) {
 }
 
 
+export function getFavorites() {
+  return axios
+    .get('/ajax/favorite/all/')
+    .then(response => response.data)
+    .then((response) => {
+      if (response.success === 1) {
+        return response.data;
+      }
+      const error = new Error(response.message);
+      error.response = response;
+      throw error;
+    });
+}
+
+
 /**
  * Получить актуальный список товаров в корзине
  *

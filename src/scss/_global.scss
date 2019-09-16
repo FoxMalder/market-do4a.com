@@ -1523,6 +1523,11 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
     right: 25px;
   }
 
+  &__btn-cancel {
+    @extend %button-reset;
+
+  }
+
   &__title {
     @include title;
     margin-bottom: 8px;

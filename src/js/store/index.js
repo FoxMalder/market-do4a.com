@@ -4,6 +4,7 @@ import cart from './modules/cart';
 import notifications from './modules/notifications';
 
 import * as Api from '../api';
+import Utils from '../utils/utils';
 
 
 Vue.use(Vuex);
@@ -41,6 +42,30 @@ const actions = {
       .then((data) => {
         commit('RECEIVE_FAVORITES', data);
         commit('SET_FAVORITES_COUNT', data.length);
+      });
+  },
+  getFavorites({ commit }) {
+    let favorites = null;
+
+    if (localStorage.getItem('favorites')) {
+      try {
+        favorites = JSON.parse(localStorage.getItem('favorites'));
+      } catch (e) {
+        localStorage.removeItem('favorites');
+      }
+    }
+
+    if (favorites) {
+      commit('RECEIVE_FAVORITES', favorites);
+      commit('SET_FAVORITES_COUNT', favorites.length);
+    }
+
+    return Api.getFavorites()
+      .then((data) => {
+        commit('RECEIVE_FAVORITES', data);
+        commit('SET_FAVORITES_COUNT', data.length);
+
+        localStorage.setItem('favorites', JSON.stringify(data));
       });
   },
 };

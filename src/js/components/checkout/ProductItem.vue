@@ -1,7 +1,11 @@
 <template>
   <div class="order-product">
     <div class="order-product__col-image">
-      <img class="order-product__img" :src="item.picture" :srcset="item.picture2x + ' 2x'" :alt="item.name">
+      <img class="order-product__img"
+           v-if="item.picture"
+           :src="item.picture"
+           :srcset="item.picture2x + ' 2x'"
+           :alt="item.name">
     </div>
     <div class="order-product__col-info">
       <a :href="item.url" class="order-product__name">{{ item.name }}</a>

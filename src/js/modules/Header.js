@@ -230,6 +230,8 @@ export default class Header {
         store.commit('SET_FAVORITES_COUNT', parseInt(favoritesNotifications.innerHTML, 10) || 0);
       }
 
+      store.commit('getFavorites');
+
       this.favoritesVM = new Vue({
         store,
         render: h => h(HeaderControlFavorites, {

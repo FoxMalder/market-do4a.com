@@ -22,7 +22,7 @@
         </div>
       </div>
       
-      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basket.items.length === 0"/>
+      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
       
       <template v-else-if="!isMobile">
         <div class="container">
@@ -97,11 +97,11 @@
         steps: state => state.checkout.steps,
         currentStep: state => state.checkout.currentStepName,
         checkoutStatus: state => state.checkout.checkoutStatus,
-        basket: state => state.cart,
       }),
-      ...mapGetters('checkout', {
-        totalQuantity: 'totalQuantity',
-        nextStepButton: 'nextStepButton',
+      ...mapGetters({
+        basketItems: 'cart/availableProducts',
+        totalQuantity: 'checkout/totalQuantity',
+        nextStepButton: 'checkout/nextStepButton',
       }),
       currentTabComponent() {
         return `checkout-${this.currentStep}`;

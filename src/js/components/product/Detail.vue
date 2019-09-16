@@ -8,13 +8,13 @@
       <div class="p-detail__availability" v-if="activeOffer.count_city > 0">
         <i class="icon icon-available"></i> В наличии сейчас в
         <a class="text-link" data-anchor href="#stores">
-          {{formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])}}
+          {{ formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах']) }}
         </a>
       </div>
       <div class="p-detail__availability" v-else-if="activeOffer.count_remote > 0 && textDelivery">
         <i class="icon icon-truck"></i> {{textDelivery}}
       </div>
-      <div class="p-detail__availability" v-else>
+      <div class="p-detail__availability" v-if="activeOffer.count_remote === 0 && activeOffer.count_city === 0">
         <i class="icon icon-not-available"></i> Нет в наличии
       </div>
     </transition>
