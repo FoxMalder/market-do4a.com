@@ -9,7 +9,7 @@
         <label class="input-field__label"
                :class="{'input-field__label_active': value !== ''}"
                for="property-location"
-        >{{ item.title }}{{ item.required && '*' }}</label>
+        >{{ item.title + (item.required ? '*' : '') }}</label>
         <input class="input-field__input"
                id="property-location"
                type="text"
@@ -17,6 +17,7 @@
                :value="value"
                @input="onInput"
                @focus="onFocus"
+               :name="item.name"
                :required="item.required">
         <transition name="fade-left">
           <div class="input-field__alert" v-if="item.error">{{item.error}}</div>

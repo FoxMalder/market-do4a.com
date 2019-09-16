@@ -81,7 +81,9 @@
             <!--          </ul>-->
             <!--                  <div class="order-option__subtitle">Срок доставки 14.05 - 17.05</div>-->
             <p class="order-option__description" v-html="item.description"></p>
-            <div id="moreInfo_sdek-pickup" v-if="item.category === 'sdek.pickup'"></div>
+            <div id="moreInfo_sdek-pickup" v-if="item.category === 'sdek.pickup'">
+              <button class="SDEK_selectPVZ" @click="selectPickup">Выбрать пункт самовывоза</button>
+            </div>
           </div>
         </div>
       </div>
@@ -259,10 +261,16 @@
         return this.orderList.length > 1;
       }
     },
-    methods: mapActions('checkout', {
-      selectPayment: SET_PAYMENT_METHOD,
-      selectShipping: SET_SHIPPING_METHOD,
-      removeOrder: REMOVE_ORDER,
-    })
+    methods: {
+      ...mapActions('checkout', {
+        selectPayment: SET_PAYMENT_METHOD,
+        selectShipping: SET_SHIPPING_METHOD,
+        removeOrder: REMOVE_ORDER,
+      }),
+
+      selectPickup() {
+        IPOLSDEK_pvz.selectPVZ('moreInfo_sdek-pickup', 'PVZ');
+      }
+    }
   }
 </script>

@@ -1193,66 +1193,64 @@ var IPOLSDEK_pvz = {
     return addr;
   },
 
-  //������� ���
+  // выбрали ПВЗ
   pvzAdress: '',
-  pvzId: false,
-  choozePVZ: function(pvzId, isAjax) {
-    // ������� ���
-    if (typeof IPOLSDEK_pvz[IPOLSDEK_pvz.curMode][IPOLSDEK_pvz.city][pvzId] == 'undefined') {
-      return;
-    }
 
-    IPOLSDEK_pvz.pvzAdress = IPOLSDEK_pvz.city + ', ' + IPOLSDEK_pvz[IPOLSDEK_pvz.curMode][IPOLSDEK_pvz.city][pvzId]['Address'] + ' #S' + pvzId;
+  pvzId: false,
+
+  // NEW
+  choozePVZ(pvzId, isAjax = false) { // выбрали ПВЗ
+    const point = IPOLSDEK_pvz[IPOLSDEK_pvz.curMode][IPOLSDEK_pvz.city][pvzId];
+    if (!point) return;
+
+    IPOLSDEK_pvz.pvzAdress = `${IPOLSDEK_pvz.city}, ${point.Address} #S${pvzId}`;
 
     IPOLSDEK_pvz.pvzId = pvzId;
 
-    var chznPnkt = false;
-    if (typeof (KladrJsObj) != 'undefined') {
-      KladrJsObj.FuckKladr();
-    }
+    // var chznPnkt = false;
+    // if (typeof (KladrJsObj) != 'undefined') KladrJsObj.FuckKladr();
 
     IPOLSDEK_pvz.markUnable();
 
-    if (typeof isAjax == 'undefined') {
-      // ������������� ����� (� ����������� ����� ��������� ��������)
+    if (!isAjax) { // Перезагружаем форму (с применением новой стоимости доставки)
+      const htmlId = IPOLSDEK_pvz.makeHTMLId(IPOLSDEK_pvz.curProfile);
 
-      var htmlId = IPOLSDEK_pvz.makeHTMLId(IPOLSDEK_pvz.curProfile);
-      if (typeof IPOLSDEK_DeliveryChangeEvent == 'function') {
+      if (typeof IPOLSDEK_DeliveryChangeEvent === 'function') {
         IPOLSDEK_DeliveryChangeEvent(htmlId);
-      } else {
-        if (IPOLSDEK_pvz.oldTemplate) {
-          if (typeof $.prop == 'undefined')
-          // <3 jquery
-          {
-            $('#' + htmlId).attr('checked', 'Y');
-          } else {
-            $('#' + htmlId).prop('checked', 'Y');
-          }
-          $('#' + htmlId).click();
-        } else if (typeof (BX.Sale) != 'undefined' && BX.Sale.OrderAjaxComponent != 'undefined') {
+      } else if (!IPOLSDEK_pvz.oldTemplate) {
+        if (BX.Sale && BX.Sale.OrderAjaxComponent) {
           BX.Sale.OrderAjaxComponent.sendRequest();
+        } else {
+
         }
       }
+
       IPOLSDEK_pvz.close(true);
     }
   },
 
-  markUnable: function() {
-    for (var i in IPOLSDEK_pvz.pvzInputs) {
-      if (typeof (IPOLSDEK_pvz.pvzInputs[i]) == 'function') {
-        continue;
+  // NEW
+  markUnable() {
+    IPOLSDEK_pvz.pvzInputs.some((item) => {
+      if (typeof item === 'function') {
+        return false;
       }
 
-      chznPnkt = $('#ORDER_PROP_' + IPOLSDEK_pvz.pvzInputs[i]);
-      if (chznPnkt.length <= 0 || chznPnkt.get(0).tagName != 'INPUT') {
-        chznPnkt = $('[name="ORDER_PROP_' + IPOLSDEK_pvz.pvzInputs[i] + '"]');
+      let el = document.querySelector(`#ORDER_PROP_${item}`);
+
+      if (!el || el.tagName !== 'INPUT') {
+        el = document.querySelector(`[name="ORDER_PROP_${item}"]`);
+
+        if (!el) {
+          return false;
+        }
       }
-      if (chznPnkt.length > 0) {
-        chznPnkt.val(IPOLSDEK_pvz.pvzAdress);
-        chznPnkt.css('background-color', '#eee').attr('readonly', 'readonly');
-        break;
-      }
-    }
+
+      el.value = IPOLSDEK_pvz.pvzAdress;
+      el.style.backgroundColor = '#eee';
+      el.setAttribute('readonly', 'readonly');
+      return true;
+    });
   },
 
   // �����������

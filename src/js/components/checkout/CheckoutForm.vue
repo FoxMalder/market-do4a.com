@@ -23,25 +23,23 @@
       
       </div>
       
-      <div class="order-props__description">
+      <div class="order-props__description" v-if="propertyDescription">
         <div class="form-group" v-skew="10">
           <div class="input-field" :class="{'input-field_primary': !isMobile}">
             <label
               for="property-description"
-              class="input-field__label">Комментарий</label>
+              class="input-field__label">{{ propertyDescription.title }}</label>
             <textarea
               id="property-description"
               class="input-field__input"
-              name="ORDER_DESCRIPTION"
               rows="5"
-              :value="propertyDescription"
+              :name="propertyDescription.name"
+              :value="propertyDescription.value"
               @input="updateDescription"
             ></textarea>
           </div>
         </div>
-        <div class="order-props__note">
-          Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом
-        </div>
+        <div class="order-props__note">{{ propertyDescription.description }}</div>
       </div>
       
       <!--      <div class="order-props__subtitle">Адрес доставки</div>-->
@@ -104,7 +102,7 @@
     data() {
       return {
         isMobile: document.documentElement.clientWidth < 768,
-        description: '',
+        // description: '',
       }
     },
     computed: {
@@ -112,7 +110,8 @@
         propertyList: 'propertyList',
         propertyGroups: 'propertyGroups',
         // Old
-        propertyDescription: state => state.propertyDescription,
+        // propertyDescription: state => state.propertyDescription,
+        propertyDescription: state => state.staticPropertyList.find(prop => prop.name === 'ORDER_DESCRIPTION'),
         errors: 'errors',
       }),
       groups() {
@@ -124,7 +123,10 @@
     },
     methods: {
       updateDescription(e) {
-        this.$store.commit('checkout/SET_DESCRIPTION', e.target.value)
+        this.$store.commit('checkout/SET_PROPERTY', {
+          name: this.propertyDescription.name,
+          value: e.target.value,
+        })
       }
     }
   }

@@ -221,8 +221,11 @@ function convertPropertyList(properties) {
     .map((property) => {
       const prop = {
         id: parseInt(property.ID, 10),
+        isDynamic: true,
         title: property.NAME || '',
         description: property.DESCRIPTION || '',
+        // category:
+        code: property.CODE,
         value: property.VALUE[0],
         personTypeId: parseInt(property.PERSON_TYPE_ID, 10),
         propsGroupId: parseInt(property.PROPS_GROUP_ID, 10),
@@ -377,6 +380,7 @@ export default function createModule(options) {
     ],
     propertyGroups: [],
     propertyList: [],
+    staticPropertyList: [],
   };
 
   const getters = {
@@ -422,15 +426,15 @@ export default function createModule(options) {
       }));
     },
 
-    getAllFormData: state => (storeId) => {
-      const order = state.orderList.find(item => item.storeId === storeId);
+    getAllFormData: (state, getters) => (storeId) => {
+      const order = getters.orderList.find(item => item.storeId === storeId);
 
       const data = {
         DELIVERY_ID: order.deliveryId,
         PAY_SYSTEM_ID: order.paymentId,
         // BUYER_STORE: order.buyerStore,
         PERSON_TYPE: state.personTypeId,
-        ORDER_DESCRIPTION: state.propertyDescription,
+        // ORDER_DESCRIPTION: state.propertyDescription,
         action: 'saveOrderAjax',
         location_type: 'code',
         sessid: Utils.sessid(),
@@ -440,6 +444,19 @@ export default function createModule(options) {
         data[prop.name] = prop.value;
       });
 
+      state.staticPropertyList.forEach((prop) => {
+        data[prop.name] = prop.value;
+      });
+
+      if (order.deliveryItem && order.deliveryItem.category === 'sdek') {
+        const flat = state.propertyList.find(prop => prop.code === 'FLAT').value;
+        const house = state.propertyList.find(prop => prop.code === 'HOUSE').value;
+        const street = state.propertyList.find(prop => prop.code === 'STREET').value;
+
+        // для сдек свои поля для улицы, кв, дом. ИХ нужно собрать для поля Адрес
+        data.ORDER_PROP_5 = `${street}, ${house}, ${flat}`;
+      }
+
       return data;
     },
   };
@@ -448,6 +465,14 @@ export default function createModule(options) {
     async init({ commit, dispatch }) {
       commit('SET_PARAM', param.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
+
+      commit('ADD_STATIC_PROPERTY', {
+        name: 'ORDER_DESCRIPTION',
+        value: '',
+        title: 'Комментарий',
+        description: 'Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом',
+        required: false,
+      });
 
       const orderList = [];
       const propertyGroups = {};
@@ -778,6 +803,11 @@ export default function createModule(options) {
     async checkout({
       state, commit, dispatch, getters,
     }) {
+
+      // try {
+      //   window['yaCounter' + app.metrikaId].reachGoal('CLICK_ORDER_BUTTON');
+      // } catch (ex) {}
+
       if (await dispatch('validatePropsData')) {
         Utils.scrollTo(document.getElementById('order-props'));
         return;
@@ -796,6 +826,7 @@ export default function createModule(options) {
         dispatch('SET_ERRORS', err);
         return;
       }
+
 
       commit('SET_CHECKOUT_STATUS', 'loading');
 
@@ -909,8 +940,13 @@ export default function createModule(options) {
       state.currentStepName = key;
     },
 
-    SET_DESCRIPTION(state, message) {
-      state.propertyDescription = message;
+    // SET_DESCRIPTION(state, message) {
+    //   state.propertyDescription = message;
+    // },
+
+    SET_PROPERTY(state, { name, value }) {
+      const currentProp = state.staticPropertyList.find(prop => prop.name === name);
+      currentProp.value = value;
     },
 
     SET_ERRORS(state, errors) {
@@ -946,6 +982,9 @@ export default function createModule(options) {
 
     [SET_PROPERTY_LIST]: (state, propertyList) => {
       state.propertyList = propertyList;
+    },
+    ADD_STATIC_PROPERTY: (state, prop) => {
+      state.staticPropertyList.push(prop);
     },
   };
 
