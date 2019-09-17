@@ -90,7 +90,10 @@
                   <a href="#">{+79061946080}</a>
                 </div>
               </div>
-              <button class="order-option__button" type="button" @click="selectPickup">Выбрать пункт самовывоза</button>
+              <button class="order-option__button"
+                      type="button"
+                      @click="selectPickup"
+              >{{ sdek ? 'Изменить' : 'Выбрать'}} пункт самовывоза</button>
             </div>
           </div>
         </div>

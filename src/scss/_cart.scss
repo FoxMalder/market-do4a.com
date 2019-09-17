@@ -362,12 +362,13 @@
 
 .order-option {
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: -0.01em;
 
   @include media-breakpoint-up(md) {
-    margin-bottom: 13px;
+    margin-bottom: 20px;
+    font-size: 15px;
   }
 
   &.active {
@@ -450,7 +451,8 @@
     align-items: center;
     margin-bottom: 9px;
     @include media-breakpoint-up(md) {
-      margin-bottom: 15px;
+      height: 25px;
+      margin-bottom: 10px;
     }
   }
 

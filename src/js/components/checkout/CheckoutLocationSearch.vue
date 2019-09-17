@@ -4,26 +4,23 @@
        @keydown="keyboardNav"
        v-click-outside="clickedOutside">
     <div class="checkout-location-search__field">
-      <div class="input-field input-field_primary"
+      <label class="input-field input-field_primary"
            :class="{'input-field_invalid': item.error}">
-        <label class="input-field__label"
+        <span class="input-field__label"
                :class="{'input-field__label_active': value !== ''}"
-               for="property-location"
-        >{{ item.title + (item.required ? '*' : '') }}</label>
+        >{{ item.title + (item.required ? '*' : '') }}</span>
         <input class="input-field__input"
-               id="property-location"
                type="search"
                autocomplete="off"
                :value="value"
                @input="onInput"
                @focus.prevent="activate()"
                @blur.prevent="deactivate()"
-               @keyup.esc="deactivate()"
-               :required="item.required">
+               @keyup.esc="deactivate()">
         <transition name="fade-left">
           <div class="input-field__alert" v-if="item.error">{{item.error}}</div>
         </transition>
-      </div>
+      </label>
     </div>
     <div ref="list"
          class="checkout-location-search__list dropdown-menu"
