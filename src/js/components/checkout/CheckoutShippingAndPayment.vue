@@ -62,7 +62,7 @@
               <img class="order-option__icon" v-if="item.logoUrl" :src="item.logoUrl" :alt="item.name">
               <div class="order-option__name">{{ item.name }}</div>
             </div>
-            <div class="order-option__row-top">
+            <div class="order-option__row-bottom">
               <div class="order-option__own-name" v-if="item.ownName">{{ item.ownName }}</div>
               <div class="order-option__price green" v-if="item.price === 0">Бесплатно</div>
               <div class="order-option__price" v-else>{{ item.priceFormated }}</div>
