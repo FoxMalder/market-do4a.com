@@ -1,6 +1,6 @@
 <template>
   <div class="checkout-location-search"
-       @keydown.esc="reset"
+       @keyup.esc="deactivate()"
        @keydown="keyboardNav"
        v-click-outside="clickedOutside">
     <div class="checkout-location-search__field">
@@ -16,7 +16,9 @@
                autocomplete="off"
                :value="value"
                @input="onInput"
-               @focus="onFocus"
+               @focus.prevent="activate()"
+               @blur.prevent="deactivate()"
+               @keyup.esc="deactivate()"
                :name="item.name"
                :required="item.required">
         <transition name="fade-left">
@@ -178,19 +180,19 @@
           this.debouncedGetLocation();
         }
       },
-      onFocus() {
-        console.log('onFocus');
-        if (this.value !== '') {
-          this.open = true;
-        }
-      },
-      onBlur() {
-        this.open = false;
-
-        if (this.item.required && this.item.value === null) {
-          this.item.error = 'Выберите город';
-        }
-      },
+      // onFocus() {
+      //   console.log('onFocus');
+      //   if (this.value !== '') {
+      //     this.open = true;
+      //   }
+      // },
+      // onBlur() {
+      //   this.open = false;
+      //
+      //   if (this.item.required && this.item.value === null) {
+      //     this.item.error = 'Выберите город';
+      //   }
+      // },
       clickedOutside() {
         this.open = false;
 
@@ -234,13 +236,13 @@
           this.onEnter();
         }
       },
-      reset() {
-        this.open = false;
-
-        if (this.item.required && this.item.value === null) {
-          this.item.error = 'Выберите город';
-        }
-      },
+      // reset() {
+      //   this.open = false;
+      //
+      //   if (this.item.required && this.item.value === null) {
+      //     this.item.error = 'Выберите город';
+      //   }
+      // },
       onEnter() {
         this.open = false;
 
@@ -252,6 +254,19 @@
           this.item.error = 'Выберите город';
         }
       },
+
+
+      activate() {
+        if (this.open) return;
+
+        this.open = true;
+      },
+      
+      deactivate() {
+        if (!this.open) return;
+
+        this.open = false;
+      }
     }
   }
 </script>

@@ -8,8 +8,8 @@
         <li v-for="error in errors.PROPERTY">{{ error }}</li>
       </ul>
       
-      <div class="order-props__group" v-for="group in groups">
-        <div class="order-props__subtitle">{{ group.name }}</div>
+      <fieldset class="order-props__group" v-for="group in groups">
+        <legend class="order-props__subtitle">{{ group.name }}</legend>
         
         <template v-for="prop in group.props">
           <CheckoutLocation v-if="prop.type === 'location'" :prop="prop"/>
@@ -21,9 +21,9 @@
           </div>
         </template>
       
-      </div>
+      </fieldset>
       
-      <div class="order-props__description" v-if="propertyDescription">
+      <fieldset class="order-props__description" v-if="propertyDescription">
         <div class="form-group" v-skew="10">
           <div class="input-field" :class="{'input-field_primary': !isMobile}">
             <label
@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="order-props__note">{{ propertyDescription.description }}</div>
-      </div>
+      </fieldset>
       
       <!--      <div class="order-props__subtitle">Адрес доставки</div>-->
       <!--      <div class="order-props__container">-->

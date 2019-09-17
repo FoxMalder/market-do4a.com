@@ -118,9 +118,9 @@
         position: absolute;
         top: calc(50% - 4px);
         right: 10px;
-        background: url('../img/cartMobileHeaderArrow.svg') center no-repeat;
         width: 11px;
         height: 8px;
+        background: url('../img/cartMobileHeaderArrow.svg') center no-repeat;
       }
     }
   }
@@ -264,9 +264,9 @@
     font-size: 20px;
     line-height: 25px;
     @include media-breakpoint-up(md) {
+      margin-bottom: 19px;
       font-size: 23px;
       line-height: 31px;
-      margin-bottom: 19px;
     }
   }
 
@@ -316,9 +316,9 @@
 
   &__list {
     display: flex;
-    overflow: auto;
-    padding: 10px 0;
     margin-bottom: 20px;
+    padding: 10px 0;
+    overflow: auto;
     @include media-breakpoint-up(md) {
       margin-bottom: 30px;
     }
@@ -364,8 +364,8 @@
   margin-bottom: 10px;
   font-size: 15px;
   font-weight: 500;
-
   letter-spacing: -0.01em;
+
   @include media-breakpoint-up(md) {
     margin-bottom: 13px;
   }
@@ -444,56 +444,78 @@
     //}
   }
 
-  &__title {
+
+  &__row-top {
+    display: flex;
+    align-items: center;
     margin-bottom: 9px;
+  }
+
+  &__row-bottom {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    line-height: 16px;
+
+    @include media-breakpoint-up(md) {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    flex: 0 0 auto;
+    //max-width: 21px;
+    max-height: 21px;
+    margin-right: 8px;
+    @include media-breakpoint-up(md) {
+      //max-width: 25px;
+      max-height: 25px;
+      margin-right: 10px;
+    }
+  }
+
+  &__name {
+    display: inline-block;
     overflow: hidden;
     font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1;
+    line-height: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
     @include media-breakpoint-up(md) {
       margin-bottom: 15px;
       font-size: 17px;
+      line-height: 21px;
     }
   }
 
-  &__info {
-    display: flex;
-    overflow: hidden;
-    color: rgba(#101010, 0.6);
-    font-size: 13px;
-    font-weight: 500;
-
-    letter-spacing: -0.01em;
-    line-height: 1;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    > * {
-      margin-right: 14px;
-    }
-
-    @include media-breakpoint-up(md) {
-      font-size: 15px;
-    }
+  &__own-name {
+    display: inline-block;
+    margin-right: auto;
   }
 
-  &__img {
-    position: absolute;
-    top: 13px;
-    right: 13px;
-    //bottom: 13px;
-    //width: 64px;
-    max-width: 64px;
-    max-height: 51px;
+  &__price {
+    display: inline-block;
+    flex: 0 0 auto;
+    margin-left: 11px;
+  }
+
+  &__period {
+    display: inline-block;
+    flex: 0 0 auto;
+    margin-left: 11px;
+    color: #636363;
   }
 
   &__body {
     display: none;
-    padding: 21px 21px;
+    padding: 10px 19px;
     background-color: #f7f7f7;
+    @include media-breakpoint-up(md) {
+      padding: 15px 21px;
+    }
   }
 
   &__subtitle {
@@ -506,24 +528,57 @@
 
   &__description {
     margin-bottom: 0;
-    color: rgba(#000, 0.6);
-    font-size: 12px;
+    color: #636363; // rgba(#000, 0.6);
+    font-size: 11px;
     font-weight: normal;
+    line-height: 14px;
+    @include media-breakpoint-up(md) {
+      font-size: 12px;
+      line-height: 17px;
+    }
+  }
+
+  &__place {
+    margin-top: 15px;
+    @include media-breakpoint-up(md) {
+      margin-top: 18px;
+    }
+  }
+
+  &__place-address {
+    font-size: 13px;
+    line-height: 16px;
+    @include media-breakpoint-up(md) {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &__place-info {
+    color: #636363; // rgba(#000, 0.6);
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 14px;
+    @include media-breakpoint-up(md) {
+      font-size: 12px;
+      line-height: 17px;
+    }
+  }
+
+  &__place-link {
+    color: #636363; // rgba(#000, 0.6);
+  }
+
+  &__button {
+    @extend %button-reset;
+    margin-top: 11px;
+    padding: 7px 14px;
+    background: #101010;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: -0.01em;
     line-height: 17px;
-  }
-}
-
-.order-option-list {
-  &__item {
-
-  }
-
-  &__title {
-
-  }
-
-  &__link {
-    color: rgba(#000, 0.6);
+    text-align: center;
   }
 }
 
