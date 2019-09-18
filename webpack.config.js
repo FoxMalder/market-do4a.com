@@ -320,9 +320,9 @@ const devConfig = {
 const prodConfig = {
   mode: 'production',
   devtool: 'eval-source-map',
-  output: {
-    publicPath: '/static/dist/',
-  },
+  // output: {
+  //   publicPath: '/static/dist/',
+  // },
   module: {
     rules: [
       {
