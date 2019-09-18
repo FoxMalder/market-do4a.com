@@ -2,16 +2,15 @@
   <div class="checkout-final">
     <h3 class="checkout-final__title">Заказ оформлен, его номер:</h3>
     <p class="checkout-final__number">1354315</p>
-  
+    
     <!-- Общая сумма при нескольких заказах (правый макет) -->
-    <h3 class="checkout-final__sim-title">Сумма заказа:</h3>
-    <p class="checkout-final__sum">16 800 ₽</p>
+<!--    <h3 class="checkout-final__sum-title">Сумма заказа:</h3>-->
+<!--    <p class="checkout-final__sum">16 800 ₽</p>-->
     <!-- Общая сумма при нескольких заказах (правый макет) END -->
     
     <p class="checkout-final__description">
       Подробная информация о заказе отправлена на вашу почту
-      <a class="link"
-         href="mailto:konstantinopolsky@gmail.com">konstantinopolsky@gmail.com</a>.
+      <a class="link" href="mailto:konstantinopolsky@gmail.com">konstantinopolsky@gmail.com</a>.<br>
       В ближайшее время с вами свяжется менеджер для уточнения деталей заказа.
     </p>
     
@@ -29,6 +28,7 @@
         <span>наличными при получении</span>
       </li>
     </ul>
+    
     <div class="checkout-final-pay">
       <h3 class="checkout-final-pay__title">оплатите заказ онлайн</h3>
       <div class="checkout-final-pay__row">
@@ -125,8 +125,7 @@
     
     <div class="checkout-final-map">
       <div class="checkout-final-map__container">
-        <div class="checkout-final-map__map"
-             id="map"></div>
+        <div class="checkout-final-map__map" id="map"></div>
       </div>
       <div class="checkout-final-map__col">
         <p class="checkout-final-map__description">

@@ -29,11 +29,9 @@
       <div class="order-product__count-note">{{item.priceBase | formatPrice}}/{{item.measureName || 'шт'}}</div>
     </div>
     <div class="order-product__col-price">
-      <del class="order-product__old-price" v-if="item.price_benefit > 0">{{item.sumBase | formatPrice}}</del>
+      <del class="order-product__old-price" v-if="item.price_benefit > 0">{{ item.sumBase | formatPrice }}</del>
       <div class="order-product__price">{{ item.sum | formatPrice }}</div>
-      <div class="order-product__profit" v-if="item.price_benefit > 0">
-        Выгода {{ item.sumDiscount | formatPrice }}
-      </div>
+      <div class="order-product__profit" v-if="item.price_benefit > 0">Выгода {{ item.sumDiscount | formatPrice }}</div>
     </div>
     <button class="order-product__btn-delete"
             @click.prevent="remove(item)">

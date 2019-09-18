@@ -18,6 +18,7 @@ import productStore from '../store/modules/product';
 import ProductImage from '../components/product/ImageBlock.vue';
 import StarRating from '../components/StarRating.vue';
 import ProductDetailHeader from '../components/product/DetailHeader.vue';
+import ProductDetailName from '../components/product/DetailName.vue';
 import ProductDetail from '../components/product/Detail.vue';
 import ProductReviews from '../components/product/Reviews.vue';
 import ProductSimilar from '../components/product/Similar.vue';
@@ -151,15 +152,15 @@ export default class PageProduct {
     $('.p-control-select__header').dropdown({ display: 'static' });
 
 
-    // Фиксация блока с фото на планшете
-    if (document.documentElement.clientWidth >= 768
-      && document.documentElement.clientWidth < 1240) {
-      new Sticky('.p-detail__left-block', {
-        marginTop: 90,
-        // stickyClass: 'is-sticky',
-        stickyContainer: '.p-detail',
-      });
-    }
+    // // Фиксация блока с фото на планшете
+    // if (document.documentElement.clientWidth >= 768
+    //   && document.documentElement.clientWidth < 1240) {
+    //   new Sticky('.p-detail__left-block', {
+    //     marginTop: 90,
+    //     // stickyClass: 'is-sticky',
+    //     stickyContainer: '.p-detail',
+    //   });
+    // }
 
     // Подстройка высоты textarea под высоту содержимого
     Array.prototype.forEach.call(document.querySelectorAll('textarea.autoheight'), (element) => {
@@ -178,9 +179,17 @@ export default class PageProduct {
       breadcumpsThisPage: document.querySelector('.breadcumps__page'),
     };
 
+    const categotyEl = document.querySelector('.p-detail__category');
+
+    const param = {
+      ...global.product,
+      category: categotyEl ? categotyEl.textContent : 'kljljkll',
+      country: '',
+    };
+
 
     store.registerModule('product', productStore);
-    store.dispatch('product/init', global.product);
+    store.dispatch('product/init', param);
 
     $('.p-review-form').on('submit', this.addReview);
     $('.p-modal-form').on('submit', this.addReview);
@@ -212,6 +221,11 @@ export default class PageProduct {
     new Vue({
       store,
       render: h => h(ProductDetailHeader),
+    }).$mount('.p-detail__header');
+
+    new Vue({
+      store,
+      render: h => h(ProductDetailName),
     }).$mount('#js-product-header');
 
     new Vue({
@@ -266,11 +280,11 @@ export default class PageProduct {
     }
 
     if (this.elements.breadcumpsThisPage) this.elements.breadcumpsThisPage.innerHTML = activePacking.name;
-    if (this.elements.detailReviewsCount) {
-      this.elements.detailReviewsCount.innerHTML = activePacking.review
-        ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
-        : 'Нет отзывов';
-    }
+    // if (this.elements.detailReviewsCount) {
+    //   this.elements.detailReviewsCount.innerHTML = activePacking.review
+    //     ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
+    //     : 'Нет отзывов';
+    // }
     if (this.elements.reviewsCount) {
       this.elements.reviewsCount.innerHTML = `${activePacking.review > 0
         ? activePacking.review

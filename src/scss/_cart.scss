@@ -8,9 +8,183 @@
 //  }
 //
 //  @include media-breakpoint-up(xl) {
-//    background: url("../img/rm/checkout-1920.png") center top no-repeat;
+//    //background: url("../img/rm/checkout-1920.png") center top no-repeat;
+//    //background: url("../img/rm/checkout-empty-1920.png") center top no-repeat;
+//    //background: url("../img/rm/checkout-finish-2-1920.png") center top no-repeat;
+//    background: url("../img/rm/checkout-finish-1-1920.png") center top no-repeat;
 //  }
 //}
+
+/**
+ * Финал
+ */
+
+.checkout-final {
+  margin-top: -10px; // Временно
+  padding-bottom: 90px;
+
+  &__title {
+    margin-bottom: 12px;
+  }
+
+  &__number {
+    @include title;
+    margin-bottom: 34px;
+    font-size: 60px;
+    line-height: 1;
+  }
+
+  &__sum-title {
+    margin-top: 42px;
+    margin-bottom: 3px;
+  }
+
+  &__sum {
+    @include title;
+    margin-bottom: 34px;
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  &__description {
+    margin-bottom: 38px;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    line-height: 24px;
+  }
+}
+
+.checkout-final-info {
+  padding: 0;
+  list-style: none;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 24px;
+
+  &__item {
+    margin-bottom: 22px;
+  }
+}
+
+.checkout-final-pay {
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  &__title {
+    margin-bottom: 15px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+
+    > .btn {
+      margin-right: 36px;
+      padding-right: 44px;
+      padding-left: 44px;
+    }
+  }
+}
+
+.checkout-final-order {
+  margin-top: 67px;
+  margin-bottom: 73px;
+
+  &_card {
+    margin-right: -20px;
+    margin-left: -20px;
+    padding: 20px 20px;
+    border-radius: 7px 7px 0 0;
+    background: #fff;
+    box-shadow: 0px 24px 54px rgba(0, 0, 0, 0.05);
+    @include media-breakpoint-up(md) {
+      width: 620px;
+      margin-left: -31px;
+      padding: 33px 31px 52px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 21px;
+  }
+
+  &__total {
+    margin-top: 54px;
+    padding: 0;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 24px;
+  }
+
+  &__item {
+    margin-bottom: 11px;
+
+    > .price {
+      @include title;
+    }
+
+    &_sum {
+      > .price {
+        font-size: 166%;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 42px;
+    padding-top: 32px;
+
+    > .btn {
+      padding-right: 44px;
+      padding-left: 44px;
+    }
+  }
+}
+
+.checkout-final-map {
+  display: flex;
+  margin-top: 38px;
+
+  &__container {
+    flex: 860px;
+    overflow: hidden;
+    transform: $skew;
+    transform-origin: top right;
+  }
+
+  &__map {
+    height: 443px;
+    margin-right: tan(9deg) * 443px / -2;
+    margin-left: tan(9deg) * 443px / -2;
+    transform: $skew-reverse;
+    background: #efefef;
+  }
+
+  &__col {
+    flex: 340px;
+    padding-top: 15px;
+    padding-left: 60px;
+  }
+
+  &__description {
+    margin-bottom: 48px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 22px;
+  }
+}
+
+
+/**
+ * Оформление заказа
+ */
 
 .cart-section-header {
   padding-top: 20px;
@@ -20,7 +194,7 @@
   }
   @include media-breakpoint-up(xl) {
     padding-top: 42px;
-    padding-bottom: 55px;
+    padding-bottom: 54px;
   }
 
   &__title {
@@ -33,10 +207,28 @@
       line-height: 41px;
     }
     @include media-breakpoint-up(xl) {
-      margin-top: 24px;
+      margin-top: 31px;
       font-size: 40px;
       line-height: 1;
     }
+  }
+}
+
+.cart-empty {
+  &__title {
+    margin-bottom: 19px;
+  }
+
+  &__description {
+    margin-bottom: 50px;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    line-height: 18px;
+  }
+
+  &__button {
+    padding-right: 38px;
+    padding-left: 38px;
   }
 }
 
@@ -44,7 +236,6 @@
   padding-bottom: 50px;
 
   @include media-breakpoint-up(xl) {
-
     overflow: hidden;
   }
 
@@ -248,10 +439,13 @@
 
 .order-shiping {
   margin-right: -$container-padding-x;
-  margin-bottom: 30px;
   margin-left: -$container-padding-x;
   padding: 25px $container-padding-x 54px;
   background-color: #fff;
+
+  + .order-shiping {
+    margin-bottom: 30px;
+  }
 
   @include media-breakpoint-up(md) {
     margin-right: 0;
@@ -552,9 +746,11 @@
   }
 
   &__place-address {
+    margin-bottom: 5px;
     font-size: 13px;
     line-height: 16px;
     @include media-breakpoint-up(md) {
+      margin-bottom: 6px;
       font-size: 14px;
       line-height: 17px;
     }
@@ -593,6 +789,10 @@
 .order {
   position: relative;
 
+  //@include media-breakpoint-up(xl) {
+  //  width: 690px;
+  //}
+  //
   &__title {
     @include media-breakpoint-down(sm) {
       position: absolute;
@@ -948,28 +1148,32 @@
 
   &__old-price {
     @include title;
-    color: rgba(#101010, 0.6);
+    display: block;
+    margin-bottom: 2px;
+    color: #636363;
     font-size: 13px;
+    text-decoration: line-through;
     @include media-breakpoint-up(md) {
       font-size: 15px;
-
     }
   }
 
   &__price {
     @include title;
-    margin: 2px 0 3px;
+    display: block;
     font-size: 18px;
     @include media-breakpoint-up(md) {
-      margin: 2px 0 8px;
       font-size: 22px;
     }
   }
 
   &__profit {
+    display: block;
+    margin-top: 3px;
     color: $main-color;
     font-size: 10px;
     @include media-breakpoint-up(md) {
+      margin-top: 8px;
       font-size: 12px;
     }
   }

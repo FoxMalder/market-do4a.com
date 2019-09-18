@@ -15,7 +15,7 @@
     <!--      <CheckoutFinal/>-->
     <!--    </div>-->
     
-    <section class="cart" :class="{'cart_loading': checkoutStatus === 'loading' || basketStatus === 'loading'}">
+    <section class="cart" :class="{'cart_loading': checkoutStatus === 'loading'}">
       <div class="cart-loading" v-if="checkoutStatus === 'initialization'">
         <div class="spinner-border" role="status">
           <span class="sr-only">Загрузка...</span>
@@ -32,7 +32,12 @@
               <CheckoutShippingAndPayment/>
             </div>
             <div class="cart__col-right">
-              <CheckoutBasket/>
+              <Affix relative-element-selector=".cart__inner"
+                     style="width: 690px"
+                     :scrollAffix="true"
+                     :offset="{ top: 150, bottom: 15 }">
+                <CheckoutBasket/>
+              </Affix>
             </div>
           </div>
         </div>
@@ -68,7 +73,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-
+  import { Affix } from 'vue-affix';
   import CheckoutForm from './CheckoutForm.vue';
   import CheckoutShippingAndPayment from './CheckoutShippingAndPayment.vue';
   import CheckoutBasket from './CheckoutBasket.vue';
@@ -81,6 +86,7 @@
   export default {
     name: "Checkout",
     components: {
+      Affix,
       CheckoutForm,
       CheckoutShippingAndPayment,
       CheckoutBasket,
@@ -123,7 +129,7 @@
     },
     created() {
       this.$store.dispatch('checkout/init');
-      
+
       // this.$store.subscribeAction((action, state) => {
       //   if (action.type === 'cart/clearCart') {
       //     console.log(action.type);
@@ -137,13 +143,16 @@
       //     this.$store.dispatch('checkout/refreshOrderAjax');
       //   }
       // });
-      
+
       // SET_BASKET
       // this.$store.subscribe((mutation, state) => {
       //   if (mutation.type === 'cart/SET_BASKET' && this.checkoutStatus !== 'initialization') {
       //     this.$store.dispatch('checkout/refreshOrderAjax');
       //   }
       // });
-    }
+    },
+    // mounted() {
+    //
+    // }
   }
 </script>

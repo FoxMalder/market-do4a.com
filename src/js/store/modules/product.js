@@ -14,6 +14,8 @@ const state = {
   // offers: [],
 
   // name: '',
+  category: '',
+  country: '',
   textDelivery: '',
 
   // reviewsRequestParam: {},
@@ -27,37 +29,59 @@ const state = {
   similar: [],
 };
 
+// const sku = {
+//   count: 0,
+//   count_city: 0,
+//   count_remote: 0,
+// };
+//
+// if (sku.count > 0 && sku.count_city > 0) {
+//   // В наличии в магазине
+// }
+// if (sku.count_city === 0 && sku.count_remote > 0) {
+//   // Доставка с ЦС
+// }
+// if (sku.count_city === 0 && sku.count_remote === 0) {
+//   // Нет в наличии
+// }
+
+
 // getters
 const getters = {
+  // Выбранная фасовка
   activePacking: (state) => {
-    // TODO: Полифилл Array.find()
     return state.packing.find(item => item.id === state.packingId);
   },
-  visibleOffers: (state, getters) => {
-    return getters.activePacking ? getters.activePacking.sku : [];
-  },
-  availableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count > 0 && item.count_city > 0);
-  },
-  availableDeliveryOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote > 0);
-  },
-  notAvailableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote === 0);
-  },
-  isAvailablePacking: (state, getters) => {
-    return getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0;
-  },
-
+  // Выбранный оффер
   activeOffer: (state, getters) => {
     return getters.activePacking
       && (getters.activePacking.sku.find(item => item.id === state.offerId)
         || getters.activePacking.sku[0]);
   },
+
+  visibleOffers: (state, getters) => {
+    return getters.activePacking ? getters.activePacking.sku : [];
+  },
+  // Оффер в наличии на складе
+  availableOffers: (state, getters) => {
+    return getters.visibleOffers.filter(item => item.count > 0 && item.count_city > 0);
+  },
+  // Оффер в наличии на ЦС
+  availableDeliveryOffers: (state, getters) => {
+    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote > 0);
+  },
+  // Оффера нет в наличии
+  notAvailableOffers: (state, getters) => {
+    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote === 0);
+  },
+
+  isAvailablePacking: (state, getters) => {
+    return getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0;
+  },
   isAvailableOffer: (state, getters) => {
     return getters.activeOffer
-      ? (getters.activeOffer.count + getters.activeOffer.count_remote) > 0
-      : true;
+      ? (getters.activeOffer.count > 0 || getters.activeOffer.count_remote > 0)
+      : false;
   },
 };
 
@@ -79,7 +103,8 @@ const actions = {
     });
 
     // commit('SET_NAME', { name: global.product.name });
-    commit('SET_TEXT_DELIVERY', { textDelivery: product.textDelivery });
+    commit('SET_PARAM', product);
+
     commit('SET_PACKING', { packing: product.packing });
     commit('SET_ACTIVE_OFFER_ID', { id: product.offerId });
     commit('SET_ACTIVE_PACKING_ID', { id: product.productId });
@@ -153,19 +178,18 @@ const actions = {
 
 // mutations
 const mutations = {
-  SET_ALL(state, product) {
-    state = {
-      ...state,
-      ...product,
-    };
-  },
+  // SET_ALL(state, product) {
+  //   state = {
+  //     ...state,
+  //     ...product,
+  //   };
+  // },
 
-  SET_NAME(state, { name }) {
-    state.name = name;
-  },
-
-  SET_TEXT_DELIVERY(state, { textDelivery }) {
-    state.textDelivery = textDelivery;
+  SET_PARAM(state, param) {
+    console.log(param.category);
+    state.textDelivery = param.textDelivery;
+    state.category = param.category;
+    state.country = param.country;
   },
 
   SET_PACKING(state, { packing }) {

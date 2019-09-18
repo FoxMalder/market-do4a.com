@@ -3,9 +3,10 @@
     <h3 class="order__title">{{ isMobile ? totalQuantityText : `В заказе ${totalQuantityText}` }}</h3>
     
     <div class="order__header">
-      <button class="order__btn-clear"
-              type="button"
-              @click.prevent="clear"
+      <button
+        class="order__btn-clear"
+        type="button"
+        @click.prevent="clear"
       ><i class="icon icon-delete"></i> Очистить корзину</button>
     </div>
     
@@ -14,7 +15,8 @@
         v-for="order in orderList"
         :key="order.storeId"
         :order="order"
-        :multiple="orderList.length > 1"/>
+        :multiple="orderList.length > 1"
+      />
     </div>
     
     <div class="order__promocode">
@@ -32,12 +34,10 @@
       </div>
       
       <template v-if="orderList.length > 1">
-        <div class="order-amount__row"
-             v-for="order in orderList"
-             :key="order.storeId">
+        <div v-for="order in orderList" :key="order.storeId" class="order-amount__row">
           <div class="order-amount__key">
             <span class="order-number-badge order-number-badge_dark">Отправление {{ order.index }}</span>
-            {{ order.paymentItem ? order.paymentItem.name : 'Способ оплаты не выбран' }}
+            <span>{{ order.paymentItem ? order.paymentItem.name : 'Способ оплаты не выбран' }}</span>
           </div>
           <div class="order-amount__value">{{ order.total.ORDER_TOTAL_PRICE | formatPrice }}</div>
         </div>
@@ -60,9 +60,7 @@
       
       <div class="order__footer-note">
         Нажимая на кнопку, вы подтверждаете согласие на обработку
-        <a href="#"> персональных данных</a>
-        и
-        <a href="#"> политику конфиденциальности</a>
+        <a href="#">персональных данных</a> и <a href="#">политику конфиденциальности</a>
       </div>
     </div>
   </div>
@@ -70,6 +68,8 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
+
+  // import stickySidebar from 'sticky-sidebar';
 
   import Utils from '../../utils/utils';
 
@@ -88,6 +88,14 @@
         isMobile: document.documentElement.clientWidth < 768,
       }
     },
+    // mounted() {
+    //   var sidebar = new StickySidebar(this.$el, {
+    //     topSpacing: 150,
+    //     bottomSpacing: 120,
+    //     containerSelector: '.cart__inner',
+    //     innerWrapperSelector: '.order__inner'
+    //   });
+    // },
     computed: {
       ...mapState('checkout', {
         checkoutStatus: 'checkoutStatus'
@@ -113,7 +121,7 @@
         // clear: 'checkout/clearCheckout',
         setStep: 'checkout/setStep',
       }),
-      
+
       clear() {
         this.$store.dispatch('cart/clearCart');
       }
