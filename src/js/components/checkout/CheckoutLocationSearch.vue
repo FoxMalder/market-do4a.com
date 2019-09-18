@@ -5,9 +5,9 @@
        v-click-outside="clickedOutside">
     <div class="checkout-location-search__field">
       <label class="input-field input-field_primary"
-           :class="{'input-field_invalid': item.error}">
+             :class="{'input-field_invalid': item.error}">
         <span class="input-field__label"
-               :class="{'input-field__label_active': value !== ''}"
+              :class="{'input-field__label_active': value !== ''}"
         >{{ item.title + (item.required ? '*' : '') }}</span>
         <input class="input-field__input"
                type="search"
@@ -18,7 +18,7 @@
                @blur.prevent="deactivate()"
                @keyup.esc="deactivate()">
         <transition name="fade-left">
-          <div class="input-field__alert" v-if="item.error">{{item.error}}</div>
+          <div class="input-field__alert" v-if="item.error">{{ item.error }}</div>
         </transition>
       </label>
     </div>
@@ -33,7 +33,8 @@
              :class="{active: selectedIndex === index}"
              @click="chooseCity(city)"
              @mousemove="selectedIndex = index"
-             v-html="getHTML(city)"></div>
+             v-html="getHTML(city)"
+        ></div>
       </template>
     </div>
   </div>
@@ -257,7 +258,7 @@
 
         this.open = true;
       },
-      
+
       deactivate() {
         if (!this.open) return;
 

@@ -12,10 +12,11 @@
         <div class="product-card__price">
           <meta itemprop="price" :content="product.price">
           <meta itemprop="priceCurrency" content="RUB">
-          <span class="small">от</span> <span class="price">{{product.price | formatPrice }}</span>
+          <span class="small">от</span>
+          <span class="price">{{ product.price | formatPrice }}</span>
         </div>
         <div class="product-card__sale" v-if="product.price_benefit > 0">
-          Экономия до {{product.price_benefit | formatPrice}}
+          Экономия до {{ product.price_benefit | formatPrice }}
         </div>
         <div class="product-card__row">
           <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
@@ -24,10 +25,10 @@
             <meta itemprop="reviewCount" :content="product.review">
             <span class="product-card__rating" v-if="product.rating >= 3">
               <i class="i i-star"
-                      v-for="i in [1, 2, 3, 4, 5]"
-                      :class="{red: i <= product.raiting}"></i>
+                 v-for="i in [1, 2, 3, 4, 5]"
+                 :class="{ red: i <= product.raiting }"></i>
             </span>
-            <span>{{product.review ? getText(product.review, ['отзыв', 'отзыва', 'отзывов']) : 'Нет отзывов'}}</span>
+            <span>{{ product.review ? getText(product.review, ['отзыв', 'отзыва', 'отзывов']) : '' }}</span>
           </div>
           <div class="product-card__stock">
             <template v-if="product.inAvailable">
@@ -75,8 +76,9 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  
+
   import Utils from '../utils/utils';
+
 
   export default {
     name: "ProductCard",

@@ -175,6 +175,7 @@ export default class PageProduct {
     this.elements = {
       detailReviewsCount: document.querySelector('.p-detail__reviews'),
       reviewsCount: document.querySelector('.p-reviews-header__count'),
+      ratingValue: document.querySelector('.p-reviews-header__rating'),
       availability: document.querySelector('.p-section-availability'),
       breadcumpsThisPage: document.querySelector('.breadcumps__page'),
     };
@@ -191,7 +192,7 @@ export default class PageProduct {
     store.registerModule('product', productStore);
     store.dispatch('product/init', param);
 
-    $('.p-review-form').on('submit', this.addReview);
+    // $('.p-review-form').on('submit', this.addReview);
     $('.p-modal-form').on('submit', this.addReview);
 
 
@@ -285,10 +286,11 @@ export default class PageProduct {
     //     ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
     //     : 'Нет отзывов';
     // }
+    if (this.elements.ratingValue) {
+      this.elements.ratingValue.style.display = activePacking.review > 0 ? '' : 'none';
+    }
     if (this.elements.reviewsCount) {
-      this.elements.reviewsCount.innerHTML = `${activePacking.review > 0
-        ? activePacking.review
-        : ''}`;
+      this.elements.reviewsCount.innerHTML = activePacking.review > 0 ? activePacking.review : '';
     }
   };
 

@@ -25,13 +25,15 @@
       
       <fieldset class="order-props__description" v-if="propertyDescription">
         <div class="form-group" v-skew="10">
+<!--        <div class="form-group">-->
           <div class="input-field" :class="{'input-field_primary': !isMobile}">
             <label
               for="property-description"
               class="input-field__label">{{ propertyDescription.title }}</label>
             <textarea
+              ref="textarea"
               id="property-description"
-              class="input-field__input"
+              class="input-field__input autoheight"
               rows="5"
               :name="propertyDescription.name"
               :value="propertyDescription.value"
@@ -77,6 +79,7 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import InputField from './../InputField.vue';
   import CheckoutLocation from './CheckoutLocation.vue';
+  import TextareaAutoHeight from '../../plugins/TextareaAutoHeight';
   // import TransformSkew from './../TransformSkew.vue';
 
 
@@ -104,6 +107,9 @@
         isMobile: document.documentElement.clientWidth < 768,
         // description: '',
       }
+    },
+    mounted() {
+      new TextareaAutoHeight(this.$refs.textarea);
     },
     computed: {
       ...mapState('checkout', {

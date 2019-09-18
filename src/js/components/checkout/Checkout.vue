@@ -22,7 +22,7 @@
         </div>
       </div>
       
-      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
+<!--      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>-->
       
       <template v-else-if="!isMobile">
         <div class="container">
