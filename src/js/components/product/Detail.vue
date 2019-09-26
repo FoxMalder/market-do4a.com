@@ -5,7 +5,7 @@
     </div>
     
     <div class="p-detail__availability">
-      <template v-if="activeOffer.count_city === 0 && activeOffer.count_remote === 0">
+      <template v-if="!isAvailableOffer">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="10" cy="10" r="10" fill="#C0C0C0"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3703 7.75295L12.2468 6.62941L10 8.87617L7.75324 6.62939L6.6297 7.75292L8.87649 9.99971L6.6291 12.2471L7.75264 13.3706L10 11.1232L12.2474 13.3706L13.3709 12.2471L11.1236 9.99971L13.3703 7.75295Z" fill="white"/>
@@ -13,7 +13,7 @@
         <span>Нет в наличии</span>
       </template>
       
-      <template v-else-if="activeOffer.count_city > 0">
+      <template v-else-if="activeOffer.count_group > 0">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10Z" fill="#80C627"/>
           <path fill-rule="evenodd" clip-rule="evenodd" d="M14.7072 8.20706L9.00008 13.9142L5.29297 10.2071L6.70718 8.79285L9.00008 11.0857L13.293 6.79285L14.7072 8.20706Z" fill="white"/>
@@ -40,7 +40,7 @@
     
     <div class="p-detail-delivery" v-if="isAvailableOffer">
       
-      <template v-if="activeOffer.count_city > 0">
+      <template v-if="activeOffer.count_group > 0">
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">
             Самовывоз из

@@ -4,9 +4,9 @@
       <div class="p-control-options__weight" v-if="packing.length > 1">
         <div class="p-control-radio">
           <div class="p-control-radio__item"
-                  v-for="pack in packing"
-                  :key="pack.id"
-                  :class="{active: pack.id === activePacking.id}">
+               v-for="pack in packing"
+               :key="pack.id"
+               :class="{active: pack.id === activePacking.id}">
             <div class="p-control-radio__tooltip" v-if="pack.price_benefit > 0">
               <div class="p-control-radio__tooltip-title">Экономия</div>
               <div class="p-control-radio__tooltip-price">{{pack.price_benefit}}₽</div>
@@ -18,9 +18,10 @@
       <div class="p-control-options__type">
         <div class="p-control-select">
           <button class="p-control-select__header" :class="{ notAvailable: !isAvailableOffer }" data-toggle="dropdown" ref="dropdownHeader">
-            <span class="p-control-select__header-label">{{activeOffer.name}}</span>
+            <span class="p-control-select__header-label">{{ activeOffer.name }}</span>
             <span class="p-control-select__header-badge"
-                    v-show="(availableOffers.length || availableDeliveryOffers.length) && activePacking.textCountOffer">{{activePacking.textCountOffer}}</span>
+                  v-show="(availableOffers.length || availableDeliveryOffers.length) && activePacking.textCountOffer"
+            >{{activePacking.textCountOffer}}</span>
           </button>
           <div class="p-control-select__list dropdown-menu" role="form">
             
@@ -29,12 +30,12 @@
                 <span class="p-control-select__delimiter-text">В наличии в магазинах</span>
               </div>
               <div class="p-control-select__item"
-                      v-for="offer in availableOffers"
-                      :key="offer.id"
-                      :class="{ checked: offer.id === activeOffer.id }"
-                      @click="selectClick(offer)">
-                <span class="p-control-select__item-name">{{offer.name}}</span>
-                <span class="p-control-select__item-info">Осталось {{offer.count}} шт.</span>
+                   v-for="offer in availableOffers"
+                   :key="offer.id"
+                   :class="{ checked: offer.id === activeOffer.id }"
+                   @click="selectClick(offer)">
+                <span class="p-control-select__item-name">{{ offer.name }}</span>
+                <span class="p-control-select__item-info">Осталось {{ offer.count_group }} шт.</span>
               </div>
             </template>
             
@@ -43,12 +44,12 @@
                 <span class="p-control-select__delimiter-text">Доставка с центрального склада</span>
               </div>
               <div class="p-control-select__item"
-                      v-for="offer in availableDeliveryOffers"
-                      :key="offer.id"
-                      :class="{ checked: offer.id === activeOffer.id }"
-                      @click="selectClick(offer)">
+                   v-for="offer in availableDeliveryOffers"
+                   :key="offer.id"
+                   :class="{ checked: offer.id === activeOffer.id }"
+                   @click="selectClick(offer)">
                 <span class="p-control-select__item-name">{{offer.name}}</span>
-                <span class="p-control-select__item-info">Осталось {{offer.count_remote}} шт.</span>
+                <span class="p-control-select__item-info">Осталось {{ offer.count_remote }} шт.</span>
               </div>
             </template>
             
@@ -59,11 +60,11 @@
                 </span>
               </div>
               <div class="p-control-select__item disabled"
-                      v-for="offer in notAvailableOffers"
-                      :key="offer.id"
-                      :class="{ checked: offer.id === activeOffer.id }"
-                      @click="selectClick(offer)">
-                <span class="p-control-select__item-name">{{offer.name}}</span>
+                   v-for="offer in notAvailableOffers"
+                   :key="offer.id"
+                   :class="{ checked: offer.id === activeOffer.id }"
+                   @click="selectClick(offer)">
+                <span class="p-control-select__item-name">{{ offer.name }}</span>
               </div>
             </template>
           

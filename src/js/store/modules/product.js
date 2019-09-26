@@ -94,7 +94,7 @@ const getters = {
 
   isAvailableOffer: (state, getters) => {
     return getters.activeOffer
-      ? (getters.activeOffer.count > 0 || getters.activeOffer.count_remote > 0)
+      ? (getters.activeOffer.count_group > 0 || getters.activeOffer.count_remote > 0)
       : false;
   },
 };
