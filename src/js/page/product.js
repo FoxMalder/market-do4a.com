@@ -303,7 +303,7 @@ export default class PageProduct {
   onChangeOffer = (state, payload) => {
     const activeOffer = payload;
 
-    if (activeOffer.count > 0) {
+    if (activeOffer.count_group > 0) {
       if (this.elements.availability) this.elements.availability.style.display = '';
 
       [].forEach.call(document.querySelectorAll('[data-store-id]'), (item) => {

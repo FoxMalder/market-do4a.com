@@ -73,28 +73,11 @@
             <div class="order-option__subtitle" v-if="item.period">Сроки доставки: {{ item.period }}</div>
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
             
-            <div class="order-option__place" v-if="item.type === 'P'">
-              <div class="order-option__place-address">{пр-т Ленинский 95 корп. 1, 53-Н}</div>
-              <div class="order-option__place-info">
-                <div>{Вс 10:00-16:00, Сб 10:00-16:00, Пн-Пт 10:00-20:00}</div>
-                <a href="#">{+79061946080}</a>
-              </div>
-              <a href="#" class="order-option__place-link">Показать на карте</a>
-            </div>
+            <!-- Выбор магазина для самовывоза -->
+            <CheckoutShippingPickup v-if="item.type === 'P'" :order="order"/>
             
-            <div id="moreInfo_sdek-pickup" v-if="item.category === 'sdek.pickup'">
-              <div class="order-option__place" v-if="sdek">
-                <div class="order-option__place-address">{пр-т Ленинский 95 корп. 1, 53-Н}</div>
-                <div class="order-option__place-info">
-                  <div>{Вс 10:00-16:00, Сб 10:00-16:00, Пн-Пт 10:00-20:00}</div>
-                  <a href="#">{+79061946080}</a>
-                </div>
-              </div>
-              <button class="order-option__button"
-                      type="button"
-                      @click="selectPickup"
-              >{{ sdek ? 'Изменить' : 'Выбрать'}} пункт самовывоза</button>
-            </div>
+            <!-- Выбор пункта самовывоза СДЭК -->
+            <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
           </div>
         </div>
       </div>
@@ -149,17 +132,16 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
   import CheckoutAlert from './CheckoutAlert.vue';
+  import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
+  import CheckoutShippingPickup from './CheckoutShippingPickup.vue';
 
 
   export default {
     name: 'CheckoutShippingAndPayment',
-    data() {
-      return {
-        sdek: false,
-      }
-    },
     components: {
       CheckoutAlert,
+      CheckoutShippingSDEK,
+      CheckoutShippingPickup,
     },
     computed: {
       ...mapState('checkout', {
@@ -183,11 +165,6 @@
         selectShipping: SET_SHIPPING_METHOD,
         removeOrder: REMOVE_ORDER,
       }),
-
-      selectPickup() {
-        IPOLSDEK_pvz.selectPVZ('moreInfo_sdek-pickup', 'PVZ');
-        this.sdek = true;
-      }
     }
   }
 </script>

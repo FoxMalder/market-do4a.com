@@ -732,20 +732,41 @@
     font-size: 11px;
     font-weight: normal;
     line-height: 14px;
+
+    & + * {
+      margin-top: 15px;
+    }
     @include media-breakpoint-up(md) {
       font-size: 12px;
       line-height: 17px;
+      & + * {
+        margin-top: 18px;
+      }
     }
   }
+}
 
-  &__place {
-    margin-top: 15px;
-    @include media-breakpoint-up(md) {
-      margin-top: 18px;
-    }
+
+/**
+ * Выбор магазина для самовывоза
+ */
+.o-shipping-pickup {
+  &__item {
+    position: relative;
+  //  &.active {
+  //    &::before {
+  //      content: '';
+  //      position: absolute;
+  //      left: -30px;
+  //      width: 20px;
+  //      height: 20px;
+  //      border-radius: 50%;
+  //      background: red;
+  //    }
+  //  }
   }
 
-  &__place-address {
+  &__address {
     margin-bottom: 5px;
     font-size: 13px;
     line-height: 16px;
@@ -756,7 +777,28 @@
     }
   }
 
-  &__place-info {
+  &__link {
+    color: #636363; // rgba(#000, 0.6);
+  }
+}
+
+/**
+ * Выбор пункта самовывоза СДЭК
+ */
+.o-shipping-sdek-pickup {
+
+  &__address {
+    margin-bottom: 5px;
+    font-size: 13px;
+    line-height: 16px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 6px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  &__info {
     color: #636363; // rgba(#000, 0.6);
     font-size: 11px;
     font-weight: normal;
@@ -765,10 +807,6 @@
       font-size: 12px;
       line-height: 17px;
     }
-  }
-
-  &__place-link {
-    color: #636363; // rgba(#000, 0.6);
   }
 
   &__button {

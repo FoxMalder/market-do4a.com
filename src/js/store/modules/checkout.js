@@ -382,6 +382,7 @@ export default function createModule(options) {
           paymentMethods,
           deliveryMethods,
           productList,
+          groupStore: [],
         }
        */
     ],
@@ -517,6 +518,7 @@ export default function createModule(options) {
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
+          groupStore: param.groupStore,
         });
       }
 
@@ -569,6 +571,7 @@ export default function createModule(options) {
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
+          groupStore: param.groupStore,
         });
       }
 
