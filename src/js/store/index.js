@@ -22,7 +22,8 @@ const state = {
 
 const getters = {
   currentCity: (state) => {
-    return global.app.storeManagerData.cities[global.app.storeManagerData.currentCityId];
+    return state.cityList.find(item => item.id === state.cityId);
+    // return global.app.storeManagerData.cities[global.app.storeManagerData.currentCityId];
   },
   getCityById: (state) => (cityId) => {
     return state.cityList.find(item => item.id === parseInt(cityId, 10));
@@ -76,65 +77,6 @@ const actions = {
 
         localStorage.setItem('favorites', JSON.stringify(data));
       });
-  },
-
-
-  setPost({ commit }) {
-    $.ajax({
-      url: document.location.href,
-      data: {
-        method: 'store.set',
-        cityId: global.app.storeManagerData.noCityId,
-        storeId: global.app.storeManagerData.remoteStoreId,
-        backUrl: document.location.pathname + document.location.search,
-        ajax: 'Y',
-        sessid: Utils.sessid(),
-      },
-      dataType: 'json',
-    }).done((response) => {
-      if (response.status === 'error') {
-        alert(response.error);
-        return;
-      }
-
-      if (response.redirectUrl) {
-        document.location.href = response.redirectUrl;
-      } else {
-        document.location.reload();
-      }
-    });
-  },
-
-  setCity({ getters }, cityId) {
-    const storeId = getters.getStoreListByCityId(cityId)[0].id;
-
-    $.ajax({
-      url: document.location.href,
-      data: {
-        method: 'store.set',
-        cityId,
-        storeId,
-        backUrl: document.location.pathname + document.location.search,
-        ajax: 'Y',
-        sessid: Utils.sessid(),
-      },
-      dataType: 'json',
-    }).done((response) => {
-      if (response.status === 'error') {
-        alert(response.error);
-        return;
-      }
-
-      if (response.redirectUrl) {
-        document.location.href = response.redirectUrl;
-      } else {
-        document.location.reload();
-      }
-    });
-  },
-
-  setStore({ commit }, storeId) {
-    commit('SET_STORE', storeId);
   },
 };
 
