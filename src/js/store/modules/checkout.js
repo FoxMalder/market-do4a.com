@@ -1003,6 +1003,7 @@ export default function createModule(options) {
 
     [SET_STORE]: (state, { storeId, order }) => {
       const currentOrder = state.orderList.find(item => item.id === order.id);
+      console.log(storeId, currentOrder);
       currentOrder.storeId = storeId;
     },
 

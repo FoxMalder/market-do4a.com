@@ -10,7 +10,7 @@
              :checked="store.id === order.storeId"
              :value="store.id">
       <label :for="'pickup-' + store.id" class="o-shipping-pickup__label">
-        <span class="o-shipping-pickup__address">{{ store.name }}</span>
+        <span class="o-shipping-pickup__address">{{ store.name }} ({{ store.id }})</span>
         <a href="#" class="o-shipping-pickup__link" @click="showOnMap(store)">Показать на карте (Нет)</a>
       </label>
     </li>
@@ -19,6 +19,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
+  import { SET_STORE } from './../../store/modules/checkout';
 
 
   export default {
@@ -40,7 +41,7 @@
     methods: {
       setStore(store) {
         console.log('Установлен магазин', store);
-        this.$store.commit(`checkout/SET_STORE`, { storeId: store.id, order: this.order })
+        this.$store.commit(`checkout/${SET_STORE}`, { storeId: store.id, order: this.order })
       },
       showOnMap(store) {
         alert('Допустим, открылась карта на ' + store.name);

@@ -130,7 +130,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, SET_STORE, REMOVE_ORDER } from './../../store/modules/checkout';
+  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
   import CheckoutAlert from './CheckoutAlert.vue';
   import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
   import CheckoutShippingPickup from './CheckoutShippingPickup.vue';
