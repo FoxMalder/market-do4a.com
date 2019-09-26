@@ -386,6 +386,7 @@ export default function createModule(options) {
         }
        */
     ],
+    groupStore: [],
     propertyGroups: [],
     propertyList: [],
     staticPropertyList: [],
@@ -473,6 +474,7 @@ export default function createModule(options) {
     async init({ commit, dispatch }) {
       commit('SET_PARAM', param.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
+      commit('SET_GROUP_STORE', param.groupStore);
 
       commit('ADD_STATIC_PROPERTY', {
         name: 'ORDER_DESCRIPTION',
@@ -518,7 +520,6 @@ export default function createModule(options) {
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
-          groupStore: param.groupStore,
         });
       }
 
@@ -571,7 +572,6 @@ export default function createModule(options) {
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
-          groupStore: param.groupStore,
         });
       }
 
@@ -943,6 +943,9 @@ export default function createModule(options) {
       state.personTypeId = Object.values(result.PERSON_TYPE).find(item => item.CHECKED === 'Y').ID;
     },
 
+    SET_GROUP_STORE: (state, groupStore) => {
+      state.groupStore = groupStore;
+    },
     SET_CHECKOUT_STATUS: (state, status) => {
       state.checkoutStatus = status;
     },

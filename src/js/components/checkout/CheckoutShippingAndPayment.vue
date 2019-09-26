@@ -74,7 +74,7 @@
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
             
             <!-- Выбор магазина для самовывоза -->
-            <CheckoutShippingPickup v-if="item.type === 'P'" :order="order"/>
+            <CheckoutShippingPickup v-if="item.type === 'P'"/>
             
             <!-- Выбор пункта самовывоза СДЭК -->
             <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>

@@ -1,7 +1,7 @@
 <template>
   <ul class="o-shipping-pickup">
     <li class="o-shipping-pickup__item"
-        v-for="storeId in order.groupStore">
+        v-for="storeId in groupStore">
       <input name="OLOLOLOLO" type="radio" id="'pickup-' + storeId" :value="storeId" v-model="currentStoreId">
       <label :for="'pickup-' + storeId">
         <div class="o-shipping-pickup__address">{{ storeId }} Id магазина</div>
@@ -16,16 +16,16 @@
 <script>
   export default {
     name: "CheckoutShippingPickup",
-    props: {
-      order: {
-        type: Object,
-      }
-    },
     data() {
       return {
         currentStoreId: 0,
       }
     },
+    computed: {
+      groupStore() {
+        return this.$store.state.checkout.groupStore
+      }
+    }
     // methods: {
     //   setStore(storeId) {
     //     this.currentStoreId = storeId;
