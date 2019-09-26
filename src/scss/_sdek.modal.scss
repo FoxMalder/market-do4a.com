@@ -74,10 +74,15 @@
   padding: 15px 22px;
   font-weight: 500;
   border-bottom: 1px solid #eee;
+  transition: all .3s ease;
 
   &.active,
   &:hover {
     box-shadow: inset 0 0 0 2px #101010;
+
+    .sdek-pickup-item__button {
+      opacity: 1;
+    }
   }
 
   &__address {
@@ -103,5 +108,8 @@
     color: #fff;
     font-size: 14px;
     padding: 5px 17px;
+
+    transition: all .3s ease;
+    opacity: 0;
   }
 }

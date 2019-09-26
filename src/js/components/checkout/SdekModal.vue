@@ -23,10 +23,12 @@
             <div class="sdek-pickup-item"
                  v-for="(item, name) in cityPVZ"
                  :data-name="name"
-                 :class="{ active: name === activePoint }">
+                 :class="{ active: name === activePoint }"
+                 @mouseenter="onEnter(name)"
+                 @mouseleave="onLeave(name)">
               <div class="sdek-pickup-item__address">{{ item.Address }}</div>
               <div class="sdek-pickup-item__info">
-                <div>Дата самовывоза: <span class="black">15 мая</span></div>
+                <div>Дата самовывоза: <span class="black">{15 мая}</span></div>
                 <div>{{ item.WorkTime }}</div>
                 <div><a href="#">{{ item.Phone }}</a></div>
               </div>
@@ -64,7 +66,13 @@
       },
       setPoint(name) {
         console.log('Set', name);
-      }
+      },
+      onEnter(name) {
+        console.log('Enter', name);
+      },
+      onLeave(name) {
+        console.log('Leave', name);
+      },
     }
   }
 </script>

@@ -65,11 +65,11 @@ const getters = {
   },
 
   /**
-   * Оффера в наличии на складе
+   * Оффера в наличии
    * @returns {Array}
    */
   availableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count > 0 && item.count_city > 0);
+    return getters.visibleOffers.filter(item => item.count_group > 0);
   },
 
   /**
@@ -77,7 +77,7 @@ const getters = {
    * @returns {Array}
    */
   availableDeliveryOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote > 0);
+    return getters.visibleOffers.filter(item => item.count_group === 0 && item.count_remote > 0);
   },
 
   /**
@@ -85,7 +85,7 @@ const getters = {
    * @returns {Array}
    */
   notAvailableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote === 0);
+    return getters.visibleOffers.filter(item => item.count_group === 0 && item.count_remote === 0);
   },
 
   isAvailablePacking: (state, getters) => {
