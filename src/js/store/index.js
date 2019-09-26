@@ -91,6 +91,7 @@ const mutations = {
     state.storeId = storeId;
   },
   SET_APP_PARAMS(state, app) {
+    state.cityId = parseInt(app.storeManagerData.currentCityId, 10);
     state.storeId = app.storeId;
     state.storeRemoteId = app.storeRemoteId;
     state.isLocaleStore = app.storeId !== app.storeRemoteId;
