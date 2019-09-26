@@ -45,6 +45,7 @@
     "vue": "^2.6.10",
     "vue-affix": "^0.5.2",
     "vue-cli-plugin-quasar": "^1.0.0",
+    "vue-yandex-maps": "^0.8.17",
     "vue2-touch-events": "^2.0.0",
     "vuex": "^3.1.1",
     "ymaps": "^0.2.0"

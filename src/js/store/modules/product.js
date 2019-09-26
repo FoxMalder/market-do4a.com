@@ -52,6 +52,7 @@ const getters = {
   activePacking: (state) => {
     return state.packing.find(item => item.id === state.packingId);
   },
+
   // Выбранный оффер
   activeOffer: (state, getters) => {
     return getters.activePacking
@@ -62,15 +63,27 @@ const getters = {
   visibleOffers: (state, getters) => {
     return getters.activePacking ? getters.activePacking.sku : [];
   },
-  // Оффер в наличии на складе
+
+  /**
+   * Оффера в наличии на складе
+   * @returns {Array}
+   */
   availableOffers: (state, getters) => {
     return getters.visibleOffers.filter(item => item.count > 0 && item.count_city > 0);
   },
-  // Оффер в наличии на ЦС
+
+  /**
+   * Оффера в наличии на ЦС
+   * @returns {Array}
+   */
   availableDeliveryOffers: (state, getters) => {
     return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote > 0);
   },
-  // Оффера нет в наличии
+
+  /**
+   * Оффера, которых нет в наличии
+   * @returns {Array}
+   */
   notAvailableOffers: (state, getters) => {
     return getters.visibleOffers.filter(item => item.count_city === 0 && item.count_remote === 0);
   },
@@ -78,6 +91,7 @@ const getters = {
   isAvailablePacking: (state, getters) => {
     return getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0;
   },
+
   isAvailableOffer: (state, getters) => {
     return getters.activeOffer
       ? (getters.activeOffer.count > 0 || getters.activeOffer.count_remote > 0)

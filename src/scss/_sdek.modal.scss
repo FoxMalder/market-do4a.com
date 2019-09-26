@@ -1,0 +1,107 @@
+.sdek-pickup-modal {
+  &__header {
+    padding: 32px 40px;
+  }
+
+  &__title {
+    @include title;
+    font-size: 23px;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  &__mask {
+    overflow: hidden;
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 432px;
+    height: 100%;
+    margin-right: tan(9deg) * 664px / -2;
+    margin-left: tan(9deg) * 664px / -2;
+    transform: $skew-reverse;
+    -webkit-backface-visibility: hidden;
+  }
+
+  &__map {
+    width: 1100px;
+    height: 664px;
+    margin-right: tan(9deg) * 664px / -2;
+    margin-left: tan(9deg) * 664px / -2;
+    transform: $skew-reverse;
+    -webkit-backface-visibility: hidden;
+
+    background: darkseagreen;
+  }
+}
+
+
+.sdek-pickup-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+
+  &__header {
+    flex: 0 0 auto;
+    padding: 15px 22px;
+    background: #101010;
+    color: #fff;
+  }
+
+  &__title {
+    @include title;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  &__list {
+    flex: 1 0;
+    overflow-y: auto;
+  }
+}
+
+.sdek-pickup-item {
+  position: relative;
+  padding: 15px 22px;
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+
+  &.active,
+  &:hover {
+    box-shadow: inset 0 0 0 2px #101010;
+  }
+
+  &__address {
+    margin-bottom: 11px;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    line-height: 19px;
+  }
+
+  &__info {
+    color: rgba(16, 16, 16, 0.5);;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    line-height: 22px;
+  }
+
+  &__button {
+    @extend %button-reset;
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    background: #80c627;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 17px;
+  }
+}

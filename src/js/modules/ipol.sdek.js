@@ -825,6 +825,7 @@ var IPOLSDEK_pvz = {
   guessCheckedDel: function(delId) {
     return ('ID_DELIVERY_ID_' + delId == $('[name="DELIVERY_ID"]:checked').attr('ID'));
   },
+
   PVZ: {},
 
   cityPVZ: {},

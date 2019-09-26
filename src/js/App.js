@@ -2,6 +2,7 @@ import Vue from 'vue';
 import store from './store';
 import Header from './modules/Header';
 import Notifications from './components/Notifications.vue';
+import Modal from './components/Modal.vue';
 import { ADD_TOAST_MESSAGE } from './store/modules/notifications';
 import Platform from './plugins/Platform';
 
@@ -22,6 +23,12 @@ class App {
       render: h => h(Notifications),
     }).$mount();
     document.body.appendChild(this.NotifyVM.$el);
+
+    this.ModalVM = new Vue({
+      store,
+      render: h => h(Modal),
+    }).$mount();
+    document.body.appendChild(this.ModalVM.$el);
 
     this.Header = new Header();
   }

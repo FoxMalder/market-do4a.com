@@ -1,68 +1,5 @@
 <template>
   <article>
-    <div class="vue-modal">
-      <div class="vue-modal__scroll" :style="modalStyle">
-        <div class="vue-modal__wrapper">
-          <div class="vue-modal__outer">
-            <button class="btn btn-red modal-close">
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.02815 3.62882L3.71674 4.94023L6.7768 8.0003L3.71694 11.0602L5.02835 12.3716L8.08822 9.31171L11.1481 12.3716L12.4595 11.0601L9.39963 8.0003L12.4597 4.94024L11.1483 3.62883L8.08822 6.68888L5.02815 3.62882Z" fill="currentColor"></path>
-              </svg>
-            </button>
-            <div class="vue-modal__inner">
-              <div class="test">
-                <h2 class="test__title">Title</h2>
-                <div class="test__b">
-                  <div class="test__map">map</div>
-                  <div class="test__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aperiam
-                    distinctio ipsa libero magni sequi. Aliquid aperiam at autem dolor dolorem ducimus, eaque magnam
-                    nihil
-                    pariatur porro quod, sunt veritatis vero? Consectetur distinctio fugiat impedit ipsum pariatur
-                    reprehenderit sunt ullam? Consequuntur impedit numquam quasi! Ea incidunt reiciendis sapiente
-                    tenetur.</div>
-                </div>
-                <div class="test__b test__b_n">
-                  <div class="test__map">map</div>
-                  <div class="test__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aperiam
-                    distinctio ipsa libero magni sequi. Aliquid aperiam at autem dolor dolorem ducimus, eaque magnam
-                    nihil
-                    pariatur porro quod, sunt veritatis vero? Consectetur distinctio fugiat impedit ipsum pariatur
-                    reprehenderit sunt ullam? Consequuntur impedit numquam quasi! Ea incidunt reiciendis sapiente
-                    tenetur.</div>
-                </div>
-                <div class="test__b">
-                  <div class="test__map">map</div>
-                  <div class="test__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aperiam
-                    distinctio ipsa libero magni sequi. Aliquid aperiam at autem dolor dolorem ducimus, eaque magnam
-                    nihil
-                    pariatur porro quod, sunt veritatis vero? Consectetur distinctio fugiat impedit ipsum pariatur
-                    reprehenderit sunt ullam? Consequuntur impedit numquam quasi! Ea incidunt reiciendis sapiente
-                    tenetur.</div>
-                </div>
-                <div class="test__b test__b_n">
-                  <div class="test__map">map</div>
-                  <div class="test__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aperiam
-                    distinctio ipsa libero magni sequi. Aliquid aperiam at autem dolor dolorem ducimus, eaque magnam
-                    nihil
-                    pariatur porro quod, sunt veritatis vero? Consectetur distinctio fugiat impedit ipsum pariatur
-                    reprehenderit sunt ullam? Consequuntur impedit numquam quasi! Ea incidunt reiciendis sapiente
-                    tenetur.</div>
-                </div>
-                <div class="test__b">
-                  <div class="test__map">map</div>
-                  <div class="test__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aperiam
-                    distinctio ipsa libero magni sequi. Aliquid aperiam at autem dolor dolorem ducimus, eaque magnam
-                    nihil
-                    pariatur porro quod, sunt veritatis vero? Consectetur distinctio fugiat impedit ipsum pariatur
-                    reprehenderit sunt ullam? Consequuntur impedit numquam quasi! Ea incidunt reiciendis sapiente
-                    tenetur.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <header class="cart-section-header">
       <div class="container">
@@ -160,7 +97,6 @@
     data() {
       return {
         isMobile: document.documentElement.clientWidth < 1240,
-        modalStyle: {},
       }
     },
     computed: {
@@ -216,29 +152,5 @@
       //   }
       // });
     },
-    mounted() {
-      const offset = Math.tan(9 / 180 * Math.PI) * document.documentElement.clientHeight;
-      document.body.style.overflow = 'hidden';
-      this.modalStyle = {
-        position: 'absolute',
-        left: `${offset / -2}px`,
-        right: `${offset / -2}px`,
-        width: `${document.documentElement.clientWidth + offset}px`,
-        top: '0px',
-        bottom: '0px',
-      };
-      window.addEventListener('resize', () => {
-        const offset = Math.tan(9 / 180 * Math.PI) * document.documentElement.clientHeight;
-        this.modalStyle = {
-          position: 'absolute',
-          left: `${offset / -2}px`,
-          right: `${offset / -2}px`,
-          width: `${document.documentElement.clientWidth + offset}px`,
-          top: '0px',
-          bottom: '0px',
-          // width: `calc(100% + ${offset}px)`
-        };
-      })
-    }
   }
 </script>

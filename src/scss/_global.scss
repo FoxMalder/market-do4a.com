@@ -1579,6 +1579,8 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
     overflow: auto;
     overflow: -moz-scrollbars-none;
     transform: $skew;
+    -webkit-backface-visibility: hidden;
+
     scrollbar-width: none;
     -ms-overflow-style: none;
 
