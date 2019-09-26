@@ -107,7 +107,7 @@
       maxCount() {
         return (this.basketItem && this.basketItem.quantity_max)
           ? this.basketItem.quantity_max
-          : (this.offer.count || this.offer.count_remote);
+          : (this.offer.count_group || this.offer.count_remote);
       },
       basketItem() {
         return this.basketItemById(this.offer.id);
@@ -134,7 +134,6 @@
 
         if (val > this.maxCount) {
           this.count = this.maxCount;
-          return;
         }
       }
     },

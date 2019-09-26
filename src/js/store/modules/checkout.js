@@ -961,6 +961,8 @@ export default function createModule(options) {
       const currentProp = state.staticPropertyList.find(prop => prop.name === name);
       if (currentProp) {
         currentProp.value = value;
+      } else {
+        state.staticPropertyList.push({ name, value });
       }
     },
 

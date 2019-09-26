@@ -741,7 +741,8 @@
       font-size: 12px;
       line-height: 17px;
       & + * {
-        margin-top: 18px;
+        //margin-top: 18px;
+        margin-top: 21px;
       }
     }
   }
@@ -752,7 +753,7 @@
  * Выбор магазина для самовывоза
  */
 .o-shipping-pickup {
-  margin: 0;
+  margin-bottom: 0;
   padding: 0;
   list-style: none;
 
@@ -760,6 +761,17 @@
     display: block;
     position: relative;
     cursor: pointer;
+    font-size: 13px;
+    line-height: 16px;
+
+    & + .o-shipping-pickup__item {
+      margin-bottom: 30px;
+    }
+
+    @include media-breakpoint-up(md) {
+      font-size: 15px;
+      line-height: 18px;
+    }
     //  &.active {
     //    &::before {
     //      content: '';
@@ -788,13 +800,15 @@
   }
 
   &__label {
+    cursor: pointer;
     display: block;
     padding-left: 30px;
+    margin-bottom: 0;
 
     &::before {
       content: '';
       position: absolute;
-      left: 0;
+      left: -4px;
       top: 0;
       width: 20px;
       height: 20px;
@@ -808,20 +822,13 @@
   &__address {
     display: block;
     margin-bottom: 5px;
-    font-size: 13px;
-    line-height: 16px;
     @include media-breakpoint-up(md) {
-      margin-bottom: 6px;
-      font-size: 14px;
-      line-height: 17px;
+      margin-bottom: 8px;
     }
   }
 
-  &__control {
-    display: block;
-  }
-
   &__link {
+    display: inline-block;
     color: #636363; // rgba(#000, 0.6);
   }
 }

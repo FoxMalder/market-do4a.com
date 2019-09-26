@@ -9,10 +9,8 @@
              v-model="currentStoreId"
              :value="storeId">
       <label :for="'pickup-' + storeId" class="o-shipping-pickup__label">
-        <span class="o-shipping-pickup__address">{{ storeId }} Id магазина</span>
-        <span class="o-shipping-pickup__control">
-          <a href="#" class="o-shipping-pickup__link">Показать на карте</a>
-        </span>
+        <span class="o-shipping-pickup__address">{{ storeId }}</span>
+        <a href="#" class="o-shipping-pickup__link">Показать на карте</a>
       </label>
     </li>
   </ul>
