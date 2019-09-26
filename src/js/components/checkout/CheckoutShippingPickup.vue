@@ -1,39 +1,51 @@
 <template>
   <ul class="o-shipping-pickup">
     <li class="o-shipping-pickup__item"
-        v-for="storeId in groupStore">
+        v-for="store in groupStore">
       <input class="o-shipping-pickup__input"
-             name="OLOLOLOLO"
+             name="storeId"
              type="radio"
-             :id="'pickup-' + storeId"
-             v-model="currentStoreId"
-             :value="storeId">
-      <label :for="'pickup-' + storeId" class="o-shipping-pickup__label">
-        <span class="o-shipping-pickup__address">{{ storeId }}</span>
-        <a href="#" class="o-shipping-pickup__link">Показать на карте</a>
+             :id="'pickup-' + store.id"
+             @change="setStore(store)"
+             :checked="store.id === order.storeId"
+             :value="store.id">
+      <label :for="'pickup-' + store.id" class="o-shipping-pickup__label">
+        <span class="o-shipping-pickup__address">{{ store.name }}</span>
+        <a href="#" class="o-shipping-pickup__link" @click="showOnMap(store)">Показать на карте (Нет)</a>
       </label>
     </li>
   </ul>
 </template>
 
 <script>
+  import { mapGetters, mapState, mapActions } from 'vuex';
+
+
   export default {
     name: "CheckoutShippingPickup",
-    data() {
-      return {
-        currentStoreId: 0,
+    props: {
+      order: {
+        type: Object,
+        required: true,
       }
     },
     computed: {
+      ...mapGetters({
+        getStoreById: 'getStoreById',
+      }),
       groupStore() {
-        return this.$store.state.checkout.groupStore
+        return this.$store.state.checkout.groupStore.map(storeId => this.getStoreById(storeId)).filter(item => item);
+      }
+    },
+    methods: {
+      setStore(store) {
+        console.log('Установлен магазин', store);
+        this.$store.commit(`checkout/SET_STORE`, { storeId: store.id, order: this.order })
+      },
+      showOnMap(store) {
+        alert('Допустим, открылась карта на ' + store.name);
       }
     }
-    // methods: {
-    //   setStore(storeId) {
-    //     this.currentStoreId = storeId;
-    //   }
-    // }
   }
 </script>
 

@@ -57,7 +57,7 @@
           <!--                 :checked="item.id === order.deliveryId"-->
           <!--                 v-model="order.deliveryId">-->
           <div class="order-option__header"
-               @click="selectShipping({ id: item.id, storeId: order.storeId })">
+               @click="selectShipping({ id: item.id, order })">
             <div class="order-option__row-top">
               <img class="order-option__icon" v-if="item.logoUrl" :src="item.logoUrl" :alt="item.name">
               <div class="order-option__name">{{ item.name }}</div>
@@ -74,7 +74,7 @@
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
             
             <!-- Выбор магазина для самовывоза -->
-            <CheckoutShippingPickup v-if="item.type === 'P'"/>
+            <CheckoutShippingPickup v-if="item.type === 'P'" :order="order"/>
             
             <!-- Выбор пункта самовывоза СДЭК -->
             <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
@@ -109,7 +109,7 @@
           <!--                 :value="item.id"-->
           <!--                 v-model="order.paymentId">-->
           <div class="order-option__header"
-               @click="selectPayment({ id: item.id, storeId: order.storeId })">
+               @click="selectPayment({ id: item.id, order })">
             <div class="order-option__row-top">
               <div class="order-option__name">{{ item.name }}</div>
             </div>
@@ -130,7 +130,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
+  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, SET_STORE, REMOVE_ORDER } from './../../store/modules/checkout';
   import CheckoutAlert from './CheckoutAlert.vue';
   import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
   import CheckoutShippingPickup from './CheckoutShippingPickup.vue';

@@ -31,6 +31,9 @@ const getters = {
   getStoreListByCityId: (state) => (cityId) => {
     return state.storeList.filter(item => item.city === parseInt(cityId, 10));
   },
+  getStoreById: (state) => (storeId) => {
+    return state.storeList.find(item => item.id === storeId, 10);
+  },
 };
 
 const actions = {

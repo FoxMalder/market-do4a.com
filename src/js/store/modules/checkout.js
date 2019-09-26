@@ -20,6 +20,7 @@ const SET_PROPERTY_GROUPS = 'SET_PROPERTY_GROUPS';
 
 const SET_SHIPPING = 'SET_SELECTED_SHIPPING_METHOD_ID';
 const SET_PAYMENT = 'SET_SELECTED_PAYMENT_METHOD_ID';
+const SET_STORE = 'SET_SELECTED_STORE_ID';
 const REMOVE_ORDER = 'REMOVE_ORDER';
 
 extend('required', {
@@ -39,6 +40,7 @@ extend('email', {
 export {
   SET_SHIPPING as SET_SHIPPING_METHOD,
   SET_PAYMENT as SET_PAYMENT_METHOD,
+  SET_STORE,
   REMOVE_ORDER,
 };
 
@@ -435,8 +437,8 @@ export default function createModule(options) {
       }));
     },
 
-    getAllFormData: (state, getters) => (storeId) => {
-      const order = getters.orderList.find(item => item.storeId === storeId);
+    getAllFormData: (state, getters) => (orderId) => {
+      const order = getters.orderList.find(item => item.id === orderId);
 
       const data = {
         DELIVERY_ID: order.deliveryId,
@@ -513,6 +515,7 @@ export default function createModule(options) {
         const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
 
         orderList.push({
+          id: 1,
           index: 1,
           storeId: window.app.storeId,
           total: convertTotal(options.result.TOTAL),
@@ -565,6 +568,7 @@ export default function createModule(options) {
         });
 
         orderList.push({
+          id: 2,
           index: 2,
           storeId: window.app.storeRemoteId,
           isLocaleStore: false,
@@ -652,9 +656,9 @@ export default function createModule(options) {
 
       return Promise.all(state.orderList.map(
         order => Api.fetchSaleOrderAjax(param.ajaxUrl, {
-          ...request,
-          order: getters.getAllFormData(order.storeId),
+          order: getters.getAllFormData(order.id),
           storeId: order.storeId,
+          ...request,
         }).then(result => ({ ...result, oldOrderData: order })),
       ));
     },
@@ -740,20 +744,26 @@ export default function createModule(options) {
       commit(SET_PROPERTY_LIST, convertPropertyList(properties));
     },
 
-    [SET_PAYMENT]({ commit, dispatch }, { id, storeId }) {
-      commit(SET_PAYMENT, { id, storeId });
+    [SET_PAYMENT]({ commit, dispatch }, { id, order }) {
+      commit(SET_PAYMENT, { id, order });
 
       dispatch('refreshOrderAjax');
     },
 
-    [SET_SHIPPING]({ commit, dispatch }, { id, storeId }) {
-      commit(SET_SHIPPING, { id, storeId });
+    [SET_SHIPPING]({ commit, dispatch }, { id, order }) {
+      commit(SET_SHIPPING, { id, order });
 
       dispatch('refreshOrderAjax');
     },
 
-    [REMOVE_ORDER]({ commit, dispatch }, { storeId }) {
-      commit(REMOVE_ORDER, storeId);
+    // [SET_STORE]({ commit, dispatch }, { storeId, order }) {
+    //   commit(SET_STORE, { storeId, order });
+    //
+    //   // dispatch('refreshOrderAjax');
+    // },
+
+    [REMOVE_ORDER]({ commit, dispatch }, order) {
+      commit(REMOVE_ORDER, order);
 
       dispatch('refreshOrderAjax');
     },
@@ -852,7 +862,7 @@ export default function createModule(options) {
 
       const resultList = await Promise.all(state.orderList.map(async (order) => {
         const request = {
-          ...getters.getAllFormData(order.storeId),
+          ...getters.getAllFormData(order.id),
           storeId: order.storeId,
           // save: 'Y', // ???
         };
@@ -951,9 +961,9 @@ export default function createModule(options) {
       state.personTypeId = Object.values(result.PERSON_TYPE).find(item => item.CHECKED === 'Y').ID;
     },
 
-    SET_GROUP_STORE: (state, groupStore) => {
-      state.groupStore = groupStore;
-    },
+    // SET_GROUP_STORE: (state, groupStore) => {
+    //   state.groupStore = groupStore;
+    // },
     SET_CHECKOUT_STATUS: (state, status) => {
       state.checkoutStatus = status;
     },
@@ -987,17 +997,22 @@ export default function createModule(options) {
       state.orderList = orderList;
     },
 
-    [REMOVE_ORDER]: (state, storeId) => {
-      state.orderList = state.orderList.filter(order => order.storeId !== storeId);
+    [REMOVE_ORDER]: (state, order) => {
+      state.orderList = state.orderList.filter(item => item.id !== order.id);
     },
 
-    [SET_SHIPPING]: (state, { id, storeId }) => {
-      const currentOrder = state.orderList.find(item => item.storeId === storeId);
+    [SET_STORE]: (state, { storeId, order }) => {
+      const currentOrder = state.orderList.find(item => item.id === order.id);
+      currentOrder.storeId = storeId;
+    },
+
+    [SET_SHIPPING]: (state, { id, order }) => {
+      const currentOrder = state.orderList.find(item => item.id === order.id);
       currentOrder.deliveryId = id;
     },
 
-    [SET_PAYMENT]: (state, { id, storeId }) => {
-      const currentOrder = state.orderList.find(item => item.storeId === storeId);
+    [SET_PAYMENT]: (state, { id, order }) => {
+      const currentOrder = state.orderList.find(item => item.id === order.id);
       currentOrder.paymentId = id;
     },
 
@@ -1008,6 +1023,8 @@ export default function createModule(options) {
     [SET_PROPERTY_LIST]: (state, propertyList) => {
       state.propertyList = propertyList;
     },
+
+
     ADD_STATIC_PROPERTY: (state, prop) => {
       state.staticPropertyList.push(prop);
     },

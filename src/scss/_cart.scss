@@ -765,7 +765,7 @@
     line-height: 16px;
 
     & + .o-shipping-pickup__item {
-      margin-bottom: 30px;
+      margin-top: 30px;
     }
 
     @include media-breakpoint-up(md) {
