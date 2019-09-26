@@ -454,7 +454,9 @@ export default function createModule(options) {
       });
 
       state.staticPropertyList.forEach((prop) => {
-        data[prop.name] = prop.value;
+        if (!prop.root) {
+          data[prop.name] = prop.value;
+        }
       });
 
       if (order.deliveryItem && order.deliveryItem.category === 'sdek') {
@@ -641,6 +643,12 @@ export default function createModule(options) {
         action: 'refreshOrderAjax',
         ...data,
       };
+
+      state.staticPropertyList.forEach((prop) => {
+        if (prop.root) {
+          request[prop.name] = prop.value;
+        }
+      });
 
       return Promise.all(state.orderList.map(
         order => Api.fetchSaleOrderAjax(param.ajaxUrl, {
@@ -957,12 +965,12 @@ export default function createModule(options) {
     //   state.propertyDescription = message;
     // },
 
-    SET_PROPERTY(state, { name, value }) {
+    SET_PROPERTY(state, { name, value, root = false }) {
       const currentProp = state.staticPropertyList.find(prop => prop.name === name);
       if (currentProp) {
         currentProp.value = value;
       } else {
-        state.staticPropertyList.push({ name, value });
+        state.staticPropertyList.push({ name, value, root });
       }
     },
 
