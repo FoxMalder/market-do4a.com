@@ -386,7 +386,7 @@ export default function createModule(options) {
         }
        */
     ],
-    groupStore: [],
+    groupStore: options.groupStore,
     propertyGroups: [],
     propertyList: [],
     staticPropertyList: [],
@@ -472,9 +472,9 @@ export default function createModule(options) {
 
   const actions = {
     async init({ commit, dispatch }) {
-      commit('SET_PARAM', param.result);
+      commit('SET_PARAM', options.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
-      commit('SET_GROUP_STORE', param.groupStore);
+      // commit('SET_GROUP_STORE', options.groupStore);
 
       commit('ADD_STATIC_PROPERTY', {
         name: 'ORDER_DESCRIPTION',
@@ -489,32 +489,32 @@ export default function createModule(options) {
       const propertyList = {};
 
 
-      if (param.result.ORDER_PROP) {
+      if (options.result.ORDER_PROP) {
         // order.ORDER_PROP.groups: Object
-        Object.assign(propertyGroups, param.result.ORDER_PROP.groups);
+        Object.assign(propertyGroups, options.result.ORDER_PROP.groups);
 
         // order.ORDER_PROP.properties: Array
-        param.result.ORDER_PROP.properties.forEach((prop) => {
+        options.result.ORDER_PROP.properties.forEach((prop) => {
           propertyList[prop.ID] = prop;
         });
       }
 
-      if (!param.result.SHOW_EMPTY_BASKET) {
-        const isLocaleStore = param.result.LOCAL_STORE === 'Y';
+      if (!options.result.SHOW_EMPTY_BASKET) {
+        const isLocaleStore = options.result.LOCAL_STORE === 'Y';
 
         // order.DELIVERY: Object
-        const deliveryMethods = mappingDeliveryMethods(param.result.DELIVERY, isLocaleStore);
+        const deliveryMethods = mappingDeliveryMethods(options.result.DELIVERY, isLocaleStore);
         const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
 
         // order.PAY_SYSTEM: Array
-        const paymentMethods = mappingPaymentMethods(param.result.PAY_SYSTEM);
+        const paymentMethods = mappingPaymentMethods(options.result.PAY_SYSTEM);
         const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
 
         orderList.push({
           index: 1,
           storeId: window.app.storeId,
-          total: convertTotal(param.result.TOTAL),
-          productList: convertProducts(param.result.GRID.ROWS),
+          total: convertTotal(options.result.TOTAL),
+          productList: convertProducts(options.result.GRID.ROWS),
           isLocaleStore,
           deliveryMethods,
           paymentMethods,
@@ -532,8 +532,8 @@ export default function createModule(options) {
           },
           via_ajax: 'Y',
           action: 'refreshOrderAjax',
-          SITE_ID: param.siteID,
-          signedParamsString: param.signedParamsString,
+          SITE_ID: options.siteID,
+          signedParamsString: options.signedParamsString,
           sessid: Utils.sessid(),
           storeId: window.app.storeRemoteId,
         };
@@ -543,8 +543,8 @@ export default function createModule(options) {
           request.order[`ORDER_PROP_${prop.ID}`] = prop.VALUE[0];
         });
 
-        const { order } = await Api.fetchSaleOrderAjax(param.ajaxUrl, request);
-        param.result = [param.result, order];
+        const { order } = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
+        options.result = [options.result, order];
 
         // order.DELIVERY: Object
         const deliveryMethods = mappingDeliveryMethods(order.DELIVERY);
