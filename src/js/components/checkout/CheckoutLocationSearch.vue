@@ -165,6 +165,7 @@
             this.status = 'error';
           })
       },
+      
       onInput(event) {
         this.value = event.target.value;
         this.item.value = null;
@@ -254,12 +255,14 @@
 
 
       activate() {
+        console.log('activate');
         if (this.open) return;
 
         this.open = true;
       },
 
       deactivate() {
+        console.log('deactivate');
         if (!this.open) return;
 
         this.open = false;
