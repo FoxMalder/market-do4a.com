@@ -10,8 +10,8 @@
              :checked="store.id === order.storeId"
              :value="store.id">
       <label :for="'pickup-' + store.id" class="o-shipping-pickup__label">
-        <span class="o-shipping-pickup__address">{{ store.name }} ({{ store.id }})</span>
-        <a href="#" class="o-shipping-pickup__link" @click="showOnMap(store)">Показать на карте (Нет)</a>
+        <span class="o-shipping-pickup__address">{{ store.name }}</span>
+        <a href="#" class="o-shipping-pickup__link" @click="showOnMap(store)">Показать на карте</a>
       </label>
     </li>
   </ul>
@@ -40,9 +40,12 @@
     },
     methods: {
       setStore(store) {
-        console.log('Установлен магазин', store);
         this.$store.commit(`checkout/${SET_STORE}`, { storeId: store.id, order: this.order })
       },
+      /**
+       * Показать магазин на карте
+       * @param store
+       */
       showOnMap(store) {
         alert('Допустим, открылась карта на ' + store.name);
       }

@@ -478,7 +478,6 @@ export default function createModule(options) {
     async init({ commit, dispatch }) {
       commit('SET_PARAM', options.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
-      // commit('SET_GROUP_STORE', options.groupStore);
 
       commit('ADD_STATIC_PROPERTY', {
         name: 'ORDER_DESCRIPTION',
@@ -1003,7 +1002,6 @@ export default function createModule(options) {
 
     [SET_STORE]: (state, { storeId, order }) => {
       const currentOrder = state.orderList.find(item => item.id === order.id);
-      console.log(storeId, currentOrder);
       currentOrder.storeId = storeId;
     },
 

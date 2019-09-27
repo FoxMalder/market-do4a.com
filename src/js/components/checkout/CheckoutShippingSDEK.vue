@@ -1,29 +1,60 @@
 <template>
   <div class="o-shipping-sdek-pickup">
-    <div class="o-shipping-sdek-pickup__address">{пр-т Ленинский 95 корп. 1, 53-Н}</div>
-    <div class="o-shipping-sdek-pickup__info">
-      <div>{Вс 10:00-16:00, Сб 10:00-16:00, Пн-Пт 10:00-20:00}</div>
-      <div><a href="#">{+79061946080}</a></div>
-    </div>
+    <template v-if="currentPoint">
+      <div class="o-shipping-sdek-pickup__address">{{ currentPoint.Address }}</div>
+      <div class="o-shipping-sdek-pickup__info">
+        <div>{{ currentPoint.WorkTime }}</div>
+        <div><a :href="'tel:' + currentPoint.Phone">{{ currentPoint.Phone }}</a></div>
+      </div>
+    </template>
     <button class="o-shipping-sdek-pickup__button"
             type="button"
             @click="selectPickup"
-    >{{ sdek ? 'Изменить' : 'Выбрать'}} пункт самовывоза</button>
+    >{{ currentPointId ? 'Изменить' : 'Выбрать'}} пункт самовывоза</button>
   </div>
 </template>
 
 <script>
+  import SdekModal from './SdekModal.vue';
+
+
   export default {
     name: "CheckoutShippingSDEK",
     data() {
       return {
-        sdek: false,
+        currentPointId: null,
       }
+    },
+    computed: {
+      cityPointList() {
+        return window.IPOLSDEK_pvz ? window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city] : {};
+      },
+      currentPoint() {
+        return this.currentPointId ? this.cityPointList[this.currentPointId] : null;
+      },
     },
     methods: {
       selectPickup() {
-        IPOLSDEK_pvz.selectPVZ('moreInfo_sdek-pickup', 'PVZ');
-        this.sdek = true;
+        this.$modal.open(SdekModal, {
+          onClose: (data) => {
+            console.log(data);
+            this.currentPointId = data;
+          },
+          // onDismiss: (data) => {
+          //   console.log(data);
+          // },
+
+          // Входные данные компонента
+          props: {
+            cityPointList: this.cityPointList,
+          },
+          // // Обработчики событий компонента
+          // on: {
+          //   click(data) {
+          //     console.log('penis сработал ', data);
+          //   },
+          // },
+        });
       }
     }
   }

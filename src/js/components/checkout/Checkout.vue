@@ -1,6 +1,5 @@
 <template>
   <article>
-    
     <header class="cart-section-header">
       <div class="container">
         <div class="breadcumps">
@@ -80,6 +79,7 @@
   import CheckoutBasket from './CheckoutBasket.vue';
   import CheckoutFinal from './CheckoutFinal.vue';
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
+  // import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
 
   import Utils from './../../utils/utils';
 

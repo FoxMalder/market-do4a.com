@@ -5,9 +5,9 @@
     </div>
     <div class="sdek-pickup-modal__container">
       <div class="sdek-pickup-modal__mask">
-        <yandex-map class="sdek-pickup-modal__map" :coords="[cityPVZ['NSK1'].cY, cityPVZ['NSK1'].cX]">
+        <yandex-map class="sdek-pickup-modal__map" :coords="[cityPointList['NSK1'].cY, cityPointList['NSK1'].cX]">
           <ymap-marker
-            v-for="(item, name) in cityPVZ"
+            v-for="(item, name) in cityPointList"
             :marker-id="name"
             :coords="[item.cY, item.cX]"
             :callbacks="{ click: onClick(name) }"
@@ -21,7 +21,7 @@
           </div>
           <div class="sdek-pickup-list__list">
             <div class="sdek-pickup-item"
-                 v-for="(item, name) in cityPVZ"
+                 v-for="(item, name) in cityPointList"
                  :data-name="name"
                  :class="{ active: name === activePoint }"
                  @mouseenter="onEnter(name)"
@@ -48,30 +48,36 @@
   export default {
     name: "SdekModal",
     components: { yandexMap, ymapMarker },
+    props: {
+      cityPointList: {
+        type: Object,
+        required: true,
+      }
+    },
     data: () => ({
       // coords: [54, 39],
       activePoint: null,
     }),
-    computed: {
-      cityPVZ() {
-        // return window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city]
-        return window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city]
-      },
-    },
+    // computed: {
+    //   cityPointList() {
+    //     // return window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city]
+    //     return window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city]
+    //   },
+    // },
     methods: {
       onClick(name) {
-        console.log('Click', name);
-        this.activePoint = name;
-        // this.coords = e.get('coords');
+        // console.log('Click', name);
+        // this.activePoint = name;
+        // // this.coords = e.get('coords');
       },
       setPoint(name) {
-        console.log('Set', name);
+        this.$emit('modal:close', name);
       },
       onEnter(name) {
-        console.log('Enter', name);
+        // console.log('Enter', name);
       },
       onLeave(name) {
-        console.log('Leave', name);
+        // console.log('Leave', name);
       },
     }
   }
