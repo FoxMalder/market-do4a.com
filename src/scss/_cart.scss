@@ -760,9 +760,9 @@
   &__item {
     display: block;
     position: relative;
-    cursor: pointer;
     font-size: 13px;
     line-height: 16px;
+    cursor: pointer;
 
     & + .o-shipping-pickup__item {
       margin-top: 30px;
@@ -800,16 +800,16 @@
   }
 
   &__label {
-    cursor: pointer;
     display: block;
-    padding-left: 30px;
     margin-bottom: 0;
+    padding-left: 30px;
+    cursor: pointer;
 
     &::before {
       content: '';
       position: absolute;
-      left: -4px;
       top: 0;
+      left: -4px;
       width: 20px;
       height: 20px;
       border: 1px solid #ccc;
@@ -1496,30 +1496,37 @@
   position: relative;
 
   &__list {
-    //width: 100%;
     right: tan(9deg) * 62px;
+    //width: 100%;
     max-width: none;
     //transform: skew(9deg);
     //transform-origin: top;
     max-height: 300px;
     //margin-left: tan(9deg) * 62px / 2;
+    margin: 0;
     padding: 4px 0;
-    overflow: auto;
+    overflow-y: auto;
+    list-style: none;
     background: #fff;
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  &__message {
+    text-align: center;
+    padding: 15px 23px 15px;
   }
 
   &__item {
     margin-bottom: 0;
     padding: 15px 23px 15px;
-    transition: all .3s ease;
+    //transition: all .3s ease;
     color: rgba(#000, 0.4);
     font-size: 1rem;
     line-height: 1;
     cursor: pointer;
 
     > span {
-      transition: all .3s ease;
+      //transition: all .3s ease;
       color: #101010;
     }
 
@@ -1533,6 +1540,7 @@
     }
   }
 
+  &
   &__field {
     //@extend .form-group;
     margin-right: tan(9deg) * 62px / 2;

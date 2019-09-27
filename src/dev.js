@@ -1164,6 +1164,7 @@ window.app = {
 // });
 
 window.soaData = {
+  groupStore: [130, 87],
   result: {
     IS_AUTHORIZED: false,
     LAST_ORDER_DATA: {

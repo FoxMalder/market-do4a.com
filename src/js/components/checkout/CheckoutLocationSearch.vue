@@ -1,42 +1,61 @@
 <template>
   <div class="checkout-location-search"
-       @keyup.esc="deactivate()"
        @keydown="keyboardNav"
-       v-click-outside="clickedOutside">
+       v-click-outside="deactivate">
     <div class="checkout-location-search__field">
       <label class="input-field input-field_primary"
              :class="{'input-field_invalid': item.error}">
         <span class="input-field__label"
-              :class="{'input-field__label_active': value !== ''}"
+              :class="{'input-field__label_isActive': value !== ''}"
         >{{ item.title + (item.required ? '*' : '') }}</span>
         <input class="input-field__input"
-               type="search"
+               type="text"
                autocomplete="off"
                :value="value"
                @input="onInput"
-               @focus.prevent="activate()"
-               @blur.prevent="deactivate()"
-               @keyup.esc="deactivate()">
+               @focus.prevent="activate"
+               @blur.prevent="deactivate"
+               @keyup.esc="deactivate">
         <transition name="fade-left">
-          <div class="input-field__alert" v-if="item.error">{{ item.error }}</div>
+          <div class="input-field__alert" v-if="!isActive && item.error">{{ item.error }}</div>
         </transition>
       </label>
     </div>
-    <div ref="list"
-         class="checkout-location-search__list dropdown-menu"
-         :class="{show: open}">
-      <div v-if="status === 'loading'" class="checkout-location-search__item">Загрузка...</div>
-      <div v-else-if="status === 'notfind'" class="checkout-location-search__item">Не найдено</div>
+    <ul ref="dropdownMenu"
+        role="listbox"
+        class="checkout-location-search__list dropdown-menu"
+        :class="{show: isActive}">
+      <li
+        class="checkout-location-search__message"
+        v-if="value === ''"
+      >Начните вводить название...</li>
+      
+      <li
+        class="checkout-location-search__message"
+        v-else-if="status === 'error'"
+      >Ошибка</li>
+      
+      <li
+        class="checkout-location-search__message"
+        v-else-if="searchedItems.length === 0 && status === 'loading'"
+      ><div class="spinner-border" role="status"></div></li>
+      
+      <li
+        class="checkout-location-search__message"
+        v-else-if="searchedItems.length === 0"
+      >Не найдено</li>
+      
       <template v-else>
-        <div v-for="(city, index) in searchedItems"
-             class="checkout-location-search__item"
-             :class="{active: selectedIndex === index}"
-             @click="chooseCity(city)"
-             @mousemove="selectedIndex = index"
-             v-html="getHTML(city)"
-        ></div>
+        <li v-for="(city, index) in searchedItems"
+            role="option"
+            class="checkout-location-search__item"
+            :class="{ active: selectedIndex === index }"
+            @mouseover="selectedIndex = index"
+            @mousedown.prevent.stop="chooseCity(city)"
+            v-html="getHTML(city)"
+        ></li>
       </template>
-    </div>
+    </ul>
   </div>
 </template>
 
@@ -91,7 +110,7 @@
     data() {
       return {
         value: '',
-        open: false,
+        isActive: false,
         selectedIndex: null,
         status: null,
         searchedItems: [],
@@ -108,6 +127,11 @@
         this.value = this.knownCityName[0];
       }
     },
+    // watch: {
+    //   selectedIndex() {
+    //     this.maybeAdjustScroll();
+    //   }
+    // },
     computed: {
       ...mapState('checkout', {
         isKnownCity: 'isKnownCity',
@@ -116,7 +140,9 @@
     },
     methods: {
       chooseCity(city) {
-        this.open = false;
+        console.log('chooseCity', city);
+
+        this.isActive = false;
         if (city) {
           this.value = [city.name, ...city.path].join(', ');
           this.item.value = city.code;
@@ -137,11 +163,14 @@
           return;
         }
 
+        this.selectedIndex = 0;
+        this.$refs.dropdownMenu.scrollTop = 0;
+
         this.status = 'loading';
 
         const request = {
           page: 0,
-          pageSize: 50,
+          pageSize: 25,
           search: this.value,
           siteID: param.siteID,
         };
@@ -152,121 +181,111 @@
             if (data.ITEMS.length === 0) {
               this.status = 'notfind';
             }
+
             this.searchedItems = data.ITEMS.map((item) => ({
               code: item.CODE,
               name: item.DISPLAY,
               path: item.PATH.map(pathId => data.ETC.PATH_ITEMS[pathId].DISPLAY),
             }));
-            if (!this.selectedIndex) {
-              this.selectedIndex = 0;
-            }
           })
           .catch((error) => {
             this.status = 'error';
           })
       },
-      
+
+      keyboardNav(e) {
+
+        switch (e.keyCode) {
+          case 13:
+            // enter.prevent
+            e.preventDefault();
+            this.onEnter();
+            break;
+          case 38:
+            // up.prevent
+            e.preventDefault();
+            this.onKeyArrowUp();
+            break;
+          case 40:
+            // down.prevent
+            e.preventDefault();
+            this.onKeyArrowDown();
+            break;
+        }
+      },
+
+      onKeyArrowDown() {
+        this.isActive = true;
+
+        if (this.selectedIndex === null) {
+          this.selectedIndex = 0;
+        } else {
+          this.selectedIndex = Math.min(this.searchedItems.length - 1, this.selectedIndex + 1);
+        }
+
+        const selEle = this.$refs.dropdownMenu.children[this.selectedIndex];
+        if (selEle.offsetTop + selEle.clientHeight
+          > this.$refs.dropdownMenu.scrollTop + this.$refs.dropdownMenu.clientHeight) {
+          this.$refs.dropdownMenu.scrollTop = selEle.offsetTop
+            - this.$refs.dropdownMenu.clientHeight
+            + selEle.clientHeight;
+        }
+      },
+
+      onKeyArrowUp() {
+        this.isActive = true;
+
+        if (this.selectedIndex === null) {
+          this.selectedIndex = this.searchedItems.length - 1;
+        } else {
+          this.selectedIndex = Math.max(0, this.selectedIndex - 1);
+        }
+
+        const selEle = this.$refs.dropdownMenu.children[this.selectedIndex];
+        if (selEle.offsetTop < this.$refs.dropdownMenu.scrollTop) {
+          this.$refs.dropdownMenu.scrollTop = selEle.offsetTop;
+        }
+      },
+
+      validate() {
+        if (this.item.required && this.item.value === null) {
+          this.item.error = 'Выберите город из списка';
+        }
+      },
+
       onInput(event) {
         this.value = event.target.value;
         this.item.value = null;
 
-        if (this.value === '') {
-          this.open = false;
-        } else {
-          this.open = true;
+
+        if (this.value !== '') {
           this.status = 'loading';
           this.debouncedGetLocation();
         }
       },
-      // onFocus() {
-      //   console.log('onFocus');
-      //   if (this.value !== '') {
-      //     this.open = true;
-      //   }
-      // },
-      // onBlur() {
-      //   this.open = false;
-      //
-      //   if (this.item.required && this.item.value === null) {
-      //     this.item.error = 'Выберите город';
-      //   }
-      // },
-      clickedOutside() {
-        this.open = false;
 
-        if (this.item.required && this.item.value === null) {
-          this.item.error = 'Выберите город';
-        }
-      },
-      keyboardNav(e) {
-        if (e.keyCode === 40) {
-          // down arrow
-          e.preventDefault();
-          this.open = true;
-          if (this.selectedIndex === null) {
-            this.selectedIndex = 0;
-          } else {
-            this.selectedIndex = Math.min(this.searchedItems.length - 1, this.selectedIndex + 1);
-          }
-          // const selEle = this.$refs.list.children[this.selectedIndex];
-          // if (selEle.offsetTop + selEle.clientHeight
-          //   > this.$refs.list.scrollTop + this.$refs.list.clientHeight) {
-          //   this.$refs.list.scrollTop = selEle.offsetTop
-          //     - this.$refs.list.clientHeight
-          //     + selEle.clientHeight;
-          // }
-        } else if (e.keyCode === 38) {
-          // up arrow
-          e.preventDefault();
-          this.open = true;
-          if (this.selectedIndex === null) {
-            this.selectedIndex = this.searchedItems.length - 1;
-          } else {
-            this.selectedIndex = Math.max(0, this.selectedIndex - 1);
-          }
-          // const selEle = this.$refs.list.children[this.selectedIndex];
-          // if (selEle.offsetTop < this.$refs.list.scrollTop) {
-          //   this.$refs.list.scrollTop = selEle.offsetTop;
-          // }
-        } else if (e.keyCode === 13) {
-          // enter key
-          e.preventDefault();
-          this.onEnter();
-        }
-      },
-      // reset() {
-      //   this.open = false;
-      //
-      //   if (this.item.required && this.item.value === null) {
-      //     this.item.error = 'Выберите город';
-      //   }
-      // },
       onEnter() {
-        this.open = false;
+        this.isActive = false;
 
         if (this.selectedIndex !== null) {
           this.chooseCity(this.searchedItems[this.selectedIndex]);
         }
 
-        if (this.item.required && this.item.value === null) {
-          this.item.error = 'Выберите город';
+        this.validate();
+      },
+
+      activate() {
+        if (!this.isActive) {
+          this.isActive = true;
         }
       },
 
-
-      activate() {
-        console.log('activate');
-        if (this.open) return;
-
-        this.open = true;
-      },
-
       deactivate() {
-        console.log('deactivate');
-        if (!this.open) return;
-
-        this.open = false;
-      }
+        if (this.isActive) {
+          this.isActive = false;
+          this.validate();
+        }
+      },
     }
   }
 </script>

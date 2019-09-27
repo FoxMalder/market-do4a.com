@@ -1,7 +1,8 @@
 <template>
   <div class="n-form-group">
-    
+  
     <div class="n-form-group__field" v-if="isLocaleStore && locationName">
+<!--    <div class="n-form-group__field" v-if="0">-->
       <div class="checkout-location">
         <div class="checkout-location__name">{{ locationName }}</div>
         <button class="checkout-location__button" type="button" @click="editCity">Изменить</button>
