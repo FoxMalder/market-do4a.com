@@ -30,14 +30,14 @@
         <button class="h-basket-counter__button"
                 type="button"
                 title="Уменьшить количество"
-                :disabled="item.quantity <= 1 || status === 'loading'"
+                :disabled="quantity <= 1 || status === 'loading'"
                 @click="decrement"
         >-</button>
-        <span class="h-basket-counter__count">{{ item.quantity }}</span>
+        <span class="h-basket-counter__count">{{ quantity }}</span>
         <button class="h-basket-counter__button"
                 type="button"
                 title="Увеличить количество"
-                :disabled="item.quantity >= item.quantity_max || status === 'loading'"
+                :disabled="quantity >= item.quantity_max || status === 'loading'"
                 @click="increment"
         >+</button>
       </div>

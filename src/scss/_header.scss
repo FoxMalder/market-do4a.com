@@ -1342,6 +1342,15 @@ button.search-fild__loupe {
     display: block;
   }
 
+  &_loading {
+    overflow: hidden;
+
+    .header-cart__wrapper {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
   .simplebar-track {
     background-color: #d9d9d9;
   }
