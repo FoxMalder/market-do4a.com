@@ -6,7 +6,7 @@
       <label class="input-field input-field_primary"
              :class="{'input-field_invalid': item.error}">
         <span class="input-field__label"
-              :class="{'input-field__label_isActive': value !== ''}"
+              :class="{'input-field__label_active': value !== ''}"
         >{{ item.title + (item.required ? '*' : '') }}</span>
         <input class="input-field__input"
                type="text"
@@ -25,25 +25,26 @@
         role="listbox"
         class="checkout-location-search__list dropdown-menu"
         :class="{show: isActive}">
-      <li
-        class="checkout-location-search__message"
-        v-if="value === ''"
-      >Начните вводить название...</li>
       
       <li
         class="checkout-location-search__message"
-        v-else-if="status === 'error'"
+        v-if="status === 'error'"
       >Ошибка</li>
+  
+      <li
+        class="checkout-location-search__message"
+        v-else-if="status === 'notfind'"
+      >Не найдено</li>
+      
+      <li
+        class="checkout-location-search__message"
+        v-else-if="value === '' || searchedItems.length === 0"
+      >Начните вводить название...</li>
       
       <li
         class="checkout-location-search__message"
         v-else-if="searchedItems.length === 0 && status === 'loading'"
       ><div class="spinner-border" role="status"></div></li>
-      
-      <li
-        class="checkout-location-search__message"
-        v-else-if="searchedItems.length === 0"
-      >Не найдено</li>
       
       <template v-else>
         <li v-for="(city, index) in searchedItems"
