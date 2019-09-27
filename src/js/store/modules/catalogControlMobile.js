@@ -1,3 +1,5 @@
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+
 // initial state
 const state = {
   defaultContainer: 'filters',
@@ -70,7 +72,8 @@ const actions = {
         scrollTop: offsetTop + window.pageYOffset,
       });
     }
-    document.body.style.overflow = 'hidden';
+    disableBodyScroll(document.querySelector('.catalog-menu-mob'));
+    // document.body.style.overflow = 'hidden';
 
     commit('SET_DEFAULT_CONTAINER', name);
     commit('SET_DEFAULT_TITLE', title);
@@ -82,7 +85,8 @@ const actions = {
     commit('SET_IS_ACTIVE', true);
   },
   hideMenu({ commit, dispatch }) {
-    document.body.style.overflow = '';
+    // document.body.style.overflow = '';
+    enableBodyScroll(document.querySelector('.catalog-menu-mob'));
     commit('SET_IS_ACTIVE', false);
 
     dispatch('filters/onChange', null, { root: true });

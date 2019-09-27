@@ -7,14 +7,21 @@
                    :disabled="!isAvailableOffer"/>
     </div>
     <div class="product-stickers">
-      <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">-->
-      <!--        Доставка <br>1 день-->
-      <!--      </div>-->
-      <div class="product-stickers__item product-stickers__item_yellow" v-if="activePacking.isRecommend">
-        Рекомендуем
-      </div>
-      <div class="product-stickers__item product-stickers__item_green" v-if="activePacking.isNew">Новинка</div>
-      <div class="product-stickers__item product-stickers__item_red" v-if="activePacking.isHit">Хит!</div>
+      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"
+           v-if="activePacking.isDeliveryOneDay"
+      >Доставка <br>1 день</div>
+      
+      <div class="product-stickers__item product-stickers__item_yellow"
+           v-if="activePacking.isRecommend"
+      >Рекомендуем</div>
+      
+      <div class="product-stickers__item product-stickers__item_green"
+           v-if="activePacking.isNew"
+      >Новинка</div>
+      
+      <div class="product-stickers__item product-stickers__item_red"
+           v-if="activePacking.isHit"
+      >Хит!</div>
     </div>
     <div class="product-control">
       <button class="product-control__favorites"

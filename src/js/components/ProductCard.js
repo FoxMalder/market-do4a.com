@@ -1,6 +1,7 @@
 import Utils from '../utils/utils';
 import store from '../store';
 
+
 export default class ProductCard {
   constructor(data, el = null) {
     this.data = data;
@@ -170,11 +171,17 @@ export default class ProductCard {
         <div class="product-card__row">
           <div class="product-card__reviews">
             ${ProductCard.getRatingEl(this.data.rating)}
-            <span style="${this.data.review === 0 ? 'display: none' : ''}">${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
+            <span style="${this.data.review === 0
+      ? 'display: none'
+      : ''}">${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
           </div>                
           <div class="product-card__stock">
-            <div class="${this.data.isAvailable ? 'green' : 'red'}">${this.data.isAvailable ? 'В наличии' : 'Нет в наличии'}</div>
-            <div style="${this.data.pack_count === 0 ? 'display: none' : ''}">${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
+            <div class="${this.data.isAvailable ? 'green' : 'red'}">${this.data.isAvailable
+      ? 'В наличии'
+      : 'Нет в наличии'}</div>
+            <div style="${this.data.pack_count === 0
+      ? 'display: none'
+      : ''}">${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
           </div>
         </div>
       </div>`;
@@ -183,6 +190,22 @@ export default class ProductCard {
     const stickersEl = document.createElement('div');
     stickersEl.classList.add('product-stickers');
 
+    let stickers = '';
+
+    if (this.data.isDeliveryOneDay) {
+      stickers += '<div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>';
+    }
+    if (this.data.isRecommend) {
+      stickers += '<div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>';
+    }
+    if (this.data.isNew) {
+      stickers += '<div class="product-stickers__item product-stickers__item_green">Новинка</div>';
+    }
+    if (this.data.isHit) {
+      stickers += '<div class="product-stickers__item product-stickers__item_red">Хит!</div>';
+    }
+
+    stickersEl.innerHTML = stickers;
 
     const controlEl = document.createElement('div');
     controlEl.classList.add('product-control');
