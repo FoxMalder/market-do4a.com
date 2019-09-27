@@ -5,7 +5,7 @@
     </div>
     <div class="sdek-pickup-modal__container">
       <div class="sdek-pickup-modal__mask">
-        <yandex-map class="sdek-pickup-modal__map" :coords="[cityPointList['NSK1'].cY, cityPointList['NSK1'].cX]">
+        <yandex-map class="sdek-pickup-modal__map" :coords="[0, 0]">
           <ymap-marker
             v-for="(item, name) in cityPointList"
             :marker-id="name"
@@ -17,7 +17,7 @@
       <div class="sdek-pickup-modal__list">
         <div class="sdek-pickup-list">
           <div class="sdek-pickup-list__header">
-            <div class="sdek-pickup-list__title">Сдэк в Нижнем Новгороде</div>
+            <div class="sdek-pickup-list__title">Сдэк в {city}</div>
           </div>
           <div class="sdek-pickup-list__list">
             <div class="sdek-pickup-item"
