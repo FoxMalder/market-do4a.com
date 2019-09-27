@@ -63,9 +63,13 @@ const getters = {
 // actions
 const actions = {
   showMenu({ commit }, { name, title }) {
-    $('html, body').animate({
-      scrollTop: global.app.Header.header.fixedTargets.getBoundingClientRect().top + window.pageYOffset,
-    });
+    const offsetTop = document.querySelector('.h-navbar-fixed').getBoundingClientRect().top;
+
+    if (offsetTop > 0) {
+      $('html, body').animate({
+        scrollTop: offsetTop + window.pageYOffset,
+      });
+    }
     document.body.style.overflow = 'hidden';
 
     commit('SET_DEFAULT_CONTAINER', name);

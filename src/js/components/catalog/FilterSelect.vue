@@ -28,6 +28,9 @@
       filter: Object,
     },
     methods: {
+      onClick() {
+        $(this.$el).dropdown('hide');
+      },
       onChange(item) {
         this.filter.label = item.label;
         this.$store.dispatch('filters/onChange');

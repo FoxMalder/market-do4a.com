@@ -73,6 +73,7 @@
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
 
+  import ProductSubscribeModal from './ProductSubscribeModal.vue';
   import TouchPan from '../../directives/TouchPan';
 
   function translateY(y) {
@@ -145,7 +146,7 @@
         setItemQuantity: 'setItemQuantity',
       }),
       subscribe() {
-        alert('Подписка на продукт оформлена')
+        this.$modal.open(ProductSubscribeModal);
       },
       addToCart() {
         this.requestStatus = 'loading';
