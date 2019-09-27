@@ -27,7 +27,8 @@
     },
     computed: {
       cityPointList() {
-        return window.IPOLSDEK_pvz ? window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city] : {};
+        // return window.IPOLSDEK_pvz ? window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city] : {};
+        return window.IPOLSDEK_pvz ? window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city] : {};
       },
       currentPoint() {
         return this.currentPointId ? this.cityPointList[this.currentPointId] : null;
