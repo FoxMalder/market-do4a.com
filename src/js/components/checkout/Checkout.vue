@@ -10,6 +10,8 @@
         <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
       </div>
     </header>
+  
+    <CheckoutShippingSDEK/>
     
     <!--    <div class="container">-->
     <!--      <CheckoutFinal/>-->
@@ -21,6 +23,7 @@
           <span class="sr-only">Загрузка...</span>
         </div>
       </div>
+      
       
       <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
       
@@ -79,7 +82,8 @@
   import CheckoutBasket from './CheckoutBasket.vue';
   import CheckoutFinal from './CheckoutFinal.vue';
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
-  // import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
+
+  import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
 
   import Utils from './../../utils/utils';
 
@@ -93,6 +97,7 @@
       CheckoutBasket,
       CheckoutFinal,
       CheckoutEmptyBasket,
+      CheckoutShippingSDEK,
     },
     data() {
       return {

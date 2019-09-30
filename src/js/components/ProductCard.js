@@ -1,5 +1,8 @@
+// import Vue from 'vue';
+
 import Utils from '../utils/utils';
 import store from '../store';
+// import ProductCartVue from './ProductCard.vue';
 
 
 export default class ProductCard {
@@ -125,9 +128,11 @@ export default class ProductCard {
   }
 
   static getElOptions(el) {
+    const id = parseInt(el.getAttribute('data-product-id'), 10);
     return {
-      id: el.getAttribute('data-product-id'),
-      isFavorite: el.querySelector('.product-control__favorites').classList.contains('active'),
+      id,
+      isFavorite: !!store.state.favorites.find(productId => productId === id),
+      // isFavorite: el.querySelector('.product-control__favorites').classList.contains('active'),
     };
   }
 
@@ -146,10 +151,21 @@ export default class ProductCard {
     this.el.ProductCard = this;
   }
 
+  // initVue() {
+  //   this.vm = new Vue({
+  //     store,
+  //     render: h => h(ProductCartVue, {
+  //       props: { filter: store.state.filters[this.container][this.filterSettings.name] },
+  //     }),
+  //   }).$mount();
+  //   // document.body.appendChild(this.catalogControlMobileVM.$el);
+  // }
+
   initDOM() {
     this.el = document.createElement('div');
     this.el.classList.add('product-card');
     this.el.setAttribute('data-product-id', this.data.id);
+    // this.el.dataset.productId = this.data.id;
 
     const wrapperEl = document.createElement('div');
     wrapperEl.classList.add('product-card__wrapper');
@@ -176,9 +192,9 @@ export default class ProductCard {
       : ''}">${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
           </div>                
           <div class="product-card__stock">
-            <div class="${this.data.isAvailable ? 'green' : 'red'}">${this.data.isAvailable
-      ? 'В наличии'
-      : 'Нет в наличии'}</div>
+            <div class="${this.data.isAvailable ? 'green' : 'red'}">${
+      this.data.isAvailable ? 'В наличии' : 'Нет в наличии'
+    }</div>
             <div style="${this.data.pack_count === 0
       ? 'display: none'
       : ''}">${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
@@ -190,22 +206,18 @@ export default class ProductCard {
     const stickersEl = document.createElement('div');
     stickersEl.classList.add('product-stickers');
 
-    let stickers = '';
-
     if (this.data.isDeliveryOneDay) {
-      stickers += '<div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>';
+      stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>';
     }
     if (this.data.isRecommend) {
-      stickers += '<div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>';
+      stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>';
     }
     if (this.data.isNew) {
-      stickers += '<div class="product-stickers__item product-stickers__item_green">Новинка</div>';
+      stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_green">Новинка</div>';
     }
     if (this.data.isHit) {
-      stickers += '<div class="product-stickers__item product-stickers__item_red">Хит!</div>';
+      stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_red">Хит!</div>';
     }
-
-    stickersEl.innerHTML = stickers;
 
     const controlEl = document.createElement('div');
     controlEl.classList.add('product-control');
@@ -225,7 +237,7 @@ export default class ProductCard {
 
   onClick = (event) => {
     event.preventDefault();
-    event.stopPropagation();
+    // event.stopPropagation();
 
     if (this.data.isFavorite) {
       this.removeFromFavorites();

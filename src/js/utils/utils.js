@@ -98,7 +98,9 @@ const Utils = {
       return titles;
     }
 
-    return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2];
+    return titles[(n % 10 === 1 && n % 100 !== 11) ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)
+      ? 1
+      : 2];
   },
 
   sendRequest(url, options = {}) {
@@ -132,6 +134,27 @@ const Utils = {
     $('html, body').animate({
       scrollTop: offsetTop - (fixedContainer ? fixedContainer.getBoundingClientRect().height : 0),
     }, duration);
+  },
+
+  scrollToTop(to, scrollDuration) {
+    var cosParameter = window.scrollY / 2,
+      scrollCount = 0,
+      oldTimestamp = performance.now();
+
+    function step(newTimestamp) {
+      scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+      if (scrollCount >= Math.PI) {
+        window.scrollTo(0, 0);
+      }
+      if (window.scrollY === 0) {
+        return;
+      }
+      window.scrollTo(0, Math.round(cosParameter + cosParameter * Math.cos(scrollCount)));
+      oldTimestamp = newTimestamp;
+      requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
   },
 
   sessid() {

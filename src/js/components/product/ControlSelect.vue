@@ -2,17 +2,28 @@
   <div class="p-control-options">
     <div class="p-control-options__wrapper">
       <div class="p-control-options__weight" v-if="packing.length > 1">
-        <div class="p-control-radio">
-          <div class="p-control-radio__item"
-               v-for="pack in packing"
-               :key="pack.id"
-               :class="{active: pack.id === activePacking.id}">
-            <div class="p-control-radio__tooltip" v-if="pack.price_benefit > 0">
-              <div class="p-control-radio__tooltip-title">Экономия</div>
-              <div class="p-control-radio__tooltip-price">{{pack.price_benefit}}₽</div>
+        <div class="p-control-radio" :class="{ 'p-control-radio_scroll': packing.length > 4 }">
+          <div class="p-control-radio__shadow-left"
+               v-if="packing.length > 4"
+               :style="{ opacity: Math.min(scrollLeft, 30) / 30 }"
+          ></div>
+          <div class="p-control-radio__wrapper"
+               ref="tabWrapper">
+            <div class="p-control-radio__item"
+                 v-for="pack in packing"
+                 :key="pack.id"
+                 :class="{active: pack.id === activePacking.id}">
+              <div class="p-control-radio__tooltip" v-if="pack.price_benefit > 0">
+                <div class="p-control-radio__tooltip-title">Экономия</div>
+                <div class="p-control-radio__tooltip-price">{{pack.price_benefit}}₽</div>
+              </div>
+              <div class="p-control-radio__label" @click="selectPacking(pack, $event)">{{pack.pack}}</div>
             </div>
-            <div class="p-control-radio__label" @click="selectPacking(pack)">{{pack.pack}}</div>
           </div>
+          <div class="p-control-radio__shadow-right"
+               v-if="packing.length > 4"
+               :style="{ opacity: Math.min(scrollRight, 30) / 30 }"
+          ></div>
         </div>
       </div>
       <div class="p-control-options__type">
@@ -81,6 +92,12 @@
 
   export default {
     name: "ControlSelect",
+    data() {
+      return {
+        scrollLeft: 0,
+        scrollRight: 0,
+      }
+    },
     computed: {
       ...mapState('product', {
         packing: state => state.packing,
@@ -106,18 +123,49 @@
     },
     methods: {
       ...mapActions('product', [
-        'selectPacking',
         'selectOffer'
       ]),
+      selectPacking(pack, event) {
+        this.$store.dispatch('product/selectPacking', pack);
+        
+        const selEl = event.currentTarget.parentElement;
+        
+        if (selEl.offsetLeft < this.scrollLeft) {
+          // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft - 20;
+
+          $(this.$refs.tabWrapper).animate({
+            scrollLeft: selEl.offsetLeft - 20,
+          }, 500);
+          
+        } else if (this.$refs.tabWrapper.scrollWidth - selEl.offsetLeft - selEl.clientWidth < this.scrollRight) {
+          // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft
+          //   + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20;
+
+          $(this.$refs.tabWrapper).animate({
+            scrollLeft: selEl.offsetLeft
+              + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20,
+          }, 500);
+        }
+      },
       selectClick(offer) {
         $(this.$refs.dropdownHeader).dropdown('hide');
         this.selectOffer(offer);
+      },
+      scrollCalc() {
+        this.scrollLeft = this.$refs.tabWrapper.scrollLeft;
+        this.scrollRight = this.$refs.tabWrapper.scrollWidth
+          - this.$refs.tabWrapper.clientWidth - this.$refs.tabWrapper.scrollLeft;
       }
     },
     mounted() {
       $(this.$refs.dropdownHeader).dropdown({
         display: 'static',
       });
+
+      if (this.packing.length > 4) {
+        this.scrollCalc();
+        this.$refs.tabWrapper.addEventListener('scroll', this.scrollCalc);
+      }
     },
   }
 </script>

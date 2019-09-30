@@ -15,20 +15,24 @@
       </div>
       
       <div class="n-form-group">
-        <div class="input-field input-field_primary">
-          <label for="product-subscribe-email" class="input-field__label">Email*</label>
-          <input id="product-subscribe-email" class="input-field__input"
-                 name="email" autocomplete="email" required type="email"
-                 v-model="email">
+        <div class="n-form-group__field">
+          <div class="input-field input-field_primary">
+            <label for="product-subscribe-email" class="input-field__label">Email*</label>
+            <input id="product-subscribe-email" class="input-field__input"
+                   name="email" autocomplete="email" required type="email"
+                   v-model="email">
+          </div>
         </div>
       </div>
       
       <div class="n-form-group">
-        <div class="input-field input-field_primary">
-          <label for="product-subscribe-tel" class="input-field__label">Телефон*</label>
-          <input id="product-subscribe-tel" class="input-field__input"
-                 name="phone" autocomplete="tel" required type="tel"
-                 v-model="tel">
+        <div class="n-form-group__field">
+          <div class="input-field input-field_primary">
+            <label for="product-subscribe-tel" class="input-field__label">Телефон*</label>
+            <input id="product-subscribe-tel" class="input-field__input"
+                   name="phone" autocomplete="tel" required type="tel"
+                   v-model="tel">
+          </div>
         </div>
       </div>
     
@@ -37,7 +41,7 @@
       
       <button
         v-if="status === 'success'"
-        class="btn btn-green btn-block"
+        class="btn btn-green btn-block btn-skew"
         disabled>
         <svg class="btn-icon" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26ZM19.0608 11.0608L16.9395 8.93945L12.0001 13.8788L10.0608 11.9395L7.93945 14.0608L12.0001 18.1214L19.0608 11.0608Z" fill="currentColor"/>
@@ -47,7 +51,7 @@
       
       <button
         v-else
-        class="btn btn-red btn-block"
+        class="btn btn-red btn-block btn-skew"
         type="submit"
       >Подписаться</button>
     

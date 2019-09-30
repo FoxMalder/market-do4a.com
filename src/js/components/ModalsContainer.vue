@@ -1,15 +1,19 @@
 <template>
   <div class="modals-container">
-    <Modal
-      v-for="modal in modals"
-      :key="modal.id"
-    >
-      <component
-        :is="modal.component"
-        v-bind="modal.param.props"
-        v-on="modal.param.on"
-      />
-    </Modal>
+    <transition name="fade">
+      <keep-alive>
+        <Modal
+          v-for="modal in modals"
+          :key="modal.id"
+        >
+          <component
+            :is="modal.component"
+            v-bind="modal.param.props"
+            v-on="modal.param.on"
+          />
+        </Modal>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 

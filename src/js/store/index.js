@@ -78,6 +78,15 @@ const actions = {
         commit('RECEIVE_FAVORITES', data);
         commit('SET_FAVORITES_COUNT', data.length);
 
+        data.forEach((id) => {
+          [].forEach.call(document.querySelectorAll(`.product-card[data-product-id="${id}"]`), (card) => {
+            if (card.ProductCard) {
+              card.ProductCard.data.isFavorite = true;
+              card.ProductCard.favoriteButtonEl.classList.add('active');
+            }
+          });
+        });
+
         localStorage.setItem('favorites', JSON.stringify(data));
       });
   },

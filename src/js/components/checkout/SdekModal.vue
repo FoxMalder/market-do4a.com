@@ -5,12 +5,23 @@
     </div>
     <div class="sdek-pickup-modal__container">
       <div class="sdek-pickup-modal__mask">
-        <yandex-map class="sdek-pickup-modal__map" :coords="[0, 0]">
+        <!--        <div class="sdek-pickup-modal__map"></div>-->
+        <yandex-map class="sdek-pickup-modal__map"
+                    :coords="coords"
+                    @map-was-initialized="mapInit">
           <ymap-marker
             v-for="(item, name) in cityPointList"
+            :key="name"
             :marker-id="name"
+            :hint-content="item.Address"
+            :balloon="{ body: item.Address }"
+            :options="{ hideIconOnBalloonOpen: false }"
             :coords="[item.cY, item.cX]"
-            :callbacks="{ click: onClick(name) }"
+            :callbacks="{
+              click() { onClick(name) },
+              // mouseenter() { onEnter(name) },
+              // mouseleave() { onLeave(name) },
+             }"
           ></ymap-marker>
         </yandex-map>
       </div>
@@ -19,16 +30,16 @@
           <div class="sdek-pickup-list__header">
             <div class="sdek-pickup-list__title">Сдэк в {city}</div>
           </div>
-          <div class="sdek-pickup-list__list">
+          <div class="sdek-pickup-list__list" ref="pickupList">
             <div class="sdek-pickup-item"
                  v-for="(item, name) in cityPointList"
+                 :key="name"
                  :data-name="name"
-                 :class="{ active: name === activePoint }"
                  @mouseenter="onEnter(name)"
                  @mouseleave="onLeave(name)">
               <div class="sdek-pickup-item__address">{{ item.Address }}</div>
               <div class="sdek-pickup-item__info">
-                <div>Дата самовывоза: <span class="black">{15 мая}</span></div>
+                <!--                <div>Дата самовывоза: <span class="black">{15 мая}</span></div>-->
                 <div>{{ item.WorkTime }}</div>
                 <div><a href="#">{{ item.Phone }}</a></div>
               </div>
@@ -44,6 +55,18 @@
 <script>
   import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 
+  // // Полагаем, что на странице подключен jQuery.
+  // var $mapElement = $('#map'),
+  //   myMap = new ymaps.Map(
+  //     $mapElement[0],
+  //     ymaps.util.bounds.getCenterAndZoom([
+  //         [55.7, 37.6],
+  //         [55.8, 37.7]
+  //       ],
+  //       [$mapElement.width(), $mapElement.height()]
+  //     )
+  //   );
+
 
   export default {
     name: "SdekModal",
@@ -54,31 +77,72 @@
         required: true,
       }
     },
-    data: () => ({
-      // coords: [54, 39],
-      activePoint: null,
-    }),
-    // computed: {
-    //   cityPointList() {
-    //     // return window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city]
-    //     return window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city]
-    //   },
-    // },
+    data() {
+      return {
+        coords: [55.74954, 37.621587],
+        activePoint: '',
+      }
+    },
+    computed: {
+      // cityPointList() {
+      //   // return window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city]
+      //   return window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city]
+      // },
+    },
     methods: {
+
       onClick(name) {
-        // console.log('Click', name);
+        const selEle = this.$refs.pickupList.querySelector(`[data-name="${name}"]`);
+
+        [].forEach.call(this.$refs.pickupList.children, (item) => {
+          item.classList.remove('active');
+        });
+        
+        selEle.classList.add('active');
+        if (selEle.offsetTop < this.$refs.pickupList.scrollTop) {
+          // this.$refs.pickupList.scrollTop = selEle.offsetTop - 50;
+
+          $(this.$refs.pickupList).animate({
+            scrollTop: selEle.offsetTop - 50,
+          }, 1000);
+
+        } else if (selEle.offsetTop + selEle.clientHeight
+          > this.$refs.pickupList.scrollTop + this.$refs.pickupList.clientHeight) {
+          // this.$refs.pickupList.scrollTop = selEle.offsetTop
+          //   - this.$refs.pickupList.clientHeight
+          //   + selEle.clientHeight + 50;
+
+          $(this.$refs.pickupList).animate({
+            scrollTop: selEle.offsetTop
+              - this.$refs.pickupList.clientHeight
+              + selEle.clientHeight + 50,
+          }, 1000);
+        }
+
+
         // this.activePoint = name;
-        // // this.coords = e.get('coords');
       },
       setPoint(name) {
         this.$emit('modal:close', name);
       },
       onEnter(name) {
         // console.log('Enter', name);
+        this.activePoint = name;
       },
       onLeave(name) {
         // console.log('Leave', name);
       },
+      mapInit(map) {
+        const width = this.$refs.pickupList.getBoundingClientRect().width;
+        map.margin.setDefaultMargin([0, 50, 0, width]);
+
+        map.setBounds(map.geoObjects.getBounds(), {
+          // Проверяем наличие тайлов на данном масштабе.
+          checkZoomRange: true,
+          preciseZoom: true,
+          useMapMargin: true,
+        });
+      }
     }
   }
 </script>
