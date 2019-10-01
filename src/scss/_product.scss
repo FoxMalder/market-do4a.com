@@ -296,7 +296,7 @@
     }
 
     > img {
-      width: 100%;
+      //width: 100%;
       mix-blend-mode: darken;
     }
 
@@ -305,9 +305,11 @@
     }
 
     @include media-breakpoint-up(md) {
+      //height: 630px;
       height: auto;
       //min-height: 240px;
-      min-height: 400px;
+      //min-height: 400px;
+      min-height: 480px;
       max-height: 630px;
     }
 
