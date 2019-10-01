@@ -51,46 +51,47 @@ const getters = {
     return filters[state.parentName].data;
   },
 
-  canReset: (state, getters, rootState) => {
-    if (state.contentType === 'checkbox') {
-      return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length > 0;
-    }
-    // if (state.isParent) {
-    //   return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length > 0;
-    // }
-    return true;
-  },
+  // canReset: (state, getters, rootState) => {
+  //
+  //   if (state.contentType === 'checkbox') {
+  //     return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length > 0;
+  //   }
+  //   // if (state.isParent) {
+  //   //   return rootState.filters[state.defaultContainer][state.parentName].data.filter(item => item.checked).length > 0;
+  //   // }
+  //   return true;
+  // },
 };
 
 // actions
 const actions = {
-  showMenu({ commit }, { name, title }) {
-    const offsetTop = document.querySelector('.h-navbar-fixed').getBoundingClientRect().top;
-
-    if (offsetTop > 0) {
-      $('html, body').animate({
-        scrollTop: offsetTop + window.pageYOffset,
-      });
-    }
-    disableBodyScroll(document.querySelector('.catalog-menu-mob'));
-    // document.body.style.overflow = 'hidden';
-
-    commit('SET_DEFAULT_CONTAINER', name);
-    commit('SET_DEFAULT_TITLE', title);
-    commit('SET_CONTENT_TYPE', null);
-    commit('SET_PARENT_NAME', null);
-    commit('SET_IS_PARENT', true);
-    commit('SET_TITLE', title);
-
-    commit('SET_IS_ACTIVE', true);
-  },
-  hideMenu({ commit, dispatch }) {
-    // document.body.style.overflow = '';
-    enableBodyScroll(document.querySelector('.catalog-menu-mob'));
-    commit('SET_IS_ACTIVE', false);
-
-    dispatch('filters/onChange', null, { root: true });
-  },
+  // showMenu({ commit }, { name, title }) {
+  //   const offsetTop = document.querySelector('.h-navbar-fixed').getBoundingClientRect().top;
+  //
+  //   if (offsetTop > 0) {
+  //     $('html, body').animate({
+  //       scrollTop: offsetTop + window.pageYOffset,
+  //     });
+  //   }
+  //   disableBodyScroll(document.querySelector('.catalog-menu-mob'));
+  //   // document.body.style.overflow = 'hidden';
+  //
+  //   commit('SET_DEFAULT_CONTAINER', name);
+  //   commit('SET_DEFAULT_TITLE', title);
+  //   commit('SET_CONTENT_TYPE', null);
+  //   commit('SET_PARENT_NAME', null);
+  //   commit('SET_IS_PARENT', true);
+  //   commit('SET_TITLE', title);
+  //
+  //   commit('SET_IS_ACTIVE', true);
+  // },
+  // hideMenu({ commit, dispatch }) {
+  //   // document.body.style.overflow = '';
+  //   // enableBodyScroll(document.querySelector('.catalog-menu-mob'));
+  //   commit('SET_IS_ACTIVE', false);
+  //
+  //   dispatch('filters/onChange', null, { root: true });
+  // },
   showParents({ commit, state }) {
     commit('SET_CONTENT_TYPE', null);
     commit('SET_PARENT_NAME', null);

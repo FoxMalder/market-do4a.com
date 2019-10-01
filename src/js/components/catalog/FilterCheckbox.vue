@@ -36,6 +36,9 @@
       MultifilterCheckboxList,
       Dropdown
     },
+    mounted() {
+      this.$root.$on('filter:reset', this.reset);
+    },
     methods: {
       reset() {
         this.filter.data.forEach((item) => {

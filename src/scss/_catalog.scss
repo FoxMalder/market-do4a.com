@@ -517,21 +517,41 @@ $multifilter-padding-x: (
   }
 
   &__btn-footer {
-    @extend %button-reset;
-    @include title;
+    //@extend %button-reset;
+    //@include title;
     flex: 1 1;
     //height: 60px;
     //font-size: 16px;
     //line-height: 1;
     //border: 0;
-    padding-bottom: calc(15px + var(--safe-area-inset-bottom));
+    font-style: italic;
+    height: calc(60px + var(--safe-area-inset-bottom));
+    padding: 5px 5px calc(5px + var(--safe-area-inset-bottom));
 
     &:first-child {
-      padding-left: var(--safe-area-inset-left);
+      padding-left: calc(5px + var(--safe-area-inset-left));
     }
 
     &:last-child {
-      padding-right: var(--safe-area-inset-right);
+      padding-right: calc(5px + var(--safe-area-inset-right));
+    }
+
+    &.btn-gray-2 {
+      color: #929292;
+    }
+
+    &.btn-red {
+      color: #fff;
+    }
+
+    &:disabled {
+      &.btn-gray-2 {
+        color: rgba(#929292, 0.3);
+      }
+
+      &.btn-red {
+        color: rgba(#fff, 0.3);
+      }
     }
   }
 }
@@ -758,7 +778,9 @@ $multifilter-padding-x: (
     //}
   }
 
-  &__content[data-toggle='dropdown'] {
+
+  &__content[data-toggle='dropdown'],
+  &__content_dropdown {
     //&__content {
     padding-right: map_get($multifilter-padding-x, xl) + 10px;
     transition: background .3s ease;

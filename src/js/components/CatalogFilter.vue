@@ -2,60 +2,72 @@
   <div class="filter">
     <div class="filter__list">
       <template v-for="filter in filters">
-        <MultifilterCheckboxList
+        <FilterCheckbox
           v-if="filter.type === 'checkbox'"
           :filter="filter"/>
-        
-        <dropdown class="multifilter"
-                  v-else-if="filter.type === 'range'">
-          <template slot="btn">
-            <span class="multifilter__value">{{filter.label}}</span>
-          </template>
-          
-          <template slot="body">
-            <MultifilterPrice :slider="filter.data"/>
-          </template>
-        </dropdown>
-      
+        <FilterSelect
+          v-else-if="filter.type === 'radio'"
+          :filter="filter"/>
+        <FilterPrice
+          v-else-if="filter.type === 'range'"
+          :filter="filter"/>
       </template>
     </div>
-    <button class="filter__btn-reset"
-            type="reset"
-            @click.prevent="onReset">Сбросить</button>
+    <button
+      class="filter__btn-reset"
+      v-show="canReset"
+      type="reset"
+      @click.prevent="onReset">Сбросить</button>
   </div>
 </template>
 
 <script>
-  import Dropdown from './Dropdown.vue';
-  import MultifilterPrice from './catalog/MultifilterPrice.vue';
-  import MultifilterCheckboxList from './catalog/MultifilterCheckboxList.vue';
+  // import Dropdown from './Dropdown.vue';
+  // import MultifilterPrice from './catalog/MultifilterPrice.vue';
+  // import MultifilterCheckboxList from './catalog/MultifilterCheckboxList.vue';
+
+
+  import FilterCheckbox from './catalog/FilterCheckbox.vue';
+  import FilterSelect from './catalog/FilterSelect.vue';
+  import FilterPrice from './catalog/FilterPrice.vue';
 
   import { mapGetters, mapState, mapActions } from 'vuex';
+
 
   export default {
     name: "CatalogFilter",
     components: {
-      MultifilterCheckboxList,
-      MultifilterPrice,
-      Dropdown,
+      FilterCheckbox,
+      FilterSelect,
+      FilterPrice,
     },
     // mounted() {
     //   this.$root.$on('change', () => {
     //     this.onChange();
     //   });
     // },
-    computed: mapState('filters', {
-      filters: state => state.list,
-    }),
+    computed: {
+      ...mapState('filters', {
+        filters: state => state.filters,
+      }),
+
+      /**
+       * Показывать ли кнопку "Сбросить"
+       * @returns {boolean}
+       */
+      canReset() {
+        return !!Object.values(this.filters).find(item => item.type === 'checkbox' && item.data.find(c => c.checked))
+      }
+    },
     methods: {
       onReset() {
         this.$root.$emit('filter:reset');
-
-        this.onChange();
+        this.$store.dispatch('filters/onChange');
+        // this.onChange();
       },
-      onChange() {
-        this.$root.$emit('filter:change');
-      }
+      // onChange() {
+      //   this.$root.$emit('filter:change');
+      // }
     }
   }
 </script>

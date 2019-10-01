@@ -20,6 +20,7 @@ import store from '../store';
 import catalogControl from '../store/modules/catalogControl';
 import CategoryListMobile from '../components/CategoryListMobile.vue';
 import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
+import CatalogFilter from '../components/CatalogFilter.vue';
 
 
 export default class CatalogControl {
@@ -98,17 +99,6 @@ export default class CatalogControl {
   };
 
   initVue() {
-    [].forEach.call(document.querySelectorAll('[data-toggle="m-filter"]'), (button) => {
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        if (event.currentTarget.dataset.target === '#mobile-filter') {
-          store.dispatch('filters/mobile/showMenu', { name: 'filters', title: 'Фильтр' });
-        } else {
-          store.dispatch('filters/mobile/showMenu', { name: 'sort', title: 'Сортировка' });
-        }
-      });
-    });
 
     store.subscribeAction((action, state) => {
       if (action.type === 'filters/onChange') {
@@ -117,12 +107,34 @@ export default class CatalogControl {
     });
 
 
+    // Фильтр на десктопе
+    this.filterVM = new Vue({
+      store,
+      render: h => h(CatalogFilter),
+    }).$mount(this.filterEl);
+
+
     // Управление каталогом для мобилок
     this.catalogControlMobileVM = new Vue({
       store,
       render: h => h(CatalogFilterMobile),
     }).$mount();
     document.body.appendChild(this.catalogControlMobileVM.$el);
+
+    [].forEach.call(document.querySelectorAll('[data-toggle="m-filter"]'), (button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        if (event.currentTarget.dataset.target === '#mobile-filter') {
+          this.catalogControlMobileVM.$children[0].open({ name: 'filters', title: 'Фильтр' });
+          // store.dispatch('filters/mobile/showMenu', { name: 'filters', title: 'Фильтр' });
+        } else {
+          this.catalogControlMobileVM.$children[0].open({ name: 'sort', title: 'Сортировка' });
+          // store.dispatch('filters/mobile/showMenu', { name: 'sort', title: 'Сортировка' });
+        }
+      });
+    });
+
 
     // Список категорий для мобилок
     this.categoryListMobileVM = new Vue({
@@ -156,13 +168,37 @@ export default class CatalogControl {
       });
     }
 
+    // if (this.filterEl) {
+    //   this.filterList = [].map.call(this.filterEl.querySelectorAll('fieldset.multifilter'), (filter) => {
+    //     if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, 'filters');
+    //     // if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
+    //     if (filter.querySelector('.multifilter-radio')) return new SelectFilter(filter, 'filters');
+    //     if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter, 'filters');
+    //     return new Multifilter(filter, this.change);
+    //   });
+    // }
+
     if (this.filterEl) {
-      this.filterList = [].map.call(this.filterEl.querySelectorAll('fieldset.multifilter'), (filter) => {
-        if (filter.querySelector('.multifilter-checkbox')) return new CheckboxFilter(filter, 'filters');
-        // if (filter.querySelector('.multifilter-radio')) return new RadioFilter(filter, this.change);
-        if (filter.querySelector('.multifilter-radio')) return new SelectFilter(filter, 'filters');
-        if (filter.querySelector('.multifilter-price')) return new PriceFilter(filter, 'filters');
-        return new Multifilter(filter, this.change);
+      [].forEach.call(this.filterEl.querySelectorAll('fieldset.multifilter'), (filter) => {
+        if (filter.querySelector('.multifilter-checkbox')) {
+          store.commit('filters/pushFilterToContainer', {
+            container: 'filters',
+            filter: CheckboxFilter.parseSettings(filter),
+          });
+        }
+        if (filter.querySelector('.multifilter-radio')) {
+          store.commit('filters/pushFilterToContainer', {
+            container: 'filters',
+            filter: SelectFilter.parseSettings(filter),
+          });
+        }
+        if (filter.querySelector('.multifilter-price')) {
+          store.commit('filters/pushFilterToContainer', {
+            container: 'filters',
+            filter: PriceFilter.parseSettings(filter),
+          });
+        }
+        // new Multifilter(filter, this.change);
       });
     }
 
@@ -355,7 +391,7 @@ export default class CatalogControl {
         }
       })
       .catch((error) => {
-        alert('Ошибка');
+        alert(error.message);
         this.containerEl.classList.remove(this.classNames.cardListLoading);
         console.error(error);
       });
