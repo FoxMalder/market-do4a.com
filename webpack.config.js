@@ -214,6 +214,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Доставка и оплата',
+      filename: 'sap.html',
+      template: path.resolve(__dirname, 'src/sap.html'),
+      chunks: ['privacy', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',

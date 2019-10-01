@@ -6,9 +6,9 @@ import './scss/main.scss';
 import App from './js/App';
 
 
-if (process.env.NODE_ENV !== 'production') {
-  require('./privacy.pug');
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   require('./privacy.pug');
+// }
 
 
 ready(() => {
