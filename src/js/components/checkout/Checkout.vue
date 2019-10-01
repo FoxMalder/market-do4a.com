@@ -11,7 +11,7 @@
       </div>
     </header>
   
-    <CheckoutShippingSDEK/>
+<!--    <CheckoutShippingSDEK/>-->
     
     <!--    <div class="container">-->
     <!--      <CheckoutFinal/>-->

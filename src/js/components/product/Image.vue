@@ -1,5 +1,5 @@
 <template>
-  <canvas :style="{opacity: disabled ? '0.3' : '1'}" class="p-images-block__img"></canvas>
+  <canvas></canvas>
 </template>
 
 <script>
@@ -22,6 +22,11 @@
     // data: () => ({
     //   cachedImages: {},
     // }),
+    // data() {
+    //   return {
+    //     isSupport: CSS.supports('mix-blend-mode', 'darken'),
+    //   }
+    // },
     watch: {
       src(url, oldUrl) {
         // console.log('watch src');
@@ -45,6 +50,9 @@
 
         this.loadImg();
       },
+    },
+    created() {
+      // CSS.supports('mix-blend-mode', 'darken');
     },
     mounted() {
       this.ctx = this.$el.getContext('2d');
@@ -72,10 +80,13 @@
         const savedImage = new Image();
         savedImage.src = this.$el.toDataURL('image/png');
         this.cachedImages[this.img.src] = savedImage;
+        
+        this.$emit('load');
       }, false);
 
       this.img.addEventListener('error', () => {
         this.ctx.clearRect(0, 0, this.$el.width, this.$el.height);
+        this.$emit('error');
       }, false);
 
       this.loadImg();

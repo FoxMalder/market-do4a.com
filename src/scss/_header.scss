@@ -245,21 +245,21 @@
   //transition: transform .3s ease;
   background: #fff;
 
-  &.fixed {
-    //margin-bottom: 24px;
-    //position: fixed;
-    //top: 0;
-    //transform: translateY(0);
-
-    @include media-breakpoint-up(xl) {
-      .header-control {
-        height: 74px;
-      }
-      .h-category__link {
-        @include mre-height-block(14px, 42px, 1);
-      }
-    }
-  }
+  //&.fixed {
+  //  //margin-bottom: 24px;
+  //  //position: fixed;
+  //  //top: 0;
+  //  //transform: translateY(0);
+  //
+  //  @include media-breakpoint-up(xl) {
+  //    .header-control {
+  //      height: 74px;
+  //    }
+  //    .h-category__link {
+  //      @include mre-height-block(14px, 42px, 1);
+  //    }
+  //  }
+  //}
 }
 
 //
