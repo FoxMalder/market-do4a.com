@@ -1072,6 +1072,20 @@ textarea.input-field__input {
       font-size: 60px;
       line-height: 68px;
     }
+
+    &_small {
+      font-size: 20px;
+      line-height: 25px;
+      @include media-breakpoint-up(md) {
+        font-size: 36px;
+        line-height: 41px;
+      }
+      @include media-breakpoint-up(xl) {
+        font-size: 40px;
+        line-height: 40px;
+        margin-top: 29px;
+      }
+    }
   }
 
   &__search {
