@@ -62,10 +62,10 @@
   }
 
   &__subtitle {
+    margin-bottom: 20px;
+    color: rgba(#101010, 0.5);
     font-size: 14px;
     line-height: 20px;
-    color: rgba(#101010, 0.5);
-    margin-bottom: 20px;
     @include media-breakpoint-up(md) {
       font-size: 16px;
       line-height: 25px;
@@ -115,6 +115,7 @@
     //}
     .sap-tile-list {
       width: 520px;
+
       &__item {
         flex: 1 0;
       }
@@ -166,9 +167,11 @@
     @include title;
     margin-top: 6px;
     font-size: 20px;
+    letter-spacing: -0.02em;
     line-height: 1;
 
     @include media-breakpoint-up(md) {
+      margin-top: 9px;
       font-size: 23px;
     }
   }
@@ -176,12 +179,13 @@
   &__map-link {
     display: inline-block;
     margin-top: 20px;
-    border-bottom: 1px solid #00000026;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
     font-size: 14px;
     line-height: 20px;
     @include media-breakpoint-up(md) {
-      margin-top: 20px;
+      margin-top: 30px;
       font-size: 15px;
+      line-height: 18px;
     }
   }
 }
@@ -201,6 +205,7 @@
     //}
     .sap-tile-list {
       max-width: 562px;
+
       &__item {
         flex: 1 0;
       }
@@ -221,11 +226,11 @@
 }
 
 .sap-shipping-central-note {
-  font-size: 10px;
-  line-height: 14px;
   margin-top: 12px;
   color: rgba(#101010, 0.5);
+  font-size: 10px;
   letter-spacing: -0.01em;
+  line-height: 14px;
   @include media-breakpoint-up(md) {
     max-width: 320px;
     margin-top: 3px;
@@ -237,10 +242,10 @@
 .sap-country {
   display: flex;
   flex-wrap: wrap;
-  padding: 0;
-  list-style: none;
   margin-top: 58px;
   margin-bottom: 0;
+  padding: 0;
+  list-style: none;
 
   //.sap-tile {
   //  width: 100%;
@@ -257,9 +262,11 @@
     flex: 0 0 100%;
     flex-direction: column;
     margin-bottom: 32px;
+
     &:last-child {
       margin-bottom: 0;
     }
+
     @include media-breakpoint-up(md) {
       flex: 0 0 50%;
       max-width: 50%;
@@ -269,10 +276,10 @@
   }
 
   &__title {
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: -0.02em;
     margin-bottom: 10px;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    line-height: 22px;
     @include media-breakpoint-up(md) {
       margin-bottom: 10px;
       font-size: 18px;
@@ -281,10 +288,10 @@
   }
 
   &__info {
+    margin-bottom: 20px;
+    color: rgba(#101010, 0.5);
     font-size: 13px;
     line-height: 18px;
-    color: rgba(#101010, 0.5);
-    margin-bottom: 20px;
     @include media-breakpoint-up(md) {
       flex: 1 0;
       margin-bottom: 30px;
@@ -296,19 +303,19 @@
 
 .sap-tile-list {
   display: flex;
+  margin-right: map_get($grid-gutter-width-map, xs) / -2;
   margin-bottom: 0;
+  margin-left: map_get($grid-gutter-width-map, xs) / -2;
+  padding: 0 map_get($grid-gutter-width-map, xs) / 2;
   overflow: auto;
   list-style: none;
-  padding: 0 map_get($grid-gutter-width-map, xs) / 2;
-  margin-left: map_get($grid-gutter-width-map, xs) / -2;
-  margin-right: map_get($grid-gutter-width-map, xs) / -2;
 
   @include media-breakpoint-up(md) {
     flex-wrap: wrap;
     margin-right: -10px;
     margin-left: -10px;
-    overflow: hidden;
     padding: 0;
+    overflow: hidden;
   }
 
   &__item {
@@ -332,7 +339,7 @@
   background: #fff;
   @include media-breakpoint-up(md) {
     height: 110px;
-    padding: 23px 24px;
+    padding: 23px 24px 20px;
     font-size: 15px;
     line-height: 1;
   }
@@ -351,10 +358,10 @@
   }
 
   &__link {
-    font-size: 14px;
     display: inline-block;
     margin-bottom: 2px;
     border-bottom: 1px solid rgba(#000, 0.15);
+    font-size: 14px;
 
     &:hover {
       text-decoration: none;
@@ -412,11 +419,11 @@
 
 .sap-payment-list {
   display: flex;
+  margin-right: map_get($grid-gutter-width-map, xs) / -2;
+  margin-left: map_get($grid-gutter-width-map, xs) / -2;
+  padding: 0 map_get($grid-gutter-width-map, xs) / 2;
   overflow: auto;
   list-style: none;
-  padding: 0 map_get($grid-gutter-width-map, xs) / 2;
-  margin-left: map_get($grid-gutter-width-map, xs) / -2;
-  margin-right: map_get($grid-gutter-width-map, xs) / -2;
 
 
   @include media-breakpoint-up(md) {
@@ -424,8 +431,8 @@
     max-width: 580px;
     margin-right: -10px;
     margin-left: -10px;
-    overflow: visible;
     padding: 0;
+    overflow: visible;
   }
 
   @include media-breakpoint-up(xl) {
@@ -436,13 +443,14 @@
     flex: 0 0 240px;
     margin-right: 14px;
     @include media-breakpoint-up(md) {
-      flex: 0 0 50%;
+      flex: 0 0 290px;
+      max-width: 290px;
       margin-right: 0;
       margin-bottom: 20px;
       padding: 0 10px;
     }
     @include media-breakpoint-up(xl) {
-      flex: 0 0 25%;
+      //flex: 0 0 25%;
       margin-bottom: 0;
     }
   }
@@ -467,9 +475,9 @@
   }
 
   &__text {
+    margin-top: 14px;
     font-size: 15px;
     line-height: 22px;
-    margin-top: 14px;
     @include media-breakpoint-up(md) {
       max-width: 715px;
       margin-top: 14px;
