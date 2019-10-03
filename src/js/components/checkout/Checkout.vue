@@ -10,8 +10,8 @@
         <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
       </div>
     </header>
-  
-<!--    <CheckoutShippingSDEK/>-->
+    
+    <!--    <CheckoutShippingSDEK/>-->
     
     <!--    <div class="container">-->
     <!--      <CheckoutFinal/>-->
@@ -27,19 +27,19 @@
       
       <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
       
-      <template v-else-if="!isMobile">
+      <template v-else-if="breakpoint === 'xl'">
         <div class="container">
           <div class="cart__inner">
             <div class="cart__col-left">
-              <CheckoutForm/>
-              <CheckoutShippingAndPayment/>
+              <CheckoutForm :breakpoint="breakpoint"/>
+              <CheckoutShippingAndPayment :breakpoint="breakpoint"/>
             </div>
             <div class="cart__col-right">
               <Affix relative-element-selector=".cart__inner"
                      style="width: 690px"
                      :scrollAffix="true"
                      :offset="{ top: 150, bottom: 15 }">
-                <CheckoutBasket/>
+                <CheckoutBasket :breakpoint="breakpoint"/>
               </Affix>
             </div>
           </div>
@@ -61,12 +61,13 @@
         </ul>
         <div class="container">
           <keep-alive>
-            <component :is="currentTabComponent"></component>
+            <component :is="currentTabComponent" :breakpoint="breakpoint"></component>
           </keep-alive>
         </div>
         <div class="cart-mobile-bottom">
-          <button class="cart-mobile-bottom__button btn btn-red btn-block" type="button"
-                  @click="setStep(nextStepButton)"
+          <button
+            class="cart-mobile-bottom__button btn btn-red btn-block" type="button"
+            @click="setStep(nextStepButton)"
           >{{ nextStepButton.text }}</button>
         </div>
       </template>
@@ -101,7 +102,7 @@
     },
     data() {
       return {
-        isMobile: document.documentElement.clientWidth < 1240,
+        breakpoint: 'xs',
       }
     },
     computed: {
@@ -118,9 +119,6 @@
       currentTabComponent() {
         return `checkout-${this.currentStep}`;
       },
-      // isMobile() {
-      //   return document.documentElement.clientWidth < 1240
-      // }
     },
     methods: {
       ...mapActions('checkout', {
@@ -132,9 +130,20 @@
       //   Utils.scrollTo(this.$refs.form.$el)
       //   Utils.scrollTo(this.$refs.shippingAndPayment.$el)
       // }
+
+      getBreakpoint() {
+        if (document.documentElement.clientWidth < 768) {
+          return 'xs';
+        }
+        if (document.documentElement.clientWidth < 1240) {
+          return 'md';
+        }
+        return 'xl';
+      }
     },
     created() {
       this.$store.dispatch('checkout/init');
+
 
       // this.$store.subscribeAction((action, state) => {
       //   if (action.type === 'cart/clearCart') {
@@ -157,5 +166,11 @@
       //   }
       // });
     },
+    mounted() {
+      this.breakpoint = this.getBreakpoint();
+      document.addEventListener('resize', () => {
+        this.breakpoint = this.getBreakpoint();
+      })
+    }
   }
 </script>

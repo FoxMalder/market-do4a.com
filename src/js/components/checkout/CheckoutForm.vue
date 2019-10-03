@@ -25,7 +25,7 @@
       
       <fieldset class="order-props__description" v-if="propertyDescription">
         <div class="form-group" v-skew="10">
-<!--        <div class="form-group">-->
+          <!--        <div class="form-group">-->
           <div class="input-field" :class="{'input-field_primary': !isMobile}">
             <label
               for="property-description"
@@ -68,7 +68,19 @@
     <!--           name="PERSON_TYPE"-->
     <!--           v-if="personTypeId"-->
     <!--           :value="personTypeId"/>-->
-  
+    
+    <div class="order-props__footer">
+      <button
+        class="btn btn-red btn-skew"
+        type="button"
+        @click.prevent="nextStep"
+      >
+        Доставка и оплата
+        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -102,6 +114,11 @@
         // },
       },
     },
+    props: {
+      breakpoint: {
+        type: String,
+      }
+    },
     data() {
       return {
         isMobile: document.documentElement.clientWidth < 768,
@@ -128,6 +145,9 @@
       }
     },
     methods: {
+      nextStep() {
+        console.log('Next step');
+      },
       updateDescription(e) {
         this.$store.commit('checkout/SET_PROPERTY', {
           name: this.propertyDescription.name,

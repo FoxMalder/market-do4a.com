@@ -7,7 +7,16 @@
         class="order__btn-clear"
         type="button"
         @click.prevent="clear"
-      ><i class="icon icon-delete"></i> Очистить корзину</button>
+      >
+        <svg width="12" height="14" viewBox="0 0 12 14" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.57554 0H8.3765V1.77938H11.952V3.1223H0V1.77938H3.57554V0ZM4.91846 1.34292V1.77938H7.03357V1.34292H4.91846ZM1.60906 14V4.39808H2.95198V12.6571H8.99514V4.39808H10.3381V14H1.60906ZM5.3047 4.39808H3.96178V11.4904H5.3047V4.39808ZM6.64632 4.39808H7.98924V11.4904H6.64632V4.39808Z" fill="currentColor"/>
+        </svg>
+        <span>Очистить корзину</span>
+      </button>
+    </div>
+    
+    <div class="order__alert" v-if="orderList.length > 1 && isMobile">
+      <CheckoutAlert/>
     </div>
     
     <div class="order__list">
@@ -23,40 +32,25 @@
       <Promocode/>
     </div>
     
-    <div class="order-amount" v-if="total">
-      <div class="order-amount__sale" v-show="totalDiscount > 0">
-        <div class="order-amount__key">ваша Скидка</div>
-        <div class="order-amount__value">{{ totalDiscount | formatPrice }}</div>
-      </div>
-      <div class="order-amount__sum">
-        <div class="order-amount__key">Итого к оплате</div>
-        <div class="order-amount__value">{{ total | formatPrice }}</div>
-      </div>
-      
-      <template v-if="orderList.length > 1">
-        <div v-for="order in orderList" :key="order.storeId" class="order-amount__row">
-          <div class="order-amount__key">
-            <span class="order-number-badge order-number-badge_dark">Отправление {{ order.index }}</span>
-            <span>{{ order.paymentItem ? order.paymentItem.name : 'Способ оплаты не выбран' }}</span>
-          </div>
-          <div class="order-amount__value">{{ order.total.ORDER_TOTAL_PRICE | formatPrice }}</div>
-        </div>
-      </template>
+    <div class="order__amount">
+      <CheckoutAmount/>
     </div>
     
     <div class="order__footer">
       
-      <button class="order__btn-checkout btn btn-red btn-skew"
-              type="submit"
-              disabled
-              v-if="checkoutStatus === 'loading'"
+      <button
+        class="order__btn-checkout btn btn-red btn-skew"
+        type="submit"
+        disabled
+        v-if="checkoutStatus === 'loading'"
       ><span class="spinner-border spinner-border-sm" role="status"></span></button>
       
-      <button class="order__btn-checkout btn btn-red btn-skew"
-              type="submit"
-              v-else
-              @click.prevent="setStep(nextStepButton)"
-      >{{nextStepButton.text}}</button>
+      <button
+        class="order__btn-checkout btn btn-red btn-skew"
+        type="submit"
+        v-else
+        @click.prevent="setStep(nextStepButton)"
+      >{{ breakpoint === 'xl' ? 'Оформить заказ' : 'Перейти к оформлению' }}</button>
       
       <div class="order__footer-note">
         Нажимая на кнопку, вы подтверждаете согласие на обработку
@@ -73,6 +67,8 @@
 
   import Utils from '../../utils/utils';
 
+  import CheckoutAlert from './CheckoutAlert.vue';
+  import CheckoutAmount from './CheckoutAmount.vue';
   import ProductList from './ProductList.vue';
   import Promocode from './Promocode.vue';
 
@@ -80,8 +76,15 @@
   export default {
     name: "CheckoutBasket",
     components: {
+      CheckoutAlert,
+      CheckoutAmount,
       ProductList,
       Promocode,
+    },
+    props: {
+      breakpoint: {
+        type: String,
+      }
     },
     data() {
       return {
@@ -109,12 +112,6 @@
       // ...mapGetters({
       //   products: 'cart/availableProducts',
       // }),
-      total() {
-        return this.orderList.reduce((accumulator, order) => accumulator + order.total.ORDER_TOTAL_PRICE, 0);
-      },
-      totalDiscount() {
-        return this.orderList.reduce((accumulator, order) => accumulator + order.total.DISCOUNT_PRICE, 0);
-      },
     },
     methods: {
       ...mapActions({

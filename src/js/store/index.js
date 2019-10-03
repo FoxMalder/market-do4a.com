@@ -7,6 +7,16 @@ import * as Api from '../api';
 import Utils from '../utils/utils';
 
 
+function getBreakpoint() {
+  if (document.documentElement.clientWidth < 768) {
+    return 'xs';
+  }
+  if (document.documentElement.clientWidth < 1240) {
+    return 'md';
+  }
+  return 'xl';
+}
+
 Vue.use(Vuex);
 
 const state = {
@@ -18,6 +28,7 @@ const state = {
   isLocaleStore: false,
   cityList: [],
   storeList: [],
+  // breakpoint: 'xs',
 };
 
 const getters = {
