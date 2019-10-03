@@ -222,6 +222,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Магазины',
+      filename: 'shops.html',
+      template: path.resolve(__dirname, 'src/shops.html'),
+      chunks: ['privacy', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',

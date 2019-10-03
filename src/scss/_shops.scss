@@ -1,0 +1,118 @@
+.s-shops {
+  display: flex;
+  height: 763px;
+  margin-bottom: 60px;
+
+  &__list {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 12px;
+  }
+
+  &__map {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 12px;
+  }
+}
+
+.s-list {
+  height: 100%;
+  overflow: auto;
+  background: #fff;
+  max-width: 588px;
+  margin-left: auto;
+}
+
+.s-city {
+  padding: 0 22px;
+  background: #f0f0f0;
+
+  &.active {
+    background: $main-color;
+    color: #fff;
+  }
+
+  &__name {
+    @include title;
+    padding: 10px 0;
+    font-size: 20px;
+  }
+}
+
+.s-item {
+  display: flex;
+  flex-direction: column;
+  height: 125px;
+  padding: 20px 22px;
+  border-bottom: 1px solid #eee;
+
+  &:hover {
+    box-shadow: inset 0 0 0 3px #101010;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  &__address {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  &__info {
+    color: rgba(#101010, 0.5);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  &__contacts {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+}
+
+.s-map {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    flex: 0 0 50px;
+    padding: 0 31px;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+  }
+
+  &__tab {
+    display: inline-block;
+    margin-right: 30px;
+    padding: 18px 0 13px;
+    border-bottom: 3px solid transparent;
+    color: rgba(#101010, 0.6);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+
+    &.active {
+      border-bottom: 3px solid $main-color;
+      color: #101010;
+    }
+  }
+
+  &__map {
+    flex: 1 0;
+  }
+}
