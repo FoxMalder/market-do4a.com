@@ -425,7 +425,9 @@
 }
 
 .order-alert {
-  padding: 13px (map_get($grid-gutter-width-map, xs) / 2) 17px;
+  margin-right: -$container-padding-x;
+  margin-left: -$container-padding-x;
+  padding: 13px $container-padding-x 17px;
   background-color: #292929;
   color: rgba(#fff, 0.6);
   font-size: 14px;
@@ -433,11 +435,13 @@
   letter-spacing: -0.01em;
   line-height: 20px;
 
-  @include media-breakpoint-up(xl) {
-    margin-left: -50vw;
-    padding-right: 64px;
-    padding-left: 50vw;
+  @include media-breakpoint-up(md) {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 19px;
+    padding-right: 19px;
   }
+
 
   &__title {
     color: #fff;
@@ -455,6 +459,12 @@
   }
 
   @include media-breakpoint-up(md) {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 27px 19px 51px;
+  }
+
+  @include media-breakpoint-up(xl) {
     margin-right: 0;
     margin-left: -50vw;
     padding: 27px 64px 51px 50vw;
@@ -762,11 +772,13 @@
  * Доставка и оплата
  */
 .order-sap {
-  .order-alert {
-    margin-right: -$container-padding-x;
-    margin-left: -$container-padding-x;
-    padding-left: $container-padding-x;
-    padding-right: $container-padding-x;
+
+  @include media-breakpoint-up(xl) {
+    .order-alert {
+      margin-left: -50vw;
+      padding-right: 64px;
+      padding-left: 50vw;
+    }
   }
 
   &__amount,

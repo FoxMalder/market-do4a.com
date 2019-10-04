@@ -71,7 +71,7 @@
     
     <div class="order-props__footer">
       <button
-        class="btn btn-red btn-skew"
+        class="btn btn-red btn-skew btn-block"
         type="button"
         @click.prevent="nextStep"
       >

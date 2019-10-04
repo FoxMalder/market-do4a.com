@@ -117,11 +117,11 @@
             </div>
             <div class="order-option__row-bottom">
               <div class="order-option__description" v-html="item.description"></div>
-              <template v-if="!item.isCash">
+              <div v-if="!item.isCash">
                 <i class="icon icon-visa"></i>
                 <i class="icon icon-mastercard"></i>
                 <i class="icon icon-mir"></i>
-              </template>
+              </div>
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@
     
     <div class="order-sap__footer">
       <button
-        class="btn btn-red btn-skew"
+        class="btn btn-red btn-skew btn-block"
         type="button"
         @click.prevent="nextStep"
       >

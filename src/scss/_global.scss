@@ -831,7 +831,7 @@ textarea.input-text {
   font-weight: 900;
   letter-spacing: .02em;
   line-height: $input-line-height;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 
   &::after {
     content: '';
