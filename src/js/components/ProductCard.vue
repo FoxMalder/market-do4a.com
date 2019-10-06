@@ -26,7 +26,7 @@
             <span class="product-card__rating" v-if="product.rating >= 3">
               <i class="i i-star"
                  v-for="i in [1, 2, 3, 4, 5]"
-                 :class="{ red: i <= product.raiting }"></i>
+                 :class="{ red: i <= product.rating }"></i>
             </span>
             <span>{{ product.review ? getText(product.review, ['отзыв', 'отзыва', 'отзывов']) : '' }}</span>
           </div>

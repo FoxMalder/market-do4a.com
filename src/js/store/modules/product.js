@@ -20,7 +20,7 @@ const state = {
 
   // reviewsRequestParam: {},
   reviewsLoading: false,
-  reviewsPage: 0,
+  reviewsPage: 1,
   reviewsCount: 16,
   reviews: [],
 
@@ -149,14 +149,28 @@ const actions = {
     dispatch('updateReviews', state.reviewsPage + 1);
   },
 
-  updateReviews({ state, commit }, page = 0) {
+  addReview({ state, dispatch }, data) {
+    return new Promise((resolve, reject) => {
+      Reviews.addReview(state.packingId, data)
+        .then(() => {
+          resolve();
+          dispatch('updateReviews');
+        })
+        .catch((error) => {
+          reject();
+          alert(error.message || error.response.message);
+        });
+    });
+  },
+
+  updateReviews({ state, commit }, page = 1) {
     commit('SET_REVIEWS_LOADING', true);
     commit('SET_REVIEWS_PAGE', page);
 
     Reviews.getReviews(state.packingId, page)
       .then((response) => {
         // console.log('getReviews then', response);
-        if (page > 0) {
+        if (page > 1) {
           commit('PUSH_REVIEW_TO_REVIEWS', response.data.items);
         } else {
           commit('SET_REVIEWS', response.data.items);
@@ -166,6 +180,7 @@ const actions = {
       .catch((error) => {
         // console.log('getReviews catch', error);
         // alert(error.message || error.response.message);
+        console.log(error.message || error.response.message);
       })
       .finally(() => {
         commit('SET_REVIEWS_LOADING', false);
@@ -200,7 +215,7 @@ const mutations = {
   // },
 
   SET_PARAM(state, param) {
-    console.log(param.category);
+    // console.log(param.category);
     state.textDelivery = param.textDelivery;
     state.category = param.category;
     state.country = param.country;
@@ -232,7 +247,9 @@ const mutations = {
   },
 
   SET_REVIEWS_COUNT(state, count) {
-    state.reviewsCount = count;
+    const pack = state.packing.find(item => item.id === state.packingId);
+    pack.review = count;
+    // state.reviewsCount = count;
   },
 
   SET_REVIEWS_PAGE(state, page) {

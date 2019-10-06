@@ -116,6 +116,7 @@
           email: '',
           text: '',
           rating: 5,
+          source: '',
         }
       }
     },
@@ -126,30 +127,13 @@
       onSubmit() {
         this.status = 'loading';
 
-        // const data = {
-        //   name: $el.find('[name="name"]').val(),
-        //   email: $el.find('[name="email"]').val(),
-        //   text: $el.find('[name="text"]').val(),
-        //   rating: $el.find('[name="rating"]:checked').val(),
-        //   source: $el.find('[name="source"]').val(),
-        // };
-
-        Reviews.addReview(this.$store.state.product.packingId, this.props)
+        this.$store.dispatch('product/addReview', this.props)
           .then(() => {
             this.$emit('modal:close');
             this.status = null;
-
-
-            // this.status = 'success';
-            //
-            // setTimeout(() => {
-            //   this.$emit('modal:close');
-            //   this.status = null;
-            // }, 3000);
           })
-          .catch((error) => {
+          .catch(() => {
             this.status = null;
-            alert(error.message || error.response.message);
           });
       }
     }
