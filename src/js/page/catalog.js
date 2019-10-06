@@ -23,6 +23,49 @@ import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
 import CatalogFilter from '../components/CatalogFilter.vue';
 
 
+/**
+ * Сворачивание строк
+ */
+function initCollapse() {
+  let maxLineCount = 5;
+  if (document.documentElement.clientWidth >= 768) {
+    maxLineCount = 8;
+  }
+  if (document.documentElement.clientWidth >= 1240) {
+    maxLineCount = 10;
+  }
+
+  [].forEach.call(document.querySelectorAll('.p-collapse'), (item) => {
+    const lineHeight = parseInt(getComputedStyle(item).lineHeight, 10);
+
+    if (item.clientHeight > lineHeight * maxLineCount) {
+      const container = document.createElement('div');
+      container.classList.add('p-collapse__text');
+      container.innerHTML = item.innerHTML.trim();
+      container.style.height = `${lineHeight * maxLineCount}px`;
+
+      const button = document.createElement('button');
+      button.classList.add('p-collapse__button');
+
+      button.innerHTML = 'Читать далее';
+      button.innerHTML += '<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n'
+        + '<path fill-rule="evenodd" clip-rule="evenodd" d="M4.99274 6.63951L1.67626 1.85444L4.14194 0.145508L9.00728 7.16531L1.97121 13.1431L0.0288086 10.8568L4.99274 6.63951Z" fill="#F4412D"/>\n'
+        + '</svg>\n';
+
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        button.style.display = 'none';
+        container.style.height = 'auto';
+      });
+
+      item.innerHTML = '';
+      item.appendChild(container);
+      item.appendChild(button);
+    }
+  });
+}
+
+
 export default class CatalogControl {
   constructor(
     elements = {
@@ -77,6 +120,7 @@ export default class CatalogControl {
 
     this.debouncedUpdate = debounce(this.update, 500);
 
+    initCollapse();
 
     this.init();
     this.initVue();

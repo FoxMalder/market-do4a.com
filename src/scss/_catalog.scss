@@ -166,6 +166,23 @@
 .catalog-description {
   padding: 60px 0;
   background: #fff;
+
+
+  .p-collapse {
+
+    white-space: normal;
+
+    &__button {
+      @include title;
+      color: $main-color;
+      font-size: 16px;
+      line-height: 18px;
+
+      > svg {
+        margin-left: 5px;
+      }
+    }
+  }
 }
 
 .catalog-control {
@@ -524,9 +541,9 @@ $multifilter-padding-x: (
     //font-size: 16px;
     //line-height: 1;
     //border: 0;
-    font-style: italic;
     height: calc(60px + var(--safe-area-inset-bottom));
     padding: 5px 5px calc(5px + var(--safe-area-inset-bottom));
+    font-style: italic;
 
     &:first-child {
       padding-left: calc(5px + var(--safe-area-inset-left));
