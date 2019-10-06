@@ -6,7 +6,7 @@ import Vue from 'vue';
 import Sticky from 'sticky-js';
 
 import '../plugins/Anchor';
-import TextareaAutoHeight from '../plugins/TextareaAutoHeight';
+// import TextareaAutoHeight from '../plugins/TextareaAutoHeight';
 import Utils from '../utils/utils';
 import Reviews from '../api/reviews';
 import Product from '../api/product';
@@ -16,11 +16,12 @@ import productStore from '../store/modules/product';
 // import ControlCounter from '../components/product/ControlCounter.vue';
 // import ControlSelect from '../components/product/ControlSelect.vue';
 import ProductImage from '../components/product/ImageBlock.vue';
-import StarRating from '../components/StarRating.vue';
+// import StarRating from '../components/StarRating.vue';
 import ProductDetailHeader from '../components/product/DetailHeader.vue';
 import ProductDetailName from '../components/product/DetailName.vue';
 import ProductDetail from '../components/product/Detail.vue';
 import ProductReviews from '../components/product/Reviews.vue';
+import ReviewsHeader from '../components/product/ReviewsHeader.vue';
 import ProductSimilar from '../components/product/Similar.vue';
 
 
@@ -149,7 +150,7 @@ export default class PageProduct {
 
   init() {
     $('[data-toggle="tooltip"]').tooltip();
-    $('.p-control-select__header').dropdown({ display: 'static' });
+    // $('.p-control-select__header').dropdown({ display: 'static' });
 
 
     // // Фиксация блока с фото на планшете
@@ -163,9 +164,9 @@ export default class PageProduct {
     // }
 
     // Подстройка высоты textarea под высоту содержимого
-    Array.prototype.forEach.call(document.querySelectorAll('textarea.autoheight'), (element) => {
-      new TextareaAutoHeight(element);
-    });
+    // Array.prototype.forEach.call(document.querySelectorAll('textarea.autoheight'), (element) => {
+    //   new TextareaAutoHeight(element);
+    // });
 
 
     initStoreInfo();
@@ -174,8 +175,8 @@ export default class PageProduct {
 
     this.elements = {
       detailReviewsCount: document.querySelector('.p-detail__reviews'),
-      reviewsCount: document.querySelector('.p-reviews-header__count'),
-      ratingValue: document.querySelector('.p-reviews-header__rating'),
+      // reviewsCount: document.querySelector('.p-reviews-header__count'),
+      // ratingValue: document.querySelector('.p-reviews-header__rating'),
       availability: document.querySelector('.p-section-availability'),
       breadcumpsThisPage: document.querySelector('.breadcumps__page'),
     };
@@ -193,7 +194,7 @@ export default class PageProduct {
     store.dispatch('product/init', param);
 
     // $('.p-review-form').on('submit', this.addReview);
-    $('.p-modal-form').on('submit', this.addReview);
+    // $('.p-modal-form').on('submit', this.addReview);
 
 
     this.initVue(true);
@@ -234,6 +235,12 @@ export default class PageProduct {
       render: h => h(ProductImage),
     }).$mount('#js-product-image');
 
+
+    new Vue({
+      store,
+      render: h => h(ReviewsHeader),
+    }).$mount('.p-reviews-header');
+
     const reviewsList = document.querySelector('#js-product-reviews');
     if (reviewsList) {
       // const reviewsListParam = JSON.parse(reviewsList.dataset.request);
@@ -255,15 +262,15 @@ export default class PageProduct {
     }
 
     // document.querySelector('.p-review-form').querySelector('.p-review-form__stars');
-    new Vue({
-      store,
-      render: h => h(StarRating),
-    }).$mount('.p-review-form__stars');
-
-    new Vue({
-      store,
-      render: h => h(StarRating),
-    }).$mount('.p-modal-form__rating-stars');
+    // new Vue({
+    //   store,
+    //   render: h => h(StarRating),
+    // }).$mount('.p-review-form__stars');
+    //
+    // new Vue({
+    //   store,
+    //   render: h => h(StarRating),
+    // }).$mount('.p-modal-form__rating-stars');
   }
 
   /**
@@ -280,18 +287,20 @@ export default class PageProduct {
       window.history.replaceState(null, null, activePacking.url);
     }
 
-    if (this.elements.breadcumpsThisPage) this.elements.breadcumpsThisPage.innerHTML = activePacking.name;
+    if (this.elements.breadcumpsThisPage) {
+      this.elements.breadcumpsThisPage.innerHTML = activePacking.name;
+    }
     // if (this.elements.detailReviewsCount) {
     //   this.elements.detailReviewsCount.innerHTML = activePacking.review
     //     ? `${activePacking.review} ${Utils.declOfNum(activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`
     //     : 'Нет отзывов';
     // }
-    if (this.elements.ratingValue) {
-      this.elements.ratingValue.style.display = activePacking.review > 0 ? '' : 'none';
-    }
-    if (this.elements.reviewsCount) {
-      this.elements.reviewsCount.innerHTML = activePacking.review > 0 ? activePacking.review : '';
-    }
+    // if (this.elements.ratingValue) {
+    //   this.elements.ratingValue.style.display = activePacking.review > 0 ? '' : 'none';
+    // }
+    // if (this.elements.reviewsCount) {
+    //   this.elements.reviewsCount.innerHTML = activePacking.review > 0 ? activePacking.review : '';
+    // }
   };
 
   /**
@@ -335,40 +344,40 @@ export default class PageProduct {
   };
 
 
-  /**
-   * Добавить отзыв
-   *
-   * @param event
-   */
-  addReview = (event) => {
-    const $el = $(event.currentTarget);
-    const $button = $el.find('[type="submit"]');
-    const buttonHtml = $button.html();
-
-    event.preventDefault();
-
-    const data = {
-      name: $el.find('[name="name"]').val(),
-      email: $el.find('[name="email"]').val(),
-      text: $el.find('[name="text"]').val(),
-      rating: $el.find('[name="rating"]:checked').val(),
-      source: $el.find('[name="source"]').val(),
-    };
-
-    $button.html('<span class="btn-icon"><span class="spinner-border" role="status"></span></span>');
-
-    Reviews.addReview(store.state.product.packingId, data)
-      .then(() => {
-        $button.removeClass('btn-red');
-        $button.addClass('btn-green');
-        event.currentTarget.reset();
-      })
-      .catch((error) => {
-        alert(error.message || error.response.message);
-      })
-      .finally(() => {
-        $button.html(buttonHtml);
-        $.fancybox.close();
-      });
-  };
+  // /**
+  //  * Добавить отзыв
+  //  *
+  //  * @param event
+  //  */
+  // addReview = (event) => {
+  //   const $el = $(event.currentTarget);
+  //   const $button = $el.find('[type="submit"]');
+  //   const buttonHtml = $button.html();
+  //
+  //   event.preventDefault();
+  //
+  //   const data = {
+  //     name: $el.find('[name="name"]').val(),
+  //     email: $el.find('[name="email"]').val(),
+  //     text: $el.find('[name="text"]').val(),
+  //     rating: $el.find('[name="rating"]:checked').val(),
+  //     source: $el.find('[name="source"]').val(),
+  //   };
+  //
+  //   $button.html('<span class="btn-icon"><span class="spinner-border" role="status"></span></span>');
+  //
+  //   Reviews.addReview(store.state.product.packingId, data)
+  //     .then(() => {
+  //       $button.removeClass('btn-red');
+  //       $button.addClass('btn-green');
+  //       event.currentTarget.reset();
+  //     })
+  //     .catch((error) => {
+  //       alert(error.message || error.response.message);
+  //     })
+  //     .finally(() => {
+  //       $button.html(buttonHtml);
+  //       $.fancybox.close();
+  //     });
+  // };
 }

@@ -884,11 +884,11 @@ textarea.input-text {
     transition: transform .15s ease;
     opacity: .4;
     text-overflow: ellipsis;
-    text-transform: inherit;
     white-space: nowrap;
     cursor: text;
     pointer-events: none;
     will-change: transform;
+    text-transform: uppercase;
 
     &_active {
       transform: translateY(-50%) scale(.625);
@@ -913,7 +913,7 @@ textarea.input-text {
     font-family: inherit;
     font-style: italic;
     font-weight: inherit;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     appearance: none;
 
     &::placeholder {
@@ -1524,9 +1524,13 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
   &__value {
     @include title;
-    margin-left: 22px;
-    font-size: 60px;
+    margin-left: 15px;
+    font-size: 40px;
     line-height: 1;
+    @include media-breakpoint-up(md) {
+      font-size: 60px;
+      margin-left: 22px;
+    }
   }
 }
 
@@ -1673,6 +1677,8 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
         &.btn-block {
           width: 100%;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
     }

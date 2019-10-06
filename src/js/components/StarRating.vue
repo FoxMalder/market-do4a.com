@@ -14,7 +14,7 @@
       </svg>
     </label>
     
-    <div class="star-rating__value">{{temp_value}}</div>
+    <div class="star-rating__value">{{ temp_value }}</div>
   </div>
 </template>
 
@@ -23,14 +23,14 @@
     name: "StarRating",
     props: {
       // 'name': String,
-      // 'value': null,
+      'value': null,
       // 'id': String,
       'disabled': Boolean,
       // 'required': Boolean
     },
     data() {
       return {
-        value: null,
+        // value: null,
         temp_value: null,
         ratings: [1, 2, 3, 4, 5]
       };
@@ -62,6 +62,7 @@
         if (!this.disabled) {
           this.temp_value = value;
           this.value = value;
+          this.$emit('input', value);
         }
       }
     }

@@ -31,7 +31,7 @@
             <span>{{ product.review ? getText(product.review, ['отзыв', 'отзыва', 'отзывов']) : '' }}</span>
           </div>
           <div class="product-card__stock">
-            <template v-if="product.inAvailable">
+            <template v-if="product.isAvailable">
               <link itemprop="availability" href="http://schema.org/InStock"/>
               <div class="green">В наличии</div>
             </template>

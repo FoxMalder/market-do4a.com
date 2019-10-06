@@ -187,17 +187,17 @@ export default class ProductCard {
         <div class="product-card__row">
           <div class="product-card__reviews">
             ${ProductCard.getRatingEl(this.data.rating)}
-            <span style="${this.data.review === 0
-      ? 'display: none'
-      : ''}">${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}</span>
+            <span style="${this.data.review === 0 ? 'display: none' : ''}">
+              ${this.data.review} ${Utils.declOfNum(this.data.review, ['отзыв', 'отзыва', 'отзывов'])}
+            </span>
           </div>                
           <div class="product-card__stock">
-            <div class="${this.data.isAvailable ? 'green' : 'red'}">${
-      this.data.isAvailable ? 'В наличии' : 'Нет в наличии'
-    }</div>
-            <div style="${this.data.pack_count === 0
-      ? 'display: none'
-      : ''}">${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}</div>
+            <div class="${this.data.isAvailable ? 'green' : 'red'}">
+              ${this.data.isAvailable ? 'В наличии' : 'Нет в наличии'}
+            </div>
+            <div style="${this.data.pack_count === 0 ? 'display: none' : ''}">
+              ${this.data.pack_count} ${Utils.declOfNum(this.data.pack_count, ['фасовка', 'фасовки', 'фасовок'])}
+            </div>
           </div>
         </div>
       </div>`;

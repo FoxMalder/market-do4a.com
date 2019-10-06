@@ -27,14 +27,19 @@
         </div>
       </div>
       <div class="p-control-options__type">
-        <div class="p-control-select">
-          <button class="p-control-select__header" :class="{ notAvailable: !isAvailableOffer }" data-toggle="dropdown" ref="dropdownHeader">
+        <div class="p-control-select"
+             :class="{ show: visible }"
+             v-click-outside="close">
+          <button class="p-control-select__header"
+                  :class="{ notAvailable: !isAvailableOffer }"
+                  @click.prevent="toggle">
             <span class="p-control-select__header-label">{{ activeOffer.name }}</span>
             <span class="p-control-select__header-badge"
                   v-show="(availableOffers.length || availableDeliveryOffers.length) && activePacking.textCountOffer"
             >{{activePacking.textCountOffer}}</span>
           </button>
-          <div class="p-control-select__list dropdown-menu" role="form">
+          <div class="p-control-select__list dropdown-menu"
+               :class="{ show: visible }">
             
             <template v-if="availableOffers.length > 0">
               <div class="p-control-select__delimiter">
@@ -94,6 +99,7 @@
     name: "ControlSelect",
     data() {
       return {
+        visible: false,
         scrollLeft: 0,
         scrollRight: 0,
       }
@@ -127,16 +133,16 @@
       ]),
       selectPacking(pack, event) {
         this.$store.dispatch('product/selectPacking', pack);
-        
+
         const selEl = event.currentTarget.parentElement;
-        
+
         if (selEl.offsetLeft < this.scrollLeft) {
           // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft - 20;
 
           $(this.$refs.tabWrapper).animate({
             scrollLeft: selEl.offsetLeft - 20,
           }, 500);
-          
+
         } else if (this.$refs.tabWrapper.scrollWidth - selEl.offsetLeft - selEl.clientWidth < this.scrollRight) {
           // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft
           //   + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20;
@@ -148,20 +154,26 @@
         }
       },
       selectClick(offer) {
-        $(this.$refs.dropdownHeader).dropdown('hide');
+        this.close();
         this.selectOffer(offer);
       },
       scrollCalc() {
         this.scrollLeft = this.$refs.tabWrapper.scrollLeft;
         this.scrollRight = this.$refs.tabWrapper.scrollWidth
           - this.$refs.tabWrapper.clientWidth - this.$refs.tabWrapper.scrollLeft;
-      }
+      },
+      
+      open() {
+        this.visible = true;
+      },
+      close() {
+        this.visible = false;
+      },
+      toggle() {
+        this.visible = !this.visible;
+      },
     },
     mounted() {
-      $(this.$refs.dropdownHeader).dropdown({
-        display: 'static',
-      });
-
       if (this.packing.length > 4) {
         this.scrollCalc();
         this.$refs.tabWrapper.addEventListener('scroll', this.scrollCalc);

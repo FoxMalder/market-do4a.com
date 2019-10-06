@@ -15,7 +15,7 @@
           <CheckoutLocation v-if="prop.type === 'location'" :prop="prop"/>
           <div class="n-form-group" v-else>
             <div class="n-form-group__field">
-              <InputField :class="{'input-field_primary': !isMobile}" :prop="prop"/>
+              <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
             </div>
             <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
           </div>
@@ -26,7 +26,7 @@
       <fieldset class="order-props__description" v-if="propertyDescription">
         <div class="form-group" v-skew="10">
           <!--        <div class="form-group">-->
-          <div class="input-field" :class="{'input-field_primary': !isMobile}">
+          <div class="input-field" :class="{'input-field_primary': breakpoint !== 'xs'}">
             <label
               for="property-description"
               class="input-field__label">{{ propertyDescription.title }}</label>
@@ -119,12 +119,12 @@
         type: String,
       }
     },
-    data() {
-      return {
-        isMobile: document.documentElement.clientWidth < 768,
-        // description: '',
-      }
-    },
+    // data() {
+    //   return {
+    //     isMobile: document.documentElement.clientWidth < 768,
+    //     // description: '',
+    //   }
+    // },
     mounted() {
       new TextareaAutoHeight(this.$refs.textarea);
     },
