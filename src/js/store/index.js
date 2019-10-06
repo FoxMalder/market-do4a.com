@@ -19,13 +19,15 @@ function getBreakpoint() {
 
 Vue.use(Vuex);
 
+
 const state = {
   favorites: [],
-  favoritesCount: 0,
-  cityId: 0,
-  storeId: 0,
-  storeRemoteId: 0,
-  isLocaleStore: false,
+  favoritesCount: 0, // favorites.length
+
+  cityId: 0, // Выбранный город
+  storeId: 0, // Выбранный склад
+  storeRemoteId: 0, // Удаленный склад
+  isLocaleStore: false, // storeId !== storeRemoteId
   cityList: [],
   storeList: [],
   // breakpoint: 'xs',

@@ -68,6 +68,12 @@
       this.quantity = this.item.quantity;
       this.debouncedSetQuantity = debounce(this.setQuantity, 300);
     },
+
+    watch: {
+      item(item) {
+        this.quantity = item.quantity;
+      },
+    },
     methods: {
       ...mapActions('cart', {
         remove: 'removeFromCart',
@@ -92,7 +98,7 @@
           quantity: this.quantity
         }).then(() => {
           this.status = null;
-          this.quantity = this.item.quantity;
+          // this.quantity = this.item.quantity;
         });
       }
     }

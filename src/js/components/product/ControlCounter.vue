@@ -22,13 +22,18 @@
             >-</button>
           </div>
           <div class="p-control-counter__col">
+            <!--            <input-->
+            <!--              class="input-text p-control-counter__input" id="product-counter"-->
+            <!--              type="number"-->
+            <!--              :min="1"-->
+            <!--              :max="maxCount"-->
+            <!--              v-model.number="count"-->
+            <!--              @change="onChange">-->
             <input
               class="input-text p-control-counter__input" id="product-counter"
               type="number"
-              :min="1"
-              :max="maxCount"
-              v-model.number="count"
-              @change="onChange">
+              :value="count"
+              readonly>
           </div>
           <div class="p-control-counter__col">
             <button
@@ -73,6 +78,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
+  import debounce from 'lodash.debounce';
 
   import ProductSubscribeModal from './ProductSubscribeModal.vue';
   import TouchPan from '../../directives/TouchPan';
@@ -103,6 +109,9 @@
         isOpened: document.documentElement.clientWidth >= 768,
       };
     },
+    created() {
+      this.debouncedSetQuantity = debounce(this.setQuantity, 300);
+    },
     computed: {
       ...mapGetters({
         basketItemById: 'cart/getBasketItemByProductId'
@@ -119,44 +128,38 @@
     watch: {
       basketItem(item) {
         if (item && item.quantity) {
-          this.count = this.basketItem.quantity;
+          this.count = item.quantity;
         }
       },
-      count(val, oldVal) {
-        console.log(`Значение count сменилось с ${oldVal} на ${val}`);
-
-        if (val === '') {
-          return;
-        }
-
-        if (val < 1) {
-          // return 1;
-          this.count = 1;
-          return;
-        }
-
-        if (val > this.maxCount) {
-          this.count = this.maxCount;
-        }
-      }
+      // count(val, oldVal) {
+      //   console.log(`Значение count сменилось с ${oldVal} на ${val}`);
+      //
+      //   if (val === '') {
+      //     return;
+      //   }
+      //
+      //   if (val < 1) {
+      //     // return 1;
+      //     this.count = 1;
+      //     return;
+      //   }
+      //
+      //   if (val > this.maxCount) {
+      //     this.count = this.maxCount;
+      //   }
+      // }
     },
     methods: {
-      ...mapActions('cart', {
-        addProductToCart: 'addProductToCart',
-        incrementItemQuantity: 'incrementItemQuantity',
-        decrementItemQuantity: 'decrementItemQuantity',
-        setItemQuantity: 'setItemQuantity',
-      }),
       subscribe() {
         this.$modal.open(ProductSubscribeModal);
       },
       addToCart() {
         this.requestStatus = 'loading';
 
-        this.addProductToCart({
+        this.$store.dispatch('cart/addProductToCart', {
             productId: this.offer.id,
             quantity: this.count,
-            isRemote: this.offer.count < 1 && this.offer.count_remote > 0,
+            isRemote: this.offer.count_group < 1 && this.offer.count_remote > 0,
           })
           .then(() => {
             if (document.documentElement.clientWidth < 768) {
@@ -169,50 +172,69 @@
 
       },
       increment() {
+        if (this.count >= this.maxCount) {
+          return;
+        }
+
         this.count += 1;
 
         if (this.basketItem) {
-          this.requestStatus = 'loading';
-
-          // this.setItemQuantity(this.basketItem, this.count)
-          this.incrementItemQuantity(this.basketItem)
-            // .catch(() => {
-            //   this.count = this.basketItem.quantity;
-            // })
-            .finally(() => {
-              this.requestStatus = null;
-            });
+          this.debouncedSetQuantity();
         }
       },
       decrement() {
+        if (this.count < 1) {
+          return;
+        }
+
         this.count -= 1;
 
         if (this.basketItem) {
-          this.requestStatus = 'loading';
-
-          // this.setItemQuantity(this.basketItem, this.count)
-          this.decrementItemQuantity(this.basketItem)
-            // .catch(() => {
-            //   this.count = this.basketItem.quantity;
-            // })
-            .finally(() => {
-              this.requestStatus = null;
-            });
+          this.debouncedSetQuantity();
         }
       },
-      onChange(event) {
-        if (this.basketItem) {
-          this.requestStatus = 'loading';
+      setQuantity() {
+        this.requestStatus = 'loading';
 
-          this.setItemQuantity(this.basketItem, this.count)
-            // .catch(() => {
-            //   this.count = this.basketItem.quantity;
-            // })
-            .finally(() => {
-              this.requestStatus = null;
-            });
-        }
+        this.$store.dispatch('cart/setItemQuantity', {
+            basketItemId: this.basketItem.basketItemId,
+            quantity: this.count
+          })
+          .finally(() => {
+            this.requestStatus = null;
+            // this.quantity = this.item.quantity;
+          });
       },
+      // onInput(event) {
+      //   const val = parseInt(event.target.value, 10);
+      //   if (val === '') {
+      //     return;
+      //   }
+      //
+      //   if (val < 1) {
+      //     // return 1;
+      //     this.count = 1;
+      //     return;
+      //   }
+      //
+      //   if (val > this.maxCount) {
+      //     this.count = this.maxCount;
+      //   }
+      // },
+      // onChange(event) {
+      //   if (this.basketItem) {
+      //     this.requestStatus = 'loading';
+      //
+      //     this.setQuantity(this.basketItem, this.count)
+      //       // .catch(() => {
+      //       //   this.count = this.basketItem.quantity;
+      //       // })
+      //       .finally(() => {
+      //         this.requestStatus = null;
+      //       });
+      //   }
+      // },
+
       // onBlur() {
       //   if (!this.count) {
       //     this.count = 1;

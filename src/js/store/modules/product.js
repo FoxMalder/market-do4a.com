@@ -28,35 +28,25 @@ const state = {
   similar: [],
 };
 
-// const sku = {
-//   count: 0,
-//   count_city: 0,
-//   count_remote: 0,
-// };
-//
-// if (sku.count > 0 && sku.count_city > 0) {
-//   // В наличии в магазине
-// }
-// if (sku.count_city === 0 && sku.count_remote > 0) {
-//   // Доставка с ЦС
-// }
-// if (sku.count_city === 0 && sku.count_remote === 0) {
-//   // Нет в наличии
-// }
-
 
 // getters
 const getters = {
-  // Выбранная фасовка
+  /**
+   * Выбранная фасовка
+   * @returns {Object}
+   */
   activePacking: (state) => {
-    return state.packing.find(item => item.id === state.packingId);
+    return state.packing.find(item => item.id === state.packingId)
+      || state.packing[0];
   },
 
-  // Выбранный оффер
+  /**
+   * Выбранный оффер
+   * @returns {Object}
+   */
   activeOffer: (state, getters) => {
-    return getters.activePacking
-      && (getters.activePacking.sku.find(item => item.id === state.offerId)
-        || getters.activePacking.sku[0]);
+    return getters.activePacking.sku.find(item => item.id === state.offerId)
+      || getters.activePacking.sku[0];
   },
 
   visibleOffers: (state, getters) => {

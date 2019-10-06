@@ -1409,7 +1409,9 @@
 
   &__input {
     -moz-appearance: textfield;
-
+    &[readonly] {
+      background-color: #fff;
+    }
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       margin: 0;
