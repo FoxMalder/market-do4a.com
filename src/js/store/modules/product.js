@@ -21,7 +21,6 @@ const state = {
   // reviewsRequestParam: {},
   reviewsLoading: false,
   reviewsPage: 1,
-  reviewsCount: 16,
   reviews: [],
 
   // similarRequestParam: {},
@@ -249,7 +248,6 @@ const mutations = {
   SET_REVIEWS_COUNT(state, count) {
     const pack = state.packing.find(item => item.id === state.packingId);
     pack.review = count;
-    // state.reviewsCount = count;
   },
 
   SET_REVIEWS_PAGE(state, page) {

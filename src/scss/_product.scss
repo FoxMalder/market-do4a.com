@@ -1236,14 +1236,11 @@
       line-height: 1;
       cursor: pointer;
 
-      &.checked {
-
-      }
-
       &.disabled {
         color: rgba(#000, 0.4);
       }
 
+      &.checked,
       &:hover {
         background-color: $main-color;
         color: #fff;
@@ -1251,7 +1248,7 @@
     }
 
     &__item-name {
-
+      text-transform: capitalize;
     }
 
     &__item-info {

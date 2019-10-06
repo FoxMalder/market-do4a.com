@@ -3,10 +3,10 @@
     <div class="p-control-options__wrapper">
       <div class="p-control-options__weight" v-if="packing.length > 1">
         <div class="p-control-radio" :class="{ 'p-control-radio_scroll': packing.length > 4 }">
-          <div class="p-control-radio__shadow-left"
-               v-if="packing.length > 4"
-               :style="{ opacity: Math.min(scrollLeft, 30) / 30 }"
-          ></div>
+          <!--          <div class="p-control-radio__shadow-left"-->
+          <!--               v-if="packing.length > 4"-->
+          <!--               :style="{ opacity: Math.min(scrollLeft, 30) / 30 }"-->
+          <!--          ></div>-->
           <div class="p-control-radio__wrapper"
                ref="tabWrapper">
             <div class="p-control-radio__item"
@@ -20,10 +20,10 @@
               <div class="p-control-radio__label" @click="selectPacking(pack, $event)">{{pack.pack}}</div>
             </div>
           </div>
-          <div class="p-control-radio__shadow-right"
-               v-if="packing.length > 4"
-               :style="{ opacity: Math.min(scrollRight, 30) / 30 }"
-          ></div>
+          <!--          <div class="p-control-radio__shadow-right"-->
+          <!--               v-if="packing.length > 4"-->
+          <!--               :style="{ opacity: Math.min(scrollRight, 30) / 30 }"-->
+          <!--          ></div>-->
         </div>
       </div>
       <div class="p-control-options__type">
@@ -136,22 +136,27 @@
 
         const selEl = event.currentTarget.parentElement;
 
-        if (selEl.offsetLeft < this.scrollLeft) {
-          // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft - 20;
+        $(this.$refs.tabWrapper).animate({
+          scrollLeft: selEl.offsetLeft - (this.$refs.tabWrapper.clientWidth / 2) + (selEl.clientWidth / 2),
+        }, 300);
 
-          $(this.$refs.tabWrapper).animate({
-            scrollLeft: selEl.offsetLeft - 20,
-          }, 500);
 
-        } else if (this.$refs.tabWrapper.scrollWidth - selEl.offsetLeft - selEl.clientWidth < this.scrollRight) {
-          // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft
-          //   + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20;
-
-          $(this.$refs.tabWrapper).animate({
-            scrollLeft: selEl.offsetLeft
-              + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20,
-          }, 500);
-        }
+        // if (selEl.offsetLeft < this.scrollLeft) {
+        //   // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft - 20;
+        //
+        //   $(this.$refs.tabWrapper).animate({
+        //     scrollLeft: selEl.offsetLeft - 20,
+        //   }, 200);
+        //
+        // } else if (this.$refs.tabWrapper.scrollWidth - selEl.offsetLeft - selEl.clientWidth < this.scrollRight) {
+        //   // this.$refs.tabWrapper.scrollLeft = selEl.offsetLeft
+        //   //   + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20;
+        //
+        //   $(this.$refs.tabWrapper).animate({
+        //     scrollLeft: selEl.offsetLeft
+        //       + selEl.clientWidth - this.$refs.tabWrapper.clientWidth + 20,
+        //   }, 200);
+        // }
       },
       selectClick(offer) {
         this.close();
@@ -162,7 +167,7 @@
         this.scrollRight = this.$refs.tabWrapper.scrollWidth
           - this.$refs.tabWrapper.clientWidth - this.$refs.tabWrapper.scrollLeft;
       },
-      
+
       open() {
         this.visible = true;
       },
@@ -176,7 +181,14 @@
     mounted() {
       if (this.packing.length > 4) {
         this.scrollCalc();
-        this.$refs.tabWrapper.addEventListener('scroll', this.scrollCalc);
+        // this.$refs.tabWrapper.addEventListener('scroll', this.scrollCalc);
+        this.$refs.tabWrapper.addEventListener('wheel', (e) => {
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            this.$refs.tabWrapper.scrollLeft = this.$refs.tabWrapper.scrollLeft + e.deltaY;
+            // console.log(e.deltaY);
+          }
+        });
       }
     },
   }
