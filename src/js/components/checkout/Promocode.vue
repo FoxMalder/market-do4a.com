@@ -1,16 +1,16 @@
 <template>
   <div class="order-promocode">
     <template v-if="isModal">
-      <button class="btn btn-gray-2 btn-block">Добавить промокод</button>
+      <button class="btn btn-gray-2 btn-block" type="button" @click="openModal">Добавить промокод</button>
     </template>
     <template v-else>
       <div class="order-promocode__field">
         <div class="input-field input-field_primary-white">
           <label class="input-field__label">Добавить промокод</label>
           <input
-                  class="input-field__input" type="text" autocomplete="off"
-                  v-model="promocode"
-                  :disabled="status === 'success'">
+            class="input-field__input" type="text" autocomplete="off"
+            v-model="promocode"
+            :disabled="status === 'success'">
         </div>
       </div>
       <div class="order-promocode__button">
@@ -31,6 +31,8 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
+  import PromocodeModal from './PromocodeModal.vue';
+
 
   export default {
     name: "Promocode",
@@ -45,6 +47,24 @@
       ...mapActions({
         enterCoupon: 'checkout/enterCoupon',
       }),
+      openModal() {
+        this.$modal.open(PromocodeModal, {
+          props: {
+            // promocode: this.promocode,
+            status: this.status,
+          },
+          // Обработчики событий компонента
+          on: {
+            // input(data) {
+            //   console.log(data);
+            // },
+            submit: (data) => {
+              this.promocode = data;
+              this.setPromocode();
+            },
+          },
+        });
+      },
       setPromocode() {
         this.status = 'loading';
 
