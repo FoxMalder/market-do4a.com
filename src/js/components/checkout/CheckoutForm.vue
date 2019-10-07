@@ -104,7 +104,6 @@
     directives: {
       skew: {
         inserted(el, { value = 10 }) {
-          console.log(el.clientHeight);
           el.style.transform = `matrix(1, 0, ${value * -2 / 158}, 1, 0, 0)`;
           el.style.marginLeft = `${value}px`;
           el.style.marginRight = `${value}px`;
@@ -148,6 +147,9 @@
       nextStep() {
         console.log('Next step');
       },
+      // validate() {
+      //   this.
+      // },
       updateDescription(e) {
         this.$store.commit('checkout/SET_PROPERTY', {
           name: this.propertyDescription.name,

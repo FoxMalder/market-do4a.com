@@ -113,17 +113,14 @@
       this.debouncedSetQuantity = debounce(this.setQuantity, 300);
     },
     computed: {
-      ...mapGetters({
-        basketItemById: 'cart/getBasketItemByProductId'
-      }),
       maxCount() {
         return (this.basketItem && this.basketItem.quantity_max)
           ? this.basketItem.quantity_max
           : (this.offer.count_group || this.offer.count_remote);
       },
       basketItem() {
-        return this.basketItemById(this.offer.id);
-      }
+        return this.$store.getters['cart/getBasketItemByProductId'](this.offer.id);
+      },
     },
     watch: {
       basketItem(item) {

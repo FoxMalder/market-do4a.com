@@ -1,10 +1,14 @@
 <template>
   <div class="order-product">
     <div class="order-product__col-image">
-      <img class="order-product__img"
-           v-if="item.picture"
+      <img v-if="item.picture"
+           class="order-product__img"
            :src="item.picture"
            :srcset="item.picture2x + ' 2x'"
+           :alt="item.name">
+      <img v-else
+           class="order-product__img"
+           src="/upload/resizer/notfound.svg?Element+not+found"
            :alt="item.name">
     </div>
     <div class="order-product__col-info">
@@ -66,6 +70,14 @@
     created() {
       this.debouncedSetQuantity = debounce(this.setQuantity, 300);
     },
+
+    // watch: {
+    //   basketItem(item) {
+    //     if (item && item.quantity) {
+    //       this.count = item.quantity;
+    //     }
+    //   },
+    // },
     methods: {
       remove() {
         this.$store.dispatch('cart/removeFromCart', {
