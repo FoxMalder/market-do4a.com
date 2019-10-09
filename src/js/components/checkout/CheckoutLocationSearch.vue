@@ -4,10 +4,10 @@
        v-click-outside="deactivate">
     <div class="checkout-location-search__field">
       <label class="input-field input-field_primary"
-             :class="{'input-field_invalid': item.error}">
+             :class="{'input-field_invalid': locationProperty.error}">
         <span class="input-field__label"
               :class="{'input-field__label_active': value !== ''}"
-        >{{ item.title + (item.required ? '*' : '') }}</span>
+        >{{ locationProperty.title + (locationProperty.required ? '*' : '') }}</span>
         <input class="input-field__input"
                type="text"
                autocomplete="off"
@@ -17,7 +17,7 @@
                @blur.prevent="deactivate"
                @keyup.esc="deactivate">
         <transition name="fade-left">
-          <div class="input-field__alert" v-if="!isActive && item.error">{{ item.error }}</div>
+          <div class="input-field__alert" v-if="!isActive && locationProperty.error">{{ locationProperty.error }}</div>
         </transition>
       </label>
     </div>
@@ -70,9 +70,6 @@
 
   export default {
     name: "CheckoutLocationSearch",
-    props: {
-      item: Object,
-    },
     data() {
       return {
         value: '',
@@ -101,8 +98,12 @@
     computed: {
       ...mapState('checkout', {
         isKnownCity: 'isKnownCity',
-        knownCityName: 'knownCityName'
-      })
+        knownCityName: 'knownCityName',
+        propertyList: 'propertyList',
+      }),
+      locationProperty() {
+        return this.propertyList.find(item => item.type === 'location')
+      }
     },
     methods: {
       chooseCity(city) {
@@ -111,10 +112,10 @@
         this.isActive = false;
         if (city) {
           this.value = [city.name, ...city.path].join(', ');
-          this.item.value = city.code;
-          this.item.error = null;
+          this.locationProperty.value = city.code;
+          this.locationProperty.error = null;
         } else {
-          this.item.value = null;
+          this.locationProperty.value = null;
         }
         this.$store.dispatch('checkout/refreshOrderAjax');
       },
@@ -214,14 +215,14 @@
       },
 
       validate() {
-        if (this.item.required && this.item.value === null) {
-          this.item.error = 'Выберите город из списка';
+        if (this.locationProperty.required && this.locationProperty.value === null) {
+          this.locationProperty.error = 'Выберите город из списка';
         }
       },
 
       onInput(event) {
         this.value = event.target.value;
-        this.item.value = null;
+        this.locationProperty.value = null;
 
 
         if (this.value !== '') {

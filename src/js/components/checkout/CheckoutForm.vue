@@ -8,40 +8,39 @@
         <li v-for="error in errors.PROPERTY">{{ error }}</li>
       </ul>
       
-      <fieldset class="order-props__group" v-for="group in groups">
+      <fieldset class="order-props__group" v-for="group in groups" v-if="group.id !== 2">
         <legend class="order-props__subtitle">{{ group.name }}</legend>
         
-        <template v-for="prop in group.props">
-          <CheckoutLocation v-if="prop.type === 'location'" :prop="prop"/>
-          <div class="n-form-group" v-else>
-            <div class="n-form-group__field">
-              <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
-            </div>
-            <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
+        <div class="n-form-group" v-for="prop in group.props">
+          <div class="n-form-group__field">
+            <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
           </div>
-        </template>
-      
+          <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
+        </div>
       </fieldset>
       
-      <fieldset class="order-props__description" v-if="propertyDescription">
+      <fieldset class="order-props__group">
+        <legend class="order-props__subtitle">Адрес доставки</legend>
+        <CheckoutAddress/>
+      </fieldset>
+      
+      <fieldset class="order-props__description">
         <div class="form-group" v-skew="10">
-          <!--        <div class="form-group">-->
           <div class="input-field" :class="{'input-field_primary': breakpoint !== 'xs'}">
             <label
               for="property-description"
-              class="input-field__label">{{ propertyDescription.title }}</label>
+              class="input-field__label">Комментарий</label>
             <textarea
               ref="textarea"
               id="property-description"
               class="input-field__input autoheight"
               rows="5"
-              :name="propertyDescription.name"
-              :value="propertyDescription.value"
-              @input="updateDescription"
+              v-model="propertyDescription"
             ></textarea>
           </div>
         </div>
-        <div class="order-props__note">{{ propertyDescription.description }}</div>
+        <div class="order-props__note">Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш
+          дом</div>
       </fieldset>
       
       <!--      <div class="order-props__subtitle">Адрес доставки</div>-->
@@ -71,16 +70,6 @@
     
     <div class="order-props__footer">
       <slot></slot>
-<!--      <button-->
-<!--        class="btn btn-red btn-skew btn-block"-->
-<!--        type="button"-->
-<!--        @click.prevent="nextStep"-->
-<!--      >-->
-<!--        Доставка и оплата-->
-<!--        <svg width="20" height="16" style="margin-left: 30px" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>-->
-<!--        </svg>-->
-<!--      </button>-->
     </div>
   </div>
 </template>
@@ -92,6 +81,7 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import InputField from './../InputField.vue';
   import CheckoutLocation from './CheckoutLocation.vue';
+  import CheckoutAddress from './CheckoutAddress.vue';
   import TextareaAutoHeight from '../../plugins/TextareaAutoHeight';
   // import TransformSkew from './../TransformSkew.vue';
 
@@ -101,6 +91,7 @@
     components: {
       InputField,
       CheckoutLocation,
+      CheckoutAddress,
     },
     directives: {
       skew: {
@@ -134,7 +125,7 @@
         propertyGroups: 'propertyGroups',
         // Old
         // propertyDescription: state => state.propertyDescription,
-        propertyDescription: state => state.staticPropertyList.find(prop => prop.name === 'ORDER_DESCRIPTION'),
+        propertyDescription: state => state.props.description,
         errors: 'errors',
       }),
       groups() {

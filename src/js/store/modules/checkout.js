@@ -60,6 +60,15 @@ export const param = {
 // };
 
 
+/*
+  soaData: {
+    result: {
+      DELIVERY[]:
+        CATEGORY: 'other' | 'sdek.pickup' | 'sdek' | 'courier' | 'pickup'
+    }
+  }
+ */
+
 /**
  * Преобразует и сортирует список методов оплаты
  *
@@ -246,12 +255,19 @@ function convertPropertyList(properties) {
         inputmode: '',
         autocomplete: '',
         error: '',
+        relationDelivery: [],
         // pattern: property.PATTERN,
         // minlength: parseInt(property.MINLENGTH, 10),
         // maxlength: parseInt(property.MAXLENGTH, 10),
         // multiple: property.MULTIPLE === 'Y',
         // multiline: property.MULTILINE === 'Y',
       };
+
+      if (property.RELATION) {
+        prop.relationDelivery = property.RELATION
+          .filter(item => item.ENTITY_TYPE === 'D')
+          .map(item => parseInt(item.ENTITY_ID, 10));
+      }
 
       switch (property.TYPE) {
         case 'STRING':
@@ -357,7 +373,7 @@ export default function createModule(options) {
       },
     ],
 
-    propertyDescription: '',
+    // propertyDescription: '',
 
     checkoutStatus: null,
 
@@ -391,7 +407,15 @@ export default function createModule(options) {
     groupStore: options.groupStore,
     propertyGroups: [],
     propertyList: [],
-    staticPropertyList: [],
+    // staticPropertyList: [],
+    props: {
+      location: '',
+      description: '',
+      city: '',
+      street: '',
+      house: '',
+      flat: '',
+    },
   };
 
   const getters = {
@@ -445,21 +469,42 @@ export default function createModule(options) {
         PAY_SYSTEM_ID: order.paymentId,
         // BUYER_STORE: order.buyerStore,
         PERSON_TYPE: state.personTypeId,
-        // ORDER_DESCRIPTION: state.propertyDescription,
+        ORDER_DESCRIPTION: state.props.description,
         action: 'saveOrderAjax',
         location_type: 'code',
         sessid: Utils.sessid(),
       };
 
       state.propertyList.forEach((prop) => {
-        data[prop.name] = prop.value;
-      });
-
-      state.staticPropertyList.forEach((prop) => {
-        if (!prop.root) {
-          data[prop.name] = prop.value;
+        switch (prop.code) {
+          case 'LOCATION':
+            data[`ORDER_PROP_${prop.id}`] = state.props.location;
+            break;
+          case 'ADDRESS':
+            data[`ORDER_PROP_${prop.id}`] = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
+            break;
+          case 'STREET':
+            data[`ORDER_PROP_${prop.id}`] = state.props.street;
+            break;
+          case 'HOUSE':
+            data[`ORDER_PROP_${prop.id}`] = state.props.house;
+            break;
+          // case 'CITY':
+          //   data[`ORDER_PROP_${prop.id}`] = '';
+          //   break;
+          case 'FLAT':
+            data[`ORDER_PROP_${prop.id}`] = state.props.flat;
+            break;
+          default:
+            data[`ORDER_PROP_${prop.id}`] = prop.value;
         }
       });
+
+      // state.staticPropertyList.forEach((prop) => {
+      //   if (!prop.root) {
+      //     data[prop.name] = prop.value;
+      //   }
+      // });
 
       if (order.deliveryItem && order.deliveryItem.category === 'sdek') {
         const flat = state.propertyList.find(prop => prop.code === 'FLAT');
@@ -479,13 +524,13 @@ export default function createModule(options) {
       commit('SET_PARAM', options.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
 
-      commit('ADD_STATIC_PROPERTY', {
-        name: 'ORDER_DESCRIPTION',
-        value: '',
-        title: 'Комментарий',
-        description: 'Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом',
-        required: false,
-      });
+      // commit('ADD_STATIC_PROPERTY', {
+      //   name: 'ORDER_DESCRIPTION',
+      //   value: '',
+      //   title: 'Комментарий',
+      //   description: 'Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом',
+      //   required: false,
+      // });
 
       const orderList = [];
       const propertyGroups = {};

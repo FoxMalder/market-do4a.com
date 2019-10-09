@@ -75,11 +75,24 @@
             <div class="order-option__subtitle" v-if="item.period">Сроки доставки: {{ item.period }}</div>
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
             
-            <!-- Выбор магазина для самовывоза -->
-            <CheckoutShippingPickup v-if="item.type === 'P'" :order="order"/>
-            
             <!-- Выбор пункта самовывоза СДЭК -->
             <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
+            
+            <!-- Выбор магазина для самовывоза -->
+            <CheckoutShippingPickup v-if="item.category === 'pickup'" :order="order"/>
+            
+            <template v-if="item.category !== 'pickup'">
+              <div class="order-option__subtitle">Адрес доставки</div>
+              <CheckoutAddress :category="item.category"/>
+  
+              <div class="n-form-group" v-for="prop in getPropsByDeliveryId(item.id)">
+                <div class="n-form-group__field">
+                  <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
+                </div>
+                <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
+              </div>
+            </template>
+            
           </div>
         </div>
       </div>
@@ -134,16 +147,16 @@
     
     <div class="order-sap__footer">
       <slot></slot>
-<!--      <button-->
-<!--        class="btn btn-red btn-skew btn-block"-->
-<!--        type="button"-->
-<!--        @click.prevent="nextStep"-->
-<!--      >-->
-<!--        Оформить заказ-->
-<!--        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>-->
-<!--        </svg>-->
-<!--      </button>-->
+      <!--      <button-->
+      <!--        class="btn btn-red btn-skew btn-block"-->
+      <!--        type="button"-->
+      <!--        @click.prevent="nextStep"-->
+      <!--      >-->
+      <!--        Оформить заказ-->
+      <!--        <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+      <!--          <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>-->
+      <!--        </svg>-->
+      <!--      </button>-->
     </div>
   </div>
 </template>
@@ -153,15 +166,19 @@
   import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
   import CheckoutAlert from './CheckoutAlert.vue';
   import CheckoutAmount from './CheckoutAmount.vue';
+  import CheckoutAddress from './CheckoutAddress.vue';
   import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
   import CheckoutShippingPickup from './CheckoutShippingPickup.vue';
+  import InputField from './../InputField.vue';
 
 
   export default {
     name: 'CheckoutShippingAndPayment',
     components: {
+      InputField,
       CheckoutAlert,
       CheckoutAmount,
+      CheckoutAddress,
       CheckoutShippingSDEK,
       CheckoutShippingPickup,
     },
@@ -177,6 +194,7 @@
         // selectedPaymentId: 'selectedPaymentMethodId',
         // paymentMethods: 'paymentMethods',
         errors: 'errors',
+        propertyList: 'propertyList',
         // currentStore: 'currentStore',
       }),
       ...mapGetters('checkout', {
@@ -192,6 +210,10 @@
         selectShipping: SET_SHIPPING_METHOD,
         removeOrder: REMOVE_ORDER,
       }),
+
+      getPropsByDeliveryId(deliveryId) {
+        return this.propertyList.filter(prop => prop.propsGroupId !== 2 && prop.relationDelivery.find(id => id === deliveryId))
+      },
 
       nextStep() {
         console.log('Next step');

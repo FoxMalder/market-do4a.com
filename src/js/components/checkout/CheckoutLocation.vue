@@ -8,9 +8,9 @@
         <button class="checkout-location__button" type="button" @click="editCity">Изменить</button>
       </div>
     </div>
-    <CheckoutLocationSearch v-else :item="prop"/>
+    <CheckoutLocationSearch v-else/>
     
-    <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
+<!--    <small class="n-form-group__description" v-if="locationProp.description">{{ locationProp.description }}</small>-->
   </div>
 </template>
 
@@ -36,9 +36,6 @@
       ...mapState({
         isLocaleStore: 'isLocaleStore',
       })
-      // isLocaleStore() {
-      //
-      // }
     },
     methods: {
       editCity() {

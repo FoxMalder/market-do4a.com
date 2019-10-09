@@ -661,8 +661,8 @@ textarea.input-text {
 
 .form-group {
   margin-right: tan(9deg) * 62px / 2;
-  margin-bottom: 13px;
   margin-left: tan(9deg) * 62px / 2;
+  margin-bottom: 13px;
   transform: $skew;
   -webkit-backface-visibility: hidden;
 
@@ -678,13 +678,15 @@ textarea.input-text {
 .n-form-row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -6px;
-  margin-left: -6px;
+  //margin-right: -6px;
+  //margin-left: -6px;
 
   > .col,
   > [class*="col-"] {
-    padding-right: 6px;
-    padding-left: 6px;
+    //padding-right: 6px;
+    //padding-left: 6px;
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
@@ -1671,9 +1673,13 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
     @include media-breakpoint-up(md) {
       padding: 30px;
+      .n-form-row {
+        margin-right: tan(9deg) * 62px / -2;
+        margin-left: tan(9deg) * 62px / -2;
+      }
       .n-form-group__field {
-        margin-right: 0;
-        margin-left: 0;
+        //margin-right: 0;
+        //margin-left: 0;
         transform: none;
       }
       .btn-skew {

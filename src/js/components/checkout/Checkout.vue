@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <div>
     <header class="cart-section-header">
       <div class="container">
         <div class="breadcumps">
@@ -99,7 +99,7 @@
         </div>
       </template>
     </section>
-  </article>
+  </div>
 </template>
 
 <script>
