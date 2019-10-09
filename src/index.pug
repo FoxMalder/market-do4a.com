@@ -42,88 +42,46 @@ block wrapper
                             .hero-slider__title Зарабатывай с do4a
                             .hero-slider__subtitle -10% на питание для двоих
             .hero-slider-control
-        .benefits.benefits_first
-            .container
-                .row
-                    .col-6.col-md-3
-                        .benefits__item
-                            .benefits__icon.benefits__icon
-                                +sprite('benefits-jar.svg')(height='81', width='111')
-                            .benefits__title
-                                | Доставка
-                                br
-                                | за 24 часа
-                    .col-6.col-md-3
-                        .benefits__item
-                            .benefits__icon
-                                +sprite('benefits-pay.svg')(height='91', width='98')
-                            .benefits__title
-                                | Оплата при
-                                br
-                                | получении
-                    .col-6.col-md-3
-                        .benefits__item
-                            .benefits__icon
-                                +sprite('benefits-like.svg')(height='76', width='84')
-                            .benefits__title
-                                | Официальная
-                                br
-                                | продукция
-                    .col-6.col-md-3
-                        .benefits__item
-                            .benefits__icon
-                                +sprite('benefits-present.svg')(height='63', width='64')
-                            .benefits__title
-                                | Вознаграждения
-                                br
-                                | с первой покупки
-        section.section.brands
-            .container
-                h1 Бренды
-                .brands__list
-                    .brands__col
-                        a.brands__item.active(href='#')
-                            img(alt='', height='108', src=require('./images/do4a-logo-vertical.svg'), width='94')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='84', src=require('./images/maxler.png'), width='180')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='38', src=require('./images/on-logo.png'), width='193')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='72', src=require('./images/ultimate-nutrition-logo.png'), width='136')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='116', src=require('./images/bsn-logo.png'), width='130')
-                    .brands__col
-                        a.brands__item.active(href='#')
-                            img(alt='', height='126', src=require('./images/do4a-accessories-logo-vertical.svg'), width='97')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='106', src=require('./images/madmax-logo.png'), width='212')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='67', src=require('./images/now-logo.png'), width='156')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='34', src=require('./images/natrol-logo.png'), width='158')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='46', src=require('./images/sabo-logo.png'), width='180')
-                    .brands__col
-                        a.brands__item(href='#', style='margin-top: -25px')
-                            img(alt='', height='101', src=require('./images/wellfit-logo.png'), width='142')
-                    .brands__col
-                        a.brands__item(href='#')
-                            img(alt='', height='23', src=require('./images/cmtech-logo.png'), width='179')
-                button.btn.btn-skew.btn-red.brands__button Смотреть все бренды
-        section.section.m-catalog
+
+        section.m-catalog
             .container
                 h1.m-catalog__title
                     | Спортивное питание
                     br
                     span.selection В наличии
+                .m-catalog__benefit-list.row
+                    .col-6.col-md-3
+                        .m-catalog__benefit-item
+                            .m-catalog__benefit-icon
+                                +sprite('benefits-jar.svg')(height='81', width='111')
+                            .m-catalog__benefit-title
+                                | Доставка
+                                br
+                                | за 24 часа
+                    .col-6.col-md-3
+                        .m-catalog__benefit-item
+                            .m-catalog__benefit-icon
+                                +sprite('benefits-pay.svg')(height='91', width='98')
+                            .m-catalog__benefit-title
+                                | Оплата при
+                                br
+                                | получении
+                    .col-6.col-md-3
+                        .m-catalog__benefit-item
+                            .m-catalog__benefit-icon
+                                +sprite('benefits-like.svg')(height='76', width='84')
+                            .m-catalog__benefit-title
+                                | Официальная
+                                br
+                                | продукция
+                    .col-6.col-md-3
+                        .m-catalog__benefit-item
+                            .m-catalog__benefit-icon
+                                +sprite('benefits-present.svg')(height='63', width='64')
+                            .m-catalog__benefit-title
+                                | Вознаграждения
+                                br
+                                | с первой покупки
             .m-catalog__inner
                 .m-catalog__item.order-xl-1
                     a.m-product(href='#')
@@ -197,10 +155,53 @@ block wrapper
                     a.m-product.m-product_open-catalog(href='#')
                         span.m-product__title Открыть каталог
                         +sprite('arrow-right.svg')(class="m-product__icon")
-            // /.m-catalog__inner
+
+        section.section.brands
+            .container
+                h2.brands__title Бренды
+                .brands__list
+                    .brands__col
+                        a.brands__item.active(href='#')
+                            img(alt='', height='108', src=require('./images/do4a-logo-vertical.svg'), width='94')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='84', src=require('./images/maxler.png'), width='180')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='38', src=require('./images/on-logo.png'), width='193')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='72', src=require('./images/ultimate-nutrition-logo.png'), width='136')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='116', src=require('./images/bsn-logo.png'), width='130')
+                    .brands__col
+                        a.brands__item.active(href='#')
+                            img(alt='', height='126', src=require('./images/do4a-accessories-logo-vertical.svg'), width='97')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='106', src=require('./images/madmax-logo.png'), width='212')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='67', src=require('./images/now-logo.png'), width='156')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='34', src=require('./images/natrol-logo.png'), width='158')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='46', src=require('./images/sabo-logo.png'), width='180')
+                    .brands__col
+                        a.brands__item(href='#', style='margin-top: -25px')
+                            img(alt='', height='101', src=require('./images/wellfit-logo.png'), width='142')
+                    .brands__col
+                        a.brands__item(href='#')
+                            img(alt='', height='23', src=require('./images/cmtech-logo.png'), width='179')
+                button.btn.btn-skew.btn-red.brands__button Смотреть все бренды
+
+
         section.section.cashback
             .container
-                h1.cashback__title
+                h2.cashback__title
                     | Возвращаем
                     br
                     span.selection 1 балл за 1 рубль
@@ -225,7 +226,7 @@ block wrapper
         section.section.stars
             .container
                 .stars__info
-                    h1.stars__title
+                    h2.stars__title
                         | Нас выбирают
                         br
                         span.selection лучшие
@@ -321,7 +322,7 @@ block wrapper
             // /.stars__inner
         section.section.sets
             .container
-                h1.sets__title
+                h2.sets__title
                     | Наборы под
                     br
                     span.selection твою цель

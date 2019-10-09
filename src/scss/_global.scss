@@ -148,9 +148,12 @@ h3 {
 
 @include media-breakpoint-up(xl) {
   h1 {
-    @include font-size(60px);
+    //@include font-size(60px);
+    //line-height: 69px;
+
     margin-bottom: 48px;
-    line-height: 69px;
+    font-size: 52px;
+    line-height: 59px;
   }
   h2 {
     font-size: 40px;
