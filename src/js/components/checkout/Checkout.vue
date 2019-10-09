@@ -11,9 +11,9 @@
       </div>
     </header>
     
-    <div class="container">
-      <button @click.prevent="openMap">Открыть карту</button>
-    </div>
+<!--    <div class="container">-->
+<!--      <button @click.prevent="openMap">Открыть карту</button>-->
+<!--    </div>-->
     
     <!--    <CheckoutShippingSDEK/>-->
     
@@ -29,7 +29,7 @@
       </div>
       
       
-            <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
+<!--            <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>-->
       
       <template v-else-if="breakpoint === 'xl'">
         <div class="container">
@@ -89,7 +89,6 @@
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
 
   import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
-  import AppModalMap from '../AppModalMap.vue';
 
   import Utils from './../../utils/utils';
 
@@ -130,27 +129,6 @@
         setStep: 'setStep',
         // refreshOrderAjax: 'refreshOrderAjax',
       }),
-
-
-      openMap() {
-        this.$modal.open(AppModalMap, {
-          onClose: (data) => {
-            console.log(data);
-          },
-          // onDismiss: (data) => {
-          //   console.log(data);
-          // },
-
-          // Входные данные компонента
-          props: {},
-          // // Обработчики событий компонента
-          // on: {
-          //   click(data) {
-          //     console.log('penis сработал ', data);
-          //   },
-          // },
-        });
-      },
 
       // validate() {
       //   Utils.scrollTo(this.$refs.form.$el)

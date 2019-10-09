@@ -46,7 +46,6 @@ Vue.directive('click-outside', {
 });
 
 
-
 class App {
   constructor() {
     this.debug = true;

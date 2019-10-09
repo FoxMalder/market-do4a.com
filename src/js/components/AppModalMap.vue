@@ -37,6 +37,12 @@
       yandexMap,
       ymapMarker
     },
+    props: {
+      storeId: {
+        type: Number,
+        default: null,
+      }
+    },
     data() {
       return {
         coords: [55.74954, 37.621587],
@@ -78,7 +84,8 @@
           balloonLayout: template.balloonLayout,
           balloonContentLayout: template.balloonContentLayout,
         };
-
+        
+        
         this.$store.state.storeList.forEach((item) => {
           const myPlacemark = new ymaps.Placemark(item.coords, {
             address: item.name,
@@ -94,29 +101,42 @@
             .add('balloonclose', () => {
               myPlacemark.options.set('iconLayout', template.iconLayout);
             });
+          
+          // console.log(item);
 
           map.geoObjects.add(myPlacemark);
+          
+          if (item.id === this.storeId) {
+            // console.log(myPlacemark);
+            this.coords = item.coords;
+            myPlacemark.balloon.open();
+            // myPlacemark.balloon.autoPan();
+            // map.panTo(myPlacemark.geometry.coordinates);
+            //
+          }
         });
-
-        const poits = this.$store.state.storeList
-          .filter(item => item.city === this.$store.state.cityId)
-          .map(item => item.coords);
-
-
-        // ymaps.util.pixelBounds.fromPoints(poits)
-
-        // map.setBounds(map.geoObjects.getBounds(), {
-        //   // Проверяем наличие тайлов на данном масштабе.
-        //   checkZoomRange: true,
-        //   preciseZoom: true,
-        //   useMapMargin: true,
-        // });
-        map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
-          // Проверяем наличие тайлов на данном масштабе.
-          checkZoomRange: true,
-          preciseZoom: true,
-          useMapMargin: true,
-        });
+        
+        if (!this.storeId) {
+          const poits = this.$store.state.storeList
+            .filter(item => item.city === this.$store.state.cityId)
+            .map(item => item.coords);
+          
+          if (poits.length) {
+            map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
+              // Проверяем наличие тайлов на данном масштабе.
+              checkZoomRange: true,
+              preciseZoom: true,
+              useMapMargin: true,
+            });
+          } else {
+            map.setBounds(map.geoObjects.getBounds(), {
+              // Проверяем наличие тайлов на данном масштабе.
+              checkZoomRange: true,
+              preciseZoom: true,
+              useMapMargin: true,
+            });
+          }
+        }
 
       }
     }

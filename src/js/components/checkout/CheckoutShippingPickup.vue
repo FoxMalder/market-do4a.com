@@ -21,6 +21,8 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import { SET_STORE } from './../../store/modules/checkout';
 
+  import AppModalMap from '../AppModalMap.vue';
+
 
   export default {
     name: "CheckoutShippingPickup",
@@ -47,7 +49,9 @@
        * @param store
        */
       showOnMap(store) {
-        alert('Допустим, открылась карта на ' + store.name);
+        this.$modal.open(AppModalMap, {
+          props: { storeId: store.id },
+        });
       }
     }
   }
