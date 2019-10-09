@@ -1,8 +1,9 @@
 <template>
   <div class="order-promocode">
-    <button class="order-promocode__btn-toggle btn btn-gray-2 btn-block btn-skew"
+    <button class="order-promocode__btn-toggle btn btn-block btn-skew"
             type="button"
-            @click="toggle"
+            :class="{'btn-black': isActive, 'btn-gray-2': !isActive}"
+            @click="isActive = !isActive"
     >Добавить промокод</button>
     
     <div class="order-promocode__body" v-show="isActive">
@@ -74,9 +75,9 @@
       ...mapActions({
         enterCoupon: 'checkout/enterCoupon',
       }),
-      toggle() {
-        this.isActive = !this.isActive;
-      },
+      // toggle() {
+      //   this.isActive = !this.isActive;
+      // },
       setPromocode() {
         this.status = 'loading';
 

@@ -20,6 +20,7 @@ class Menu {
     }
 
     this.overlayEl = document.querySelector('.mobile-menu__overlay');
+    this.scrollEl = document.querySelector('.mobile-menu__inner');
 
     this.subMenuEl = this.el.querySelectorAll('[data-toggle="submenu"]');
     this.subMenuBackEl = this.el.querySelectorAll('.m-submenu__back');
@@ -80,7 +81,8 @@ class Menu {
   }
 
   open() {
-    disableBodyScroll(this.el);
+    // disableBodyScroll(this.el);
+    disableBodyScroll(this.scrollEl);
 
     this.el.classList.add('active');
     [].forEach.call(this.controls, item => item.classList.add('active'));
@@ -97,7 +99,8 @@ class Menu {
   }
 
   close() {
-    enableBodyScroll(this.el);
+    // enableBodyScroll(this.el);
+    enableBodyScroll(this.scrollEl);
 
     this.el.classList.remove('active');
     [].forEach.call(this.controls, item => item.classList.remove('active'));
