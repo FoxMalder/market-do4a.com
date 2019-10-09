@@ -169,8 +169,9 @@
 
 
   .p-collapse {
-
-    white-space: normal;
+    &__text {
+      overflow: hidden;
+    }
 
     &__button {
       @include title;
