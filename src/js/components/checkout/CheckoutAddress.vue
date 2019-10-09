@@ -15,7 +15,7 @@
     <div class="col-12">
       <div class="n-form-group">
         <div class="n-form-group__field">
-          <div class="input-field input-field_primary">
+          <div class="input-field">
             <label class="input-field__label">Улица*</label>
             <input class="input-field__input" type="text" v-model="props.street">
           </div>
@@ -26,7 +26,7 @@
     <div class="col-5">
       <div class="n-form-group">
         <div class="n-form-group__field">
-          <div class="input-field input-field_primary">
+          <div class="input-field">
             <label class="input-field__label">Дом*</label>
             <input class="input-field__input" type="text" v-model="props.house">
           </div>
@@ -37,7 +37,7 @@
     <div class="col-7">
       <div class="n-form-group">
         <div class="n-form-group__field">
-          <div class="input-field input-field_primary">
+          <div class="input-field">
             <label class="input-field__label">Кв./офис*</label>
             <input class="input-field__input" type="text" v-model="props.flat">
           </div>

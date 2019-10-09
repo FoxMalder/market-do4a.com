@@ -365,6 +365,20 @@
       margin-right: 0;
       margin-left: 0;
       background-color: #fff;
+
+      .checkout-location {
+        background-color: #f7f7f7;
+        &::after {
+          background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
+        }
+      }
+
+      .input-field {
+        background-color: #f7f7f7;
+        &__alert {
+          background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
+        }
+      }
     }
 
     @include media-breakpoint-up(xl) {
@@ -1584,12 +1598,12 @@
     pointer-events: none;
   }
 
-  @include media-breakpoint-up(md) {
-    background: #f7f7f7;
-    &::after {
-      background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
-    }
-  }
+  //@include media-breakpoint-up(md) {
+  //  background: #f7f7f7;
+  //  &::after {
+  //    background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
+  //  }
+  //}
 
   &__name {
     @include title;

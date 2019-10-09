@@ -477,9 +477,9 @@ export default function createModule(options) {
 
       state.propertyList.forEach((prop) => {
         switch (prop.code) {
-          case 'LOCATION':
-            data[`ORDER_PROP_${prop.id}`] = state.props.location;
-            break;
+          // case 'LOCATION':
+          //   data[`ORDER_PROP_${prop.id}`] = state.props.location;
+          //   break;
           case 'ADDRESS':
             data[`ORDER_PROP_${prop.id}`] = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
             break;
