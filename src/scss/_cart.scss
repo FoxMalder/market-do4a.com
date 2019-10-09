@@ -1062,6 +1062,11 @@
     &_dark {
       background: #292929;
       color: #fff;
+
+      .order-number-badge {
+        background-color: #4d4d4d;
+        color: #fff;
+      }
     }
 
     @include media-breakpoint-up(md) {

@@ -1,11 +1,12 @@
 <template>
   <div class="order-item">
-    <div class="order-item__header" v-if="multiple" :class="{'order-item__header_dark': order.index % 2 !== 0}">
-      <div class="order-item__title" v-if="order.index === 2">Доставка с центрального склада</div>
-      <div class="order-item__title" v-else>Получить в магазине или курьером</div>
-      <div class="order-number-badge" :class="{'order-number-badge_dark': order.index % 2 !== 0}">
-        Отправление {{ order.index }}
+    <div v-if="multiple"
+         class="order-item__header"
+         :class="{'order-item__header_dark': order.index % 2 !== 0}">
+      <div class="order-item__title">
+        {{ order.isLocaleStore ? 'Получить в магазине или курьером' : 'Доставка с центрального склада' }}
       </div>
+      <div class="order-number-badge">Отправление {{ order.index }}</div>
     </div>
     <transition-group
       class="order-item__list"
