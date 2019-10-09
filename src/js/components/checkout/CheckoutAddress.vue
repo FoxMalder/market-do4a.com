@@ -9,42 +9,45 @@
           </div>
         </div>
         <CheckoutLocationSearch v-else/>
-<!--        <small class="n-form-group__description" v-if="locationProp.description">{{ locationProp.description }}</small>-->
+        <!--        <small class="n-form-group__description" v-if="locationProp.description">{{ locationProp.description }}</small>-->
       </div>
     </div>
-    <div class="col-12">
-      <div class="n-form-group">
-        <div class="n-form-group__field">
-          <div class="input-field">
-            <label class="input-field__label">Улица*</label>
-            <input class="input-field__input" type="text" v-model="props.street">
+    
+    <template v-if="category !== 'sdek.pickup'">
+      <div class="col-12">
+        <div class="n-form-group">
+          <div class="n-form-group__field">
+            <div class="input-field">
+              <label class="input-field__label">Улица*</label>
+              <input class="input-field__input" type="text" v-model="props.street">
+            </div>
           </div>
+          <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
         </div>
-        <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
       </div>
-    </div>
-    <div class="col-5">
-      <div class="n-form-group">
-        <div class="n-form-group__field">
-          <div class="input-field">
-            <label class="input-field__label">Дом*</label>
-            <input class="input-field__input" type="text" v-model="props.house">
+      <div class="col-5">
+        <div class="n-form-group">
+          <div class="n-form-group__field">
+            <div class="input-field">
+              <label class="input-field__label">Дом*</label>
+              <input class="input-field__input" type="text" v-model="props.house">
+            </div>
           </div>
+          <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
         </div>
-        <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
       </div>
-    </div>
-    <div class="col-7">
-      <div class="n-form-group">
-        <div class="n-form-group__field">
-          <div class="input-field">
-            <label class="input-field__label">Кв./офис*</label>
-            <input class="input-field__input" type="text" v-model="props.flat">
+      <div class="col-7">
+        <div class="n-form-group">
+          <div class="n-form-group__field">
+            <div class="input-field">
+              <label class="input-field__label">Кв./офис*</label>
+              <input class="input-field__input" type="text" v-model="props.flat">
+            </div>
           </div>
+          <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
         </div>
-        <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -52,7 +55,8 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import CheckoutLocationSearch from './CheckoutLocationSearch.vue';
   import Utils from '../../utils/utils';
-  
+
+
   export default {
     name: "CheckoutAddress",
     components: {

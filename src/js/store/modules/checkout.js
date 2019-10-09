@@ -825,6 +825,10 @@ export default function createModule(options) {
       let error = false;
 
       await Promise.all(state.propertyList.map(async (item) => {
+        if (item.propsGroupId === 2) {
+          return;
+        }
+
         if (item.required && item.value === '') {
           item.error = 'Заполните это поле';
           error = true;
@@ -861,6 +865,7 @@ export default function createModule(options) {
     },
 
     SET_ERRORS({ commit }, errors) {
+      console.log(errors);
       commit('SET_ERRORS', errors);
 
       if (errors.PROPERTY && errors.PROPERTY.length) {
@@ -895,10 +900,13 @@ export default function createModule(options) {
       }
 
       const err = {};
-      state.orderList.forEach((order) => {
-        if (!order.deliveryId) {
+      getters.orderList.forEach((order) => {
+        if (!order.deliveryItem) {
           err.DELIVERY = ['Не выбран способ доставки'];
+        } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
+          err.DELIVERY = ['Не выбран пункт самовывоза'];
         }
+
         if (!order.paymentId) {
           err.PAY_SYSTEM = ['Не выбран метод оплаты'];
         }

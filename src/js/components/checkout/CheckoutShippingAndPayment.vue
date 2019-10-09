@@ -75,12 +75,6 @@
             <div class="order-option__subtitle" v-if="item.period">Сроки доставки: {{ item.period }}</div>
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
             
-            <!-- Выбор пункта самовывоза СДЭК -->
-            <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
-            
-            <!-- Выбор магазина для самовывоза -->
-            <CheckoutShippingPickup v-if="item.category === 'pickup'" :order="order"/>
-            
             <template v-if="item.category !== 'pickup'">
               <div class="order-option__subtitle">Адрес доставки</div>
               <CheckoutAddress :category="item.category"/>
@@ -92,6 +86,12 @@
                 <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
               </div>
             </template>
+  
+            <!-- Выбор пункта самовывоза СДЭК -->
+            <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
+  
+            <!-- Выбор магазина для самовывоза -->
+            <CheckoutShippingPickup v-if="item.category === 'pickup'" :order="order"/>
             
           </div>
         </div>
