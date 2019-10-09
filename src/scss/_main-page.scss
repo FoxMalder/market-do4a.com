@@ -544,9 +544,26 @@ $section-padding-bottom: 30px;
     padding-bottom: 114px;
   }
 
+
   &__inner {
     position: relative;
     z-index: 1;
+  }
+
+  &__title {
+    @include title;
+    margin-bottom: 8px;
+    font-size: 24px;
+    line-height: 27px;
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 48px;
+      font-size: 52px;
+      line-height: 59px;
+    }
   }
 
   &__list {
@@ -1092,6 +1109,18 @@ $section-padding-bottom: 30px;
 
   &__title {
     margin-bottom: 26px;
+
+    @include title;
+    font-size: 24px;
+    line-height: 27px;
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 52px;
+      line-height: 59px;
+    }
   }
 
   &__text {
@@ -1270,7 +1299,21 @@ $section-padding-bottom: 30px;
   );
 
   &__title {
+
+    @include title;
     margin-bottom: 27px;
+    font-size: 24px;
+    line-height: 27px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 35px;
+      font-size: 36px;
+      line-height: 41px;
+    }
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 44px;
+      font-size: 52px;
+      line-height: 59px;
+    }
   }
 
   &__text {
@@ -1373,9 +1416,9 @@ $section-padding-bottom: 30px;
       max-width: 350px;
     }
 
-    &__title {
-      margin-bottom: 35px;
-    }
+    //&__title {
+    //  margin-bottom: 35px;
+    //}
 
     &__text {
       display: block;
@@ -1506,9 +1549,9 @@ $section-padding-bottom: 30px;
       max-width: 550px;
     }
 
-    &__title {
-      margin-bottom: 44px;
-    }
+    //&__title {
+    //  margin-bottom: 44px;
+    //}
 
     &__text {
       display: block;
@@ -1720,6 +1763,18 @@ $section-padding-bottom: 30px;
 
   &__title {
     margin-bottom: 20px;
+
+    @include title;
+    font-size: 24px;
+    line-height: 27px;
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 52px;
+      line-height: 59px;
+    }
   }
 
   &__header {
@@ -2325,6 +2380,18 @@ $section-padding-bottom: 30px;
   //color: #fff;
   &__title {
     margin-bottom: 33px;
+
+    @include title;
+    font-size: 24px;
+    line-height: 27px;
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 60px;
+      line-height: 69px;
+    }
   }
 
   &__list {
@@ -2474,6 +2541,8 @@ $section-padding-bottom: 30px;
 //////////////////////////////////////////////////////////////////////
 // "Наш блог - подбоорки"
 //
+
+
 .best-articles {
   //overflow: hidden;
   padding-top: 38px;
@@ -2481,6 +2550,18 @@ $section-padding-bottom: 30px;
 
   &__title {
     margin-bottom: 30px;
+
+    @include title;
+    font-size: 24px;
+    line-height: 27px;
+    @include media-breakpoint-up(md) {
+      font-size: 36px;
+      line-height: 41px;
+    }
+    @include media-breakpoint-up(xl) {
+      font-size: 52px;
+      line-height: 59px;
+    }
   }
 
   &__slider {
