@@ -513,9 +513,9 @@ export default function createModule(options) {
         const paymentMethods = mappingPaymentMethods(options.result.PAY_SYSTEM);
         const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
 
-        orderList.push({
-          id: 1,
-          index: 1,
+        orderList.unshift({
+          id: 2,
+          index: 2,
           storeId: window.app.storeId,
           total: convertTotal(options.result.TOTAL),
           productList: convertProducts(options.result.GRID.ROWS),
@@ -566,9 +566,9 @@ export default function createModule(options) {
           propertyList[prop.ID] = prop;
         });
 
-        orderList.push({
-          id: 2,
-          index: 2,
+        orderList.unshift({
+          id: 1,
+          index: 1,
           storeId: window.app.storeRemoteId,
           isLocaleStore: false,
           productList: convertProducts(order.GRID.ROWS),
@@ -593,44 +593,46 @@ export default function createModule(options) {
       const propertyGroups = {};
       const propertyList = {};
 
-      const orderList = payload.map((result) => {
-        const { order, oldOrderData } = result;
+      const orderList = payload
+        .filter(result => !result.redirect)
+        .map((result) => {
+          const { order, oldOrderData } = result;
 
-        if (!order) {
-          return oldOrderData;
-        }
+          if (!order) {
+            return oldOrderData;
+          }
 
-        if (order.SHOW_AUTH) {
-          console.error(order.ERROR);
-        }
+          if (order.SHOW_AUTH) {
+            console.error(order.ERROR);
+          }
 
-        // order.ORDER_PROP.groups: Object
-        Object.assign(propertyGroups, order.ORDER_PROP.groups);
+          // order.ORDER_PROP.groups: Object
+          Object.assign(propertyGroups, order.ORDER_PROP.groups);
 
-        // order.ORDER_PROP.properties: Array
-        order.ORDER_PROP.properties.forEach((prop) => {
-          propertyList[prop.ID] = prop;
+          // order.ORDER_PROP.properties: Array
+          order.ORDER_PROP.properties.forEach((prop) => {
+            propertyList[prop.ID] = prop;
+          });
+
+          // order.DELIVERY: Object
+          const deliveryMethods = mappingDeliveryMethods(order.DELIVERY, oldOrderData.isLocaleStore);
+          const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
+
+          // order.PAY_SYSTEM: Array
+          const paymentMethods = mappingPaymentMethods(order.PAY_SYSTEM);
+          const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
+
+
+          return {
+            ...oldOrderData,
+            deliveryMethods,
+            paymentMethods,
+            deliveryId: checkedDelivery ? checkedDelivery.id : null,
+            paymentId: checkedPayment ? checkedPayment.id : null,
+            productList: convertProducts(order.GRID.ROWS),
+            total: convertTotal(order.TOTAL),
+          };
         });
-
-        // order.DELIVERY: Object
-        const deliveryMethods = mappingDeliveryMethods(order.DELIVERY, oldOrderData.isLocaleStore);
-        const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
-
-        // order.PAY_SYSTEM: Array
-        const paymentMethods = mappingPaymentMethods(order.PAY_SYSTEM);
-        const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
-
-
-        return {
-          ...oldOrderData,
-          deliveryMethods,
-          paymentMethods,
-          deliveryId: checkedDelivery ? checkedDelivery.id : null,
-          paymentId: checkedPayment ? checkedPayment.id : null,
-          productList: convertProducts(order.GRID.ROWS),
-          total: convertTotal(order.TOTAL),
-        };
-      });
 
       commit('SET_ORDER_LIST', orderList);
       dispatch(SET_PROPERTY_GROUPS, propertyGroups);
