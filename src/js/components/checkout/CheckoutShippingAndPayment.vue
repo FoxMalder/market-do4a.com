@@ -87,7 +87,7 @@
   
               <div class="n-form-group" v-for="prop in getPropsByDeliveryId(item.id)">
                 <div class="n-form-group__field">
-                  <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
+                  <InputField :prop="prop"/>
                 </div>
                 <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
               </div>

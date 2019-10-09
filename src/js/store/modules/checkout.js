@@ -694,11 +694,11 @@ export default function createModule(options) {
         ...data,
       };
 
-      state.staticPropertyList.forEach((prop) => {
-        if (prop.root) {
-          request[prop.name] = prop.value;
-        }
-      });
+      // state.staticPropertyList.forEach((prop) => {
+      //   if (prop.root) {
+      //     request[prop.name] = prop.value;
+      //   }
+      // });
 
       return Promise.all(state.orderList.map(
         order => Api.fetchSaleOrderAjax(param.ajaxUrl, {
@@ -1021,14 +1021,14 @@ export default function createModule(options) {
     //   state.propertyDescription = message;
     // },
 
-    SET_PROPERTY(state, { name, value, root = false }) {
-      const currentProp = state.staticPropertyList.find(prop => prop.name === name);
-      if (currentProp) {
-        currentProp.value = value;
-      } else {
-        state.staticPropertyList.push({ name, value, root });
-      }
-    },
+    // SET_PROPERTY(state, { name, value, root = false }) {
+    //   const currentProp = state.staticPropertyList.find(prop => prop.name === name);
+    //   if (currentProp) {
+    //     currentProp.value = value;
+    //   } else {
+    //     state.staticPropertyList.push({ name, value, root });
+    //   }
+    // },
 
     SET_ERRORS(state, errors) {
       state.errors = {
@@ -1071,9 +1071,9 @@ export default function createModule(options) {
     },
 
 
-    ADD_STATIC_PROPERTY: (state, prop) => {
-      state.staticPropertyList.push(prop);
-    },
+    // ADD_STATIC_PROPERTY: (state, prop) => {
+    //   state.staticPropertyList.push(prop);
+    // },
   };
 
   return {
