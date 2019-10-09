@@ -11,9 +11,9 @@
       </div>
     </header>
     
-<!--    <div class="container">-->
-<!--      <button @click.prevent="openMap">Открыть карту</button>-->
-<!--    </div>-->
+    <!--    <div class="container">-->
+    <!--      <button @click.prevent="openMap">Открыть карту</button>-->
+    <!--    </div>-->
     
     <!--    <CheckoutShippingSDEK/>-->
     
@@ -29,7 +29,7 @@
       </div>
       
       
-<!--            <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>-->
+      <!--            <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>-->
       
       <template v-else-if="breakpoint === 'xl'">
         <div class="container">
@@ -43,7 +43,13 @@
                      style="width: 690px"
                      :scrollAffix="true"
                      :offset="{ top: 150, bottom: 15 }">
-                <CheckoutBasket :breakpoint="breakpoint"/>
+                <CheckoutBasket :breakpoint="breakpoint">
+                  <button
+                    class="btn btn-red btn-skew btn-block"
+                    type="submit"
+                    @click.prevent="setStep(nextStepButton)"
+                  >Оформить заказ</button>
+                </CheckoutBasket>
               </Affix>
             </div>
           </div>
@@ -65,14 +71,31 @@
         </ul>
         <div class="container">
           <keep-alive>
-            <component :is="currentTabComponent" :breakpoint="breakpoint"></component>
+            <component :is="currentTabComponent" :breakpoint="breakpoint">
+              <button
+                class="btn btn-red btn-skew btn-block" type="button"
+                ref="test"
+                @click="setStep(nextStepButton)"
+              >
+                {{ nextStepButton.text }}
+                <svg v-if="currentStep !== 'basket'" class="btn-icon" style="margin-left: 25px; width: 20px; height: 16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>
+                </svg>
+              </button>
+            </component>
           </keep-alive>
         </div>
-        <div class="cart-mobile-bottom">
+        <div class="cart-mobile-bottom"
+             :class="{ active: visibleFooter }">
           <button
-            class="cart-mobile-bottom__button btn btn-red btn-block" type="button"
+            class="btn btn-red btn-block" type="button"
             @click="setStep(nextStepButton)"
-          >{{ nextStepButton.text }}</button>
+          >
+            {{ nextStepButton.text }}
+            <svg v-if="currentStep !== 'basket'" class="btn-icon" style="margin-left: 25px; width: 20px; height: 16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>
+            </svg>
+          </button>
         </div>
       </template>
     </section>
@@ -106,6 +129,7 @@
     },
     data() {
       return {
+        visibleFooter: true,
         breakpoint: 'xs',
       }
     },
@@ -143,6 +167,11 @@
           return 'md';
         }
         return 'xl';
+      },
+
+
+      checkout() {
+        console.log('оформить заказ');
       }
     },
     created() {
@@ -174,6 +203,12 @@
       this.breakpoint = this.getBreakpoint();
       document.addEventListener('resize', () => {
         this.breakpoint = this.getBreakpoint();
+      });
+
+      document.addEventListener('scroll', () => {
+        if (this.$refs.test) {
+          this.visibleFooter = this.$refs.test.getBoundingClientRect().top > document.documentElement.clientHeight;
+        }
       })
     }
   }

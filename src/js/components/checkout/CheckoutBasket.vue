@@ -36,26 +36,33 @@
       <CheckoutAmount/>
     </div>
     
+<!--    <div class="order__footer" v-if="breakpoint === 'xl'">-->
+<!--      <slot></slot>-->
+<!--    </div>-->
+    
     <div class="order__footer">
-      
-      <button
-        class="order__btn-checkout btn btn-red btn-skew"
-        type="submit"
-        disabled
-        v-if="checkoutStatus === 'loading'"
-      ><span class="spinner-border spinner-border-sm" role="status"></span></button>
-      
-      <button
-        class="order__btn-checkout btn btn-red btn-skew"
-        type="submit"
-        v-else
-        @click.prevent="setStep(nextStepButton)"
-      >{{ breakpoint === 'xl' ? 'Оформить заказ' : 'Перейти к оформлению' }}</button>
+      <div class="order__btn-checkout">
+        <slot></slot>
+      </div>
+<!--      <button-->
+<!--        class="order__btn-checkout btn btn-red btn-skew"-->
+<!--        type="submit"-->
+<!--        disabled-->
+<!--        v-if="checkoutStatus === 'loading'"-->
+<!--      ><span class="spinner-border spinner-border-sm" role="status"></span></button>-->
+<!--      -->
+<!--      <button-->
+<!--        class="order__btn-checkout btn btn-red btn-skew"-->
+<!--        type="submit"-->
+<!--        v-else-->
+<!--        @click.prevent="setStep(nextStepButton)"-->
+<!--      >{{ breakpoint === 'xl' ? 'Оформить заказ' : 'Перейти к оформлению' }}</button>-->
       
       <div class="order__footer-note">
         Нажимая на кнопку, вы подтверждаете согласие на обработку
         <a href="#">персональных данных</a> и <a href="#">политику конфиденциальности</a>
       </div>
+      
     </div>
   </div>
 </template>

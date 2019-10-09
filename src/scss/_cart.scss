@@ -326,9 +326,23 @@
 .cart-mobile-bottom {
   position: fixed;
   z-index: $zindex-fixed;
-  bottom: 0;
+  top: 100%;
   left: 0;
   width: 100%;
+  transition: all .3s ease;
+
+  &.active {
+    transform: translateY(-100%);
+  }
+
+  .btn {
+    font-style: italic;
+  }
+
+  //.btn-icon {
+  //  margin-left: 25px;
+  //  margin-right: 0;
+  //}
 }
 
 
@@ -1376,8 +1390,8 @@
     }
 
     &.btn-black {
-      background: #292929;
       border-color: #292929;
+      background: #292929;
       color: #fff;
     }
   }
@@ -1393,7 +1407,6 @@
     //  transform: $skew;
     //}
   }
-
 
 
   //&__field {
