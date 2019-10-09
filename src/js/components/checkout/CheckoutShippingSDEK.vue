@@ -10,7 +10,7 @@
     <button class="o-shipping-sdek-pickup__button"
             type="button"
             @click="selectPickup"
-    >{{ currentPointId ? 'Изменить' : 'Выбрать'}} пункт самовывоза</button>
+    >{{ currentPoint ? 'Изменить' : 'Выбрать'}} пункт самовывоза</button>
   </div>
 </template>
 
@@ -22,7 +22,7 @@
     name: "CheckoutShippingSDEK",
     data() {
       return {
-        currentPointId: null,
+        currentPoint: null,
       }
     },
     computed: {
@@ -30,16 +30,29 @@
         // return window.IPOLSDEK_pvz ? window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city] : {};
         return window.IPOLSDEK_pvz ? window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city] : {};
       },
-      currentPoint() {
-        return this.currentPointId ? this.cityPointList[this.currentPointId] : null;
-      },
     },
     methods: {
+      setPickup(id) {
+        if (id) {
+
+        }
+      },
       selectPickup() {
         this.$modal.open(SdekModal, {
-          onClose: (data) => {
-            console.log(data);
-            this.currentPointId = data;
+          onClose: (pvzId) => {
+            if (!pvzId) {
+              return;
+            }
+
+            const point = this.cityPointList[pvzId];
+
+            if (!point) {
+              return;
+            }
+            
+            this.currentPoint = point;
+            
+            this.$store.state.checkout.props.sdekPickup = `${window.IPOLSDEK_pvz.city}, ${point.Address} #S${pvzId}`;
           },
           // onDismiss: (data) => {
           //   console.log(data);

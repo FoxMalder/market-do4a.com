@@ -415,6 +415,7 @@ export default function createModule(options) {
       street: '',
       house: '',
       flat: '',
+      sdekPickup: '',
     },
   };
 
@@ -506,13 +507,19 @@ export default function createModule(options) {
       //   }
       // });
 
-      if (order.deliveryItem && order.deliveryItem.category === 'sdek') {
-        const flat = state.propertyList.find(prop => prop.code === 'FLAT');
-        const house = state.propertyList.find(prop => prop.code === 'HOUSE');
-        const street = state.propertyList.find(prop => prop.code === 'STREET');
+      if (order.deliveryItem) {
+        if (order.deliveryItem.category === 'sdek.pickup') {
+          data.ORDER_PROP_5 = state.props.sdekPickup;
+        } else if (order.deliveryItem.category === 'sdek') {
+          // const flat = state.propertyList.find(prop => prop.code === 'FLAT');
+          // const house = state.propertyList.find(prop => prop.code === 'HOUSE');
+          // const street = state.propertyList.find(prop => prop.code === 'STREET');
+          //
+          // // для сдек свои поля для улицы, кв, дом. ИХ нужно собрать для поля Адрес
+          // data.ORDER_PROP_5 = `${street && street.value}, ${house && house.value}, ${flat && flat.value}`;
 
-        // для сдек свои поля для улицы, кв, дом. ИХ нужно собрать для поля Адрес
-        data.ORDER_PROP_5 = `${street && street.value}, ${house && house.value}, ${flat && flat.value}`;
+          data.ORDER_PROP_5 = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
+        }
       }
 
       return data;

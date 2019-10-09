@@ -19,7 +19,7 @@
         </div>
       </fieldset>
       
-      <fieldset class="order-props__group">
+      <fieldset class="order-props__group" v-show="!hideAddress">
         <legend class="order-props__subtitle">Адрес доставки</legend>
         <CheckoutAddress/>
       </fieldset>
@@ -128,6 +128,12 @@
         propertyDescription: state => state.props.description,
         errors: 'errors',
       }),
+      ...mapGetters('checkout', {
+        orderList: 'orderList',
+      }),
+      hideAddress() {
+        this.orderList.every(order => order.deliveryItem && order.deliveryItem.category === 'pickup');
+      },
       groups() {
         return this.propertyGroups.map(group => ({
           ...group,
