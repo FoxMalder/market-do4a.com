@@ -1,16 +1,11 @@
 .s-shops {
 
-
   @include media-breakpoint-up(xl) {
+    display: flex;
+    height: 763px;
+    margin-bottom: 60px;
   }
-
-  &__row {
-    @include media-breakpoint-up(xl) {
-      display: flex;
-      height: 763px;
-      margin-bottom: 60px;
-    }
-  }
+  
   &__list {
     @include media-breakpoint-up(xl) {
       flex: 0 0 50%;

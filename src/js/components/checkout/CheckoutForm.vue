@@ -8,6 +8,7 @@
         <li v-for="error in errors.PROPERTY">{{ error }}</li>
       </ul>
       
+      <!-- Детали доставки -->
       <fieldset class="order-props__group" v-for="group in groups" v-if="group.id !== 2">
         <legend class="order-props__subtitle">{{ group.name }}</legend>
         
@@ -19,6 +20,7 @@
         </div>
       </fieldset>
       
+      <!-- Адрес доставки -->
       <fieldset class="order-props__group" v-show="visibleAddress">
         <legend class="order-props__subtitle">Адрес доставки</legend>
         <CheckoutAddress/>
