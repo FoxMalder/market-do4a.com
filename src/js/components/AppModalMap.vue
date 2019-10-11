@@ -138,6 +138,9 @@
           }
         }
 
+      },
+      setPoint(t) {
+        console.log('setPoint', t);
       }
     }
   }

@@ -43,6 +43,7 @@ const cummonConfig = {
     cart: './src/cart.js',
     franchise: './src/franchise.js',
     privacy: './src/privacy.js',
+    shops: './src/shops.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -226,7 +227,7 @@ const cummonConfig = {
       title: 'Магазины',
       filename: 'shops.html',
       template: path.resolve(__dirname, 'src/shops.html'),
-      chunks: ['privacy', 'common', 'runtime'],
+      chunks: ['shops', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -320,7 +321,8 @@ const devConfig = {
   },
 
   devServer: {
-    contentBase: distPath,
+    // contentBase: distPath,
+    contentBase: path.resolve(__dirname, 'src'),
     quiet: true,
     port: 9000,
     lazy: false,
