@@ -108,7 +108,8 @@
         console.log('init');
         this.map = map;
 
-        this.map.margin.setDefaultMargin([100, 100, 100, 100]);
+        // this.map.margin.setDefaultMargin([100, 100, 100, 100]);
+        this.map.margin.setDefaultMargin(200);
 
 
         // Создаем менеджер объектов
@@ -139,6 +140,7 @@
             this.map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
               // Проверяем наличие тайлов на данном масштабе.
               checkZoomRange: true,
+              // дробных коэффициентов масштабирования
               preciseZoom: true,
               useMapMargin: true,
             });
@@ -146,6 +148,7 @@
             this.map.setBounds(this.map.geoObjects.getBounds(), {
               // Проверяем наличие тайлов на данном масштабе.
               checkZoomRange: true,
+              // дробных коэффициентов масштабирования
               preciseZoom: true,
               useMapMargin: true,
             });
