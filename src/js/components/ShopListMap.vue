@@ -1,24 +1,24 @@
 <template>
   <yandex-map
-    class="s-map__map"
     :coords="coords"
+    :zoom="zoom"
     :options="options"
     :controls="[]"
     :debug="true"
     @map-was-initialized="mapInit">
-<!--    <ymap-marker-->
-<!--      v-for="store in storeList"-->
-<!--      :key="store.id"-->
-<!--      :marker-id="store.id"-->
-<!--      :coords="store.coords"-->
-<!--      :options="{ preset: 'do4a#default' }"-->
-<!--      :properties="{-->
-<!--            address: store.name,-->
-<!--            tel: store.phone[0],-->
-<!--            link: 'Схема проезда',-->
-<!--            cityId: store.city,-->
-<!--          }"-->
-<!--    />-->
+    <!--    <ymap-marker-->
+    <!--      v-for="store in storeList"-->
+    <!--      :key="store.id"-->
+    <!--      :marker-id="store.id"-->
+    <!--      :coords="store.coords"-->
+    <!--      :options="{ preset: 'do4a#default' }"-->
+    <!--      :properties="{-->
+    <!--            address: store.name,-->
+    <!--            tel: store.phone[0],-->
+    <!--            link: 'Схема проезда',-->
+    <!--            cityId: store.city,-->
+    <!--          }"-->
+    <!--    />-->
   </yandex-map>
 </template>
 
@@ -35,6 +35,10 @@
       yandexMap,
       ymapMarker
     },
+    model: {
+      prop: 'currentStoreId',
+      event: 'change'
+    },
     props: {
       currentStoreId: {
         type: Number,
@@ -44,40 +48,12 @@
     data() {
       return {
         coords: [55.74954, 37.621587],
+        zoom: 17,
         options: {
           // autoFitToViewport: 'always',
           avoidFractionalZoom: false
         }
       }
-    },
-    created() {
-      console.log('created');
-      
-      this.featureCollection = {
-        type: 'FeatureCollection',
-        features: this.$store.state.storeList.map((item) => ({
-          type: 'Feature',
-          id: item.id,
-          geometry: {
-            type: 'Point',
-            coordinates: item.coords,
-          },
-          properties: {
-            address: item.name,
-            tel: item.phone[0],
-            link: 'Схема проезда',
-            cityId: item.city,
-          },
-        })),
-      };
-
-      //
-      // this.$root.$on('map:set', (id) => {
-      //   console.log('map:set', id);
-      //   this.map.container.fitToViewport();
-      //   // const storeId = parseInt(id, 10);
-      //   // this.openBalloon(storeId);
-      // });
     },
     watch: {
       currentStoreId(a, b) {
@@ -87,22 +63,12 @@
         }
 
         if (a) {
-          const object = this.objectManager.objects.getById(a);
-          this.objectManager.objects.balloon.open(a);
-          this.coords = object.geometry.coordinates;
+          this.openBalloon(a);
         } else {
           this.objectManager.objects.balloon.close();
         }
       }
     },
-    // computed: {
-    //   storeList() {
-    //     return this.$store.state.storeList
-    //   },
-    //   // placemarks() {
-    //   //
-    //   // }
-    // },
     methods: {
       mapInit(map) {
         console.log('init');
@@ -114,8 +80,39 @@
 
         // Создаем менеджер объектов
         this.objectManager = YandexMaps.createObjectManager(ymaps);
-        this.objectManager.add(this.featureCollection);
-        
+        this.objectManager.add({
+          type: 'FeatureCollection',
+          features: this.$store.state.storeList.map((item) => ({
+            type: 'Feature',
+            id: item.id,
+            geometry: {
+              type: 'Point',
+              coordinates: item.coords,
+            },
+            properties: {
+              address: item.name,
+              tel: item.phone[0],
+              link: 'Схема проезда',
+              cityId: item.city,
+            },
+          })),
+        });
+
+
+        this.objectManager.objects.options.set('openBalloonOnClick', false);
+
+
+        this.objectManager.objects.events
+          .add('click', (e) => {
+            if (this.objectManager.objects.balloon.isOpen(e.get('objectId'))) {
+              this.$emit('change', null);
+              // this.currentStoreId = null;
+            } else {
+              this.$emit('change', e.get('objectId'));
+              // this.currentStoreId = e.get('objectId');
+            }
+          });
+
         // Добавляем менеджер на карту
         this.map.geoObjects.add(this.objectManager);
 
@@ -124,46 +121,83 @@
         //   this.map.container.fitToViewport();
         // });
 
+        const size = this.map.container.getSize();
+        
+        if (size[0] === 0 || size[1] === 0) {
+          return;
+        }
 
         if (this.currentStoreId) {
-          console.log('init', this.currentStoreId);
-          const object = this.objectManager.objects.getById(this.currentStoreId);
-          this.objectManager.objects.balloon.close();
-          this.objectManager.objects.balloon.open(this.currentStoreId);
-          this.coords = object.geometry.coordinates;
-        } else {
-          const poits = this.$store.state.storeList
-            .filter(item => item.city === this.$store.state.cityId)
-            .map(item => item.coords);
+          console.log('setCenter', this.currentStoreId);
+          this.openBalloon(this.currentStoreId);
+          return;
+        }
 
-          if (poits.length) {
-            this.map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
-              // Проверяем наличие тайлов на данном масштабе.
-              checkZoomRange: true,
-              // дробных коэффициентов масштабирования
-              preciseZoom: true,
-              useMapMargin: true,
-            });
-          } else {
-            this.map.setBounds(this.map.geoObjects.getBounds(), {
-              // Проверяем наличие тайлов на данном масштабе.
-              checkZoomRange: true,
-              // дробных коэффициентов масштабирования
-              preciseZoom: true,
-              useMapMargin: true,
-            });
-          }
+        console.log('setBounds');
+        const poits = this.$store.state.storeList
+          .filter(item => item.city === this.$store.state.cityId)
+          .map(item => item.coords);
+
+        if (poits.length) {
+          this.map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
+            // Проверяем наличие тайлов на данном масштабе.
+            checkZoomRange: true,
+            // дробных коэффициентов масштабирования
+            preciseZoom: true,
+            useMapMargin: true,
+          });
+        } else {
+          this.map.setBounds(this.map.geoObjects.getBounds(), {
+            // Проверяем наличие тайлов на данном масштабе.
+            checkZoomRange: true,
+            // дробных коэффициентов масштабирования
+            preciseZoom: true,
+            useMapMargin: true,
+          });
         }
       },
 
       openBalloon(objectId) {
-        const object = this.objectManager.objects.getById(objectId);
+        this.objectManager.objects.balloon
+          .open(objectId)
+          .then(() => {
+            const object = this.objectManager.objects.getById(objectId);
+            
+            console.log('Открываем балун');
+            // this.coords = object.geometry.coordinates;
+            // this.zoom = 17;
 
-        console.log(object, this.objectManager.getObjectState(objectId));
+            // console.log(this.objectManager);
+            // console.log(object);
+            
+            if (document.documentElement.clientWidth < 1240) {
+              this.map.setCenter(object.geometry.coordinates, 16, {
+                duration: 1000,
+                timingFunction: 'ease-in-out',
+                useMapMargin: true,
+                checkZoomRange: true
+              });
+            } else {
+              this.map.panTo(object.geometry.coordinates, {
+                // flying: false,
+                checkZoomRange: true,
+                // дробных коэффициентов масштабирования
+                preciseZoom: true,
+                useMapMargin: true,
+              })
+            }
+          })
 
-        this.objectManager.objects.balloon.open(objectId);
-        // this.map.panTo(object.geometry.coordinates);
-        this.coords = object.geometry.coordinates;
+
+        // this.map.setBounds(ymaps.util.pixelBounds.fromPoints([object.geometry.coordinates]), {
+        //   // Проверяем наличие тайлов на данном масштабе.
+        //   checkZoomRange: true,
+        //   // дробных коэффициентов масштабирования
+        //   preciseZoom: true,
+        //   useMapMargin: true,
+        // });
+
+
         // this.objectManager.objects.balloon.autoPan();
 
         // if (object) {
@@ -172,6 +206,9 @@
         //   // this.map.panTo(object.geometry.coordinates);
         // }
       }
+    },
+    beforeDestroy() {
+      this.objectManager.objects.balloon.close();
     }
   }
 </script>

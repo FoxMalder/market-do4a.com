@@ -1,6 +1,6 @@
 <template>
   <div class="s-shops">
-    <div class="s-shops__list" v-if="!isTabs || !shownStoreInfo">
+    <div class="s-shops__list" v-show="!isTabs || !currentStoreId">
       <div class="s-shops__scroll" ref="scrollEl">
         <!-- Список городов -->
         <ul class="s-city-list">
@@ -66,7 +66,7 @@
         </ul>
       </div>
     </div>
-    <div class="s-shops__map" v-if="!isTabs || shownStoreInfo">
+    <div class="s-shops__map" v-show="!isTabs || currentStoreId">
       
       <div class="s-active-shop" v-if="activeStore">
         <div class="s-active-shop__header">
@@ -127,13 +127,23 @@
           >Фото</button>
         </div>
         <div class="s-map__content">
-          <ShopListMap v-show="currentTab === 'map'" :currentStoreId="currentStoreId"/>
+          <!--          <ShopListMap-->
+          <!--            class="s-map__map"-->
+          <!--            v-show="currentTab === 'map'"-->
+          <!--            v-model="currentStoreId"-->
+          <!--          />-->
+          
+          <ShopListMap
+            class="s-map__map"
+            v-show="currentTab === 'map'"
+            @change="setPoint"
+            :currentStoreId="currentStoreId"
+          />
           
           <div
             v-if="activeStore"
             v-show="currentTab === 'way'"
-            class="s-map__way"
-          >
+            class="s-map__way">
             <div v-if="activeStore.wayImage">
               <img :src="activeStore.wayImage" alt="">
             </div>
@@ -152,8 +162,7 @@
           <div
             v-if="activeStore && activeStore.gallery"
             v-show="currentTab === 'photo'"
-            class="s-map__gallery"
-          >
+            class="s-map__gallery">
             <img :src="activeStore.gallery" alt="">
           </div>
         </div>
@@ -234,7 +243,7 @@
       getStore(storeId) {
         this.currentTab = 'map';
         this.currentStoreId = storeId;
-        this.shownStoreInfo = true;
+        // this.shownStoreInfo = true;
 
         if (this.headerEl && document.documentElement.clientWidth < 1240) {
           this.headerEl.style.display = 'none';
@@ -249,13 +258,21 @@
       },
 
       back() {
-        this.shownStoreInfo = false;
+        // this.shownStoreInfo = false;
         this.currentStoreId = null;
 
         if (this.headerEl) {
           this.headerEl.style.display = '';
         }
-      }
+      },
+
+      setPoint(id) {
+        if (id) {
+          this.getStore(id);
+        } else {
+          this.back();
+        }
+      },
     },
   }
 </script>

@@ -139,7 +139,9 @@
       groups() {
         return this.propertyGroups.map(group => ({
           ...group,
-          props: this.propertyList.filter(prop => prop.propsGroupId === group.id)
+          props: this.propertyList
+            .filter(prop => prop.propsGroupId === group.id)
+            .filter(item => this.breakpoint === 'xl' || item.relationDelivery.length === 0)
         }))
       }
     },

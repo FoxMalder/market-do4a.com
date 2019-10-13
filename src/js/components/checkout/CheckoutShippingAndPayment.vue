@@ -75,7 +75,7 @@
             <div class="order-option__subtitle" v-if="item.period">Сроки доставки: {{ item.period }}</div>
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
             
-            <template v-if="item.category !== 'pickup'">
+            <template v-if="item.category !== 'pickup' && breakpoint !== 'xl'">
               <div class="order-option__subtitle">Адрес доставки</div>
               <CheckoutAddress :category="item.category"/>
   

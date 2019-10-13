@@ -546,11 +546,11 @@ textarea.input-text {
 }
 
 .btn-skew {
-  font-style: normal;
   margin-right: tan(9deg) * 60px;
   transform: $skew;
   transform-origin: center bottom;
   -webkit-backface-visibility: hidden;
+  font-style: normal;
 
   @include media-breakpoint-up(md) {
     margin-right: tan(9deg) * 70px;
@@ -661,8 +661,8 @@ textarea.input-text {
 
 .form-group {
   margin-right: tan(9deg) * 62px / 2;
-  margin-left: tan(9deg) * 62px / 2;
   margin-bottom: 13px;
+  margin-left: tan(9deg) * 62px / 2;
   transform: $skew;
   -webkit-backface-visibility: hidden;
 
@@ -891,11 +891,11 @@ textarea.input-text {
     transition: transform .15s ease;
     opacity: .4;
     text-overflow: ellipsis;
+    text-transform: uppercase;
     white-space: nowrap;
     cursor: text;
     pointer-events: none;
     will-change: transform;
-    text-transform: uppercase;
 
     &_active {
       transform: translateY(-50%) scale(.625);
@@ -1088,9 +1088,9 @@ textarea.input-field__input {
         line-height: 41px;
       }
       @include media-breakpoint-up(xl) {
+        margin-top: 29px;
         font-size: 40px;
         line-height: 40px;
-        margin-top: 29px;
       }
     }
   }
@@ -1535,8 +1535,8 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
     font-size: 40px;
     line-height: 1;
     @include media-breakpoint-up(md) {
-      font-size: 60px;
       margin-left: 22px;
+      font-size: 60px;
     }
   }
 }
@@ -1597,6 +1597,7 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
   &__overlay {
     position: absolute;
+    z-index: 1;
     top: 0;
     right: 0;
     bottom: 0;
@@ -1604,7 +1605,6 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
     width: 100%;
     height: 100%;
     background: rgba(16, 16, 16, 0.9);
-    z-index: 1;
   }
 
   &__close {
@@ -1688,8 +1688,8 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
         &.btn-block {
           width: 100%;
-          margin-left: auto;
           margin-right: auto;
+          margin-left: auto;
         }
       }
     }
@@ -1703,8 +1703,8 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
   &__outer {
     position: relative;
     max-width: 100%;
-    pointer-events: auto;
     cursor: auto;
+    pointer-events: auto;
     //padding-right: tan(9deg) * 768px / 2;
     //padding-left: tan(9deg) * 768px / 2;
   }
@@ -1751,7 +1751,9 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
 
 
 .m-store-on-map {
+  width: 1100px;
   overflow: hidden;
+
   &__header {
     padding: 32px 40px;
   }
@@ -1766,17 +1768,34 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
   &__mask {
     overflow: hidden;
   }
+
   &__map {
-    width: 1100px;
-    height: 664px;
+    //height: 664px;
+    height: 443px;
 
     //width: ;
-    margin-right: tan(9deg) * 664px / -2;
-    margin-left: tan(9deg) * 664px / -2;
+    margin-right: tan(9deg) * 443px / -2;
+    margin-left: tan(9deg) * 443px / -2;
     transform: $skew-reverse;
-    background-color: darkseagreen;
+    background-color: #ccc;
     //background: darkseagreen url("../img/m.jpg") center no-repeat;
     //background-size: cover;
     //width: calc(100% - #{tan(9deg) * 60px});
+  }
+
+  &__footer {
+    min-height: 221px;
+  }
+
+  &__way {
+    max-width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 28px 30px;
+    transform: $skew-reverse;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 20px;
   }
 }

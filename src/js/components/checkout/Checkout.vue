@@ -11,9 +11,9 @@
       </div>
     </header>
     
-    <!--    <div class="container">-->
-    <!--      <button @click.prevent="openMap">Открыть карту</button>-->
-    <!--    </div>-->
+<!--        <div class="container">-->
+<!--          <button @click.prevent="showOnMap">Открыть карту</button>-->
+<!--        </div>-->
     
     <!--    <CheckoutShippingSDEK/>-->
     
@@ -112,6 +112,7 @@
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
 
   import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
+  import AppModalMap from '../AppModalMap.vue';
 
   import Utils from './../../utils/utils';
 
@@ -169,6 +170,12 @@
         return 'xl';
       },
 
+
+      showOnMap() {
+        this.$modal.open(AppModalMap, {
+          props: { storeId: 35900 },
+        });
+      },
 
       checkout() {
         console.log('оформить заказ');
