@@ -33,6 +33,12 @@ export default class YandexMaps {
     this.loadMapApi();
   }
 
+  /**
+   * Создаем пресеты иконок для карты
+   *
+   * @param ymaps
+   * @returns {{balloonLayout: *, iconActiveLayout: *, iconLayout: *, balloonContentLayout: *}}
+   */
   static createDefaultPreset(ymaps) {
     const template = {
       iconLayout: ymaps.templateLayoutFactory
@@ -45,7 +51,7 @@ export default class YandexMaps {
         .createClass(YandexMaps.defaultOptions.template.balloonContent),
     };
 
-    const options = {
+    ymaps.option.presetStorage.add('do4a#default', {
       hasHint: false,
 
       // Слой иконки
@@ -53,7 +59,23 @@ export default class YandexMaps {
       // Смещение иконки
       iconOffset: [-29, -75],
       // Активная область
-      iconShape: { type: 'Rectangle', coordinates: [[0, 0], [58, 75]] },
+      // iconShape: { type: 'Rectangle', coordinates: [[0, 0], [58, 75]] },
+      iconShape: {
+        type: 'Polygon',
+        coordinates: [[
+          [40, 0],
+          [54, 11],
+          [58, 22],
+          [58, 34],
+          [50, 52],
+          [29, 75],
+          [8, 52],
+          [0, 34],
+          [0, 22],
+          [4, 11],
+          [18, 0],
+        ]],
+      },
 
       balloonPanelMaxMapArea: 0,
       // Убираем тень
@@ -66,11 +88,53 @@ export default class YandexMaps {
       balloonOffset: [-64, 15],
       balloonLayout: template.balloonLayout,
       balloonContentLayout: template.balloonContentLayout,
-    };
-
-    ymaps.option.presetStorage.add('do4a#default', options);
+    });
 
     return template;
+  }
+
+
+  /**
+   * Создает ObjectManager списка магазинов
+   * @param ymaps
+   * @returns {ymaps.ObjectManager}
+   */
+  static createObjectManager(ymaps) {
+    const template = YandexMaps.createDefaultPreset(ymaps);
+
+    // Создаем менеджер объектов
+    const objectManager = new ymaps.ObjectManager({
+      clusterize: false,
+    });
+
+    // Устанавливаем пресет кластера
+    objectManager.clusters.options.set('preset', 'islands#redClusterIcons');
+
+    objectManager.objects.options.set('preset', 'do4a#default');
+
+    objectManager.objects.events
+      // Меняем маркер при открытии балуна
+      .add('balloonopen', (e) => {
+        objectManager.objects.setObjectOptions(e.get('objectId'), {
+          iconLayout: template.iconActiveLayout,
+        });
+      })
+      // Меняем маркер обратно
+      .add('balloonclose', (e) => {
+        objectManager.objects.setObjectOptions(e.get('objectId'), {
+          iconLayout: template.iconLayout,
+        });
+      })
+      // Скрываем балун при повторном клике на метку
+      .add('click', (e) => {
+        if (objectManager.objects.balloon.isOpen(e.get('objectId'))) {
+          objectManager.objects.balloon.close();
+        }
+      });
+
+    // objectManager.add(this.featureCollection);
+
+    return objectManager;
   }
 
   static getFeatureCollection(stores) {
@@ -132,8 +196,8 @@ export default class YandexMaps {
           </div>`,
       balloonContent:
         `<div class="map-balloon__address">{{ properties.address }}</div>
-           <div class="map-balloon__tel">{{ properties.tel }}</div>
-           <div class="map-balloon__scheme">{{ properties.link }}</div>`,
+           <div class="map-balloon__tel">{{ properties.tel }}</div>`,
+           // <div class="map-balloon__scheme">{{ properties.link }}</div>`,
     },
   };
 
@@ -145,44 +209,14 @@ export default class YandexMaps {
       controls: [],
     });
 
-
-    this.template = YandexMaps.createDefaultPreset(this.yandexMap);
-
     // Создаем менеджер объектов
-    this.objectManager = new this.yandexMap.ObjectManager({
-      clusterize: true,
-    });
-
-
-    // Устанавливаем пресет кластера
-    this.objectManager.clusters.options.set('preset', 'islands#redClusterIcons');
-    // Устанавливаем пресет маркера
-    this.objectManager.objects.options.set('preset', 'do4a#default');
-
-    this.objectManager.objects.events
-      // Меняем маркер при открытии балуна
-      .add('balloonopen', (e) => {
-        this.objectManager.objects.setObjectOptions(e.get('objectId'), {
-          iconLayout: this.template.iconActiveLayout,
-        });
-      })
-      // Меняем маркер обратно
-      .add('balloonclose', (e) => {
-        this.objectManager.objects.setObjectOptions(e.get('objectId'), {
-          iconLayout: this.template.iconLayout,
-        });
-      })
-      // Скрываем балун при повторном клике на метку
-      .add('click', (e) => {
-        if (this.objectManager.objects.balloon.isOpen(e.get('objectId'))) {
-          this.objectManager.objects.balloon.close();
-        }
-      });
+    this.objectManager = YandexMaps.createObjectManager(this.yandexMap);
+    this.objectManager.add(YandexMaps.getFeatureCollection(this.data.stores));
 
     // Добавляем менеджер на карту
     this.map.geoObjects.add(this.objectManager);
 
-    this.objectManager.add(YandexMaps.getFeatureCollection(this.data.stores));
+
     this.objectManager.setFilter(object => object.properties.cityId === this.data.currentCityId);
 
     this.map.setBounds(this.objectManager.getBounds(), {

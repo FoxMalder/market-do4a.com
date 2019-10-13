@@ -108,48 +108,15 @@
         console.log('init');
         this.map = map;
 
-
-        this.template = YandexMaps.createDefaultPreset(ymaps);
-
-
-        map.margin.setDefaultMargin([100, 100, 100, 100]);
+        this.map.margin.setDefaultMargin([100, 100, 100, 100]);
 
 
         // Создаем менеджер объектов
-        this.objectManager = new ymaps.ObjectManager({
-          clusterize: false,
-        });
-
-
-        // Устанавливаем пресет кластера
-        this.objectManager.clusters.options.set('preset', 'islands#redClusterIcons');
-
-        this.objectManager.objects.options.set('preset', 'do4a#default');
-
-        this.objectManager.objects.events
-          // Меняем маркер при открытии балуна
-          .add('balloonopen', (e) => {
-            this.objectManager.objects.setObjectOptions(e.get('objectId'), {
-              iconLayout: this.template.iconActiveLayout,
-            });
-          })
-          // Меняем маркер обратно
-          .add('balloonclose', (e) => {
-            this.objectManager.objects.setObjectOptions(e.get('objectId'), {
-              iconLayout: this.template.iconLayout,
-            });
-          })
-          // Скрываем балун при повторном клике на метку
-          .add('click', (e) => {
-            if (this.objectManager.objects.balloon.isOpen(e.get('objectId'))) {
-              this.objectManager.objects.balloon.close();
-            }
-          });
-
+        this.objectManager = YandexMaps.createObjectManager(ymaps);
         this.objectManager.add(this.featureCollection);
-
+        
         // Добавляем менеджер на карту
-        map.geoObjects.add(this.objectManager);
+        this.map.geoObjects.add(this.objectManager);
 
 
         // this.$nextTick(() => {
@@ -169,14 +136,14 @@
             .map(item => item.coords);
 
           if (poits.length) {
-            map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
+            this.map.setBounds(ymaps.util.pixelBounds.fromPoints(poits), {
               // Проверяем наличие тайлов на данном масштабе.
               checkZoomRange: true,
               preciseZoom: true,
               useMapMargin: true,
             });
           } else {
-            map.setBounds(map.geoObjects.getBounds(), {
+            this.map.setBounds(this.map.geoObjects.getBounds(), {
               // Проверяем наличие тайлов на данном масштабе.
               checkZoomRange: true,
               preciseZoom: true,
