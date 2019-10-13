@@ -21,8 +21,8 @@
       height: 100%;
       //height: 763px;
       margin-left: auto;
-      overflow: auto;
       padding-right: 8px;
+      overflow: auto;
       .simplebar-scrollbar::before {
         background: rgba(#101010, 0.2);
       }
@@ -49,14 +49,24 @@
 }
 
 .s-city-list {
+  min-height: 100%;
   margin-bottom: 0;
   padding: 0;
   list-style: none;
   background: #fff;
-  min-height: 100%;
+
+  &__empty {
+    padding: 20px 22px;
+    text-align: center;
+  }
 }
 
 .s-city {
+
+  &.slide-enter,
+  &.slide-leave-to {
+    height: 0;
+  }
 
   &.active {
     .s-city__header {
@@ -263,6 +273,11 @@
     line-height: 1;
     white-space: nowrap;
 
+    &.slide-enter,
+    &.slide-leave-to {
+      height: 0;
+    }
+
     &.active {
       border-bottom: 3px solid $main-color;
       color: #101010;
@@ -275,6 +290,7 @@
 
   &__map {
     width: 100%;
+    background: #e9e9e9;
 
     height: 420px - 50px;
     @include media-breakpoint-up(md) {
@@ -286,7 +302,36 @@
   }
 
   &__way {
+    overflow: auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__way-text {
     padding: 25px 30px;
+    //color: rgba(#101010, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 22px;
+
+    p {
+      max-width: 540px;
+      margin-bottom: 30px;
+      font-size: inherit;
+      line-height: inherit;
+      white-space: pre-line;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @include media-breakpoint-up(md) {
+        margin-bottom: 25px;
+      }
+    }
   }
 
   &__gallery {

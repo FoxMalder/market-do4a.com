@@ -4,10 +4,13 @@
       <div class="s-shops__scroll" ref="scrollEl">
         <!-- Список городов -->
         <ul class="s-city-list">
-          <li
-            v-for="city in filtredCityList"
-            class="s-city"
-            :class="{ active: city.id === cityId }">
+          <li class="s-city-list__empty"
+              v-if="filtredCityList.length === 0"
+          >Не найдено</li>
+          <li class="s-city"
+              v-for="city in filtredCityList"
+              :key="city.id"
+              :class="{ active: city.id === cityId }">
             <div class="s-city__header">
               <div class="s-city__name">{{ city.name }}</div>
               <div class="s-city__note" v-if="city.id === cityId">
@@ -19,20 +22,22 @@
             </div>
             <!-- Список магазинов -->
             <ul class="s-city__store-list">
-              <li
-                v-for="store in getStoreListByCityId(city.id)"
-                class="s-item"
-                :class="{ active: store.id === currentStoreId }"
-                @click="getStore(store.id)">
+              <li class="s-item"
+                  v-for="store in getStoreListByCityId(city.id)"
+                  :key="store.id"
+                  :class="{ active: store.id === currentStoreId }"
+                  @click="getStore(store.id)">
                 <div class="s-item__header">
                   <div class="s-item__address">{{ store.name }}</div>
-                  <div class="s-item__info">{{ isMobile ? store.shortAddress : '{Timetable}' }}</div>
+                  <div class="s-item__info" v-if="isMobile">{{ store.shortAddress || '' }}</div>
+                  <div class="s-item__info" v-else v-html="(store.workTime || []).join('<br>')"></div>
                 </div>
-                <div class="s-item__body" v-if="isMobile">
+                <div class="s-item__body">
                   <a class="s-item__phone" v-for="phone in store.phone" :href="'tel:' + phone">{{ phone }}</a>
                 </div>
                 <div class="s-item__bottom">
-                  <div class="s-item__info">{{ isMobile ? '{Timetable}' : store.shortAddress }}</div>
+                  <div class="s-item__info" v-if="!isMobile">{{ store.shortAddress || '' }}</div>
+                  <div class="s-item__info" v-else v-html="(store.workTime || []).join('<br>')"></div>
                   <div class="s-item__contacts">
                     <a class="s-item__link" v-if="store.instagram" :href="store.instagram">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -52,9 +57,7 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M14.005 13.8163C14.005 13.8163 14.4477 13.768 14.6745 13.5289C14.8821 13.3098 14.8749 12.8964 14.8749 12.8964C14.8749 12.8964 14.8473 10.9659 15.7605 10.6809C16.6604 10.4006 17.8159 12.5478 19.0423 13.3735C19.9686 13.9977 20.6718 13.8611 20.6718 13.8611L23.9488 13.8163C23.9488 13.8163 25.6623 13.7127 24.8499 12.39C24.7827 12.2816 24.3759 11.4112 22.4141 9.6232C20.3586 7.7516 20.6346 8.05431 23.1088 4.81642C24.6159 2.8447 25.2183 1.64095 25.0299 1.12623C24.8511 0.63389 23.7424 0.764631 23.7424 0.764631L20.0538 0.78701C20.0538 0.78701 19.7802 0.750497 19.5774 0.869459C19.3794 0.986066 19.251 1.25815 19.251 1.25815C19.251 1.25815 18.6679 2.78346 17.8891 4.08144C16.2464 6.81875 15.5901 6.96363 15.3213 6.79402C14.6961 6.39708 14.8521 5.20157 14.8521 4.35234C14.8521 1.69866 15.2625 0.592666 14.0542 0.30645C13.6534 0.211044 13.3582 0.148618 12.3323 0.138018C11.016 0.125062 9.90242 0.142729 9.27126 0.445435C8.85129 0.646847 8.52731 1.09678 8.7253 1.1227C8.96888 1.1545 9.52085 1.26875 9.81363 1.65979C10.1916 2.16509 10.1784 3.29817 10.1784 3.29817C10.1784 3.29817 10.3956 6.42182 9.67084 6.80933C9.17407 7.07552 8.49251 6.53253 7.0274 4.04846C6.27745 2.77639 5.71108 1.37004 5.71108 1.37004C5.71108 1.37004 5.60189 1.10738 5.4063 0.966042C5.16992 0.795255 4.83994 0.742252 4.83994 0.742252L1.33495 0.764631C1.33495 0.764631 0.808185 0.778765 0.614997 1.00373C0.443408 1.20279 0.601798 1.61621 0.601798 1.61621C0.601798 1.61621 3.34603 7.91886 6.45384 11.0955C9.30366 14.0071 12.5387 13.8163 12.5387 13.8163H14.005Z" fill="#4C6C91"/>
                       </svg>
                     </a>
-                    <template v-if="!isMobile">
-                      <a class="s-item__phone" v-for="phone in store.phone" :href="'tel:' + phone">{{ phone }}</a>
-                    </template>
+                    <a class="s-item__phone" v-for="phone in store.phone" :href="'tel:' + phone">{{ phone }}</a>
                   </div>
                 </div>
               </li>
@@ -134,13 +137,15 @@
             <div v-if="activeStore.wayImage">
               <img :src="activeStore.wayImage" alt="">
             </div>
-            <div v-if="activeStore.wayOnAuto">
-              <b>Добраться на машине:</b>
-              <p v-html="activeStore.wayOnAuto"></p>
-            </div>
-            <div v-if="activeStore.wayOnFoot">
-              <b>Добраться пешком:</b>
-              <p v-html="activeStore.wayOnFoot"></p>
+            <div class="s-map__way-text">
+              <template v-if="activeStore.wayOnAuto">
+                <div>Добраться на машине:</div>
+                <p class="gray" v-html="activeStore.wayOnAuto"></p>
+              </template>
+              <template v-if="activeStore.wayOnFoot">
+                <div>Добраться пешком:</div>
+                <p class="gray" v-html="activeStore.wayOnFoot"></p>
+              </template>
             </div>
           </div>
           
