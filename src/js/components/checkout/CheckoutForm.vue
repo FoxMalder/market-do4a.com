@@ -21,7 +21,7 @@
       </fieldset>
       
       <!-- Адрес доставки -->
-      <fieldset class="order-props__group" v-show="visibleAddress">
+      <fieldset class="order-props__group" v-show="visibleAddress" v-if="breakpoint === 'xl'">
         <legend class="order-props__subtitle">Адрес доставки</legend>
         <CheckoutAddress/>
       </fieldset>
