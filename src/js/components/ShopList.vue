@@ -82,7 +82,7 @@
           <a class="s-active-shop__phone" v-for="phone in activeStore.phone" :href="'tel:' + phone">{{ phone }}</a>
         </div>
         <div class="s-active-shop__footer">
-          <div class="s-active-shop__info">{Timetable}</div>
+          <div class="s-active-shop__info" v-html="(activeStore.workTime || []).join('<br>')"></div>
           <div class="s-active-shop__social">
             <a class="s-active-shop__social-link" v-if="activeStore.instagram" :href="activeStore.instagram">
               <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -167,6 +167,7 @@
   import SimpleBar from 'simplebar';
 
   import ShopListMap from './ShopListMap.vue';
+  import Utils from '../utils/utils';
 
 
   export default {
@@ -237,6 +238,8 @@
 
         if (this.headerEl && document.documentElement.clientWidth < 1240) {
           this.headerEl.style.display = 'none';
+          // Utils.scrollTo(this.$el);
+          window.scrollTo(this.$el.offsetTop, 0);
         }
 
 

@@ -136,7 +136,7 @@ const Utils = {
     }, duration);
   },
 
-  scrollToTop(to, scrollDuration) {
+  scrollToTop(to, scrollDuration = 1000) {
     var cosParameter = window.scrollY / 2,
       scrollCount = 0,
       oldTimestamp = performance.now();
