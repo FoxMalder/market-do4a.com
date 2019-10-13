@@ -33,16 +33,50 @@ export default class YandexMaps {
     this.loadMapApi();
   }
 
-  static getFeatureCollection(stores) {
-    const collection = {
-      type: 'FeatureCollection',
-      features: [],
+  static createDefaultPreset(ymaps) {
+    const template = {
+      iconLayout: ymaps.templateLayoutFactory
+        .createClass(YandexMaps.defaultOptions.template.icon),
+      iconActiveLayout: ymaps.templateLayoutFactory
+        .createClass(YandexMaps.defaultOptions.template.iconActive),
+      balloonLayout: ymaps.templateLayoutFactory
+        .createClass(YandexMaps.defaultOptions.template.balloon),
+      balloonContentLayout: ymaps.templateLayoutFactory
+        .createClass(YandexMaps.defaultOptions.template.balloonContent),
     };
 
-    collection.features = Object.keys(stores).map((key) => {
-      const item = stores[key];
+    const options = {
+      hasHint: false,
 
-      return {
+      // Слой иконки
+      iconLayout: template.iconLayout,
+      // Смещение иконки
+      iconOffset: [-29, -75],
+      // Активная область
+      iconShape: { type: 'Rectangle', coordinates: [[0, 0], [58, 75]] },
+
+      balloonPanelMaxMapArea: 0,
+      // Убираем тень
+      balloonShadow: false,
+      // Убираем автоматическое перемещение при открытии
+      balloonAutoPan: false,
+      // Не скрываем иконку при открытом балуне.
+      hideIconOnBalloonOpen: false,
+      // Смещаем балун, для открытия под иконкой.
+      balloonOffset: [-64, 15],
+      balloonLayout: template.balloonLayout,
+      balloonContentLayout: template.balloonContentLayout,
+    };
+
+    ymaps.option.presetStorage.add('do4a#default', options);
+
+    return template;
+  }
+
+  static getFeatureCollection(stores) {
+    return {
+      type: 'FeatureCollection',
+      features: Object.values(stores).map(item => ({
         type: 'Feature',
         id: item.id,
         geometry: {
@@ -55,10 +89,8 @@ export default class YandexMaps {
           link: 'Схема проезда',
           cityId: item.city,
         },
-      };
-    });
-
-    return collection;
+      })),
+    };
   }
 
   static defaultOptions = {
@@ -113,44 +145,19 @@ export default class YandexMaps {
       controls: [],
     });
 
+
+    this.template = YandexMaps.createDefaultPreset(this.yandexMap);
+
     // Создаем менеджер объектов
     this.objectManager = new this.yandexMap.ObjectManager({
       clusterize: true,
     });
 
 
-    this.template = {
-      iconLayout: this.yandexMap.templateLayoutFactory.createClass(YandexMaps.defaultOptions.template.icon),
-      iconActiveLayout: this.yandexMap.templateLayoutFactory.createClass(YandexMaps.defaultOptions.template.iconActive),
-      balloonLayout: this.yandexMap.templateLayoutFactory.createClass(YandexMaps.defaultOptions.template.balloon),
-      balloonContentLayout: this.yandexMap.templateLayoutFactory.createClass(YandexMaps.defaultOptions.template.balloonContent),
-    };
-
     // Устанавливаем пресет кластера
     this.objectManager.clusters.options.set('preset', 'islands#redClusterIcons');
-
-    this.objectManager.objects.options.set({
-      hasHint: false,
-
-      // Слой иконки
-      iconLayout: this.template.iconLayout,
-      // Смещение иконки
-      iconOffset: [-29, -75],
-      // Активная область
-      iconShape: { type: 'Rectangle', coordinates: [[0, 0], [58, 75]] },
-
-      balloonPanelMaxMapArea: 0,
-      // Убираем тень
-      balloonShadow: false,
-      // Убираем автоматическое перемещение при открытии
-      balloonAutoPan: false,
-      // Не скрываем иконку при открытом балуне.
-      hideIconOnBalloonOpen: false,
-      // Смещаем балун, для открытия под иконкой.
-      balloonOffset: [-64, 15],
-      balloonLayout: this.template.balloonLayout,
-      balloonContentLayout: this.template.balloonContentLayout,
-    });
+    // Устанавливаем пресет маркера
+    this.objectManager.objects.options.set('preset', 'do4a#default');
 
     this.objectManager.objects.events
       // Меняем маркер при открытии балуна

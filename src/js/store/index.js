@@ -117,19 +117,33 @@ const mutations = {
   },
   SET_APP_PARAMS(state, app) {
     state.cityId = parseInt(app.storeManagerData.currentCityId, 10);
+    state.cityRemoteId = parseInt(app.storeManagerData.noCityId, 10);
+
     state.storeId = app.storeId;
     state.storeRemoteId = app.storeRemoteId;
+
     state.isLocaleStore = app.storeId !== app.storeRemoteId;
-    state.storeList = Object.values(app.storeManagerData.stores).map(item => ({
-      ...item,
-      coords: item.coords.split(',').map(num => parseFloat(num)),
-      city: parseInt(item.city, 10),
-      id: parseInt(item.id, 10),
-    }));
-    state.cityList = Object.values(app.storeManagerData.cities).map(item => ({
-      ...item,
-      id: parseInt(item.id, 10),
-    }));
+
+    state.storeList = Object.values(app.storeManagerData.stores)
+      .map(item => ({
+        ...item,
+        coords: item.coords.split(',').map(num => parseFloat(num)),
+        city: parseInt(item.city, 10),
+        id: parseInt(item.id, 10),
+      }))
+      .filter(item => item.id !== state.storeRemoteId);
+
+    state.cityList = Object.values(app.storeManagerData.cities)
+      .map(item => ({
+        ...item,
+        id: parseInt(item.id, 10),
+      }))
+      .filter(item => item.id !== state.cityRemoteId)
+      .sort((a, b) => {
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
+        return 0;
+      });
   },
 };
 
