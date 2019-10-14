@@ -968,47 +968,47 @@ export default function createModule(options) {
 
       Utils.log('Checkout', 'Разбор ответов');
 
-      if (resultList.length === 1) {
-        const { order } = resultList[0];
+      // if (resultList.length === 1) {
+      //   const { order } = resultList[0];
+      //
+      //   if (order) {
+      //     if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
+      //       document.location.href = order.REDIRECT_URL;
+      //     }
+      //
+      //     if (order.ERROR) {
+      //       dispatch('SET_ERRORS', order.ERROR);
+      //     }
+      //   }
+      //   return;
+      // }
 
-        if (order) {
-          if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
-            document.location.href = order.REDIRECT_URL;
-          }
+      // if (resultList.length > 1) {
+      const orders = [];
 
-          if (order.ERROR) {
-            dispatch('SET_ERRORS', order.ERROR);
-          }
+      resultList.forEach((result) => {
+        const { order } = result;
+
+        if (!order) {
+          return;
         }
-        return;
-      }
 
-      if (resultList.length > 1) {
-        const orders = [];
-
-        resultList.forEach((result) => {
-          const { order } = result;
-
-          if (!order) {
-            return;
-          }
-
-          if (order.REDIRECT_URL && order.ID) {
-            orders.push(order.ID);
-            return;
-          }
-
-          if (order.ERROR) {
-            dispatch('SET_ERRORS', order.ERROR);
-          }
-        });
-
-        if (orders.length > 0) {
-          document.location.href = `/checkout/final/?ORDER_ID=${orders.join(',')}`;
-        } else {
-          alert('Что-то пошло не так(');
+        if (order.REDIRECT_URL && order.ID) {
+          orders.push(order.ID);
+          return;
         }
+
+        if (order.ERROR) {
+          dispatch('SET_ERRORS', order.ERROR);
+        }
+      });
+
+      if (orders.length > 0) {
+        document.location.href = `/checkout/final/?ORDER_ID=${orders.join(',')}`;
+      } else {
+        alert('Что-то пошло не так(');
       }
+      // }
     },
   };
 
