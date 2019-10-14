@@ -424,10 +424,13 @@ export default function createModule(options) {
     nextStepButton: (state) => {
       if (document.documentElement.clientWidth < 1240) {
         const st = state.steps.find(item => item.key === state.currentStepName);
-        return {
-          key: st.next,
-          text: st.nextButtonText,
-        };
+
+        if (st) {
+          return {
+            key: st.next,
+            text: st.nextButtonText,
+          };
+        }
       }
       return {
         key: 'final',
@@ -904,8 +907,20 @@ export default function createModule(options) {
 
       const err = {};
       getters.orderList.forEach((order) => {
+        // if (!order.deliveryItem) {
+        //   err.DELIVERY = ['Не выбран способ доставки'];
+        // } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
+        //   err.DELIVERY = ['Не выбран пункт самовывоза'];
+        // }
+
+        console.log(order);
+
+        if (!order.deliveryId) {
+          err.DELIVERY = ['Не выбран способ доставки (1)'];
+        }
+
         if (!order.deliveryItem) {
-          err.DELIVERY = ['Не выбран способ доставки'];
+          err.DELIVERY = ['Не выбран способ доставки (2)'];
         } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
           err.DELIVERY = ['Не выбран пункт самовывоза'];
         }
