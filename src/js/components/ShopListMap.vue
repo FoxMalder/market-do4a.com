@@ -170,22 +170,22 @@
             // console.log(this.objectManager);
             // console.log(object);
             
-            if (document.documentElement.clientWidth < 1240) {
+            // if (document.documentElement.clientWidth < 1240) {
               this.map.setCenter(object.geometry.coordinates, 16, {
                 duration: 1000,
                 timingFunction: 'ease-in-out',
                 useMapMargin: true,
                 checkZoomRange: true
               });
-            } else {
-              this.map.panTo(object.geometry.coordinates, {
-                // flying: false,
-                checkZoomRange: true,
-                // дробных коэффициентов масштабирования
-                preciseZoom: true,
-                useMapMargin: true,
-              })
-            }
+            // } else {
+            //   this.map.panTo(object.geometry.coordinates, {
+            //     // flying: false,
+            //     checkZoomRange: true,
+            //     // дробных коэффициентов масштабирования
+            //     preciseZoom: true,
+            //     useMapMargin: true,
+            //   })
+            // }
           })
 
 

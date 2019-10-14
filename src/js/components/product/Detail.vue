@@ -52,7 +52,7 @@
         </div>
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">Курьером завтра</div>
-          <div class="p-detail-delivery__value">Бесплатно от {{currentCity.priceDelivery || '2 990'}} ₽</div>
+          <div class="p-detail-delivery__value">Бесплатно от {{ (currentCity && currentCity.priceDelivery) || '2 990'}} ₽</div>
         </div>
         <div class="p-detail-delivery-info__bottom">Оплата при получении</div>
       </template>
@@ -60,7 +60,7 @@
       <template v-else-if="activeOffer.count_remote > 0">
         <div class="p-detail-delivery__row">
           <div class="p-detail-delivery__key">Курьером</div>
-          <div class="p-detail-delivery__value">Бесплатно от {{currentCity.priceDelivery || '2 990'}} ₽</div>
+          <div class="p-detail-delivery__value">Бесплатно от {{(currentCity && currentCity.priceDelivery) || '2 990'}} ₽</div>
         </div>
         <div class="p-detail-delivery-info__bottom">
           Оплата картой онлайн <i class="icon icon-visa"></i> <i class="icon icon-mastercard"></i>
