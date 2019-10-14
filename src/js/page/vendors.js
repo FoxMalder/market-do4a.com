@@ -83,9 +83,16 @@ export default class Vendors {
    * Фильтрация по категории и строке поиска
    */
   filterItems(state) {
-    const selected = Object.keys(state.filters.filters).map(
-      // key => state.filters.filters[key].data.filter(item => item.checked).map(item => item.value),
-      key => state.filters.filters[key].data.reduce((arr, item) => {
+    // const selected = Object.keys(state.filters.filters).map(
+    //   // key => state.filters.filters[key].data.filter(item => item.checked).map(item => item.value),
+    //   key => state.filters.filters[key].data.reduce((arr, item) => {
+    //     if (item.checked) arr.push(item.value);
+    //     return arr;
+    //   }, []),
+    // );
+
+    const selected = Object.values(store.state.filters.filters).map(
+      filter => filter.data.reduce((arr, item) => {
         if (item.checked) arr.push(item.value);
         return arr;
       }, []),

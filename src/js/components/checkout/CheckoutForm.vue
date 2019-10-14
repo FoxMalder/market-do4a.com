@@ -38,6 +38,7 @@
               class="input-field__input autoheight"
               rows="5"
               v-model="propertyDescription"
+              @input="updateDescription"
             ></textarea>
           </div>
         </div>
@@ -153,10 +154,7 @@
       //   this.
       // },
       updateDescription(e) {
-        this.$store.commit('checkout/SET_PROPERTY', {
-          name: this.propertyDescription.name,
-          value: e.target.value,
-        })
+        this.$store.commit('checkout/UPDATE_DESCRIPTION', e.target.value);
       }
     }
   }

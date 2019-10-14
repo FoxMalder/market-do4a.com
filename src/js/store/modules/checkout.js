@@ -501,6 +501,9 @@ export default function createModule(options) {
         }
       });
 
+
+      // data.ORDER_DESCRIPTION = state.props.description;
+
       // state.staticPropertyList.forEach((prop) => {
       //   if (!prop.root) {
       //     data[prop.name] = prop.value;
@@ -986,6 +989,8 @@ export default function createModule(options) {
       // if (resultList.length > 1) {
       const orders = [];
 
+      console.log(resultList);
+
       resultList.forEach((result) => {
         const { order } = result;
 
@@ -1004,6 +1009,10 @@ export default function createModule(options) {
       });
 
       if (orders.length > 0) {
+        if (resultList.length !== orders.length) {
+          alert('Некоторые отправления не были оформлены. Вернитесь в корзину, чтобы повторить');
+        }
+
         document.location.href = `/checkout/final/?ORDER_ID=${orders.join(',')}`;
       } else {
         alert('Что-то пошло не так(');
@@ -1089,6 +1098,10 @@ export default function createModule(options) {
     // ADD_STATIC_PROPERTY: (state, prop) => {
     //   state.staticPropertyList.push(prop);
     // },
+
+    UPDATE_DESCRIPTION: (state, message) => {
+      state.props.description = message;
+    },
   };
 
   return {
