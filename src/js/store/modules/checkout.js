@@ -1004,7 +1004,7 @@ export default function createModule(options) {
         });
 
         if (orders.length > 0) {
-          document.location.href = `/checkout/?ORDER_ID=${orders.join(',')}`;
+          document.location.href = `/checkout/final/?ORDER_ID=${orders.join(',')}`;
         } else {
           alert('Что-то пошло не так(');
         }
