@@ -44,6 +44,7 @@ const cummonConfig = {
     franchise: './src/franchise.js',
     privacy: './src/privacy.js',
     shops: './src/shops.js',
+    final: './src/final.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
