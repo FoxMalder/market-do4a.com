@@ -41,9 +41,9 @@
         </div>
       </div>
     </div>
-    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse" v-if="currentCity">
+    <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
       <div class="container">
-        <div class="change-store">
+        <div class="change-store" v-if="currentCity">
           <div class="change-store__header">
             <span class="change-store__title">Выберите магазин<br> в <span class="selected">{{ currentCity.name5 }}</span></span>
             <button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-store-collapse"></button>
@@ -115,13 +115,21 @@
     },
     methods: {
       setCity(cityId) {
+        
         this.currentCityId = parseInt(cityId, 10);
         
         const city = this.$store.getters.getCityById(parseInt(cityId, 10));
         this.currentCity = city;
+
+
+        console.log('setCity', city);
         
         if (city.name === 'Москва') { // 35883 - Москва
-          $(document.querySelector('.change-store-collapse')).collapse('show');
+          console.log('collapse show');
+
+          this.$nextTick(function () {
+            $(document.querySelector('.change-store-collapse')).collapse('show');
+          });
         } else {
           this.sendRequest(this.currentCityId, this.$store.getters.getStoreListByCityId(this.currentCityId)[0].id);
         }

@@ -11,7 +11,7 @@
              :value="store.id">
       <label :for="'pickup-' + store.id" class="o-shipping-pickup__label">
         <span class="o-shipping-pickup__address">{{ store.name }}</span>
-        <a href="#" class="o-shipping-pickup__link" @click="showOnMap(store)">Показать на карте</a>
+        <a href="#" class="o-shipping-pickup__link" @click.prevent="showOnMap(store)">Показать на карте</a>
       </label>
     </li>
   </ul>

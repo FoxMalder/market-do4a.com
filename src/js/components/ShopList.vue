@@ -204,14 +204,16 @@
       this.headerEl = document.querySelector('.page-header');
 
 
-      const searchInput = document.querySelectorAll('.search-fild__input');
+      if (this.headerEl) {
+        const searchInput = this.headerEl.querySelectorAll('.search-fild__input');
 
-      searchInput.forEach(item => {
-        this.searchFieldValue = item.value.trim().toLowerCase();
-        item.addEventListener('input', () => {
+        searchInput.forEach(item => {
           this.searchFieldValue = item.value.trim().toLowerCase();
+          item.addEventListener('input', () => {
+            this.searchFieldValue = item.value.trim().toLowerCase();
+          });
         });
-      });
+      }
     },
     computed: {
       ...mapGetters({
