@@ -99,13 +99,13 @@ function mappingPaymentMethods(payments) {
 /**
  * Преобразует, сортирует и фильтрует список методов доставки
  *
- * @param   { Object }  deliveryMethods - Список в формате Битрикса ( order.DELIVERY )
+ * @param   { Object }  DELIVERY - Список в формате Битрикса ( order.DELIVERY )
  * @param   { Boolean } isLocaleStore   - Тип заказа (магазин или ЦС)
  *
  * @returns { Array } - Список в собственном формате
  */
-function mappingDeliveryMethods(deliveryMethods, isLocaleStore = false) {
-  const filtredDeliveryMethods = Object.values(deliveryMethods)
+function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
+  const filtredDeliveryMethods = Object.values(DELIVERY)
     .sort((a, b) => {
       const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
       if (sort === 0) {
@@ -130,19 +130,32 @@ function mappingDeliveryMethods(deliveryMethods, isLocaleStore = false) {
     }));
 
   if (isLocaleStore) {
+    /*
+      Для локального магазина выбираем только одну курьерскую и один самовывоз, а также все СДЭК
+     */
     let courier = null;
     let pickup = null;
 
-    filtredDeliveryMethods.forEach((item) => {
+    const sdekDelivery = filtredDeliveryMethods.filter((item) => {
       if (item.type === 'C') {
         courier = item;
       }
       if (item.type === 'P') {
         pickup = item;
       }
+
+      return item.category.indexOf('sdek') >= 0;
     });
 
-    return [pickup, courier].filter(item => item);
+    if (courier) {
+      sdekDelivery.push(courier);
+    }
+
+    if (pickup) {
+      sdekDelivery.push(pickup);
+    }
+
+    return sdekDelivery;
   }
   return filtredDeliveryMethods.filter(item => !item.errors);
 }
@@ -151,22 +164,22 @@ function mappingDeliveryMethods(deliveryMethods, isLocaleStore = false) {
 /**
  * Преобразует список итоговых цен
  *
- * @param   { Object } total - Список в формате Битрикса ( order.TOTAL )
+ * @param   { Object } TOTAL - Список в формате Битрикса ( order.TOTAL )
  *
  * @returns { Object } - Список в собственном формате
  */
-function convertTotal(total) {
+function convertTotal(TOTAL) {
   return {
-    PRICE_WITHOUT_DISCOUNT: parseFloat(total.PRICE_WITHOUT_DISCOUNT_VALUE),
-    PRICE_WITHOUT_DISCOUNT_FORMATED: total.PRICE_WITHOUT_DISCOUNT,
-    ORDER_TOTAL_PRICE: parseFloat(total.ORDER_TOTAL_PRICE),
-    ORDER_TOTAL_PRICE_FORMATED: total.ORDER_TOTAL_PRICE_FORMATED,
-    DELIVERY_PRICE: parseFloat(total.DELIVERY_PRICE),
-    DELIVERY_PRICE_FORMATED: total.DELIVERY_PRICE_FORMATED,
-    DISCOUNT_PRICE: parseFloat(total.DISCOUNT_PRICE),
-    DISCOUNT_PRICE_FORMATED: total.DISCOUNT_PRICE_FORMATED,
-    ORDER_PRICE: parseFloat(total.ORDER_PRICE),
-    ORDER_PRICE_FORMATED: total.ORDER_PRICE_FORMATED,
+    PRICE_WITHOUT_DISCOUNT: parseFloat(TOTAL.PRICE_WITHOUT_DISCOUNT_VALUE),
+    PRICE_WITHOUT_DISCOUNT_FORMATED: TOTAL.PRICE_WITHOUT_DISCOUNT,
+    ORDER_TOTAL_PRICE: parseFloat(TOTAL.ORDER_TOTAL_PRICE),
+    ORDER_TOTAL_PRICE_FORMATED: TOTAL.ORDER_TOTAL_PRICE_FORMATED,
+    DELIVERY_PRICE: parseFloat(TOTAL.DELIVERY_PRICE),
+    DELIVERY_PRICE_FORMATED: TOTAL.DELIVERY_PRICE_FORMATED,
+    DISCOUNT_PRICE: parseFloat(TOTAL.DISCOUNT_PRICE),
+    DISCOUNT_PRICE_FORMATED: TOTAL.DISCOUNT_PRICE_FORMATED,
+    ORDER_PRICE: parseFloat(TOTAL.ORDER_PRICE),
+    ORDER_PRICE_FORMATED: TOTAL.ORDER_PRICE_FORMATED,
   };
 }
 
