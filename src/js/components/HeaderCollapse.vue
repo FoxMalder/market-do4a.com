@@ -8,15 +8,30 @@
             <button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-city-collapse"></button>
           </div>
           <ul class="change-city__list">
-            <template v-for="(list, char) in chars">
+            <!--            <template v-for="(list, char) in chars">-->
+            <!--              <li class="change-city__item"-->
+            <!--                  v-for="(cityId, index) in list"-->
+            <!--                  :data-letter="index === 0 ? char : ''">-->
+            <!--                <a class="change-city__link" href="#"-->
+            <!--                   @click.prevent="setCity(cityId)"-->
+            <!--                >{{ getCityById(cityId).name }}</a>-->
+            <!--              </li>-->
+            <!--            </template>-->
+            <template v-for="item in chars">
               <li class="change-city__item"
-                  v-for="(cityId, index) in list"
-                  :data-letter="index === 0 ? char : ''">
+                  v-for="(city, i) in item.cityList"
+                  :data-letter="i === 0 ? item.char : ''">
                 <a class="change-city__link" href="#"
-                   @click.prevent="setCity(cityId)"
-                >{{ getCityById(cityId).name }}</a>
+                   @click.prevent="setCity(city)"
+                >{{ city.name }}</a>
               </li>
             </template>
+            <!--              <li class="change-city__item"-->
+            <!--                  v-for="(city, i) in cityList">-->
+            <!--                <a class="change-city__link" href="#"-->
+            <!--                   @click.prevent="setCity(city)"-->
+            <!--                >{{ city.name }}</a>-->
+            <!--              </li>-->
           </ul>
           <div class="change-city__footer">
             <a class="change-post" href="#" @click.prevent="setPost">
@@ -43,20 +58,22 @@
     </div>
     <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
       <div class="container">
-        <div class="change-store" v-if="currentCity">
+        <div class="change-store">
           <div class="change-store__header">
-            <span class="change-store__title">Выберите магазин<br> в <span class="selected">{{ currentCity.name5 }}</span></span>
+            <span class="change-store__title">Выберите магазин<br> в <span class="selected">{{ currentCity ? currentCity.name5 : '' }}</span></span>
             <button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-store-collapse"></button>
           </div>
           <ul class="change-store__list">
-            <li class="change-store__item" v-for="store in currentStores">
+            <li class="change-store__item"
+                v-for="store in storeList"
+                :key="store.id">
               <a class="change-store__link" href="#"
                  :class="{ active: storeId === store.id }"
-                 @click.prevent="setStore(store.id)">
+                 @click.prevent="setStore(store)">
                 <div class="change-store__item-name">{{ store.name }}</div>
                 <div class="change-store__item-subtitle">{{ store.shortAddress }}</div>
                 <div class="change-store__item-note">
-                  {{ store.courier === 'Y' ? 'Курьер и самовывоз' : 'Только самовывоз' }}
+                  {{ store.courier ? 'Курьер и самовывоз' : 'Только самовывоз' }}
                 </div>
               </a>
             </li>
@@ -95,53 +112,65 @@
     name: "HeaderCollapse",
     data() {
       return {
-        currentCity: null,
+        // currentCity: null,
         currentCityId: null,
       }
     },
     computed: {
       ...mapState({
+        cityId: 'cityId',
         storeId: 'storeId',
+        // cityList: 'cityList',
+        // storeList: 'storeList',
       }),
       // ...mapGetters([
       //   'currentCity'
       // ]),
       chars() {
-        return global.app.storeManagerData.chars
+        return Object.keys(global.app.storeManagerData.chars).map(key => ({
+          char: key,
+          cityList: global.app.storeManagerData.chars[key]
+            .map(cityId => this.$store.getters.getCityById(parseInt(cityId, 10))),
+        }));
+        // let lastChar = '';
+        // return this.cityList.map((city, index, array) => {
+        //   return {
+        //     ...city,
+        //     char: city.name[0] !== lastChar ? city.name[0] : '',
+        //   }
+        // })
       },
-      currentStores() {
-        return this.$store.getters.getStoreListByCityId(this.currentCityId);
+      currentCity() {
+        return this.currentCityId
+          ? this.$store.getters.getCityById(this.currentCityId)
+          : this.$store.getters.currentCity;
+      },
+      storeList() {
+        return this.currentCityId
+          ? this.$store.getters.getStoreListByCityId(this.currentCityId)
+          : this.$store.getters.getStoreListByCityId(this.cityId);
       },
     },
     methods: {
-      setCity(cityId) {
-        
-        this.currentCityId = parseInt(cityId, 10);
-        
-        const city = this.$store.getters.getCityById(parseInt(cityId, 10));
-        this.currentCity = city;
+      setCity(city) {
+        // const city = this.$store.getters.getCityById(parseInt(cityId, 10));
 
-
-        console.log('setCity', city);
-        
         if (city.name === 'Москва') { // 35883 - Москва
-          console.log('collapse show');
+          this.currentCityId = city.id;
 
-          this.$nextTick(function () {
+          this.$nextTick(function() {
             $(document.querySelector('.change-store-collapse')).collapse('show');
           });
         } else {
-          this.sendRequest(this.currentCityId, this.$store.getters.getStoreListByCityId(this.currentCityId)[0].id);
+          // this.sendRequest(city.id, this.$store.getters.getStoreListByCityId(this.currentCityId)[0].id);
+          this.setStore(this.$store.getters.getStoreListByCityId(city.id)[0]);
         }
       },
-      setStore(storeId) {
-        this.sendRequest(this.currentCityId, storeId);
+      setStore(store) {
+        this.sendRequest(store.cityId, store.id);
       },
       setPost() {
-        this.sendRequest(global.app.storeManagerData.noCityId, global.app.storeManagerData.remoteStoreId);
-      },
-      getCityById(cityId) {
-        return this.$store.state.cityList.find(item => item.id === parseInt(cityId, 10));
+        this.sendRequest(this.$store.state.cityRemoteId, this.$store.state.storeRemoteId);
       },
 
       sendRequest(cityId, storeId) {
@@ -172,7 +201,3 @@
     },
   }
 </script>
-
-<style scoped>
-
-</style>

@@ -18,8 +18,10 @@ mixin select-city
         // Ширина: автоматическая
         // Переполнение: Обрезается
         // Позиционирование: К левому краю
-        button.select-city__link.select-city__link_store.collapsed(data-toggle='collapse', data-target='.change-store-collapse')
-            | ул. Невзоровых, д. 64к2
+
+        // Если открывать список магазинов не надо, ставим disabled
+        button.select-city__link.select-city__link_store.collapsed(data-toggle='collapse', data-target='.change-store-collapse' disabled)
+            | 2 магазина
 
 mixin page-nav
     // page-nav

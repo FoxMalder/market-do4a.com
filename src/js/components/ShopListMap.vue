@@ -16,7 +16,7 @@
     <!--            address: store.name,-->
     <!--            tel: store.phone[0],-->
     <!--            link: 'Схема проезда',-->
-    <!--            cityId: store.city,-->
+    <!--            cityId: store.cityId,-->
     <!--          }"-->
     <!--    />-->
   </yandex-map>
@@ -93,7 +93,7 @@
               address: item.name,
               tel: item.phone[0],
               link: 'Схема проезда',
-              cityId: item.city,
+              cityId: item.cityId,
             },
           })),
         });
@@ -135,7 +135,7 @@
 
         console.log('setBounds');
         const poits = this.$store.state.storeList
-          .filter(item => item.city === this.$store.state.cityId)
+          .filter(item => item.cityId === this.$store.state.cityId)
           .map(item => item.coords);
 
         if (poits.length) {

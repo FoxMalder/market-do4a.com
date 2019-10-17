@@ -196,7 +196,7 @@ export default class YandexMaps {
           </div>`,
       balloonContent:
         `<div class="map-balloon__address">{{ properties.address }}</div>
-           <div class="map-balloon__tel">{{ properties.tel }}</div>`,
+           <a class="map-balloon__tel" href="tel:{{ properties.tel }}">{{ properties.tel }}</a>`,
            // <div class="map-balloon__scheme">{{ properties.link }}</div>`,
     },
   };

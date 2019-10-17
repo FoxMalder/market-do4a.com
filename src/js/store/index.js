@@ -39,13 +39,13 @@ const getters = {
     // return global.app.storeManagerData.cities[global.app.storeManagerData.currentCityId];
   },
   getCityById: (state) => (cityId) => {
-    return state.cityList.find(item => item.id === parseInt(cityId, 10));
-  },
-  getStoreListByCityId: (state) => (cityId) => {
-    return state.storeList.filter(item => item.city === parseInt(cityId, 10));
+    return state.cityList.find(item => item.id === cityId);
   },
   getStoreById: (state) => (storeId) => {
-    return state.storeList.find(item => item.id === storeId, 10);
+    return state.storeList.find(item => item.id === storeId);
+  },
+  getStoreListByCityId: (state) => (cityId) => {
+    return state.storeList.filter(item => item.cityId === cityId);
   },
 };
 
@@ -127,8 +127,10 @@ const mutations = {
     state.storeList = Object.values(app.storeManagerData.stores)
       .map(item => ({
         ...item,
+        courier: item.courier === 'Y',
         coords: item.coords.split(',').map(num => parseFloat(num)),
-        city: parseInt(item.city, 10),
+        // city: parseInt(item.city, 10),
+        cityId: parseInt(item.city, 10),
         id: parseInt(item.id, 10),
       }))
       .filter(item => item.id !== state.storeRemoteId);

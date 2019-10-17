@@ -303,27 +303,41 @@
       font-size: 13px;
     }
     &__change-store {
-      flex: 0 0 306px;
-      max-width: 306px;
-      margin-right: 37px;
+      //flex: 0 0 306px;
+      //max-width: 306px;
+      //margin-right: 37px;
+      flex: 0 1 auto;
+      max-width: 310px;
+      margin-right: auto;
     }
     &__menu {
       display: block;
-      flex: 0 0 541px;
-      max-width: 541px;
-      margin-right: 31px;
+      //flex: 0 0 541px;
+      //max-width: 541px;
+      //margin-right: 31px;
+
+      flex: 0 0 auto;
+      margin-right: 30px;
+      margin-left: 30px;
     }
 
     .header-login {
       display: block;
-      flex: 0 0 100px;
-      max-width: 100px;
+      //flex: 0 0 100px;
+      //max-width: 100px;
+      flex: 0 1 auto;
+      min-width: 100px;
+      max-width: 120px;
+
+      + .header-number {
+        margin-left: 30px;
+      }
     }
 
     .header-number {
       display: block;
       flex: 0 0 auto;
-      margin-left: auto;
+      //margin-left: auto;
     }
   }
 }
@@ -379,25 +393,28 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    &:hover {
-      color: $main-color;
-    }
 
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      //display: inline-block;
-      top: 8px;
+    &:not([disabled]) {
+      &:hover {
+        color: $main-color;
+      }
 
-      //margin-left: 1px;
-      //vertical-align: middle;
-      right: 0;
-      transition: all .3s ease;
-      border-top: 4px solid;
-      border-right: 3px solid transparent;
-      border-bottom: 0;
-      border-left: 3px solid transparent;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        //display: inline-block;
+        top: 8px;
+
+        //margin-left: 1px;
+        //vertical-align: middle;
+        right: 0;
+        //transition: all .3s ease;
+        border-top: 4px solid;
+        border-right: 3px solid transparent;
+        border-bottom: 0;
+        border-left: 3px solid transparent;
+      }
     }
 
     &:not(.collapsed) {
@@ -422,6 +439,7 @@
     &_store {
       flex: 0 1 auto;
       letter-spacing: 0.01em;
+      color: #7f7f7f;
     }
 
     //@include media-breakpoint-up(xl) {
@@ -455,9 +473,9 @@
     justify-content: space-between;
     color: rgba(#000, 0.5);
     &__item {
-      margin-right: 10px;
-
       &:not(:last-child) {
+        //margin-right: 10px;
+        margin-right: 24px;
         margin-bottom: 0;
       }
     }

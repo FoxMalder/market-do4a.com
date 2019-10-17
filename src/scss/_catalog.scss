@@ -175,7 +175,7 @@
 
     &__button {
       @extend %button-reset;
-      
+
       @include title;
       color: $main-color;
       font-size: 16px;
@@ -2469,6 +2469,7 @@ $multifilter-menu-padding-x: 22px;
   }
 
   &__info {
+    @include clearfix;
     //@include media-breakpoint-up(xl) {
     //  display: flex;
     //  justify-content: space-between;

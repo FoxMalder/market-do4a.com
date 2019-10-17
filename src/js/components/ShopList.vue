@@ -107,24 +107,21 @@
       </div>
       
       <div class="s-map">
-        <div class="s-map__header">
-          <button
-            class="s-map__tab"
-            :class="{ active: currentTab === 'map' }"
-            @click="currentTab = 'map'"
-          >Карта</button>
-          <button
-            class="s-map__tab"
-            :class="{ active: currentTab === 'way' }"
-            v-show="activeStore && (activeStore.wayOnAuto || activeStore.wayOnFoot || activeStore.wayImage)"
-            @click="currentTab = 'way'"
-          >Как добраться</button>
-          <button
-            class="s-map__tab"
-            :class="{ active: currentTab === 'photo' }"
-            v-show="activeStore && activeStore.gallery"
-            @click="currentTab = 'photo'"
-          >Фото</button>
+        <div class="s-map__header" role="tablist">
+          <a class="s-map__tab" role="tab" href="#map" aria-controls="map"
+             :class="{ active: currentTab === 'map' }"
+             @click.prevent="currentTab = 'map'"
+          >Карта</a>
+          <a class="s-map__tab" role="tab" href="#way" aria-controls="way"
+             :class="{ active: currentTab === 'way' }"
+             v-show="activeStore && (activeStore.wayOnAuto || activeStore.wayOnFoot || activeStore.wayImage)"
+             @click.prevent="currentTab = 'way'"
+          >Как добраться</a>
+          <a class="s-map__tab" role="tab" href="#photo" aria-controls="photo"
+             :class="{ active: currentTab === 'photo' }"
+             v-show="activeStore && activeStore.gallery"
+             @click.prevent="currentTab = 'photo'"
+          >Фото</a>
         </div>
         <div class="s-map__content">
           <!--          <ShopListMap-->
@@ -134,16 +131,16 @@
           <!--          />-->
           
           <ShopListMap
-            class="s-map__map"
+            class="s-map__map" role="tabpanel" id="#map"
             v-show="currentTab === 'map'"
             @change="setPoint"
             :currentStoreId="currentStoreId"
           />
           
           <div
+            class="s-map__way" role="tabpanel" id="#way"
             v-if="activeStore"
-            v-show="currentTab === 'way'"
-            class="s-map__way">
+            v-show="currentTab === 'way'">
             <div v-if="activeStore.wayImage">
               <img :src="activeStore.wayImage" alt="">
             </div>
@@ -160,9 +157,9 @@
           </div>
           
           <div
+            class="s-map__gallery" role="tabpanel" id="#photo"
             v-if="activeStore && activeStore.gallery"
-            v-show="currentTab === 'photo'"
-            class="s-map__gallery">
+            v-show="currentTab === 'photo'">
             <img :src="activeStore.gallery" alt="">
           </div>
         </div>
@@ -195,14 +192,19 @@
       }
     },
     mounted() {
+      // Проверяем наличие #storeidXXXXX в url
+      const hashFindIndex = document.location.hash.indexOf('storeid');
+      if (hashFindIndex !== -1) {
+        this.currentStoreId = parseInt(document.location.hash.substring(hashFindIndex + 7), 10)
+      }
 
+      // Кастомный скроллбар на десктопе
       if (document.documentElement.clientWidth >= 1240) {
         this.SimpleBar = new SimpleBar(this.$refs.scrollEl, { autoHide: false });
       }
 
 
       this.headerEl = document.querySelector('.page-header');
-
 
       if (this.headerEl) {
         const searchInput = this.headerEl.querySelectorAll('.search-fild__input');
