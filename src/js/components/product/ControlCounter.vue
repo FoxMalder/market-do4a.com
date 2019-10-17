@@ -6,8 +6,19 @@
            :class="{ 'p-control-counter_hidden': !basketItem }"
            v-show="isAvailable"
            v-touch-pan.vertical.prevent.mouse="handlePan">
+<!--      <div class="p-control-counter"-->
+<!--           ref="counter"-->
+<!--           v-show="isAvailable"-->
+<!--           v-touch-pan.vertical.prevent.mouse="handlePan">-->
         <div class="p-control-counter__header" @click.prevent="toggle">
-          <div class="p-control-counter__icon"></div>
+<!--          <div class="p-control-counter__icon"></div>-->
+          <svg class="p-control-counter__icon" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!--              <path d="M0.859375,1.28748 L7.99988,6.04781 L15.1404,1.28748" stroke="black" stroke-width="2"/>-->
+<!--            <path :d="arrowPath" stroke="black" stroke-width="2" stroke-opacity="0.2"/>-->
+<!--            <path :d="arrowPath" stroke="black" stroke-width="2" stroke-opacity="0.2" transform="translate(0, 5.8)"/>-->
+            <path ref="arrow1" d="M1,5 L8,1 L15,5" stroke="black" stroke-width="2" stroke-opacity="0.2"/>
+            <path ref="arrow2" d="M1,10 L8,6 L15,10" stroke="black" stroke-width="2" stroke-opacity="0.2"/>
+          </svg>
         </div>
         <label class="p-control-counter__title" for="product-counter">Количество</label>
         <div class="p-control-counter__row">
@@ -107,6 +118,9 @@
         panning: false,
         requestStatus: null,
         isOpened: document.documentElement.clientWidth >= 768,
+        // per: 0,
+        // arrowPath: 'M1,1 L8,5 L15,1',
+        // isOpened: true,
       };
     },
     created() {
@@ -121,6 +135,10 @@
       basketItem() {
         return this.$store.getters['cart/getBasketItemByProductId'](this.offer.id);
       },
+      // arrowPath() {
+      //   // return `M1,${1 + 4 * this.per} L8,${5 - 4 * this.per} L15,${1 + 4 * this.per}`;
+      //   return `M1,${5 - 4 * this.per} L8,${1 + 4 * this.per} L15,${5 - 4 * this.per}`;
+      // }
     },
     watch: {
       basketItem(item) {
@@ -151,6 +169,10 @@
         this.$modal.open(ProductSubscribeModal);
       },
       addToCart() {
+
+
+        // this.reveal('up');
+
         this.requestStatus = 'loading';
 
         this.$store.dispatch('cart/addProductToCart', {
@@ -315,15 +337,19 @@
         }
       },
       translateTo(to) {
+        // this.per = to / -132;
         cancelAnimationFrame(this.frame);
         this.frame = requestAnimationFrame(() => {
           this.$refs.counter.style.transform = translateY(to);
+          this.$refs.arrow1.setAttribute('d', `M1,${5 - 4 * to / -132} L8,${1 + 4 * to / -132} L15,${5 - 4 * to / -132}`);
+          this.$refs.arrow2.setAttribute('d', `M1,${10 - 4 * to / -132} L8,${6 + 4 * to / -132} L15,${10 - 4 * to / -132}`);
+          // this.arrowPath = `M1,${5 - 4 * to / -132} L8,${1 + 4 * to / -132} L15,${5 - 4 * to / -132}`;
         });
       },
     }
   }
 </script>
 
-<style scoped>
+<!--<style scoped>-->
 
-</style>
+<!--</style>-->
