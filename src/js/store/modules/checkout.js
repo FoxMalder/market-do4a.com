@@ -144,7 +144,8 @@ function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
         pickup = item;
       }
 
-      return item.category.indexOf('sdek') >= 0;
+      return false;
+      // return item.category.indexOf('sdek') >= 0;
     });
 
     if (courier) {
