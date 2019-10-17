@@ -133,30 +133,73 @@ function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
     /*
       Для локального магазина выбираем только одну курьерскую и один самовывоз, а также все СДЭК
      */
-    let courier = null;
-    let pickup = null;
 
-    const sdekDelivery = filtredDeliveryMethods.filter((item) => {
+
+    // // Самовывоз из магазина
+    // const pickup = filtredDeliveryMethods
+    //   .find(item => item.category === 'pickup');
+    //
+    // // Доставка курьером СДЭКа
+    // const sdekCourier = filtredDeliveryMethods
+    //   .find(item => item.category === 'sdek');
+    //
+    // // Доставка другим курьером, если нет курьера СДЭКа
+    // const courier = filtredDeliveryMethods
+    //   .find(item => item.category === 'courier');
+    //
+    // const deliveryForLocal = [];
+    //
+    // if (pickup) {
+    //   deliveryForLocal.push(pickup);
+    // }
+    //
+    // if (sdekCourier) {
+    //   deliveryForLocal.push(sdekCourier);
+    // } else if (courier) {
+    //   deliveryForLocal.push(courier);
+    // }
+    //
+    // return deliveryForLocal;
+
+
+    let pickup = null;
+    let courier = null;
+    let sdekCourier = null;
+
+    filtredDeliveryMethods.forEach((item) => {
       if (item.type === 'C') {
         courier = item;
       }
       if (item.type === 'P') {
         pickup = item;
       }
-
-      return false;
-      // return item.category.indexOf('sdek') >= 0;
+      if (item.category === 'sdek') {
+        sdekCourier = item;
+      }
     });
 
-    if (courier) {
-      sdekDelivery.push(courier);
-    }
+    return [pickup, sdekCourier || courier].filter(item => item);
 
-    if (pickup) {
-      sdekDelivery.push(pickup);
-    }
 
-    return sdekDelivery;
+    // const sdekDelivery = filtredDeliveryMethods.filter((item) => {
+    //   if (item.type === 'C') {
+    //     courier = item;
+    //   }
+    //   if (item.type === 'P') {
+    //     pickup = item;
+    //   }
+    //
+    //   return false;
+    //   // return item.category.indexOf('sdek') >= 0;
+    // });
+    //
+    // if (courier) {
+    //   sdekDelivery.push(courier);
+    // }
+    //
+    // if (pickup) {
+    //   sdekDelivery.push(pickup);
+    // }
   }
   return filtredDeliveryMethods.filter(item => !item.errors);
 }
