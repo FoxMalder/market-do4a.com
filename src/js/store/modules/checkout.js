@@ -164,7 +164,7 @@ function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
 
     let pickup = null;
     let courier = null;
-    let sdekCourier = null;
+    // let sdekCourier = null;
 
     filtredDeliveryMethods.forEach((item) => {
       if (item.type === 'C') {
@@ -173,13 +173,22 @@ function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
       if (item.type === 'P') {
         pickup = item;
       }
-      if (item.category === 'sdek') {
-        sdekCourier = item;
-      }
+      // if (item.category === 'sdek') {
+      //   sdekCourier = item;
+      // }
     });
 
-    return [pickup, sdekCourier || courier].filter(item => item);
+    const sdekDelivery = filtredDeliveryMethods
+      .filter(item => item.category.indexOf('sdek') >= 0)
+      .filter(item => item.name.indexOf('СДЭК общий') < 0);
 
+    // return [pickup, sdekCourier || courier].filter(item => item);
+
+    if (sdekDelivery.length) {
+      return [pickup, ...sdekDelivery].filter(item => item);
+    }
+
+    return [pickup, courier].filter(item => item);
 
     // const sdekDelivery = filtredDeliveryMethods.filter((item) => {
     //   if (item.type === 'C') {
