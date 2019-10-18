@@ -36,9 +36,10 @@
       ...mapGetters({
         getStoreById: 'getStoreById',
       }),
-      // groupStore() {
-      //   return this.$store.state.checkout.groupStore.map(storeId => this.getStoreById(storeId)).filter(item => item);
-      // }
+      groupStore() {
+        // return this.$store.state.checkout.groupStore.map(storeId => this.getStoreById(storeId)).filter(item => item);
+        return this.order.groupStore.map(storeId => this.getStoreById(storeId)).filter(item => item);
+      }
     },
     methods: {
       setStore(store) {
