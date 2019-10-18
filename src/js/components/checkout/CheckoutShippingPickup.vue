@@ -1,7 +1,7 @@
 <template>
   <ul class="o-shipping-pickup">
     <li class="o-shipping-pickup__item"
-        v-for="store in order.groupStore">
+        v-for="store in groupStore">
       <input class="o-shipping-pickup__input"
              name="storeId"
              type="radio"
