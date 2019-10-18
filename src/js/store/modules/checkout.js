@@ -470,7 +470,7 @@ export default function createModule(options) {
         }
        */
     ],
-    groupStore: options.groupStore,
+    // groupStore: options.groupStore,
     propertyGroups: [],
     propertyList: [],
     // staticPropertyList: [],
@@ -643,6 +643,7 @@ export default function createModule(options) {
           storeId: window.app.storeId,
           total: convertTotal(options.result.TOTAL),
           productList: convertProducts(options.result.GRID.ROWS),
+          groupStore: options.groupStore,
           isLocaleStore,
           deliveryMethods,
           paymentMethods,
@@ -671,7 +672,7 @@ export default function createModule(options) {
           request.order[`ORDER_PROP_${prop.ID}`] = prop.VALUE[0];
         });
 
-        const { order } = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
+        const { order, groupStore } = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
         options.result = [options.result, order];
 
         // order.DELIVERY: Object
@@ -697,6 +698,7 @@ export default function createModule(options) {
           isLocaleStore: false,
           productList: convertProducts(order.GRID.ROWS),
           total: convertTotal(order.TOTAL),
+          groupStore,
           deliveryMethods,
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,

@@ -1,7 +1,7 @@
 <template>
   <ul class="o-shipping-pickup">
     <li class="o-shipping-pickup__item"
-        v-for="store in groupStore">
+        v-for="store in order.groupStore">
       <input class="o-shipping-pickup__input"
              name="storeId"
              type="radio"
@@ -36,9 +36,9 @@
       ...mapGetters({
         getStoreById: 'getStoreById',
       }),
-      groupStore() {
-        return this.$store.state.checkout.groupStore.map(storeId => this.getStoreById(storeId)).filter(item => item);
-      }
+      // groupStore() {
+      //   return this.$store.state.checkout.groupStore.map(storeId => this.getStoreById(storeId)).filter(item => item);
+      // }
     },
     methods: {
       setStore(store) {
