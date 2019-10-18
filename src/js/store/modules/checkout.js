@@ -722,7 +722,7 @@ export default function createModule(options) {
       const orderList = payload
         .filter(result => !result.redirect)
         .map((result) => {
-          const { order, oldOrderData } = result;
+          const { order, groupStore, oldOrderData } = result;
 
           if (!order) {
             return oldOrderData;
@@ -753,6 +753,7 @@ export default function createModule(options) {
             ...oldOrderData,
             deliveryMethods,
             paymentMethods,
+            groupStore,
             deliveryId: checkedDelivery ? checkedDelivery.id : null,
             paymentId: checkedPayment ? checkedPayment.id : null,
             productList: convertProducts(order.GRID.ROWS),
