@@ -110,8 +110,8 @@ function mappingPaymentMethods(payments) {
  *
  * @returns { Array } - Список в собственном формате
  */
-function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
-  const filtredDeliveryMethods = Object.values(DELIVERY)
+function mappingDeliveryMethods(DELIVERY) {
+  return Object.values(DELIVERY)
     .sort((a, b) => {
       const sort = parseInt(a.SORT, 10) - parseInt(b.SORT, 10);
       if (sort === 0) {
@@ -133,90 +133,8 @@ function mappingDeliveryMethods(DELIVERY, isLocaleStore = false) {
       type: item.TYPE,
       logoUrl: item.LOGOTIP ? item.LOGOTIP.SRC : '',
       category: item.CATEGORY,
-    }));
-
-  if (isLocaleStore) {
-    /*
-      Для локального магазина выбираем только одну курьерскую и один самовывоз, а также все СДЭК
-     */
-
-
-    // // Самовывоз из магазина
-    // const pickup = filtredDeliveryMethods
-    //   .find(item => item.category === 'pickup');
-    //
-    // // Доставка курьером СДЭКа
-    // const sdekCourier = filtredDeliveryMethods
-    //   .find(item => item.category === 'sdek');
-    //
-    // // Доставка другим курьером, если нет курьера СДЭКа
-    // const courier = filtredDeliveryMethods
-    //   .find(item => item.category === 'courier');
-    //
-    // const deliveryForLocal = [];
-    //
-    // if (pickup) {
-    //   deliveryForLocal.push(pickup);
-    // }
-    //
-    // if (sdekCourier) {
-    //   deliveryForLocal.push(sdekCourier);
-    // } else if (courier) {
-    //   deliveryForLocal.push(courier);
-    // }
-    //
-    // return deliveryForLocal;
-
-
-    let pickup = null;
-    let courier = null;
-    // let sdekCourier = null;
-
-    filtredDeliveryMethods.forEach((item) => {
-      if (item.type === 'C') {
-        courier = item;
-      }
-      if (item.type === 'P') {
-        pickup = item;
-      }
-      // if (item.category === 'sdek') {
-      //   sdekCourier = item;
-      // }
-    });
-
-    const sdekDelivery = filtredDeliveryMethods
-      .filter(item => item.category.indexOf('sdek') >= 0)
-      .filter(item => item.name.indexOf('СДЭК общий') < 0);
-
-    // return [pickup, sdekCourier || courier].filter(item => item);
-
-    if (sdekDelivery.length) {
-      return [pickup, ...sdekDelivery].filter(item => item);
-    }
-
-    return [pickup, courier].filter(item => item);
-
-    // const sdekDelivery = filtredDeliveryMethods.filter((item) => {
-    //   if (item.type === 'C') {
-    //     courier = item;
-    //   }
-    //   if (item.type === 'P') {
-    //     pickup = item;
-    //   }
-    //
-    //   return false;
-    //   // return item.category.indexOf('sdek') >= 0;
-    // });
-    //
-    // if (courier) {
-    //   sdekDelivery.push(courier);
-    // }
-    //
-    // if (pickup) {
-    //   sdekDelivery.push(pickup);
-    // }
-  }
-  return filtredDeliveryMethods.filter(item => !item.errors);
+    }))
+    .filter(item => !item.errors);
 }
 
 
@@ -493,27 +411,9 @@ export default function createModule(options) {
   };
 
   const getters = {
-    // getCurrentStep: state => state.steps.find(item => item.key === state.currentStepName),
-    // nextStepButton: (state) => {
-    //   if (document.documentElement.clientWidth < 1240) {
-    //     const st = state.steps.find(item => item.key === state.currentStepName);
-    //
-    //     if (st) {
-    //       return {
-    //         key: st.next,
-    //         text: st.nextButtonText,
-    //       };
-    //     }
-    //   }
-    //   return {
-    //     key: 'final',
-    //     text: 'Оформить заказ',
-    //   };
-    // },
-
-
     // New
     totalQuantity: state => state.orderList.reduce((c, order) => c + order.productList.length, 0),
+
     totalQuantityText: (state, getters) => `${getters.totalQuantity} ${Utils.declOfNum(getters.totalQuantity, [
       'товар',
       'товара',
@@ -637,7 +537,7 @@ export default function createModule(options) {
         const isLocaleStore = options.result.LOCAL_STORE === 'Y';
 
         // order.DELIVERY: Object
-        const deliveryMethods = mappingDeliveryMethods(options.result.DELIVERY, isLocaleStore);
+        const deliveryMethods = mappingDeliveryMethods(options.result.DELIVERY);
         const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
 
         // order.PAY_SYSTEM: Array
@@ -750,7 +650,7 @@ export default function createModule(options) {
           });
 
           // order.DELIVERY: Object
-          const deliveryMethods = mappingDeliveryMethods(order.DELIVERY, oldOrderData.isLocaleStore);
+          const deliveryMethods = mappingDeliveryMethods(order.DELIVERY);
           const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
 
           // order.PAY_SYSTEM: Array
