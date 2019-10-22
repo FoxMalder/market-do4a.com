@@ -27,7 +27,8 @@
           <b>{{ order.total.ORDER_PRICE_FORMATED }}</b>
         </div>
       </div>
-      <div class="order-item__row">
+      <div class="order-item__row"
+           v-show="order.deliveryItem">
         <div class="order-item__key">Доставка</div>
         <div class="order-item__value">
           <b v-if="order.total.DELIVERY_PRICE > 0">{{ order.total.DELIVERY_PRICE_FORMATED }}</b>
@@ -35,9 +36,10 @@
         </div>
       </div>
       <div class="order-item__row"
-           v-if="order.total.DISCOUNT_PRICE > 0">
+           v-show="order.total.DISCOUNT_PRICE > 0">
         <div class="order-item__key">Скидка</div>
-        <div class="order-item__value"><b class="red">{{ order.total.DISCOUNT_PRICE_FORMATED }}</b>
+        <div class="order-item__value">
+          <b class="red">{{ order.total.DISCOUNT_PRICE_FORMATED }}</b>
         </div>
       </div>
       <div class="order-item__row" v-if="multiple && order.paymentItem">

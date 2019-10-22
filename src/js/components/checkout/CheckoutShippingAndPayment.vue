@@ -39,6 +39,13 @@
           </div>
         </template>
         
+        <template v-if="order.errors && order.errors.length">
+          <div class="order-shiping__error"
+               v-for="error in order.errors">
+            {{ error }}
+          </div>
+        </template>
+        
         <h3 class="order-shiping__title">Способ получения</h3>
         <div class="order-option"
              v-for="item in order.deliveryMethods"
@@ -78,7 +85,7 @@
             <template v-if="item.category !== 'pickup' && breakpoint !== 'xl'">
               <div class="order-option__subtitle">Адрес доставки</div>
               <CheckoutAddress :category="item.category"/>
-  
+              
               <div class="n-form-group" v-for="prop in getPropsByDeliveryId(item.id)">
                 <div class="n-form-group__field">
                   <InputField :prop="prop"/>
@@ -86,24 +93,23 @@
                 <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
               </div>
             </template>
-  
+            
             <!-- Выбор пункта самовывоза СДЭК -->
             <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
-  
+            
             <!-- Выбор магазина для самовывоза -->
             <CheckoutShippingPickup v-if="item.category === 'pickup'" :order="order"/>
-            
+          
           </div>
         </div>
       </div>
       
       <div class="order-shiping__payment-type">
-        <template v-if="errors.PAY_SYSTEM && errors.PAY_SYSTEM.length">
-          <div class="order-shiping__error"
-               v-for="error in errors.PAY_SYSTEM">
-            {{error}}
-          </div>
-        </template>
+        
+        <div
+          class="order-shiping__error"
+          v-for="error in errors.PAY_SYSTEM"
+        >{{ error }}</div>
         
         <h3 class="order-shiping__title">Способ оплаты</h3>
         <div class="order-option"

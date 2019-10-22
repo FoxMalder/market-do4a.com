@@ -238,6 +238,10 @@
     name: "InputField",
     props: {
       prop: Object,
+      // value: {
+      //   type: String,
+      //   defau
+      // }
     },
     directives: {
       mask
@@ -259,12 +263,21 @@
     //     return { required: this.prop.required, email: this.prop.type === 'email' };
     //   }
     // },
-    // mounted() {
-    //   // if (this.$el.Input) {
-    //   //   this.$el.Input.unMount();
-    //   // }
-    //
-    //
+    mounted() {
+      // if (this.$el.Input) {
+      //   this.$el.Input.unMount();
+      // }
+
+
+      if (this.prop.type === 'tel') {
+        this.update(this.prop.value);
+        this.prop.value = this.maskedValue;
+      }
+    },
+    // watch: {
+    //   prop(newProp, oldProp) {
+    //     console.log('sdfghfdsghdsf sergh', newProp, oldProp)
+    //   }
     // },
     methods: {
       check() {
@@ -326,7 +339,7 @@
         if (r) {
           // const u = parseMask(i || '', this.mask || '', n);
           const u = parseMask(i || '', t || '', n);
-          
+
           console.log(u);
 
           this.maskedValue = u.maskedValue;
@@ -344,7 +357,7 @@
 
         this.maskedValue = d.maskedValue;
         this.unmaskedValue = d.unmaskedValue;
-        
+
         return d.unmaskedValue;
       },
 
@@ -362,22 +375,22 @@
           // };
           this.maskedValue = o.maskedValue;
           this.unmaskedValue = o.unmaskedValue;
-          
+
           return o.unmaskedValue;
         }
       },
 
-      update(e) {
+      update(value) {
         // const oldState = this.state;
-        const value = this.mask ? this.maskingValue(this.mask, e.target.value, true) : e.target.value;
-        const newMask = this.defineMobileMask(this.mask || '', value);
-        
+        const maskValue = this.mask ? this.maskingValue(this.mask, value, true) : value;
+        const newMask = this.defineMobileMask(this.mask || '', maskValue);
+
         if (newMask) {
-          const n = value || ''; // Default Value
+          const n = maskValue || ''; // Default Value
 
           this.maskingValue(newMask, n);
-          
-          
+
+
           // if (newMask !== this.mask) {
           //   this.maskingValue(newMask, n); // init
           // } else {
@@ -392,14 +405,20 @@
 
       onInput(e) {
         console.log('onInput');
-        
+
         if (this.prop.type === 'tel') {
-          this.update(e);
-          
+          this.update(e.target.value);
+
           if (!this.isRemovingKeyPressed) {
             this.prop.value = this.maskedValue;
           }
+          // else {
+          //   this.prop.value = this.maskedValue;
+          // }
         }
+        // else {
+        //   this.prop.value = e.target.value;
+        // }
       },
       onKeyUp() {
         // console.log('onKeyUp');

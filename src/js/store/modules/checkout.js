@@ -69,6 +69,12 @@ export const param = {
   }
  */
 
+
+function validEmail(email) {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
 /**
  * Преобразует и сортирует список методов оплаты
  *
@@ -460,6 +466,7 @@ export default function createModule(options) {
     orderList: [
       /*
         {
+          errors,
           storeId,
           deliveryId,
           paymentId,
@@ -486,23 +493,23 @@ export default function createModule(options) {
   };
 
   const getters = {
-    getCurrentStep: state => state.steps.find(item => item.key === state.currentStepName),
-    nextStepButton: (state) => {
-      if (document.documentElement.clientWidth < 1240) {
-        const st = state.steps.find(item => item.key === state.currentStepName);
-
-        if (st) {
-          return {
-            key: st.next,
-            text: st.nextButtonText,
-          };
-        }
-      }
-      return {
-        key: 'final',
-        text: 'Оформить заказ',
-      };
-    },
+    // getCurrentStep: state => state.steps.find(item => item.key === state.currentStepName),
+    // nextStepButton: (state) => {
+    //   if (document.documentElement.clientWidth < 1240) {
+    //     const st = state.steps.find(item => item.key === state.currentStepName);
+    //
+    //     if (st) {
+    //       return {
+    //         key: st.next,
+    //         text: st.nextButtonText,
+    //       };
+    //     }
+    //   }
+    //   return {
+    //     key: 'final',
+    //     text: 'Оформить заказ',
+    //   };
+    // },
 
 
     // New
@@ -599,7 +606,7 @@ export default function createModule(options) {
   };
 
   const actions = {
-    async init({ commit, dispatch }) {
+    async init({ commit, dispatch, rootState }) {
       commit('SET_PARAM', options.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
 
@@ -640,7 +647,8 @@ export default function createModule(options) {
         orderList.unshift({
           id: 2,
           index: 2,
-          storeId: window.app.storeId,
+          errors: [],
+          storeId: rootState.storeId,
           total: convertTotal(options.result.TOTAL),
           productList: convertProducts(options.result.GRID.ROWS),
           groupStore: options.groupStore,
@@ -664,7 +672,7 @@ export default function createModule(options) {
           SITE_ID: options.siteID,
           signedParamsString: options.signedParamsString,
           sessid: Utils.sessid(),
-          storeId: window.app.storeRemoteId,
+          storeId: rootState.storeRemoteId,
         };
 
         Object.values(propertyList).forEach((prop) => {
@@ -694,7 +702,8 @@ export default function createModule(options) {
         orderList.unshift({
           id: 1,
           index: 1,
-          storeId: window.app.storeRemoteId,
+          errors: [],
+          storeId: rootState.storeRemoteId,
           isLocaleStore: false,
           productList: convertProducts(order.GRID.ROWS),
           total: convertTotal(order.TOTAL),
@@ -896,48 +905,71 @@ export default function createModule(options) {
       dispatch('refreshOrderAjax');
     },
 
-    async validatePropsData({ state }) {
-      let error = false;
+    // async validatePropsData({ state }) {
+    //   let error = false;
+    //
+    //   await Promise.all(state.propertyList.map(async (item) => {
+    //     if (item.propsGroupId === 2) {
+    //       return;
+    //     }
+    //
+    //     if (item.required && item.value === '') {
+    //       item.error = 'Заполните это поле';
+    //       error = true;
+    //       return;
+    //     }
+    //
+    //     if (item.type === 'email') {
+    //       const { errors } = await validate(item.value, 'email');
+    //
+    //       if (errors.length > 0) {
+    //         item.error = 'Введите верный email';
+    //         error = true;
+    //       }
+    //     }
+    //   }));
+    //
+    //   return error;
+    // },
 
-      await Promise.all(state.propertyList.map(async (item) => {
-        if (item.propsGroupId === 2) {
-          return;
-        }
-
-        if (item.required && item.value === '') {
-          item.error = 'Заполните это поле';
-          error = true;
-          return;
-        }
-
-        if (item.type === 'email') {
-          const { errors } = await validate(item.value, 'email');
-
-          if (errors.length > 0) {
-            item.error = 'Введите верный email';
-            error = true;
-          }
-        }
-      }));
-
-      return error;
-    },
-
-    async setStep({ commit, dispatch }, step) {
-      if (step.key === 'final') {
-        dispatch('checkout');
-      } else if (step.key === 'shipping-and-payment') {
-        if (await dispatch('validatePropsData')) {
-          Utils.scrollTo(document.getElementById('order-props'));
-          return;
-        }
-        commit('SET_CURRENT_STEP', step);
-        Utils.scrollTo(document.querySelector('.cart'));
-      } else if (step.key === 'form') {
-        commit('SET_CURRENT_STEP', step);
-        Utils.scrollTo(document.querySelector('.cart'));
-      }
-    },
+    // validateProps({ state }) {
+    //   let error = false;
+    //
+    //   state.propertyList.forEach((item) => {
+    //     if (item.propsGroupId === 2) {
+    //       return;
+    //     }
+    //
+    //     if (item.required && item.value === '') {
+    //       item.error = 'Заполните это поле';
+    //       error = true;
+    //       return;
+    //     }
+    //
+    //     if (item.type === 'email' && validEmail(item.value)) {
+    //       item.error = 'Введите верный email';
+    //       error = true;
+    //     }
+    //   });
+    //
+    //   return error;
+    // },
+    //
+    // async setStep({ commit, dispatch }, step) {
+    //   if (step.key === 'final') {
+    //     dispatch('checkout');
+    //   } else if (step.key === 'shipping-and-payment') {
+    //     if (await dispatch('validatePropsData')) {
+    //       Utils.scrollTo(document.getElementById('order-props'));
+    //       return;
+    //     }
+    //     commit('SET_CURRENT_STEP', step);
+    //     Utils.scrollTo(document.querySelector('.cart'));
+    //   } else if (step.key === 'form') {
+    //     commit('SET_CURRENT_STEP', step);
+    //     Utils.scrollTo(document.querySelector('.cart'));
+    //   }
+    // },
 
     SET_ERRORS({ commit }, errors) {
       console.log(errors);
@@ -964,44 +996,45 @@ export default function createModule(options) {
     async checkout({
       state, commit, dispatch, getters,
     }) {
-
       // try {
       //   window['yaCounter' + app.metrikaId].reachGoal('CLICK_ORDER_BUTTON');
       // } catch (ex) {}
 
-      if (await dispatch('validatePropsData')) {
-        Utils.scrollTo(document.getElementById('order-props'));
-        return;
-      }
+      // if (await dispatch('validatePropsData')) {
+      //   Utils.scrollTo(document.getElementById('order-props'));
+      //   return;
+      // }
 
-      const err = {};
-      getters.orderList.forEach((order) => {
-        // if (!order.deliveryItem) {
-        //   err.DELIVERY = ['Не выбран способ доставки'];
-        // } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
-        //   err.DELIVERY = ['Не выбран пункт самовывоза'];
-        // }
-
-        console.log(order);
-
-        if (!order.deliveryId) {
-          err.DELIVERY = ['Не выбран способ доставки (1)'];
-        }
-
-        if (!order.deliveryItem) {
-          err.DELIVERY = ['Не выбран способ доставки (2)'];
-        } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
-          err.DELIVERY = ['Не выбран пункт самовывоза'];
-        }
-
-        if (!order.paymentId) {
-          err.PAY_SYSTEM = ['Не выбран метод оплаты'];
-        }
-      });
-      if (err.PAY_SYSTEM || err.DELIVERY) {
-        dispatch('SET_ERRORS', err);
-        return;
-      }
+      // const err = {};
+      // getters.orderList.forEach((order) => {
+      //   // if (!order.deliveryItem) {
+      //   //   err.DELIVERY = ['Не выбран способ доставки'];
+      //   // } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
+      //   //   err.DELIVERY = ['Не выбран пункт самовывоза'];
+      //   // }
+      //
+      //   console.log(order);
+      //
+      //   // if (!order.deliveryId) {
+      //   //   err.DELIVERY = ['Не выбран способ доставки (1)'];
+      //   // }
+      //
+      //   if (!order.deliveryItem) {
+      //     err.DELIVERY = ['Не выбран способ доставки'];
+      //   } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
+      //     err.DELIVERY = ['Не выбран пункт самовывоза'];
+      //   }
+      //
+      //   if (!order.paymentId) {
+      //     err.PAY_SYSTEM = ['Не выбран метод оплаты'];
+      //   }
+      // });
+      //
+      //
+      // if (err.PAY_SYSTEM || err.DELIVERY) {
+      //   dispatch('SET_ERRORS', err);
+      //   return;
+      // }
 
 
       commit('SET_CHECKOUT_STATUS', 'loading');
@@ -1092,16 +1125,16 @@ export default function createModule(options) {
         }
       });
 
-      if (orders.length > 0) {
-        if (resultList.length !== orders.length) {
-          alert('Некоторые отправления не были оформлены. Вернитесь в корзину, чтобы повторить');
-        }
-
-        document.location.href = `/checkout/final/?ORDER_ID=${orders.join(',')}`;
-      } else {
-        alert('Что-то пошло не так(');
+      // Нет успешных заказов
+      if (orders.length === 0) {
+        return;
       }
-      // }
+
+      if (resultList.length !== orders.length) {
+        alert('Некоторые отправления не были оформлены. Вернитесь в корзину, чтобы повторить');
+      }
+
+      document.location.href = `/checkout/final/?ORDER_ID=${orders.join(',')}`;
     },
   };
 
@@ -1136,6 +1169,15 @@ export default function createModule(options) {
     //   } else {
     //     state.staticPropertyList.push({ name, value, root });
     //   }
+    // },
+
+    // CLEAR_ERRORS(state, errors) {
+    //   state.errors = {
+    //     PROPERTY: [],
+    //     PAY_SYSTEM: [],
+    //     DELIVERY: [],
+    //     AUTH: [],
+    //   };
     // },
 
     SET_ERRORS(state, errors) {

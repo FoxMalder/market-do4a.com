@@ -11,9 +11,9 @@
       </div>
     </header>
     
-<!--        <div class="container">-->
-<!--          <button @click.prevent="showOnMap">Открыть карту</button>-->
-<!--        </div>-->
+    <!--        <div class="container">-->
+    <!--          <button @click.prevent="showOnMap">Открыть карту</button>-->
+    <!--        </div>-->
     
     <!--    <CheckoutShippingSDEK/>-->
     
@@ -29,7 +29,7 @@
       </div>
       
       
-                  <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
+      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
       
       <template v-else-if="breakpoint === 'xl'">
         <div class="container">
@@ -47,7 +47,7 @@
                   <button
                     class="btn btn-red btn-skew btn-block"
                     type="submit"
-                    @click.prevent="setStep(nextStepButton)"
+                    @click.prevent="checkout"
                   >Оформить заказ</button>
                 </CheckoutBasket>
               </Affix>
@@ -65,7 +65,7 @@
             :class="['cart-mobile-header__item', { active: currentStep === step.key }]">
             <a href="#"
                class="cart-mobile-header__link"
-               @click.prevent="setStep(step)"
+               @click.prevent="setStep(step.key)"
             >{{ step.title }}</a>
           </li>
         </ul>
@@ -75,9 +75,9 @@
               <button
                 class="btn btn-red btn-skew btn-block" type="button"
                 ref="test"
-                @click="setStep(nextStepButton)"
+                @click.prevent="nextStep"
               >
-                {{ nextStepButton.text }}
+                {{ nextStepButtonText }}
                 <svg v-if="currentStep !== 'basket'" class="btn-icon" style="margin-left: 25px; width: 20px; height: 16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>
                 </svg>
@@ -89,9 +89,9 @@
              :class="{ active: visibleFooter }">
           <button
             class="btn btn-red btn-block" type="button"
-            @click="setStep(nextStepButton)"
+            @click.prevent="nextStep"
           >
-            {{ nextStepButton.text }}
+            {{ nextStepButtonText }}
             <svg v-if="currentStep !== 'basket'" class="btn-icon" style="margin-left: 25px; width: 20px; height: 16px" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3431 0.928881L19.7071 7.29284C20.0976 7.68337 20.0976 8.31653 19.7071 8.70706L13.3431 15.071C12.9526 15.4615 12.3195 15.4615 11.9289 15.071C11.5384 14.6805 11.5384 14.0473 11.9289 13.6568L16.5858 8.99995L-7.31201e-07 8.99995L-5.56355e-07 6.99995L16.5858 6.99995L11.9289 2.34309C11.5384 1.95257 11.5384 1.31941 11.9289 0.928881C12.3195 0.538356 12.9526 0.538356 13.3431 0.928881Z" fill="currentColor"/>
             </svg>
@@ -117,6 +117,12 @@
   import Utils from './../../utils/utils';
 
 
+  function validEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+
   export default {
     name: "Checkout",
     components: {
@@ -130,30 +136,84 @@
     },
     data() {
       return {
+        currentStep: 'basket',
         visibleFooter: true,
         breakpoint: 'xs',
+        steps: [
+          {
+            key: 'basket',
+            next: 'form',
+            title: 'Корзина',
+            nextButtonText: 'Перейти к оформлению',
+          },
+          {
+            key: 'form',
+            next: 'shipping-and-payment',
+            title: 'Ваши данные',
+            nextButtonText: 'Доставка и оплата',
+          },
+          {
+            key: 'shipping-and-payment',
+            next: 'final',
+            title: 'Доставка и оплата',
+            nextButtonText: 'Оформить заказ',
+          },
+          {
+            key: 'final',
+            next: 'basket',
+            title: 'Финал',
+            nextButtonText: 'Оплатить заказ',
+          },
+        ],
       }
     },
     computed: {
       ...mapState({
-        steps: state => state.checkout.steps,
-        currentStep: state => state.checkout.currentStepName,
+        // steps: state => state.checkout.steps,
+        // currentStep: state => state.checkout.currentStepName,
         checkoutStatus: state => state.checkout.checkoutStatus,
       }),
       ...mapGetters({
         basketItems: 'cart/availableProducts',
         totalQuantity: 'checkout/totalQuantity',
-        nextStepButton: 'checkout/nextStepButton',
+        // nextStepButton: 'checkout/nextStepButton',
       }),
+
+
       currentTabComponent() {
         return `checkout-${this.currentStep}`;
       },
+
+      nextStepName() {
+        switch (this.currentStep) {
+          case 'basket':
+            return 'form';
+          case 'form':
+            return 'shipping-and-payment';
+          case 'shipping-and-payment':
+            return 'final';
+          default:
+            return 'basket';
+        }
+      },
+
+      nextStepButtonText() {
+        switch (this.currentStep) {
+          case 'basket':
+            return 'Перейти к оформлению';
+          case 'form':
+            return 'Доставка и оплата';
+          case 'shipping-and-payment':
+          default:
+            return 'Оформить заказ';
+        }
+      },
     },
     methods: {
-      ...mapActions('checkout', {
-        setStep: 'setStep',
-        // refreshOrderAjax: 'refreshOrderAjax',
-      }),
+      // ...mapActions('checkout', {
+      //   setStep: 'setStep',
+      //   // refreshOrderAjax: 'refreshOrderAjax',
+      // }),
 
       // validate() {
       //   Utils.scrollTo(this.$refs.form.$el)
@@ -171,14 +231,129 @@
       },
 
 
-      showOnMap() {
-        this.$modal.open(AppModalMap, {
-          props: { storeId: 35900 },
+      // showOnMap() {
+      //   this.$modal.open(AppModalMap, {
+      //     props: { storeId: 35900 },
+      //   });
+      // },
+
+
+      validateProps() {
+        let error = false;
+
+        this.$store.state.checkout.propertyList.forEach((item) => {
+          if (item.propsGroupId === 2) {
+            return;
+          }
+
+          if (item.required && item.value === '') {
+            item.error = 'Заполните это поле';
+            error = true;
+            return;
+          }
+
+          if (item.type === 'email' && !validEmail(item.value)) {
+            item.error = 'Введите верный email';
+            error = true;
+          }
         });
+
+        return error;
+      },
+
+      validateOrders() {
+        let error = false;
+
+        this.$store.state.checkout.orderList.forEach((order) => {
+          order.errors = [];
+
+          if (!order.deliveryId) {
+            order.errors.push('Не выбран способ доставки');
+          } else {
+
+            const deliveryItem = order.deliveryMethods.find(item => item.id === order.deliveryId);
+            if (deliveryItem.category === 'sdek.pickup' && !this.$store.state.checkout.props.sdekPickup) {
+              order.errors.push('Не выбран пункт самовывоза');
+            }
+
+            if (!order.paymentId) {
+              order.errors.push('Не выбран метод оплаты');
+            }
+          }
+
+          if (order.errors.length) {
+            error = true;
+          }
+        });
+
+
+        // this.$store.state.checkout.propertyList.forEach((item) => {
+        //   if (item.propsGroupId !== 2) {
+        //     return;
+        //   }
+        //
+        //   if (item.required && item.value === '') {
+        //     item.error = 'Заполните это поле';
+        //     error = true;
+        //     return;
+        //   }
+        //
+        //   if (item.type === 'email' && validEmail(item.value)) {
+        //     item.error = 'Введите верный email';
+        //     error = true;
+        //   }
+        // });
+
+        return error;
+      },
+
+      nextStep() {
+        this.setStep(this.nextStepName);
+      },
+
+      setStep(step) {
+        switch (step) {
+          case 'final':
+            if (this.validateProps()) {
+              this.currentStep = 'form';
+              Utils.scrollTo(document.querySelector('.cart'));
+              break;
+            }
+            if (this.validateOrders()) {
+              Utils.scrollTo(document.querySelector('.cart'));
+              this.currentStep = 'shipping-and-payment';
+              break;
+            }
+            this.$store.dispatch('checkout/checkout');
+            break;
+          case 'shipping-and-payment':
+            if (this.validateProps()) {
+              Utils.scrollTo(document.querySelector('.cart'));
+              this.currentStep = 'form';
+              break;
+            }
+            Utils.scrollTo(document.querySelector('.cart'));
+            this.currentStep = step;
+            break;
+          default:
+            Utils.scrollTo(document.querySelector('.cart'));
+            this.currentStep = step;
+        }
       },
 
       checkout() {
-        console.log('оформить заказ');
+        console.log('checkout');
+
+        if (this.validateProps()) {
+          Utils.scrollTo(document.getElementById('order-props'));
+          return;
+        }
+
+        if (this.validateOrders()) {
+          Utils.scrollTo(document.getElementById('order-delivery'));
+          return;
+        }
+        this.$store.dispatch('checkout/checkout');
       }
     },
     created() {
