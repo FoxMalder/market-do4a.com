@@ -15,8 +15,9 @@
       </button>
     </div>
     
-    <div class="order__alert" v-if="orderList.length > 1 && isMobile">
-      <CheckoutAlert/>
+    <div class="order__alert" v-if="isMobile && orderList.length > 0">
+      <CheckoutAlert v-if="orderList.length > 1" :type="'multiple'"/>
+      <CheckoutAlert v-else-if="!orderList[0].isLocaleStore" :type="'central'"/>
     </div>
     
     <div class="order__list">

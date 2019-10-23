@@ -107,7 +107,6 @@ function mappingPaymentMethods(payments) {
  * Преобразует, сортирует и фильтрует список методов доставки
  *
  * @param   { Object }  DELIVERY - Список в формате Битрикса ( order.DELIVERY )
- * @param   { Boolean } isLocaleStore   - Тип заказа (магазин или ЦС)
  *
  * @returns { Array } - Список в собственном формате
  */
@@ -336,36 +335,6 @@ export default function createModule(options) {
   param.basketHasRemoteProducts = options.basketHasRemoteProducts;
 
   const state = {
-    // currentStepName: 'basket',
-    // steps: [
-    //   {
-    //     key: 'basket',
-    //     next: 'form',
-    //     title: 'Корзина',
-    //     nextButtonText: 'Перейти к оформлению',
-    //   },
-    //   {
-    //     key: 'form',
-    //     next: 'shipping-and-payment',
-    //     title: 'Ваши данные',
-    //     nextButtonText: 'Доставка и оплата',
-    //   },
-    //   {
-    //     key: 'shipping-and-payment',
-    //     next: 'final',
-    //     title: 'Доставка и оплата',
-    //     nextButtonText: 'Оформить заказ',
-    //   },
-    //   {
-    //     key: 'final',
-    //     next: 'basket',
-    //     title: 'Финал',
-    //     nextButtonText: 'Оплатить заказ',
-    //   },
-    // ],
-
-    // propertyDescription: '',
-
     checkoutStatus: null,
 
     buyerStore: null,

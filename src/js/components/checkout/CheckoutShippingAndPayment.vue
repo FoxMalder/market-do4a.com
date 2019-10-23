@@ -1,9 +1,10 @@
 <template>
   <div id="order-delivery" class="order-sap">
-    <CheckoutAlert v-if="multiple"/>
+    <CheckoutAlert v-if="multiple" :type="'multiple'"/>
+    <CheckoutAlert v-else-if="fromCentralStock" :type="'central'"/>
     
     <div class="order-shiping" v-for="order in orderList">
-      <template v-if="multiple">
+      <template v-if="multiple || fromCentralStock">
         <div class="order-shiping__header">
           <div class="order-shiping__name">Отправление {{ order.index }}</div>
           <button
@@ -210,7 +211,10 @@
       }),
       multiple() {
         return this.orderList.length > 1;
-      }
+      },
+      fromCentralStock() {
+        return this.orderList.length === 1 && !this.orderList[0].isLocaleStore
+      },
     },
     methods: {
       ...mapActions('checkout', {
