@@ -91,6 +91,7 @@
   import CheckoutAddress from './CheckoutAddress.vue';
   import TextareaAutoHeight from '../../plugins/TextareaAutoHeight';
   // import TransformSkew from './../TransformSkew.vue';
+  import Utils from './../../utils/utils';
 
 
   export default {
@@ -126,6 +127,15 @@
     mounted() {
       new TextareaAutoHeight(this.$refs.textarea);
     },
+    watch: {
+      filtredProps(newList, oldList) {
+        console.log(newList, oldList);
+        
+        if (newList.length > oldList.length) {
+          Utils.scrollTo(document.getElementById('order-props'));
+        }
+      },
+    },
     computed: {
       ...mapState('checkout', {
         propertyList: 'propertyList',
@@ -144,18 +154,22 @@
         return this.orderList.find(order => order.deliveryItem && order.deliveryItem.category !== 'pickup');
       },
 
-      // getPropsWithoutRelation() {
-      //   return this.propertyList.filter(prop => prop.relationDelivery.length < 1)
-      // },
+      filtredProps() {
+        // return this.propertyList.filter(prop => prop.relationDelivery.length < 1)
+        return this.propertyList
+          .filter(item => this.breakpoint === 'xl' || item.relationDelivery.length === 0)
+          .filter(item => item.type !== 'location' || this.visibleAddress)
+      },
 
       groups() {
         return this.propertyGroups
           .map(group => ({
             ...group,
-            props: this.propertyList
-              .filter(prop => prop.propsGroupId === group.id)
-              .filter(item => this.breakpoint === 'xl' || item.relationDelivery.length === 0)
-              .filter(item => item.type !== 'location' || this.visibleAddress)
+            props: this.filtredProps.filter(prop => prop.propsGroupId === group.id)
+            // props: this.propertyList
+            //   .filter(prop => prop.propsGroupId === group.id)
+            //   .filter(item => this.breakpoint === 'xl' || item.relationDelivery.length === 0)
+            //   .filter(item => item.type !== 'location' || this.visibleAddress)
           }))
           .filter(group => group.props.length)
       }
