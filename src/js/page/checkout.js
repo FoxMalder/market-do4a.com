@@ -14,17 +14,17 @@ export default class PageCheckout {
 
   init() {
 
-    const popularEl = document.querySelector('.p-section-popular');
-    if (popularEl) {
-      new Vue({
-        store,
-        render: h => h(CheckoutPopular, {
-          props: {
-            requestParam: eval(`(${popularEl.dataset.request})`),
-          },
-        }),
-      }).$mount(popularEl);
-    }
+    // const popularEl = document.querySelector('.p-section-popular');
+    // if (popularEl) {
+    //   new Vue({
+    //     store,
+    //     render: h => h(CheckoutPopular, {
+    //       props: {
+    //         requestParam: eval(`(${popularEl.dataset.request})`),
+    //       },
+    //     }),
+    //   }).$mount(popularEl);
+    // }
 
 
     Utils.log('Checkout', 'Registration storage module');
