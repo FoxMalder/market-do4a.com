@@ -261,11 +261,6 @@
         // value: this.prop.value,
       }
     },
-    // computed: {
-    //   rules() {
-    //     return { required: this.prop.required, email: this.prop.type === 'email' };
-    //   }
-    // },
     created() {
       // if (this.$el.Input) {
       //   this.$el.Input.unMount();
@@ -285,7 +280,7 @@
     },
     watch: {
       value(newProp, oldProp) {
-        console.log('sdgsgsdg s df s df', newProp, this.maskedValue);
+        // console.log('sdgsgsdg s df s df', newProp, this.maskedValue);
         
         if (newProp !== this.maskedValue && newProp !== '') {
           if (this.prop.type === 'tel') {

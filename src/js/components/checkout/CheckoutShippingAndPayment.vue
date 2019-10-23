@@ -84,8 +84,9 @@
             
             <template v-if="item.category !== 'pickup' && breakpoint !== 'xl'">
               <div class="order-option__subtitle">Адрес доставки</div>
-              <CheckoutAddress :category="item.category"/>
-              
+<!--              <CheckoutAddress :category="item.category"/>-->
+
+<!--              <CheckoutAddress/>-->
               <div class="n-form-group" v-for="prop in getPropsByDeliveryId(item.id)">
                 <div class="n-form-group__field">
                   <InputField :prop="prop"/>

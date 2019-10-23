@@ -12,12 +12,15 @@
       <fieldset class="order-props__group" v-for="group in groups">
         <legend class="order-props__subtitle">{{ group.name }}</legend>
         
-        <div class="n-form-group" v-for="prop in group.props">
-          <div class="n-form-group__field">
-            <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
+        <template v-for="prop in group.props">
+          <CheckoutAddress v-if="prop.type === 'location'"/>
+          <div class="n-form-group" v-else>
+            <div class="n-form-group__field">
+              <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
+            </div>
+            <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
           </div>
-          <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
-        </div>
+        </template>
       </fieldset>
       
 <!--      &lt;!&ndash; Адрес доставки &ndash;&gt;-->
@@ -37,7 +40,7 @@
               id="property-description"
               class="input-field__input autoheight"
               rows="5"
-              v-model="propertyDescription"
+              :value="propertyDescription"
               @input="updateDescription"
             ></textarea>
           </div>
@@ -128,7 +131,7 @@
         propertyGroups: 'propertyGroups',
         // Old
         // propertyDescription: state => state.propertyDescription,
-        propertyDescription: state => state.props.description,
+        propertyDescription: state => state.props.DESCRIPTION,
         errors: 'errors',
       }),
       ...mapGetters('checkout', {
@@ -159,7 +162,8 @@
       //   this.
       // },
       updateDescription(e) {
-        this.$store.commit('checkout/UPDATE_DESCRIPTION', e.target.value);
+        this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: 'DESCRIPTION', message: e.target.value });
+        // this.$store.commit('checkout/UPDATE_DESCRIPTION', e.target.value);
       }
     }
   }

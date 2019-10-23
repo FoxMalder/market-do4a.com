@@ -102,8 +102,13 @@
         propertyList: 'propertyList',
       }),
       locationProperty() {
+        // return this.propertyList.find(item => item.type === 'location')
         return this.propertyList.find(item => item.type === 'location')
-      }
+      },
+      
+      // locationValue() {
+      //   return this.propertyList.find(item => item.type === 'location')
+      // }
     },
     methods: {
       chooseCity(city) {
@@ -112,10 +117,12 @@
         this.isActive = false;
         if (city) {
           this.value = [city.name, ...city.path].join(', ');
-          this.locationProperty.value = city.code;
+          // this.locationProperty.value = city.code;
+          this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.locationProperty.code, message: city.code });
           this.locationProperty.error = null;
         } else {
-          this.locationProperty.value = null;
+          // this.locationProperty.value = null;
+          this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.locationProperty.code, message: null });
         }
         this.$store.dispatch('checkout/refreshOrderAjax');
       },
@@ -215,14 +222,16 @@
       },
 
       validate() {
-        if (this.locationProperty.required && this.locationProperty.value === null) {
+        // if (this.locationProperty.required && this.locationProperty.value === null) {
+        if (this.locationProperty.required && this.$store.state.checkout.props[this.locationProperty.code] === null) {
           this.locationProperty.error = 'Выберите город из списка';
         }
       },
 
       onInput(event) {
         this.value = event.target.value;
-        this.locationProperty.value = null;
+        // this.locationProperty.value = null;
+        this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.locationProperty.code, message: null });
 
 
         if (this.value !== '') {

@@ -401,12 +401,8 @@ export default function createModule(options) {
     propertyList: [],
     // staticPropertyList: [],
     props: {
-      location: '',
-      description: '',
-      city: '',
-      street: '',
-      house: '',
-      flat: '',
+      // location: '',
+      DESCRIPTION: '',
       sdekPickup: '',
     },
   };
@@ -447,7 +443,7 @@ export default function createModule(options) {
         PAY_SYSTEM_ID: order.paymentId,
         // BUYER_STORE: order.buyerStore,
         PERSON_TYPE: state.personTypeId,
-        ORDER_DESCRIPTION: state.props.description,
+        ORDER_DESCRIPTION: state.props.DESCRIPTION,
         action: 'saveOrderAjax',
         location_type: 'code',
         sessid: Utils.sessid(),
@@ -502,7 +498,7 @@ export default function createModule(options) {
           // // для сдек свои поля для улицы, кв, дом. ИХ нужно собрать для поля Адрес
           // data.ORDER_PROP_5 = `${street && street.value}, ${house && house.value}, ${flat && flat.value}`;
 
-          data.ORDER_PROP_5 = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
+          data.ORDER_PROP_5 = `${state.props.STREET}, ${state.props.HOUSE}, ${state.props.FLAT}`;
         }
       }
 
@@ -720,7 +716,7 @@ export default function createModule(options) {
       ));
     },
 
-    async refreshOrderAjax({ commit, dispatch }) {
+    async refreshOrderAjax({ commit, dispatch }, order = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
       await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }));
       commit('SET_CHECKOUT_STATUS', null);
@@ -799,6 +795,7 @@ export default function createModule(options) {
 
     [SET_PROPERTY_LIST]({ commit }, properties) {
       const convertedProps = convertPropertyList(properties);
+
       convertedProps.forEach((property) => {
         commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
       });
@@ -808,13 +805,13 @@ export default function createModule(options) {
     [SET_PAYMENT]({ commit, dispatch }, { id, order }) {
       commit(SET_PAYMENT, { id, order });
 
-      dispatch('refreshOrderAjax');
+      dispatch('refreshOrderAjax', order);
     },
 
     [SET_SHIPPING]({ commit, dispatch }, { id, order }) {
       commit(SET_SHIPPING, { id, order });
 
-      dispatch('refreshOrderAjax');
+      dispatch('refreshOrderAjax', order);
     },
 
     // [SET_STORE]({ commit, dispatch }, { storeId, order }) {

@@ -13,41 +13,41 @@
       </div>
     </div>
     
-    <template v-if="category !== 'sdek.pickup'">
-      <div class="col-12">
-        <div class="n-form-group">
-          <div class="n-form-group__field">
-            <div class="input-field">
-              <label class="input-field__label">Улица*</label>
-              <input class="input-field__input" type="text" v-model="props.street">
-            </div>
-          </div>
-          <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
-        </div>
-      </div>
-      <div class="col-5">
-        <div class="n-form-group">
-          <div class="n-form-group__field">
-            <div class="input-field">
-              <label class="input-field__label">Дом*</label>
-              <input class="input-field__input" type="text" v-model="props.house">
-            </div>
-          </div>
-          <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
-        </div>
-      </div>
-      <div class="col-7">
-        <div class="n-form-group">
-          <div class="n-form-group__field">
-            <div class="input-field">
-              <label class="input-field__label">Кв./офис*</label>
-              <input class="input-field__input" type="text" v-model="props.flat">
-            </div>
-          </div>
-          <!--              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>-->
-        </div>
-      </div>
-    </template>
+<!--    <template v-if="category !== 'sdek.pickup'">-->
+<!--      <div class="col-12">-->
+<!--        <div class="n-form-group">-->
+<!--          <div class="n-form-group__field">-->
+<!--            <div class="input-field">-->
+<!--              <label class="input-field__label">Улица*</label>-->
+<!--              <input class="input-field__input" type="text" v-model="props.street">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>&ndash;&gt;-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-5">-->
+<!--        <div class="n-form-group">-->
+<!--          <div class="n-form-group__field">-->
+<!--            <div class="input-field">-->
+<!--              <label class="input-field__label">Дом*</label>-->
+<!--              <input class="input-field__input" type="text" v-model="props.house">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>&ndash;&gt;-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="col-7">-->
+<!--        <div class="n-form-group">-->
+<!--          <div class="n-form-group__field">-->
+<!--            <div class="input-field">-->
+<!--              <label class="input-field__label">Кв./офис*</label>-->
+<!--              <input class="input-field__input" type="text" v-model="props.flat">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          &lt;!&ndash;              <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>&ndash;&gt;-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </template>-->
   </div>
 </template>
 
