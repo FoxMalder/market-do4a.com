@@ -131,7 +131,7 @@
       filtredProps(newList, oldList) {
         console.log(newList, oldList);
         
-        if (newList.length > oldList.length) {
+        if (newList.length > oldList.length && this.breakpoint === 'xl') {
           Utils.scrollTo(document.getElementById('order-props'));
         }
       },

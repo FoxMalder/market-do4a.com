@@ -1,4 +1,4 @@
-// import 'popper.js';
+import 'popper.js';
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/tooltip';
 

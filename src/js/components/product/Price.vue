@@ -15,7 +15,7 @@
         <div class="p-price__col">
           <span class="gray">Цена актуальна только в интернет-магазине</span>
         </div>
-        <button class="icon-tooltip" data-toggle="tooltip" title="" data-original-title="Информация о бонусной программе marketdo4a. Как можно потратить бонусные рубли, условия."></button>
+        <button class="icon-tooltip" ref="tooltip" data-toggle="tooltip" title="" data-original-title="Цена в магазинах может отличаться. Данная цена актуальна только при онлайн заказе. "></button>
       </div>
     </template>
     <template v-else>
@@ -39,6 +39,7 @@
     ]),
     mounted() {
       $('[data-toggle="tooltip"]').tooltip();
+      // $(this.$refs.tooltip).tooltip();
     }
   }
 </script>

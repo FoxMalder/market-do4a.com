@@ -155,7 +155,8 @@
       setCity(city) {
         // const city = this.$store.getters.getCityById(parseInt(cityId, 10));
 
-        if (city.name === 'Москва') { // 35883 - Москва
+        // if (city.name === 'Москва') { // 35883 - Москва
+        if (city.isMultipleStore) { // 35883 - Москва
           this.currentCityId = city.id;
 
           this.$nextTick(function() {
