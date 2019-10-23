@@ -3,8 +3,23 @@
     <div class="sdek-pickup-modal__header">
       <div class="sdek-pickup-modal__title">Выбрать пункт самовывоза</div>
     </div>
+    <div class="sdek-pickup-modal__tabs">
+    
+    </div>
+    
+    <div class="sdek-pickup-modal__tabs" role="tablist">
+      <a class="sdek-pickup-modal__tab" role="tab" href="#sdek-list" aria-controls="sdek-list"
+         :class="{ active: currentTab === 'list' }"
+         @click.prevent="currentTab = 'list'"
+      >Из списка</a>
+      <a class="sdek-pickup-modal__tab" role="tab" href="#sdek-map" aria-controls="sdek-map"
+         :class="{ active: currentTab === 'map' }"
+         @click.prevent="currentTab = 'map'"
+      >Карта</a>
+    </div>
     <div class="sdek-pickup-modal__container">
-      <div class="sdek-pickup-modal__mask">
+      <div class="sdek-pickup-modal__mask" role="tabpanel" id="#sdek-map"
+           v-show="breakpoint !== 'xs' || currentTab === 'map'">
         <!--        <div class="sdek-pickup-modal__map"></div>-->
         <yandex-map class="sdek-pickup-modal__map"
                     :coords="coords"
@@ -25,10 +40,11 @@
           ></ymap-marker>
         </yandex-map>
       </div>
-      <div class="sdek-pickup-modal__list">
+      <div class="sdek-pickup-modal__list" role="tabpanel" id="#sdek-list"
+           v-show="breakpoint !== 'xs' || currentTab === 'list'">
         <div class="sdek-pickup-list">
           <div class="sdek-pickup-list__header">
-            <div class="sdek-pickup-list__title">Сдэк в {city}</div>
+            <div class="sdek-pickup-list__title">Сдэк в {{ currentCity }}</div>
           </div>
           <div class="sdek-pickup-list__list" ref="pickupList">
             <div class="sdek-pickup-item"
@@ -81,23 +97,37 @@
       return {
         coords: [55.74954, 37.621587],
         activePoint: '',
+        currentTab: 'list',
+        breakpoint: this.getBreakpoint(),
       }
     },
     computed: {
+      currentCity() {
+        return window.IPOLSDEK_pvz.city;
+      },
       // cityPointList() {
       //   // return window.IPOLSDEK_pvz.PVZ[window.IPOLSDEK_pvz.city]
       //   return window.IPOLSDEK_pvz[window.IPOLSDEK_pvz.curMode][window.IPOLSDEK_pvz.city]
       // },
     },
     methods: {
-
+      getBreakpoint() {
+        if (document.documentElement.clientWidth < 768) {
+          return 'xs';
+        }
+        if (document.documentElement.clientWidth < 1240) {
+          return 'md';
+        }
+        return 'xl';
+      },
+      
       onClick(name) {
         const selEle = this.$refs.pickupList.querySelector(`[data-name="${name}"]`);
 
         [].forEach.call(this.$refs.pickupList.children, (item) => {
           item.classList.remove('active');
         });
-        
+
         selEle.classList.add('active');
         if (selEle.offsetTop < this.$refs.pickupList.scrollTop) {
           // this.$refs.pickupList.scrollTop = selEle.offsetTop - 50;

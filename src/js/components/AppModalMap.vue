@@ -16,13 +16,13 @@
     </div>
     <div class="m-store-on-map__footer">
       <div class="m-store-on-map__way row" v-if="activeStore">
-        <div class="col-6" v-if="activeStore.wayOnAuto">
+        <div class="col-xl-6" v-if="activeStore.wayOnAuto">
           <div>Добраться на машине:</div>
-          <div class="gray" v-html="activeStore.wayOnAuto"></div>
+          <p class="gray" v-html="activeStore.wayOnAuto"></p>
         </div>
-        <div class="col-6" v-if="activeStore.wayOnFoot">
+        <div class="col-xl-6" v-if="activeStore.wayOnFoot">
           <div>Добраться пешком:</div>
-          <div class="gray" v-html="activeStore.wayOnFoot"></div>
+          <p class="gray" v-html="activeStore.wayOnFoot"></p>
         </div>
       </div>
     </div>
