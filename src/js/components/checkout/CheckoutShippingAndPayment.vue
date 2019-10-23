@@ -223,6 +223,10 @@
         removeOrder: REMOVE_ORDER,
       }),
 
+      // selectShipping({ id, order }) {
+      //
+      // }
+
       getPropsByDeliveryId(deliveryId) {
         // return this.propertyList.filter(prop => prop.propsGroupId !== 2 && prop.relationDelivery.find(id => id === deliveryId))
         return this.propertyList.filter(prop => prop.relationDelivery.find(id => id === deliveryId))

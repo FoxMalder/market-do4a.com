@@ -13,6 +13,7 @@
         <legend class="order-props__subtitle">{{ group.name }}</legend>
         
         <template v-for="prop in group.props">
+<!--          <CheckoutAddress v-if="prop.type === 'location' && visibleAddress"/>-->
           <CheckoutAddress v-if="prop.type === 'location'"/>
           <div class="n-form-group" v-else>
             <div class="n-form-group__field">
@@ -23,11 +24,11 @@
         </template>
       </fieldset>
       
-<!--      &lt;!&ndash; Адрес доставки &ndash;&gt;-->
-<!--      <fieldset class="order-props__group" v-show="visibleAddress" v-if="breakpoint === 'xl'">-->
-<!--        <legend class="order-props__subtitle">Адрес доставки</legend>-->
-<!--        <CheckoutAddress/>-->
-<!--      </fieldset>-->
+      <!--      &lt;!&ndash; Адрес доставки &ndash;&gt;-->
+      <!--      <fieldset class="order-props__group" v-show="visibleAddress" v-if="breakpoint === 'xl'">-->
+      <!--        <legend class="order-props__subtitle">Адрес доставки</legend>-->
+      <!--        <CheckoutAddress/>-->
+      <!--      </fieldset>-->
       
       <fieldset class="order-props__description">
         <div class="form-group" v-skew="10">
@@ -131,12 +132,14 @@
         propertyGroups: 'propertyGroups',
         // Old
         // propertyDescription: state => state.propertyDescription,
+        
         propertyDescription: state => state.props.DESCRIPTION,
         errors: 'errors',
       }),
       ...mapGetters('checkout', {
         orderList: 'orderList',
       }),
+
       visibleAddress() {
         return this.orderList.find(order => order.deliveryItem && order.deliveryItem.category !== 'pickup');
       },
@@ -144,14 +147,17 @@
       // getPropsWithoutRelation() {
       //   return this.propertyList.filter(prop => prop.relationDelivery.length < 1)
       // },
-      
+
       groups() {
-        return this.propertyGroups.map(group => ({
-          ...group,
-          props: this.propertyList
-            .filter(prop => prop.propsGroupId === group.id)
-            .filter(item => this.breakpoint === 'xl' || item.relationDelivery.length === 0)
-        }))
+        return this.propertyGroups
+          .map(group => ({
+            ...group,
+            props: this.propertyList
+              .filter(prop => prop.propsGroupId === group.id)
+              .filter(item => this.breakpoint === 'xl' || item.relationDelivery.length === 0)
+              .filter(item => item.type !== 'location' || this.visibleAddress)
+          }))
+          .filter(group => group.props.length)
       }
     },
     methods: {

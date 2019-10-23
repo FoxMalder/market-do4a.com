@@ -368,7 +368,6 @@ export default function createModule(options) {
     // groupStore: options.groupStore,
     propertyGroups: [],
     propertyList: [],
-    // staticPropertyList: [],
     props: {
       // location: '',
       DESCRIPTION: '',
@@ -385,6 +384,20 @@ export default function createModule(options) {
       'товара',
       'товаров',
     ])}`,
+
+    propertyList: (state) => {
+      const propertyList = {};
+
+      state.orderList.forEach((order) => {
+        order.props.forEach((prop) => {
+          // propertyList[prop.code] = prop;
+          propertyList[prop.code] = state.propertyList.find(item => item.code === prop.code);
+        });
+      });
+
+      return Object.values(propertyList);
+      // return convertPropertyList(propertyList);
+    },
 
     orderList(state, getters, rootState, rootGetters) {
       return state.orderList.map(order => ({
@@ -480,13 +493,6 @@ export default function createModule(options) {
       commit('SET_PARAM', options.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
 
-      // commit('ADD_STATIC_PROPERTY', {
-      //   name: 'ORDER_DESCRIPTION',
-      //   value: '',
-      //   title: 'Комментарий',
-      //   description: 'Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш дом',
-      //   required: false,
-      // });
 
       const orderList = [];
       const propertyGroups = {};
@@ -499,7 +505,7 @@ export default function createModule(options) {
 
         // order.ORDER_PROP.properties: Array
         options.result.ORDER_PROP.properties.forEach((prop) => {
-          propertyList[prop.ID] = prop;
+          propertyList[prop.CODE] = prop;
         });
       }
 
@@ -528,6 +534,7 @@ export default function createModule(options) {
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
 
+          // props: convertPropertyList(options.result.ORDER_PROP.properties),
           props: options.result.ORDER_PROP.properties.map(item => ({
             id: parseInt(item.ID, 10),
             code: item.CODE,
@@ -571,7 +578,7 @@ export default function createModule(options) {
 
         // order.ORDER_PROP.properties: Array
         order.ORDER_PROP.properties.forEach((prop) => {
-          propertyList[prop.ID] = prop;
+          propertyList[prop.CODE] = prop;
         });
 
         orderList.unshift({
@@ -588,6 +595,7 @@ export default function createModule(options) {
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
 
+          // props: convertPropertyList(order.ORDER_PROP.properties),
           props: order.ORDER_PROP.properties.map(item => ({
             id: parseInt(item.ID, 10),
             code: item.CODE,
@@ -626,8 +634,17 @@ export default function createModule(options) {
 
           // order.ORDER_PROP.properties: Array
           order.ORDER_PROP.properties.forEach((prop) => {
-            propertyList[prop.ID] = prop;
+            // propertyList[prop.ID] = prop;
+            propertyList[prop.CODE] = prop;
           });
+
+          // const properties = convertPropertyList(order.ORDER_PROP.properties);
+          //
+          // properties.forEach((property) => {
+          //   commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
+          //   commit('SET_PROPERTY', { [property.code]: property });
+          // });
+
 
           // order.DELIVERY: Object
           const deliveryMethods = mappingDeliveryMethods(order.DELIVERY);
@@ -652,6 +669,8 @@ export default function createModule(options) {
               id: parseInt(item.ID, 10),
               code: item.CODE,
             })),
+
+            // props: convertPropertyList(order.ORDER_PROP.properties),
           };
         });
 
@@ -660,15 +679,15 @@ export default function createModule(options) {
       dispatch(SET_PROPERTY_LIST, propertyList);
     },
 
-    sendRequest({ state, getters }, data) {
-      const request = {
-        via_ajax: 'Y',
-        SITE_ID: param.siteID,
-        signedParamsString: param.signedParamsString,
-        sessid: Utils.sessid(),
-        action: 'refreshOrderAjax',
-        ...data,
-      };
+    sendRequest({ state, getters }, data, orders) {
+      // const request = {
+      //   via_ajax: 'Y',
+      //   SITE_ID: param.siteID,
+      //   signedParamsString: param.signedParamsString,
+      //   sessid: Utils.sessid(),
+      //   action: 'refreshOrderAjax',
+      //   ...data,
+      // };
 
       // state.staticPropertyList.forEach((prop) => {
       //   if (prop.root) {
@@ -676,18 +695,23 @@ export default function createModule(options) {
       //   }
       // });
 
-      return Promise.all(state.orderList.map(
+      return Promise.all((orders || state.orderList).map(
         order => Api.fetchSaleOrderAjax(param.ajaxUrl, {
           order: getters.getAllFormData(order.id),
           storeId: order.storeId,
-          ...request,
+          via_ajax: 'Y',
+          SITE_ID: param.siteID,
+          signedParamsString: param.signedParamsString,
+          sessid: Utils.sessid(),
+          action: 'refreshOrderAjax',
+          ...data,
         }).then(result => ({ ...result, oldOrderData: order })),
       ));
     },
 
-    async refreshOrderAjax({ commit, dispatch }, order = null) {
+    async refreshOrderAjax({ commit, dispatch }, orders = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }));
+      await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }, orders));
       commit('SET_CHECKOUT_STATUS', null);
     },
 
@@ -768,7 +792,7 @@ export default function createModule(options) {
       convertedProps.forEach((property) => {
         commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
       });
-      commit(SET_PROPERTY_LIST, convertPropertyList(properties));
+      commit(SET_PROPERTY_LIST, convertedProps);
     },
 
     [SET_PAYMENT]({ commit, dispatch }, { id, order }) {
@@ -794,72 +818,6 @@ export default function createModule(options) {
 
       dispatch('refreshOrderAjax');
     },
-
-    // async validatePropsData({ state }) {
-    //   let error = false;
-    //
-    //   await Promise.all(state.propertyList.map(async (item) => {
-    //     if (item.propsGroupId === 2) {
-    //       return;
-    //     }
-    //
-    //     if (item.required && item.value === '') {
-    //       item.error = 'Заполните это поле';
-    //       error = true;
-    //       return;
-    //     }
-    //
-    //     if (item.type === 'email') {
-    //       const { errors } = await validate(item.value, 'email');
-    //
-    //       if (errors.length > 0) {
-    //         item.error = 'Введите верный email';
-    //         error = true;
-    //       }
-    //     }
-    //   }));
-    //
-    //   return error;
-    // },
-
-    // validateProps({ state }) {
-    //   let error = false;
-    //
-    //   state.propertyList.forEach((item) => {
-    //     if (item.propsGroupId === 2) {
-    //       return;
-    //     }
-    //
-    //     if (item.required && item.value === '') {
-    //       item.error = 'Заполните это поле';
-    //       error = true;
-    //       return;
-    //     }
-    //
-    //     if (item.type === 'email' && validEmail(item.value)) {
-    //       item.error = 'Введите верный email';
-    //       error = true;
-    //     }
-    //   });
-    //
-    //   return error;
-    // },
-    //
-    // async setStep({ commit, dispatch }, step) {
-    //   if (step.key === 'final') {
-    //     dispatch('checkout');
-    //   } else if (step.key === 'shipping-and-payment') {
-    //     if (await dispatch('validatePropsData')) {
-    //       Utils.scrollTo(document.getElementById('order-props'));
-    //       return;
-    //     }
-    //     commit('SET_CURRENT_STEP', step);
-    //     Utils.scrollTo(document.querySelector('.cart'));
-    //   } else if (step.key === 'form') {
-    //     commit('SET_CURRENT_STEP', step);
-    //     Utils.scrollTo(document.querySelector('.cart'));
-    //   }
-    // },
 
     SET_ERRORS({ commit }, errors) {
       console.log(errors);
@@ -1114,6 +1072,13 @@ export default function createModule(options) {
     // ADD_STATIC_PROPERTY: (state, prop) => {
     //   state.staticPropertyList.push(prop);
     // },
+
+    SET_PROPERTY: (state, property) => {
+      state.propertyList = {
+        ...state.propertyList,
+        ...property,
+      };
+    },
 
     UPDATE_PROP_BY_CODE: (state, { code, message }) => {
       // state.props[name] = message;
