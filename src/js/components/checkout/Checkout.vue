@@ -29,7 +29,7 @@
       </div>
       
       
-      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
+<!--      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>-->
       
       <template v-else-if="breakpoint === 'xl'">
         <div class="container">
@@ -238,21 +238,26 @@
       // },
 
 
-      validateProps() {
+      validateFirstStep() {
         let error = false;
 
         this.$store.state.checkout.propertyList.forEach((item) => {
-          if (item.propsGroupId === 2) {
+          
+          // if (item.propsGroupId === 2) {
+          //   return;
+          // }
+          
+          if (this.breakpoint !== 'xl' && item.relationDelivery.length !== 0) {
             return;
           }
 
-          if (item.required && item.value === '') {
+          if (item.required && this.$store.state.checkout.props[item.code] === '') {
             item.error = 'Заполните это поле';
             error = true;
             return;
           }
 
-          if (item.type === 'email' && !validEmail(item.value)) {
+          if (item.type === 'email' && !validEmail(this.$store.state.checkout.props[item.code])) {
             item.error = 'Введите верный email';
             error = true;
           }
@@ -261,7 +266,7 @@
         return error;
       },
 
-      validateOrders() {
+      validateSecondStep() {
         let error = false;
 
         this.$store.state.checkout.orderList.forEach((order) => {
@@ -287,22 +292,22 @@
         });
 
 
-        // this.$store.state.checkout.propertyList.forEach((item) => {
-        //   if (item.propsGroupId !== 2) {
-        //     return;
-        //   }
-        //
-        //   if (item.required && item.value === '') {
-        //     item.error = 'Заполните это поле';
-        //     error = true;
-        //     return;
-        //   }
-        //
-        //   if (item.type === 'email' && validEmail(item.value)) {
-        //     item.error = 'Введите верный email';
-        //     error = true;
-        //   }
-        // });
+        this.$store.state.checkout.propertyList.forEach((item) => {
+          if (this.breakpoint === 'xl' || item.relationDelivery.length === 0) {
+            return;
+          }
+
+          if (item.required && this.$store.state.checkout.props[item.code] === '') {
+            item.error = 'Заполните это поле';
+            error = true;
+            return;
+          }
+
+          if (item.type === 'email' && validEmail(this.$store.state.checkout.props[item.code])) {
+            item.error = 'Введите верный email';
+            error = true;
+          }
+        });
 
         return error;
       },
@@ -314,12 +319,12 @@
       setStep(step) {
         switch (step) {
           case 'final':
-            if (this.validateProps()) {
+            if (this.validateFirstStep()) {
               this.currentStep = 'form';
               Utils.scrollTo(document.querySelector('.cart'));
               break;
             }
-            if (this.validateOrders()) {
+            if (this.validateSecondStep()) {
               Utils.scrollTo(document.querySelector('.cart'));
               this.currentStep = 'shipping-and-payment';
               break;
@@ -327,7 +332,7 @@
             this.$store.dispatch('checkout/checkout');
             break;
           case 'shipping-and-payment':
-            if (this.validateProps()) {
+            if (this.validateFirstStep()) {
               Utils.scrollTo(document.querySelector('.cart'));
               this.currentStep = 'form';
               break;
@@ -344,12 +349,12 @@
       checkout() {
         console.log('checkout');
 
-        if (this.validateProps()) {
+        if (this.validateFirstStep()) {
           Utils.scrollTo(document.getElementById('order-props'));
           return;
         }
 
-        if (this.validateOrders()) {
+        if (this.validateSecondStep()) {
           Utils.scrollTo(document.getElementById('order-delivery'));
           return;
         }

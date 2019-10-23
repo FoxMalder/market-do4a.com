@@ -200,6 +200,7 @@
         // selectedPaymentId: 'selectedPaymentMethodId',
         // paymentMethods: 'paymentMethods',
         errors: 'errors',
+        // props: 'props',
         propertyList: 'propertyList',
         // currentStore: 'currentStore',
       }),
@@ -218,12 +219,13 @@
       }),
 
       getPropsByDeliveryId(deliveryId) {
-        return this.propertyList.filter(prop => prop.propsGroupId !== 2 && prop.relationDelivery.find(id => id === deliveryId))
+        // return this.propertyList.filter(prop => prop.propsGroupId !== 2 && prop.relationDelivery.find(id => id === deliveryId))
+        return this.propertyList.filter(prop => prop.relationDelivery.find(id => id === deliveryId))
       },
 
-      nextStep() {
-        console.log('Next step');
-      }
+      // nextStep() {
+      //   console.log('Next step');
+      // }
     }
   }
 </script>

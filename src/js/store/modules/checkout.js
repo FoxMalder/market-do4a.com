@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow,no-param-reassign */
 import axios from 'axios';
+import Vue from 'vue';
 // import unionBy from 'lodash.unionby';
 import { validate, extend } from 'vee-validate';
 import { required, email } from 'vee-validate/dist/rules';
@@ -335,33 +336,33 @@ export default function createModule(options) {
   param.basketHasRemoteProducts = options.basketHasRemoteProducts;
 
   const state = {
-    currentStepName: 'basket',
-    steps: [
-      {
-        key: 'basket',
-        next: 'form',
-        title: 'Корзина',
-        nextButtonText: 'Перейти к оформлению',
-      },
-      {
-        key: 'form',
-        next: 'shipping-and-payment',
-        title: 'Ваши данные',
-        nextButtonText: 'Доставка и оплата',
-      },
-      {
-        key: 'shipping-and-payment',
-        next: 'final',
-        title: 'Доставка и оплата',
-        nextButtonText: 'Оформить заказ',
-      },
-      {
-        key: 'final',
-        next: 'basket',
-        title: 'Финал',
-        nextButtonText: 'Оплатить заказ',
-      },
-    ],
+    // currentStepName: 'basket',
+    // steps: [
+    //   {
+    //     key: 'basket',
+    //     next: 'form',
+    //     title: 'Корзина',
+    //     nextButtonText: 'Перейти к оформлению',
+    //   },
+    //   {
+    //     key: 'form',
+    //     next: 'shipping-and-payment',
+    //     title: 'Ваши данные',
+    //     nextButtonText: 'Доставка и оплата',
+    //   },
+    //   {
+    //     key: 'shipping-and-payment',
+    //     next: 'final',
+    //     title: 'Доставка и оплата',
+    //     nextButtonText: 'Оформить заказ',
+    //   },
+    //   {
+    //     key: 'final',
+    //     next: 'basket',
+    //     title: 'Финал',
+    //     nextButtonText: 'Оплатить заказ',
+    //   },
+    // ],
 
     // propertyDescription: '',
 
@@ -452,30 +453,34 @@ export default function createModule(options) {
         sessid: Utils.sessid(),
       };
 
-      state.propertyList.forEach((prop) => {
-        switch (prop.code) {
-          // case 'LOCATION':
-          //   data[`ORDER_PROP_${prop.id}`] = state.props.location;
-          //   break;
-          case 'ADDRESS':
-            data[`ORDER_PROP_${prop.id}`] = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
-            break;
-          case 'STREET':
-            data[`ORDER_PROP_${prop.id}`] = state.props.street;
-            break;
-          case 'HOUSE':
-            data[`ORDER_PROP_${prop.id}`] = state.props.house;
-            break;
-          // case 'CITY':
-          //   data[`ORDER_PROP_${prop.id}`] = '';
-          //   break;
-          case 'FLAT':
-            data[`ORDER_PROP_${prop.id}`] = state.props.flat;
-            break;
-          default:
-            data[`ORDER_PROP_${prop.id}`] = prop.value;
-        }
+      order.props.forEach((prop) => {
+        data[`ORDER_PROP_${prop.id}`] = state.props[prop.code] || '';
       });
+
+      // state.propertyList.forEach((prop) => {
+      //   switch (prop.code) {
+      //     // case 'LOCATION':
+      //     //   data[`ORDER_PROP_${prop.id}`] = state.props.location;
+      //     //   break;
+      //     case 'ADDRESS':
+      //       data[`ORDER_PROP_${prop.id}`] = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
+      //       break;
+      //     case 'STREET':
+      //       data[`ORDER_PROP_${prop.id}`] = state.props.street;
+      //       break;
+      //     case 'HOUSE':
+      //       data[`ORDER_PROP_${prop.id}`] = state.props.house;
+      //       break;
+      //     // case 'CITY':
+      //     //   data[`ORDER_PROP_${prop.id}`] = '';
+      //     //   break;
+      //     case 'FLAT':
+      //       data[`ORDER_PROP_${prop.id}`] = state.props.flat;
+      //       break;
+      //     default:
+      //       data[`ORDER_PROP_${prop.id}`] = prop.value;
+      //   }
+      // });
 
 
       // data.ORDER_DESCRIPTION = state.props.description;
@@ -557,6 +562,11 @@ export default function createModule(options) {
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
+
+          props: options.result.ORDER_PROP.properties.map(item => ({
+            id: parseInt(item.ID, 10),
+            code: item.CODE,
+          })),
         });
       }
 
@@ -612,6 +622,11 @@ export default function createModule(options) {
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
           paymentId: checkedPayment ? checkedPayment.id : null,
+
+          props: order.ORDER_PROP.properties.map(item => ({
+            id: parseInt(item.ID, 10),
+            code: item.CODE,
+          })),
         });
       }
 
@@ -667,6 +682,11 @@ export default function createModule(options) {
             paymentId: checkedPayment ? checkedPayment.id : null,
             productList: convertProducts(order.GRID.ROWS),
             total: convertTotal(order.TOTAL),
+
+            props: order.ORDER_PROP.properties.map(item => ({
+              id: parseInt(item.ID, 10),
+              code: item.CODE,
+            })),
           };
         });
 
@@ -778,6 +798,10 @@ export default function createModule(options) {
     },
 
     [SET_PROPERTY_LIST]({ commit }, properties) {
+      const convertedProps = convertPropertyList(properties);
+      convertedProps.forEach((property) => {
+        commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
+      });
       commit(SET_PROPERTY_LIST, convertPropertyList(properties));
     },
 
@@ -1124,6 +1148,11 @@ export default function createModule(options) {
     // ADD_STATIC_PROPERTY: (state, prop) => {
     //   state.staticPropertyList.push(prop);
     // },
+
+    UPDATE_PROP_BY_CODE: (state, { code, message }) => {
+      // state.props[name] = message;
+      Vue.set(state.props, code, message);
+    },
 
     UPDATE_DESCRIPTION: (state, message) => {
       state.props.description = message;

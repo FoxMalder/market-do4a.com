@@ -4,17 +4,19 @@
     :class="{'input-field_invalid': prop.error}">
     <label
       class="input-field__label"
+      :class="{ 'input-field__label_active': value !== '' }"
       :for="'property-' + prop.id"
     >{{ prop.title + (prop.required ? '*' : '') }}</label>
     <input class="input-field__input"
            ref="input"
-           v-model="prop.value"
            @keydown="onKeyDown"
            @keyup="onKeyUp"
            @input="onInput"
            @focus="onFocus"
            @change="check"
            @blur="check"
+    
+           :value="value"
            :id="'property-' + prop.id"
            :name="prop.name"
            :type="prop.type"
@@ -28,6 +30,7 @@
 </template>
 
 <script>
+  import { mapGetters, mapState, mapActions } from 'vuex';
   import { mask } from 'vue-the-mask'
   // import { ValidationProvider, extend, validate } from 'vee-validate';
   // import { required, email } from 'vee-validate/dist/rules';
@@ -263,7 +266,7 @@
     //     return { required: this.prop.required, email: this.prop.type === 'email' };
     //   }
     // },
-    mounted() {
+    created() {
       // if (this.$el.Input) {
       //   this.$el.Input.unMount();
       // }
@@ -271,14 +274,28 @@
 
       if (this.prop.type === 'tel') {
         this.update(this.prop.value);
-        this.prop.value = this.maskedValue;
+        // this.prop.value = this.maskedValue;
+        this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.prop.code, message: this.maskedValue });
       }
     },
-    // watch: {
-    //   prop(newProp, oldProp) {
-    //     console.log('sdfghfdsghdsf sergh', newProp, oldProp)
-    //   }
-    // },
+    computed: {
+      value() {
+        return this.$store.state.checkout.props[this.prop.code] || '';
+      }
+    },
+    watch: {
+      value(newProp, oldProp) {
+        console.log('sdgsgsdg s df s df', newProp, this.maskedValue);
+        
+        if (newProp !== this.maskedValue && newProp !== '') {
+          if (this.prop.type === 'tel') {
+            this.update(newProp);
+            // this.prop.value = this.maskedValue;
+            this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.prop.code, message: this.maskedValue });
+          }
+        }
+      },
+    },
     methods: {
       check() {
         // this.isActive = this.prop.value !== '';
@@ -291,7 +308,7 @@
         //   }
         // });
 
-        if (this.prop.required && this.prop.value === '') {
+        if (this.prop.required && this.$refs.input.value === '') {
           return this.prop.error = 'Заполните это поле';
         }
 
@@ -404,21 +421,22 @@
       },
 
       onInput(e) {
-        console.log('onInput');
+        console.log('onInput', e.target.value);
 
+        this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.prop.code, message: e.target.value });
+        
+        
         if (this.prop.type === 'tel') {
           this.update(e.target.value);
 
           if (!this.isRemovingKeyPressed) {
-            this.prop.value = this.maskedValue;
+            // this.prop.value = this.maskedValue;
+            this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.prop.code, message: this.maskedValue });
           }
           // else {
           //   this.prop.value = this.maskedValue;
           // }
         }
-        // else {
-        //   this.prop.value = e.target.value;
-        // }
       },
       onKeyUp() {
         // console.log('onKeyUp');

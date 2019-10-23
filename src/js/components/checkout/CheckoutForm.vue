@@ -9,7 +9,7 @@
       </ul>
       
       <!-- Детали доставки -->
-      <fieldset class="order-props__group" v-for="group in groups" v-if="group.id !== 2">
+      <fieldset class="order-props__group" v-for="group in groups">
         <legend class="order-props__subtitle">{{ group.name }}</legend>
         
         <div class="n-form-group" v-for="prop in group.props">
@@ -20,11 +20,11 @@
         </div>
       </fieldset>
       
-      <!-- Адрес доставки -->
-      <fieldset class="order-props__group" v-show="visibleAddress" v-if="breakpoint === 'xl'">
-        <legend class="order-props__subtitle">Адрес доставки</legend>
-        <CheckoutAddress/>
-      </fieldset>
+<!--      &lt;!&ndash; Адрес доставки &ndash;&gt;-->
+<!--      <fieldset class="order-props__group" v-show="visibleAddress" v-if="breakpoint === 'xl'">-->
+<!--        <legend class="order-props__subtitle">Адрес доставки</legend>-->
+<!--        <CheckoutAddress/>-->
+<!--      </fieldset>-->
       
       <fieldset class="order-props__description">
         <div class="form-group" v-skew="10">
@@ -137,6 +137,11 @@
       visibleAddress() {
         return this.orderList.find(order => order.deliveryItem && order.deliveryItem.category !== 'pickup');
       },
+
+      // getPropsWithoutRelation() {
+      //   return this.propertyList.filter(prop => prop.relationDelivery.length < 1)
+      // },
+      
       groups() {
         return this.propertyGroups.map(group => ({
           ...group,
@@ -147,9 +152,9 @@
       }
     },
     methods: {
-      nextStep() {
-        console.log('Next step');
-      },
+      // nextStep() {
+      //   console.log('Next step');
+      // },
       // validate() {
       //   this.
       // },
