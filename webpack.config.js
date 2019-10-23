@@ -232,6 +232,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Финал заказа',
+      filename: 'final.html',
+      template: path.resolve(__dirname, 'src/final.html'),
+      chunks: ['final', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',

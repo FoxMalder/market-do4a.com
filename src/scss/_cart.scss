@@ -48,79 +48,148 @@
 
   &__description {
     margin-bottom: 38px;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: -0.01em;
-    line-height: 24px;
+    line-height: 20px;
+    @include media-breakpoint-up(md) {
+      font-size: 15px;
+      line-height: 24px;
+    }
   }
 }
 
 .checkout-final-info {
   padding: 0;
   list-style: none;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 24px;
+  line-height: 20px;
+  @include media-breakpoint-up(md) {
+    font-size: 18px;
+    line-height: 24px;
+  }
 
   &__item {
-    margin-bottom: 22px;
+    margin-bottom: 16px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 22px;
+    }
   }
 }
 
 .checkout-final-pay {
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @include media-breakpoint-up(md) {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
 
   &__title {
     margin-bottom: 15px;
+    font-size: 20px;
+    line-height: 25px;
+
+    @include media-breakpoint-up(md) {
+      font-size: 23px;
+      line-height: 31px;
+    }
   }
 
   &__row {
     display: flex;
+    flex-direction: column;
     align-items: center;
 
+
     > .btn {
-      margin-right: 36px;
-      padding-right: 44px;
-      padding-left: 44px;
+      width: 100%;
+      margin-bottom: 19px;
+    }
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+
+      > .btn {
+        width: auto;
+        margin-right: 36px;
+        margin-bottom: 0;
+        padding-right: 44px;
+        padding-left: 44px;
+      }
     }
   }
 }
 
 .checkout-final-order {
-  margin-top: 67px;
-  margin-bottom: 73px;
+  margin-top: 24px;
+  margin-bottom: 60px;
+
+
+  @include media-breakpoint-up(md) {
+    margin-top: 67px;
+    margin-bottom: 73px;
+  }
 
   &_card {
+    position: relative;
     margin-right: -20px;
     margin-left: -20px;
     padding: 20px 20px;
     border-radius: 7px 7px 0 0;
     background: #fff;
     box-shadow: 0px 24px 54px rgba(0, 0, 0, 0.05);
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      right: 0;
+      bottom: -25px;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: url('../img/final-order-card-bottom.svg') center bottom repeat-x;
+      background-size: 100% auto;
+    }
+
     @include media-breakpoint-up(md) {
       width: 620px;
       margin-left: -31px;
-      padding: 33px 31px 52px;
+      padding: 33px 31px 25px;
     }
   }
 
   &__title {
     margin-bottom: 21px;
+    font-size: 20px;
+    line-height: 25px;
+
+    @include media-breakpoint-up(md) {
+      font-size: 23px;
+      line-height: 31px;
+    }
   }
 
   &__total {
-    margin-top: 54px;
+    margin-top: 26px;
     padding: 0;
     list-style: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 24px;
+
+    @include media-breakpoint-up(md) {
+      margin-top: 54px;
+      font-size: 18px;
+      line-height: 24px;
+    }
   }
 
   &__item {
-    margin-bottom: 11px;
+    margin-bottom: 4px;
 
     > .price {
       @include title;
@@ -131,53 +200,115 @@
         font-size: 166%;
       }
     }
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 11px;
+    }
   }
 
   &__footer {
     display: flex;
+
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 42px;
-    padding-top: 32px;
+    margin-top: 20px;
+    margin-right: -20px;
+    margin-left: -20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+
+
+    border-top: 4px dotted #eee;
+
 
     > .btn {
-      padding-right: 44px;
-      padding-left: 44px;
+      width: 100%;
+      margin-bottom: 19px;
     }
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 42px;
+      margin-right: -31px;
+      margin-left: -31px;
+      padding-top: 32px;
+      padding-right: 31px;
+      padding-left: 31px;
+
+      > .btn {
+        width: auto;
+        margin-bottom: 0;
+        padding-right: 44px;
+        padding-left: 44px;
+      }
+    }
+
   }
 }
 
 .checkout-final-map {
-  display: flex;
   margin-top: 38px;
 
+  @include media-breakpoint-up(xl) {
+    display: flex;
+  }
+
   &__container {
-    flex: 860px;
-    overflow: hidden;
-    transform: $skew;
-    transform-origin: top right;
+    @include media-breakpoint-up(md) {
+      overflow: hidden;
+      transform: $skew;
+      transform-origin: top right;
+    }
+
+    @include media-breakpoint-up(xl) {
+      flex: 860px;
+    }
   }
 
   &__map {
-    height: 443px;
-    margin-right: tan(9deg) * 443px / -2;
-    margin-left: tan(9deg) * 443px / -2;
-    transform: $skew-reverse;
+    height: 166px;
+    margin-right: -20px;
+    margin-left: -20px;
     background: #efefef;
+
+    @include media-breakpoint-up(md) {
+      height: 443px;
+      margin-right: tan(9deg) * 443px / -2;
+      margin-left: tan(9deg) * 443px / -2;
+      transform: $skew-reverse;
+    }
   }
 
   &__col {
-    flex: 340px;
-    padding-top: 15px;
-    padding-left: 60px;
+    padding-top: 23px;
+    @include media-breakpoint-up(md) {
+      padding-top: 30px;
+    }
+    @include media-breakpoint-up(xl) {
+      padding-top: 15px;
+      flex: 340px;
+      padding-left: 60px;
+    }
   }
 
   &__description {
-    margin-bottom: 48px;
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 22px;
+    color: rgba(16, 16, 16, 0.6);
+
+    > strong {
+      color: #101010;
+    }
+    @include media-breakpoint-up(md) {
+      margin-bottom: 48px;
+    }
   }
 }
 
@@ -368,6 +499,7 @@
 
       .checkout-location {
         background-color: #f7f7f7;
+
         &::after {
           background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
         }
@@ -375,6 +507,7 @@
 
       .input-field {
         background-color: #f7f7f7;
+
         &__alert {
           background: linear-gradient(270deg, #f7f7f7 50%, rgba(#f7f7f7, 0) 100%);
         }
@@ -1685,8 +1818,6 @@
     -webkit-backface-visibility: hidden;
   }
 }
-
-
 
 
 .p-section-popular {
