@@ -1616,6 +1616,8 @@ $multifilter-menu-padding-x: 22px;
   transition: all .3s ease;
 
   animation: fadeIn .5s ease;
+  background: url('../img/product-card-loading.svg') center no-repeat;
+  background-size: 100% 100%;
 
   .product-stickers {
     position: absolute;
