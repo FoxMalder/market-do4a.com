@@ -636,9 +636,6 @@ export default function createModule(options) {
     },
 
     refreshOrder({ commit, dispatch }, payload) {
-      // const propertyGroups = {};
-      // const propertyList = {};
-
       payload.forEach((result) => {
         const { order, groupStore, oldOrderData } = result;
 
@@ -655,24 +652,11 @@ export default function createModule(options) {
           console.error(order.ERROR);
         }
 
-        // // order.ORDER_PROP.groups: Object
-        // Object.assign(propertyGroups, order.ORDER_PROP.groups);
-        //
-        // // order.ORDER_PROP.properties: Array
-        // order.ORDER_PROP.properties.forEach((prop) => {
-        //   // propertyList[prop.ID] = prop;
-        //   propertyList[prop.CODE] = prop;
-        // });
-
+        // order.ORDER_PROP.groups: Object
         dispatch(SET_PROPERTY_GROUPS, order.ORDER_PROP.groups);
-        dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
 
-        // const properties = convertPropertyList(order.ORDER_PROP.properties);
-        //
-        // properties.forEach((property) => {
-        //   commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
-        //   commit('SET_PROPERTY', { [property.code]: property });
-        // });
+        // order.ORDER_PROP.properties: Array
+        dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
 
 
         // order.DELIVERY: Object
@@ -701,73 +685,41 @@ export default function createModule(options) {
 
           // props: convertPropertyList(order.ORDER_PROP.properties),
         });
-
-        // return {
-        //   ...oldOrderData,
-        //   deliveryMethods,
-        //   paymentMethods,
-        //   groupStore: groupStore || [],
-        //   deliveryId: checkedDelivery ? checkedDelivery.id : null,
-        //   paymentId: checkedPayment ? checkedPayment.id : null,
-        //   productList: convertProducts(order.GRID.ROWS),
-        //   total: convertTotal(order.TOTAL),
-        //
-        //   props: order.ORDER_PROP.properties.map(item => ({
-        //     id: parseInt(item.ID, 10),
-        //     code: item.CODE,
-        //   })),
-        //
-        //   // props: convertPropertyList(order.ORDER_PROP.properties),
-        // };
       });
-
-      // commit('SET_ORDER_LIST', orderList);
-      // dispatch(SET_PROPERTY_GROUPS, propertyGroups);
-      // dispatch(SET_PROPERTY_LIST, propertyList);
     },
 
-    sendRequest({ state, getters }, { data, order }) {
-      // const request = {
-      //   via_ajax: 'Y',
-      //   SITE_ID: param.siteID,
-      //   signedParamsString: param.signedParamsString,
-      //   sessid: Utils.sessid(),
-      //   action: 'refreshOrderAjax',
-      //   ...data,
-      // };
+    sendRequest({ getters }, { data, order }) {
+      return Api.fetchSaleOrderAjax(param.ajaxUrl, {
+        order: getters.getAllFormData(order.id),
+        storeId: order.storeId,
+        via_ajax: 'Y',
+        SITE_ID: param.siteID,
+        signedParamsString: param.signedParamsString,
+        sessid: Utils.sessid(),
+        action: 'refreshOrderAjax',
+        ...data,
+      });
+    },
 
-      // state.staticPropertyList.forEach((prop) => {
-      //   if (prop.root) {
-      //     request[prop.name] = prop.value;
-      //   }
-      // });
-      //
-
+    sendAllRequest({ state, dispatch }, { data, order }) {
       const orderList = order ? [order] : state.orderList;
 
       return Promise.all(orderList.map(
-        order => Api.fetchSaleOrderAjax(param.ajaxUrl, {
-          order: getters.getAllFormData(order.id),
-          storeId: order.storeId,
-          via_ajax: 'Y',
-          SITE_ID: param.siteID,
-          signedParamsString: param.signedParamsString,
-          sessid: Utils.sessid(),
-          action: 'refreshOrderAjax',
-          ...data,
-        }).then(result => ({ ...result, oldOrderData: order })),
+        order => dispatch('sendRequest', { data, order }).then(
+          result => ({ ...result, oldOrderData: order }),
+        ),
       ));
     },
 
     async refreshOrderAjax({ commit, dispatch }, order = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      await dispatch('refreshOrder', await dispatch('sendRequest', { data: { action: 'refreshOrderAjax' }, order }));
+      await dispatch('refreshOrder', await dispatch('sendAllRequest', { data: { action: 'refreshOrderAjax' }, order }));
       commit('SET_CHECKOUT_STATUS', null);
     },
 
     async enterCoupon({ commit, dispatch }, coupon) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      const resultList = await dispatch('sendRequest', { data: { action: 'enterCoupon', coupon } });
+      const resultList = await dispatch('sendAllRequest', { data: { action: 'enterCoupon', coupon } });
       commit('SET_CHECKOUT_STATUS', null);
 
       console.log(resultList);
@@ -814,7 +766,7 @@ export default function createModule(options) {
     },
 
     // removeCoupon({ dispatch }) {
-    //   return dispatch('sendRequest', {data: { action: 'removeCoupon' }})
+    //   return dispatch('sendAllRequest', {data: { action: 'removeCoupon' }})
     //     .then((result) => {
     //       if (!result.order) {
     //         // this.removeCouponItem(result);
@@ -911,6 +863,8 @@ export default function createModule(options) {
 
       Utils.log('Checkout', 'Отправка заказов');
 
+      const orders = [];
+
       const resultList = await Promise.all(state.orderList.map(async (order) => {
         const request = {
           ...getters.getAllFormData(order.id),
@@ -924,17 +878,34 @@ export default function createModule(options) {
         });
 
 
-        Utils.log('Checkout', `Отправка заказа ${order.index}`);
+        Utils.log('Checkout', `Отправка заказа для склада ${order.storeId}`);
 
         return axios
           .post('/checkout/', formData)
           .then((response) => {
-            Utils.log('Checkout', `Ответ по заказу ${order.index} получен`);
+            Utils.log('Checkout', `Ответ по заказу со склада ${order.storeId} получен`);
             return response.data;
+          })
+          .then((result) => {
+            if (result.order) {
+              if (result.order.ERROR) {
+                dispatch('SET_ERRORS', result.order.ERROR);
+              }
+
+              if (result.order.REDIRECT_URL) {
+                if (result.order.ID) {
+                  orders.push(result.order.ID);
+                } else {
+                  dispatch(REMOVE_ORDER, order);
+                }
+              }
+            }
+
+            return result;
           });
       }));
 
-      // const b = {
+      // const a = {
       //   order: {
       //     REDIRECT_URL: '\/checkout\/?ORDER_ID=77341',
       //     ID: 77341,
@@ -947,9 +918,15 @@ export default function createModule(options) {
       //       SHORT_ADDRESS: 'м.Октябрьская, между Бахетле и ГПНТБ',
       //       ADDRESS: 'ул. Кирова, д. 27',
       //       COORDS: '55.018122402267,82.944041570144',
-      //       WAY_ON_FOOT: '\u0412\u044b\u0445\u043e\u0434 \u043c\u0435\u0442\u0440\u043e \u0432 \u0441\u0442\u043e\u0440\u043e\u043d\u0443 \u0413\u041f\u041d\u0422\u0411. \u041f\u043e\u0441\u043b\u0435 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043a\u0430 \u0441\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u043d\u0430\u043b\u0435\u0432\u043e.',
-      //       WAY_ON_CAR: '\u0417\u0430\u0435\u0437\u0434 \u0447\u0435\u0440\u0435\u0437 \u043f\u0435\u0440\u0435\u043a\u0440\u0435\u0441\u0442\u043e\u043a \u041a\u0438\u0440\u043e\u0432\u0430 \/ \u0421\u0430\u043a\u043a\u043e \u0412\u0430\u043d\u0446\u0435\u0442\u0442\u0438. \r\n\r\n\u041f\u0440\u0438\u043f\u0430\u0440\u043a\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u043f\u0440\u043e\u0442\u0438\u0432 \u043c\u0430\u0433\u0430\u0437\u0438\u043d\u0430 \u0438\u043b\u0438 \u0432\u043e\u0437\u043b\u0435 \u0411\u0430\u0445\u0435\u0442\u043b\u0435.',
+      //       WAY_ON_FOOT: '',
+      //       WAY_ON_CAR: '',
       //     },
+      //   },
+      // };
+      //
+      // const b = {
+      //   order: {
+      //     REDIRECT_URL: '\/checkout\/',
       //   },
       // };
 
@@ -957,43 +934,8 @@ export default function createModule(options) {
       commit('SET_CHECKOUT_STATUS', null);
 
       Utils.log('Checkout', 'Разбор ответов');
-
-      // if (resultList.length === 1) {
-      //   const { order } = resultList[0];
-      //
-      //   if (order) {
-      //     if (order.REDIRECT_URL && order.REDIRECT_URL.length) {
-      //       document.location.href = order.REDIRECT_URL;
-      //     }
-      //
-      //     if (order.ERROR) {
-      //       dispatch('SET_ERRORS', order.ERROR);
-      //     }
-      //   }
-      //   return;
-      // }
-
-      // if (resultList.length > 1) {
-      const orders = [];
-
       console.log(resultList);
 
-      resultList.forEach((result) => {
-        const { order } = result;
-
-        if (!order) {
-          return;
-        }
-
-        if (order.REDIRECT_URL && order.ID) {
-          orders.push(order.ID);
-          return;
-        }
-
-        if (order.ERROR) {
-          dispatch('SET_ERRORS', order.ERROR);
-        }
-      });
 
       // Нет успешных заказов
       if (orders.length === 0) {
@@ -1018,9 +960,6 @@ export default function createModule(options) {
       state.personTypeId = Object.values(result.PERSON_TYPE).find(item => item.CHECKED === 'Y').ID;
     },
 
-    // SET_GROUP_STORE: (state, groupStore) => {
-    //   state.groupStore = groupStore;
-    // },
     SET_CHECKOUT_STATUS: (state, status) => {
       state.checkoutStatus = status;
     },
