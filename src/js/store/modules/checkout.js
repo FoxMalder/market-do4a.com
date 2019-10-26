@@ -573,7 +573,14 @@ export default function createModule(options) {
         //   request.order[`ORDER_PROP_${prop.ID}`] = prop.VALUE[0];
         // });
 
-        const { order, groupStore } = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
+        const result = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
+
+        if (result.redirect) {
+          return;
+        }
+
+        const { order, groupStore } = result;
+
         options.result = [options.result, order];
 
 
@@ -632,85 +639,87 @@ export default function createModule(options) {
       // const propertyGroups = {};
       // const propertyList = {};
 
-      const orderList = payload
-        .filter(result => !result.redirect)
-        .forEach((result) => {
-          const { order, groupStore, oldOrderData } = result;
+      payload.forEach((result) => {
+        const { order, groupStore, oldOrderData } = result;
 
-          if (!order) {
-            // return oldOrderData;
-            return;
-          }
+        if (result.redirect) {
+          dispatch(REMOVE_ORDER, oldOrderData);
+          return;
+        }
 
-          if (order.SHOW_AUTH) {
-            console.error(order.ERROR);
-          }
+        if (!order) {
+          return;
+        }
 
-          // // order.ORDER_PROP.groups: Object
-          // Object.assign(propertyGroups, order.ORDER_PROP.groups);
-          //
-          // // order.ORDER_PROP.properties: Array
-          // order.ORDER_PROP.properties.forEach((prop) => {
-          //   // propertyList[prop.ID] = prop;
-          //   propertyList[prop.CODE] = prop;
-          // });
+        if (order.SHOW_AUTH) {
+          console.error(order.ERROR);
+        }
 
-          // dispatch(SET_PROPERTY_GROUPS, order.ORDER_PROP.groups);
-          dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
+        // // order.ORDER_PROP.groups: Object
+        // Object.assign(propertyGroups, order.ORDER_PROP.groups);
+        //
+        // // order.ORDER_PROP.properties: Array
+        // order.ORDER_PROP.properties.forEach((prop) => {
+        //   // propertyList[prop.ID] = prop;
+        //   propertyList[prop.CODE] = prop;
+        // });
 
-          // const properties = convertPropertyList(order.ORDER_PROP.properties);
-          //
-          // properties.forEach((property) => {
-          //   commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
-          //   commit('SET_PROPERTY', { [property.code]: property });
-          // });
+        dispatch(SET_PROPERTY_GROUPS, order.ORDER_PROP.groups);
+        dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
 
-
-          // order.DELIVERY: Object
-          const deliveryMethods = mappingDeliveryMethods(order.DELIVERY);
-          const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
-
-          // order.PAY_SYSTEM: Array
-          const paymentMethods = mappingPaymentMethods(order.PAY_SYSTEM);
-          const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
+        // const properties = convertPropertyList(order.ORDER_PROP.properties);
+        //
+        // properties.forEach((property) => {
+        //   commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
+        //   commit('SET_PROPERTY', { [property.code]: property });
+        // });
 
 
-          commit('UPDATE_ORDER', {
-            ...oldOrderData,
-            deliveryMethods,
-            paymentMethods,
-            groupStore: groupStore || [],
-            deliveryId: checkedDelivery ? checkedDelivery.id : null,
-            paymentId: checkedPayment ? checkedPayment.id : null,
-            productList: convertProducts(order.GRID.ROWS),
-            total: convertTotal(order.TOTAL),
+        // order.DELIVERY: Object
+        const deliveryMethods = mappingDeliveryMethods(order.DELIVERY);
+        const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
 
-            props: order.ORDER_PROP.properties.map(item => ({
-              id: parseInt(item.ID, 10),
-              code: item.CODE,
-            })),
+        // order.PAY_SYSTEM: Array
+        const paymentMethods = mappingPaymentMethods(order.PAY_SYSTEM);
+        const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
 
-            // props: convertPropertyList(order.ORDER_PROP.properties),
-          });
 
-          // return {
-          //   ...oldOrderData,
-          //   deliveryMethods,
-          //   paymentMethods,
-          //   groupStore: groupStore || [],
-          //   deliveryId: checkedDelivery ? checkedDelivery.id : null,
-          //   paymentId: checkedPayment ? checkedPayment.id : null,
-          //   productList: convertProducts(order.GRID.ROWS),
-          //   total: convertTotal(order.TOTAL),
-          //
-          //   props: order.ORDER_PROP.properties.map(item => ({
-          //     id: parseInt(item.ID, 10),
-          //     code: item.CODE,
-          //   })),
-          //
-          //   // props: convertPropertyList(order.ORDER_PROP.properties),
-          // };
+        commit('UPDATE_ORDER', {
+          ...oldOrderData,
+          deliveryMethods,
+          paymentMethods,
+          groupStore: groupStore || [],
+          deliveryId: checkedDelivery ? checkedDelivery.id : null,
+          paymentId: checkedPayment ? checkedPayment.id : null,
+          productList: convertProducts(order.GRID.ROWS),
+          total: convertTotal(order.TOTAL),
+
+          props: order.ORDER_PROP.properties.map(item => ({
+            id: parseInt(item.ID, 10),
+            code: item.CODE,
+          })),
+
+          // props: convertPropertyList(order.ORDER_PROP.properties),
         });
+
+        // return {
+        //   ...oldOrderData,
+        //   deliveryMethods,
+        //   paymentMethods,
+        //   groupStore: groupStore || [],
+        //   deliveryId: checkedDelivery ? checkedDelivery.id : null,
+        //   paymentId: checkedPayment ? checkedPayment.id : null,
+        //   productList: convertProducts(order.GRID.ROWS),
+        //   total: convertTotal(order.TOTAL),
+        //
+        //   props: order.ORDER_PROP.properties.map(item => ({
+        //     id: parseInt(item.ID, 10),
+        //     code: item.CODE,
+        //   })),
+        //
+        //   // props: convertPropertyList(order.ORDER_PROP.properties),
+        // };
+      });
 
       // commit('SET_ORDER_LIST', orderList);
       // dispatch(SET_PROPERTY_GROUPS, propertyGroups);
@@ -752,7 +761,6 @@ export default function createModule(options) {
 
     async refreshOrderAjax({ commit, dispatch }, order = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-
       await dispatch('refreshOrder', await dispatch('sendRequest', { data: { action: 'refreshOrderAjax' }, order }));
       commit('SET_CHECKOUT_STATUS', null);
     },
@@ -863,10 +871,10 @@ export default function createModule(options) {
     //   // dispatch('refreshOrderAjax');
     // },
 
-    [REMOVE_ORDER]({ commit, dispatch }, order) {
+    [REMOVE_ORDER]({ commit }, order) {
       commit(REMOVE_ORDER, order);
 
-      dispatch('refreshOrderAjax');
+      // dispatch('refreshOrderAjax');
     },
 
     SET_ERRORS({ commit }, errors) {
@@ -1016,31 +1024,6 @@ export default function createModule(options) {
     SET_CHECKOUT_STATUS: (state, status) => {
       state.checkoutStatus = status;
     },
-    // SET_CURRENT_STEP(state, { key }) {
-    //   state.currentStepName = key;
-    // },
-
-    // SET_DESCRIPTION(state, message) {
-    //   state.propertyDescription = message;
-    // },
-
-    // SET_PROPERTY(state, { name, value, root = false }) {
-    //   const currentProp = state.staticPropertyList.find(prop => prop.name === name);
-    //   if (currentProp) {
-    //     currentProp.value = value;
-    //   } else {
-    //     state.staticPropertyList.push({ name, value, root });
-    //   }
-    // },
-
-    // CLEAR_ERRORS(state, errors) {
-    //   state.errors = {
-    //     PROPERTY: [],
-    //     PAY_SYSTEM: [],
-    //     DELIVERY: [],
-    //     AUTH: [],
-    //   };
-    // },
 
     SET_ERRORS(state, errors) {
       state.errors = {
@@ -1055,14 +1038,12 @@ export default function createModule(options) {
       state.orderList = orderList;
     },
 
-    [REMOVE_ORDER]: (state, order) => {
-      state.orderList = state.orderList.filter(item => item.id !== order.id);
+    UPDATE_ORDER: (state, order) => {
+      state.orderList = state.orderList.map(item => (item.id !== order.id ? item : { ...item, ...order }));
     },
 
-    UPDATE_ORDER: (state, order) => {
-      state.orderList = [
-        ...state.orderList.map(item => (item.id !== order.id ? item : { ...item, ...order })),
-      ];
+    [REMOVE_ORDER]: (state, order) => {
+      state.orderList = state.orderList.filter(item => item.id !== order.id);
     },
 
     [SET_STORE]: (state, { storeId, order }) => {
@@ -1107,10 +1088,6 @@ export default function createModule(options) {
     UPDATE_PROP_BY_CODE: (state, { code, message }) => {
       // state.props[name] = message;
       Vue.set(state.props, code, message);
-    },
-
-    UPDATE_DESCRIPTION: (state, message) => {
-      state.props.description = message;
     },
   };
 
