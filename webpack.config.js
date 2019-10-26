@@ -35,17 +35,15 @@ const cummonConfig = {
   entry: {
     index: './src/index.js',
     catalog: './src/catalog.js',
-    firstLevel: './src/first-level.js',
     favorites: './src/favorites.js',
     vendors: './src/vendors.js',
-    vendorOpened: './src/vendor-opened.js',
     product: './src/product.js',
     cart: './src/cart.js',
     franchise: './src/franchise.js',
-    privacy: './src/privacy.js',
     shops: './src/shops.js',
     final: './src/final.js',
 
+    simple: './src/simple.js',
 
     // headerStyle: './src/scss/header-style.scss',
   },
@@ -156,7 +154,7 @@ const cummonConfig = {
       title: 'Каталог / Первый уровень',
       filename: 'first-level.html',
       template: path.resolve(__dirname, 'src/first-level.pug'),
-      chunks: ['firstLevel', 'common', 'runtime'],
+      chunks: ['catalog', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -180,7 +178,7 @@ const cummonConfig = {
       title: 'Производитель',
       filename: 'vendor-opened.html',
       template: path.resolve(__dirname, 'src/vendor-opened.pug'),
-      chunks: ['vendorOpened', 'common', 'runtime'],
+      chunks: ['catalog', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -211,8 +209,8 @@ const cummonConfig = {
     new HtmlWebpackPlugin({
       title: 'Политика приватности',
       filename: 'privacy.html',
-      template: path.resolve(__dirname, 'src/privacy.pug'),
-      chunks: ['privacy', 'common', 'runtime'],
+      template: path.resolve(__dirname, 'src/privacy.html'),
+      chunks: ['simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -220,7 +218,7 @@ const cummonConfig = {
       title: 'Доставка и оплата',
       filename: 'sap.html',
       template: path.resolve(__dirname, 'src/sap.html'),
-      chunks: ['privacy', 'common', 'runtime'],
+      chunks: ['simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -237,6 +235,22 @@ const cummonConfig = {
       filename: 'final.html',
       template: path.resolve(__dirname, 'src/final.html'),
       chunks: ['final', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: '404',
+      filename: '404.html',
+      template: path.resolve(__dirname, 'src/404.html'),
+      chunks: ['simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Технические работы',
+      filename: 'technical-work.html',
+      template: path.resolve(__dirname, 'src/technical-work.html'),
+      chunks: ['simple', 'common', 'runtime'],
       minify: false,
     }),
 

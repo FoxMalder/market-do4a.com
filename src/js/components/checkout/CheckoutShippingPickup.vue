@@ -43,7 +43,7 @@
     },
     methods: {
       setStore(store) {
-        this.$store.commit(`checkout/${SET_STORE}`, { storeId: store.id, order: this.order })
+        this.$store.dispatch(`checkout/${SET_STORE}`, { storeId: store.id, order: this.order });
       },
       /**
        * Показать магазин на карте

@@ -1,9 +1,6 @@
 /* eslint-disable no-shadow,no-param-reassign */
 import axios from 'axios';
 import Vue from 'vue';
-// import unionBy from 'lodash.unionby';
-import { validate, extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
 
 import * as Api from '../../api';
 import Utils from '../../utils/utils';
@@ -23,18 +20,6 @@ const SET_SHIPPING = 'SET_SELECTED_SHIPPING_METHOD_ID';
 const SET_PAYMENT = 'SET_SELECTED_PAYMENT_METHOD_ID';
 const SET_STORE = 'SET_SELECTED_STORE_ID';
 const REMOVE_ORDER = 'REMOVE_ORDER';
-
-extend('required', {
-  ...required,
-  message: 'Поле "{_field_}" должно быть заполнено',
-});
-
-
-extend('email', {
-  ...email,
-  message: 'Введите корректный email',
-});
-
 
 // const Id = (i => () => i += 1)(0);
 
@@ -365,26 +350,33 @@ export default function createModule(options) {
         }
        */
     ],
-    // groupStore: options.groupStore,
     propertyGroups: [],
     propertyList: [],
     props: {
-      // location: '',
       DESCRIPTION: '',
       sdekPickup: '',
     },
   };
 
   const getters = {
-    // New
+    /**
+     * Суммарное количество товаров
+     * @returns {Number}
+     */
     totalQuantity: state => state.orderList.reduce((c, order) => c + order.productList.length, 0),
 
+    /**
+     * Склонение количества товаров (1 товар, 2 товара...)
+     */
     totalQuantityText: (state, getters) => `${getters.totalQuantity} ${Utils.declOfNum(getters.totalQuantity, [
       'товар',
       'товара',
       'товаров',
     ])}`,
 
+    /**
+     * Список свойств, использующихся во всех заказах
+     */
     propertyList: (state) => {
       const propertyList = [];
 
@@ -403,24 +395,28 @@ export default function createModule(options) {
       // return convertPropertyList(propertyList);
     },
 
-    orderList(state, getters, rootState, rootGetters) {
-      return state.orderList.map(order => ({
-        ...order,
-        // productList: order.productList.map(product => ({
-        //   ...rootGetters['cart/getBasketItemById'](product.basketItemId),
-        //   ...product,
-        // })),
-        quantity: order.productList.length,
-        quantityText: `${order.productList.length} ${Utils.declOfNum(order.productList.length, [
-          'товар',
-          'товара',
-          'товаров',
-        ])}`,
-        paymentItem: order.paymentMethods.find(item => item.id === order.paymentId),
-        deliveryItem: order.deliveryMethods.find(item => item.id === order.deliveryId),
-      }));
-    },
+    /**
+     * Расширенный список отправлений
+     */
+    orderList: state => state.orderList.map(order => ({
+      ...order,
+      // productList: order.productList.map(product => ({
+      //   ...rootGetters['cart/getBasketItemById'](product.basketItemId),
+      //   ...product,
+      // })),
+      quantity: order.productList.length,
+      quantityText: `${order.productList.length} ${Utils.declOfNum(order.productList.length, [
+        'товар',
+        'товара',
+        'товаров',
+      ])}`,
+      paymentItem: order.paymentMethods.find(item => item.id === order.paymentId),
+      deliveryItem: order.deliveryMethods.find(item => item.id === order.deliveryId),
+    })),
 
+    /**
+     * Поля формы
+     */
     getAllFormData: (state, getters) => (orderId) => {
       const order = getters.orderList.find(item => item.id === orderId);
 
@@ -438,40 +434,6 @@ export default function createModule(options) {
       order.props.forEach((prop) => {
         data[`ORDER_PROP_${prop.id}`] = state.props[prop.code] || '';
       });
-
-      // state.propertyList.forEach((prop) => {
-      //   switch (prop.code) {
-      //     // case 'LOCATION':
-      //     //   data[`ORDER_PROP_${prop.id}`] = state.props.location;
-      //     //   break;
-      //     case 'ADDRESS':
-      //       data[`ORDER_PROP_${prop.id}`] = `${state.props.street}, ${state.props.house}, ${state.props.flat}`;
-      //       break;
-      //     case 'STREET':
-      //       data[`ORDER_PROP_${prop.id}`] = state.props.street;
-      //       break;
-      //     case 'HOUSE':
-      //       data[`ORDER_PROP_${prop.id}`] = state.props.house;
-      //       break;
-      //     // case 'CITY':
-      //     //   data[`ORDER_PROP_${prop.id}`] = '';
-      //     //   break;
-      //     case 'FLAT':
-      //       data[`ORDER_PROP_${prop.id}`] = state.props.flat;
-      //       break;
-      //     default:
-      //       data[`ORDER_PROP_${prop.id}`] = prop.value;
-      //   }
-      // });
-
-
-      // data.ORDER_DESCRIPTION = state.props.description;
-
-      // state.staticPropertyList.forEach((prop) => {
-      //   if (!prop.root) {
-      //     data[prop.name] = prop.value;
-      //   }
-      // });
 
       if (order.deliveryItem) {
         if (order.deliveryItem.category === 'sdek.pickup') {
@@ -493,25 +455,16 @@ export default function createModule(options) {
   };
 
   const actions = {
+    /**
+     * Инициализация
+     */
     async init({ commit, dispatch, rootState }) {
       commit('SET_PARAM', options.result);
       commit('SET_CHECKOUT_STATUS', 'initialization');
 
 
       const orderList = [];
-      // const propertyGroups = {};
-      // const propertyList = {};
-
-
       if (options.result.ORDER_PROP) {
-        // // order.ORDER_PROP.groups: Object
-        // Object.assign(propertyGroups, options.result.ORDER_PROP.groups);
-        //
-        // // order.ORDER_PROP.properties: Array
-        // options.result.ORDER_PROP.properties.forEach((prop) => {
-        //   propertyList[prop.CODE] = prop;
-        // });
-
         dispatch(SET_PROPERTY_GROUPS, options.result.ORDER_PROP.groups);
         dispatch(SET_PROPERTY_LIST, options.result.ORDER_PROP.properties);
       }
@@ -628,10 +581,6 @@ export default function createModule(options) {
 
 
       commit('SET_ORDER_LIST', orderList);
-      // dispatch(SET_PROPERTY_GROUPS, propertyGroups);
-      // dispatch(SET_PROPERTY_LIST, propertyList);
-
-
       commit('SET_CHECKOUT_STATUS', null);
     },
 
@@ -799,10 +748,6 @@ export default function createModule(options) {
           commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
         }
       });
-      // commit(SET_PROPERTY_LIST, convertedProps);
-
-
-      // commit(SET_PROPERTY_LIST, convertPropertyList(properties));
     },
 
     [SET_PAYMENT]({ commit, dispatch }, { id, order }) {
@@ -817,16 +762,12 @@ export default function createModule(options) {
       dispatch('refreshOrderAjax', order);
     },
 
-    // [SET_STORE]({ commit, dispatch }, { storeId, order }) {
-    //   commit(SET_STORE, { storeId, order });
-    //
-    //   // dispatch('refreshOrderAjax');
-    // },
+    [SET_STORE]({ commit }, { storeId, order }) {
+      commit(SET_STORE, { storeId, order });
+    },
 
     [REMOVE_ORDER]({ commit }, order) {
       commit(REMOVE_ORDER, order);
-
-      // dispatch('refreshOrderAjax');
     },
 
     SET_ERRORS({ commit }, errors) {
@@ -851,13 +792,10 @@ export default function createModule(options) {
       }
     },
 
-    async checkout({
-      state, commit, dispatch, getters,
-    }) {
+    async checkout({ commit, dispatch, getters }) {
       // try {
       //   window['yaCounter' + app.metrikaId].reachGoal('CLICK_ORDER_BUTTON');
       // } catch (ex) {}
-
 
       commit('SET_CHECKOUT_STATUS', 'loading');
 
@@ -865,7 +803,7 @@ export default function createModule(options) {
 
       const orders = [];
 
-      const resultList = await Promise.all(state.orderList.map(async (order) => {
+      const resultList = await Promise.all(getters.orderList.map(async (order) => {
         const request = {
           ...getters.getAllFormData(order.id),
           storeId: order.storeId,
@@ -1004,24 +942,12 @@ export default function createModule(options) {
       state.propertyGroups = propertyGroups;
     },
 
-    [SET_PROPERTY_LIST]: (state, propertyList) => {
-      state.propertyList = propertyList;
-    },
+    // [SET_PROPERTY_LIST]: (state, propertyList) => {
+    //   state.propertyList = propertyList;
+    // },
 
     ADD_PROPERTY: (state, property) => {
       state.propertyList.push(property);
-    },
-
-
-    // ADD_STATIC_PROPERTY: (state, prop) => {
-    //   state.staticPropertyList.push(prop);
-    // },
-
-    SET_PROPERTY: (state, property) => {
-      state.propertyList = {
-        ...state.propertyList,
-        ...property,
-      };
     },
 
     UPDATE_PROP_BY_CODE: (state, { code, message }) => {

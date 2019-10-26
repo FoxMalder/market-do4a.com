@@ -180,22 +180,22 @@ export default class Header {
     //
 
     // Stickyfill.forceSticky();
-    Stickyfill.add(this.fixedContainerEl);
+    // Stickyfill.add(this.fixedContainerEl);
 
 
-    window.addEventListener('scroll', () => {
-      if (this.fixedContainerEl.getBoundingClientRect().top === 0) {
-        // this.header.fixedTargets.style.height = this.header.fixedTargets.clientHeight;
-        this.fixedContainerEl.classList.add('fixed');
-      } else {
-        this.fixedContainerEl.classList.remove('fixed');
-      }
-      // if (this.header.fixedTargets.getBoundingClientRect().top === 0) {
-      //   this.header.fixedTargets.classList.add('fixed');
-      // } else {
-      //   this.header.fixedTargets.classList.remove('fixed');
-      // }
-    });
+    // window.addEventListener('scroll', () => {
+    //   if (this.fixedContainerEl.getBoundingClientRect().top === 0) {
+    //     // this.header.fixedTargets.style.height = this.header.fixedTargets.clientHeight;
+    //     this.fixedContainerEl.classList.add('fixed');
+    //   } else {
+    //     this.fixedContainerEl.classList.remove('fixed');
+    //   }
+    //   // if (this.header.fixedTargets.getBoundingClientRect().top === 0) {
+    //   //   this.header.fixedTargets.classList.add('fixed');
+    //   // } else {
+    //   //   this.header.fixedTargets.classList.remove('fixed');
+    //   // }
+    // });
 
     // Мобильное меню
     this.Menu = new Menu(
@@ -205,7 +205,7 @@ export default class Header {
 
     // Установка направления выпадающего меню
     if (this.vp.width >= 1240) {
-      Array.prototype.forEach.call(document.querySelectorAll('.h-category__link'), (item) => {
+      [].forEach.call(document.querySelectorAll('.h-category__link'), (item) => {
         const innerElement = item.nextElementSibling;
         if (innerElement) {
           if (item.getBoundingClientRect().left > (this.vp.width / 2)) {

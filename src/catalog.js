@@ -7,9 +7,9 @@ import App from './js/App';
 import CatalogControl from './js/page/catalog';
 
 
-if (process.env.NODE_ENV !== 'production') {
-  require('./catalog.pug');
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   require('./catalog.pug');
+// }
 
 
 ready(() => {
