@@ -634,11 +634,12 @@ export default function createModule(options) {
 
       const orderList = payload
         .filter(result => !result.redirect)
-        .map((result) => {
+        .forEach((result) => {
           const { order, groupStore, oldOrderData } = result;
 
           if (!order) {
-            return oldOrderData;
+            // return oldOrderData;
+            return;
           }
 
           if (order.SHOW_AUTH) {
@@ -674,7 +675,7 @@ export default function createModule(options) {
           const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
 
 
-          return {
+          commit('UPDATE_ORDER', {
             ...oldOrderData,
             deliveryMethods,
             paymentMethods,
@@ -690,15 +691,33 @@ export default function createModule(options) {
             })),
 
             // props: convertPropertyList(order.ORDER_PROP.properties),
-          };
+          });
+
+          // return {
+          //   ...oldOrderData,
+          //   deliveryMethods,
+          //   paymentMethods,
+          //   groupStore: groupStore || [],
+          //   deliveryId: checkedDelivery ? checkedDelivery.id : null,
+          //   paymentId: checkedPayment ? checkedPayment.id : null,
+          //   productList: convertProducts(order.GRID.ROWS),
+          //   total: convertTotal(order.TOTAL),
+          //
+          //   props: order.ORDER_PROP.properties.map(item => ({
+          //     id: parseInt(item.ID, 10),
+          //     code: item.CODE,
+          //   })),
+          //
+          //   // props: convertPropertyList(order.ORDER_PROP.properties),
+          // };
         });
 
-      commit('SET_ORDER_LIST', orderList);
+      // commit('SET_ORDER_LIST', orderList);
       // dispatch(SET_PROPERTY_GROUPS, propertyGroups);
       // dispatch(SET_PROPERTY_LIST, propertyList);
     },
 
-    sendRequest({ state, getters }, data, orders) {
+    sendRequest({ state, getters }, data, order) {
       // const request = {
       //   via_ajax: 'Y',
       //   SITE_ID: param.siteID,
@@ -713,8 +732,11 @@ export default function createModule(options) {
       //     request[prop.name] = prop.value;
       //   }
       // });
+      //
 
-      return Promise.all((orders || state.orderList).map(
+      const orderList = order ? [order] : state.orderList;
+
+      return Promise.all(orderList.map(
         order => Api.fetchSaleOrderAjax(param.ajaxUrl, {
           order: getters.getAllFormData(order.id),
           storeId: order.storeId,
@@ -728,9 +750,9 @@ export default function createModule(options) {
       ));
     },
 
-    async refreshOrderAjax({ commit, dispatch }, orders = null) {
+    async refreshOrderAjax({ commit, dispatch }, order = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }, orders));
+      await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }, order));
       commit('SET_CHECKOUT_STATUS', null);
     },
 
@@ -993,9 +1015,9 @@ export default function createModule(options) {
     SET_CHECKOUT_STATUS: (state, status) => {
       state.checkoutStatus = status;
     },
-    SET_CURRENT_STEP(state, { key }) {
-      state.currentStepName = key;
-    },
+    // SET_CURRENT_STEP(state, { key }) {
+    //   state.currentStepName = key;
+    // },
 
     // SET_DESCRIPTION(state, message) {
     //   state.propertyDescription = message;
@@ -1034,6 +1056,12 @@ export default function createModule(options) {
 
     [REMOVE_ORDER]: (state, order) => {
       state.orderList = state.orderList.filter(item => item.id !== order.id);
+    },
+
+    UPDATE_ORDER: (state, { id, order }) => {
+      state.orderList = [
+        ...state.orderList.map(item => (item.id !== order.id ? item : { ...item, ...order })),
+      ];
     },
 
     [SET_STORE]: (state, { storeId, order }) => {
