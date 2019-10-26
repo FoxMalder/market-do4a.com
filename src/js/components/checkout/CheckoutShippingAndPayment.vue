@@ -203,11 +203,12 @@
         // paymentMethods: 'paymentMethods',
         errors: 'errors',
         // props: 'props',
-        propertyList: 'propertyList',
+        // propertyList: 'propertyList',
         // currentStore: 'currentStore',
       }),
       ...mapGetters('checkout', {
         orderList: 'orderList',
+        propertyList: 'propertyList',
       }),
       multiple() {
         return this.orderList.length > 1;

@@ -29,7 +29,7 @@
       </div>
       
       
-      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>
+<!--      <CheckoutEmptyBasket v-else-if="totalQuantity === 0 || basketItems.length === 0"/>-->
       
       <template v-else-if="breakpoint === 'xl'">
         <div class="container">
@@ -176,6 +176,7 @@
       ...mapGetters({
         basketItems: 'cart/availableProducts',
         totalQuantity: 'checkout/totalQuantity',
+        propertyList: 'checkout/propertyList',
         // nextStepButton: 'checkout/nextStepButton',
       }),
 
@@ -241,7 +242,8 @@
       validateFirstStep() {
         let error = false;
 
-        this.$store.state.checkout.propertyList.forEach((item) => {
+        // this.$store.state.checkout.propertyList.forEach((item) => {
+        this.propertyList.forEach((item) => {
           
           // if (item.propsGroupId === 2) {
           //   return;
@@ -251,13 +253,15 @@
             return;
           }
 
-          if (item.required && this.$store.state.checkout.props[item.code] === '') {
+          const propData = this.$store.state.checkout.props[item.code];
+          
+          if (item.required && propData === '') {
             item.error = 'Заполните это поле';
             error = true;
             return;
           }
 
-          if (item.type === 'email' && !validEmail(this.$store.state.checkout.props[item.code])) {
+          if (item.type === 'email' && !validEmail(propData)) {
             item.error = 'Введите верный email';
             error = true;
           }
@@ -292,18 +296,21 @@
         });
 
 
-        this.$store.state.checkout.propertyList.forEach((item) => {
+        // this.$store.state.checkout.propertyList.forEach((item) => {
+        this.propertyList.forEach((item) => {
           if (this.breakpoint === 'xl' || item.relationDelivery.length === 0) {
             return;
           }
 
-          if (item.required && this.$store.state.checkout.props[item.code] === '') {
+          const propData = this.$store.state.checkout.props[item.code];
+          
+          if (item.required && propData === '') {
             item.error = 'Заполните это поле';
             error = true;
             return;
           }
 
-          if (item.type === 'email' && validEmail(this.$store.state.checkout.props[item.code])) {
+          if (item.type === 'email' && validEmail(propData)) {
             item.error = 'Введите верный email';
             error = true;
           }

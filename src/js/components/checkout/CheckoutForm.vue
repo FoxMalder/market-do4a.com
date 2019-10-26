@@ -138,7 +138,7 @@
     },
     computed: {
       ...mapState('checkout', {
-        propertyList: 'propertyList',
+        // propertyList: 'propertyList',
         propertyGroups: 'propertyGroups',
         // Old
         // propertyDescription: state => state.propertyDescription,
@@ -148,6 +148,7 @@
       }),
       ...mapGetters('checkout', {
         orderList: 'orderList',
+        propertyList: 'propertyList',
       }),
 
       visibleAddress() {

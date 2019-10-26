@@ -386,16 +386,20 @@ export default function createModule(options) {
     ])}`,
 
     propertyList: (state) => {
-      const propertyList = {};
+      const propertyList = [];
 
       state.orderList.forEach((order) => {
         order.props.forEach((prop) => {
           // propertyList[prop.code] = prop;
-          propertyList[prop.code] = state.propertyList.find(item => item.code === prop.code);
+          if (!propertyList.find(item => item === prop.id)) {
+            propertyList.push(prop.id);
+          }
+          // propertyList[prop.code] = state.propertyList.find(item => item.code === prop.code);
         });
       });
 
-      return Object.values(propertyList);
+      // return Object.values(propertyList);
+      return propertyList.map(propId => state.propertyList.find(prop => prop.id === propId));
       // return convertPropertyList(propertyList);
     },
 
@@ -495,18 +499,21 @@ export default function createModule(options) {
 
 
       const orderList = [];
-      const propertyGroups = {};
-      const propertyList = {};
+      // const propertyGroups = {};
+      // const propertyList = {};
 
 
       if (options.result.ORDER_PROP) {
-        // order.ORDER_PROP.groups: Object
-        Object.assign(propertyGroups, options.result.ORDER_PROP.groups);
+        // // order.ORDER_PROP.groups: Object
+        // Object.assign(propertyGroups, options.result.ORDER_PROP.groups);
+        //
+        // // order.ORDER_PROP.properties: Array
+        // options.result.ORDER_PROP.properties.forEach((prop) => {
+        //   propertyList[prop.CODE] = prop;
+        // });
 
-        // order.ORDER_PROP.properties: Array
-        options.result.ORDER_PROP.properties.forEach((prop) => {
-          propertyList[prop.CODE] = prop;
-        });
+        dispatch(SET_PROPERTY_GROUPS, options.result.ORDER_PROP.groups);
+        dispatch(SET_PROPERTY_LIST, options.result.ORDER_PROP.properties);
       }
 
       if (!options.result.SHOW_EMPTY_BASKET) {
@@ -557,10 +564,14 @@ export default function createModule(options) {
           storeId: rootState.storeRemoteId,
         };
 
-        Object.values(propertyList).forEach((prop) => {
-          // eslint-disable-next-line prefer-destructuring
-          request.order[`ORDER_PROP_${prop.ID}`] = prop.VALUE[0];
+        options.result.ORDER_PROP.properties.forEach((prop) => {
+          [request.order[`ORDER_PROP_${prop.ID}`]] = prop.VALUE;
         });
+
+        // Object.values(propertyList).forEach((prop) => {
+        //   // eslint-disable-next-line prefer-destructuring
+        //   request.order[`ORDER_PROP_${prop.ID}`] = prop.VALUE[0];
+        // });
 
         const { order, groupStore } = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
         options.result = [options.result, order];
@@ -574,13 +585,17 @@ export default function createModule(options) {
         const paymentMethods = mappingPaymentMethods(order.PAY_SYSTEM);
         const checkedPayment = checkedDelivery ? paymentMethods.find(item => item.checked) : null;
 
-        // order.ORDER_PROP.groups: Object
-        Object.assign(propertyGroups, order.ORDER_PROP.groups);
+        // // order.ORDER_PROP.groups: Object
+        // Object.assign(propertyGroups, order.ORDER_PROP.groups);
+        //
+        // // order.ORDER_PROP.properties: Array
+        // order.ORDER_PROP.properties.forEach((prop) => {
+        //   propertyList[prop.CODE] = prop;
+        // });
 
-        // order.ORDER_PROP.properties: Array
-        order.ORDER_PROP.properties.forEach((prop) => {
-          propertyList[prop.CODE] = prop;
-        });
+        dispatch(SET_PROPERTY_GROUPS, order.ORDER_PROP.groups);
+        dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
+
 
         orderList.unshift({
           id: 1,
@@ -606,16 +621,16 @@ export default function createModule(options) {
 
 
       commit('SET_ORDER_LIST', orderList);
-      dispatch(SET_PROPERTY_GROUPS, propertyGroups);
-      dispatch(SET_PROPERTY_LIST, propertyList);
+      // dispatch(SET_PROPERTY_GROUPS, propertyGroups);
+      // dispatch(SET_PROPERTY_LIST, propertyList);
 
 
       commit('SET_CHECKOUT_STATUS', null);
     },
 
     refreshOrder({ commit, dispatch }, payload) {
-      const propertyGroups = {};
-      const propertyList = {};
+      // const propertyGroups = {};
+      // const propertyList = {};
 
       const orderList = payload
         .filter(result => !result.redirect)
@@ -630,14 +645,17 @@ export default function createModule(options) {
             console.error(order.ERROR);
           }
 
-          // order.ORDER_PROP.groups: Object
-          Object.assign(propertyGroups, order.ORDER_PROP.groups);
+          // // order.ORDER_PROP.groups: Object
+          // Object.assign(propertyGroups, order.ORDER_PROP.groups);
+          //
+          // // order.ORDER_PROP.properties: Array
+          // order.ORDER_PROP.properties.forEach((prop) => {
+          //   // propertyList[prop.ID] = prop;
+          //   propertyList[prop.CODE] = prop;
+          // });
 
-          // order.ORDER_PROP.properties: Array
-          order.ORDER_PROP.properties.forEach((prop) => {
-            // propertyList[prop.ID] = prop;
-            propertyList[prop.CODE] = prop;
-          });
+          // dispatch(SET_PROPERTY_GROUPS, order.ORDER_PROP.groups);
+          dispatch(SET_PROPERTY_LIST, order.ORDER_PROP.properties);
 
           // const properties = convertPropertyList(order.ORDER_PROP.properties);
           //
@@ -676,8 +694,8 @@ export default function createModule(options) {
         });
 
       commit('SET_ORDER_LIST', orderList);
-      dispatch(SET_PROPERTY_GROUPS, propertyGroups);
-      dispatch(SET_PROPERTY_LIST, propertyList);
+      // dispatch(SET_PROPERTY_GROUPS, propertyGroups);
+      // dispatch(SET_PROPERTY_LIST, propertyList);
     },
 
     sendRequest({ state, getters }, data, orders) {
@@ -787,13 +805,21 @@ export default function createModule(options) {
       commit(SET_PROPERTY_GROUPS, convertPropertyGroups(groups));
     },
 
-    [SET_PROPERTY_LIST]({ commit }, properties) {
+    [SET_PROPERTY_LIST]({ state, commit }, properties) {
       const convertedProps = convertPropertyList(properties);
 
       convertedProps.forEach((property) => {
-        commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
+        const currentProp = state.propertyList.find(item => item.code === property.code);
+
+        if (!currentProp) {
+          commit('ADD_PROPERTY', property);
+          commit('UPDATE_PROP_BY_CODE', { code: property.code, message: property.value });
+        }
       });
-      commit(SET_PROPERTY_LIST, convertedProps);
+      // commit(SET_PROPERTY_LIST, convertedProps);
+
+
+      // commit(SET_PROPERTY_LIST, convertPropertyList(properties));
     },
 
     [SET_PAYMENT]({ commit, dispatch }, { id, order }) {
@@ -848,42 +874,6 @@ export default function createModule(options) {
       // try {
       //   window['yaCounter' + app.metrikaId].reachGoal('CLICK_ORDER_BUTTON');
       // } catch (ex) {}
-
-      // if (await dispatch('validatePropsData')) {
-      //   Utils.scrollTo(document.getElementById('order-props'));
-      //   return;
-      // }
-
-      // const err = {};
-      // getters.orderList.forEach((order) => {
-      //   // if (!order.deliveryItem) {
-      //   //   err.DELIVERY = ['Не выбран способ доставки'];
-      //   // } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
-      //   //   err.DELIVERY = ['Не выбран пункт самовывоза'];
-      //   // }
-      //
-      //   console.log(order);
-      //
-      //   // if (!order.deliveryId) {
-      //   //   err.DELIVERY = ['Не выбран способ доставки (1)'];
-      //   // }
-      //
-      //   if (!order.deliveryItem) {
-      //     err.DELIVERY = ['Не выбран способ доставки'];
-      //   } else if (order.deliveryItem.category === 'sdek.pickup' && !state.props.sdekPickup) {
-      //     err.DELIVERY = ['Не выбран пункт самовывоза'];
-      //   }
-      //
-      //   if (!order.paymentId) {
-      //     err.PAY_SYSTEM = ['Не выбран метод оплаты'];
-      //   }
-      // });
-      //
-      //
-      // if (err.PAY_SYSTEM || err.DELIVERY) {
-      //   dispatch('SET_ERRORS', err);
-      //   return;
-      // }
 
 
       commit('SET_CHECKOUT_STATUS', 'loading');
@@ -1067,6 +1057,10 @@ export default function createModule(options) {
 
     [SET_PROPERTY_LIST]: (state, propertyList) => {
       state.propertyList = propertyList;
+    },
+
+    ADD_PROPERTY: (state, property) => {
+      state.propertyList.push(property);
     },
 
 
