@@ -717,7 +717,7 @@ export default function createModule(options) {
       // dispatch(SET_PROPERTY_LIST, propertyList);
     },
 
-    sendRequest({ state, getters }, data, order) {
+    sendRequest({ state, getters }, { data, order }) {
       // const request = {
       //   via_ajax: 'Y',
       //   SITE_ID: param.siteID,
@@ -752,13 +752,14 @@ export default function createModule(options) {
 
     async refreshOrderAjax({ commit, dispatch }, order = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      await dispatch('refreshOrder', await dispatch('sendRequest', { action: 'refreshOrderAjax' }, order));
+
+      await dispatch('refreshOrder', await dispatch('sendRequest', { data: { action: 'refreshOrderAjax' }, order }));
       commit('SET_CHECKOUT_STATUS', null);
     },
 
     async enterCoupon({ commit, dispatch }, coupon) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      const resultList = await dispatch('sendRequest', { action: 'enterCoupon', coupon });
+      const resultList = await dispatch('sendRequest', { data: { action: 'enterCoupon', coupon } });
       commit('SET_CHECKOUT_STATUS', null);
 
       console.log(resultList);
@@ -805,7 +806,7 @@ export default function createModule(options) {
     },
 
     // removeCoupon({ dispatch }) {
-    //   return dispatch('sendRequest', { action: 'removeCoupon' })
+    //   return dispatch('sendRequest', {data: { action: 'removeCoupon' }})
     //     .then((result) => {
     //       if (!result.order) {
     //         // this.removeCouponItem(result);
@@ -1058,7 +1059,7 @@ export default function createModule(options) {
       state.orderList = state.orderList.filter(item => item.id !== order.id);
     },
 
-    UPDATE_ORDER: (state, { id, order }) => {
+    UPDATE_ORDER: (state, order) => {
       state.orderList = [
         ...state.orderList.map(item => (item.id !== order.id ? item : { ...item, ...order })),
       ];
