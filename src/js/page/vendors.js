@@ -76,6 +76,7 @@ export default class Vendors {
     });
     $('.multifilter__tab').on('shown.bs.tab', () => {
       this.macy.recalculate();
+      // this.macy.layout();
     });
   }
 
@@ -90,6 +91,10 @@ export default class Vendors {
     //     return arr;
     //   }, []),
     // );
+
+    // console.log('filtred');
+    // this.macy.recalculate();
+    // this.macy.layout();
 
     const selected = Object.values(store.state.filters.filters).map(
       filter => filter.data.reduce((arr, item) => {

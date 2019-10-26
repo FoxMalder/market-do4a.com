@@ -527,7 +527,7 @@ export default function createModule(options) {
           storeId: rootState.storeId,
           total: convertTotal(options.result.TOTAL),
           productList: convertProducts(options.result.GRID.ROWS),
-          groupStore: options.groupStore,
+          groupStore: options.groupStore || [],
           isLocaleStore,
           deliveryMethods,
           paymentMethods,
@@ -565,6 +565,7 @@ export default function createModule(options) {
         const { order, groupStore } = await Api.fetchSaleOrderAjax(options.ajaxUrl, request);
         options.result = [options.result, order];
 
+
         // order.DELIVERY: Object
         const deliveryMethods = mappingDeliveryMethods(order.DELIVERY);
         const checkedDelivery = deliveryMethods.find(item => item.checked) || null;
@@ -589,7 +590,7 @@ export default function createModule(options) {
           isLocaleStore: false,
           productList: convertProducts(order.GRID.ROWS),
           total: convertTotal(order.TOTAL),
-          groupStore,
+          groupStore: groupStore || [],
           deliveryMethods,
           paymentMethods,
           deliveryId: checkedDelivery ? checkedDelivery.id : null,
@@ -659,7 +660,7 @@ export default function createModule(options) {
             ...oldOrderData,
             deliveryMethods,
             paymentMethods,
-            groupStore,
+            groupStore: groupStore || [],
             deliveryId: checkedDelivery ? checkedDelivery.id : null,
             paymentId: checkedPayment ? checkedPayment.id : null,
             productList: convertProducts(order.GRID.ROWS),
