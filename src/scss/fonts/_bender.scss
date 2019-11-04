@@ -13,6 +13,7 @@ $font-url-bender: $font-path + 'bender/';
     url($font-url-bender + $file-name + '.ttf') format('truetype');
     font-weight: $weight;
     font-style: $style;
+    font-display: swap;
   }
 }
 
