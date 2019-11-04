@@ -28,7 +28,7 @@
     
     <div class="product-stickers">
       <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"
-           v-if="activePacking.isDeliveryOneDay"
+           v-if="activePacking.isDeliveryOneDay && isAvailableDeliveryOffer"
       >Доставка <br>1 день</div>
       
       <div class="product-stickers__item product-stickers__item_yellow"
@@ -93,7 +93,8 @@
       }),
       ...mapGetters('product', [
         'activePacking',
-        'isAvailableOffer'
+        'isAvailableOffer',
+        'isAvailableDeliveryOffer',
       ])
     },
     methods: {

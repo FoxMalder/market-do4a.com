@@ -1,9 +1,6 @@
 import ready from 'domready';
 
-import './js/common';
-import './scss/main.scss';
 
-import App from './js/App';
 import CatalogControl from './js/page/catalog';
 
 
@@ -11,11 +8,7 @@ import CatalogControl from './js/page/catalog';
 //   require('./catalog.pug');
 // }
 
-
 ready(() => {
-  global.App = App;
-  global.App.init();
-
   global.PageCatalog = new CatalogControl({
     filter: document.querySelector('.filter'),
     sorting: document.querySelector('.sorting'),

@@ -33,6 +33,8 @@ const distPath = path.resolve(__dirname, 'dist');
 
 const cummonConfig = {
   entry: {
+    simple: './src/simple.js',
+
     index: './src/index.js',
     catalog: './src/catalog.js',
     favorites: './src/favorites.js',
@@ -43,7 +45,6 @@ const cummonConfig = {
     shops: './src/shops.js',
     final: './src/final.js',
 
-    simple: './src/simple.js',
 
     // headerStyle: './src/scss/header-style.scss',
   },
@@ -57,6 +58,11 @@ const cummonConfig = {
   //   modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
   // },
 
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/js/'),
+    },
+  },
   externals: {
     app: 'app',
     jquery: 'jQuery',
@@ -138,7 +144,7 @@ const cummonConfig = {
       title: 'Главная',
       filename: 'main.html',
       template: path.resolve(__dirname, 'src/index.pug'),
-      chunks: ['index', 'common', 'runtime'],
+      chunks: ['index', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -146,7 +152,7 @@ const cummonConfig = {
       title: 'Каталог',
       filename: 'catalog.html',
       template: path.resolve(__dirname, 'src/catalog.pug'),
-      chunks: ['catalog', 'common', 'runtime'],
+      chunks: ['catalog', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -154,7 +160,7 @@ const cummonConfig = {
       title: 'Каталог / Первый уровень',
       filename: 'first-level.html',
       template: path.resolve(__dirname, 'src/first-level.pug'),
-      chunks: ['catalog', 'common', 'runtime'],
+      chunks: ['catalog', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -162,7 +168,7 @@ const cummonConfig = {
       title: 'Избранное',
       filename: 'favorites.html',
       template: path.resolve(__dirname, 'src/favorites.pug'),
-      chunks: ['favorites', 'common', 'runtime'],
+      chunks: ['favorites', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -170,7 +176,7 @@ const cummonConfig = {
       title: 'Производители',
       filename: 'vendors.html',
       template: path.resolve(__dirname, 'src/vendors.pug'),
-      chunks: ['vendors', 'common', 'runtime'],
+      chunks: ['vendors', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -178,7 +184,7 @@ const cummonConfig = {
       title: 'Производитель',
       filename: 'vendor-opened.html',
       template: path.resolve(__dirname, 'src/vendor-opened.pug'),
-      chunks: ['catalog', 'common', 'runtime'],
+      chunks: ['catalog', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -186,7 +192,7 @@ const cummonConfig = {
       title: 'Карточка товара',
       filename: 'product.html',
       template: path.resolve(__dirname, 'src/product.pug'),
-      chunks: ['product', 'common', 'runtime'],
+      chunks: ['product', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -194,7 +200,7 @@ const cummonConfig = {
       title: 'Корзина',
       filename: 'cart.html',
       template: path.resolve(__dirname, 'src/cart.pug'),
-      chunks: ['cart', 'common', 'runtime'],
+      chunks: ['cart', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -202,7 +208,7 @@ const cummonConfig = {
       title: 'Франшиза',
       filename: 'franchise.html',
       template: path.resolve(__dirname, 'src/franchise.pug'),
-      chunks: ['franchise', 'common', 'runtime'],
+      chunks: ['franchise', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -226,7 +232,7 @@ const cummonConfig = {
       title: 'Магазины',
       filename: 'shops.html',
       template: path.resolve(__dirname, 'src/shops.html'),
-      chunks: ['shops', 'common', 'runtime'],
+      chunks: ['shops', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -234,7 +240,7 @@ const cummonConfig = {
       title: 'Финал заказа',
       filename: 'final.html',
       template: path.resolve(__dirname, 'src/final.html'),
-      chunks: ['final', 'common', 'runtime'],
+      chunks: ['final', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -269,6 +275,7 @@ const devConfig = {
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.esm.js',
+      // '@': path.resolve(__dirname, 'src/js/'),
     },
   },
   module: {
@@ -360,7 +367,7 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
   // output: {
   //   publicPath: '/static/dist/',
   // },
@@ -512,8 +519,8 @@ const prodConfig = {
 
 
 module.exports = (env, args) => {
-  if (args.mode === 'development') {
-    return merge(cummonConfig, devConfig);
+  if (args && args.mode !== 'development') {
+    return merge(cummonConfig, prodConfig);
   }
-  return merge(cummonConfig, prodConfig);
+  return merge(cummonConfig, devConfig);
 };

@@ -1,11 +1,6 @@
 import ready from 'domready';
 import Vue from 'vue';
 
-import './js/common';
-import './scss/main.scss';
-
-import App from './js/App';
-
 // import VueShopListInfo from './js/components/ShopListInfo.vue';
 import VueShopList from './js/components/ShopList.vue';
 import store from './js/store';
@@ -56,14 +51,6 @@ import store from './js/store';
 
 
 ready(() => {
-  global.App = App;
-  try {
-    global.App.init();
-  } catch (e) {
-    console.error(e);
-  }
-
-
   new Vue({
     store,
     render: h => h(VueShopList),

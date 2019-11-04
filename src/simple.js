@@ -1,9 +1,9 @@
 import ready from 'domready';
 
-import './js/common';
+import '@/common';
 import './scss/main.scss';
 
-import App from './js/App';
+import App from '@/App';
 
 
 ready(() => {

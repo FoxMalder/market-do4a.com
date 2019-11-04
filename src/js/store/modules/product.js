@@ -86,6 +86,12 @@ const getters = {
       ? (getters.activeOffer.count_group > 0 || getters.activeOffer.count_remote > 0)
       : false;
   },
+
+  isAvailableDeliveryOffer: (state, getters) => {
+    return getters.activeOffer
+      ? (getters.activeOffer.count_group === 0 && getters.activeOffer.count_remote > 0)
+      : false;
+  },
 };
 
 // actions

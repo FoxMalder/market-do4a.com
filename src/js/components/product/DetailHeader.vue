@@ -2,7 +2,7 @@
   <div class="p-detail__header">
     <div class="p-detail__note">
       <transition name="fade">
-        <span v-show="activeOffer.count_city === 0 && activeOffer.count_remote > 0">Доставка с центрального склада</span>
+        <span v-show="isAvailableDeliveryOffer">Доставка с центрального склада</span>
       </transition>
     </div>
     <div class="p-detail__category">{{ category }}</div>
@@ -26,7 +26,13 @@
       ...mapGetters('product', [
         'activeOffer',
         'activePacking',
+        'isAvailableDeliveryOffer',
       ]),
+      // isAvailableDeliveryOffer() {
+      //   return this.activeOffer
+      //     ? (this.activeOffer.count_group === 0 && this.activeOffer.count_remote > 0)
+      //     : false;
+      // },
       reviewsQuantityText() {
         return this.activePacking.review > 0
           ? `${this.activePacking.review} ${Utils.declOfNum(this.activePacking.review, ['отзыв', 'отзыва', 'отзывов'])}`

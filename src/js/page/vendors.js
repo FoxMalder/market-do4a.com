@@ -11,6 +11,7 @@ export default class Vendors {
   constructor() {
     store.registerModule('filters', catalogControl);
 
+    this.searchContainer = document.querySelector('.page-header .search-fild');
     this.searchField = document.querySelector('.page-header .search-fild__input');
 
     this.searchFieldText = this.searchField.value.trim().toLowerCase();
@@ -56,6 +57,7 @@ export default class Vendors {
       catalogControlEl.insertBefore(this.categoryListMobileVM.$el, catalogControlEl.firstChild);
     }
 
+    this.searchContainer.addEventListener('submit', this.onSearch);
     this.searchField.addEventListener('input', this.onSearch);
     this.searchField.addEventListener('change', this.onSearch);
 
@@ -125,7 +127,7 @@ export default class Vendors {
   onSearch = (event) => {
     event.preventDefault();
 
-    this.searchFieldText = event.target.value.trim().toLowerCase();
+    this.searchFieldText = this.searchField.value.trim().toLowerCase();
     this.filterItems();
   };
 }

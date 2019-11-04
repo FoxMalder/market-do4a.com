@@ -4,20 +4,20 @@ import Sticky from 'sticky-js';
 import ready from 'domready';
 import AOS from 'aos';
 
-import './js/common';
+// import './js/common';
 
 import 'aos/dist/aos.css';
-import './scss/main.scss';
+// import './scss/main.scss';
 import './scss/franchise.scss';
 
 
-import App from './js/App';
+// import App from './js/App';
 import Parallax from './js/modules/Parallax';
 
 
-if (process.env.NODE_ENV !== 'production') {
-  require('./franchise.pug');
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   require('./franchise.pug');
+// }
 
 
 Swiper.use([
@@ -240,10 +240,6 @@ function initForms() {
 
 
 ready(() => {
-  window.App = App;
-  window.App.init();
-
-
   initVideo();
   initProgramList();
   initForms();
