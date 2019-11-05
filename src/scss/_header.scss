@@ -438,8 +438,8 @@
 
     &_store {
       flex: 0 1 auto;
-      letter-spacing: 0.01em;
       color: #7f7f7f;
+      letter-spacing: 0.01em;
     }
 
     //@include media-breakpoint-up(xl) {
@@ -551,33 +551,57 @@
 }
 
 .change-city {
-  padding: 20px 0;
+  position: relative;
+  padding: 18px 0;
   color: white;
   @include media-breakpoint-up(xl) {
-    padding: 30px 0 58px;
+    padding: 51px 0 58px;
   }
 
   &__header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    height: 45px;
-    margin-bottom: 45px;
   }
 
   &__title {
-    //@extend %title;
     @include title;
+
     font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    padding-right: 30px;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 20px;
+      line-height: 23px;
+      margin-bottom: 53px;
+    }
+  }
+
+
+  &__second-title {
+    @include title;
+
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 14px;
+
+    @include media-breakpoint-up(xl) {
+      font-size: 30px;
+      line-height: 37px;
+      margin-bottom: 50px;
+    }
   }
 
   &__btn-close {
     @include button-variant($main-color, $main-color, #fff, #fff);
 
-    flex: 0 0 auto;
-    width: 33px;
-    height: 33px;
-    margin-left: 20px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    width: 22px;
+    height: 22px;
     padding: 0;
     border-radius: 50%;
 
@@ -598,6 +622,13 @@
 
     &::after {
       transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    @include media-breakpoint-up(xl) {
+      width: 33px;
+      height: 33px;
+      top: 36px;
+      right: 0;
     }
   }
 
@@ -619,7 +650,6 @@
   }
 
   &__item {
-
     position: relative;
     margin-bottom: 21px;
     font-size: 14px;
@@ -628,16 +658,23 @@
     &::before {
       content: attr(data-letter);
       position: absolute;
-      top: -5px;
+      top: -2px;
       left: -30px;
       color: $main-color;
       font-size: 20px;
 
       @include title;
     }
+    //@include media-breakpoint-up(xl) {
+    //
+    //  &::before {
+    //
+    //  }
+    //}
   }
 
   &__footer {
+    margin: 0 -10px;
 
     @include media-breakpoint-up(xl) {
       display: flex;
@@ -645,13 +682,12 @@
       align-items: flex-end;
       justify-content: space-between;
       padding-right: 46px;
+      margin: 0;
     }
   }
 
   &__note {
-
     padding: 12px 20px 0;
-    //display: none;
     color: rgba(255, 255, 255, .5);
     font-size: 12px;
 
@@ -673,174 +709,92 @@
   }
 }
 
-.change-store {
-  padding: 21px 0;
-  color: white;
-  //background: url("../img/rm/change-store.png") center top no-repeat;
+.change-store-list {
+  padding-left: 0;
+  list-style: none;
+  margin: 0 -10px;
+
   @include media-breakpoint-up(xl) {
-    padding: 49px 0 58px;
-  }
-
-  &__header {
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    //height: 45px;
-    margin-bottom: 53px;
-  }
-
-  &__title {
-    @include title;
-    font-size: 30px;
-    line-height: 37px;
-  }
-
-  &__btn-close {
-    @include button-variant($main-color, $main-color, #fff, #fff);
-
-    flex: 0 0 auto;
-    width: 33px;
-    height: 33px;
-    padding: 0;
-    border-radius: 50%;
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 10px;
-      height: 2px;
-      background: currentColor;
-    }
-
-    &::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    &::after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-  }
-
-  &__list {
-    margin-bottom: 0;
-    padding-left: 0;
-    list-style: none;
-
-    @include media-breakpoint-up(xl) {
-      //max-height: 410px;
-      display: flex;
-      flex-wrap: wrap;
-      //margin-bottom: 77px;
-      margin-left: -14px;
-      transform: $skew;
-    }
-  }
-
-
-  &__footer {
-
-    @include media-breakpoint-up(xl) {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding-right: 46px;
-    }
-  }
-
-  &__note {
-    padding: 12px 20px 0;
-    //display: none;
-    color: rgba(255, 255, 255, .5);
-    font-size: 12px;
-
-    line-height: 17px;
-    @include media-breakpoint-up(xl) {
-      max-width: 455px;
-      margin-top: 52px;
-      //  display: block;
-      padding: 0;
-      font-size: 14px;
-      line-height: 20px;
-    }
-
-    b {
-      color: white;
-    }
+    flex-wrap: wrap;
+    margin: 0;
+    //margin-left: -14px;
+    transform: $skew;
   }
 
   &__item {
+    margin-bottom: 10px;
 
     @include media-breakpoint-up(xl) {
       @include make-col(4);
       padding: 0 10px;
-      &_right {
-        margin-bottom: -163px;
-        margin-left: auto;
-      }
-    }
-  }
-
-  &__link {
-
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    height: 100px;
-    //margin: 0 0px 33px;
-    margin-bottom: 10px;
-    padding: 15px 20px;
-
-    background: #292929;
-    font-size: 14px;
-
-    line-height: normal;
-
-    //flex: 0 0 3;
-
-    &_active,
-    &.active {
-      box-shadow: 0 0 0 3px $main-color inset;
-      //border: 3px solid #F4412D;
-    }
-
-    @include media-breakpoint-up(xl) {
-      height: 130px;
       margin-bottom: 33px;
-      padding: 20px;
+    }
+  }
+}
 
+.change-store-item {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 100px;
+  //margin-bottom: 10px;
+  padding: 15px 20px;
+  background: #292929;
+  color: #fff;
+  font-size: 14px;
+  line-height: normal;
+  text-align: left;
+  transition: all .3s ease;
 
-      &_icon {
-        padding-left: 60px;
-      }
-      &:hover {
-        box-shadow: 0 0 0 1px $main-color inset;
-        //border: 1px solid #F4412D;
-      }
+  &:hover {
+    box-shadow: 0 0 0 1px $main-color inset;
+    color: #fff;
+  }
+
+  &_light {
+    background: #ececec;
+    color: #101010;
+
+    &:hover {
+      box-shadow: 0 0 0 1px #101010 inset;
+      color: #101010;
     }
   }
 
-  &__item-icon {
-    position: absolute;
-    right: 20px;
-    bottom: 15px;
-    width: 58px;
-    height: 42px;
-    @include media-breakpoint-up(xl) {
-      top: 50%;
-      right: auto;
-      bottom: auto;
-      left: 0;
-      width: 105px;
-      height: 77px;
-      transform: $skew-reverse translate(-60px, -50%);
-    }
+  &_active,
+  &.active {
+    box-shadow: 0 0 0 3px $main-color inset;
   }
 
-  &__item-name {
+  @include media-breakpoint-up(xl) {
+    height: 130px;
+    //margin-bottom: 33px;
+    padding: 20px;
+
+    //&_icon {
+    //  padding-left: 60px;
+    //}
+  }
+
+  //&__icon {
+  //  position: absolute;
+  //  right: 20px;
+  //  bottom: 15px;
+  //  width: 58px;
+  //  height: 42px;
+  //  @include media-breakpoint-up(xl) {
+  //    top: 50%;
+  //    right: auto;
+  //    bottom: auto;
+  //    left: 0;
+  //    width: 105px;
+  //    height: 77px;
+  //    transform: $skew-reverse translate(-60px, -50%);
+  //  }
+  //}
+
+  &__name {
     @include title;
     margin-bottom: 7px;
     font-size: 14px;
@@ -851,7 +805,7 @@
     }
   }
 
-  &__item-subtitle {
+  &__subtitle {
     font-size: 13px;
     line-height: normal;
 
@@ -861,12 +815,17 @@
     }
   }
 
-  &__item-note {
+  &__tel {
     margin-top: auto;
+    @include media-breakpoint-up(xl) {
+      transform: $skew-reverse;
+    }
+  }
 
-    color: rgba(white, .5);
+  &__note {
+    margin-top: auto;
+    opacity: .5;
     font-size: 12px;
-
     line-height: normal;
 
     @include media-breakpoint-up(xl) {
@@ -875,6 +834,7 @@
     }
   }
 }
+
 
 .change-post {
   display: flex;
@@ -886,11 +846,11 @@
   background: #292929;
   font-size: 14px;
   line-height: normal;
+  transition: all .3s ease;
 
   &_active,
   &.active {
     box-shadow: 0 0 0 3px $main-color inset;
-    //border: 3px solid #F4412D;
   }
 
   @include media-breakpoint-up(xl) {
@@ -901,8 +861,8 @@
     transform: $skew;
 
     &:hover {
+      color: #fff;
       box-shadow: 0 0 0 1px $main-color inset;
-      //border: 1px solid #F4412D;
     }
   }
 
@@ -1114,6 +1074,7 @@
       .header-cart {
         display: block;
       }
+
       .button-cart {
         background-color: #1b1b1b;
         color: #fff;
@@ -1287,8 +1248,8 @@ button.search-fild__loupe {
 
   //padding: 23.5px 25px;
   transform: $skew;
-  -webkit-backface-visibility: hidden;
   transform-origin: center;
+  -webkit-backface-visibility: hidden;
   background-color: $main-color;
   color: #fff;
 
@@ -1306,15 +1267,15 @@ button.search-fild__loupe {
   &__num {
     display: block;
     @include title;
-    text-align: center;
     min-width: 44px;
     padding: 12px 10px;
     border-radius: 22px;
     background: #fff;
     color: #000;
-
     font-size: 20px;
+
     line-height: 1;
+    text-align: center;
     //line-height: 30px;
   }
 
@@ -1336,8 +1297,8 @@ button.search-fild__loupe {
     margin-top: 6px;
     opacity: .7;
     font-size: 15px;
-    line-height: 1;
     font-weight: 500;
+    line-height: 1;
   }
 }
 
@@ -1535,12 +1496,12 @@ button.search-fild__loupe {
     color: $main-color;
 
     &:hover {
-      color: #1B1B1B;
+      color: #1b1b1b;
     }
 
     &:disabled {
-      color: $main-color;
       opacity: 0.5;
+      color: $main-color;
     }
   }
 

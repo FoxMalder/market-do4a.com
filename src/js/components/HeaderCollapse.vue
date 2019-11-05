@@ -58,27 +58,27 @@
     </div>
     <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse">
       <div class="container">
-        <div class="change-store">
-          <div class="change-store__header">
-            <span class="change-store__title">Выберите магазин<br> в <span class="selected">{{ currentCity ? currentCity.name5 : '' }}</span></span>
+        <div class="change-city">
+          <div class="change-city__header">
+            <span class="change-city__second-title">Выберите магазин<br> в <span class="selected">{{ currentCity ? currentCity.name5 : '' }}</span></span>
             <button class="change-city__btn-close btn" data-toggle="collapse" data-target=".change-store-collapse"></button>
           </div>
-          <ul class="change-store__list">
-            <li class="change-store__item"
+          <ul class="change-store-list">
+            <li class="change-store-list__item"
                 v-for="store in storeList"
                 :key="store.id">
-              <a class="change-store__link" href="#"
+              <a class="change-store-item" href="#"
                  :class="{ active: storeId === store.id }"
                  @click.prevent="setStore(store)">
-                <div class="change-store__item-name">{{ store.name }}</div>
-                <div class="change-store__item-subtitle">{{ store.shortAddress }}</div>
-                <div class="change-store__item-note">
+                <div class="change-store-item__name">{{ store.name }}</div>
+                <div class="change-store-item__subtitle">{{ store.shortAddress }}</div>
+                <div class="change-store-item__note">
                   {{ store.courier ? 'Курьер и самовывоз' : 'Только самовывоз' }}
                 </div>
               </a>
             </li>
           </ul>
-          <div class="change-store__footer">
+          <div class="change-city__footer">
             <a class="change-post" href="#" @click.prevent="setPost">
               <svg class="change-post__icon" viewBox="0 0 105 77" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M62.2393 1.42896H98.6675V12.7343H62.2393V1.42896Z" fill="#E84434"/>
@@ -93,7 +93,7 @@
               <div class="change-post__title">Отправлять почтой<br> с центрального склада</div>
               <div class="change-post__note">Срок от 5 дней</div>
             </a>
-            <div class="change-store__note"><b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или
+            <div class="change-city__note"><b>Не нашли нужный товар?</b> Отправим с центрального склада почтой или
               транспортной компанией. Доставка от 250 ₽. Отправка на следующий рабочий день.
             </div>
           </div>
@@ -153,10 +153,7 @@
     },
     methods: {
       setCity(city) {
-        // const city = this.$store.getters.getCityById(parseInt(cityId, 10));
-
-        // if (city.name === 'Москва') { // 35883 - Москва
-        if (city.isMultipleStore) { // 35883 - Москва
+        if (city.isMultipleStore || 1) {
           this.currentCityId = city.id;
 
           this.$nextTick(function() {
