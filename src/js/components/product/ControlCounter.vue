@@ -117,10 +117,10 @@
     directives: {
       TouchPan,
     },
-    // props: {
-    //   offer: Object,
-    //   isAvailable: Boolean,
-    // },
+    props: {
+      offer: Object,
+      isAvailable: Boolean,
+    },
     data() {
       return {
         count: 1,
@@ -139,7 +139,7 @@
     computed: {
       ...mapGetters('product', {
         packing: 'activePacking',
-        offer: 'activeOffer',
+        // offer: 'activeOffer',
         // 'visibleOffers',
         //
         // 'availableOffers',
@@ -147,7 +147,7 @@
         // 'notAvailableOffers',
         //
         // 'isAvailablePacking',
-        isAvailableOffer: 'isAvailableOffer',
+        // isAvailableOffer: 'isAvailableOffer',
       }),
 
 
