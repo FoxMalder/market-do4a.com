@@ -6,16 +6,16 @@
            :class="{ 'p-control-counter_hidden': !basketItem }"
            v-show="isAvailable"
            v-touch-pan.vertical.prevent.mouse="handlePan">
-<!--      <div class="p-control-counter"-->
-<!--           ref="counter"-->
-<!--           v-show="isAvailable"-->
-<!--           v-touch-pan.vertical.prevent.mouse="handlePan">-->
+        <!--      <div class="p-control-counter"-->
+        <!--           ref="counter"-->
+        <!--           v-show="isAvailable"-->
+        <!--           v-touch-pan.vertical.prevent.mouse="handlePan">-->
         <div class="p-control-counter__header" @click.prevent="toggle">
-<!--          <div class="p-control-counter__icon"></div>-->
+          <!--          <div class="p-control-counter__icon"></div>-->
           <svg class="p-control-counter__icon" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!--              <path d="M0.859375,1.28748 L7.99988,6.04781 L15.1404,1.28748" stroke="black" stroke-width="2"/>-->
-<!--            <path :d="arrowPath" stroke="black" stroke-width="2" stroke-opacity="0.2"/>-->
-<!--            <path :d="arrowPath" stroke="black" stroke-width="2" stroke-opacity="0.2" transform="translate(0, 5.8)"/>-->
+            <!--            <path :d="arrowPath" stroke="black" stroke-width="2" stroke-opacity="0.2"/>-->
+            <!--            <path :d="arrowPath" stroke="black" stroke-width="2" stroke-opacity="0.2" transform="translate(0, 5.8)"/>-->
             <path ref="arrow1" d="M1,5 L8,1 L15,5" stroke="black" stroke-width="2" stroke-opacity="0.2"/>
             <path ref="arrow2" d="M1,10 L8,6 L15,10" stroke="black" stroke-width="2" stroke-opacity="0.2"/>
           </svg>
@@ -94,6 +94,16 @@
   import ProductSubscribeModal from './ProductSubscribeModal.vue';
   import TouchPan from '../../directives/TouchPan';
 
+  
+  function gtmAdd(gtmData) {
+    console.log('Google Tag Manager:', gtmData);
+
+    if (dataLayer) {
+      dataLayer.push(gtmData);
+    } else {
+      console.error('Google Tag Manager:', 'Not found');
+    }
+  }
 
   function translateY(y) {
     if (y === 0)
@@ -107,10 +117,10 @@
     directives: {
       TouchPan,
     },
-    props: {
-      offer: Object,
-      isAvailable: Boolean,
-    },
+    // props: {
+    //   offer: Object,
+    //   isAvailable: Boolean,
+    // },
     data() {
       return {
         count: 1,
@@ -127,6 +137,20 @@
       this.debouncedSetQuantity = debounce(this.setQuantity, 300);
     },
     computed: {
+      ...mapGetters('product', {
+        packing: 'activePacking',
+        offer: 'activeOffer',
+        // 'visibleOffers',
+        //
+        // 'availableOffers',
+        // 'availableDeliveryOffers',
+        // 'notAvailableOffers',
+        //
+        // 'isAvailablePacking',
+        isAvailableOffer: 'isAvailableOffer',
+      }),
+
+
       maxCount() {
         return (this.basketItem && this.basketItem.quantity_max)
           ? this.basketItem.quantity_max
@@ -174,6 +198,33 @@
         // this.reveal('up');
 
         this.requestStatus = 'loading';
+
+        gtmAdd({
+          event: 'addToCart',
+          dimension3: '',
+          stock: this.offer.count_group < 1 && this.offer.count_remote > 0
+            ? 'Центральный склад'
+            : 'Локальный склад',
+          ecommerce: {
+            currencyCode: 'RUB',
+            add: {
+              products: [
+                {
+                  id: this.offer.id,
+                  name: this.packing.name,
+                  price: this.offer.price,
+                  category: '',
+                  variant: this.offer.name,
+                  dimension3: this.offer.count_group < 1 && this.offer.count_remote > 0
+                    ? 'Центральный склад'
+                    : 'Локальный склад',
+                  quantity: this.count,
+                },
+              ],
+            },
+          },
+        });
+
 
         this.$store.dispatch('cart/addProductToCart', {
             productId: this.offer.id,

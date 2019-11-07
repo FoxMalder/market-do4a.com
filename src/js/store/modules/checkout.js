@@ -311,6 +311,16 @@ function convertPropertyList(properties) {
 }
 
 
+function gtmAdd(gtmData) {
+  console.log('Google Tag Manager:', gtmData);
+
+  if (dataLayer) {
+    dataLayer.push(gtmData);
+  } else {
+    console.error('Google Tag Manager:', 'Not found');
+  }
+}
+
 export default function createModule(options) {
   param.locations = options.locations;
   param.siteID = options.siteID;
@@ -879,6 +889,30 @@ export default function createModule(options) {
       if (orders.length === 0) {
         return;
       }
+
+      gtmAdd({
+        event: 'purchase',
+        ecommerce: {
+          purchase: {
+            actionField: {
+              id: orders.join(','),
+              // affiliation: '',
+              // revenue: 0,
+              // shipping: 0,
+              // coupon: 'скидка на вторую покупку',
+            },
+            p: getters.orderList.flatMap(order => order.productList).map(product => ({
+              id: product.productId,
+              name: product.name,
+              price: product.price,
+              category: '',
+              variant: '',
+              dimension3: '',
+              quantity: product.quantity,
+            })),
+          },
+        },
+      });
 
       if (resultList.length !== orders.length) {
         alert('Некоторые отправления не были оформлены. Вернитесь в корзину, чтобы повторить');
