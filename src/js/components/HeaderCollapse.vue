@@ -153,7 +153,7 @@
     },
     methods: {
       setCity(city) {
-        if (city.isMultipleStore || 1) {
+        if (city.isMultipleStore) {
           this.currentCityId = city.id;
 
           this.$nextTick(function() {

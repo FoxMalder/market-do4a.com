@@ -94,17 +94,6 @@
   import ProductSubscribeModal from './ProductSubscribeModal.vue';
   import TouchPan from '../../directives/TouchPan';
 
-  
-  function gtmAdd(gtmData) {
-    console.log('Google Tag Manager:', gtmData);
-
-    if (dataLayer) {
-      dataLayer.push(gtmData);
-    } else {
-      console.error('Google Tag Manager:', 'Not found');
-    }
-  }
-
   function translateY(y) {
     if (y === 0)
       return '';
@@ -199,32 +188,6 @@
 
         this.requestStatus = 'loading';
 
-        gtmAdd({
-          event: 'addToCart',
-          dimension3: '',
-          stock: this.offer.count_group < 1 && this.offer.count_remote > 0
-            ? 'Центральный склад'
-            : 'Локальный склад',
-          ecommerce: {
-            currencyCode: 'RUB',
-            add: {
-              products: [
-                {
-                  id: this.offer.id,
-                  name: this.packing.name,
-                  price: this.offer.price,
-                  category: '',
-                  variant: this.offer.name,
-                  dimension3: this.offer.count_group < 1 && this.offer.count_remote > 0
-                    ? 'Центральный склад'
-                    : 'Локальный склад',
-                  quantity: this.count,
-                },
-              ],
-            },
-          },
-        });
-
 
         this.$store.dispatch('cart/addProductToCart', {
             productId: this.offer.id,
@@ -267,6 +230,7 @@
         this.requestStatus = 'loading';
 
         this.$store.dispatch('cart/setItemQuantity', {
+            offer: this.offer,
             basketItemId: this.basketItem.basketItemId,
             quantity: this.count
           })

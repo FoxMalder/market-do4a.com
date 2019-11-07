@@ -4,6 +4,17 @@ import Utils from '../../utils/utils';
 import { ADD_TOAST_MESSAGE } from './notifications';
 
 
+function gtmAddEvent(data) {
+  console.log('[GTM]:', 'Event data:', data);
+
+  if (global.dataLayer) {
+    global.dataLayer.push(data);
+  } else {
+    console.warn('[GTM]:', 'Not Installed');
+  }
+}
+
+
 // initial state
 const state = {
   items: [],
@@ -135,10 +146,37 @@ const actions = {
 
       commit('SET_STATUS', 'loading');
 
+
       Api.addProductToBasket(request)
         .then((data) => {
           localStorage.setItem('basket', JSON.stringify(data));
           commit('SET_BASKET', data);
+
+          const basketItem = data.items.find(item => item.productId === productId);
+          if (basketItem) {
+            gtmAddEvent({
+              event: 'addToCart',
+              dimension3: basketItem.calculateStoreId,
+              stock: basketItem.calculateStoreId,
+              ecommerce: {
+                currencyCode: 'RUB',
+                add: {
+                  products: [
+                    {
+                      id: basketItem.productId,
+                      name: basketItem.name,
+                      price: basketItem.sum,
+                      category: '',
+                      variant: '',
+                      dimension3: basketItem.calculateStoreId,
+                      quantity: basketItem.quantity,
+                    },
+                  ],
+                },
+              },
+            });
+          }
+
           resolve();
         })
         .catch(error => reject(error))
@@ -166,6 +204,32 @@ const actions = {
           localStorage.setItem('basket', JSON.stringify(data));
           dispatch('checkout/refreshOrderAjax', null, { root: true });
           commit('SET_BASKET', data);
+
+          const basketItem = data.items.find(item => item.basketItemId === basketItemId);
+          if (basketItem) {
+            gtmAddEvent({
+              event: 'addToCart',
+              dimension3: basketItem.calculateStoreId,
+              stock: basketItem.calculateStoreId,
+              ecommerce: {
+                currencyCode: 'RUB',
+                add: {
+                  products: [
+                    {
+                      id: basketItem.productId,
+                      name: basketItem.name,
+                      price: basketItem.sum,
+                      category: '',
+                      variant: '',
+                      dimension3: basketItem.calculateStoreId,
+                      quantity: basketItem.quantity,
+                    },
+                  ],
+                },
+              },
+            });
+          }
+
           resolve();
         })
         .catch(error => reject(error))

@@ -5,6 +5,19 @@ import Reviews from '../../api/reviews';
 import Product from '../../api/product';
 
 
+let position = 0;
+
+function gtmAddEvent(data) {
+  console.log('[GTM]:', 'Event data:', data);
+
+  if (global.dataLayer) {
+    global.dataLayer.push(data);
+  } else {
+    console.warn('[GTM]:', 'Not Installed');
+  }
+}
+
+
 // export default function createModule(options) {
 // initial state
 const state = {
@@ -35,68 +48,50 @@ const getters = {
    * Выбранная фасовка
    * @returns {Object}
    */
-  activePacking: (state) => {
-    return state.packing.find(item => item.id === state.packingId)
-      || state.packing[0];
-  },
+  activePacking: state => state.packing.find(item => item.id === state.packingId)
+    || state.packing[0],
 
   /**
    * Выбранный оффер
    * @returns {Object}
    */
-  activeOffer: (state, getters) => {
-    return getters.activePacking.sku.find(item => item.id === state.offerId)
-      || getters.activePacking.sku[0];
-  },
+  activeOffer: (state, getters) => getters.activePacking.sku.find(item => item.id === state.offerId)
+    || getters.activePacking.sku[0],
 
-  visibleOffers: (state, getters) => {
-    return getters.activePacking ? getters.activePacking.sku : [];
-  },
+  visibleOffers: (state, getters) => (getters.activePacking ? getters.activePacking.sku : []),
 
   /**
    * Оффера в наличии
    * @returns {Array}
    */
-  availableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_group > 0);
-  },
+  availableOffers: (state, getters) => getters.visibleOffers.filter(item => item.count_group > 0),
 
   /**
    * Оффера в наличии на ЦС
    * @returns {Array}
    */
-  availableDeliveryOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_group === 0 && item.count_remote > 0);
-  },
+  availableDeliveryOffers: (state, getters) => getters.visibleOffers.filter(item => item.count_group === 0 && item.count_remote > 0),
 
   /**
    * Оффера, которых нет в наличии
    * @returns {Array}
    */
-  notAvailableOffers: (state, getters) => {
-    return getters.visibleOffers.filter(item => item.count_group === 0 && item.count_remote === 0);
-  },
+  notAvailableOffers: (state, getters) => getters.visibleOffers.filter(item => item.count_group === 0 && item.count_remote === 0),
 
-  isAvailablePacking: (state, getters) => {
-    return getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0;
-  },
+  isAvailablePacking: (state, getters) => getters.availableOffers.length > 0 || getters.availableDeliveryOffers.length > 0,
 
-  isAvailableOffer: (state, getters) => {
-    return getters.activeOffer
-      ? (getters.activeOffer.count_group > 0 || getters.activeOffer.count_remote > 0)
-      : false;
-  },
+  isAvailableOffer: (state, getters) => (getters.activeOffer
+    ? (getters.activeOffer.count_group > 0 || getters.activeOffer.count_remote > 0)
+    : false),
 
-  isAvailableDeliveryOffer: (state, getters) => {
-    return getters.activeOffer
-      ? (getters.activeOffer.count_group === 0 && getters.activeOffer.count_remote > 0)
-      : false;
-  },
+  isAvailableDeliveryOffer: (state, getters) => (getters.activeOffer
+    ? (getters.activeOffer.count_group === 0 && getters.activeOffer.count_remote > 0)
+    : false),
 };
 
 // actions
 const actions = {
-  init({ commit }, product) {
+  init({ commit, getters }, product) {
     if (!Array.isArray(product.packing)) {
       product.packing = Object.values(product.packing);
     }
@@ -117,10 +112,31 @@ const actions = {
     commit('SET_PACKING', { packing: product.packing });
     commit('SET_ACTIVE_OFFER_ID', { id: product.offerId });
     commit('SET_ACTIVE_PACKING_ID', { id: product.productId });
+
+
+    gtmAddEvent({
+      event: 'detail',
+      stock: 'основной склад',
+      ecommerce: {
+        detail: {
+          products: [
+            {
+              id: product.offerId,
+              name: getters.activePacking.name,
+              price: getters.activeOffer.price,
+              category: '',
+              quantity: 1,
+              dimension3: 'основной склад',
+              position: 0,
+            },
+          ],
+        },
+      },
+    });
   },
 
   selectPacking({ dispatch, commit }, packing) {
-    let newActiveOffer = packing.sku.find(item => item.count > 0);
+    let newActiveOffer = packing.sku.find(item => item.count_group > 0);
     if (!newActiveOffer) {
       newActiveOffer = packing.sku.find(item => item.count_remote > 0);
     }
@@ -132,12 +148,52 @@ const actions = {
     commit('SET_ACTIVE_OFFER_ID', newActiveOffer);
 
 
+    gtmAddEvent({
+      event: 'detail',
+      stock: 'основной склад',
+      ecommerce: {
+        detail: {
+          products: [
+            {
+              id: newActiveOffer.id,
+              name: packing.name,
+              price: newActiveOffer.price,
+              category: '',
+              quantity: 1,
+              dimension3: 'основной склад',
+              position: position += 1,
+            },
+          ],
+        },
+      },
+    });
+
     dispatch('updateReviews');
     dispatch('updateSimilar');
   },
 
-  selectOffer({ commit }, offer) {
+  selectOffer({ commit, getters }, offer) {
     commit('SET_ACTIVE_OFFER_ID', offer);
+
+    gtmAddEvent({
+      event: 'detail',
+      stock: 'основной склад',
+      ecommerce: {
+        detail: {
+          products: [
+            {
+              id: offer.id,
+              name: getters.activePacking.name,
+              price: offer.price,
+              category: '',
+              quantity: 1,
+              dimension3: 'основной склад',
+              position: position += 1,
+            },
+          ],
+        },
+      },
+    });
   },
 
   getNextReviews({ state, dispatch }) {
