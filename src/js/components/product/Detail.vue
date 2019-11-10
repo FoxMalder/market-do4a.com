@@ -56,7 +56,7 @@
       </template>
       
       <div class="p-detail-delivery__row">
-        <div class="p-delivery-alert">Обратите внимание на <a class="p-delivery-alert__link" href="#" ref="tooltip">условия бесплатной доставки</a></div>
+        <div class="p-delivery-alert">Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной доставки</button></div>
   
         <div class="p-delivery-tooltip" ref="tooltipInner">
           <p class="p-delivery-tooltip__title">Бесплатная доставка от 2 990 ₽</p>
@@ -128,7 +128,7 @@
         isAvailableOffer: 'product/isAvailableOffer'
       }),
       freeShipingPrice() {
-        return `${this.currentCity ? this.currentCity.priceDelivery : '2 990'} ₽`;
+        return `${(this.currentCity && this.currentCity.priceDelivery) || '2 990'} ₽`;
       },
       availableStore() {
         return Object.keys(this.activeOffer.available_store).filter(key => this.activeOffer.available_store[key] > 0)

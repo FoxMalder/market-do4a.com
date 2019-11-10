@@ -6,7 +6,7 @@
       >Магазин рядом, доставка 1 день</div>
       <div class="p-delivery-badge p-delivery-badge_central"
            v-else-if="activeOffer.count_remote > 0"
-      >Со склада из СПБ в Нижний Новгород, 7 дней</div>
+      >{{ currentCity ? `Со склада из СПБ в ${currentCity.name}` : 'Со склада из СПБ' }}, 7 дней</div>
     </div>
     <div class="p-detail__category">{{ category }}</div>
     <div class="p-detail__country" v-if="country">Страна: <span class="black">{{ country }}</span></div>
@@ -26,11 +26,11 @@
         category: 'category',
         country: 'country'
       }),
-      ...mapGetters('product', [
-        'activeOffer',
-        'activePacking',
-        'isAvailableDeliveryOffer',
-      ]),
+      ...mapGetters({
+        currentCity: 'currentCity',
+        activeOffer: 'product/activeOffer',
+        activePacking: 'product/activePacking',
+      }),
       // isAvailableDeliveryOffer() {
       //   return this.activeOffer
       //     ? (this.activeOffer.count_group === 0 && this.activeOffer.count_remote > 0)
