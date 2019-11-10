@@ -39,7 +39,7 @@
       shipingPeriod() {
         return this.currentCity
           ? `Со склада из СПБ в ${this.currentCity.name}, ${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
-          : 'С центрального склада';
+          : 'Со склада в Санкт-Петербурге';
       },
       reviewsQuantityText() {
         return this.activePacking.review > 0

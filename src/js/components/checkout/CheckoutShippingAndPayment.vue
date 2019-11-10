@@ -4,7 +4,7 @@
     <CheckoutAlert v-else-if="fromCentralStock" :type="'central'"/>
     
     <div class="order-shiping" v-for="order in orderList">
-      <template v-if="multiple || fromCentralStock">
+      <template v-if="multiple">
         <div class="order-shiping__header">
           <div class="order-shiping__name">Отправление {{ order.index }}</div>
           <button

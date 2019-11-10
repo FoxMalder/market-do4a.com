@@ -30,7 +30,8 @@
     </div>
     <div class="p-detail-availability p-detail-availability_central"
          v-else-if="activeOffer.count_remote > 0">
-      {{ textDelivery || 'В наличии на складе в Санкт-Петербурге' }}
+      В наличии на складе в Санкт-Петербурге
+      <!-- {{ textDelivery || 'В наличии на складе в Санкт-Петербурге' }}-->
     </div>
     
     <div class="p-detail-delivery" v-show="isAvailableOffer">
@@ -46,18 +47,20 @@
       </template>
       <template v-else-if="activeOffer.count_remote > 0">
         <div class="p-detail-delivery__row">
-          <div class="p-detail-delivery__key">До почтового отделения, {{ shipingPeriod }} дней</div>
-          <div class="p-detail-delivery__value">Бесплатно от {{ freeShipingPrice }}</div>
+          <div class="p-detail-delivery__key">{{ 'До почтового отделения' + shipingPeriod }}</div>
+          <div class="p-detail-delivery__value">{{ 'Бесплатно от ' + freeShipingPrice }}</div>
         </div>
-        <div class="p-detail-delivery__row">
-          <div class="p-detail-delivery__key">Курьером до двери, 2-7 дней</div>
-          <div class="p-detail-delivery__value">Бесплатно от {{ freeShipingPrice }}</div>
-        </div>
+<!--        <div class="p-detail-delivery__row">-->
+<!--          <div class="p-detail-delivery__key">Курьером до двери</div>-->
+<!--          <div class="p-detail-delivery__value">{{ 'Бесплатно от ' + freeShipingPrice }}</div>-->
+<!--        </div>-->
       </template>
       
       <div class="p-detail-delivery__row">
-        <div class="p-delivery-alert">Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной доставки</button></div>
-  
+        <div class="p-delivery-alert">
+          Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной доставки</button>
+        </div>
+        
         <div class="p-delivery-tooltip" ref="tooltipInner">
           <p class="p-delivery-tooltip__title">Бесплатная доставка от {{ freeShipingPrice }}</p>
           <p>
@@ -129,7 +132,7 @@
       }),
       shipingPeriod() {
         return (this.currentCity && this.currentCity.deliveryCountDays)
-          ? `${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
+          ? `, ${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
           : '';
       },
       freeShipingPrice() {
