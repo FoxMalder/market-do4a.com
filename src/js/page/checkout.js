@@ -5,14 +5,117 @@ import checkoutStore from '../store/modules/checkout';
 
 import Checkout from '../components/checkout/Checkout.vue';
 import CheckoutPopular from '../components/checkout/CheckoutPopular.vue';
+import axios from 'axios';
+import qs from 'qs';
+import ProductCard from '@/components/ProductCard';
 
 
-export default class PageCheckout {
+class Popular {
   constructor() {
+    this.$el = document.querySelector('.p-section-popular');
+    if (!this.$el) {
+      return;
+    }
 
+    this.request = JSON.parse(this.$el.dataset.request);
+
+    this.$container = this.$el.querySelector('.p-section-popular__list');
+
+    this.$control = this.$el.querySelector('.load-more-block');
+    this.$controlLink = this.$el.querySelector('.load-more-block__link');
+    this.$controlText = this.$el.querySelector('.load-more-block__value');
+
+    this.shownCards = this.$container.querySelectorAll('[data-product-id]').length;
+    this.totalCards = 0;
+    this.page = this.shownCards > 0 ? 1 : 0; // 1
+
+    this.init();
   }
 
   init() {
+    this.$controlLink.addEventListener('click', this.onClick);
+  }
+
+  onClick = (event) => {
+    event.preventDefault();
+    this.nextPage();
+  };
+
+  /**
+   * Создает нужные элементы на основе входных данных и вставляет их на страницу
+   *
+   * @param {Array} items - Массив вставляемых элементов
+   */
+  add(items) {
+    items.forEach((item) => {
+      let element;
+
+      if (item.type === 'product') {
+        element = new ProductCard(item.options);
+        element = element.getElement();
+      } else {
+        element = Utils.htmlToElement(item.html);
+        this.shownCards += 1;
+      }
+
+      this.$container.appendChild(element);
+    });
+  }
+
+  send(request) {
+    return axios.post('/ajax/catalog/products/by-params/', qs.stringify(request))
+      .then(response => response.data)
+      .then((response) => {
+        if (response.success === 1) {
+          return response.data;
+        }
+        const error = new Error(response.message);
+        error.response = response;
+        throw error;
+      });
+  }
+
+  nextPage() {
+    const request = {
+      ...this.request,
+      page: this.page + 1,
+    };
+
+    this.$control.classList.add('loading');
+    this.send(request)
+      .then((data) => {
+        this.page += 1;
+        this.add(data.items);
+
+        if (this.page > 1) {
+          this.totalCards = data.count;
+
+          if (this.shownCards < this.totalCards) {
+            this.$control.style.display = '';
+            this.$controlText.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
+          } else {
+            this.$control.style.display = 'none';
+          }
+        }
+
+        this.$control.classList.remove('loading');
+      })
+      .catch(() => {
+        this.$control.classList.remove('loading');
+      });
+  }
+}
+
+export default class PageCheckout {
+  constructor() {
+  }
+
+  init() {
+    try {
+      new Popular();
+    } catch (e) {
+
+    }
 
     // const popularEl = document.querySelector('.p-section-popular');
     // if (popularEl) {

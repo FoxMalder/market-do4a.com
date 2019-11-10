@@ -228,15 +228,15 @@
 
 .p-detail-availability {
   position: relative;
+  padding-left: 30px;
   //display: flex;
   //align-items: center;
   //margin-bottom: 17px;
 
   &::before {
     position: absolute;
+    left: 0;
     top: 50%;
-    right: 100%;
-    margin-right: 12px;
     transform: translateY(-50%);
   }
 
@@ -270,6 +270,15 @@
     }
   }
 
+
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    &::before {
+      left: 0;
+      right: 100%;
+      margin-right: 12px;
+    }
+  }
 
   @include media-breakpoint-up(xl) {
     //min-height: 27px;
@@ -833,7 +842,6 @@
 
 .p-delivery-alert {
   position: relative;
-  margin-left: -36px;
   padding: 5px 12px 5px 36px;
   border-radius: 4px;
   background: #e9e9e9;
@@ -852,6 +860,11 @@
     height: 18px;
     background: url("../img/p-alert-warn.svg") center no-repeat;
     background-size: contain;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-left: -36px;
+    padding: 5px 12px 5px 36px;
   }
 
   &__link {
@@ -905,10 +918,10 @@
   align-items: center;
   padding: 0 5px;
   border-radius: 3px;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 16px;
+  line-height: 22px;
   //margin-top: -36px;
 
   &::before {
