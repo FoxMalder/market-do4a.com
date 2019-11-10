@@ -26,7 +26,7 @@ class Popular {
     this.$controlText = this.$el.querySelector('.load-more-block__value');
 
     this.shownCards = this.$container.querySelectorAll('[data-product-id]').length;
-    this.totalCards = 0;
+    this.totalCards = this.shownCards;
     this.page = this.shownCards > 0 ? 1 : 0; // 1
 
     this.init();
@@ -58,6 +58,7 @@ class Popular {
         element = Utils.htmlToElement(item.html);
       }
 
+      console.log(this.shownCards);
       this.$container.appendChild(element);
     });
   }
@@ -90,9 +91,11 @@ class Popular {
         if (this.page > 1) {
           this.totalCards = data.count;
 
+          console.log('shown: ', this.shownCards, 'total: ', this.totalCards);
+          this.$controlText.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
+
           if (this.shownCards < this.totalCards) {
             this.$control.style.display = '';
-            this.$controlText.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
           } else {
             this.$control.style.display = 'none';
           }
