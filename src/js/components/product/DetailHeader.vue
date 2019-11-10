@@ -1,9 +1,12 @@
 <template>
   <div class="p-detail__header">
     <div class="p-detail__note">
-      <transition name="fade">
-        <span v-show="isAvailableDeliveryOffer">Доставка с центрального склада</span>
-      </transition>
+      <div class="p-delivery-badge p-delivery-badge_local"
+           v-if="activeOffer.count_group > 0"
+      >Магазин рядом, доставка 1 день</div>
+      <div class="p-delivery-badge p-delivery-badge_central"
+           v-else-if="activeOffer.count_remote > 0"
+      >Со склада из СПБ в Нижний Новгород, 7 дней</div>
     </div>
     <div class="p-detail__category">{{ category }}</div>
     <div class="p-detail__country" v-if="country">Страна: <span class="black">{{ country }}</span></div>
@@ -42,6 +45,6 @@
   }
 </script>
 
-<style scoped>
+<!--<style scoped>-->
 
-</style>
+<!--</style>-->

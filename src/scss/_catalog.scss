@@ -1751,6 +1751,63 @@ $multifilter-menu-padding-x: 22px;
     }
   }
 
+  &__badge {
+    background: #292929;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 12px;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 5px 3px;
+    position: absolute;
+    left: 0;
+    top: 125px;
+    margin: 0 11px;
+    transform: translateY(-100%);
+    //margin-top: -36px;
+
+    > svg {
+      margin-right: 4px;
+      width: 13px;
+      height: 9px;
+    }
+
+    &_red {
+      background: $main-color;
+
+      > svg {
+        width: 7px;
+        height: 12px;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      font-size: 12px;
+      line-height: 15px;
+      padding: 2px 10px 3px;
+      top: 194px + 20px;
+      margin: 0 20px;
+
+      > svg {
+        margin-right: 7px;
+        width: 15px;
+        height: 11px;
+      }
+
+      &_red {
+        background: $main-color;
+
+        > svg {
+          width: 9px;
+          height: 14px;
+        }
+      }
+    }
+  }
+
   &__title {
     @include title;
     display: block;

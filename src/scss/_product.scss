@@ -98,7 +98,7 @@
       &_top {
         @include make-col(5);
         @include make-col-offset(6);
-        height: 730px;
+        min-height: 730px;
         margin-bottom: 70px;
       }
     }
@@ -177,8 +177,10 @@
     margin-top: 17px;
     margin-bottom: 25px;
     @include media-breakpoint-up(xl) {
-      margin-top: 60px;
-      margin-bottom: 70px;
+      //margin-top: 60px;
+      //margin-bottom: 70px;
+      margin-top: 45px;
+      margin-bottom: 45px;
     }
   }
 
@@ -186,25 +188,6 @@
     @include media-breakpoint-up(xl) {
       margin-bottom: 18px;
       padding-right: 16px;
-    }
-  }
-
-  &__availability {
-    display: flex;
-    align-items: center;
-    //margin-bottom: 17px;
-    > svg,
-    .icon {
-      display: inline-block;
-      flex: 0 0 auto;
-      margin-right: 12px;
-      font-size: 20px;
-    }
-
-    //@include media-breakpoint-up(md) {
-    //}
-    @include media-breakpoint-up(xl) {
-      min-height: 27px;
     }
   }
 
@@ -234,11 +217,63 @@
       top: -33px;
       left: 0;
       margin-bottom: 0;
+      width: 100%;
       > span {
         padding: 4px 7px 5px;
         font-size: 13px;
       }
     }
+  }
+}
+
+.p-detail-availability {
+  position: relative;
+  //display: flex;
+  //align-items: center;
+  //margin-bottom: 17px;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-right: 12px;
+    transform: translateY(-50%);
+  }
+
+  &_not-available {
+    &::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url("../img/not-avaible.svg") center no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &_central {
+    &::before {
+      content: '';
+      width: 29px;
+      height: 28px;
+      background: url("../img/p-in-stock-central.svg") center no-repeat;
+      background-size: contain;
+    }
+  }
+
+  &_local {
+    &::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url("../img/avaible.svg") center no-repeat;
+      background-size: contain;
+    }
+  }
+
+
+  @include media-breakpoint-up(xl) {
+    //min-height: 27px;
+    margin-bottom: 25px;
   }
 }
 
@@ -565,10 +600,14 @@
     position: relative;
     align-items: center;
 
-    //.icon-tooltip {
-    //  display: inline-block;
-    //  vertical-align: middle;
-    //}
+    .icon-tooltip {
+      //display: inline-block;
+      //vertical-align: middle;
+      position: absolute;
+      top: 0;
+      left: -27px;
+      margin-left: 0;
+    }
 
     @include media-breakpoint-up(md) {
       width: 186px;
@@ -583,14 +622,14 @@
   &__alert {
     position: relative;
     margin-top: auto;
-    padding-left: 30px;
+    //padding-left: 30px;
     color: rgba(#000, 0.4);
 
     &::before {
       content: '';
       position: absolute;
       top: 2px;
-      left: 0;
+      left: -30px;
       width: 18px;
       height: 18px;
       background: url("../img/alert.svg") center no-repeat;
@@ -792,6 +831,136 @@
   }
 }
 
+.p-delivery-alert {
+  position: relative;
+  margin-left: -36px;
+  padding: 5px 12px 5px 36px;
+  border-radius: 4px;
+  background: #e9e9e9;
+  line-height: 20px;
+
+  ~ .p-delivery-tooltip {
+    display: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 9px;
+    width: 18px;
+    height: 18px;
+    background: url("../img/p-alert-warn.svg") center no-repeat;
+    background-size: contain;
+  }
+
+  &__link {
+    border-bottom: 1px dashed rgba($main-color, 0.5);
+    color: $main-color;
+  }
+}
+
+.p-delivery-tooltip {
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  font-weight: normal;
+  line-height: 22px;
+  width: 500px;
+
+  > p {
+    margin-bottom: 8px;
+
+    > span {
+      margin-right: 12px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  &__row {
+    display: flex;
+    margin: 17px -20px 40px;
+  }
+
+  &__col {
+    padding: 0 20px;
+    border-right: 1px solid rgba(#292929, 0.2);
+    &:last-child {
+      border-right: 0;
+    }
+
+    > .p-delivery-badge {
+      margin-bottom: 10px;
+    }
+  }
+
+}
+
+.p-delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  border-radius: 3px;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 16px;
+  //margin-top: -36px;
+
+  &::before {
+    content: '';
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 4px;
+  }
+
+  &_central {
+    background: #292929;
+    color: #fff;
+
+    &::before {
+      background-image: url("../img/p-badge-car.svg");
+      width: 13px;
+      height: 9px;
+    }
+  }
+
+  &_local {
+    background: $main-color;
+    color: #fff;
+
+    &::before {
+      background-image: url("../img/p-badge-man.svg");
+      width: 7px;
+      height: 12px;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 23px;
+
+    &_central {
+      &::before {
+        width: 18px;
+        height: 13px;
+        margin-right: 7px;
+      }
+    }
+
+    &_local {
+      &::before {
+        width: 11px;
+        height: 17px;
+        margin-right: 7px;
+      }
+    }
+  }
+}
 
 .p-control-radio {
   position: relative;
@@ -1410,9 +1579,11 @@
 
   &__input {
     -moz-appearance: textfield;
+
     &[readonly] {
       background-color: #fff;
     }
+
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       margin: 0;
@@ -1483,8 +1654,8 @@
  * @Type: Section
  */
 .p-section-description {
-  padding: 29px 0;
   margin-bottom: 20px;
+  padding: 29px 0;
   //opacity: .5;
   background-color: #fff;
 
@@ -1492,11 +1663,11 @@
     margin-bottom: 30px;
   }
   @include media-breakpoint-up(xl) {
+    margin-bottom: 40px;
     padding-top: 63px;
     padding-bottom: 44px;
     font-size: 16px;
     line-height: 1.6875;
-    margin-bottom: 40px;
   }
 
   &__title {
@@ -2517,10 +2688,10 @@
     line-height: 18px;
     @include media-breakpoint-up(md) {
       width: 74px;
-      font-size: 18px;
-      line-height: 22px;
       margin-top: 4px;
       margin-right: 12px;
+      font-size: 18px;
+      line-height: 22px;
     }
   }
 
