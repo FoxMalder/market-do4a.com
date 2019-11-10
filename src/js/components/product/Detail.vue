@@ -50,10 +50,10 @@
           <div class="p-detail-delivery__key">{{ 'До почтового отделения' + shipingPeriod }}</div>
           <div class="p-detail-delivery__value">{{ 'Бесплатно от ' + freeShipingPrice }}</div>
         </div>
-<!--        <div class="p-detail-delivery__row">-->
-<!--          <div class="p-detail-delivery__key">Курьером до двери</div>-->
-<!--          <div class="p-detail-delivery__value">{{ 'Бесплатно от ' + freeShipingPrice }}</div>-->
-<!--        </div>-->
+        <div class="p-detail-delivery__row">
+          <div class="p-detail-delivery__key">Курьером до двери, от 2 дней</div>
+          <div class="p-detail-delivery__value">От 300 ₽</div>
+        </div>
       </template>
       
       <div class="p-detail-delivery__row">
