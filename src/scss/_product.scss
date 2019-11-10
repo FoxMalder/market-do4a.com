@@ -274,7 +274,7 @@
   @include media-breakpoint-up(md) {
     padding-left: 0;
     &::before {
-      left: 0;
+      left: auto;
       right: 100%;
       margin-right: 12px;
     }

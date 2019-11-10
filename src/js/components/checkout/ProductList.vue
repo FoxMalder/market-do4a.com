@@ -5,18 +5,18 @@
       <div class="order-number-badge">Отправление {{ order.index }}</div>
     </div>
     <div class="order-item__header order-item__header_central" v-else>
-      <div class="order-item__title">{{ currentCity ? `Со склада из СПБ в ${currentCity.name}` : 'Со склада из СПБ' }}, 7 дней</div>
+      <div class="order-item__title">{{ shipingPeriod }}</div>
       <div class="order-number-badge">Отправление {{ order.index }}</div>
     </div>
     
-<!--    <div v-if="multiple"-->
-<!--         class="order-item__header"-->
-<!--         :class="{'order-item__header_dark': order.index % 2 !== 0}">-->
-<!--      <div class="order-item__title">-->
-<!--        {{ order.isLocaleStore ? 'Получить в магазине или курьером' : 'Доставка с центрального склада' }}-->
-<!--      </div>-->
-<!--      <div class="order-number-badge">Отправление {{ order.index }}</div>-->
-<!--    </div>-->
+    <!--    <div v-if="multiple"-->
+    <!--         class="order-item__header"-->
+    <!--         :class="{'order-item__header_dark': order.index % 2 !== 0}">-->
+    <!--      <div class="order-item__title">-->
+    <!--        {{ order.isLocaleStore ? 'Получить в магазине или курьером' : 'Доставка с центрального склада' }}-->
+    <!--      </div>-->
+    <!--      <div class="order-number-badge">Отправление {{ order.index }}</div>-->
+    <!--    </div>-->
     
     <transition-group
       class="order-item__list"
@@ -92,7 +92,12 @@
       }),
       ...mapGetters({
         currentCity: 'currentCity',
-      })
+      }),
+      shipingPeriod() {
+        return this.currentCity
+          ? `Со склада из СПБ в ${this.currentCity.name}, ${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
+          : 'С центрального склада';
+      },
     }
   }
 </script>

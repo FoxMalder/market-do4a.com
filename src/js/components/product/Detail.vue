@@ -46,7 +46,7 @@
       </template>
       <template v-else-if="activeOffer.count_remote > 0">
         <div class="p-detail-delivery__row">
-          <div class="p-detail-delivery__key">До почтового отделения, 2-7 дней</div>
+          <div class="p-detail-delivery__key">До почтового отделения, {{ shipingPeriod }} дней</div>
           <div class="p-detail-delivery__value">Бесплатно от {{ freeShipingPrice }}</div>
         </div>
         <div class="p-detail-delivery__row">
@@ -59,7 +59,7 @@
         <div class="p-delivery-alert">Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной доставки</button></div>
   
         <div class="p-delivery-tooltip" ref="tooltipInner">
-          <p class="p-delivery-tooltip__title">Бесплатная доставка от 2 990 ₽</p>
+          <p class="p-delivery-tooltip__title">Бесплатная доставка от {{ freeShipingPrice }}</p>
           <p>
             Сумма бесплатной доставки складывается отдельно для каждого склада.
             Стикеры укажут, с какого склада будет отправлен заказ. Например:
@@ -127,6 +127,11 @@
         activeOffer: 'product/activeOffer',
         isAvailableOffer: 'product/isAvailableOffer'
       }),
+      shipingPeriod() {
+        return (this.currentCity && this.currentCity.deliveryCountDays)
+          ? `${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
+          : '';
+      },
       freeShipingPrice() {
         return `${(this.currentCity && this.currentCity.priceDelivery) || '2 990'} ₽`;
       },

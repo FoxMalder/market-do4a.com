@@ -58,7 +58,6 @@ class Popular {
         element = Utils.htmlToElement(item.html);
       }
 
-      console.log(this.shownCards);
       this.$container.appendChild(element);
     });
   }
@@ -91,7 +90,7 @@ class Popular {
         if (this.page > 1) {
           this.totalCards = data.count;
 
-          console.log('shown: ', this.shownCards, 'total: ', this.totalCards);
+          // console.log('shown: ', this.shownCards, 'total: ', this.totalCards);
           this.$controlText.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
 
           if (this.shownCards < this.totalCards) {
