@@ -12,9 +12,11 @@
            :alt="item.name">
     </div>
     <div class="order-product__col-info">
-      <a :href="item.url" class="order-product__name">{{ item.name }}</a>
+      <!--      <a :href="item.url" class="order-product__name">{{ item.name }}</a>-->
+      <a :href="item.url" class="order-product__name">{{ item.previewName }}</a>
       <!--      <div class="order-product__description">{{ item.pack }}</div>-->
-      <div class="order-product__description" v-if="basketItem">{{ basketItem.pack }}</div>
+      <!--      <div class="order-product__description" v-if="basketItem">{{ basketItem.pack }}</div>-->
+      <div class="order-product__description" v-for="prop in item.props">{{ prop.VALUE }}</div>
     </div>
     <div class="order-product__col-count">
       <div class="order-product__counter">

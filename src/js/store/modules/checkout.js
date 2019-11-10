@@ -160,6 +160,8 @@ function convertProducts(rows) {
       basketItemId: parseInt(data.ID, 10),
       productId: parseInt(data.PRODUCT_ID, 10),
       name: data.NAME,
+      previewName: data.PREVIEW_TEXT,
+      props: data.PROPS.filter(item => item.CODE !== 'SIZE' && item.CODE !== 'STORE_ID'),
       canBuy: data.CAN_BUY === 'Y',
 
       quantity: parseInt(data.QUANTITY, 10), // Количество
@@ -314,8 +316,8 @@ function convertPropertyList(properties) {
 function gtmAdd(gtmData) {
   console.log('Google Tag Manager:', gtmData);
 
-  if (dataLayer) {
-    dataLayer.push(gtmData);
+  if (global.dataLayer) {
+    global.dataLayer.push(gtmData);
   } else {
     console.error('Google Tag Manager:', 'Not found');
   }
