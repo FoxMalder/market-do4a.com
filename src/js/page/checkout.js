@@ -53,9 +53,9 @@ class Popular {
       if (item.type === 'product') {
         element = new ProductCard(item.options);
         element = element.getElement();
+        this.shownCards += 1;
       } else {
         element = Utils.htmlToElement(item.html);
-        this.shownCards += 1;
       }
 
       this.$container.appendChild(element);
