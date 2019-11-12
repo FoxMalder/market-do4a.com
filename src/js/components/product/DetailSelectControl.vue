@@ -111,7 +111,7 @@
       ...mapState('product', {
         packing: state => state.packing.map(pack => ({
           ...pack,
-          availableOffers: pack.sku.filter(item => item.count_group === 0 || item.count_remote === 0).length
+          availableOffers: pack.sku.filter(item => item.count_group > 0 || item.count_remote > 0).length
         })).sort((a, b) => {
           return a.availableOffers - b.availableOffers
         })
