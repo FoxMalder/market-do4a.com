@@ -15,18 +15,17 @@
         <div class="p-price__col">
           <span class="gray">Цена актуальна только в интернет-магазине</span>
         </div>
-        <button class="icon-tooltip"
-                ref="tooltip" data-toggle="tooltip" title=""
-                data-original-title="Цена в магазинах может отличаться. Данная цена актуальна только при онлайн заказе."
+        <button
+          class="icon-tooltip"
+          ref="tooltip" data-toggle="tooltip" title=""
+          data-original-title="Цена в магазинах может отличаться. Данная цена актуальна только при онлайн заказе."
         ></button>
       </div>
     </template>
     <template v-else>
       <div class="p-price__title" v-if="!isAvailableOffer">Последняя цена:</div>
-      <div class="p-price__new disabled">{{activeOffer.price | formatPrice}}</div>
-      <div class="p-price__alert">
-        Подпишитесь на товар, чтобы узнать, когда он снова будет в наличии.
-      </div>
+      <div class="p-price__new disabled">{{ activeOffer.price | formatPrice }}</div>
+      <div class="p-price__alert">Подпишитесь на товар, чтобы узнать, когда он снова будет в наличии.</div>
     </template>
   </div>
 </template>
@@ -37,10 +36,12 @@
 
   export default {
     name: "Price",
-    computed: mapGetters('product', [
-      'activeOffer',
-      'isAvailableOffer'
-    ]),
+    computed: {
+      ...mapGetters('product', [
+        'activeOffer',
+        'isAvailableOffer'
+      ]),
+    },
     updated() {
       this.$nextTick(() => {
         $(this.$refs.tooltip).tooltip();

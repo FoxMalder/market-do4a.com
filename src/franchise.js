@@ -25,12 +25,6 @@ Swiper.use([
   Mousewheel,
 ]);
 
-AOS.init({
-  duration: 500,
-  easing: 'ease-in-out',
-  once: true,
-});
-
 function initStarSlider() {
   const mainStarSliderEl = document.querySelector('#stars-slider');
   if (!mainStarSliderEl) return;
@@ -240,6 +234,12 @@ function initForms() {
 
 
 ready(() => {
+  AOS.init({
+    duration: 500,
+    easing: 'ease-in-out',
+    once: true,
+  });
+
   initVideo();
   initProgramList();
   initForms();

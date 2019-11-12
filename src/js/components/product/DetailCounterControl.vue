@@ -60,7 +60,8 @@
     <button class="btn btn-black p-control-button"
             v-if="!isAvailable"
             @click.prevent="subscribe">
-      Подписаться <br>на товар
+      Подписаться<br>
+      на товар
     </button>
     <a href="/checkout/" class="btn btn-green p-control-button" title="Перейти в корзину"
        v-else-if="basketItem">

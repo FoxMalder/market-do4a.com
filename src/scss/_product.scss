@@ -417,6 +417,33 @@
   }
 }
 
+.p-images-list {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  &__item {
+    border: 2px solid transparent;
+    background: #fff;
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    flex: 0 0 64px;
+    text-align: center;
+
+    &.active {
+      border-color: $main-color;
+    }
+  }
+  &__img {
+    max-height: 100%;
+    max-width: 50px;
+    vertical-align: middle;
+  }
+}
+
 .p-brand-info {
   display: none;
   position: relative;
@@ -1068,7 +1095,8 @@
     }
 
     &.disabled {
-      opacity: .3;
+      color: #b7b7b7
+      //opacity: .3;
       //cursor: not-allowed;
       //pointer-events: none;
     }

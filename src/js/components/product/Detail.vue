@@ -17,22 +17,21 @@
       <ControlCounter :isAvailable="isAvailableOffer" :offer="activeOffer"/>
     </div>
     
-    
-    <div v-if="!isAvailableOffer"
-         class="p-detail-availability p-detail-availability_not-available">
-      Нет в наличии
-    </div>
-    <div v-else-if="activeOffer.count_group > 0"
+    <div v-if="activeOffer.count_group > 0"
          class="p-detail-availability p-detail-availability_local">
       В наличии сейчас в
-      <a class="text-link" data-anchor href="#stores">
-        {{ formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах']) }}
-      </a>
+      <a class="text-link" data-anchor href="#stores">{{
+        formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах'])
+        }}</a>
     </div>
     <div v-else-if="activeOffer.count_remote > 0"
          class="p-detail-availability p-detail-availability_central">
       В наличии на складе в Санкт-Петербурге
       <!-- {{ textDelivery || 'В наличии на складе в Санкт-Петербурге' }}-->
+    </div>
+    <div v-else
+         class="p-detail-availability p-detail-availability_not-available">
+      Нет в наличии
     </div>
     
     <div class="p-detail-delivery" v-show="isAvailableOffer">
@@ -80,7 +79,7 @@
               <div class="red">Бесплатная доставка</div>
             </div>
           </div>
-          <p class="p-delivery-tooltip__title">Стоимость  доставки</p>
+          <p class="p-delivery-tooltip__title">Стоимость доставки</p>
           <p><span class="gray">Самовывоз</span> Всегда бесплатно</p>
           <p><span class="gray">Курьером до двери</span> от 300 ₽ по городу</p>
         </div>
@@ -107,7 +106,7 @@
   import Utils from '../../utils/utils';
 
   import ControlCounter from './DetailCounterControl.vue';
-  import ControlSelect from './DetailSelectControl.vue';
+  import ControlSelect from './DetailSelect.vue';
   import ProductImage from './DetailGallery.vue';
   import ProductPrice from './DetailPrice.vue';
 

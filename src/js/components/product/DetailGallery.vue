@@ -26,6 +26,14 @@
       </template>
     </div>
     
+    <div class="p-images-list" v-if="activePacking.gallery.length > 1">
+      <div class="p-images-list__wrapper">
+        <div class="p-images-list__item" v-for="(image, index) in activePacking.gallery">
+          <img class="p-images-list__img" :src="image.preview.src">
+        </div>
+      </div>
+    </div>
+    
     <div class="product-stickers">
       <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"
            v-if="activePacking.isDeliveryOneDay && isAvailableDeliveryOffer"
@@ -76,15 +84,11 @@
     components: {
       CanvasImage,
     },
-    // data() {
-    //   return {
-    //     currentImage:
-    //   }
-    // },
     data() {
       return {
         isSupport: CSS.supports('mix-blend-mode', 'darken'),
         imgStatus: 'loading',
+        activeIndex: 0,
       }
     },
     computed: {
