@@ -10,6 +10,12 @@
 
 <script>
   export default {
-    name: "CheckoutFinal"
+    name: "CheckoutFinal",
+    mounted() {
+      const popular = document.querySelector('.p-section-popular');
+      if (popular) {
+        popular.style.display = '';
+      }
+    }
   }
 </script>

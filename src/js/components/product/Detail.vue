@@ -62,26 +62,26 @@
         </div>
         
         <div class="p-delivery-tooltip" ref="tooltipInner">
-          <p class="p-delivery-tooltip__title">Бесплатная доставка от {{ freeShipingPrice }}</p>
+          <p class="p-delivery-tooltip__title">Товары могут быть из разных городов</p>
           <p>
-            Сумма бесплатной доставки складывается отдельно для каждого склада.
-            Стикеры укажут, с какого склада будет отправлен заказ. Например:
+            Доставка — бесплатно на заказы от {{ freeShipingPrice }}.<br>
+            Сумма заказов <strong>считается отдельно</strong> для товаров из каждого города.<br>
+            <br>
+            Узнать, откуда товар, помогут стикеры:
           </p>
           <div class="p-delivery-tooltip__row">
             <div class="p-delivery-tooltip__col">
-              <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, 1 день</div>
-              <div><span class="gray">Итого:</span> <strong>1 246 ₽</strong></div>
-              <div>Платная доставка</div>
+              <div class="p-delivery-badge p-delivery-badge_central">Со склада из СПБ, 7 дней</div>
+              <div><span class="gray">Товары на </span> <strong>3 000 ₽</strong></div>
+              <div>будут с бесплатной доставкой</div>
             </div>
             <div class="p-delivery-tooltip__col">
-              <div class="p-delivery-badge p-delivery-badge_central">Со склада из СПБ, 7 дней</div>
-              <div><span class="gray">Итого:</span> <strong>3 394 ₽</strong></div>
-              <div class="red">Бесплатная доставка</div>
+              <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, 1 день</div>
+              <div><span class="gray">Товары на </span> <strong>1 000 ₽</strong></div>
+              <div>будут с платной доставкой</div>
             </div>
           </div>
-          <p class="p-delivery-tooltip__title">Стоимость доставки</p>
-          <p><span class="gray">Самовывоз</span> Всегда бесплатно</p>
-          <p><span class="gray">Курьером до двери</span> от 300 ₽ по городу</p>
+          <p><a href="#">Все условия доставки и оплаты</a></p>
         </div>
       </div>
       
