@@ -116,7 +116,7 @@ export default class PageCheckout {
     try {
       new Popular();
     } catch (e) {
-
+      console.error(e);
     }
 
     // const popularEl = document.querySelector('.p-section-popular');
@@ -180,6 +180,10 @@ export default class PageCheckout {
           const response = action.payload[0];
           SDEK.onLoad(response);
         }
+        // if (action.type === 'checkout/refreshOrder') {
+        //   const response = action.payload[0];
+        //   SDEK.onLoad(response);
+        // }
       });
     }
   }

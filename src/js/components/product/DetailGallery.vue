@@ -68,7 +68,7 @@
 
 <script>
   import { mapGetters, mapState, mapActions } from 'vuex';
-  import CanvasImage from './Image.vue';
+  import CanvasImage from './DetailGalleryCanvas.vue';
 
 
   export default {

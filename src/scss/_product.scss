@@ -1069,8 +1069,8 @@
 
     &.disabled {
       opacity: .3;
-      cursor: not-allowed;
-      pointer-events: none;
+      //cursor: not-allowed;
+      //pointer-events: none;
     }
 
     @include media-breakpoint-up(md) {

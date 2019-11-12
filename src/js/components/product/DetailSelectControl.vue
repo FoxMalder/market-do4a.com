@@ -1,6 +1,7 @@
 <template>
   <div class="p-control-options">
     <div class="p-control-options__wrapper">
+      
       <div class="p-control-options__weight" v-if="packing.length > 1">
         <div class="p-control-radio" :class="{ 'p-control-radio_scroll': packing.length > 4 }">
           <!--          <div class="p-control-radio__shadow-left"-->
@@ -12,12 +13,12 @@
             <div class="p-control-radio__item"
                  v-for="pack in packing"
                  :key="pack.id"
-                 :class="{active: pack.id === activePacking.id}">
+                 :class="{ active: pack.id === activePacking.id, disabled: pack.availableOffers === 0 }">
               <div class="p-control-radio__tooltip" v-if="pack.price_benefit > 0">
                 <div class="p-control-radio__tooltip-title">Экономия</div>
-                <div class="p-control-radio__tooltip-price">{{pack.price_benefit}}₽</div>
+                <div class="p-control-radio__tooltip-price">{{ pack.price_benefit + '₽'}}</div>
               </div>
-              <div class="p-control-radio__label" @click="selectPacking(pack, $event)">{{pack.pack}}</div>
+              <div class="p-control-radio__label" @click="selectPacking(pack, $event)">{{ pack.pack }}</div>
             </div>
           </div>
           <!--          <div class="p-control-radio__shadow-right"-->
@@ -26,6 +27,8 @@
           <!--          ></div>-->
         </div>
       </div>
+      
+      
       <div class="p-control-options__type">
         <div class="p-control-select"
              :class="{ show: visible }"
@@ -106,7 +109,12 @@
     },
     computed: {
       ...mapState('product', {
-        packing: state => state.packing,
+        packing: state => state.packing.map(pack => ({
+          ...pack,
+          availableOffers: pack.sku.filter(item => item.count_group === 0 || item.count_remote === 0).length
+        })).sort((a, b) => {
+          return a.availableOffers - b.availableOffers
+        })
       }),
       ...mapGetters('product', [
         'activePacking',
@@ -126,11 +134,20 @@
       //   }
       //   return `Доступно еще ${this.visibleOffers.length - 1} ${Utils.declOfNum(this.visibleOffers.length - 1, ['вкус', 'вкуса', 'вкусов'])}`
       // },
+
+      // sortingPacking() {
+      //   this.packing.sort(pack)
+      // }
     },
     methods: {
       ...mapActions('product', [
         'selectOffer'
       ]),
+      
+      // checkAvailability(pack) {
+      //
+      // },
+      
       selectPacking(pack, event) {
         this.$store.dispatch('product/selectPacking', pack);
 

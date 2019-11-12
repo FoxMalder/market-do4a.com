@@ -43,14 +43,14 @@
     ]),
     updated() {
       this.$nextTick(() => {
-        // $(this.$refs.tooltip).tooltip();
-        $('[data-toggle="tooltip"]').tooltip();
+        $(this.$refs.tooltip).tooltip();
+        // $('[data-toggle="tooltip"]').tooltip();
       })
     },
     mounted() {
       this.$nextTick(() => {
-        // $(this.$refs.tooltip).tooltip();
-        $('[data-toggle="tooltip"]').tooltip();
+        $(this.$refs.tooltip).tooltip();
+        // $('[data-toggle="tooltip"]').tooltip();
       })
     }
   }

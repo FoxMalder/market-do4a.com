@@ -15,7 +15,7 @@ import store from '../store';
 import productStore from '../store/modules/product';
 // import ControlCounter from '../components/product/ControlCounter.vue';
 // import ControlSelect from '../components/product/ControlSelect.vue';
-import ProductImage from '../components/product/ImageBlock.vue';
+import ProductImage from '@/components/product/DetailGallery.vue';
 // import StarRating from '../components/StarRating.vue';
 import ProductDetailHeader from '../components/product/DetailHeader.vue';
 import ProductDetailName from '../components/product/DetailName.vue';

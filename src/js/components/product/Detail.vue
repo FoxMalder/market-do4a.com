@@ -18,18 +18,19 @@
     </div>
     
     
-    <div class="p-detail-availability p-detail-availability_not-available"
-         v-if="!isAvailableOffer">
+    <div v-if="!isAvailableOffer"
+         class="p-detail-availability p-detail-availability_not-available">
       Нет в наличии
     </div>
-    <div class="p-detail-availability p-detail-availability_local"
-         v-else-if="activeOffer.count_group > 0">
+    <div v-else-if="activeOffer.count_group > 0"
+         class="p-detail-availability p-detail-availability_local">
       В наличии сейчас в
-      <a class="text-link" data-anchor href="#stores">{{ formatUnit(availableStore.length,
-        ['магазине', 'магазинах', 'магазинах']) }}</a>
+      <a class="text-link" data-anchor href="#stores">
+        {{ formatUnit(availableStore.length, ['магазине', 'магазинах', 'магазинах']) }}
+      </a>
     </div>
-    <div class="p-detail-availability p-detail-availability_central"
-         v-else-if="activeOffer.count_remote > 0">
+    <div v-else-if="activeOffer.count_remote > 0"
+         class="p-detail-availability p-detail-availability_central">
       В наличии на складе в Санкт-Петербурге
       <!-- {{ textDelivery || 'В наличии на складе в Санкт-Петербурге' }}-->
     </div>
@@ -79,7 +80,7 @@
               <div class="red">Бесплатная доставка</div>
             </div>
           </div>
-          <p class="p-delivery-tooltip__title">Стоимость обычной доставки</p>
+          <p class="p-delivery-tooltip__title">Стоимость  доставки</p>
           <p><span class="gray">Самовывоз</span> Всегда бесплатно</p>
           <p><span class="gray">Курьером до двери</span> от 300 ₽ по городу</p>
         </div>
@@ -105,10 +106,10 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import Utils from '../../utils/utils';
 
-  import ControlCounter from './ControlCounter.vue';
-  import ControlSelect from './ControlSelect.vue';
-  import ProductImage from './ImageBlock.vue';
-  import ProductPrice from './Price.vue';
+  import ControlCounter from './DetailCounterControl.vue';
+  import ControlSelect from './DetailSelectControl.vue';
+  import ProductImage from './DetailGallery.vue';
+  import ProductPrice from './DetailPrice.vue';
 
 
   export default {
