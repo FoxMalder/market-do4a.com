@@ -9,7 +9,8 @@
           v-if="isSupport"
           class="p-images-block__img"
           :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
-          :src="activePacking.gallery[0].img.src"
+          :src="activePacking.gallery[activeIndex].img.src"
+          :srcset="activePacking.gallery[activeIndex].img.src2x + ' 2x'"
           :alt="activePacking.name"
           @load="imgStatus = 'success'"
           @error="imgStatus = 'error'"
@@ -18,8 +19,8 @@
           v-else
           class="p-images-block__img"
           :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
-          :src="activePacking.gallery[0].img.src"
-          :src2x="activePacking.gallery[0].img.src2x"
+          :src="activePacking.gallery[activeIndex].img.src"
+          :src2x="activePacking.gallery[activeIndex].img.src2x"
           @load="imgStatus = 'success'"
           @error="imgStatus = 'error'"
         />
@@ -27,11 +28,19 @@
     </div>
     
     <div class="p-images-list" v-if="activePacking.gallery.length > 1">
-      <div class="p-images-list__wrapper">
-        <div class="p-images-list__item" v-for="(image, index) in activePacking.gallery">
-          <img class="p-images-list__img" :src="image.preview.src">
-        </div>
-      </div>
+      <ul class="p-images-list__wrapper" role="tablist">
+        <li
+          class="p-images-list__item" role="presentation"
+          v-for="(image, index) in activePacking.gallery">
+          <a
+            :href="image.preview.src2x" target="_image"
+            @click.prevent="activeIndex = index">
+            <img
+              class="p-images-list__img"
+              :src="image.preview.src2x">
+          </a>
+        </li>
+      </ul>
     </div>
     
     <div class="product-stickers">
@@ -105,6 +114,10 @@
       ...mapActions([
         'addToCompare',
       ]),
+
+      setImage() {
+
+      },
       toggleFavorites(product) {
         if (product.isFavorite) {
           product.isFavorite = false;
