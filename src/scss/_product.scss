@@ -419,24 +419,26 @@
 
 .p-images-list {
   &__wrapper {
-    //display: flex;
-    //justify-content: center;
-    //flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     list-style: none;
     padding: 0;
     margin: 0;
   }
   &__item {
-    display: inline-block;
-    border: 2px solid transparent;
-    background: #fff;
-    width: 64px;
-    height: 64px;
+    //display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
     flex: 0 0 64px;
     text-align: center;
-
+  }
+  &__link {
+    display: block;
+    border: 2px solid transparent;
+    background: #fff;
+    width: 64px;
+    height: 64px;
     &.active {
       border-color: $main-color;
     }
