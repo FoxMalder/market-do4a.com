@@ -386,6 +386,15 @@ export default function createModule(options) {
       'товаров',
     ])}`,
 
+
+    // total: (state) => {
+    //   return state.orderList.reduce((accumulator, order) => accumulator + order.total.ORDER_TOTAL_PRICE, 0);
+    // },
+    //
+    // totalDiscount() {
+    //   return this.orderList.reduce((accumulator, order) => accumulator + order.total.DISCOUNT_PRICE, 0);
+    // },
+
     /**
      * Список свойств, использующихся во всех заказах
      */
@@ -845,6 +854,10 @@ export default function createModule(options) {
               if (result.order.REDIRECT_URL) {
                 if (result.order.ID) {
                   orders.push(result.order.ID);
+                  // commit('UPDATE_ORDER', {
+                  //   id: order.id,
+                  //   checkId: result.order.ID,
+                  // });
                 } else {
                   dispatch(REMOVE_ORDER, order);
                 }
@@ -899,19 +912,19 @@ export default function createModule(options) {
             actionField: {
               id: orders.join(','),
               // affiliation: '',
-              // revenue: 0,
-              // shipping: 0,
+              revenue: getters.orderList.reduce((a, order) => a + order.total.ORDER_TOTAL_PRICE, 0),
+              shipping: getters.orderList.reduce((a, order) => a + order.total.DELIVERY_PRICE, 0),
               // coupon: 'скидка на вторую покупку',
             },
-            p: getters.orderList.flatMap(order => order.productList).map(product => ({
+            p: getters.orderList.flatMap(order => order.productList.map(product => ({
               id: product.productId,
               name: product.name,
               price: product.price,
-              category: '',
+              // category: '',
               variant: '',
-              dimension3: '',
+              dimension3: order.storeId,
               quantity: product.quantity,
-            })),
+            }))),
           },
         },
       });

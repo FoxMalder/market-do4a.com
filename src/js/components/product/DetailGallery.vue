@@ -1,64 +1,64 @@
 <template>
   <div class="p-images-block">
+    <!--    <div-->
+    <!--      class="p-images-block__image p-images-block__image_success"-->
+    <!--      :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"-->
+    <!--    >-->
     <div
-      class="p-images-block__image p-images-block__image_success"
-      :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
+      class="p-images-block__image"
+      :class="{ 'p-images-block__image_success': imgStatus === 'success' && activePacking.gallery && activePacking.gallery.length > 0 }"
     >
-      <!--    <div-->
-      <!--      class="p-images-block__image"-->
-      <!--      :class="{ 'p-images-block__image_success': imgStatus === 'success' && activePacking.gallery && activePacking.gallery.length > 0 }"-->
-      <!--    >-->
       
-      <img
-        v-for="(image, index) in activePacking.gallery"
-        v-show="index === activeIndex"
-        class="p-images-block__img"
-        :key="image.img.src2x"
-        :src="image.img.src2x"
-        :alt="activePacking.name"
-      >
+      <!--      <img-->
+      <!--        v-for="(image, index) in activePacking.gallery"-->
+      <!--        v-show="index === activeIndex"-->
+      <!--        class="p-images-block__img"-->
+      <!--        :key="image.img.src2x"-->
+      <!--        :src="image.img.src2x"-->
+      <!--        :alt="activePacking.name"-->
+      <!--      >-->
       
-      <!--      <template v-if="activePacking.gallery && activePacking.gallery.length > 0">-->
-      <!--        <img-->
-      <!--          v-if="isSupport"-->
-      <!--          class="p-images-block__img"-->
-      <!--          :key="'img' + activeIndex"-->
-      <!--          :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"-->
-      <!--          :src="activePacking.gallery[activeIndex].img.src"-->
-      <!--          :srcset="activePacking.gallery[activeIndex].img.src2x + ' 2x'"-->
-      <!--          :alt="activePacking.name"-->
-      <!--          @load="imgStatus = 'success'"-->
-      <!--          @error="imgStatus = 'error'"-->
-      <!--        >-->
-      <!--        <CanvasImage-->
-      <!--          v-else-->
-      <!--          class="p-images-block__img"-->
-      <!--          :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"-->
-      <!--          :src="activePacking.gallery[activeIndex].img.src"-->
-      <!--          :src2x="activePacking.gallery[activeIndex].img.src2x"-->
-      <!--          @load="imgStatus = 'success'"-->
-      <!--          @error="imgStatus = 'error'"-->
-      <!--        />-->
-      <!--      </template>-->
+      <template v-if="activePacking.gallery && activePacking.gallery.length > 0">
+        <img
+          v-if="isSupport"
+          class="p-images-block__img"
+          :key="'img' + activeIndex"
+          :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
+          :src="activePacking.gallery[0].img.src"
+          :srcset="activePacking.gallery[0].img.src2x + ' 2x'"
+          :alt="activePacking.name"
+          @load="imgStatus = 'success'"
+          @error="imgStatus = 'error'"
+        >
+        <CanvasImage
+          v-else
+          class="p-images-block__img"
+          :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
+          :src="activePacking.gallery[0].img.src"
+          :src2x="activePacking.gallery[0].img.src2x"
+          @load="imgStatus = 'success'"
+          @error="imgStatus = 'error'"
+        />
+      </template>
     </div>
     
-    <div class="p-images-list" v-if="activePacking.gallery.length > 1">
-      <ul class="p-images-list__wrapper" role="tablist">
-        <li
-          class="p-images-list__item" role="presentation"
-          v-for="(image, index) in activePacking.gallery">
-          <a
-            class="p-images-list__link"
-            :class="{ active: activeIndex === index }"
-            :href="image.preview.src2x" target="_image"
-            @click.prevent="activeIndex = index">
-            <img
-              class="p-images-list__img"
-              :src="image.preview.src2x">
-          </a>
-        </li>
-      </ul>
-    </div>
+<!--    <div class="p-images-list" v-if="activePacking.gallery.length > 1">-->
+<!--      <ul class="p-images-list__wrapper" role="tablist">-->
+<!--        <li-->
+<!--          class="p-images-list__item" role="presentation"-->
+<!--          v-for="(image, index) in activePacking.gallery">-->
+<!--          <a-->
+<!--            class="p-images-list__link"-->
+<!--            :class="{ active: activeIndex === index }"-->
+<!--            :href="image.preview.src2x" target="_image"-->
+<!--            @click.prevent="activeIndex = index">-->
+<!--            <img-->
+<!--              class="p-images-list__img"-->
+<!--              :src="image.preview.src2x">-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
     
     <div class="product-stickers">
       <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"
@@ -133,9 +133,9 @@
         'addToCompare',
       ]),
 
-      setImage() {
-
-      },
+      // setImage() {
+      //
+      // },
       toggleFavorites(product) {
         if (product.isFavorite) {
           product.isFavorite = false;

@@ -8,7 +8,8 @@
              :id="'pickup-' + store.id"
              @change="setStore(store)"
              :checked="store.id === order.storeId"
-             :value="store.id">
+             :value="store.id"
+             required>
       <label :for="'pickup-' + store.id" class="o-shipping-pickup__label">
         <span class="o-shipping-pickup__address">{{ store.name }}</span>
         <a href="#" class="o-shipping-pickup__link" @click.prevent="showOnMap(store)">Показать на карте</a>
@@ -54,7 +55,7 @@
           props: { storeId: store.id },
         });
       }
-    }
+    },
   }
 </script>
 

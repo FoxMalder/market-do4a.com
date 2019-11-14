@@ -284,11 +284,15 @@
             if (deliveryItem.category === 'sdek.pickup' && !this.$store.state.checkout.props.sdekPickup) {
               order.errors.push('Не выбран пункт самовывоза');
             }
+            if (deliveryItem.category === 'pickup' && !order.groupStore.find(id => id === order.storeId)) {
+              order.errors.push('Не выбран пункт самовывоза');
+            }
 
             if (!order.paymentId) {
               order.errors.push('Не выбран метод оплаты');
             }
           }
+          
 
           if (order.errors.length) {
             error = true;
