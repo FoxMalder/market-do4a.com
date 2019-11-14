@@ -1,5 +1,15 @@
 <template>
   <div class="notifications">
+<!--    <div class="notifications__wrapper">-->
+<!--      <div class="notifications__item"-->
+<!--           v-for="item in test"-->
+<!--           :key="item.id">-->
+<!--        <NotificationsItem :item="item"/>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    -->
+    
+    
     <transition-group
       class="notifications__wrapper"
       tag="div"
@@ -50,6 +60,18 @@
     //     default: false
     //   },
     // },
+    data() {
+      return {
+        test: [
+          {
+            type: 'cancelable',
+            title: 'корзина очищена',
+            text: 'Но вы еще можете вернуть всё обратно.',
+            duration: 90000,
+          },
+        ]
+      }
+    },
     computed: {
       ...mapState({
         messages: state => state.notifications.messages

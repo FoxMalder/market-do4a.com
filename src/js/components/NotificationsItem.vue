@@ -6,10 +6,7 @@
         type="button"
         @click="close">
         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M12.2581 14.2902L14.2903 12.258L9.54882 7.51648L14.2909 2.77437L12.2587 0.742145L7.5166 5.48426L2.77441 0.742065L0.742188 2.77429L5.48438 7.51648L0.742787 12.2581L2.77501 14.2903L7.5166 9.5487L12.2581 14.2902Z"
-                fill="currentColor"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2581 14.2902L14.2903 12.258L9.54882 7.51648L14.2909 2.77437L12.2587 0.742145L7.5166 5.48426L2.77441 0.742065L0.742188 2.77429L5.48438 7.51648L0.742787 12.2581L2.77501 14.2903L7.5166 9.5487L12.2581 14.2902Z" fill="currentColor"/>
         </svg>
       </button>
       <div class="notification__title"
@@ -19,6 +16,9 @@
       <div class="notification__descriprtion"
            v-if="item.title">
         {{ item.text }}
+      </div>
+      <div class="notification__footer">
+      
       </div>
       <button class="notification__btn-cancel"
               type="button"

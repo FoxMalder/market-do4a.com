@@ -1769,16 +1769,30 @@ $multifilter-menu-padding-x: 22px;
     transform: translateY(-100%);
     //margin-top: -36px;
 
-    > svg {
+    &::before {
+      content: '';
+      background-repeat: no-repeat;
+      background-size: contain;
       margin-right: 4px;
-      width: 13px;
-      height: 9px;
     }
 
-    &_red {
-      background: $main-color;
+    &_central {
+      background: #292929;
+      color: #fff;
 
-      > svg {
+      &::before {
+        background-image: url("../img/p-badge-car.svg");
+        width: 13px;
+        height: 9px;
+      }
+    }
+
+    &_local {
+      background: $main-color;
+      color: #fff;
+
+      &::before {
+        background-image: url("../img/p-badge-man.svg");
         width: 7px;
         height: 12px;
       }
@@ -1791,18 +1805,19 @@ $multifilter-menu-padding-x: 22px;
       top: 194px + 20px;
       margin: 0 20px;
 
-      > svg {
-        margin-right: 7px;
-        width: 15px;
-        height: 11px;
+      &_central {
+        &::before {
+          width: 15px;
+          height: 11px;
+          margin-right: 7px;
+        }
       }
 
-      &_red {
-        background: $main-color;
-
-        > svg {
+      &_local {
+        &::before {
           width: 9px;
           height: 14px;
+          margin-right: 7px;
         }
       }
     }
