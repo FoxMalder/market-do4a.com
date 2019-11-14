@@ -2,15 +2,19 @@ import Vue from 'vue';
 // import VModal from 'vue-js-modal';
 import store from './store';
 import Header from './modules/Header';
-import Notifications from './components/Notifications.vue';
+// import Notifications from './components/Notifications.vue';
 // import Modal from './components/Modal.vue';
 import Modal from './plugins/Modal';
+import Notify from './plugins/Notify';
 import ModalsContainer from './components/ModalsContainer.vue';
 import { ADD_TOAST_MESSAGE } from './store/modules/notifications';
 import Platform from './plugins/Platform';
 
+
+
+
+window.Vue = Vue;
 // Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
-Vue.use(Modal);
 
 Vue.directive('click-outside', {
   bind(el, binding, vNode) {
@@ -55,13 +59,17 @@ class App {
   }
 
   init() {
+    Vue.use(Modal);
+    Vue.use(Notify);
+
+
     store.dispatch('init');
 
-    this.NotifyVM = new Vue({
-      store,
-      render: h => h(Notifications),
-    }).$mount();
-    document.body.appendChild(this.NotifyVM.$el);
+    // this.NotifyVM = new Vue({
+    //   store,
+    //   render: h => h(Notifications),
+    // }).$mount();
+    // document.body.appendChild(this.NotifyVM.$el);
 
     // this.ModalVM = new Vue({
     //   store,
@@ -76,10 +84,6 @@ class App {
     document.body.appendChild(this.ModalVM.$el);
 
     this.Header = new Header();
-  }
-
-  notify(opt) {
-    store.dispatch(ADD_TOAST_MESSAGE, opt);
   }
 }
 

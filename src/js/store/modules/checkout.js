@@ -730,7 +730,7 @@ export default function createModule(options) {
         };
       }
 
-      dispatch(ADD_TOAST_MESSAGE, notify, { root: true });
+      Vue.$notify(notify);
 
       await dispatch('refreshOrder', resultList);
     },
@@ -865,6 +865,10 @@ export default function createModule(options) {
             }
 
             return result;
+          })
+          .catch((e) => {
+            Vue.$notify.error('При оформление заказа что-то пошло не так. Мы уже ищем причину. Пока попробуйте обновить страницу.');
+            console.log(e);
           });
       }));
 

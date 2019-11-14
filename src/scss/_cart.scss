@@ -275,6 +275,11 @@
     margin-left: -20px;
     background: #efefef;
 
+    > * {
+      height: 100%;
+      width: 100%;
+    }
+
     @include media-breakpoint-up(md) {
       height: 443px;
       margin-right: tan(9deg) * 443px / -2;
