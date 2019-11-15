@@ -39,6 +39,13 @@ import Notifications from '../components/Notifications.vue';
 
 export default {
   install(Vue, args = {}) {
+    if (this.installed) {
+      return;
+    }
+
+    this.installed = true;
+
+
     // Create component instance
     const Constr = Vue.extend(Notifications);
     const Notify = new Constr();

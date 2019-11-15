@@ -7,10 +7,7 @@ import Header from './modules/Header';
 import Modal from './plugins/Modal';
 import Notify from './plugins/Notify';
 import ModalsContainer from './components/ModalsContainer.vue';
-import { ADD_TOAST_MESSAGE } from './store/modules/notifications';
 import Platform from './plugins/Platform';
-
-
 
 
 window.Vue = Vue;

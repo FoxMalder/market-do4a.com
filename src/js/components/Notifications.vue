@@ -101,8 +101,7 @@
 </script>
 
 
-<style>
-  
+<style scoped>
   .notifications {
     position: fixed;
     z-index: 10000;
