@@ -229,6 +229,14 @@ const cummonConfig = {
     }),
 
     new HtmlWebpackPlugin({
+      title: 'Доставка и оплата',
+      filename: 'delivery.html',
+      template: path.resolve(__dirname, 'src/delivery.html'),
+      chunks: ['simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
       title: 'Магазины',
       filename: 'shops.html',
       template: path.resolve(__dirname, 'src/shops.html'),
