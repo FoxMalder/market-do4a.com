@@ -1213,6 +1213,79 @@
     margin-left: 0;
   }
 
+  //&__header {
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: space-between;
+  //  padding: 7px $container-padding-x 8px;
+  //  background-color: #eee;
+  //
+  //  //&_dark {
+  //  //  background: #292929;
+  //  //  color: #fff;
+  //  //
+  //  //  .order-number-badge {
+  //  //    background-color: #4d4d4d;
+  //  //    color: #fff;
+  //  //  }
+  //  //}
+  //
+  //
+  //  &_central {
+  //    background: #292929;
+  //    color: #fff;
+  //
+  //    .order-number-badge {
+  //      background-color: #4d4d4d;
+  //      color: #fff;
+  //    }
+  //  }
+  //
+  //  &_local {
+  //    background: $main-color;
+  //    color: #fff;
+  //
+  //    .order-number-badge {
+  //      background-color: rgba(#fff, 0.3);
+  //      color: #fff;
+  //    }
+  //  }
+  //
+  //  @include media-breakpoint-up(md) {
+  //    padding: 8px 11px 8px 19px;
+  //
+  //    //padding: 0 10px;
+  //    //font-size: 14px;
+  //    //line-height: 23px;
+  //
+  //
+  //    &::before {
+  //      content: '';
+  //      background-repeat: no-repeat;
+  //      background-size: contain;
+  //      margin-right: 4px;
+  //    }
+  //
+  //    &_central {
+  //      &::before {
+  //        background-image: url("../img/p-badge-car.svg");
+  //        width: 18px;
+  //        height: 13px;
+  //        margin-right: 7px;
+  //      }
+  //    }
+  //
+  //    &_local {
+  //      &::before {
+  //        background-image: url("../img/p-badge-man.svg");
+  //        width: 11px;
+  //        height: 17px;
+  //        margin-right: 7px;
+  //      }
+  //    }
+  //  }
+  //}
+
   &__header {
     display: flex;
     align-items: center;
@@ -1220,18 +1293,7 @@
     padding: 7px $container-padding-x 8px;
     background-color: #eee;
 
-    //&_dark {
-    //  background: #292929;
-    //  color: #fff;
-    //
-    //  .order-number-badge {
-    //    background-color: #4d4d4d;
-    //    color: #fff;
-    //  }
-    //}
-
-
-    &_central {
+    &_dark {
       background: #292929;
       color: #fff;
 
@@ -1241,50 +1303,11 @@
       }
     }
 
-    &_local {
-      background: $main-color;
-      color: #fff;
-
-      .order-number-badge {
-        background-color: rgba(#fff, 0.3);
-        color: #fff;
-      }
-    }
-
     @include media-breakpoint-up(md) {
       padding: 8px 11px 8px 19px;
-
-      //padding: 0 10px;
-      //font-size: 14px;
-      //line-height: 23px;
-
-
-      &::before {
-        content: '';
-        background-repeat: no-repeat;
-        background-size: contain;
-        margin-right: 4px;
-      }
-
-      &_central {
-        &::before {
-          background-image: url("../img/p-badge-car.svg");
-          width: 18px;
-          height: 13px;
-          margin-right: 7px;
-        }
-      }
-
-      &_local {
-        &::before {
-          background-image: url("../img/p-badge-man.svg");
-          width: 11px;
-          height: 17px;
-          margin-right: 7px;
-        }
-      }
     }
   }
+
 
   &__title {
     font-size: 12px;

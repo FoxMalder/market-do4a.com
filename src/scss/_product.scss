@@ -191,6 +191,25 @@
     }
   }
 
+  &__availability {
+    display: flex;
+    align-items: center;
+    //margin-bottom: 17px;
+    > svg,
+    .icon {
+      display: inline-block;
+      flex: 0 0 auto;
+      margin-right: 12px;
+      font-size: 20px;
+    }
+
+    //@include media-breakpoint-up(md) {
+    //}
+    @include media-breakpoint-up(xl) {
+      min-height: 27px;
+    }
+  }
+
   &__note {
     display: flex;
     //flex-direction: column;

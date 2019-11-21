@@ -1,12 +1,9 @@
 <template>
   <div class="p-detail__header">
     <div class="p-detail__note">
-      <div class="p-delivery-badge p-delivery-badge_local"
-           v-if="activeOffer.count_group > 0"
-      >Магазин рядом, доставка 1 день</div>
       <div class="p-delivery-badge p-delivery-badge_central"
-           v-else-if="activeOffer.count_remote > 0"
-      >{{ shipingPeriod }}</div>
+           v-if="activeOffer.count_group === 0 && activeOffer.count_remote > 0"
+      >Доставка с центрального склада</div>
     </div>
     <div class="p-detail__category">{{ category }}</div>
     <div class="p-detail__country" v-if="country">Страна: <span class="black">{{ country }}</span></div>

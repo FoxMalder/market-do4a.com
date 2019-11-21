@@ -25,7 +25,6 @@
           :key="'img' + activeIndex"
           :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
           :src="activePacking.gallery[0].img.src"
-          :srcset="activePacking.gallery[0].img.src2x + ' 2x'"
           :alt="activePacking.name"
           @load="imgStatus = 'success'"
           @error="imgStatus = 'error'"

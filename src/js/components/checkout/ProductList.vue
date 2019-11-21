@@ -1,22 +1,22 @@
 <template>
   <div class="order-item">
-    <div class="order-item__header order-item__header_local" v-if="order.isLocaleStore">
-      <div class="order-item__title">Магазин рядом, доставка 1 день</div>
-      <div class="order-number-badge">Отправление {{ order.index }}</div>
-    </div>
-    <div class="order-item__header order-item__header_central" v-else>
-      <div class="order-item__title">{{ shipingPeriod }}</div>
-      <div class="order-number-badge">Отправление {{ order.index }}</div>
-    </div>
+<!--    <div class="order-item__header order-item__header_local" v-if="order.isLocaleStore">-->
+<!--      <div class="order-item__title">Магазин рядом, доставка 1 день</div>-->
+<!--      <div class="order-number-badge">Отправление {{ order.index }}</div>-->
+<!--    </div>-->
+<!--    <div class="order-item__header order-item__header_central" v-else>-->
+<!--      <div class="order-item__title">{{ shipingPeriod }}</div>-->
+<!--      <div class="order-number-badge">Отправление {{ order.index }}</div>-->
+<!--    </div>-->
     
-    <!--    <div v-if="multiple"-->
-    <!--         class="order-item__header"-->
-    <!--         :class="{'order-item__header_dark': order.index % 2 !== 0}">-->
-    <!--      <div class="order-item__title">-->
-    <!--        {{ order.isLocaleStore ? 'Получить в магазине или курьером' : 'Доставка с центрального склада' }}-->
-    <!--      </div>-->
-    <!--      <div class="order-number-badge">Отправление {{ order.index }}</div>-->
-    <!--    </div>-->
+        <div v-if="multiple"
+             class="order-item__header"
+             :class="{'order-item__header_dark': order.index % 2 !== 0}">
+          <div class="order-item__title">
+            {{ order.isLocaleStore ? 'Получить в магазине или курьером' : 'Доставка с центрального склада' }}
+          </div>
+          <div class="order-number-badge">Отправление {{ order.index }}</div>
+        </div>
     
     <transition-group
       class="order-item__list"
