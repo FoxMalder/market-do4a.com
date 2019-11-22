@@ -57,45 +57,49 @@
       </template>
       
       <div class="p-detail-delivery__row">
-        <div class="p-delivery-alert">
-          Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной доставки</button>
-        </div>
         
-        <div class="p-delivery-tooltip" ref="tooltipInner">
-          <p class="p-delivery-tooltip__title">Товары могут быть из разных городов</p>
-          <p>
-            Доставка — бесплатно на заказы от {{ freeShipingPrice }}.<br>
-            Сумма заказов <strong>считается отдельно</strong> для товаров из каждого города.<br>
-            <br>
-            Узнать, откуда товар, помогут стикеры:
-          </p>
-          <div class="p-delivery-tooltip__row">
-            <div class="p-delivery-tooltip__col">
-              <div class="p-delivery-badge p-delivery-badge_central">Со склада из СПБ, 7 дней</div>
-              <div><span class="gray">Товары на </span> <strong>3 000 ₽</strong></div>
-              <div>будут с бесплатной доставкой</div>
+        <transition name="fade">
+          <div class="p-delivery-alert-bg" v-show="isVisible" @click.prevent="onClick"></div>
+        </transition>
+        
+        <div class="p-delivery-alert"
+             @mouseenter="onMouseover"
+             @mouseleave="onMouseout">
+          Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной
+          доставки</button>
+          
+          <transition name="fade">
+            <div class="p-delivery-alert__tooltip" v-show="isVisible">
+              <div class="p-delivery-tooltip"
+                   ref="tooltipInner"
+                   @mouseenter="onMouseover"
+                   @mouseleave="onMouseout">
+                
+                <p class="p-delivery-tooltip__title">Товары могут быть из разных городов</p>
+                <p>
+                  Доставка — бесплатно на заказы от {{ freeShipingPrice }}.<br>
+                  Сумма заказов <strong>считается отдельно</strong> для товаров из каждого города.<br>
+                  <br>
+                  Узнать, откуда товар, помогут стикеры:
+                </p>
+                <div class="p-delivery-tooltip__row">
+                  <div class="p-delivery-tooltip__col">
+                    <div class="p-delivery-badge p-delivery-badge_central">Со склада из СПБ, 7 дней</div>
+                    <div><span class="gray">Товары на </span> <strong>3 000 ₽</strong></div>
+                    <div>будут с бесплатной доставкой</div>
+                  </div>
+                  <div class="p-delivery-tooltip__col">
+                    <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, 1 день</div>
+                    <div><span class="gray">Товары на </span> <strong>1 000 ₽</strong></div>
+                    <div>будут с платной доставкой</div>
+                  </div>
+                </div>
+                <p><a class="p-delivery-tooltip__link" href="/delivery/" target="_blank">Все условия доставки и оплаты</a></p>
+              </div>
             </div>
-            <div class="p-delivery-tooltip__col">
-              <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, 1 день</div>
-              <div><span class="gray">Товары на </span> <strong>1 000 ₽</strong></div>
-              <div>будут с платной доставкой</div>
-            </div>
-          </div>
-          <p><a href="#">Все условия доставки и оплаты</a></p>
+          </transition>
         </div>
-      </div>
       
-      <div class="p-detail-delivery__row" v-if="activeOffer.count_group > 0">
-        <div class="p-detail-delivery__key">Оплата при получении</div>
-        <div class="p-detail-delivery__value">Картой или наличными</div>
-      </div>
-      <div class="p-detail-delivery__row" v-else-if="activeOffer.count_remote > 0">
-        <div class="p-detail-delivery__key">Оплата картой онлайн</div>
-        <div class="p-detail-delivery__value">
-          <i class="icon icon-visa"></i>
-          <i class="icon icon-mastercard"></i>
-          <i class="icon icon-mir"></i>
-        </div>
       </div>
     </div>
   </div>
@@ -118,6 +122,11 @@
       ControlSelect,
       ProductImage,
       ProductPrice,
+    },
+    data() {
+      return {
+        isVisible: false,
+      }
     },
     computed: {
       ...mapState('product', {
@@ -145,26 +154,55 @@
     methods: {
       formatUnit(count, units) {
         return `${count} ${Utils.declOfNum(count, units)}`
+      },
+
+      onClick() {
+        clearTimeout(this.timer);
+        this.isVisible = false;
+      },
+      
+      onMouseover() {
+        clearTimeout(this.timer);
+        // $(this.$refs.tooltip).tooltip('show');
+        this.isVisible = true;
+      },
+      
+      onMouseout() {
+        this.timer = setTimeout(() => {
+          // $(this.$refs.tooltip).tooltip('hide');
+          this.isVisible = false;
+        }, 300);
       }
     },
-    updated() {
-      this.$nextTick(() => {
-        $(this.$refs.tooltip).tooltip({
-          html: true,
-          title: this.$refs.tooltipInner,
-          template: '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner tooltip-inner_auto"></div></div>'
-        });
-      })
-    },
-    mounted() {
-      this.$nextTick(() => {
-        $(this.$refs.tooltip).tooltip({
-          html: true,
-          title: this.$refs.tooltipInner,
-          template: '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner tooltip-inner_auto"></div></div>'
-        });
-      })
-    }
+    // updated() {
+    //   this.$nextTick(() => {
+    //     $(this.$refs.tooltip).tooltip({
+    //       html: true,
+    //       trigger: 'manual',
+    //       delay: {
+    //         show: 0,
+    //         hide: 500,
+    //       },
+    //       title: this.$refs.tooltipInner,
+    //       template: '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner tooltip-inner_auto"></div></div>'
+    //     });
+    //   })
+    // },
+    // mounted() {
+      // this.$nextTick(() => {
+      //   $(this.$refs.tooltip).tooltip({
+      //     html: true,
+      //     trigger: 'manual',
+      //     // placement: 'left-start',
+      //     delay: {
+      //       show: 0,
+      //       hide: 500,
+      //     },
+      //     title: this.$refs.tooltipInner,
+      //     template: '<div class="tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner tooltip-inner_auto"></div></div>'
+      //   });
+      // })
+    // }
   }
 </script>
 

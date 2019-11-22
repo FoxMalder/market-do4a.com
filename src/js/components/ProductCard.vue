@@ -5,6 +5,12 @@
         <img :src="product.img" :srcset="product.img2x + ' 2x'" :alt="product.name">
       </div>
       <div class="product-card__body">
+        <template v-if="product.isAvailable">
+          <div v-if="product.isDeliveryOneDay"
+               class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+          <div v-else
+               class="product-card__badge product-card__badge_central">Со склада в СПБ, {{ shipingPeriod }}</div>
+        </template>
         <a class="product-card__title stretched-link" :href="product.url" itemprop="name">{{product.name}}</a>
         <div class="product-card__description" itemprop="description">{{product.section}}</div>
       </div>
@@ -45,8 +51,8 @@
       </div>
     </div>
     <div class="product-stickers">
-      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"
-           v-if="product.isDeliveryOneDay">Доставка <br>1 день</div>
+      <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"-->
+      <!--           v-if="product.isDeliveryOneDay">Доставка <br>1 день</div>-->
       <div class="product-stickers__item product-stickers__item_yellow"
            v-if="product.isRecommend">Рекомендуем</div>
       <div class="product-stickers__item product-stickers__item_green"
@@ -86,6 +92,14 @@
     name: "ProductCard",
     props: {
       product: Object,
+    },
+    computed: {
+      shipingPeriod() {
+        const city = this.$store.getters.currentCity;
+        return city
+          ? `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`
+          : 'от 1 дня';
+      }
     },
     methods: {
       ...mapActions([

@@ -161,6 +161,14 @@ export default class ProductCard {
   //   // document.body.appendChild(this.catalogControlMobileVM.$el);
   // }
 
+
+  static shipingPeriod() {
+    const city = store.getters.currentCity;
+    return city
+      ? `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`
+      : 'от 1 дня';
+  }
+
   initDOM() {
     this.el = document.createElement('div');
     this.el.classList.add('product-card');
@@ -173,7 +181,17 @@ export default class ProductCard {
       <div class="product-card__img">
         <img src="${this.data.img}" srcset="${this.data.img2x} 2x" alt="${this.data.name}">
       </div>
-      <div class="product-card__body">
+      <div class="product-card__body">`;
+
+    if (this.data.isAvailable) {
+      if (this.data.isDeliveryOneDay) {
+        wrapperEl.innerHTML += `<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>`;
+      } else {
+        wrapperEl.innerHTML += `<div class="product-card__badge product-card__badge_central">Со склада в СПБ, ${ProductCard.shipingPeriod()}</div>`;
+      }
+    }
+
+    wrapperEl.innerHTML += `
         <a class="product-card__title stretched-link" href="${this.data.url}" title="Перейти в карточку товара">${this.data.name}</a>
         <div class="product-card__description">${this.data.section}</div>
       </div>
@@ -206,9 +224,9 @@ export default class ProductCard {
     const stickersEl = document.createElement('div');
     stickersEl.classList.add('product-stickers');
 
-    if (this.data.isDeliveryOneDay) {
-      stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>';
-    }
+    // if (this.data.isDeliveryOneDay) {
+    //   stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery">Доставка <br>1 день</div>';
+    // }
     if (this.data.isRecommend) {
       stickersEl.innerHTML += '<div class="product-stickers__item product-stickers__item_yellow">Рекомендуем</div>';
     }
