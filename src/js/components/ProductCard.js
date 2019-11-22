@@ -175,23 +175,24 @@ export default class ProductCard {
     this.el.setAttribute('data-product-id', this.data.id);
     // this.el.dataset.productId = this.data.id;
 
+    let label = '';
+    if (this.data.isAvailable) {
+      if (this.data.isDeliveryOneDay) {
+        label = '<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>';
+      } else {
+        label = `<div class="product-card__badge product-card__badge_central">Со склада в СПБ, ${ProductCard.shipingPeriod()}</div>`;
+      }
+    }
+
+
     const wrapperEl = document.createElement('div');
     wrapperEl.classList.add('product-card__wrapper');
     wrapperEl.innerHTML = `
       <div class="product-card__img">
         <img src="${this.data.img}" srcset="${this.data.img2x} 2x" alt="${this.data.name}">
       </div>
-      <div class="product-card__body">`;
-
-    if (this.data.isAvailable) {
-      if (this.data.isDeliveryOneDay) {
-        wrapperEl.innerHTML += `<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>`;
-      } else {
-        wrapperEl.innerHTML += `<div class="product-card__badge product-card__badge_central">Со склада в СПБ, ${ProductCard.shipingPeriod()}</div>`;
-      }
-    }
-
-    wrapperEl.innerHTML += `
+      <div class="product-card__body">
+        ${label}
         <a class="product-card__title stretched-link" href="${this.data.url}" title="Перейти в карточку товара">${this.data.name}</a>
         <div class="product-card__description">${this.data.section}</div>
       </div>

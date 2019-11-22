@@ -63,6 +63,7 @@
         </transition>
         
         <div class="p-delivery-alert"
+             :class="{'p-delivery-alert_active': isVisible}"
              @mouseenter="onMouseover"
              @mouseleave="onMouseout">
           Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной
