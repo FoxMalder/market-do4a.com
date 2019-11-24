@@ -159,7 +159,7 @@ export class PriceFilter {
     const option = {
       label: multifilterEl.querySelector('.multifilter__value').textContent,
       type: 'range',
-      name: 'Price',
+      name: 'price',
       data: {
         priceFrom: 0,
         priceTo: 0,

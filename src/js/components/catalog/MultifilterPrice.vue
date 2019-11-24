@@ -1,7 +1,7 @@
 <template>
   <div class="multifilter-price">
-    <input type="hidden" name="Price[from]" v-model="minRange">
-    <input type="hidden" name="Price[to]" v-model="maxRange">
+    <input type="hidden" name="price[from]" v-model="minRange">
+    <input type="hidden" name="price[to]" v-model="maxRange">
     <div class="multifilter-price__title">
       <div class="multifilter-price__start">От</div>
       <div class="multifilter-price__end">До</div>
