@@ -136,7 +136,7 @@ const actions = {
     });
   },
 
-  addProductToCart({ commit, rootState }, { productId, quantity, isRemote = true }) {
+  addProductToCart({ commit, rootState, rootGetters }, { productId, quantity, isRemote = true }) {
     return new Promise((resolve, reject) => {
       const request = {
         productId,
@@ -154,10 +154,16 @@ const actions = {
 
           const basketItem = data.items.find(item => item.productId === productId);
           if (basketItem) {
+            const store = isRemote
+              ? 'Основной склад'
+              : rootGetters.getStoreById(rootState.storeId).name;
+
             gtmAddEvent({
               event: 'addToCart',
-              dimension3: basketItem.calculateStoreId,
-              stock: basketItem.calculateStoreId,
+              // dimension3: basketItem.calculateStoreId,
+              // stock: basketItem.calculateStoreId,
+              dimension3: store,
+              stock: store,
               ecommerce: {
                 currencyCode: 'RUB',
                 add: {
@@ -168,7 +174,8 @@ const actions = {
                       price: basketItem.sum,
                       category: '',
                       variant: '',
-                      dimension3: basketItem.calculateStoreId,
+                      // dimension3: basketItem.calculateStoreId,
+                      dimension3: store,
                       quantity: basketItem.quantity,
                     },
                   ],
