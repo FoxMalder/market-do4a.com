@@ -472,6 +472,9 @@ const prodConfig = {
     new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
+      // filename: (chunkData) => {
+      //   return chunkData.chunk.name === 'simple' ? 'css/common.css' : 'css/[name].css';
+      // },
       // chunkFilename: 'css/[id].css',
       // filename: 'css/[name].css',
       // chunkFilename: 'css/[id].333.css',
@@ -509,8 +512,10 @@ const prodConfig = {
         // },
         // style: {
         //   name: 'style',
-        //   test: /\.(css|sass|scss)$/,
-        //   chunks: 'all',
+        //   // test: /\.(css|sass|scss)$/,
+        //   test: /\.css$/,
+        //   filename: 'css/ololo.css',
+        //   chunks: 'initial',
         //   enforce: true,
         // },
         common: {
