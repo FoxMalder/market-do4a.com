@@ -554,8 +554,8 @@
     margin-bottom: 80px;
 
     .p-detail {
-      padding-top: 33px;
       max-width: 440px;
+      padding-top: 33px;
     }
   }
 
@@ -603,15 +603,102 @@
 }
 
 .d-product {
-  background: url("../img/d-product-2.png") bottom no-repeat;
-  background-size: contain;
   width: 446.23px;
   height: 286.37px;
+  background: url("../img/d-product-2.png") bottom no-repeat;
+  background-size: contain;
+}
+
+.d-badge {
+  display: inline-block;
+  position: relative;
+  padding: 30px 50px;
+  border-radius: 26px;
+  background: #fff;
+
+
+  @include media-breakpoint-up(xl) {
+    .p-delivery-badge {
+      transform: scale(1.2);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 50%;
+      left: calc(100% - 35px);
+      width: 208px;
+      height: 194px;
+
+      background: url("../img/d-vector-black.svg") no-repeat;
+      background-size: 100% 100%;
+      pointer-events: none;
+    }
+  }
+
+  &_central {
+    //.d-badge__inner {
+    //  background: #292929;
+    //  color: #fff;
+    //  &::before {
+    //    width: 18px;
+    //    height: 13px;
+    //    margin-right: 7px;
+    //    background-image: url("../img/p-badge-car.svg");
+    //  }
+    //}
+  }
+
+  &_local {
+    //.d-badge__inner {
+    //  background: $main-color;
+    //  color: #fff;
+    //  &::before {
+    //    width: 11px;
+    //    height: 17px;
+    //    margin-right: 7px;
+    //    background-image: url("../img/p-badge-man.svg");
+    //  }
+    //}
+
+    &::before {
+      width: 197px;
+      height: 196px;
+      background-image: url("../img/d-vector-red.svg");
+    }
+  }
+
+  &__inner {
+    //background: #292929;
+    //border-radius: 3px;
+    //color: #fff;
+    //font-weight: 500;
+    //font-size: 8px;
+    //line-height: 12px;
+    //letter-spacing: -0.01em;
+    //display: inline-flex;
+    //align-items: center;
+    //padding: 2px 5px 3px;
+    //position: absolute;
+    //left: 0;
+    //top: 125px;
+    //margin: 0 11px;
+    //transform: translateY(-100%);
+    ////margin-top: -36px;
+    //
+    //&::before {
+    //  content: '';
+    //  background-repeat: no-repeat;
+    //  background-size: contain;
+    //  margin-right: 4px;
+    //}
+  }
 }
 
 .d-card {
   display: flex;
   position: relative;
+  z-index: 1;
   flex-direction: column;
   height: 100%;
   padding: 42px 40px;
