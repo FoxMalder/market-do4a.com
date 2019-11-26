@@ -145,7 +145,7 @@
           const min = this.currentCity.deliveryCountDays[0];
           const max = this.currentCity.deliveryCountDays[1];
 
-          return `${this.currentCity.name}, ${min === max ? max : min + '-' + max} ${Utils.declOfNum(max, ['день', 'дня', 'дней'])}`;
+          return `, ${min === max ? max : min + '-' + max} ${Utils.declOfNum(max, ['день', 'дня', 'дней'])}`;
         }
 
         return '';
