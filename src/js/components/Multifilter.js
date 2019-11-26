@@ -159,7 +159,7 @@ export class PriceFilter {
     const option = {
       label: multifilterEl.querySelector('.multifilter__value').textContent,
       type: 'range',
-      name: 'Price',
+      name: 'price',
       data: {
         priceFrom: 0,
         priceTo: 0,
@@ -168,12 +168,12 @@ export class PriceFilter {
       },
     };
 
-    if (container.querySelector('input[name="Price[from]"]')) {
-      option.data.priceFrom = parseInt(container.querySelector('input[name="Price[from]"]').value, 10) || 0;
+    if (container.querySelector('input[name="price[from]"]')) {
+      option.data.priceFrom = parseInt(container.querySelector('input[name="price[from]"]').value, 10) || 0;
     }
 
-    if (container.querySelector('input[name="Price[to]"]')) {
-      option.data.priceTo = parseInt(container.querySelector('input[name="Price[to]"]').value, 10) || 0;
+    if (container.querySelector('input[name="price[to]"]')) {
+      option.data.priceTo = parseInt(container.querySelector('input[name="price[to]"]').value, 10) || 0;
     }
 
     if (container.querySelector('.multifilter-price__num .multifilter-price__start')) {

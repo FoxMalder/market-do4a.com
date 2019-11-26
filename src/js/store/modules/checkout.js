@@ -826,7 +826,7 @@ export default function createModule(options) {
       }
     },
 
-    async checkout({ commit, dispatch, getters }) {
+    async checkout({ commit, dispatch, getters, rootState, rootGetters }) {
       // try {
       //   window['yaCounter' + app.metrikaId].reachGoal('CLICK_ORDER_BUTTON');
       // } catch (ex) {}
@@ -933,13 +933,15 @@ export default function createModule(options) {
               shipping: getters.orderList.reduce((a, order) => a + order.total.DELIVERY_PRICE, 0),
               // coupon: 'скидка на вторую покупку',
             },
-            p: getters.orderList.flatMap(order => order.productList.map(product => ({
+            products: getters.orderList.flatMap(order => order.productList.map(product => ({
               id: product.productId,
               name: product.name,
               price: product.price,
               // category: '',
               variant: '',
-              dimension3: order.storeId,
+              dimension3: rootState.storeRemoteId === order.storeId
+                ? 'Основной склад'
+                : rootGetters.getStoreById(order.storeId),
               quantity: product.quantity,
             }))),
           },

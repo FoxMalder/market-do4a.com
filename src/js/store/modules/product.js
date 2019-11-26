@@ -91,7 +91,7 @@ const getters = {
 
 // actions
 const actions = {
-  init({ commit, getters }, product) {
+  init({ commit, getters, rootState, rootGetters }, product) {
     if (!Array.isArray(product.packing)) {
       product.packing = Object.values(product.packing);
     }
@@ -114,9 +114,13 @@ const actions = {
     commit('SET_ACTIVE_PACKING_ID', { id: product.productId });
 
 
+    const store = (getters.activeOffer.count_group < 1 && getters.activeOffer.count_remote > 0)
+      ? 'основной склад'
+      : rootGetters.getStoreById(rootState.storeId).name;
+
     gtmAddEvent({
       event: 'detail',
-      stock: 'основной склад',
+      stock: store,
       ecommerce: {
         detail: {
           products: [
@@ -124,9 +128,9 @@ const actions = {
               id: product.offerId,
               name: getters.activePacking.name,
               price: getters.activeOffer.price,
-              category: '',
+              // category: '',
               quantity: 1,
-              dimension3: 'основной склад',
+              dimension3: store,
               position: 0,
             },
           ],
@@ -135,7 +139,7 @@ const actions = {
     });
   },
 
-  selectPacking({ dispatch, commit }, packing) {
+  selectPacking({ dispatch, commit, rootState, rootGetters }, packing) {
     let newActiveOffer = packing.sku.find(item => item.count_group > 0);
     if (!newActiveOffer) {
       newActiveOffer = packing.sku.find(item => item.count_remote > 0);
@@ -148,9 +152,13 @@ const actions = {
     commit('SET_ACTIVE_OFFER_ID', newActiveOffer);
 
 
+    const store = (newActiveOffer.count_group < 1 && newActiveOffer.count_remote > 0)
+      ? 'основной склад'
+      : rootGetters.getStoreById(rootState.storeId).name;
+
     gtmAddEvent({
       event: 'detail',
-      stock: 'основной склад',
+      stock: store,
       ecommerce: {
         detail: {
           products: [
@@ -158,9 +166,9 @@ const actions = {
               id: newActiveOffer.id,
               name: packing.name,
               price: newActiveOffer.price,
-              category: '',
+              // category: '',
               quantity: 1,
-              dimension3: 'основной склад',
+              dimension3: store,
               position: position += 1,
             },
           ],
@@ -172,12 +180,16 @@ const actions = {
     dispatch('updateSimilar');
   },
 
-  selectOffer({ commit, getters }, offer) {
+  selectOffer({ commit, getters, rootState, rootGetters }, offer) {
     commit('SET_ACTIVE_OFFER_ID', offer);
+
+    const store = (offer.count_group < 1 && offer.count_remote > 0)
+      ? 'основной склад'
+      : rootGetters.getStoreById(rootState.storeId).name;
 
     gtmAddEvent({
       event: 'detail',
-      stock: 'основной склад',
+      stock: store,
       ecommerce: {
         detail: {
           products: [
@@ -185,9 +197,9 @@ const actions = {
               id: offer.id,
               name: getters.activePacking.name,
               price: offer.price,
-              category: '',
+              // category: '',
               quantity: 1,
-              dimension3: 'основной склад',
+              dimension3: store,
               position: position += 1,
             },
           ],
