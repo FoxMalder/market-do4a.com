@@ -37,9 +37,14 @@
       //     : false;
       // },
       shipingPeriod() {
-        return this.currentCity
-          ? `Со склада из СПБ в ${this.currentCity.name}, ${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
-          : 'Со склада в Санкт-Петербурге';
+        if (this.currentCity && this.currentCity.deliveryCountDays) {
+          const min = this.currentCity.deliveryCountDays[0];
+          const max = this.currentCity.deliveryCountDays[1];
+
+          return `Со склада из СПБ в ${this.currentCity.name}, ${min === max ? max : min + '-' + max} ${Utils.declOfNum(max, ['день', 'дня', 'дней'])}`;
+        }
+
+        return 'Со склада в Санкт-Петербурге';
       },
       reviewsQuantityText() {
         return this.activePacking.review > 0

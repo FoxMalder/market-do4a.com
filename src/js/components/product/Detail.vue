@@ -141,9 +141,14 @@
         isAvailableOffer: 'product/isAvailableOffer'
       }),
       shipingPeriod() {
-        return (this.currentCity && this.currentCity.deliveryCountDays)
-          ? `, ${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
-          : '';
+        if (this.currentCity && this.currentCity.deliveryCountDays) {
+          const min = this.currentCity.deliveryCountDays[0];
+          const max = this.currentCity.deliveryCountDays[1];
+
+          return `${this.currentCity.name}, ${min === max ? max : min + '-' + max} ${Utils.declOfNum(max, ['день', 'дня', 'дней'])}`;
+        }
+
+        return '';
       },
       freeShipingPrice() {
         return `${(this.currentCity && this.currentCity.priceDelivery) || '2 990'} ₽`;
