@@ -48,17 +48,27 @@
     methods: {
       voteMinus(review) {
         if (this.vote === '') {
-          Reviews.vote(this.review.id, 'minus').then((data) => {
+          Reviews.vote(this.review.id, 'voteMinus').then((data) => {
             this.review.countMinus = data.value;
             this.vote = 'minus';
+          });
+        } else if (this.vote === 'minus') {
+          Reviews.vote(this.review.id, 'voteMinusCanceled').then((data) => {
+            this.review.countMinus = data.value;
+            this.vote = '';
           });
         }
       },
       votePlus(review) {
         if (this.vote === '') {
-          Reviews.vote(this.review.id, 'plus').then((data) => {
+          Reviews.vote(this.review.id, 'votePlus').then((data) => {
             this.review.countPlus = data.value;
             this.vote = 'plus';
+          });
+        } else if (this.vote === 'plus') {
+          Reviews.vote(this.review.id, 'votePlusCanceled').then((data) => {
+            this.review.countMinus = data.value;
+            this.vote = '';
           });
         }
       }
