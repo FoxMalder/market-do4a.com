@@ -67,7 +67,7 @@
           });
         } else if (this.vote === 'plus') {
           Reviews.vote(this.review.id, 'votePlusCanceled').then((data) => {
-            this.review.countMinus = data.value;
+            this.review.countPlus = data.value;
             this.vote = '';
           });
         }
