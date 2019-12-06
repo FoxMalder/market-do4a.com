@@ -941,7 +941,7 @@ export default function createModule(options) {
               variant: '',
               dimension3: rootState.storeRemoteId === order.storeId
                 ? 'Основной склад'
-                : rootGetters.getStoreById(order.storeId),
+                : rootGetters.getStoreById(order.storeId).name,
               quantity: product.quantity,
             }))),
           },
