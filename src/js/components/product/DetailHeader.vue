@@ -1,12 +1,10 @@
 <template>
   <div class="p-detail__header">
-    <div class="p-detail__note">
-      <div class="p-delivery-badge p-delivery-badge_local"
-           v-if="activeOffer.count_group > 0"
-      >Магазин рядом, доставка 1 день</div>
-      <div class="p-delivery-badge p-delivery-badge_central"
-           v-else-if="activeOffer.count_remote > 0"
-      >{{ shipingPeriod }}</div>
+    <div class="p-detail__note" v-if="$store.state.isLocaleStore">
+      <div v-if="activeOffer.count_group > 0"
+           class="p-delivery-badge p-delivery-badge_local">{{ textDeliveryLocal }}</div>
+      <div v-else-if="activeOffer.count_remote > 0"
+           class="p-delivery-badge p-delivery-badge_central">{{ textDeliveryCentral }}</div>
     </div>
     <div class="p-detail__category">{{ category }}</div>
     <div class="p-detail__country" v-if="country">Страна: <span class="black">{{ country }}</span></div>
@@ -24,7 +22,9 @@
     computed: {
       ...mapState('product', {
         category: 'category',
-        country: 'country'
+        country: 'country',
+        textDeliveryCentral: 'textDeliveryCentral',
+        textDeliveryLocal: 'textDeliveryLocal',
       }),
       ...mapGetters({
         currentCity: 'currentCity',

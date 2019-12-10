@@ -5,7 +5,7 @@
         <img :src="product.img" :srcset="product.img2x + ' 2x'" :alt="product.name">
       </div>
       <div class="product-card__body">
-        <template v-if="product.isAvailable">
+        <template v-if="product.isAvailable && isLocaleStore">
           <div v-if="product.isDeliveryOneDay"
                class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
           <div v-else
@@ -94,6 +94,10 @@
       product: Object,
     },
     computed: {
+      ...mapState({
+        isLocaleStore: state => state.isLocaleStore
+      }),
+      
       shipingPeriod() {
         const city = this.$store.getters.currentCity;
         return city

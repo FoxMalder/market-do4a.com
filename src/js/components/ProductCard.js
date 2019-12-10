@@ -176,7 +176,7 @@ export default class ProductCard {
     // this.el.dataset.productId = this.data.id;
 
     let label = '';
-    if (this.data.isAvailable) {
+    if (this.data.isAvailable && store.state.isLocaleStore) {
       if (this.data.isDeliveryOneDay) {
         label = '<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>';
       } else {
