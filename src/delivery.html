@@ -11,11 +11,40 @@
 <main class="wrapper">
   <div class="page-header">
     <div class="container">
-      <div class="breadcumps">
-        <a href="/" class="breadcumps__link red">Главная</a>
-        <span class="breadcumps__delimiter"></span>
-        <span class="breadcumps__page">Доставка и оплата</span>
+      
+      <div class="mr-breadcumps">
+        <ol class="mr-breadcumps__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <!-- Ссылка на главную, помечено красным -->
+            <a itemprop="item" href="#"><span itemprop="name" class="red">Главная</span></a>
+            <meta itemprop="position" content="1"/>
+          </li>
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <!-- Обычная ссылка -->
+            <a itemprop="item" href="#"><span itemprop="name">Категория</span></a>
+            <meta itemprop="position" content="2"/>
+          </li>
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <!-- Обычная ссылка -->
+            <a itemprop="item" href="#"><span itemprop="name">Категория</span></a>
+            <meta itemprop="position" content="3"/>
+          </li>
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <!-- Без ссылки, помечено серым -->
+            <span itemprop="name" class="gray">Доставка и оплата</span>
+            <meta itemprop="position" content="4"/>
+          </li>
+        </ol>
       </div>
+      
+      
+<!--      <div class="breadcumps">-->
+<!--        <a href="/" class="breadcumps__link red">Главная</a>-->
+<!--        <span class="breadcumps__delimiter"></span>-->
+<!--        <span class="breadcumps__page">Доставка и оплата</span>-->
+<!--      </div>-->
+      
+      
       <h1 class="page-header__title page-header__title_small">Доставка и оплата</h1>
     </div>
   </div>
