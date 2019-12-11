@@ -11,9 +11,11 @@
       </div>
     </header>
     
-    <!--        <div class="container">-->
-    <!--          <button @click.prevent="showOnMap">Открыть карту</button>-->
-    <!--        </div>-->
+<!--            <div class="container">-->
+<!--&lt;!&ndash;              <button @click.prevent="showOnMap">Открыть карту</button>&ndash;&gt;-->
+<!--  -->
+<!--              <CheckoutLocationSearch/>-->
+<!--            </div>-->
     
     <!--    <CheckoutShippingSDEK/>-->
     
@@ -110,6 +112,7 @@
   import CheckoutBasket from './CheckoutBasket.vue';
   import CheckoutFinal from './CheckoutFinal.vue';
   import CheckoutEmptyBasket from './CheckoutEmptyBasket.vue';
+  import CheckoutLocationSearch from './CheckoutLocationSearch.vue';
 
   import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
   import AppModalMap from '../AppModalMap.vue';
@@ -133,6 +136,7 @@
       CheckoutFinal,
       CheckoutEmptyBasket,
       CheckoutShippingSDEK,
+      CheckoutLocationSearch,
     },
     data() {
       return {

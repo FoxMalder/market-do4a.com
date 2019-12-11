@@ -1,6 +1,6 @@
 import ready from 'domready';
 
-
+import './simple';
 import CatalogControl from './js/page/catalog';
 
 

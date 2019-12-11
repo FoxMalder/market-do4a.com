@@ -2,6 +2,7 @@ import ready from 'domready';
 import Vue from 'vue';
 
 // import VueShopListInfo from './js/components/ShopListInfo.vue';
+import './simple';
 import VueShopList from './js/components/ShopList.vue';
 import store from './js/store';
 

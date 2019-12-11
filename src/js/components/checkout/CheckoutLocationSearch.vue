@@ -1,5 +1,6 @@
 <template>
   <div class="checkout-location-search"
+       tabindex="-1"
        @keydown="keyboardNav"
        v-click-outside="deactivate">
     <div class="checkout-location-search__field">
@@ -9,12 +10,12 @@
               :class="{'input-field__label_active': value !== ''}"
         >{{ locationProperty.title + (locationProperty.required ? '*' : '') }}</span>
         <input class="input-field__input"
-               type="text"
-               autocomplete="off"
+               spellcheck="false"
+               tabindex="0"
                :value="value"
                @input="onInput"
-               @focus.prevent="activate"
-               @blur.prevent="deactivate"
+               @focus="activate"
+               @blur="deactivate"
                @keyup.esc="deactivate">
         <transition name="fade-left">
           <div class="input-field__alert" v-if="!isActive && locationProperty.error">{{ locationProperty.error }}</div>
@@ -49,6 +50,7 @@
       <template v-else>
         <li v-for="(city, index) in searchedItems"
             role="option"
+            tabindex="-1"
             class="checkout-location-search__item"
             :class="{ active: selectedIndex === index }"
             @mouseover="selectedIndex = index"
@@ -229,6 +231,8 @@
       },
 
       onInput(event) {
+        this.isActive = true;
+        
         this.value = event.target.value;
         // this.locationProperty.value = null;
         this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.locationProperty.code, message: null });
@@ -250,13 +254,17 @@
         this.validate();
       },
 
-      activate() {
+      activate(e) {
+        console.log(e);
+        
         if (!this.isActive) {
           this.isActive = true;
         }
       },
 
-      deactivate() {
+      deactivate(e) {
+        console.log(e);
+        
         if (this.isActive) {
           this.isActive = false;
           this.validate();

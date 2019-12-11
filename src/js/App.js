@@ -1,5 +1,12 @@
 import Vue from 'vue';
+import ready from 'domready';
+
+
+console.log('app.js');
+
 // import VModal from 'vue-js-modal';
+
+import '@/common';
 import store from './store';
 import Header from './modules/Header';
 // import Notifications from './components/Notifications.vue';
@@ -11,51 +18,28 @@ import Platform from './plugins/Platform';
 
 
 window.Vue = Vue;
-// Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 
-Vue.directive('click-outside', {
-  bind(el, binding, vNode) {
-    // Provided expression must evaluate to a function.
-    if (typeof binding.value !== 'function') {
-      const compName = vNode.context.name;
-      let warn = `[Vue-click-outside:] provided expression ${binding.expression} is not a function, but has to be`;
-      if (compName) {
-        warn += `Found in component ${compName}`;
-      }
-      console.warn(warn);
-    }
-    // Define Handler and cache it on the element
-    const { bubble } = binding.modifiers;
-    const handler = (e) => {
-      // Fall back to composedPath if e.path is undefined
-      const path = e.path
-        || (e.composedPath ? e.composedPath() : false)
-        || getParents(e.target);
-      if (bubble || (path.length && !el.contains(path[0]) && el !== path[0])) {
-        binding.value(e);
-      }
-    };
-    el.__vueClickOutside__ = handler;
-    // add Event Listeners
-    document.addEventListener('click', handler);
-  },
-  unbind(el) {
-    // Remove Event Listeners
-    document.removeEventListener('click', el.__vueClickOutside__);
-    el.__vueClickOutside__ = null;
-  },
-});
+// Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 
 
 class App {
   constructor() {
+    // this.fns = [];
+    // this.isInit = false;
+
     this.debug = true;
 
     this.store = store;
     this.platform = Platform;
+
+    ready(() => {
+      this.init();
+    });
   }
 
   init() {
+    // global.App = this;
+
     Vue.use(Modal);
     Vue.use(Notify);
 
@@ -81,7 +65,19 @@ class App {
     document.body.appendChild(this.ModalVM.$el);
 
     this.Header = new Header();
+
+    // this.isInit = true;
+    // this.fns.forEach(fn => fn());
   }
+
+  // ready(fn) {
+  //   this.isInit ? setTimeout(fn, 0) : this.fns.push(fn);
+  // }
 }
 
-export default new App();
+
+if (!global.App) {
+  global.App = new App();
+}
+
+// export default app;

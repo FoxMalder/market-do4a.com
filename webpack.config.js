@@ -280,12 +280,12 @@ const cummonConfig = {
 
 const devConfig = {
   mode: 'development',
-  resolve: {
-    alias: {
-      vue$: 'vue/dist/vue.esm.js',
-      // '@': path.resolve(__dirname, 'src/js/'),
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     vue$: 'vue/dist/vue.esm.js',
+  //     // '@': path.resolve(__dirname, 'src/js/'),
+  //   },
+  // },
   module: {
     rules: [
       {
