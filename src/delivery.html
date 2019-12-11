@@ -38,11 +38,11 @@
       </div>
       
       
-<!--      <div class="breadcumps">-->
-<!--        <a href="/" class="breadcumps__link red">Главная</a>-->
-<!--        <span class="breadcumps__delimiter"></span>-->
-<!--        <span class="breadcumps__page">Доставка и оплата</span>-->
-<!--      </div>-->
+      <!--      <div class="breadcumps">-->
+      <!--        <a href="/" class="breadcumps__link red">Главная</a>-->
+      <!--        <span class="breadcumps__delimiter"></span>-->
+      <!--        <span class="breadcumps__page">Доставка и оплата</span>-->
+      <!--      </div>-->
       
       
       <h1 class="page-header__title page-header__title_small">Доставка и оплата</h1>
@@ -57,7 +57,7 @@
         <li>Бесплатная доставка <strong>считается отдельно</strong> для каждого отправления в вашем заказе.</li>
       </ul>
       <div class="delivery__cards row">
-        <div class="col-xl-6">
+        <div class="col-md-6">
           <div class="d-card d-card_central">
             <div class="d-card__badge">Отправление 1</div>
             
@@ -69,21 +69,21 @@
             <div class="d-card__delivery">
               <div class="d-card__subtitle">Способы доставки</div>
               <ul class="d-card__row row">
-                <li class="col-md-6">
+                <li class="col-xl-6">
                   <div class="d-tile">
                     <div class="d-tile__title">DPD 🇷🇺🇰🇿🇧🇾</div>
                     <div class="d-tile__info"><a href="#">Рассчитать срок доставки</a></div>
                     <div class="d-tile__info">от 300 ₽</div>
                   </div>
                 </li>
-                <li class="col-md-6">
+                <li class="col-xl-6">
                   <div class="d-tile">
                     <div class="d-tile__title">Почта России 🇷🇺</div>
                     <div class="d-tile__info"><a href="#">Рассчитать срок доставки</a></div>
                     <div class="d-tile__info">от 400 ₽</div>
                   </div>
                 </li>
-                <li class="col-md-12">
+                <li class="col-xl-12">
                   <div class="d-tile">
                     <div class="d-tile__title">ПЭК, АТА 🇷🇺</div>
                     <div class="d-tile__info"><a href="#">Рассчитать срок доставки</a></div>
@@ -99,15 +99,21 @@
               <table class="d-card__table">
                 <tr>
                   <td>Картой на сайте</td>
-                  <td><img width="115" height="16" src="img/payment-cards.svg" alt="Банковские карты"></td>
+                  <td>
+                    <figure class="payment-icon-cards"></figure>
+                  </td>
                 </tr>
                 <tr>
                   <td>Apple Pay</td>
-                  <td><img width="44" height="18" src="img/apple-pay-logo.svg" alt="Apple Pay"></td>
+                  <td>
+                    <figure class="payment-icon-apple-pay"></figure>
+                  </td>
                 </tr>
                 <tr>
                   <td>Google Pay</td>
-                  <td><img width="45" height="18" src="img/google-pay-logo.svg" alt="Google Pay"></td>
+                  <td>
+                    <figure class="payment-icon-google-pay"></figure>
+                  </td>
                 </tr>
               </table>
             </div>
@@ -117,7 +123,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-6">
+        <div class="col-md-6">
           <div class="d-card d-card_local">
             <div class="d-card__badge">Отправление 2</div>
             
@@ -128,14 +134,14 @@
             <div class="d-card__delivery">
               <div class="d-card__subtitle">Способы доставки</div>
               <ul class="d-card__row row">
-                <li class="col-md-6">
+                <li class="col-xl-6">
                   <div class="d-tile">
                     <div class="d-tile__title">Курьер</div>
                     <div class="d-tile__info">1-2 дня</div>
                     <div class="d-tile__info">Бесплатно от 2 990 ₽</div>
                   </div>
                 </li>
-                <li class="col-md-6">
+                <li class="col-xl-6">
                   <div class="d-tile">
                     <div class="d-tile__title">Самовывоз из магазина</div>
                     <div class="d-tile__info">1 час</div>
@@ -150,7 +156,9 @@
               <table class="d-card__table">
                 <tr>
                   <td>Наличными или картой при самовывозе</td>
-                  <td><img width="115" height="16" src="img/payment-cards.svg" alt="Банковские карты"></td>
+                  <td>
+                    <figure class="payment-icon-cards"></figure>
+                  </td>
                 </tr>
                 <tr>
                   <td>Наличными курьеру</td>
@@ -160,10 +168,10 @@
             </div>
             
             <div class="d-card__footer">
-              <p>
-                Телефон магазина в Нижнем Новгороде: <br>
-                <a href="tel:+79200243314" class="d-card__tel">+7 (920) 024-33-14</a>
-              </p>
+              <div class="d-card__tel">
+                <p>Телефон магазина в Нижнем Новгороде:</p>
+                <a href="tel:+79200243314">+7 (920) 024-33-14</a>
+              </div>
               <a href="/contacts/" data-components-list="LinkPopupMap" class="d-card__link">Магазины на карте</a>
             </div>
           </div>
@@ -173,12 +181,12 @@
       <div class="delivery__badges">
         <div class="delivery__title">Узнать, откуда товар, помогут стикеры:</div>
         <div class="row">
-          <div class="col-xl-6">
+          <div class="col-md-6">
             <div class="d-badge d-badge_central">
               <div class="p-delivery-badge p-delivery-badge_central">Со склада в СПБ, от 7 дней</div>
             </div>
           </div>
-          <div class="col-xl-6">
+          <div class="col-md-6">
             <div class="d-badge d-badge_local">
               <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, 1 день</div>
             </div>
@@ -189,12 +197,12 @@
       <div class="delivery__in-product">
         <div class="delivery__title">В карточке товара:</div>
         <div class="row">
-          <div class="col-xl-6">
+          <div class="col-md-6">
             <div class="d-product">
               <div class="p-delivery-badge p-delivery-badge_central">Со склада из СПБ в Нижний Новгород, 7 дней</div>
             </div>
           </div>
-          <div class="col-xl-6">
+          <div class="col-md-6">
             <div class="d-product">
               <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, доставка 1 день</div>
             </div>
@@ -204,68 +212,25 @@
       
       <div class="delivery__in-catalog">
         <div class="delivery__title">В каталоге:</div>
-        <div class="row">
-          <div class="col-xl-6">
-            <div class="card-list">
-              <div class="product-card">
-                <div class="product-card__wrapper">
-                  <div class="product-card__img">
-                    <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
-                  </div>
-                  <div class="product-card__body">
-                    <div class="product-card__badge product-card__badge_central">Со склада в СПБ, 7 дней</div>
-                    <div class="product-card__title">Optimum nutrition gold standart whey</div>
-                    <div class="product-card__description">Описание</div>
-                  </div>
-                  <div class="product-card__footer">
-                    <div class="product-card__price">
-                      <span class="small">от</span>
-                      <span class="price">1 750 ₽</span>
-                    </div>
-                    <div class="product-card__sale">Экономия до 300 ₽</div>
-                    <div class="product-card__row">
-                      <div class="product-card__reviews">
-                    <span class="product-card__rating">
-                      <i class="i i-star red"></i>
-                      <i class="i i-star red"></i>
-                      <i class="i i-star red"></i>
-                      <i class="i i-star red"></i>
-                      <i class="i i-star"></i>
-                    </span>
-                        <span>31 отзыв</span>
-                      </div>
-                      <div class="product-card__stock">
-                        <div class="green">В наличии</div>
-                        <div>6 фасовок</div></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-control">
-                  <button class="product-control__favorites" data-product-toggle="add-favorites">
-                    <svg>
-                      <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-                    </svg>
-                  </button>
-                </div>
+        <div class="card-list">
+          <div class="product-card">
+            <div class="product-card__wrapper">
+              <div class="product-card__img">
+                <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
               </div>
-              <div class="product-card">
-                <div class="product-card__wrapper">
-                  <div class="product-card__img">
-                    <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
-                  </div>
-                  <div class="product-card__body">
-                    <div class="product-card__badge product-card__badge_central">Со склада в СПБ, 7 дней</div>
-                    <div class="product-card__title">Optimum nutrition gold standart whey</div>
-                    <div class="product-card__description">Описание</div>
-                  </div>
-                  <div class="product-card__footer">
-                    <div class="product-card__price">
-                      <span class="small">от</span>
-                      <span class="price">1 750 ₽</span>
-                    </div>
-                    <div class="product-card__sale">Экономия до 300 ₽</div>
-                    <div class="product-card__row">
-                      <div class="product-card__reviews">
+              <div class="product-card__body">
+                <div class="product-card__badge product-card__badge_central">Со склада в СПБ, 7 дней</div>
+                <div class="product-card__title">Optimum nutrition gold standart whey</div>
+                <div class="product-card__description">Описание</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__price">
+                  <span class="small">от</span>
+                  <span class="price">1 750 ₽</span>
+                </div>
+                <div class="product-card__sale">Экономия до 300 ₽</div>
+                <div class="product-card__row">
+                  <div class="product-card__reviews">
                     <span class="product-card__rating">
                       <i class="i i-star red"></i>
                       <i class="i i-star red"></i>
@@ -273,44 +238,40 @@
                       <i class="i i-star red"></i>
                       <i class="i i-star"></i>
                     </span>
-                        <span>31 отзыв</span>
-                      </div>
-                      <div class="product-card__stock">
-                        <div class="green">В наличии</div>
-                        <div>6 фасовок</div></div>
-                    </div>
+                    <span>31 отзыв</span>
                   </div>
-                </div>
-                <div class="product-control">
-                  <button class="product-control__favorites" data-product-toggle="add-favorites">
-                    <svg>
-                      <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-                    </svg>
-                  </button>
+                  <div class="product-card__stock">
+                    <div class="green">В наличии</div>
+                    <div>6 фасовок</div></div>
                 </div>
               </div>
             </div>
+            <div class="product-control">
+              <button class="product-control__favorites" data-product-toggle="add-favorites">
+                <svg>
+                  <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
+                </svg>
+              </button>
+            </div>
           </div>
-          <div class="col-xl-6">
-            <div class="card-list">
-              <div class="product-card">
-                <div class="product-card__wrapper">
-                  <div class="product-card__img">
-                    <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
-                  </div>
-                  <div class="product-card__body">
-                    <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                    <div class="product-card__title">Optimum nutrition gold standart whey</div>
-                    <div class="product-card__description">Описание</div>
-                  </div>
-                  <div class="product-card__footer">
-                    <div class="product-card__price">
-                      <span class="small">от</span>
-                      <span class="price">1 750 ₽</span>
-                    </div>
-                    <div class="product-card__sale">Экономия до 300 ₽</div>
-                    <div class="product-card__row">
-                      <div class="product-card__reviews">
+          <div class="product-card">
+            <div class="product-card__wrapper">
+              <div class="product-card__img">
+                <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__badge product-card__badge_central">Со склада в СПБ, 7 дней</div>
+                <div class="product-card__title">Optimum nutrition gold standart whey</div>
+                <div class="product-card__description">Описание</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__price">
+                  <span class="small">от</span>
+                  <span class="price">1 750 ₽</span>
+                </div>
+                <div class="product-card__sale">Экономия до 300 ₽</div>
+                <div class="product-card__row">
+                  <div class="product-card__reviews">
                     <span class="product-card__rating">
                       <i class="i i-star red"></i>
                       <i class="i i-star red"></i>
@@ -318,40 +279,40 @@
                       <i class="i i-star red"></i>
                       <i class="i i-star"></i>
                     </span>
-                        <span>31 отзыв</span>
-                      </div>
-                      <div class="product-card__stock">
-                        <div class="green">В наличии</div>
-                        <div>6 фасовок</div></div>
-                    </div>
+                    <span>31 отзыв</span>
                   </div>
-                </div>
-                <div class="product-control">
-                  <button class="product-control__favorites" data-product-toggle="add-favorites">
-                    <svg>
-                      <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-                    </svg>
-                  </button>
+                  <div class="product-card__stock">
+                    <div class="green">В наличии</div>
+                    <div>6 фасовок</div></div>
                 </div>
               </div>
-              <div class="product-card">
-                <div class="product-card__wrapper">
-                  <div class="product-card__img">
-                    <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
-                  </div>
-                  <div class="product-card__body">
-                    <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                    <div class="product-card__title">Optimum nutrition gold standart whey</div>
-                    <div class="product-card__description">Описание</div>
-                  </div>
-                  <div class="product-card__footer">
-                    <div class="product-card__price">
-                      <span class="small">от</span>
-                      <span class="price">1 750 ₽</span>
-                    </div>
-                    <div class="product-card__sale">Экономия до 300 ₽</div>
-                    <div class="product-card__row">
-                      <div class="product-card__reviews">
+            </div>
+            <div class="product-control">
+              <button class="product-control__favorites" data-product-toggle="add-favorites">
+                <svg>
+                  <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-card__wrapper">
+              <div class="product-card__img">
+                <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+                <div class="product-card__title">Optimum nutrition gold standart whey</div>
+                <div class="product-card__description">Описание</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__price">
+                  <span class="small">от</span>
+                  <span class="price">1 750 ₽</span>
+                </div>
+                <div class="product-card__sale">Экономия до 300 ₽</div>
+                <div class="product-card__row">
+                  <div class="product-card__reviews">
                     <span class="product-card__rating">
                       <i class="i i-star red"></i>
                       <i class="i i-star red"></i>
@@ -359,22 +320,61 @@
                       <i class="i i-star red"></i>
                       <i class="i i-star"></i>
                     </span>
-                        <span>31 отзыв</span>
-                      </div>
-                      <div class="product-card__stock">
-                        <div class="green">В наличии</div>
-                        <div>6 фасовок</div></div>
-                    </div>
+                    <span>31 отзыв</span>
                   </div>
-                </div>
-                <div class="product-control">
-                  <button class="product-control__favorites" data-product-toggle="add-favorites">
-                    <svg>
-                      <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
-                    </svg>
-                  </button>
+                  <div class="product-card__stock">
+                    <div class="green">В наличии</div>
+                    <div>6 фасовок</div></div>
                 </div>
               </div>
+            </div>
+            <div class="product-control">
+              <button class="product-control__favorites" data-product-toggle="add-favorites">
+                <svg>
+                  <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-card__wrapper">
+              <div class="product-card__img">
+                <img itemprop="image" src="https://msk.marketdo4a.com/upload/resizer/63/99069_135x135_63ec585121253185df07d1ad9e4365dd.jpg" srcset="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg 2x" alt="Название товара">
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+                <div class="product-card__title">Optimum nutrition gold standart whey</div>
+                <div class="product-card__description">Описание</div>
+              </div>
+              <div class="product-card__footer">
+                <div class="product-card__price">
+                  <span class="small">от</span>
+                  <span class="price">1 750 ₽</span>
+                </div>
+                <div class="product-card__sale">Экономия до 300 ₽</div>
+                <div class="product-card__row">
+                  <div class="product-card__reviews">
+                    <span class="product-card__rating">
+                      <i class="i i-star red"></i>
+                      <i class="i i-star red"></i>
+                      <i class="i i-star red"></i>
+                      <i class="i i-star red"></i>
+                      <i class="i i-star"></i>
+                    </span>
+                    <span>31 отзыв</span>
+                  </div>
+                  <div class="product-card__stock">
+                    <div class="green">В наличии</div>
+                    <div>6 фасовок</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="product-control">
+              <button class="product-control__favorites" data-product-toggle="add-favorites">
+                <svg>
+                  <use xlink:href="images/new-sprite.svg#sprite-product-card-heart"></use>
+                </svg>
+              </button>
             </div>
           </div>
         </div>

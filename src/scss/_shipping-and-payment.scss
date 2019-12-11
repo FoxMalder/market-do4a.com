@@ -509,6 +509,7 @@
     @include media-breakpoint-up(xl) {
       margin-left: 0;
       text-align: left;
+      max-width: none;
     }
   }
 
@@ -629,18 +630,11 @@
   }
 
   &__in-catalog {
-    margin-bottom: 30px;
+    display: none;
+    margin-bottom: 60px;
 
-    @include media-breakpoint-down(sm) {
-      display: none;
-      .card-list {
-        margin-right: -$container-padding-x;
-        margin-left: -$container-padding-x;
-      }
-    }
-
-    @include media-breakpoint-down(md) {
-      margin-bottom: 60px;
+    .card-list {
+      justify-content: center;
     }
 
     .product-card {
@@ -649,7 +643,7 @@
       background: none;
       pointer-events: none;
 
-      &:first-child {
+      &:nth-child(2n+1) {
         .product-card__wrapper {
           background: rgba(#fff, 0.5);
         }
@@ -661,14 +655,25 @@
         .product-card__footer {
           opacity: .3;
         }
-
-        //.product-card__badge {
-        //  pointer-events: auto;
-        //}
       }
 
-      &:last-child {
+      &:nth-child(2n) {
+        display: none;
         opacity: .15;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 30px;
+
+      .product-card {
+        &:nth-child(2n) {
+          display: block;
+        }
       }
     }
   }
@@ -697,7 +702,7 @@
   background-size: contain;
   //transform: scale(0.7);
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(xl) {
     width: 446.23px;
     height: 286.37px;
     margin-bottom: 0;
@@ -849,6 +854,9 @@
   @include media-breakpoint-up(md) {
     height: 100%;
     margin: 0;
+  }
+
+  @include media-breakpoint-up(xl) {
     padding: 42px 40px;
     &_central {
       &::before {
@@ -883,28 +891,28 @@
     min-height: 90px;
     margin-bottom: 15px;
     padding-right: 30px;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       padding-right: 0;
     }
   }
 
   &__delivery {
     margin-bottom: 40px;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       margin-bottom: 50px;
     }
   }
 
   &__payment {
     margin-bottom: 30px;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       margin-bottom: 36px;
     }
   }
 
   &__footer {
     margin-top: auto;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
     }
   }
 
@@ -917,7 +925,7 @@
     letter-spacing: -0.02em;
     line-height: 24px;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       margin-bottom: 7px;
       font-size: 23px;
       line-height: 31px;
@@ -933,7 +941,7 @@
     margin-bottom: 21px;
     font-size: 15px;
     line-height: 17px;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       margin-bottom: 17px;
       font-size: 17px;
       line-height: 19px;
@@ -982,7 +990,7 @@
       vertical-align: middle;
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       //margin-top: 36px;
     }
   }
@@ -994,7 +1002,7 @@
       padding: 6px 20px 6px 0;
     }
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       font-size: 15px;
       //
       //td {
@@ -1004,16 +1012,31 @@
   }
 
   &__tel {
-    @include title;
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 20px;
-    line-height: 27px;
+    margin-bottom: 25px;
 
-    @include media-breakpoint-up(md) {
-      margin-top: 5px;
-      font-size: 23px;
-      line-height: 31px;
+    p {
+      margin-bottom: 10px;
+    }
+
+    a {
+      @include title;
+      display: inline-block;
+      //margin-top: 10px;
+      font-size: 20px;
+      line-height: 27px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 21px;
+
+      p {
+        margin-bottom: 5px;
+      }
+
+      a {
+        font-size: 23px;
+        line-height: 31px;
+      }
     }
   }
 
@@ -1029,7 +1052,7 @@
   font-size: 14px;
   line-height: 24px;
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(xl) {
     margin-bottom: 16px;
     padding: 18px 20px;
     font-size: 15px;
@@ -1038,7 +1061,7 @@
   &__title {
     margin-bottom: 3px;
     font-weight: 600;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       margin-bottom: 0;
     }
   }
@@ -1052,4 +1075,35 @@
       color: #101010;
     }
   }
+}
+
+
+.payment-icon-cards {
+  display: inline-block;
+  width: 115px;
+  height: 16px;
+  margin: 0;
+  background: url("../img/payment-cards.svg") center no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.payment-icon-apple-pay {
+  display: inline-block;
+  width: 44px;
+  height: 18px;
+  margin: 0;
+  background: url("../img/apple-pay-logo.svg") center no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.payment-icon-google-pay {
+  display: inline-block;
+  width: 45px;
+  height: 18px;
+  margin: 0;
+  background: url("../img/google-pay-logo.svg") center no-repeat;
+  background-size: contain;
+  vertical-align: middle;
 }
