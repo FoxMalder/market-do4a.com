@@ -134,7 +134,7 @@
         if (this.breakpoint === 'xl') {
           if (newList.length !== oldList.length) {
             const f = newList.find(prop => {
-              return prop.required && prop.value === '' && !this.$store.state.checkout.props[this.prop.code]
+              return prop.required && prop.value === '' && !this.$store.state.checkout.props[prop.code]
             });
             
             if (f) {
