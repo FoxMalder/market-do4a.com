@@ -47,6 +47,7 @@
     mounted() {
       noUiSlider.create(this.$refs.slider, {
         start: [this.slider.priceFrom, this.slider.priceTo],
+        // start: [this.slider.priceMin, this.slider.priceMax],
         step: 1,
         connect: true,
         tooltips: true,
@@ -106,7 +107,10 @@
           valueSub: '__value_sub',
         },
       });
-
+      
+      // this.$refs.slider.noUiSlider.set([this.slider.priceFrom, this.slider.priceTo]);
+      
+      
       this.$refs.slider.noUiSlider.on('update', (values, handle) => {
         const t = parseInt(values[handle]);
         this[handle ? 'maxRange' : 'minRange']
@@ -131,7 +135,8 @@
 
       this.$root.$on('filter:reset', () => {
         this.callback = false;
-        this.$refs.slider.noUiSlider.reset();
+        // this.$refs.slider.noUiSlider.reset();
+        this.$refs.slider.noUiSlider.set([this.slider.priceMin, this.slider.priceMax]);
         this.callback = true;
       });
 
