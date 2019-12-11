@@ -5,7 +5,7 @@
     </template>
     
     <template slot="body">
-      <MultifilterPrice :slider="filter.data" @change="onChange"/>
+      <MultifilterPrice :slider="filter.data" @change="onChange" @update="onUpdate"/>
     </template>
   </dropdown>
 </template>
@@ -23,6 +23,11 @@
     methods: {
       onChange() {
         this.$store.dispatch('filters/onChange');
+      },
+      onUpdate(values) {
+        // console.log(e);
+        this.filter.data.minRange = values[0];
+        this.filter.data.maxRange = values[1];
       },
     }
   }

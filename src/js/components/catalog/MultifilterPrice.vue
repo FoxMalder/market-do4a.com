@@ -111,6 +111,9 @@
         const t = parseInt(values[handle]);
         this[handle ? 'maxRange' : 'minRange']
           = (t !== this.slider[handle ? 'priceMax' : 'priceMin']) ? t : '';
+
+        this.$emit('update', [this.minRange, this.maxRange]);
+        // console.log([this.minRange, this.maxRange], handle);
       });
 
       this.$refs.slider.noUiSlider.on('set', () => {

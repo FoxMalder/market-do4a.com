@@ -161,6 +161,9 @@ export class PriceFilter {
       type: 'range',
       name: 'price',
       data: {
+        minRange: null,
+        maxRange: null,
+
         priceFrom: 0,
         priceTo: 0,
         priceMin: 0,

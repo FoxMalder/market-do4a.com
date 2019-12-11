@@ -3,24 +3,23 @@ import debounce from 'lodash.debounce';
 // import throttle from 'lodash.throttle';
 
 
-import Utils from '../utils/utils';
-// import Api from '../utils/Api';
-import { getFiltredCatalog } from '../api';
+import Utils from '@/utils/utils';
+import { getFiltredCatalog } from '@/api';
 
-import ProductCard from '../components/ProductCard';
+import ProductCard from '@/components/ProductCard';
 import {
   Multifilter,
   PriceFilter,
   CheckboxFilter,
   RadioFilter,
   SelectFilter,
-} from '../components/Multifilter';
+} from '@/components/Multifilter';
 
-import store from '../store';
-import catalogControl from '../store/modules/catalogControl';
-import CategoryListMobile from '../components/CategoryListMobile.vue';
-import CatalogFilterMobile from '../components/CatalogFilterMobile.vue';
-import CatalogFilter from '../components/CatalogFilter.vue';
+import store from '@/store';
+import catalogControl from '@/store/modules/catalogControl';
+import CategoryListMobile from '@/components/CategoryListMobile.vue';
+import CatalogFilterMobile from '@/components/CatalogFilterMobile.vue';
+import CatalogFilter from '@/components/CatalogFilter.vue';
 
 
 /**
@@ -92,7 +91,7 @@ export default class CatalogControl {
     this.containerEl = elements.container || document.querySelector('.card-list');
     // this.Container = null;
 
-    this.breadcumps = document.querySelector('.breadcumps');
+    this.breadcumps = document.querySelector('.breadcumps') || document.querySelector('.mr-breadcumps');
     this.title = document.querySelector('.page-header__title');
 
 
@@ -293,15 +292,35 @@ export default class CatalogControl {
    */
   setBreadcumps(array, title = '', h1 = '') {
     let html = '';
-    array.forEach((item, i) => {
-      if (i === 0) {
-        html += `<a class="breadcumps__link red" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
-      } else if (i === array.length - 1) {
-        html += `<span class="breadcumps__page">${item.name}</span>`;
-      } else {
-        html += `<a class="breadcumps__link" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
-      }
-    });
+
+    if (this.breadcumps.classList.contains('mr-breadcumps')) {
+      // Новая версия
+      html += '<ol class="mr-breadcumps__list" itemscope itemtype="https://schema.org/BreadcrumbList">';
+      array.forEach((item, i) => {
+        html += '<li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+        if (i === 0) {
+          html += `<a itemprop="item" href="${item.url}"><span itemprop="name" class="red">${item.name}</span></a>`;
+        } else if (i === array.length - 1) {
+          html += `<span itemprop="name" class="gray">${item.name}</span>`;
+        } else {
+          html += `<a itemprop="item" href="${item.url}"><span itemprop="name">${item.name}</span></a>`;
+        }
+        html += `<meta itemprop="position" content="${i + 1}"/></li>`;
+      });
+      html += '</ol>';
+    } else {
+      // Старая версия
+      array.forEach((item, i) => {
+        if (i === 0) {
+          html += `<a class="breadcumps__link red" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
+        } else if (i === array.length - 1) {
+          html += `<span class="breadcumps__page">${item.name}</span>`;
+        } else {
+          html += `<a class="breadcumps__link" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
+        }
+      });
+    }
+
     this.breadcumps.innerHTML = html;
 
     if (title !== '') {
