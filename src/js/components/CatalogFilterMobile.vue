@@ -1,5 +1,6 @@
 <template>
-  <div class="catalog-menu-mob" :class="{active: isActive}">
+  <div class="catalog-menu-mob"
+       :class="{active: isActive}">
     <div class="catalog-menu-mob__header">
       <button class="catalog-menu-mob__btn-back" v-if="!isParent" @click.prevent="back"></button>
       <span class="catalog-menu-mob__title">{{title}}</span>

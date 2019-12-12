@@ -142,7 +142,6 @@ export default class CatalogControl {
   };
 
   initVue() {
-
     store.subscribeAction((action, state) => {
       if (action.type === 'filters/onChange') {
         this.change();
@@ -249,23 +248,37 @@ export default class CatalogControl {
     if (this.showMoreEl) {
       this.showMoreButtonEl = this.showMoreEl.querySelector(`.${this.classNames.showMoreLink}`);
       this.showMoreTextEl = this.showMoreEl.querySelector(`.${this.classNames.showMoreValue}`);
+
       this.showMoreButtonEl.addEventListener('click', (event) => {
         event.preventDefault();
-        this.showMoreEl.classList.add(this.classNames.showMoreLoading);
-        this.sendRequest(this.currentPage + 1);
+        this.nextPage();
       });
     }
   }
 
-  /**
-   * Установить количество элементов
-   * @param {Number} total - Количество элементов
-   * @param {Number} num - Количество новых элементов
-   */
-  setNumber(total, num = 0) {
-    this.totalCards = total;
-    this.shownCards = Math.min(num, total);
+  nextPage() {
+    const formData = new FormData(this.formEl);
+    const page = this.currentPage + 1;
 
+    formData.append('page', page.toString());
+
+    this.showMoreEl.classList.add(this.classNames.showMoreLoading);
+
+    getFiltredCatalog(this.options.action, formData)
+      .then((data) => {
+        this.currentPage = page;
+        this.add(data);
+      })
+      .catch((error) => {
+        alert(error.message);
+        console.error(error);
+      })
+      .finally(() => {
+        this.showMoreEl.classList.remove(this.classNames.showMoreLoading);
+      });
+  }
+
+  updateQuantity() {
     if (this.quantityEl) {
       this.quantityEl.innerHTML = `${this.totalCards} ${Utils.declOfNum(this.totalCards, [
         'товар',
@@ -273,11 +286,12 @@ export default class CatalogControl {
         'товаров',
       ])}`;
     }
+
     if (this.showMoreEl) {
+      this.showMoreTextEl.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
+
       if (this.shownCards < this.totalCards) {
-        this.showMoreEl.style.display = '';
-        this.showMoreTextEl.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
-        this.showMoreEl.classList.remove(this.classNames.showMoreLoading);
+        this.showMoreEl.style.display = this.shownCards < this.totalCards ? '' : 'none';
       } else {
         this.showMoreEl.style.display = 'none';
       }
@@ -369,7 +383,7 @@ export default class CatalogControl {
       if (!this.options.ajax) {
         this.formEl.submit();
       } else {
-        this.sendRequest(1);
+        this.reloadPage(1);
       }
     } catch (e) {
       this.containerEl.classList.remove(this.classNames.cardListLoading);
@@ -378,69 +392,85 @@ export default class CatalogControl {
     }
   };
 
-  /**
-   * Создает нужные элементы на основе входных данных и вставляет их на страницу
-   *
-   * @param {Array} items - Массив вставляемых элементов
-   * @returns {Number} - Вставленное количество продуктов
-   */
-  parse(items) {
-    return items.filter((item) => {
-      let element;
-
+  appendItems(items) {
+    items.forEach((item) => {
       if (item.type === 'product') {
-        element = new ProductCard(item.options);
-        element = element.getElement();
+        this.shownCards += 1;
+        this.containerEl.appendChild(new ProductCard(item.options).getElement());
       } else {
-        element = Utils.htmlToElement(item.html);
+        this.containerEl.appendChild(Utils.htmlToElement(item.html));
       }
+    });
 
-      this.containerEl.appendChild(element);
-
-      return item.type === 'product';
-    }).length;
+    this.updateQuantity();
   }
+  //
+  // /**
+  //  * Создает нужные элементы на основе входных данных и вставляет их на страницу
+  //  *
+  //  * @param {Array} items - Массив вставляемых элементов
+  //  * @returns {Number} - Вставленное количество продуктов
+  //  */
+  // parse(items) {
+  //   return items.filter((item) => {
+  //     let element;
+  //
+  //     if (item.type === 'product') {
+  //       element = new ProductCard(item.options);
+  //       element = element.getElement();
+  //     } else {
+  //       element = Utils.htmlToElement(item.html);
+  //     }
+  //
+  //     this.containerEl.appendChild(element);
+  //
+  //     return item.type === 'product';
+  //   }).length;
+  // }
 
   /**
    * Заменить карточки товаров
-   * @param {Array} items
-   * @returns {number|*} Количество отображаемых товаров
+   * @param {Object} data
    */
-  reload(items) {
+  reload(data) {
+    this.currentPage = 1;
     this.containerEl.innerHTML = '';
-    this.shownCards = this.parse(items);
-    this.containerEl.classList.remove(this.classNames.cardListLoading);
+    this.shownCards = 0;
+    this.totalCards = data.count;
+
+    this.appendItems(data.items);
+
+    // this.shownCards = this.parse(items);
     // this.listEl.style.height = `${this.listEl.scrollHeight}px`;
-    return this.shownCards;
+    // return this.shownCards;
   }
 
   /**
    * Добавить карточки товаров
-   * @param {Array} items
-   * @returns {number|*} Количество отображаемых товаров
+   * @param {Object} data
    */
-  add(items) {
-    this.shownCards += this.parse(items);
+  add(data) {
+    this.totalCards = data.count;
+    this.appendItems(data.items);
+    // this.shownCards += this.parse(items);
     // this.listEl.style.height = `${this.listEl.scrollHeight}px`;
-    return this.shownCards;
+    // return this.shownCards;
   }
 
   // TODO: Вынести в api
-  sendRequest(page = 1) {
+  reloadPage() {
     // Api.catalog.send(this.options.action, new FormData(this.formEl), page);
     const formData = new FormData(this.formEl);
-    formData.append('page', page.toString());
+    formData.append('page', 1);
 
-    getFiltredCatalog(this.options.action, formData)
+    return getFiltredCatalog(this.options.action, formData)
       .then((data) => {
-        this.currentPage = page;
-        this.shownCards = (page === 1)
-          ? this.reload(data.items)
-          : this.add(data.items);
+        this.reload(data);
 
-        this.setNumber(data.count, this.shownCards);
+        if (data.url) {
+          window.history.replaceState(null, null, data.url);
+        }
 
-        if (data.url) window.history.replaceState(null, null, data.url);
         if (data.tags && this.breadcumps) {
           this.setBreadcumps(data.tags.breadcrump, data.tags.title, data.tags.h1);
         }
@@ -455,8 +485,10 @@ export default class CatalogControl {
       })
       .catch((error) => {
         alert(error.message);
-        this.containerEl.classList.remove(this.classNames.cardListLoading);
         console.error(error);
+      })
+      .finally(() => {
+        this.containerEl.classList.remove(this.classNames.cardListLoading);
       });
   }
 }
