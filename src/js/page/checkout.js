@@ -1,4 +1,6 @@
 import Vue from 'vue';
+// console.log('checkout.js');
+
 import store from '../store';
 import Utils from '../utils/utils';
 import checkoutStore from '../store/modules/checkout';

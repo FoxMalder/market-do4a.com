@@ -56,6 +56,11 @@
         });
       }
     },
+    mounted() {
+      if (this.order.groupStore.length > 0 && this.order.groupStore.indexOf(this.order.storeId) < 0) {
+        this.$store.dispatch(`checkout/${SET_STORE}`, { storeId: this.order.groupStore[0], order: this.order });
+      }
+    }
   }
 </script>
 

@@ -1,23 +1,20 @@
 <template>
   <div class="notifications">
-<!--    <div class="notifications__wrapper">-->
-<!--      <div class="notifications__item"-->
-<!--           v-for="item in test"-->
-<!--           :key="item.id">-->
-<!--        <NotificationsItem :item="item"/>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    -->
-    
-    
     <transition-group
       class="notifications__wrapper"
       tag="div"
-      name="notifications">
-      <div class="notifications__item"
-           v-for="item in messages"
-           :key="item.id">
-        <NotificationsItem :item="item"/>
+      name="notifications"
+    >
+      <div
+        class="notifications__item"
+        v-for="item in messages"
+        :key="item.id"
+      >
+        <NotificationsItem
+          :item="item"
+          @close="remove(item)"
+          @cancel="remove(item)"
+        />
       </div>
     </transition-group>
   
@@ -28,6 +25,7 @@
 
   import NotificationsItem from './NotificationsItem.vue';
 
+  const Id = (i => () => i++)(0);
 
   export default {
     name: 'Notifications',
@@ -62,27 +60,48 @@
     // },
     data() {
       return {
-        test: [
-          {
-            type: 'cancelable',
-            title: 'корзина очищена',
-            text: 'Но вы еще можете вернуть всё обратно.',
-            duration: 90000,
-          },
+        messages: [
+          // {
+          //   id: Id(),
+          //   type: 'cancelable',
+          //   title: 'корзина очищена',
+          //   text: 'Но вы еще можете вернуть всё обратно.',
+          //   duration: 9000,
+          // },
+          // {
+          //   id: Id(),
+          //   type: 'cancelable',
+          //   title: 'корзина очищена',
+          //   text: 'Но вы еще можете вернуть всё обратно.',
+          //   duration: 90000,
+          // },
         ]
       }
     },
     computed: {
-      ...mapState({
-        messages: state => state.notifications.messages
-      }),
+      // ...mapState({
+      //   messages: state => state.notifications.messages
+      // }),
     },
+    methods: {
+      addItem(type, options) {
+        this.messages.push({
+          id: Id(),
+          type: type,
+          title: options.title,
+          text: options.text,
+          duration: options.duration || 7000,
+        })
+      },
+      remove(item) {
+        this.messages.splice(this.messages.indexOf(item), 1)
+      },
+    }
   }
 </script>
 
 
-<style>
-  
+<style scoped>
   .notifications {
     position: fixed;
     z-index: 10000;

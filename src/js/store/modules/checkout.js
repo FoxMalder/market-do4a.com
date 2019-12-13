@@ -4,7 +4,7 @@ import Vue from 'vue';
 
 import * as Api from '../../api';
 import Utils from '../../utils/utils';
-import { ADD_TOAST_MESSAGE } from './notifications';
+// import Notify from '@/plugins/Notify';
 
 // const REFRESH_ORDER = 'REFRESH_ORDER';
 // const SET_TOTAL = 'SET_TOTAL';
@@ -22,6 +22,8 @@ const SET_STORE = 'SET_SELECTED_STORE_ID';
 const REMOVE_ORDER = 'REMOVE_ORDER';
 
 // const Id = (i => () => i += 1)(0);
+
+// Vue.use(Notify);
 
 export {
   SET_SHIPPING as SET_SHIPPING_METHOD,
@@ -606,6 +608,8 @@ export default function createModule(options) {
     },
 
     refreshOrder({ commit, dispatch }, payload) {
+      // console.log('[Checkout]', 'refreshOrder');
+
       payload.forEach((result) => {
         const { order, groupStore, oldOrderData } = result;
 
@@ -674,16 +678,25 @@ export default function createModule(options) {
     sendAllRequest({ state, dispatch }, { data, order }) {
       const orderList = order ? [order] : state.orderList;
 
-      return Promise.all(orderList.map(
-        order => dispatch('sendRequest', { data, order }).then(
-          result => ({ ...result, oldOrderData: order }),
-        ),
-      ));
+      // console.log('[Checkout]', 'sendAllRequest');
+
+      return Promise.all(
+        orderList.map(order => dispatch('sendRequest', { data, order })
+          .then(result => ({ ...result, oldOrderData: order }))),
+      );
     },
 
     async refreshOrderAjax({ commit, dispatch }, order = null) {
       commit('SET_CHECKOUT_STATUS', 'loading');
-      await dispatch('refreshOrder', await dispatch('sendAllRequest', { data: { action: 'refreshOrderAjax' }, order }));
+      try {
+        await dispatch('refreshOrder', await dispatch('sendAllRequest', {
+          data: { action: 'refreshOrderAjax' },
+          order,
+        }));
+      } catch (e) {
+        Vue.$notify.error('При обновлении заказа что-то пошло не так. Попробуйте обновить страницу.');
+        console.log(e);
+      }
       commit('SET_CHECKOUT_STATUS', null);
     },
 
@@ -730,7 +743,7 @@ export default function createModule(options) {
         };
       }
 
-      dispatch(ADD_TOAST_MESSAGE, notify, { root: true });
+      Vue.$notify(notify);
 
       await dispatch('refreshOrder', resultList);
     },
@@ -865,6 +878,10 @@ export default function createModule(options) {
             }
 
             return result;
+          })
+          .catch((e) => {
+            Vue.$notify.error('При оформление заказа что-то пошло не так. Мы уже ищем причину. Пока попробуйте обновить страницу.');
+            console.log(e);
           });
       }));
 

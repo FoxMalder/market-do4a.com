@@ -233,7 +233,7 @@ export function fetchSaleOrderAjax(url, data) {
  * @param options
  * @returns {Promise<AxiosResponse<T>>}
  */
-export function locationSearch(options = {}) {
+export function locationSearch(request) {
   // return new Promise((resolve) => {
   //   setTimeout(() => {
   //     resolve({
@@ -539,32 +539,15 @@ export function locationSearch(options = {}) {
   //   }, 2000);
   // });
 
-  const {
-    page = 0,
-    pageSize = 20,
-    search = '',
-    siteID = 's1',
-  } = options;
+  // const {
+  //   page = 0,
+  //   pageSize = 20,
+  //   search = '',
+  //   siteID = 's1',
+  // } = options;
+
   return axios
-    .post('/bitrix/components/bitrix/sale.location.selector.search/get.php', qs.stringify({
-      select: {
-        1: 'CODE',
-        2: 'TYPE_ID',
-        VALUE: 'ID',
-        DISPLAY: 'NAME.NAME',
-      },
-      additionals: {
-        1: 'PATH',
-      },
-      filter: {
-        '=PHRASE': search,
-        '=NAME.LANGUAGE_ID': 'ru',
-        '=SITE_ID': siteID,
-      },
-      version: 2,
-      PAGE_SIZE: pageSize,
-      PAGE: page,
-    }))
+    .post('/bitrix/components/bitrix/sale.location.selector.search/get.php', qs.stringify(request))
     .then(response => JSON.parse(response.data.replace(/["']/g, '"')))
     .then((result) => {
       if (result.result) {

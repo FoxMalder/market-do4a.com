@@ -1,6 +1,7 @@
 import ready from 'domready';
-
 import Vue from 'vue';
+
+import './simple';
 import { Bus } from './js/plugins/Modal';
 import AppModalMap from './js/components/AppModalMap.vue';
 import ShopListMap from './js/components/ShopListMap.vue';

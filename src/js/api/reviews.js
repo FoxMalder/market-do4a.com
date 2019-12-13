@@ -28,7 +28,7 @@ export default {
   vote(productId, value) {
     const data = {
       id: productId,
-      method: value === 'minus' ? 'voteMinus' : 'votePlus',
+      method: value, // value === 'minus' ? 'voteMinus' : 'votePlus',
       sessid: Utils.sessid(),
     };
 

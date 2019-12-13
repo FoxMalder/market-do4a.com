@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import cart from './modules/cart';
-import notifications from './modules/notifications';
+// import notifications from './modules/notifications';
 
 import * as Api from '../api';
 import Utils from '../utils/utils';
@@ -158,7 +158,7 @@ const store = new Vuex.Store({
   mutations,
   modules: {
     cart,
-    notifications,
+    // notifications,
   },
   // strict: debug,
   // plugins: debug ? [createLogger()] : [],

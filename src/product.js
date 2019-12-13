@@ -1,5 +1,6 @@
 import ready from 'domready';
 
+import './simple';
 import PageProduct from './js/page/product';
 
 

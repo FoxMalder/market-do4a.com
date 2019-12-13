@@ -56,7 +56,13 @@
        * @returns {boolean}
        */
       canReset() {
-        return !!Object.values(this.filters).find(item => item.type === 'checkbox' && item.data.find(c => c.checked))
+        return !!Object.values(this.filters).find(item => {
+          if (item.type === 'checkbox') {
+            return item.data.find(c => c.checked);
+          } else if (item.type === 'range') {
+            return item.data.minRange || item.data.maxRange
+          }
+        })
       }
     },
     methods: {

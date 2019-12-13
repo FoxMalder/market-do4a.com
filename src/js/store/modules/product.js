@@ -30,6 +30,8 @@ const state = {
   category: '',
   country: '',
   textDelivery: '',
+  textDeliveryCentral: '',
+  textDeliveryLocal: '',
 
   // reviewsRequestParam: {},
   reviewsLoading: false,
@@ -279,7 +281,10 @@ const mutations = {
 
   SET_PARAM(state, param) {
     // console.log(param.category);
-    state.textDelivery = param.textDelivery;
+    // state.textDelivery = param.textDelivery;
+    state.textDeliveryCentral = param.textDeliveryCentral;
+    state.textDeliveryLocal = param.textDeliveryLocal;
+
     state.category = param.category;
     state.country = param.country;
   },

@@ -892,6 +892,18 @@
   }
 }
 
+
+.p-delivery-alert-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(#101010, 0.7);
+  z-index: $zindex-fixed + 20;
+  cursor: pointer;
+}
+
 .p-delivery-alert {
   position: relative;
   padding: 5px 12px 5px 36px;
@@ -899,8 +911,12 @@
   background: #e9e9e9;
   line-height: 20px;
 
-  ~ .p-delivery-tooltip {
-    display: none;
+  //~ .p-delivery-tooltip {
+  //  display: none;
+  //}
+
+  &_active {
+    z-index: $zindex-fixed + 30;
   }
 
   &::before {
@@ -914,9 +930,47 @@
     background-size: contain;
   }
 
+  //.p-delivery-tooltip {
+  //  position: absolute;
+  //  left: 0;
+  //  bottom: 100%;
+  //}
+
   @include media-breakpoint-up(md) {
     margin-left: -36px;
     padding: 5px 12px 5px 36px;
+  }
+
+  &__tooltip {
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+    background: #fff;
+    padding: 25px;
+    box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+    //width: 100%;
+    //max-width: 500px;
+    max-width: calc(100vw - 30px);
+    z-index: $zindex-tooltip;
+
+    &::before {
+      content: '';
+
+      width: 0;
+      height: 0;
+      position: absolute;
+      margin: 0;
+
+      border-style: solid;
+      border-width: 8px 8px 0 8px;
+      border-top-color: #fff;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      bottom: -8px;
+      left: 10px;
+    }
   }
 
   &__link {
@@ -932,6 +986,7 @@
   font-weight: normal;
   line-height: 22px;
   width: 500px;
+  max-width: 100%;
 
   > p {
     margin-bottom: 8px;
@@ -963,6 +1018,26 @@
     }
   }
 
+  &__link {
+    position: relative;
+    font-size: 15px;
+    line-height: 22px;
+    display: inline-block;
+    border-bottom: 1px solid rgba(#292929, 0.15);
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 100%;
+      bottom: calc(50% - 7px);
+      width: 13px;
+      height: 13px;
+      background: url("../img/new-tab.svg") center no-repeat;
+      background-size: contain;
+      margin-left: 8px;
+    }
+  }
 }
 
 .p-delivery-badge {
@@ -970,10 +1045,10 @@
   align-items: center;
   padding: 0 5px;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  line-height: 22px;
+  line-height: 18px;
   //margin-top: -36px;
 
   &::before {
@@ -2544,6 +2619,7 @@
     @include title;
     order: 1;
     font-size: 16px;
+    word-break: break-word;
   }
 
   &__date {
@@ -2582,6 +2658,8 @@
   }
 
   &__text {
+    white-space: pre-line;
+    word-break: break-word;
     max-width: 750px;
     font-size: 14px;
     line-height: 22px;

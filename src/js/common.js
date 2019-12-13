@@ -2,17 +2,11 @@ import Vue from 'vue';
 
 import axios from 'axios';
 import Qs from 'qs';
-import ready from 'domready';
-
-import 'simplebar';
-
-import './fancybox';
-import './bootstrap';
-import './modules/Input';
+// import ready from 'domready';
 
 
-import App from './App';
-import Utils from './utils/utils';
+// import App from './App';
+import Utils from '@/utils/utils';
 // import ProductDetail from './components/product/Detail';
 
 
@@ -90,9 +84,46 @@ global.qs = Qs;
 //   bind: bindNumberInRange,
 //   componentUpdated: bindNumberInRange,
 // });
+// debugger;
 
 Vue.filter('formatPrice', (value) => {
+  // console.log(value);
   // if (!value) return '';
   // return value.toLocaleString();
   return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
+});
+
+Vue.directive('click-outside', {
+  bind(el, binding, vNode) {
+    // console.log(binding, vNode);
+
+    // Provided expression must evaluate to a function.
+    if (typeof binding.value !== 'function') {
+      const compName = vNode.context.name;
+      let warn = `[Vue-click-outside:] provided expression ${binding.expression} is not a function, but has to be`;
+      if (compName) {
+        warn += `Found in component ${compName}`;
+      }
+      console.warn(warn);
+    }
+    // Define Handler and cache it on the element
+    const { bubble } = binding.modifiers;
+    const handler = (e) => {
+      // Fall back to composedPath if e.path is undefined
+      const path = e.path
+        || (e.composedPath ? e.composedPath() : false)
+        || getParents(e.target);
+      if (bubble || (path.length && !el.contains(path[0]) && el !== path[0])) {
+        binding.value(e);
+      }
+    };
+    el.__vueClickOutside__ = handler;
+    // add Event Listeners
+    document.addEventListener('click', handler);
+  },
+  unbind(el) {
+    // Remove Event Listeners
+    document.removeEventListener('click', el.__vueClickOutside__);
+    el.__vueClickOutside__ = null;
+  },
 });

@@ -1,5 +1,6 @@
 <template>
   <div class="checkout-location-search"
+       tabindex="-1"
        @keydown="keyboardNav"
        v-click-outside="deactivate">
     <div class="checkout-location-search__field">
@@ -9,12 +10,12 @@
               :class="{'input-field__label_active': value !== ''}"
         >{{ locationProperty.title + (locationProperty.required ? '*' : '') }}</span>
         <input class="input-field__input"
-               type="text"
-               autocomplete="off"
+               spellcheck="false"
+               tabindex="0"
                :value="value"
                @input="onInput"
-               @focus.prevent="activate"
-               @blur.prevent="deactivate"
+               @focus="activate"
+               @blur="deactivate"
                @keyup.esc="deactivate">
         <transition name="fade-left">
           <div class="input-field__alert" v-if="!isActive && locationProperty.error">{{ locationProperty.error }}</div>
@@ -28,27 +29,28 @@
       
       <li
         class="checkout-location-search__message"
-        v-if="status === 'error'"
-      >Ошибка</li>
-  
-      <li
-        class="checkout-location-search__message"
-        v-else-if="status === 'notfind'"
-      >Не найдено</li>
-      
-      <li
-        class="checkout-location-search__message"
-        v-else-if="value === '' || searchedItems.length === 0"
+        v-if="value.length < 2"
       >Начните вводить название...</li>
       
       <li
         class="checkout-location-search__message"
-        v-else-if="searchedItems.length === 0 && status === 'loading'"
+        v-else-if="status === 'loading'"
       ><div class="spinner-border" role="status"></div></li>
+      
+      <li
+        class="checkout-location-search__message"
+        v-else-if="error"
+      >{{ error }}</li>
+      
+      <li
+        class="checkout-location-search__message"
+        v-else-if="searchedItems.length === 0"
+      >Не найдено</li>
       
       <template v-else>
         <li v-for="(city, index) in searchedItems"
             role="option"
+            tabindex="-1"
             class="checkout-location-search__item"
             :class="{ active: selectedIndex === index }"
             @mouseover="selectedIndex = index"
@@ -68,6 +70,59 @@
   import { param } from '../../store/modules/checkout';
 
 
+  // if (!window.BX && top.BX)
+  //   window.BX = top.BX;
+  //
+  // if (typeof window.BX.locationsDeferred == 'undefined') window.BX.locationsDeferred = {};
+  // window.BX.locationsDeferred['2'] = function() {
+  //
+  //   if (typeof window.BX.locationSelectors == 'undefined') window.BX.locationSelectors = {};
+  //   window.BX.locationSelectors['2'] =
+  //
+  //     new BX.Sale.component.location.selector.search({
+  //       'scope': 'sls-42622',
+  //       'source': '/bitrix/components/bitrix/sale.location.selector.search/get.php',
+  //       'query': {
+  //         'FILTER': { 'EXCLUDE_ID': 0, 'SITE_ID': 's1' },
+  //         'BEHAVIOUR': { 'SEARCH_BY_PRIMARY': '0', 'LANGUAGE_ID': 'ru' }
+  //       },
+  //       'selectedItem': 2834,
+  //       'knownItems': {
+  //         '2834': {
+  //           'CODE': '0000550426',
+  //           'TYPE_ID': '3',
+  //           'PATH': [1320, 1276],
+  //           'VALUE': 2834,
+  //           'DISPLAY': 'Казань'
+  //         },
+  //         '1276': { 'CODE': '0000028023', 'TYPE_ID': '1', 'PATH': [1276], 'VALUE': 1276, 'DISPLAY': 'Россия' },
+  //         '1320': { 'CODE': '0000028070', 'TYPE_ID': '2', 'PATH': [], 'VALUE': 1320, 'DISPLAY': 'Республика Татарстан' }
+  //       },
+  //       'provideLinkBy': 'code',
+  //       'messages': {
+  //         'nothingFound': 'К сожалению, ничего не найдено',
+  //         'error': 'К сожалению, произошла внутренняя ошибка'
+  //       },
+  //       'callback': 'submitFormProxy',
+  //       'useSpawn': false,
+  //       'usePopup': false,
+  //       'initializeByGlobalEvent': '',
+  //       'globalEventScope': '',
+  //       'pathNames': { '1276': 'Россия', '1320': 'Республика Татарстан', '2834': 'Казань' },
+  //       'types': {
+  //         '1': { 'CODE': 'COUNTRY' },
+  //         '4': { 'CODE': 'COUNTRY_DISTRICT' },
+  //         '2': { 'CODE': 'REGION' },
+  //         '5': { 'CODE': 'SUBREGION' },
+  //         '3': { 'CODE': 'CITY' },
+  //         '6': { 'CODE': 'VILLAGE' },
+  //         '7': { 'CODE': 'STREET' }
+  //       }
+  //     });
+  //
+  // };
+
+
   export default {
     name: "CheckoutLocationSearch",
     data() {
@@ -76,6 +131,7 @@
         isActive: false,
         selectedIndex: null,
         status: null,
+        error: null,
         searchedItems: [],
       }
     },
@@ -87,7 +143,54 @@
       this.debouncedGetLocation = debounce(this.getLocation, 300);
 
       if (this.isKnownCity) {
-        this.value = this.knownCityName[0];
+        if (this.$store.state.checkout.props[this.locationProperty.code]) {
+
+          const request = {
+            select: {
+              1: 'CODE',
+              2: 'TYPE_ID',
+              VALUE: 'ID',
+              DISPLAY: 'NAME.NAME',
+            },
+            additionals: {
+              1: 'PATH',
+            },
+            filter: {
+              '=CODE': this.$store.state.checkout.props[this.locationProperty.code],
+              '=NAME.LANGUAGE_ID': 'ru',
+              '=SITE_ID': param.siteID,
+            },
+            version: 2,
+            PAGE_SIZE: 10,
+            PAGE: 0,
+          };
+
+          this.status = 'loading';
+          
+          locationSearch(request)
+            .then(({ data = { ITEMS: [] } }) => {
+              this.searchedItems = data.ITEMS.map((item) => ({
+                code: item.CODE,
+                name: item.DISPLAY,
+                path: item.PATH.map(pathId => data.ETC.PATH_ITEMS[pathId].DISPLAY),
+              }));
+              
+              if (this.searchedItems.length) {
+                this.selectedIndex = 0;
+                this.value = [this.searchedItems[0].name, ...this.searchedItems[0].path].join(', ');
+                this.locationProperty.error = null;
+              }
+            })
+            .catch((error) => {
+              this.value = this.knownCityName[0];
+            })
+            .finally(() => {
+              this.status = null;
+            })
+          // this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.locationProperty.code, message: null });
+        } else {
+          this.value = this.knownCityName[0];
+        }
       }
     },
     // watch: {
@@ -105,7 +208,7 @@
         // return this.propertyList.find(item => item.type === 'location')
         return this.propertyList.find(item => item.type === 'location')
       },
-      
+
       // locationValue() {
       //   return this.propertyList.find(item => item.type === 'location')
       // }
@@ -133,7 +236,7 @@
         return Utils.wrapSubstring([city.name, ...city.path].join(', '), this.value);
       },
       getLocation() {
-        if (this.value === '') {
+        if (this.value.length < 2) {
           return;
         }
 
@@ -143,19 +246,28 @@
         this.status = 'loading';
 
         const request = {
-          page: 0,
-          pageSize: 25,
-          search: this.value,
-          siteID: param.siteID,
+          select: {
+            1: 'CODE',
+            2: 'TYPE_ID',
+            VALUE: 'ID',
+            DISPLAY: 'NAME.NAME',
+          },
+          additionals: {
+            1: 'PATH',
+          },
+          filter: {
+            '=PHRASE': this.value,
+            // '=CODE': this.$store.state.checkout.props[this.locationProperty.code],
+            '=NAME.LANGUAGE_ID': 'ru',
+            '=SITE_ID': param.siteID,
+          },
+          version: 2,
+          PAGE_SIZE: 25,
+          PAGE: 0,
         };
 
         locationSearch(request)
           .then(({ data = { ITEMS: [] } }) => {
-            this.status = null;
-            if (data.ITEMS.length === 0) {
-              this.status = 'notfind';
-            }
-
             this.searchedItems = data.ITEMS.map((item) => ({
               code: item.CODE,
               name: item.DISPLAY,
@@ -163,7 +275,10 @@
             }));
           })
           .catch((error) => {
-            this.status = 'error';
+            this.error = error.response.errors[0];
+          })
+          .finally(() => {
+            this.status = null;
           })
       },
 
@@ -229,6 +344,8 @@
       },
 
       onInput(event) {
+        this.isActive = true;
+
         this.value = event.target.value;
         // this.locationProperty.value = null;
         this.$store.commit('checkout/UPDATE_PROP_BY_CODE', { code: this.locationProperty.code, message: null });
@@ -250,13 +367,17 @@
         this.validate();
       },
 
-      activate() {
+      activate(e) {
+        console.log(e);
+
         if (!this.isActive) {
           this.isActive = true;
         }
       },
 
-      deactivate() {
+      deactivate(e) {
+        console.log(e);
+
         if (this.isActive) {
           this.isActive = false;
           this.validate();

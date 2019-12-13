@@ -60,9 +60,9 @@
 <!--    </div>-->
     
     <div class="product-stickers">
-      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"
-           v-if="activePacking.isDeliveryOneDay && activeOffer.count_group > 0"
-      >Доставка <br>1 день</div>
+<!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"-->
+<!--           v-if="activePacking.isDeliveryOneDay && activeOffer.count_group > 0"-->
+<!--      >Доставка <br>1 день</div>-->
       
       <div class="product-stickers__item product-stickers__item_yellow"
            v-if="activePacking.isRecommend"

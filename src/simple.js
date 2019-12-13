@@ -1,12 +1,20 @@
-import ready from 'domready';
+// import ready from 'domready';
+// console.log('simple.js');
 
-import '@/common';
+import 'simplebar';
+
+import '@/fancybox';
+import '@/bootstrap';
+import '@/modules/Input';
+
 import './scss/main.scss';
 
-import App from '@/App';
+// import '@/common';
+import '@/App';
+// import App from '@/App';
 
-
-ready(() => {
-  global.App = App;
-  global.App.init();
-});
+//
+// ready(() => {
+//   global.App = App;
+//   global.App.init();
+// });

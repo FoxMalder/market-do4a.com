@@ -229,6 +229,14 @@ const cummonConfig = {
     }),
 
     new HtmlWebpackPlugin({
+      title: 'Доставка и оплата',
+      filename: 'delivery.html',
+      template: path.resolve(__dirname, 'src/delivery.html'),
+      chunks: ['simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
       title: 'Магазины',
       filename: 'shops.html',
       template: path.resolve(__dirname, 'src/shops.html'),
@@ -272,12 +280,12 @@ const cummonConfig = {
 
 const devConfig = {
   mode: 'development',
-  resolve: {
-    alias: {
-      vue$: 'vue/dist/vue.esm.js',
-      // '@': path.resolve(__dirname, 'src/js/'),
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     vue$: 'vue/dist/vue.esm.js',
+  //     // '@': path.resolve(__dirname, 'src/js/'),
+  //   },
+  // },
   module: {
     rules: [
       {
@@ -367,7 +375,7 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
   // output: {
   //   publicPath: '/static/dist/',
   // },
@@ -464,6 +472,9 @@ const prodConfig = {
     new CssUrlRelativePlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
+      // filename: (chunkData) => {
+      //   return chunkData.chunk.name === 'simple' ? 'css/common.css' : 'css/[name].css';
+      // },
       // chunkFilename: 'css/[id].css',
       // filename: 'css/[name].css',
       // chunkFilename: 'css/[id].333.css',
@@ -501,8 +512,10 @@ const prodConfig = {
         // },
         // style: {
         //   name: 'style',
-        //   test: /\.(css|sass|scss)$/,
-        //   chunks: 'all',
+        //   // test: /\.(css|sass|scss)$/,
+        //   test: /\.css$/,
+        //   filename: 'css/ololo.css',
+        //   chunks: 'initial',
         //   enforce: true,
         // },
         common: {

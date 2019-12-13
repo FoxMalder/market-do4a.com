@@ -131,9 +131,21 @@
       filtredProps(newList, oldList) {
         console.log(newList, oldList);
         
-        if (newList.length > oldList.length && this.breakpoint === 'xl') {
-          Utils.scrollTo(document.getElementById('order-props'));
+        if (this.breakpoint === 'xl') {
+          if (newList.length !== oldList.length) {
+            const f = newList.find(prop => {
+              return prop.required && prop.value === '' && !this.$store.state.checkout.props[prop.code]
+            });
+            
+            if (f) {
+              Utils.scrollTo(document.getElementById('order-props'));
+            }
+          }
         }
+        
+        // if (newList.length > oldList.length && this.breakpoint === 'xl') {
+        //   Utils.scrollTo(document.getElementById('order-props'));
+        // }
       },
     },
     computed: {

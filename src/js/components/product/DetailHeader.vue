@@ -1,9 +1,10 @@
 <template>
   <div class="p-detail__header">
-    <div class="p-detail__note">
-      <div class="p-delivery-badge p-delivery-badge_central"
-           v-if="activeOffer.count_group === 0 && activeOffer.count_remote > 0"
-      >Доставка с центрального склада</div>
+    <div class="p-detail__note" v-if="$store.state.isLocaleStore">
+      <div v-if="activeOffer.count_group > 0"
+           class="p-delivery-badge p-delivery-badge_local">{{ textDeliveryLocal || 'Магазин рядом' }}</div>
+      <div v-else-if="activeOffer.count_remote > 0"
+           class="p-delivery-badge p-delivery-badge_central">{{ textDeliveryCentral || shipingPeriod }}</div>
     </div>
     <div class="p-detail__category">{{ category }}</div>
     <div class="p-detail__country" v-if="country">Страна: <span class="black">{{ country }}</span></div>
@@ -21,7 +22,9 @@
     computed: {
       ...mapState('product', {
         category: 'category',
-        country: 'country'
+        country: 'country',
+        textDeliveryCentral: 'textDeliveryCentral',
+        textDeliveryLocal: 'textDeliveryLocal',
       }),
       ...mapGetters({
         currentCity: 'currentCity',
@@ -34,9 +37,14 @@
       //     : false;
       // },
       shipingPeriod() {
-        return this.currentCity
-          ? `Со склада из СПБ в ${this.currentCity.name}, ${this.currentCity.deliveryCountDays[0]}-${this.currentCity.deliveryCountDays[1]} дней`
-          : 'Со склада в Санкт-Петербурге';
+        if (this.currentCity && this.currentCity.deliveryCountDays) {
+          const min = this.currentCity.deliveryCountDays[0];
+          const max = this.currentCity.deliveryCountDays[1];
+
+          return `Со склада из СПБ в ${this.currentCity.name}, ${min === max ? max : min + '-' + max} ${Utils.declOfNum(max, ['день', 'дня', 'дней'])}`;
+        }
+
+        return 'Со склада в Санкт-Петербурге';
       },
       reviewsQuantityText() {
         return this.activePacking.review > 0

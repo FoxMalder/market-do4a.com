@@ -1,5 +1,6 @@
 import ready from 'domready';
 
+import './simple';
 import PageVendors from './js/page/vendors';
 
 
