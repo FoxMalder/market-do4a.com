@@ -6,7 +6,7 @@ import Qs from 'qs';
 
 
 // import App from './App';
-import Utils from './utils/utils';
+import Utils from '@/utils/utils';
 // import ProductDetail from './components/product/Detail';
 
 
@@ -87,6 +87,7 @@ global.qs = Qs;
 // debugger;
 
 Vue.filter('formatPrice', (value) => {
+  // console.log(value);
   // if (!value) return '';
   // return value.toLocaleString();
   return `${value.toString().replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ')} ₽`;
@@ -94,7 +95,7 @@ Vue.filter('formatPrice', (value) => {
 
 Vue.directive('click-outside', {
   bind(el, binding, vNode) {
-    console.log(binding, vNode);
+    // console.log(binding, vNode);
 
     // Provided expression must evaluate to a function.
     if (typeof binding.value !== 'function') {

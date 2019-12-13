@@ -233,7 +233,6 @@ export default class Header {
   initFavoritesQuantity() {
     const favoritesButton = document.querySelector('.header-control__button_favorites');
     if (favoritesButton) {
-
       // const favoritesNotifications = favoritesButton.querySelector('.header-control__notifications');
       // if (favoritesNotifications) {
       //   store.commit('SET_FAVORITES_COUNT', parseInt(favoritesNotifications.innerHTML, 10) || 0);

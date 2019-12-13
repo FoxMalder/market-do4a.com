@@ -2600,6 +2600,7 @@
     @include title;
     order: 1;
     font-size: 16px;
+    word-break: break-word;
   }
 
   &__date {
@@ -2638,6 +2639,8 @@
   }
 
   &__text {
+    white-space: pre-line;
+    word-break: break-word;
     max-width: 750px;
     font-size: 14px;
     line-height: 22px;

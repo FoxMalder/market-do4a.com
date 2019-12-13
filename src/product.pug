@@ -14,7 +14,7 @@ block wrapper
                     span.breadcumps__delimiter
                     span.breadcumps__page BSN Syntha-6
                 //h1.page-header__title протеины
-        article.product(itemscope itemtype="http://schema.org/Product")
+        article.product(itemscope itemtype="https://schema.org/Product")
             section.p-section-hero
                 .container
                     .p-detail
@@ -156,7 +156,7 @@ block wrapper
                 .p-section-similar__inner
                     .p-section-similar__list
                         -
-                            let index = Math.round(Math.random() * 1000);
+                            let index = 1045;
                             const productCards = [
                             {
                             title: 'Optimum nutrition gold standart whey',
@@ -273,12 +273,16 @@ block wrapper
                     .p-reviews-list__message Отзывов пока нет
                     .p-reviews-list__list
                         each item in [1, 2, 3, 4]
-                            .p-review-item(data-review-id=item)
+                            .p-review-item(data-review-id=item itemscope itemtype="https://schema.org/Review")
                                 .container
                                     .p-review-item__inner
                                         .p-review-item__header
-                                            .p-review-item__name Дмитрий
-                                            .p-review-item__rating
+                                            .p-review-item__name(itemprop="author" itemscope itemtype="https://schema.org/Person")
+                                                span(itemprop="name") Дмитрий
+                                            .p-review-item__rating(itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating")
+                                                meta(itemprop="worstRating" content="1")
+                                                meta(itemprop="bestRating" content="5")
+                                                meta(itemprop="ratingValue" content="4")
                                                 i.i.i-star.red
                                                 i.i.i-star.red
                                                 i.i.i-star.red
@@ -286,7 +290,8 @@ block wrapper
                                                 i.i.i-star
                                             .p-review-item__date 25.02.2019
                                         .p-review-item__body
-                                            .p-review-item__text Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!
+                                            .p-review-item__text(itemprop="reviewBody")
+                                                | Хороший протеинчик, лёгок в употреблении, живот после него не пучит, хорошо разводится и пьётся. Часто слышу про него, что типа устаревший продукт, может и так, не знаю, о знаю одно - что он работает и стоит недорого!
                                             .p-review-item__vote
                                                 button.btn.p-review-item__down-vote -
                                                 span.p-review-item__down-vote-count 11
