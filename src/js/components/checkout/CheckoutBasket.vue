@@ -1,7 +1,7 @@
 <template>
   <div class="order">
     <h3 class="order__title">{{ isMobile ? totalQuantityText : `В заказе ${totalQuantityText}` }}</h3>
-    
+
     <div class="order__header">
       <button
         class="order__btn-clear"
@@ -14,12 +14,12 @@
         <span>Очистить корзину</span>
       </button>
     </div>
-    
+
     <div class="order__alert" v-if="isMobile && orderList.length > 0">
       <CheckoutAlert v-if="orderList.length > 1" :type="'multiple'"/>
       <CheckoutAlert v-else-if="!orderList[0].isLocaleStore" :type="'central'"/>
     </div>
-    
+
     <div class="order__list">
       <ProductList
         v-for="order in orderList"
@@ -28,19 +28,19 @@
         :multiple="orderList.length > 1"
       />
     </div>
-    
+
     <div class="order__promocode">
       <Promocode/>
     </div>
-    
+
     <div class="order__amount">
       <CheckoutAmount/>
     </div>
-    
+
 <!--    <div class="order__footer" v-if="breakpoint === 'xl'">-->
 <!--      <slot></slot>-->
 <!--    </div>-->
-    
+
     <div class="order__footer">
       <div class="order__btn-checkout">
         <slot></slot>
@@ -58,12 +58,12 @@
 <!--        v-else-->
 <!--        @click.prevent="setStep(nextStepButton)"-->
 <!--      >{{ breakpoint === 'xl' ? 'Оформить заказ' : 'Перейти к оформлению' }}</button>-->
-      
+
       <div class="order__footer-note">
         Нажимая на кнопку, вы подтверждаете согласие на обработку
         <a href="#">персональных данных</a> и <a href="/policy-privacy/">политику конфиденциальности</a>
       </div>
-      
+
     </div>
   </div>
 </template>
@@ -123,13 +123,13 @@
     },
     methods: {
       ...mapActions({
-        // clear: 'checkout/clearCheckout',
+        clear: 'checkout/clearCheckout',
         setStep: 'checkout/setStep',
       }),
 
-      clear() {
-        this.$store.dispatch('cart/clearCart');
-      }
+      // clear() {
+      //   this.$store.dispatch('cart/clearCart');
+      // }
     }
   }
 </script>

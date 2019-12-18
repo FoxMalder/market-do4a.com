@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 // import Cart from '../../api/cart';
 import * as Api from '../../api';
 import Utils from '../../utils/utils';
@@ -76,32 +78,21 @@ const actions = {
     };
     commit('SET_BASKET', { items: [], mapping: {} });
 
-    return new Promise((resolve, reject) => {
-      dispatch(ADD_TOAST_MESSAGE, {
-        title: 'Корзина очищена',
-        text: 'Но вы еще можете вернуть всё обратно.',
-        onCancel: () => {
-          commit('SET_BASKET', savedCart);
-          reject();
-        },
-        onTimeout: () => {
-          Api.clearBasket()
-            .then((data) => {
-              localStorage.removeItem('basket');
-              // commit('SET_BASKET', data);
-              resolve();
-            })
-            .catch(() => {
-              reject();
-              dispatch(ADD_TOAST_MESSAGE, {
-                title: 'Ошибка',
-                text: 'Не удалось очистить корзину',
-              }, { root: true });
-              commit('SET_BASKET', savedCart);
-            });
-        },
-      }, { root: true });
-    });
+    return Api.clearBasket()
+      .then((data) => {
+        Vue.$notify('info', { // 'cancelable'
+          title: 'Корзина очищена',
+          // text: 'Но вы еще можете вернуть всё обратно.',
+        });
+        localStorage.removeItem('basket');
+        // commit('SET_BASKET', data);
+      })
+      .catch((error) => {
+        Vue.$notify.error('Не удалось очистить корзину');
+        commit('SET_BASKET', savedCart);
+
+        throw error;
+      });
   },
 
   removeFromCart({ dispatch, commit }, { basketItemId }) {
@@ -116,20 +107,19 @@ const actions = {
       Api.removeFromBasket(basketItemId)
         .then((data) => {
           if (data.items.length === 0) {
-            dispatch(ADD_TOAST_MESSAGE, { title: 'Корзина очищена' }, { root: true });
+            Vue.$notify('info', { title: 'Корзина очищена' });
           }
 
           dispatch('checkout/refreshOrderAjax', null, { root: true });
           localStorage.setItem('basket', JSON.stringify(data));
           commit('SET_BASKET', data);
+
           resolve();
         })
         .catch(() => {
+          Vue.$notify.error('Не удалось удалить продукт');
           commit('SET_BASKET', savedCart);
-          dispatch(ADD_TOAST_MESSAGE, {
-            title: 'Ошибка',
-            text: 'Не удалось удалить продукт',
-          }, { root: true });
+
           reject();
         })
         .finally(() => commit('SET_STATUS', null));
