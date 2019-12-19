@@ -72,27 +72,31 @@ const actions = {
   },
 
   clearCart({ commit, dispatch, state }) {
-    const savedCart = {
-      items: [...state.items],
-      mapping: { ...state.mapping },
-    };
-    commit('SET_BASKET', { items: [], mapping: {} });
+    return new Promise((resolve, reject) => {
+      // const savedCart = {
+      //   items: [...state.items],
+      //   mapping: { ...state.mapping },
+      // };
+      commit('SET_STATUS', 'loading');
 
-    return Api.clearBasket()
-      .then((data) => {
-        Vue.$notify('info', { // 'cancelable'
-          title: 'Корзина очищена',
-          // text: 'Но вы еще можете вернуть всё обратно.',
-        });
-        localStorage.removeItem('basket');
-        // commit('SET_BASKET', data);
-      })
-      .catch((error) => {
-        Vue.$notify.error('Не удалось очистить корзину');
-        commit('SET_BASKET', savedCart);
+      Api.clearBasket()
+        .then((data) => {
+          Vue.$notify.info('Корзина очищена');
 
-        throw error;
-      });
+          commit('SET_BASKET', { items: [], mapping: {} });
+          localStorage.removeItem('basket');
+          // commit('SET_BASKET', data);
+
+          resolve(data);
+        })
+        .catch((error) => {
+          Vue.$notify.error('Не удалось очистить корзину');
+          // commit('SET_BASKET', savedCart);
+
+          reject(error);
+        })
+        .finally(() => commit('SET_STATUS', null));
+    });
   },
 
   removeFromCart({ dispatch, commit }, { basketItemId }) {
@@ -107,7 +111,7 @@ const actions = {
       Api.removeFromBasket(basketItemId)
         .then((data) => {
           if (data.items.length === 0) {
-            Vue.$notify('info', { title: 'Корзина очищена' });
+            Vue.$notify.info('Корзина очищена');
           }
 
           dispatch('checkout/refreshOrderAjax', null, { root: true });

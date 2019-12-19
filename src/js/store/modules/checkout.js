@@ -748,8 +748,17 @@ export default function createModule(options) {
 
       commit('SET_ORDER_LIST', []);
 
-      dispatch('cart/clearCart', null, { root: true })
-        .catch(() => commit('SET_ORDER_LIST', savedOrders));
+      Vue.$notify('cancelable', {
+        title: 'Корзина очищена',
+        text: 'Но вы еще можете вернуть всё обратно.',
+        onTimeout: () => {
+          dispatch('cart/clearCart', null, { root: true })
+            .catch(() => commit('SET_ORDER_LIST', savedOrders));
+        },
+        onCancel: () => {
+          commit('SET_ORDER_LIST', savedOrders);
+        },
+      });
     },
 
     [SET_PROPERTY_GROUPS]({ commit }, groups) {

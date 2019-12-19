@@ -1,3 +1,4 @@
+import ready from 'domready';
 import Notifications from '@/components/Notifications.vue';
 
 
@@ -21,24 +22,28 @@ const VueNotify = {
     const vm = notify.$mount();
 
     // Add it to the Vue application
-    document.querySelector('body').appendChild(vm.$el);
+    ready(() => {
+      document.querySelector('body').appendChild(vm.$el);
+    });
 
     // Create generic method
     Vue.$notify = Vue.prototype.$notify = (type = 'info', options = {}) => {
       notify.addItem(type, options);
     };
-    // Vue.$notify.info = Vue.prototype.$notify.info = (options = {}) => {
-    //   Notify.addItem('info', msg, options);
-    // };
-    // Vue.$notify.success = Vue.prototype.$notify.success = (options = {}) => {
-    //   Notify.addItem('success', msg, options);
-    // };
+    Vue.$notify.info = Vue.prototype.$notify.info = (msg) => {
+      notify.addItem('info', {
+        title: msg,
+      });
+    };
     Vue.$notify.error = Vue.prototype.$notify.error = (msg) => {
       notify.addItem('error', {
         title: 'Произошла ошибка',
         text: msg,
       });
     };
+    // Vue.$notify.success = Vue.prototype.$notify.success = (options = {}) => {
+    //   Notify.addItem('success', msg, options);
+    // };
     // Vue.$notify.warning = Vue.prototype.$notify.warning = (msg, options = {}) => {
     //   Notify.addItem('warning', msg, options);
     // };

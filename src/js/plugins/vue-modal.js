@@ -1,3 +1,4 @@
+import ready from 'domready';
 import ModalsContainer from '@/components/ModalsContainer.vue';
 
 
@@ -46,7 +47,9 @@ const VueModal = {
     const vm = modal.$mount();
 
     // Add it to the Vue application
-    document.querySelector('body').appendChild(vm.$el);
+    ready(() => {
+      document.querySelector('body').appendChild(vm.$el);
+    });
 
 
     Vue.$modal = Vue.prototype.$modal = {
