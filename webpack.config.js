@@ -201,6 +201,7 @@ const cummonConfig = {
       filename: 'cart.html',
       template: path.resolve(__dirname, 'src/cart.pug'),
       chunks: ['cart', 'simple', 'common', 'runtime'],
+      // chunks: ['cart', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -523,7 +524,7 @@ const prodConfig = {
           // test: /\.js$/,
           filename: 'js/[name].bundle.js',
           chunks: 'initial',
-          minChunks: 3,
+          minChunks: 2,
         },
       },
     },
