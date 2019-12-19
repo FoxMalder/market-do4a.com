@@ -84,11 +84,10 @@ export default {
   methods: {
     addItem(type, options) {
       this.messages.push({
-        id: Id(),
         type,
-        title: options.title,
-        text: options.text,
-        duration: options.duration || 7000,
+        id: Id(),
+        duration: 7000,
+        ...options,
       });
     },
     remove(item) {
