@@ -82,10 +82,8 @@ const actions = {
       Api.clearBasket()
         .then((data) => {
           Vue.$notify.info('Корзина очищена');
-
-          commit('SET_BASKET', { items: [], mapping: {} });
           localStorage.removeItem('basket');
-          // commit('SET_BASKET', data);
+          commit('SET_BASKET', data);
 
           resolve(data);
         })

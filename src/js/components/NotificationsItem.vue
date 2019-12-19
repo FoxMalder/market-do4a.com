@@ -29,7 +29,7 @@
         {{ item.text }}
       </div>
       <div class="notification__footer">
-        <div v-if="item.type !== 'error'" class="notification__timer" :class="{'notification__timer_animate': time >= 0}">
+        <div v-if="item.type !== 'error' && item.type !== 'info'" class="notification__timer" :class="{'notification__timer_animate': time >= 0}">
           <svg width="31" height="31" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <circle stroke-width="2" cx="15.5" cy="15.5" r="14.5" fill="none"></circle>
           </svg>
@@ -74,8 +74,10 @@ export default {
   },
   mounted() {
     this.onUnload = () => {
+      console.log('unload event', this.item, this.item.onTimeout);
       if (typeof this.item.onTimeout === 'function') {
         this.item.onTimeout();
+        console.log('onTimeout() function');
       }
     };
 

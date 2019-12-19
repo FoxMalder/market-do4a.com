@@ -86,7 +86,7 @@ export default {
       this.messages.push({
         type,
         id: Id(),
-        duration: 7000,
+        duration: 4000,
         ...options,
       });
     },
