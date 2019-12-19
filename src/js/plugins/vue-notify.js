@@ -1,46 +1,10 @@
-/* eslint-disable no-param-reassign */
-import Notifications from '../components/Notifications.vue';
-// import store from '../store';
+import Notifications from '@/components/Notifications.vue';
 
 
-// console.log(Notifications);
-//
-// const Notify = {
-//   install(Vue, args = {}) {
-//     if (this.installed) {
-//       return;
-//     }
-//
-//     this.installed = true;
-//     this.params = args;
-//
-//     Vue.component('notifications', Notifications);
-//
-//     const notify = (params) => {
-//       if (typeof params === 'string') {
-//         store.dispatch('addNotify', {
-//           title: '',
-//           text: params,
-//         });
-//       }
-//
-//       if (typeof params === 'object') {
-//         store.dispatch('addNotify', params);
-//       }
-//     };
-//
-//     Vue.prototype.$notify = notify;
-//     Vue.notify = notify;
-//   },
-// };
-//
-// export default Notify;
-
-
-export default {
-  install(Vue, args = {}) {
+const VueNotify = {
+  install(Vue) {
     if (this.installed) {
-      return;
+      throw console.warn('VueNotify: plugin already installed');
     }
 
     this.installed = true;
@@ -48,20 +12,20 @@ export default {
 
     // Create component instance
     const Constr = Vue.extend(Notifications);
-    const Notify = new Constr();
+    const notify = new Constr();
 
     // // Apply configuration
-    // Notify.options = Object.assign(Notify.options, args);
+    // notify.options = Object.assign(Notify.options, args);
 
     // Mount it
-    const vm = Notify.$mount();
+    const vm = notify.$mount();
 
     // Add it to the Vue application
     document.querySelector('body').appendChild(vm.$el);
 
     // Create generic method
     Vue.$notify = Vue.prototype.$notify = (type = 'info', options = {}) => {
-      Notify.addItem(type, options);
+      notify.addItem(type, options);
     };
     // Vue.$notify.info = Vue.prototype.$notify.info = (options = {}) => {
     //   Notify.addItem('info', msg, options);
@@ -70,7 +34,7 @@ export default {
     //   Notify.addItem('success', msg, options);
     // };
     Vue.$notify.error = Vue.prototype.$notify.error = (msg) => {
-      Notify.addItem('error', {
+      notify.addItem('error', {
         title: 'Произошла ошибка',
         text: msg,
       });
@@ -87,3 +51,5 @@ export default {
     // };
   },
 };
+
+export default VueNotify;
