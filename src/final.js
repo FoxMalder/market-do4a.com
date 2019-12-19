@@ -2,12 +2,14 @@ import ready from 'domready';
 import Vue from 'vue';
 
 import './simple';
-import { Bus } from './js/plugins/Modal';
-import AppModalMap from './js/components/AppModalMap.vue';
-import ShopListMap from './js/components/ShopListMap.vue';
+import VueModal from '@/plugins/vue-modal';
+import AppModalMap from '@/components/AppModalMap.vue';
+import ShopListMap from '@/components/ShopListMap.vue';
 
-import store from './js/store';
+import store from '@/store';
 
+
+Vue.use(VueModal);
 
 ready(() => {
   new Vue({
@@ -22,12 +24,16 @@ ready(() => {
 
       const id = parseInt(event.target.dataset.markerId, 10);
 
-      Bus.$emit('new', {
-        component: AppModalMap,
-        param: {
-          props: { storeId: id },
-        },
+      Vue.$modal.open(AppModalMap, {
+        props: { storeId: id },
       });
+
+      // Bus.$emit('new', {
+      //   component: AppModalMap,
+      //   param: {
+      //     props: { storeId: id },
+      //   },
+      // });
     });
   });
 });

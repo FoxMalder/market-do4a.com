@@ -2,24 +2,25 @@ import Vue from 'vue';
 import ready from 'domready';
 
 
-console.log('app.js');
-
 // import VModal from 'vue-js-modal';
 
 import '@/common';
-import store from './store';
-import Header from './modules/Header';
-// import Notifications from './components/Notifications.vue';
-// import Modal from './components/Modal.vue';
-import Modal from './plugins/Modal';
-import Notify from './plugins/Notify';
-import ModalsContainer from './components/ModalsContainer.vue';
-import Platform from './plugins/Platform';
+import store from '@/store';
+import Header from '@/modules/Header';
+
+import VueModal from '@/plugins/vue-modal';
+import VueNotify from '@/plugins/vue-notify';
+
+import Platform from '@/plugins/Platform';
+
+
+// Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
+
+Vue.use(VueModal);
+Vue.use(VueNotify);
 
 
 window.Vue = Vue;
-
-// Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 
 
 class App {
@@ -40,29 +41,8 @@ class App {
   init() {
     // global.App = this;
 
-    Vue.use(Modal);
-    Vue.use(Notify);
-
 
     store.dispatch('init');
-
-    // this.NotifyVM = new Vue({
-    //   store,
-    //   render: h => h(Notifications),
-    // }).$mount();
-    // document.body.appendChild(this.NotifyVM.$el);
-
-    // this.ModalVM = new Vue({
-    //   store,
-    //   render: h => h(Modal),
-    // }).$mount();
-    // document.body.appendChild(this.ModalVM.$el);
-
-    this.ModalVM = new Vue({
-      store,
-      render: h => h(ModalsContainer),
-    }).$mount();
-    document.body.appendChild(this.ModalVM.$el);
 
     this.Header = new Header();
 

@@ -695,7 +695,6 @@ export default function createModule(options) {
         }));
       } catch (e) {
         Vue.$notify.error('При обновлении заказа что-то пошло не так. Попробуйте обновить страницу.');
-        console.log(e);
       }
       commit('SET_CHECKOUT_STATUS', null);
     },
@@ -705,47 +704,33 @@ export default function createModule(options) {
       const resultList = await dispatch('sendAllRequest', { data: { action: 'enterCoupon', coupon } });
       commit('SET_CHECKOUT_STATUS', null);
 
-      console.log(resultList);
 
       const { order } = resultList[0];
-      let notify = null;
-      console.log(order);
 
-      if (order) {
-        const lastCoupon = order.COUPON_LIST[order.COUPON_LIST.length - 1];
-        switch (lastCoupon.JS_STATUS) {
-          case 'ENTERED':
-            notify = {
-              title: 'Промокод не применён',
-            };
-            break;
-          case 'APPLIED':
-            notify = {
-              title: 'Промокод применён',
-            };
-            break;
-          case 'BAD':
-            notify = {
-              title: 'Промокод не применён',
-              text: lastCoupon.STATUS_TEXT,
-            };
-            break;
-          default:
-            notify = {
-              title: 'Промокод не найден',
-              text: 'Возможно, он работает только в стационарных магазинах',
-            };
-        }
-      } else {
-        notify = {
+      if (!order) {
+        Vue.$notify('error', {
           title: 'Промокод не найден',
           text: 'Возможно, он работает только в стационарных магазинах',
-        };
+        });
+
+        throw new Error('Промокод не найден');
       }
 
-      Vue.$notify(notify);
+      dispatch('refreshOrder', resultList);
 
-      await dispatch('refreshOrder', resultList);
+      const lastCoupon = order.COUPON_LIST[order.COUPON_LIST.length - 1];
+
+      // JS_STATUS: 'ENTERED' / 'APPLIED' / 'BAD'
+      if (lastCoupon.JS_STATUS !== 'APPLIED') {
+        Vue.$notify('error', {
+          title: 'Промокод не применён',
+          text: lastCoupon.STATUS_TEXT,
+        });
+
+        throw new Error('Промокод не применён');
+      }
+
+      return lastCoupon;
     },
 
     // removeCoupon({ dispatch }) {
@@ -762,9 +747,20 @@ export default function createModule(options) {
       const savedOrders = [...state.orderList];
 
       commit('SET_ORDER_LIST', []);
-
       dispatch('cart/clearCart', null, { root: true })
         .catch(() => commit('SET_ORDER_LIST', savedOrders));
+
+      // Vue.$notify('cancelable', {
+      //   title: 'Корзина очищена',
+      //   text: 'Но вы еще можете вернуть всё обратно.',
+      //   onTimeout: () => {
+      //     dispatch('cart/clearCart', null, { root: true })
+      //       .catch(() => commit('SET_ORDER_LIST', savedOrders));
+      //   },
+      //   onCancel: () => {
+      //     commit('SET_ORDER_LIST', savedOrders);
+      //   },
+      // });
     },
 
     [SET_PROPERTY_GROUPS]({ commit }, groups) {

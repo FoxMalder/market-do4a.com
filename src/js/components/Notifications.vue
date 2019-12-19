@@ -6,9 +6,9 @@
       name="notifications"
     >
       <div
-        class="notifications__item"
         v-for="item in messages"
         :key="item.id"
+        class="notifications__item"
       >
         <NotificationsItem
           :item="item"
@@ -17,87 +17,84 @@
         />
       </div>
     </transition-group>
-  
   </div>
 </template>
 <script>
-  import { mapGetters, mapState, mapActions } from 'vuex';
+import NotificationsItem from './NotificationsItem.vue';
 
-  import NotificationsItem from './NotificationsItem.vue';
 
-  const Id = (i => () => i++)(0);
+const Id = (i => () => i++)(0);
 
-  export default {
-    name: 'Notifications',
-    components: {
-      NotificationsItem
+export default {
+  name: 'Notifications',
+  components: {
+    NotificationsItem,
+  },
+  // props: {
+  //   group: {
+  //     type: String,
+  //     default: ''
+  //   },
+  //   speed: {
+  //     type: Number,
+  //     default: 300
+  //   },
+  //   duration: {
+  //     type: Number,
+  //     default: 3000
+  //   },
+  //   delay: {
+  //     type: Number,
+  //     default: 0
+  //   },
+  //   max: {
+  //     type: Number,
+  //     default: Infinity
+  //   },
+  //   ignoreDuplicates: {
+  //     type: Boolean,
+  //     default: false
+  //   },
+  // },
+  data() {
+    return {
+      messages: [
+        // {
+        //   id: Id(),
+        //   type: 'cancelable',
+        //   title: 'корзина очищена',
+        //   text: 'Но вы еще можете вернуть всё обратно.',
+        //   duration: 9000,
+        // },
+        // {
+        //   id: Id(),
+        //   type: 'cancelable',
+        //   title: 'корзина очищена',
+        //   text: 'Но вы еще можете вернуть всё обратно.',
+        //   duration: 90000,
+        // },
+      ],
+    };
+  },
+  computed: {
+    // ...mapState({
+    //   messages: state => state.notifications.messages
+    // }),
+  },
+  methods: {
+    addItem(type, options) {
+      this.messages.push({
+        type,
+        id: Id(),
+        duration: 4000,
+        ...options,
+      });
     },
-    // props: {
-    //   group: {
-    //     type: String,
-    //     default: ''
-    //   },
-    //   speed: {
-    //     type: Number,
-    //     default: 300
-    //   },
-    //   duration: {
-    //     type: Number,
-    //     default: 3000
-    //   },
-    //   delay: {
-    //     type: Number,
-    //     default: 0
-    //   },
-    //   max: {
-    //     type: Number,
-    //     default: Infinity
-    //   },
-    //   ignoreDuplicates: {
-    //     type: Boolean,
-    //     default: false
-    //   },
-    // },
-    data() {
-      return {
-        messages: [
-          // {
-          //   id: Id(),
-          //   type: 'cancelable',
-          //   title: 'корзина очищена',
-          //   text: 'Но вы еще можете вернуть всё обратно.',
-          //   duration: 9000,
-          // },
-          // {
-          //   id: Id(),
-          //   type: 'cancelable',
-          //   title: 'корзина очищена',
-          //   text: 'Но вы еще можете вернуть всё обратно.',
-          //   duration: 90000,
-          // },
-        ]
-      }
+    remove(item) {
+      this.messages.splice(this.messages.indexOf(item), 1);
     },
-    computed: {
-      // ...mapState({
-      //   messages: state => state.notifications.messages
-      // }),
-    },
-    methods: {
-      addItem(type, options) {
-        this.messages.push({
-          id: Id(),
-          type: type,
-          title: options.title,
-          text: options.text,
-          duration: options.duration || 7000,
-        })
-      },
-      remove(item) {
-        this.messages.splice(this.messages.indexOf(item), 1)
-      },
-    }
-  }
+  },
+};
 </script>
 
 
@@ -109,25 +106,25 @@
     right: 10px;
     width: 520px;
   }
-  
+
   .notifications__wrapper {
     display: flex;
     flex-direction: column;
     position: relative;
   }
-  
+
   .notifications__item {
     transition: all .4s;
     margin-top: 10px;
     width: 100%;
   }
-  
+
   .notifications-enter,
   .notifications-leave-to {
     opacity: 0;
     transform: translateX(30px);
   }
-  
+
   .notifications-leave-active {
     position: absolute;
   }

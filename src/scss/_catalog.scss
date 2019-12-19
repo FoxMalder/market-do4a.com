@@ -384,9 +384,14 @@ $multifilter-padding-x: (
     @include media-breakpoint-up(xl) {
       margin-left: auto;
 
+      .dropdown-menu {
+        right: 0;
+        left: auto;
+      }
+
       .multifilter {
         &__content {
-          max-width: 315px;
+          max-width: 350px;
         }
 
         &__label {
@@ -808,7 +813,7 @@ $multifilter-padding-x: (
   &__content[data-toggle='dropdown'],
   &__content_dropdown {
     //&__content {
-    padding-right: map_get($multifilter-padding-x, xl) + 10px;
+    padding-right: map_get($multifilter-padding-x, xl) + 14px;
     transition: background .3s ease;
     cursor: pointer;
 
@@ -820,7 +825,7 @@ $multifilter-padding-x: (
       content: '';
       position: absolute;
 
-      top: calc(50% - 3px);
+      top: calc(50% - 2px);
       right: map_get($multifilter-padding-x, xl);
 
       border-top: 6px solid currentColor;
@@ -831,7 +836,7 @@ $multifilter-padding-x: (
     }
 
     .multifilter.show & {
-      background-color: hsl(0, 0%, 93%);
+      background-color: #efefef;
     }
 
     .multifilter.active > & {

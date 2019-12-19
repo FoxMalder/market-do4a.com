@@ -30,7 +30,15 @@
       items() {
         if (this.filter.parent) {
           // TODO: Как-то поправить эту хуйню с обновлениием наследника при изменении родителя, см. Multifilter.vue
-          const checkedParentItemIds = this.$store.getters['filters/checkedItemIdsByName'](this.filter.parent);
+          // const checkedParentItemIds = this.$store.getters['filters/checkedItemIdsByName'](this.filter.parent);
+
+
+          const parent = (typeof this.filter.parent === 'string')
+            ? this.$store.state.filters.filters[this.filter.parent]
+            : this.filter.parent;
+
+          const checkedParentItemIds = parent.data.filter(item => item.checked).map(item => item.value);
+
           // TODO: Добавить полифилл для Array.prototype.includes()
           return this.filter.data.filter(item => checkedParentItemIds.includes(item.parent));
         }
@@ -42,18 +50,22 @@
     },
     methods: {
       reset(filter) {
-        // this.filter.data.forEach(item => {
-        //   item.checked = false;
-        // });
-        this.$store.dispatch('filters/filterReset', { container: 'filters', name: filter.name, type: filter.type });
+        this.filter.data.forEach((item) => {
+          item.checked = false;
+        });
+        // this.$store.dispatch('filters/filterReset', { container: 'filters', name: filter.name, type: filter.type });
       },
       onReset() {
         this.reset(this.filter);
+
+        this.$emit('change');
         this.$store.dispatch('filters/onChange');
       },
       onClick(item) {
         this.reset(this.filter);
         item.checked = true;
+
+        this.$emit('change');
         this.$store.dispatch('filters/onChange');
       },
     }
