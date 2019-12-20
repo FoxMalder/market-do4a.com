@@ -53,7 +53,10 @@ export default {
       if (this.filterValue.length === 0) {
         return this.searchItems;
       }
-      return this.searchItems.filter(brand => this.filterValue.every(id => brand.sections.includes(id)));
+      // return this.searchItems.filter(brand => this.filterValue.every(id => brand.sections.includes(id)));
+      return this.searchItems.filter(brand => this.filterValue.every(ids => (
+        ids.length === 0 || ids.some(id => brand.sections.includes(id))
+      )));
     },
   },
   created() {
