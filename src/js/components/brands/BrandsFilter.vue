@@ -124,7 +124,7 @@ export default {
   methods: {
     onChange() {
       this.$nextTick(() => {
-        const g = this.filters.flatMap(filter => filter.data.filter(item => item.checked)
+        const g = this.filters.map(filter => filter.data.filter(item => item.checked)
           .map(item => parseInt(item.value, 10)));
 
         this.$root.$emit('change', g);
