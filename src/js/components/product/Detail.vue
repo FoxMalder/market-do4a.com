@@ -3,7 +3,7 @@
     <div class="p-detail__control">
       <ControlSelect/>
     </div>
-    
+
     <!--    <div class="p-detail__availability" v-if="!isAvailableOffer">-->
     <!--      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
     <!--        <circle cx="10" cy="10" r="10" fill="#C0C0C0"/>-->
@@ -11,12 +11,12 @@
     <!--      </svg>-->
     <!--      <span>Нет в наличии</span>-->
     <!--    </div>-->
-    
+
     <div class="p-detail__row">
       <ProductPrice/>
       <ControlCounter :isAvailable="isAvailableOffer" :offer="activeOffer"/>
     </div>
-    
+
     <div v-if="activeOffer.count_group > 0"
          class="p-detail-availability p-detail-availability_local">
       В наличии сейчас в
@@ -33,7 +33,7 @@
          class="p-detail-availability p-detail-availability_not-available">
       Нет в наличии
     </div>
-    
+
     <div class="p-detail-delivery" v-show="isAvailableOffer">
       <template v-if="activeOffer.count_group > 0">
         <div class="p-detail-delivery__row">
@@ -55,27 +55,27 @@
           <div class="p-detail-delivery__value">От 300 ₽</div>
         </div>
       </template>
-      
+
       <div class="p-detail-delivery__row">
-        
+
         <transition name="fade">
           <div class="p-delivery-alert-bg" v-show="isVisible" @click.prevent="onClick"></div>
         </transition>
-        
+
         <div class="p-delivery-alert"
              :class="{'p-delivery-alert_active': isVisible}"
              @mouseenter="onMouseover"
              @mouseleave="onMouseout">
           Обратите внимание на <button class="p-delivery-alert__link" ref="tooltip">условия бесплатной
           доставки</button>
-          
+
           <transition name="fade">
             <div class="p-delivery-alert__tooltip" v-show="isVisible">
               <div class="p-delivery-tooltip"
                    ref="tooltipInner"
                    @mouseenter="onMouseover"
                    @mouseleave="onMouseout">
-                
+
                 <p class="p-delivery-tooltip__title">Товары могут быть из разных городов</p>
                 <p>
                   Доставка — бесплатно на заказы от {{ freeShipingPrice }}.<br>
@@ -91,8 +91,8 @@
                   </div>
                   <div class="p-delivery-tooltip__col">
                     <div class="p-delivery-badge p-delivery-badge_local">Магазин рядом, 1 день</div>
-                    <div><span class="gray">Товары на </span> <strong>1 000 ₽</strong></div>
-                    <div>будут с платной доставкой</div>
+                    <div><span class="gray">Товары от </span> <strong>{{ freeShipingPrice }}</strong></div>
+                    <div>будут с бесплатной доставкой</div>
                   </div>
                 </div>
                 <p><a class="p-delivery-tooltip__link" href="/delivery/" target="_blank">Все условия доставки и оплаты</a></p>
@@ -100,7 +100,7 @@
             </div>
           </transition>
         </div>
-      
+
       </div>
     </div>
   </div>
@@ -166,13 +166,13 @@
         clearTimeout(this.timer);
         this.isVisible = false;
       },
-      
+
       onMouseover() {
         clearTimeout(this.timer);
         // $(this.$refs.tooltip).tooltip('show');
         this.isVisible = true;
       },
-      
+
       onMouseout() {
         this.timer = setTimeout(() => {
           // $(this.$refs.tooltip).tooltip('hide');
