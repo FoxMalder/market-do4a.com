@@ -1,20 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+
 import cart from './modules/cart';
 // import notifications from './modules/notifications';
 
-import * as Api from '../api';
-import Utils from '../utils/utils';
+import * as Api from '@/api';
+import Utils from '@/utils';
 
 
-function getBreakpoint() {
+function getDevice() {
   if (document.documentElement.clientWidth < 768) {
-    return 'xs';
+    return 'mobile';
   }
   if (document.documentElement.clientWidth < 1240) {
-    return 'md';
+    return 'tablet';
   }
-  return 'xl';
+  return 'desktop';
 }
 
 Vue.use(Vuex);
@@ -30,6 +31,7 @@ const state = {
   isLocaleStore: false, // storeId !== storeRemoteId
   cityList: [],
   storeList: [],
+  device: getDevice(),
   // breakpoint: 'xs',
 };
 
@@ -37,6 +39,9 @@ const getters = {
   currentCity: (state) => {
     return state.cityList.find(item => item.id === state.cityId);
     // return global.app.storeManagerData.cities[global.app.storeManagerData.currentCityId];
+  },
+  currentStore: (state) => {
+    return state.storeList.find(item => item.id === state.storeId);
   },
   getCityById: (state) => (cityId) => {
     return state.cityList.find(item => item.id === cityId);
@@ -52,6 +57,8 @@ const getters = {
 const actions = {
   init({ commit }) {
     commit('SET_APP_PARAMS', global.app);
+
+    store.dispatch('getFavorites');
   },
   addToCompare({ commit }, product) {
     console.log(`Add to compare: ${product.id}`);
@@ -59,15 +66,23 @@ const actions = {
   addToFavorites({ commit }, productId) {
     return Api.addToFavorites(productId)
       .then((data) => {
-        commit('RECEIVE_FAVORITES', data);
+        commit('SET_FAVORITES', data);
         commit('SET_FAVORITES_COUNT', data.length);
+      })
+      .catch((error) => {
+        Vue.$notify.error(error);
+        throw error;
       });
   },
   removeFromFavorites({ commit }, productId) {
     return Api.removeFromFavorites(productId)
       .then((data) => {
-        commit('RECEIVE_FAVORITES', data);
+        commit('SET_FAVORITES', data);
         commit('SET_FAVORITES_COUNT', data.length);
+      })
+      .catch((error) => {
+        Vue.$notify.error(error);
+        throw error;
       });
   },
   getFavorites({ commit }) {
@@ -82,13 +97,13 @@ const actions = {
     }
 
     if (favorites) {
-      commit('RECEIVE_FAVORITES', favorites);
+      commit('SET_FAVORITES', favorites);
       commit('SET_FAVORITES_COUNT', favorites.length);
     }
 
     return Api.getFavorites()
       .then((data) => {
-        commit('RECEIVE_FAVORITES', data);
+        commit('SET_FAVORITES', data);
         commit('SET_FAVORITES_COUNT', data.length);
 
         data.forEach((id) => {
@@ -106,7 +121,7 @@ const actions = {
 };
 
 const mutations = {
-  RECEIVE_FAVORITES(state, favorites) {
+  SET_FAVORITES(state, favorites) {
     state.favorites = favorites;
   },
   SET_FAVORITES_COUNT(state, count) {

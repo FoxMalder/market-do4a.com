@@ -118,7 +118,7 @@ const actions = {
 
     const store = (getters.activeOffer.count_group < 1 && getters.activeOffer.count_remote > 0)
       ? 'основной склад'
-      : rootGetters.getStoreById(rootState.storeId).name;
+      : rootGetters.currentStore && rootGetters.currentStore.name;
 
     gtmAddEvent({
       event: 'detail',
