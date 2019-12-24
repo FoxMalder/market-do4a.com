@@ -1,0 +1,191 @@
+
+
+
+.search-results-product {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__image {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    //flex: 0 0 118px;
+    justify-content: center;
+    height: 107px;
+    //max-height: 118px;
+    margin-bottom: 10px;
+    text-align: center;
+
+    //> img {
+    //  max-width: 100%;
+    //  height: 100px;
+    //  //object-fit: contain;
+    //}
+
+    @include media-breakpoint-up(md) {
+      height: 136px;
+      //> img {
+      //  height: 180px;
+      //}
+    }
+  }
+
+  &__title {
+    @include title;
+    display: block;
+    //flex: 1 1 auto;
+    //display: -webkit-box;
+    //height: 26px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: $font-weight-bold;
+    line-height: normal;
+    //text-overflow: ellipsis;
+    //-webkit-line-clamp: 2;
+    //-webkit-box-orient: vertical;
+
+    @include media-breakpoint-up(md) {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+  }
+
+  &__description {
+    margin-bottom: 10px;
+    color: rgba(#000, .4);
+    font-size: 10px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+
+    @include media-breakpoint-up(md) {
+      font-size: 12px;
+    }
+  }
+
+  &__price {
+    @include title;
+    //margin-bottom: 3px;
+    margin-top: auto;
+    //line-height: 1;
+    font-size: 19px;
+
+    small {
+      font-size: 50%;
+      font-weight: inherit;
+    }
+
+    @include media-breakpoint-up(md) {
+      font-size: 22px;
+    }
+  }
+}
+
+.search-results-history {
+  margin-bottom: 25px;
+
+  &__title {
+    display: block;
+    margin-right: 10px;
+    @include media-breakpoint-up(md) {
+      display: inline-block;
+    }
+  }
+
+  &__item {
+    display: inline-block;
+    margin-right: 7px;
+    padding: 2px 10px 4px;
+    border-radius: 2px;
+    background: #e8e8e8;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    line-height: normal;
+    text-align: center;
+  }
+}
+
+.search-results-article {
+  padding: 16px 0;
+  border-bottom: 1px solid #e3e3e3;
+  font-size: 15px;
+  line-height: normal;
+
+  &__title {
+    display: block;
+    margin-bottom: .5em;
+    font: 500 1em $font-family-inter-ui;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+
+  &__description {
+    margin-bottom: 0;
+    opacity: .5;
+    font-size: .8em;
+    letter-spacing: -.01em;
+    line-height: normal;
+  }
+}
+
+.search-results-category {
+  padding: 20px;
+  background: #fff;
+
+  &__name {
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    line-height: 19px;
+  }
+
+  &__desc {
+    opacity: .5;
+  }
+}
+
+
+
+.search-page-header {
+  margin-bottom: 30px;
+  padding: 30px 0 36px;
+  border-bottom: 1px solid #e3e3e3;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 40px;
+    padding: 21px 0 37px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    padding: 42px 0 57px;
+  }
+}
+
+.search-page-section {
+  margin-bottom: 40px;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 52px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    margin-bottom: 68px;
+  }
+}
+
+.search-page-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+  line-height: 115%;
+
+  span {
+    opacity: 0.4;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 38px;
+    font-size: 23px;
+    line-height: 31px;
+  }
+}
+
