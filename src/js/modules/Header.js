@@ -1,10 +1,14 @@
 import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Vue from 'vue';
-import store from '../store';
-import HeaderBasket from '../components/HeaderBasket.vue';
-import HeaderCollapse from '../components/HeaderCollapse.vue';
-import HeaderControlFavorites from '../components/HeaderControlFavorites.vue';
+import store from '@/store';
+import HeaderCollapse from '@/components/HeaderCollapse.vue';
+import HeaderVue from '@/components/header/Header.vue';
+
+import HeaderSearch from '@/components/header/Search.vue';
+import HeaderBasket from '@/components/header/HeaderBasket.vue';
+import HeaderControlFavorites from '@/components/header/HeaderButtonFavorites.vue';
+
 // import ready from 'domready';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
@@ -113,30 +117,36 @@ export default class Header {
   constructor() {
     store.dispatch('cart/init');
 
-    this.basketVM = new Vue({
-      store,
-      render: h => h(HeaderBasket),
-    }).$mount('#js-header-basket');
-
     this.collapseVM = new Vue({
       store,
       render: h => h(HeaderCollapse),
     }).$mount('.h-navbar-collapse');
 
 
+    this.headerVM = new Vue({
+      store,
+      render: h => h(HeaderVue),
+    }).$mount('.header-control');
+
+    // this.basketVM = new Vue({
+    //   store,
+    //   render: h => h(HeaderBasket),
+    // }).$mount('#js-header-basket');
+    //
+    // this.searchVM = new Vue({
+    //   store,
+    //   render: h => h(HeaderSearch),
+    // }).$mount('.search-fild');
+
+
     this.fixedContainerEl = document.querySelector('.h-navbar-fixed');
 
     this.header = {
-      // fixedTargets: document.querySelector('.h-navbar-fixed'),
       // Высота не фиксированной области над фиксированной
       fixedOffset: 0,
       fixedBreakpointsOffset: 600,
     };
 
-    this.search = {
-      targets: document.querySelector('.header-control__search'),
-      control: document.querySelector('.header-control__button_search'),
-    };
 
     this.vp = Header.getViewportSize();
 
@@ -217,15 +227,31 @@ export default class Header {
       });
     }
 
-    // Строка поиска на телефонах
-    if (this.search.control) {
+    // // Строка поиска на телефонах
+    // this.initSearch();
+    //
+    // this.initFavoritesQuantity();
+  }
+
+  initSearch() {
+    this.search = {
+      targets: document.querySelector('.header-control__search'),
+      control: document.querySelector('.header-control__button_search'),
+    };
+
+    if (this.search.control && this.search.targets) {
       this.search.control.addEventListener('click', (event) => {
         event.preventDefault();
-        this.toggleSearchField();
+
+        if (this.search.targets.classList.contains('active')) {
+          this.search.targets.classList.remove('active');
+          this.search.control.classList.remove('active');
+        } else {
+          this.search.targets.classList.add('active');
+          this.search.control.classList.add('active');
+        }
       });
     }
-
-    this.initFavoritesQuantity();
   }
 
 
@@ -248,17 +274,6 @@ export default class Header {
       }).$mount(favoritesButton);
     }
   }
-
-  toggleSearchField() {
-    if (this.search.targets.classList.contains('active')) {
-      this.search.targets.classList.remove('active');
-      this.search.control.classList.remove('active');
-    } else {
-      this.search.targets.classList.add('active');
-      this.search.control.classList.add('active');
-    }
-  }
-
 
   static getViewportSize() {
     return {
