@@ -1,13 +1,13 @@
 <template>
   <div class="vendor-card">
     <div class="vendor-card__wrapper">
-      <div class="vendor-card__img">
+      <a class="vendor-card__img stretched-link" :href="url">
         <img v-lazy="img" :alt="name">
-      </div>
+      </a>
       <div class="vendor-card__body">
-        <a class="vendor-card__title stretched-link" :href="url">
+        <h2 class="vendor-card__title">
           {{ name }}
-        </a>
+        </h2>
         <div class="vendor-card__description">
           {{ description }}
         </div>
