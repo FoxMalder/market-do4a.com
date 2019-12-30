@@ -5,14 +5,14 @@
         Не найдено
       </div>
       <keep-alive v-else>
-        <BrandsNameList
-          v-if="selectedTab === 'list'"
-          :key="'list'"
+        <BrandsCardList
+          v-if="view === 'cards'"
+          key="cards"
           :brands="filtredItems"
         />
-        <BrandsCardList
+        <BrandsNameList
           v-else
-          :key="'cards'"
+          key="list"
           :brands="filtredItems"
         />
       </keep-alive>
@@ -31,17 +31,32 @@ export default {
     BrandsCardList,
     BrandsNameList,
   },
+  props: {
+    brands: {
+      type: Array,
+      default: () => [],
+    },
+    filterValue: {
+      type: Array,
+      default: () => [],
+    },
+    searchValue: {
+      type: String,
+      default: '',
+    },
+    view: {
+      type: String,
+      default: 'cards',
+    },
+  },
   data() {
     return {
-      searchValue: '',
-      selectedTab: 'cards',
-      filterValue: [],
+      // searchValue: '',
+      // selectedTab: 'cards',
+      // filterValue: [],
     };
   },
   computed: {
-    brands() {
-      return window.brands;
-    },
     searchItems() {
       if (this.searchValue === '') {
         return this.brands;
@@ -59,18 +74,18 @@ export default {
       )));
     },
   },
-  created() {
-    this.$root.$on('filter:change', (items) => {
-      this.filterValue = items;
-    });
-
-    this.$root.$on('filter:tab', (tab) => {
-      this.selectedTab = tab;
-    });
-
-    this.$root.$on('search:change', (text) => {
-      this.searchValue = text;
-    });
-  },
+  // created() {
+  //   this.$root.$on('update:filters', (items) => {
+  //     this.filterValue = items;
+  //   });
+  //
+  //   this.$root.$on('update:tab', (tab) => {
+  //     this.selectedTab = tab;
+  //   });
+  //
+  //   this.$root.$on('update:search', (text) => {
+  //     this.searchValue = text;
+  //   });
+  // },
 };
 </script>

@@ -86,10 +86,16 @@ export default {
     FilterSelect,
     FilterPrice,
   },
+  props: {
+    view: {
+      type: String,
+      default: 'cards',
+    },
+  },
   data() {
     return {
       filters: [],
-      view: 'cards',
+      // view: 'cards',
     };
   },
   computed: {
@@ -111,28 +117,33 @@ export default {
       if (filter.querySelector('.multifilter-checkbox')) {
         return CheckboxFilter.parseSettings(filter);
       }
+
       if (filter.querySelector('.multifilter-radio')) {
         return SelectFilter.parseSettings(filter);
       }
+
       if (filter.querySelector('.multifilter-price')) {
         return PriceFilter.parseSettings(filter);
       }
 
       return null;
-    }).filter(item => !!item);
+    }).filter(item => item);
   },
   methods: {
     onChange() {
       this.$nextTick(() => {
-        const g = this.filters.map(filter => filter.data.filter(item => item.checked)
-          .map(item => parseInt(item.value, 10)));
+        // [[1040, 1060], [1041, 1042, 1061]]
+        const data = this.filters.map(
+          filter => filter.data
+            .filter(item => item.checked)
+            .map(item => parseInt(item.value, 10)),
+        );
 
-        this.$root.$emit('change', g);
+        this.$emit('update:filters', data);
       });
     },
     showTab(e) {
-      this.view = e;
-      this.$root.$emit('tab', e);
+      this.$emit('update:view', e);
     },
   },
 };

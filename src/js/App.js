@@ -46,6 +46,11 @@ class App {
 
     this.Header = new Header();
 
+    const breadcumps = document.querySelector('.mr-breadcumps__list');
+    if (breadcumps) {
+      breadcumps.scrollTo(1000, 0);
+    }
+
     // this.isInit = true;
     // this.fns.forEach(fn => fn());
   }

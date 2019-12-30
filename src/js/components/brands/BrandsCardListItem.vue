@@ -5,15 +5,17 @@
         <img v-lazy="img" :alt="name">
       </div>
       <div class="vendor-card__body">
-        <a class="vendor-card__title stretched-link" :href="url">{{ name }}</a>
-        <div class="vendor-card__description" v-text="description">
+        <a class="vendor-card__title stretched-link" :href="url">
+          {{ name }}
+        </a>
+        <div class="vendor-card__description">
           {{ description }}
         </div>
       </div>
       <div class="vendor-card__footer">
         <div class="vendor-card__row">
           <div v-if="quantity > 0" class="vendor-card__stock-title">
-            {{ quantityText }}
+            {{ quantity }} {{ quantityText(quantity) }}
           </div>
           <div v-else class="vendor-card__stock-value">
             Нет товаров в наличии
@@ -26,6 +28,7 @@
 
 <script>
 import Utils from '@/utils';
+
 
 export default {
   name: 'BrandsItem',
@@ -51,9 +54,9 @@ export default {
       default: 0,
     },
   },
-  computed: {
-    quantityText() {
-      return `${this.quantity} ${Utils.declOfNum(this.quantity, ['товар', 'товара', 'товаров'])}`;
+  methods: {
+    quantityText(quantity) {
+      return Utils.declOfNum(quantity, ['товар', 'товара', 'товаров']);
     },
   },
 };

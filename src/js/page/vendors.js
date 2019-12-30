@@ -6,6 +6,7 @@ import store from '@/store';
 import Brands from '@/components/brands/Brands.vue';
 import BrandsFilter from '@/components/brands/BrandsFilter.vue';
 
+
 const plug = require('../../img/plug.svg');
 
 
@@ -24,22 +25,44 @@ export default class Vendors {
   }
 
   init() {
+    this.data = Vue.observable({
+      view: 'cards',
+      filterValue: [],
+      searchValue: this.searchField.value.trim().toLowerCase(),
+    });
+
     this.brandsVM = new Vue({
       store,
-      render: h => h(Brands),
-    }).$mount('.catalog');
+      el: '.catalog',
+      render: h => h(Brands, {
+        props: {
+          brands: window.brands,
+          view: this.data.view,
+          searchValue: this.data.searchValue,
+          filterValue: this.data.filterValue,
+        },
+      }),
+    });
+
 
     this.filterVM = new Vue({
       store,
-      render: h => h(BrandsFilter),
-    }).$mount('.catalog-control');
-
-    this.filterVM.$on('change', (e) => {
-      this.brandsVM.$emit('filter:change', e);
-    });
-
-    this.filterVM.$on('tab', (e) => {
-      this.brandsVM.$emit('filter:tab', e);
+      el: '.catalog-control',
+      render: h => h(BrandsFilter, {
+        props: {
+          view: this.data.view,
+        },
+        on: {
+          // 'update:filters': e => this.brandsVM.$emit('update:filters', e),
+          // 'update:tab': e => this.brandsVM.$emit('update:tab', e),
+          'update:filters': (e) => {
+            this.data.filterValue = e;
+          },
+          'update:view': (e) => {
+            this.data.view = e;
+          },
+        },
+      }),
     });
 
 
@@ -50,6 +73,7 @@ export default class Vendors {
 
   onSearch = (event) => {
     event.preventDefault();
-    this.brandsVM.$emit('search:change', this.searchField.value.trim().toLowerCase());
+    // this.brandsVM.$emit('update:search', this.searchField.value.trim().toLowerCase());
+    this.data.searchValue = this.searchField.value.trim().toLowerCase();
   };
 }
