@@ -25,7 +25,7 @@
       v-else-if="activeOffer.count_remote > 0"
       class="p-detail-availability p-detail-availability_central"
     >
-      В наличии на складе в Санкт-Петербурге
+      {{ $store.getters.isRealCity ? 'В наличии на складе в Санкт-Петербурге' : `Доставка в ${$store.getters.currentCity.name}` }}
     </div>
     <div
       v-else

@@ -169,20 +169,33 @@ export default class ProductCard {
       : 'от 1 дня';
   }
 
+  getDeliveryLabelHTML() {
+    if (!store.state.isLocaleStore) {
+      return '';
+    }
+
+    const city = store.getters.currentCity;
+    if (!city || city.isFake) {
+      return '';
+    }
+
+    if (!this.data.isAvailable) {
+      return '';
+    }
+
+    if (this.data.isDeliveryOneDay) {
+      return '<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>';
+    }
+
+    const shipingPeriod = `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`;
+    return `<div class="product-card__badge product-card__badge_central">Со склада в СПБ, от ${shipingPeriod}</div>`;
+  }
+
   initDOM() {
     this.el = document.createElement('div');
     this.el.classList.add('product-card');
     this.el.setAttribute('data-product-id', this.data.id);
     // this.el.dataset.productId = this.data.id;
-
-    let label = '';
-    if (this.data.isAvailable && store.state.isLocaleStore) {
-      if (this.data.isDeliveryOneDay) {
-        label = '<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>';
-      } else {
-        label = `<div class="product-card__badge product-card__badge_central">Со склада в СПБ, ${ProductCard.shipingPeriod()}</div>`;
-      }
-    }
 
 
     const wrapperEl = document.createElement('div');
@@ -192,7 +205,7 @@ export default class ProductCard {
         <img src="${this.data.img}" srcset="${this.data.img2x} 2x" alt="${this.data.name}">
       </div>
       <div class="product-card__body">
-        ${label}
+        ${this.getDeliveryLabelHTML()}
         <a class="product-card__title stretched-link" href="${this.data.url}" title="Перейти в карточку товара">${this.data.name}</a>
         <div class="product-card__description">${this.data.section}</div>
       </div>
