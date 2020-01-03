@@ -4471,6 +4471,17 @@ html-entities@^1.2.1:
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
   integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
 
+html-loader-srcset@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/html-loader-srcset/-/html-loader-srcset-0.5.6.tgz#4b92b132fa289d5edda40511ab19f603b14d8941"
+  integrity sha512-BeG7IFQbXdjLQBusunRW3yTZ+xOuHQBdw68sEChkv1jio3ctbnchZWLkfoZQN1oKVvFEaaBgQsdFHdNfTx1e9g==
+  dependencies:
+    es6-templates "^0.2.3"
+    fastparse "^1.1.1"
+    html-minifier "^3.5.8"
+    loader-utils "^1.1.0"
+    object-assign "^4.1.1"
+
 html-loader@^0.5.5:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/html-loader/-/html-loader-0.5.5.tgz#6356dbeb0c49756d8ebd5ca327f16ff06ab5faea"
