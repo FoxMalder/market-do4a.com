@@ -107,6 +107,8 @@
   import { mapGetters, mapState, mapActions } from 'vuex';
   import Utils from '../utils/utils';
 
+  import 'bootstrap/js/dist/util';
+  import 'bootstrap/js/dist/collapse';
 
   export default {
     name: "HeaderCollapse",

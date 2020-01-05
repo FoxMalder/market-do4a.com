@@ -1,18 +1,19 @@
-import { Mousewheel, Scrollbar, Swiper } from 'swiper/dist/js/swiper.esm';
+import { Mousewheel, Scrollbar, Swiper } from 'swiper/js/swiper.esm';
 import enableInlineVideo from 'iphone-inline-video';
-import Sticky from 'sticky-js';
+// import Sticky from 'sticky-js';
 import ready from 'domready';
 import AOS from 'aos';
 
-// import './js/common';
+
+import 'bootstrap/js/dist/util';
+import 'bootstrap/js/dist/collapse';
 
 import 'aos/dist/aos.css';
 // import './scss/main.scss';
 import './scss/franchise.scss';
 
 
-// import App from './js/App';
-import Parallax from './js/modules/Parallax';
+import Parallax from '@/modules/Parallax';
 
 
 // if (process.env.NODE_ENV !== 'production') {
@@ -33,10 +34,15 @@ function initStarSlider() {
   const starSliderExplanationTabletEl = document.querySelector('.slider__explanation_tablet');
   const starSliderExplanationDesktopEl = document.querySelector('.slider__explanation_desktop');
 
-  new Sticky('#stars-slider .slider__controls', {
-    marginTop: 150,
-    stickyClass: 'is-sticky',
-  });
+  import('sticky-js')
+    .then((module) => {
+      const Sticky = module.default;
+      new Sticky('#stars-slider .slider__controls', {
+        marginTop: 150,
+        stickyClass: 'is-sticky',
+      });
+    });
+
 
   new Swiper(mainStarSliderEl, {
     slidesPerView: 'auto',

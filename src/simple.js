@@ -4,7 +4,7 @@
 import 'simplebar';
 
 import '@/fancybox';
-import '@/bootstrap';
+// import '@/bootstrap';
 import '@/modules/Input';
 
 import './scss/main.scss';
@@ -18,3 +18,7 @@ import '@/App';
 //   global.App = App;
 //   global.App.init();
 // });
+
+
+console.log(module, module.hot);
+console.log(process);
