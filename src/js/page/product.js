@@ -3,7 +3,7 @@ import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/tooltip';
 
 import Vue from 'vue';
-import Sticky from 'sticky-js';
+// import Sticky from 'sticky-js';
 
 import '../plugins/Anchor';
 // import TextareaAutoHeight from '../plugins/TextareaAutoHeight';

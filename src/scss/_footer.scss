@@ -111,6 +111,7 @@
 
   &__title {
     //@extend %title;
+    display: block;
     @include title;
     margin-bottom: 28px;
 

@@ -62,10 +62,10 @@ const getters = {
 };
 
 const actions = {
-  init({ commit }) {
+  init({ commit, dispatch }) {
     commit('SET_APP_PARAMS', global.app);
 
-    store.dispatch('getFavorites');
+    dispatch('getFavorites');
   },
   addToCompare({ commit }, product) {
     console.log(`Add to compare: ${product.id}`);
