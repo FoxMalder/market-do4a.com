@@ -44,7 +44,7 @@ const cummonConfig = {
     franchise: './src/franchise.js',
     shops: './src/shops.js',
     final: './src/final.js',
-    // about: './src/about.js',
+    about: './src/about.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -274,7 +274,7 @@ const cummonConfig = {
       title: 'О нас',
       filename: 'about.html',
       template: path.resolve(__dirname, 'src/about.html'),
-      chunks: ['simple', 'common', 'runtime'],
+      chunks: ['about', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 

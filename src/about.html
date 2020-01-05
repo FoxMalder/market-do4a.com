@@ -885,48 +885,94 @@
 
   <section class="section a-section-shops">
     <div class="container">
-      <h2 class="section-title"><span class="selected">59 магазинов</span> рядом с твоим домом</h2>
+      <h2 class="section-title">
+        <span class="selected">59 магазинов</span> <br>
+        рядом с твоим <br>
+        домом
+      </h2>
       <p class="section-subtitle">Наша сеть магазинов присутствует в большинстве регионов страны</p>
+      <div class="a-section-shops__list">
+        <div class="a-shops-city">
+          <figure class="a-shops-city__mask">
+            <img src="./images/about/city-spb.jpg" loading="lazy" alt="Санкт-Петербург">
+          </figure>
+          <div class="a-shops-city__label">
+            <h3 class="a-shops-city__name">Санкт-петербург</h3>
+            <div class="a-shops-city__quantity">4 магазина</div>
+          </div>
+        </div>
+        <div class="a-shops-city">
+          <figure class="a-shops-city__mask">
+            <img src="./images/about/city-msk.jpg" loading="lazy" alt="Москва">
+          </figure>
+          <div class="a-shops-city__label">
+            <h3 class="a-shops-city__name">Москва</h3>
+            <div class="a-shops-city__quantity">3 магазина</div>
+          </div>
+        </div>
+        <div class="a-shops-city">
+          <figure class="a-shops-city__mask">
+            <img src="./images/about/city-msk.jpg" loading="lazy" alt="Ростов-на-дону">
+          </figure>
+          <div class="a-shops-city__label">
+            <h3 class="a-shops-city__name">Ростов-на-дону</h3>
+            <div class="a-shops-city__quantity">2 магазина</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="section a-section-production">
     <div class="container">
-      <h2 class="section-title">
+      <h2 class="a-section-production__title section-title">
         Собственное производство ‒ <span class="selected">do<span class="red">4</span>a lab</span>
       </h2>
-      <div class="a-production-list">
+      <div class="a-section-production__list">
         <div class="a-production-card">
-          <div class="a-production-card__mask">
-            <img src="images/about/production-1.jpg" alt="">
-          </div>
-          <div class="a-production-card__inner">
-            <h3 class="a-production-card__title">Доступность</h3>
-            <p class="a-production-card__desc">мы делаем продукцию доступной <strong>для широких масс</strong>,
+          <figure class="a-production-card__mask">
+            <img src="images/about/production-1.jpg" loading="lazy" alt="Доступность">
+          </figure>
+          <div class="a-production-card__label">
+            <h3 class="a-production-card__title">
+              Доступность
+            </h3>
+            <p class="a-production-card__desc">
+              мы делаем продукцию доступной <strong>для широких масс</strong>,
               достигается это путем минимальной маржи
             </p>
           </div>
         </div>
         <div class="a-production-card">
-          <img src="images/about/production-1.jpg" alt="">
-          <div class="a-production-card__inner">
-            <h3 class="a-production-card__title">Импортное сырье</h3>
-            <p class="a-production-card__desc">продукция производятся из сырья закупаемого <strong>в Германии</strong>,
+          <figure class="a-production-card__mask">
+            <img src="images/about/production-2.jpg" loading="lazy" alt="Импортное сырье">
+          </figure>
+          <div class="a-production-card__label">
+            <h3 class="a-production-card__title">
+              Импортное сырье
+            </h3>
+            <p class="a-production-card__desc">
+              продукция производятся из сырья закупаемого <strong>в Германии</strong>,
               имеющего все документы и сертификаты
             </p>
           </div>
         </div>
         <div class="a-production-card">
-          <img src="images/about/production-1.jpg" alt="">
-          <div class="a-production-card__inner">
-            <h3 class="a-production-card__title">Без вреда</h3>
-            <p class="a-production-card__desc">в производстве <strong>не используются</strong> (или по минимуму)
+          <figure class="a-production-card__mask">
+            <img src="images/about/production-3.jpg" loading="lazy" alt="Без вреда">
+          </figure>
+          <div class="a-production-card__label">
+            <h3 class="a-production-card__title">
+              Без вреда
+            </h3>
+            <p class="a-production-card__desc">
+              в производстве <strong>не используются</strong> (или по минимуму)
               <strong>красители</strong> и прочие не полезные добавки.
             </p>
           </div>
         </div>
       </div>
-      <p class="">
+      <p class="a-section-production__desc">
         Открыв завод по производству <b>Do4a Lab</b> в 2016 году, мы вошли в <b>топ-3</b> производителей спортивного
         питания в России. И мы развиваемся дальше.
       </p>
@@ -936,19 +982,35 @@
   <section class="section a-section-brands">
     <div class="container">
       <div class="row">
-        <div class="col-xl-7 ml-xl-auto">
-          <h2 class="section-title">Лучшие спортивные бренды <span class="selected">со всего мира</span></h2>
-          <p class="">
+        <div class="col-xl-5">
+          <div class="a-section-brands__mask">
+            <figure class="a-section-brands__img"></figure>
+          </div>
+        </div>
+        <div class="col-xl-7 section">
+          <h2 class="a-section-brands__title section-title">
+            Лучшие спортивные бренды <span class="selected">со всего мира</span>
+          </h2>
+          <p class="a-section-brands__text">
             Мы разбираемся в спортивном питании как никто другой. И предлагаем проверенные бренды и эффективные товары.
           </p>
-          <p class="">
+          <p class="a-section-brands__text">
             В наших магазинах только именитые производители спортивного питания:
           </p>
-          <div class="a-brands-list"></div>
-          <p class="">
-            ... а также ещё <a href="#" class="text-link">397 различных брендов</a> и более 1500 различных наименований
-            спортивных
-            продуктов
+          <div class="a-brands-list">
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-on.png" alt="Optimum Nutrition"></a>
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-maxler.png" alt="Maxler"></a>
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-simple-lab.png" alt="SimpleLab"></a>
+            <a href="#" class="a-brands-list__item">
+              <img src="images/about/brand-ultimate-nutrition.png" alt="Ultimate Nutrition"></a>
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-kfd.png" alt="KFD Nutrition"></a>
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-mp.png" alt="Muscle Pharm"></a>
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-vplab.png" alt="Vplab Nutrition"></a>
+            <a href="#" class="a-brands-list__item"><img src="images/about/brand-prolab.png" alt="Prolab"></a>
+          </div>
+          <p class="a-section-brands__text">
+            ... а также ещё <a href="#" class="text-link">397 различных брендов</a>
+            и более 1500 различных наименований спортивных продуктов
           </p>
         </div>
       </div>
@@ -958,62 +1020,137 @@
   <section class="section a-section-history">
     <div class="container">
       <h2 class="section-title">История <span class="selected">бренда Do<span class="red">4</span>A</span></h2>
-      <div class="a-history-slider">
-        <div class="a-history-slider__col a-history-item">
+      <!--<div class="a-history-slider">-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2011 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2011.jpg" srcset="images/about/history-2011@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">Зарождение проекта в виде видеоблога и форума о бодибилдинге</p>-->
+      <!--  </div>-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2012 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2012.jpg" srcset="images/about/history-2012@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">Мы крупнейший медиа ресурс в фитнес индустрии и силовых видах спорта</p>-->
+      <!--  </div>-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2013 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2013.jpg" srcset="images/about/history-2013@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">Открытие первого розничного магазина Do4a Market в Новосибирске и-->
+      <!--      интернет-магазина для всей России-->
+      <!--    </p>-->
+      <!--  </div>-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2015 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2015.jpg" srcset="images/about/history-2015@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">Запуск франшизы Do4a Market, к концу года 11 франшиз + 6 своих</p>-->
+      <!--  </div>-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2016 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2016.jpg" srcset="images/about/history-2016@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">Запуск собственного завода спортивного питания Do4a Lab в Санкт-Петербурге</p>-->
+      <!--  </div>-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2017 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2017.jpg" srcset="images/about/history-2017@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">30 место в рейтинге франшиз РБК. 65 магазинов по России и СНГ, одни из главных-->
+      <!--      экспертов и лидеров сферы-->
+      <!--    </p>-->
+      <!--  </div>-->
+      <!--  <div class="a-history-slider__col a-history-item">-->
+      <!--    <h3 class="a-history-item__title">2018 год</h3>-->
+      <!--    <div class="a-history-item__mask">-->
+      <!--      <img class="a-history-item__img" src="images/about/history-2018.jpg" srcset="images/about/history-2018@2x.jpg 2x" loading="lazy" alt="">-->
+      <!--    </div>-->
+      <!--    <p class="a-history-item__text">Коллаборация с крупнейшей сетью аптек Фармакопейка и начало распространения-->
+      <!--      спортивного питания в масс-маркет-->
+      <!--    </p>-->
+      <!--  </div>-->
+      <!--</div>-->
+    </div>
+    <div class="slider slider_container a-history-slider">
+      <div class="slider__wrapper">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2011 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2011.jpg" srcset="images/about/history-2011@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2011.jpg" srcset="images/about/history-2011@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">Зарождение проекта в виде видеоблога и форума о бодибилдинге</p>
         </div>
-        <div class="a-history-slider__col a-history-item">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2012 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2012.jpg" srcset="images/about/history-2012@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2012.jpg" srcset="images/about/history-2012@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">Мы крупнейший медиа ресурс в фитнес индустрии и силовых видах спорта</p>
         </div>
-        <div class="a-history-slider__col a-history-item">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2013 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2013.jpg" srcset="images/about/history-2013@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2013.jpg" srcset="images/about/history-2013@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">Открытие первого розничного магазина Do4a Market в Новосибирске и
             интернет-магазина для всей России
           </p>
         </div>
-        <div class="a-history-slider__col a-history-item">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2015 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2015.jpg" srcset="images/about/history-2015@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2015.jpg" srcset="images/about/history-2015@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">Запуск франшизы Do4a Market, к концу года 11 франшиз + 6 своих</p>
         </div>
-        <div class="a-history-slider__col a-history-item">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2016 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2016.jpg" srcset="images/about/history-2016@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2016.jpg" srcset="images/about/history-2016@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">Запуск собственного завода спортивного питания Do4a Lab в Санкт-Петербурге</p>
         </div>
-        <div class="a-history-slider__col a-history-item">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2017 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2017.jpg" srcset="images/about/history-2017@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2017.jpg" srcset="images/about/history-2017@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">30 место в рейтинге франшиз РБК. 65 магазинов по России и СНГ, одни из главных
             экспертов и лидеров сферы
           </p>
         </div>
-        <div class="a-history-slider__col a-history-item">
+        <div class="slider__slide a-history-item">
           <h3 class="a-history-item__title">2018 год</h3>
           <div class="a-history-item__mask">
-            <img class="a-history-item__img" src="images/about/history-2018.jpg" srcset="images/about/history-2018@2x.jpg 2x" alt="">
+            <img class="a-history-item__img" src="images/about/history-2018.jpg" srcset="images/about/history-2018@2x.jpg 2x" loading="lazy" alt="">
           </div>
           <p class="a-history-item__text">Коллаборация с крупнейшей сетью аптек Фармакопейка и начало распространения
             спортивного питания в масс-маркет
           </p>
         </div>
+      </div>
+      <div class="slider__scrollbar">
+        <button class="slider__track">
+          <svg>
+            <use xlink:href="images/new-sprite.svg#sprite-track-icon"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="slider__explanation slider__explanation_desktop">
+        <svg height="31px" width="20px">
+          <use xlink:href="images/new-sprite.svg#sprite-mouse"></use>
+        </svg>
+        <p>
+          Задержи мышкой и тащи,<br>
+          чтобы увидеть больше.
+        </p>
       </div>
     </div>
   </section>
