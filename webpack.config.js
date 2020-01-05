@@ -46,6 +46,7 @@ const cummonConfig = {
     franchise: './src/franchise.js',
     shops: './src/shops.js',
     final: './src/final.js',
+    about: './src/about.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -302,6 +303,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'О нас',
+      filename: 'about.html',
+      template: path.resolve(__dirname, 'src/about.html'),
+      chunks: ['about', 'simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',
@@ -438,7 +447,7 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
   // output: {
   //   publicPath: '/static/dist/',
   // },
