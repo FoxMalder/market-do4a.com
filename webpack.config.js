@@ -311,6 +311,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Поиск',
+      filename: 'search.html',
+      template: path.resolve(__dirname, 'src/search.html'),
+      chunks: ['simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',

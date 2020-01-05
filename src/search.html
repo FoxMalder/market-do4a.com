@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport">
+  <title>Поиск</title>
+</head>
+<body>
+<div class="header-banner">
+  Бесплатная доставка при заказе от <span class="price">2 990</span>
+</div>
+<header class="h-navbar-top">
+  <div class="container">
+    <div class="h-navbar-top__inner">
+      <!-- Ширина: фиксированна-->
+      <!-- Переполнение: --->
+      <!-- Позиционирование: К левому краю-->
+      <div class="h-navbar-top__change-store">
+        <!-- select-city-->
+        <!-- Статичный модуль (используется несколько раз без изменения)-->
+        <div class="select-city">
+          <div class="select-city__label">Город:</div>
+          <!-- Ширина: Фиксированна-->
+          <!-- Переполнение: Обрезается-->
+          <!-- Позиционирование: К левому краю-->
+          <button class="select-city__link select-city__link_city collapsed" data-toggle="collapse" data-target=".change-city-collapse">
+            <svg class="select-city__icon">
+              <use xlink:href="images/new-sprite.svg#sprite-shield"></use>
+            </svg>
+            Нижний Новгород
+          </button>
+          <!-- Ширина: автоматическая-->
+          <!-- Переполнение: Обрезается-->
+          <!-- Позиционирование: К левому краю-->
+          <!-- Если открывать список магазинов не надо, ставим disabled-->
+          <button class="select-city__link select-city__link_store collapsed" data-toggle="collapse" data-target=".change-store-collapse" disabled>
+            2 магазина</button>
+        </div>
+      </div>
+      <!-- Ширина: Фиксированна-->
+      <!-- Переполнение: Равномерное расположение-->
+      <!-- Позиционирование: К левому краю-->
+      <nav class="h-navbar-top__menu">
+        <!-- page-nav-->
+        <!-- Статичный модуль (используется несколько раз без изменения)-->
+        <ul class="page-nav">
+          <!--li.page-nav__item-->
+          <!--    a.page-nav__link(href='#') Программа бонусов-->
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Доставка и оплата</a>
+          </li>
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Франшиза</a>
+          </li>
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Оптовикам</a>
+          </li>
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Магазины</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Ширина: Фиксированна-->
+      <!-- Переполнение: Обрезается-->
+      <!-- Позиционирование: К левому краю-->
+      <a class="header-login" data-fancybox="" data-src="#sign-in" href="javascript:;">
+        <svg>
+          <use xlink:href="images/new-sprite.svg#sprite-person"></use>
+        </svg>
+        riverstart-person
+        <!--|  Войти-->
+      </a>
+      <!-- Ширина: Фиксированна-->
+      <!-- Переполнение: --->
+      <!-- Позиционирование: К правому краю-->
+      <a class="header-number" href="#">
+        <svg>
+          <use xlink:href="images/new-sprite.svg#sprite-phone"></use>
+        </svg>
+        +7 (920) 024-33-14
+      </a>
+    </div>
+  </div>
+</header>
+<header class="h-navbar-collapse">
+  <div class="change-city-collapse collapse" data-parent=".h-navbar-collapse"></div>
+  <div class="change-store-collapse collapse" data-parent=".h-navbar-collapse"></div>
+</header>
+<header class="h-navbar-fixed">
+  <div class="h-navbar-main">
+    <div class="container">
+      <div class="header-control">
+        <button class="header-control__menu-btn"></button>
+        <a class="header-control__logo" href="/"></a>
+        <div class="header-control__search">
+          <form class="search-fild">
+            <input class="search-fild__input input-text" placeholder="Поиск в каталоге" type="text">
+            <button class="search-fild__loupe" type="submit">
+              <svg>
+                <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <a class="header-control__button header-control__button_search" href="#">
+          <svg width="17px" height="18px">
+            <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
+          </svg>
+        </a>
+        <a class="header-control__button header-control__button_favorites" href="#">
+          <svg width="22px" height="19px">
+            <use xlink:href="images/new-sprite.svg#sprite-heart-mobile"></use>
+          </svg>
+          <!--header-notifications(:count="favorites")-->
+        </a>
+        <a class="header-control__button header-control__button_login" href="#">
+          <svg width="18px" height="18px">
+            <use xlink:href="images/new-sprite.svg#sprite-person-mobile"></use>
+          </svg>
+        </a>
+        <div class="header-control__cart-container" id="js-header-basket">
+          <!--Кнопка корзины для мобилок-->
+          <a class="header-control__button header-control__button_cart" href="#">
+            <svg width="20px" height="22px">
+              <use xlink:href="images/new-sprite.svg#sprite-cart"></use>
+            </svg>
+            <!--header-notifications(:count="cart")-->
+          </a>
+          <!-- Кнопка корзины для десктопа-->
+          <div class="header-control__cart">
+            <a class="button-cart" href="#">
+              <div class="button-cart__inner">
+                <div class="button-cart__num">5</div>
+                <div class="button-cart__block">
+                  <div class="button-cart__title">Корзина</div>
+                  <div class="button-cart__price">12 245 ₽</div>
+                </div>
+              </div>
+            </a>
+            <div class="header-cart">
+              <div class="header-cart__wrapper" data-simplebar data-simplebar-auto-hide="false">
+                <div class="header-cart__header">
+                  <div class="header-cart__title">Товары в корзине</div>
+                  <button class="header-cart__btn-clear">
+                    <svg>
+                      <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                    </svg>
+                    Очистить
+                  </button>
+                </div>
+                <div class="header-cart__list">
+                  <div class="h-product-item">
+                    <div class="h-product-item__img">
+                      <img alt="" src="./images/cart-product-1.png">
+                    </div>
+                    <div class="h-product-item__info">
+                      <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
+                        voluptatibus!</div>
+                      <div class="h-product-item__description">900 г.</div>
+                    </div>
+                    <div class="h-product-item__controls">
+                      <div class="h-product-item__price-block">
+                        <span class="h-product-item__price price">1 750</span>
+                        <button class="h-product-item__remove">
+                          <svg>
+                            <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Prod-->
+                      <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      <!-- Dev-->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h-product-item">
+                    <div class="h-product-item__img">
+                      <img alt="" src="./images/cart-product-1.png">
+                    </div>
+                    <div class="h-product-item__info">
+                      <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
+                        voluptatibus!</div>
+                      <div class="h-product-item__description">900 г.</div>
+                    </div>
+                    <div class="h-product-item__controls">
+                      <div class="h-product-item__price-block">
+                        <span class="h-product-item__price price">1 750</span>
+                        <button class="h-product-item__remove">
+                          <svg>
+                            <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Prod-->
+                      <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      <!-- dev-->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h-product-item">
+                    <div class="h-product-item__img">
+                      <img alt="" src="./images/cart-product-1.png">
+                    </div>
+                    <div class="h-product-item__info">
+                      <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
+                        voluptatibus!</div>
+                      <div class="h-product-item__description">900 г.</div>
+                    </div>
+                    <div class="h-product-item__controls">
+                      <div class="h-product-item__price-block">
+                        <span class="h-product-item__price price">1 750</span>
+                        <button class="h-product-item__remove">
+                          <svg>
+                            <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Prod-->
+                      <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      <!-- dev-->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h-product-item disabled">
+                    <div class="h-product-item__img">
+                      <img alt="" src="./images/cart-product-1.png">
+                    </div>
+                    <div class="h-product-item__info">
+                      <div class="h-product-item__name">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta,
+                        voluptatibus!</div>
+                      <div class="h-product-item__description">900 г.</div>
+                    </div>
+                    <div class="h-product-item__controls">
+                      <div class="h-product-item__price-block">
+                        <span class="h-product-item__price price">1 750</span>
+                        <button class="h-product-item__remove">
+                          <svg>
+                            <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Prod-->
+                      <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      <!-- dev-->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="h-product-item">
+                    <div class="h-product-item__img">
+                      <img alt="" src="./images/cart-product-1.png">
+                    </div>
+                    <div class="h-product-item__info">
+                      <div class="h-product-item__name">Optimum nutrition gold standart whey</div>
+                      <div class="h-product-item__description">900 г.</div>
+                    </div>
+                    <div class="h-product-item__controls">
+                      <div class="h-product-item__price-block">
+                        <span class="h-product-item__price price">1 750</span>
+                        <button class="h-product-item__remove">
+                          <svg>
+                            <use xlink:href="images/new-sprite.svg#sprite-trash"></use>
+                          </svg>
+                        </button>
+                      </div>
+                      <!-- Prod-->
+                      <!-- <input class="input-counter" max="100" min="1" type="number" value="2">-->
+                      <!-- dev-->
+                      <div class="input-counter">
+                        <button class="input-counter__down">-</button>
+                        <span class="input-counter__count">2</span>
+                        <button class="input-counter__up">+</button>
+                        <input class="input-counter" type="hidden" value="2">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h-navbar-category">
+    <div class="container">
+      <ul class="h-category">
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Питание</a>
+          <ul class="h-category-second">
+            <li class="h-category-second__item">
+              <!-- Модификаторы:-->
+              <!--  - '_arrow' - добавляет стрелку справа-->
+              <!-- Примечание:-->
+              <!-- Если существует подменю, добавляем модификатор '_arrow'-->
+              <a class="h-category-second__link h-category-second__link_arrow" href="#">Протеин</a>
+              <!-- Модификаторы:-->
+              <!-- - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)-->
+              <!-- - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)-->
+              <!-- Примечание:-->
+              <!--  Только для категории "Спортивное питание"-->
+              <!--  (по дизайну, фиксировання высота подменю только для него)-->
+              <!--  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'-->
+              <div class="h-category-third h-category-third_h-460">
+                <!-- Модификаторы:-->
+                <!-- - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))-->
+                <!-- - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)-->
+                <img class="h-category-third__img" src="./images/protein.png">
+                <ul class="h-category-third__list">
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Омега 3-6-9</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Витамины и минералы</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для суставов и связок</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Тестобустеры и ZMA</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Антиоксиданты и Q10</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для печени и ПКТ</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Качество сна</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Улучшение пщеварения</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Общеукрепляющие добавки</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Активное долголетие</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link h-category-second__link_arrow" href="#">Батончики, напитки, закуски</a>
+              <!-- Модификаторы:-->
+              <!-- - '_h-320px' - фиксировання высота 320px (по умолчанию height: auto)-->
+              <!-- - '_h-460px' - фиксировання высота 460px (по умолчанию height: auto)-->
+              <!-- Примечание:-->
+              <!--  Только для категории "Спортивное питание"-->
+              <!--  (по дизайну, фиксировання высота подменю только для него)-->
+              <!--  Если больше 5 пунктов, добавляем модификатор '_h-460px', если нет, то '_h-320px'-->
+              <div class="h-category-third h-category-third_h-320">
+                <!-- Модификаторы:-->
+                <!-- - '_no-offset' - убирает смещение картинки (по умолчанию translate(28%, 10%))-->
+                <!-- - '_h-100' - растягивает картинку на всю высоту (по умолчанию height: auto)-->
+                <img class="h-category-third__img" src="./images/protein.png">
+                <ul class="h-category-third__list">
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Омега 3-6-9</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Витамины и минералы</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для суставов и связок</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Тестобустеры и ZMA</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Выносливость и силовые</a>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Гейнеры</a>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Похудение</a>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Продукты для здоровья</a>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Аминокислоты</a>
+            </li>
+          </ul>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Для похудения</a>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Для массы</a>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Для выносливости</a>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Аксессуары</a>
+          <ul class="h-category-second">
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Аксесуары</a>
+              <div class="h-category-third">
+                <img class="h-category-third__img h-category-third__img_no-offset" src="./images/catalog-dropdown-bg-5.png">
+                <ul class="h-category-third__list">
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Омега 3-6-9</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Витамины и минералы</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для суставов и связок</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Тестобустеры и ZMA</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Антиоксиданты и Q10</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для печени и ПКТ</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Качество сна</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Улучшение пщеварения</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Общеукрепляющие добавки</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Активное долголетие</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Женская одежда</a>
+              <div class="h-category-third">
+                <img class="h-category-third__img h-category-third__img_no-offset" src="./images/catalog-dropdown-bg-4.png">
+                <ul class="h-category-third__list">
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Омега 3-6-9</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Витамины и минералы</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для суставов и связок</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Тестобустеры и ZMA</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Антиоксиданты и Q10</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для печени и ПКТ</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Качество сна</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Улучшение пщеварения</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Общеукрепляющие добавки</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Активное долголетие</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Одежда</a>
+          <ul class="h-category-second">
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Женская одежда</a>
+              <div class="h-category-third">
+                <img class="h-category-third__img h-category-third__img_no-offset" src="./images/catalog-dropdown-bg-3.png">
+                <ul class="h-category-third__list">
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Омега 3-6-9</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Витамины и минералы</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для суставов и связок</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Тестобустеры и ZMA</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Антиоксиданты и Q10</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для печени и ПКТ</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Качество сна</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Улучшение пщеварения</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Общеукрепляющие добавки</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Активное долголетие</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="h-category-second__item">
+              <a class="h-category-second__link" href="#">Мужская одежда</a>
+              <div class="h-category-third">
+                <img class="h-category-third__img h-category-third__img_no-offset" src="./images/catalog-dropdown-bg-2.png">
+                <ul class="h-category-third__list">
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Омега 3-6-9</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Витамины и минералы</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для суставов и связок</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Тестобустеры и ZMA</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Антиоксиданты и Q10</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Для печени и ПКТ</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Качество сна</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Улучшение пщеварения</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Общеукрепляющие добавки</a>
+                  </li>
+                  <li class="h-category-third__item">
+                    <a class="h-category-third__link" href="#">Активное долголетие</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Распродажа</a>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">О нас</a>
+        </li>
+        <li class="h-category__item">
+          <a class="h-category__link" href="#">Бренды</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu">
+  <div class="mobile-menu__overlay"></div>
+  <div class="mobile-menu__wrapper">
+    <div class="mobile-menu__inner">
+      <div class="mobile-menu__block">
+        <a class="header-number" href="#">
+          <svg>
+            <use xlink:href="images/new-sprite.svg#sprite-phone"></use>
+          </svg>
+          +7 (920) 024-33-14
+        </a>
+      </div>
+      <div class="mobile-menu__block">
+        <ul class="mobile-menu-category">
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#" data-toggle="submenu">Питание</a>
+            <div class="m-submenu">
+              <div class="m-submenu__header">
+                <button class="m-submenu__back" type="button"></button>
+                <div class="m-submenu__title">Питание</div>
+              </div>
+              <div class="m-submenu__wrapper">
+                <ul class="mobile-menu-category">
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#" data-toggle="submenu">Анектоды за 200</a>
+                    <div class="m-submenu">
+                      <div class="m-submenu__header">
+                        <button class="m-submenu__back" type="button"></button>
+                        <a class="m-submenu__title" href="#">Питание / Для чего-то там</a>
+                      </div>
+                      <div class="m-submenu__wrapper">
+                        <ul class="m-submenu-last">
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Ссылка</a>
+                          </li>
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Вы знаете, поручик ржевский такой пошляк</a>
+                          </li>
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Он не только пошляк, он еще и подлец</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#" data-toggle="submenu">Ширли-мырли</a>
+                    <div class="m-submenu">
+                      <div class="m-submenu__header">
+                        <button class="m-submenu__back" type="button"></button>
+                        <a class="m-submenu__title" href="#">Питание / Ширли-мырли</a>
+                      </div>
+                      <div class="m-submenu__wrapper">
+                        <ul class="m-submenu-last">
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">💩</a>
+                          </li>
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Этого п****а в Химках видал</a>
+                          </li>
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Деревянными членами торгует!</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="https://cs4.pikabu.ru/images/big_size_comm/2016-01_2/1452099606182867068.jpg">
+                      Фрилансим</a>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#">Распродажа</a>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#">Одежда</a>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#">О нас</a>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#">Бренды</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">Для массы</a>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">Для похудения</a>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#" data-toggle="submenu">Чернота</a>
+            <div class="m-submenu">
+              <div class="m-submenu__header">
+                <button class="m-submenu__back" type="button"></button>
+                <div class="m-submenu__title">Чернота</div>
+              </div>
+              <div class="m-submenu__wrapper">
+                <ul class="mobile-menu-category">
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#" data-toggle="submenu">Какие у негра есть три белых
+                      вещи?</a>
+                    <div class="m-submenu">
+                      <div class="m-submenu__header">
+                        <button class="m-submenu__back" type="button"></button>
+                        <a class="m-submenu__title" href="#">Чернота / Какие у негра есть три белых вещи?</a>
+                      </div>
+                      <div class="m-submenu__wrapper">
+                        <ul class="m-submenu-last">
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Глаза, зубы и хозяин.</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#" data-toggle="submenu">Как напугать негра?</a>
+                    <div class="m-submenu">
+                      <div class="m-submenu__header">
+                        <button class="m-submenu__back" type="button"></button>
+                        <a class="m-submenu__title" href="#">Чернота / Как напугать негра?</a>
+                      </div>
+                      <div class="m-submenu__wrapper">
+                        <ul class="m-submenu-last">
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Взять его с собой на аукцион.</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="mobile-menu-category__item">
+                    <a class="mobile-menu-category__link" href="#" data-toggle="submenu">В машине 3 негра. Кто за
+                      рулём?</a>
+                    <div class="m-submenu">
+                      <div class="m-submenu__header">
+                        <button class="m-submenu__back" type="button"></button>
+                        <a class="m-submenu__title" href="#">Чернота / В машине 3 негра. Кто за рулём?</a>
+                      </div>
+                      <div class="m-submenu__wrapper">
+                        <ul class="m-submenu-last">
+                          <li class="m-submenu-last__item">
+                            <a class="m-submenu-last__link" href="#">Коп.</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">Аксессуары</a>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">Распродажа</a>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">Одежда</a>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">О нас</a>
+          </li>
+          <li class="mobile-menu-category__item">
+            <a class="mobile-menu-category__link" href="#">Бренды</a>
+          </li>
+        </ul>
+      </div>
+      <div class="mobile-menu__block">
+        <!-- page-nav-->
+        <!-- Статичный модуль (используется несколько раз без изменения)-->
+        <ul class="page-nav">
+          <!--li.page-nav__item-->
+          <!--    a.page-nav__link(href='#') Программа бонусов-->
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Доставка и оплата</a>
+          </li>
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Франшиза</a>
+          </li>
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Оптовикам</a>
+          </li>
+          <li class="page-nav__item">
+            <a class="page-nav__link" href="#">Магазины</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrapper">
+  <header class="search-page-header">
+    <div class="container">
+      <div class="search-results-history">
+        <span class="search-results-history__title">Вы недавно искали:</span>
+        <span class="search-results-history__item">Протеин</span>
+        <span class="search-results-history__item">Гейнер</span>
+        <span class="search-results-history__item">Креатин</span>
+      </div>
+
+      <h1 class="search-page-title">Мы нашли по запросу «протеин»</h1>
+
+      <div class="search-page-nav">
+        <div class="search-page-nav__item">
+          <a href="#category" class="search-page-nav__link">Категории</a>
+          <span class="search-page-nav__num">8</span>
+        </div>
+        <div class="search-page-nav__item">
+          <a href="#products" class="search-page-nav__link">Товары</a>
+          <span class="search-page-nav__num">56</span>
+        </div>
+        <div class="search-page-nav__item">
+          <a href="#articles" class="search-page-nav__link">Статьи и акции</a>
+          <span class="search-page-nav__num">8</span>
+        </div>
+        <div class="search-page-nav__item">
+          <a href="#brands" class="search-page-nav__link">Найдено в брендах</a>
+          <span class="search-page-nav__num">12</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="search-page-section" id="category">
+    <div class="container">
+      <h2 class="search-page-title">Категории <span>8</span></h2>
+      <div class="search-page-slider">
+        <div class="search-results-category">
+          <div class="search-results-category__name"><a href="#">Протеины</a></div>
+          <div class="search-results-category__desc">Найдено 45</div>
+          <div class="search-results-category__media">
+            <img src="https://marketdo4a.com/upload/resizer/ac/105737_300x180_ac61449f0f17331cfc946ec53cc53253.jpg" alt="" class="search-page-category__img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="search-page-section" id="products">
+    <div class="container">
+      <h2 class="search-page-title">Товары <span>56</span></h2>
+      Товары
+    </div>
+  </section>
+
+  <section class="search-page-section" id="articles">
+    <div class="container">
+      <h2 class="search-page-title">Статьи и акции <span>8</span></h2>
+
+      <article class="search-results-article">
+        <h3 class="search-results-article__title">
+          <a href="#">Какие бывают протеины</a>
+        </h3>
+        <p class="search-results-article__description">Рассказываем о протеинах просто и для всех.</p>
+      </article>
+
+      <article class="search-results-article">
+        <h3 class="search-results-article__title">
+          <a href="#">Какие бывают протеины</a>
+        </h3>
+        <p class="search-results-article__description">Рассказываем о протеинах просто и для всех.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="search-page-section" id="brands">
+    <div class="container">
+      <h2 class="search-page-title">Найдено в брендах <span>12</span></h2>
+      Бренды
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="container">
+      <a class="footer__logo" href="#">
+        <svg>
+          <use xlink:href="images/new-sprite.svg#sprite-logo"></use>
+        </svg>
+      </a>
+      <div class="row">
+        <div class="col-6 col-md-3">
+          <nav class="footer-nav">
+            <a href="#" class="footer-nav__title">Питание</a>
+            <ul class="footer-nav__list">
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Протеин</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Гейнер</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Аминокислоты</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Батончики и закуски</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Выносливость и силовые</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Продукты для здоровья</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Похудение</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-6 col-md-3">
+          <nav class="footer-nav">
+            <!--a.footer-nav__title(href='#')-->
+            <a href="#" class="footer-nav__title">Одежда</a>
+            <ul class="footer-nav__list">
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Женская одежда</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Мужская одежда</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Экипировка</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Аксессуары</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-6 col-md-3">
+          <nav class="footer-nav">
+            <!--a.footer-nav__title(href='#')-->
+            <a href="#" class="footer-nav__title">Покупателям</a>
+            <ul class="footer-nav__list">
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Производители</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Доставка и оплата</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Программа бонусов</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Адреса магазинов</a>
+              </li>
+              <li class="footer-nav__item footer-nav__item_select">
+                <a class="footer-nav__link" href="#">Распродажа</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-6 col-md-3">
+          <nav class="footer-nav">
+            <!--a.footer-nav__title(href='#')-->
+            <a href="#" class="footer-nav__title">Компания</a>
+            <ul class="footer-nav__list">
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">О компании</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Франчайзинг</a>
+              </li>
+              <li class="footer-nav__item">
+                <a class="footer-nav__link" href="#">Контакты</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-contacts">
+        <div class="footer-contacts__address">
+          <div class="footer-contacts__title">Магазины в нижнем новгороде</div>
+          <div class="footer-address">
+            <address class="footer-address__item">
+              <div class="footer-address__address">ул. Восстания, д. 9</div>
+              <a class="footer-address__tel" href="#">8 (920) 024-33-14</a>
+              <a class="footer-address__scheme" href="#">Схема проезда</a>
+            </address>
+            <address class="footer-address__item">
+              <div class="footer-address__address">Проспект Испытателей, д.39. БЦ "Miller Center"</div>
+              <a class="footer-address__tel" href="#">8 (920) 028-20-44</a>
+              <a class="footer-address__scheme" href="#">Схема проезда</a>
+            </address>
+            <address class="footer-address__item">
+              <div class="footer-address__address">ул. Бухарестская, 30-32</div>
+              <a class="footer-address__tel" href="#">8 (920) 024-33-14</a>
+              <a class="footer-address__scheme" href="#">Схема проезда</a>
+            </address>
+            <address class="footer-address__item">
+              <div class="footer-address__address">Коломяжский проспект, дом 26.</div>
+              <a class="footer-address__tel" href="#">8 (920) 028-20-44</a>
+              <a class="footer-address__scheme" href="#">Схема проезда</a>
+            </address>
+            <address class="footer-address__item">
+              <div class="footer-address__address">ул. Невзоровых, 64к2</div>
+              <a class="footer-address__tel" href="#">8 (920) 028-20-44</a>
+              <a class="footer-address__scheme" href="#">Схема проезда</a>
+            </address>
+          </div>
+        </div>
+        <div class="footer-contacts__social">
+          <a class="footer-contacts__social-item social-link098 social-link098_vk" href="#">Вконтакте</a>
+          <a class="footer-contacts__social-item social-link098 social-link098_fb" href="#">Facebook</a>
+          <a class="footer-contacts__social-item social-link098 social-link098_inst" href="#">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="footer__inner container">
+      <div class="footer__copyright">© DO4A.COM, 2019</div>
+      <a class="footer__doc" href="#">Политика конфиденциальности</a>
+      <div class="footer__dev">
+        Сделано в <a href="https://riverstart.ru/" target="_blank">Riverstart</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<form class="auth" id="sign-in" style="display: none">
+  <div class="auth__title">Войти на сайт</div>
+  <div class="auth__link auth__link_no-account">
+    <a data-fancybox="" data-src="#registrations" href="javascript:;">У меня еще нет аккаунта</a>
+  </div>
+  <div class="auth__form">
+    <div class="auth__input-field">
+      <div class="input-field input-field_primary">
+        <label class="input-field__label" for="login-1">Твой Логин</label>
+        <input class="input-field__input" id="login-1" name="user" autocomplete="username" required="" type="text">
+      </div>
+    </div>
+    <div class="auth__input-field">
+      <div class="input-field input-field_primary">
+        <label class="input-field__label" for="pass-1">И пароль</label>
+        <input class="input-field__input" id="pass-1" name="pass" autocomplete="current-password" required="" type="password">
+      </div>
+    </div>
+  </div>
+  <div class="auth__link auth__link_forget">
+    <a href="#">Забыли пароль?</a>
+  </div>
+  <div class="auth__button-block">
+    <button class="btn btn-red btn-block" type="submit">Войти</button>
+  </div>
+  <div class="auth__subtitle">Войти через соц. сети:</div>
+  <div class="auth__social">
+        <span>
+          <i class="icon icon-vk">Вконтакте</i>
+        </span>
+    <span>
+          <i class="icon icon-fb">Facebook</i>
+        </span>
+    <span>
+          <i class="icon icon-inst">Instagram</i>
+        </span>
+    <span>
+          <i class="icon icon-ok">Одноклассники</i>
+        </span>
+  </div>
+</form>
+<form class="auth" id="registrations" style="display: none">
+  <div class="auth__title">Регистрация</div>
+  <div class="auth__link auth__link_no-account">
+    <a data-fancybox="" data-src="#sign-in" href="javascript:;">У меня уже есть аккаунт</a>
+  </div>
+  <div class="auth__form">
+    <div class="auth__input-field">
+      <div class="input-field input-field_primary">
+        <label class="input-field__label" for="reg-login">Логин</label>
+        <input class="input-field__input" id="reg-login" name="user" autocomplete="username" required="" type="text">
+      </div>
+    </div>
+    <div class="auth__input-field">
+      <div class="input-field input-field_primary">
+        <label class="input-field__label" for="reg-pass">Пароль</label>
+        <input class="input-field__input" id="reg-pass" name="pass" autocomplete="new-password" required="" type="password">
+      </div>
+    </div>
+    <div class="auth__input-field">
+      <div class="input-field input-field_primary">
+        <label class="input-field__label" for="reg-email">Email</label>
+        <input class="input-field__input" id="reg-email" name="email" autocomplete="email" required="" type="email">
+      </div>
+    </div>
+  </div>
+  <div class="auth__button-block">
+    <button class="btn btn-red btn-block" type="submit">Зарегистрироваться</button>
+  </div>
+  <div class="auth__subtitle">Или войти через соц. сети:</div>
+  <div class="auth__social">
+        <span>
+          <i class="icon icon-vk">Вконтакте</i>
+        </span>
+    <span>
+          <i class="icon icon-fb">Facebook</i>
+        </span>
+    <span>
+          <i class="icon icon-ok">Одноклассники</i>
+        </span>
+  </div>
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="dev.js"></script>
+</body>
+</html>
