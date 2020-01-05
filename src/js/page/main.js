@@ -1,5 +1,5 @@
-import Sticky from 'sticky-js';
-import 'owl.carousel';
+// import Sticky from 'sticky-js';
+// import 'owl.carousel';
 import {
   // Autoplay,
   // EffectFade,
@@ -9,11 +9,11 @@ import {
   Swiper,
   Virtual,
   Scrollbar,
-} from 'swiper/dist/js/swiper.esm';
-import HeaderSlider from '../modules/HeaderSlider';
-import YandexMaps from '../modules/Maps';
-import Parallax from '../modules/Parallax';
-// import noUiSlider from 'nouislider';
+} from 'swiper/js/swiper.esm';
+
+import HeaderSlider from '@/modules/HeaderSlider';
+import YandexMaps from '@/modules/Maps';
+import Parallax from '@/modules/Parallax';
 
 
 Swiper.use([Navigation, Pagination, Scrollbar, Mousewheel, Virtual]);
@@ -26,7 +26,7 @@ export default class MainPage {
     MainPage.initSetsSlider();
 
     if (document.documentElement.clientWidth >= 768) {
-      [...document.querySelectorAll('.arnold')].forEach((el) => {
+      [].forEach.call(document.querySelectorAll('.arnold'), (el) => {
         Parallax.add(el.querySelector('.arnold__bg'), { y: -0.08, x: 0 });
         Parallax.add(el.querySelector('.arnold__img'), { y: 0.08, x: 0 });
       });
@@ -80,19 +80,25 @@ export default class MainPage {
 
   static initMaps() {
     const mapEl = document.querySelector('#map');
-    if (!mapEl) return;
+    if (!mapEl) {
+      return;
+    }
     // import('../modules/Maps').then((module) => {
     //   const YandexMaps = module.default;
     //   new YandexMaps(mapEl, window.app);
     // });
-    return new YandexMaps(mapEl, window.app);
+
+    new YandexMaps(mapEl, window.app);
   }
 
 
   static initBestArticles() {
     const mainBestArticlesEl = document.querySelector('.best-articles__slider');
-    if (!mainBestArticlesEl) return 0;
-    return new Swiper(mainBestArticlesEl, {
+    if (!mainBestArticlesEl) {
+      return;
+    }
+
+    new Swiper(mainBestArticlesEl, {
       slidesPerView: 'auto',
       freeMode: true,
       // freeModeMomentum: false,
@@ -158,14 +164,22 @@ export default class MainPage {
 
   static initStarSlider() {
     const mainStarSliderEl = document.querySelector('#stars-slider');
-    if (!mainStarSliderEl) return 0;
+    if (!mainStarSliderEl) {
+      return;
+    }
 
-    new Sticky('#stars-slider .slider__controls', {
-      marginTop: 150,
-      stickyClass: 'is-sticky',
-    });
+    import('sticky-js')
+      .then((module) => {
+        const Sticky = module.default;
 
-    return new Swiper(mainStarSliderEl, {
+        new Sticky('#stars-slider .slider__controls', {
+          marginTop: 150,
+          stickyClass: 'is-sticky',
+        });
+      });
+
+
+    new Swiper(mainStarSliderEl, {
       slidesPerView: 'auto',
       freeMode: true,
       // freeModeMomentum: false,
@@ -223,7 +237,9 @@ export default class MainPage {
   static initHeroSlider() {
     const heroSliderEl = document.querySelector('.hero-slider');
 
-    if (!heroSliderEl || heroSliderEl.querySelectorAll('.slider__slide').length < 2) return;
+    if (!heroSliderEl || heroSliderEl.querySelectorAll('.slider__slide').length < 2) {
+      return;
+    }
 
     heroSliderEl.classList.add('slider');
     const heroSlider = new Swiper(heroSliderEl, {
@@ -262,8 +278,13 @@ export default class MainPage {
       },
     });
     heroSlider.pagination.render();
-    window.addEventListener('load', () => {
+
+    const onLoad = () => {
+      window.removeEventListener('load', onLoad);
+
       heroSlider.init();
-    });
+    };
+
+    window.addEventListener('load', onLoad);
   }
 }

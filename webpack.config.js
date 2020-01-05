@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackBar = require('webpackbar');
+const ExtractCssChunksPlugin = require('extract-css-chunks-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
@@ -13,6 +14,7 @@ const IconfontPlugin = require('iconfont-plugin-webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const distPath = path.resolve(__dirname, 'dist');
+const isDev = process.env.NODE_ENV === 'development';
 
 // function generateHtmlPlugins(pageList) {
 //   return pageList.map(item => new HtmlWebpackPlugin({
@@ -58,30 +60,61 @@ const cummonConfig = {
   //   modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
   // },
 
+  performance: {
+    hints: isDev ? false : 'warning',
+  },
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src/js/'),
     },
   },
+
   externals: {
     app: 'app',
     jquery: 'jQuery',
     BX: 'BX',
   },
+
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        use: [
+          { loader: 'pug-loader' },
+        ],
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader-srcset',
+          // loader: 'html-loader',
+        },
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+    ],
+  },
+
   plugins: [
-    new FriendlyErrorsWebpackPlugin(),
+    // new FriendlyErrorsWebpackPlugin({
+    //   clearConsole: false,
+    //   reporter: 'consola',
+    //   logLevel: 'WARNING',
+    // }),
+    new WebpackBar(),
 
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
-      BX: 'BX',
-      'window.BX': 'BX',
     }),
 
     new VueLoaderPlugin(),
     new CopyPlugin([
-      { from: './src/static', to: 'static' },
+      { from: './src/static', to: './' },
     ]),
     // new webpack.ProvidePlugin({
     //   $: 'jquery',
@@ -290,16 +323,6 @@ const devConfig = {
   module: {
     rules: [
       {
-        test: /\.pug$/,
-        use: [
-          { loader: 'pug-loader' },
-        ],
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
-      {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: [
@@ -311,15 +334,28 @@ const devConfig = {
       {
         test: /\.css$/,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { sourceMap: false, importLoaders: 1 } },
+          {
+            loader: ExtractCssChunksPlugin.loader,
+            options: {
+              hot: isDev,
+              reloadAll: isDev, // when desperation kicks in - this is a brute force HMR flag
+            },
+          },
+          { loader: 'css-loader' },
         ],
       },
       {
         test: /\.(sass|scss)$/,
         use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader', options: { sourceMap: false, importLoaders: 1 } },
+          {
+            loader: ExtractCssChunksPlugin.loader,
+            options: {
+              hot: true,
+              reloadAll: true, // when desperation kicks in - this is a brute force HMR flag
+            },
+          },
+          // { loader: 'css-loader', options: { sourceMap: false, importLoaders: 1 } },
+          { loader: 'css-loader' },
           { loader: 'fast-sass-loader' },
         ],
       },
@@ -327,14 +363,20 @@ const devConfig = {
         test: /\.(gif|png|jpg|jpeg|svg)$/,
         exclude: /iconfont.svg/,
         use: [
-          { loader: 'file-loader', options: { name: '[name].[ext]' } },
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[folder]-[name].[ext]',
+              esModule: false,
+            },
+          },
         ],
       },
       {
         test: /\.(svg|eot|ttf|woff|woff2)$/,
         include: path.resolve(__dirname, 'src/fonts'),
         use: [
-          { loader: 'file-loader', options: { name: '[name].[ext]' } },
+          { loader: 'file-loader', options: { name: 'fonts/[name].[ext]' } },
         ],
       },
       /* config.module.rule('media') */
@@ -359,10 +401,18 @@ const devConfig = {
     ],
   },
 
+  plugins: [
+    new ExtractCssChunksPlugin({
+      filename: '[name].css',
+    }),
+  ],
+
   devServer: {
     // contentBase: distPath,
-    contentBase: path.resolve(__dirname, 'src'),
+    contentBase: path.resolve(__dirname, 'src/static'),
+    index: 'main.html',
     quiet: true,
+    noInfo: true,
     port: 9000,
     lazy: false,
     hot: true,
@@ -371,6 +421,18 @@ const devConfig = {
     // compress: true,
     // open: true,
     historyApiFallback: true,
+    clientLogLevel: 'silent',
+
+    proxy: {
+      '/ajax': {
+        // target: 'https://marketdo4a.com',
+        // secure: false,
+        target: 'http://dev.marketdo4a.com',
+        auth: '1:1',
+        changeOrigin: true,
+        cookieDomainRewrite: '',
+      },
+    },
   },
 };
 
@@ -382,16 +444,22 @@ const prodConfig = {
   // },
   module: {
     rules: [
-      {
-        test: /\.pug$/,
-        use: [
-          { loader: 'pug-loader' },
-        ],
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
+      // {
+      //   test: /\.pug$/,
+      //   use: [
+      //     { loader: 'pug-loader' },
+      //   ],
+      // },
+      // {
+      //   test: /\.(html)$/,
+      //   use: {
+      //     loader: 'html-loader-srcset',
+      //   },
+      // },
+      // {
+      //   test: /\.vue$/,
+      //   loader: 'vue-loader',
+      // },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
@@ -402,7 +470,10 @@ const prodConfig = {
       {
         test: /\.css$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: ExtractCssChunksPlugin.loader,
+            options: { hot: isDev, reloadAll: isDev },
+          },
           { loader: 'css-loader', options: { importLoaders: 2, sourceMap: false } },
           { loader: 'postcss-loader', options: { sourceMap: false } },
         ],
@@ -410,7 +481,10 @@ const prodConfig = {
       {
         test: /\.(sass|scss)$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: ExtractCssChunksPlugin.loader,
+            options: { hot: isDev, reloadAll: isDev },
+          },
           { loader: 'css-loader', options: { importLoaders: 2, sourceMap: false } },
           { loader: 'postcss-loader', options: { sourceMap: false } },
           { loader: 'fast-sass-loader' },
@@ -421,7 +495,14 @@ const prodConfig = {
         include: path.resolve(__dirname, 'src/images'),
         exclude: /sprite.svg/,
         use: [
-          { loader: 'file-loader', options: { outputPath: './images', name: '[name].[ext]' } },
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: './images',
+              name: '[name].[ext]',
+              esModule: false,
+            },
+          },
           { loader: 'image-webpack-loader' },
         ],
       },
@@ -436,7 +517,14 @@ const prodConfig = {
       {
         test: /sprite.svg/,
         use: [
-          { loader: 'file-loader', options: { outputPath: './images', name: '[name].[ext]' } },
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: './images',
+              name: '[name].[ext]',
+              esModule: false,
+            },
+          },
         ],
       },
       {
@@ -459,6 +547,7 @@ const prodConfig = {
                 loader: 'file-loader',
                 options: {
                   name: 'media/[name].[ext]',
+                  esModule: false,
                 },
               },
             },
@@ -470,8 +559,10 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(),
 
+    new webpack.BannerPlugin('Your copyright notice'),
+
     new CssUrlRelativePlugin(),
-    new MiniCssExtractPlugin({
+    new ExtractCssChunksPlugin({
       filename: 'css/[name].css',
       // filename: (chunkData) => {
       //   return chunkData.chunk.name === 'simple' ? 'css/common.css' : 'css/[name].css';
@@ -524,7 +615,7 @@ const prodConfig = {
           // test: /\.js$/,
           filename: 'js/[name].bundle.js',
           chunks: 'initial',
-          minChunks: 2,
+          minChunks: 3,
         },
       },
     },

@@ -41,7 +41,7 @@ class App {
   init() {
     // global.App = this;
 
-
+    // console.log('App init');
     store.dispatch('init');
 
     this.Header = new Header();

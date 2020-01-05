@@ -1,4 +1,4 @@
-import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
+// import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Vue from 'vue';
 import store from '../store';
