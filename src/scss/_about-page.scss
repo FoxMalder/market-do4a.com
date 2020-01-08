@@ -906,6 +906,7 @@
   }
 
   &__title {
+    @include title;
     position: relative;
     z-index: 2;
     margin-bottom: 0;
