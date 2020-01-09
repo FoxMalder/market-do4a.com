@@ -2,6 +2,7 @@ import {
   Mousewheel,
   Swiper,
   Scrollbar,
+  A11y,
 } from 'swiper/js/swiper.esm';
 import ready from 'domready';
 
@@ -10,7 +11,7 @@ import ready from 'domready';
 // import './simple';
 
 
-Swiper.use([Scrollbar, Mousewheel]);
+Swiper.use([Scrollbar, Mousewheel, A11y]);
 
 
 ready(() => {

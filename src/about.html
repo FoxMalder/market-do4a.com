@@ -90,13 +90,13 @@
   <div class="h-navbar-main">
     <div class="container">
       <div class="header-control">
-        <button class="header-control__menu-btn"></button>
-        <a class="header-control__logo" href="/"></a>
+        <button class="header-control__menu-btn" aria-label="Открыть меню"></button>
+        <a class="header-control__logo" href="/"><span class="sr-only">MarketDo4a</span></a>
         <div class="header-control__search">
           <form class="search-fild" role="search">
-            <input class="search-fild__input input-text" placeholder="Поиск в каталоге" type="text">
+            <input class="search-fild__input input-text" placeholder="Поиск в каталоге" aria-label="Поисковый запрос" type="text">
             <button class="search-fild__loupe" type="submit" aria-label="Искать">
-              <svg>
+              <svg aria-hidden="true">
                 <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
               </svg>
             </button>
@@ -107,7 +107,7 @@
             <use xlink:href="images/new-sprite.svg#sprite-loupe"></use>
           </svg>
         </a>
-        <a class="header-control__button header-control__button_favorites" href="#">
+        <a class="header-control__button header-control__button_favorites" href="#" aria-label="Избранное">
           <svg width="22px" height="19px">
             <use xlink:href="images/new-sprite.svg#sprite-heart-mobile"></use>
           </svg>
@@ -1143,8 +1143,8 @@
         </div>
       </div>
       <div class="slider__scrollbar">
-        <button class="slider__track">
-          <svg>
+        <button class="slider__track" aria-label="Track">
+          <svg aria-hidden="true">
             <use xlink:href="images/new-sprite.svg#sprite-track-icon"></use>
           </svg>
         </button>
@@ -1166,7 +1166,8 @@
 <footer class="footer">
   <div class="footer__top">
     <div class="container">
-      <a class="footer__logo" href="#">
+      <a class="footer__logo" href="/">
+        <span class="sr-only">MarketDo4a</span>
         <svg>
           <use xlink:href="images/new-sprite.svg#sprite-logo"></use>
         </svg>
