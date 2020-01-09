@@ -1,4 +1,4 @@
-/*! Your copyright notice */
+/*! Front: Roman Meshcheryakov */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[2],{173:function(t,i,e){var s=e(276);t.exports=s},276:function(t,i,e){function s(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}
 /**
  * Sticky.js

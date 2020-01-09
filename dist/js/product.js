@@ -1,4 +1,4 @@
-/*! Your copyright notice */
+/*! Front: Roman Meshcheryakov */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[9,11],{141:function(t,e,i){"use strict";i.r(e),function(t){
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
