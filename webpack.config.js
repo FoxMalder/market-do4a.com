@@ -298,6 +298,11 @@ const devConfig = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            whitespace: 'condense',
+          },
+        },
       },
       {
         test: /\.m?js$/,
@@ -391,6 +396,11 @@ const prodConfig = {
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+        options: {
+          compilerOptions: {
+            whitespace: 'condense',
+          },
+        },
       },
       {
         test: /\.m?js$/,

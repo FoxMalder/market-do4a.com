@@ -997,8 +997,14 @@
   }
 
   &__title {
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 17px;
     font-weight: 600;
+  }
+
+  &__subtitle {
+    margin-top: 18px;
+    margin-bottom: 14px;
   }
 
   &__row {
