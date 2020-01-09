@@ -46,6 +46,7 @@ const cummonConfig = {
     franchise: './src/franchise.js',
     shops: './src/shops.js',
     final: './src/final.js',
+    search: './src/search.js',
     about: './src/about.js',
 
 
@@ -315,7 +316,7 @@ const cummonConfig = {
       title: 'Поиск',
       filename: 'search.html',
       template: path.resolve(__dirname, 'src/search.html'),
-      chunks: ['simple', 'common', 'runtime'],
+      chunks: ['search', 'simple', 'common', 'runtime'],
       minify: false,
     }),
 
