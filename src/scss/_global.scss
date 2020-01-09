@@ -1142,6 +1142,7 @@ textarea.input-field__input {
 .mr-breadcumps {
   position: relative;
   margin: -10px (map_get($grid-gutter-width-map, xs) / -2) 4px;
+  overflow: hidden;
 
 
   &::before {
@@ -1166,14 +1167,19 @@ textarea.input-field__input {
 
   @include media-breakpoint-up(md) {
     margin: 0;
+
+    &::before,
+    &::after {
+      display: none;
+    }
   }
 
   &__list {
     display: flex;
     //margin: 0 (map_get($grid-gutter-width-map, xs) / -2);
     //padding: 0 (map_get($grid-gutter-width-map, xs) / 2);
-    margin: 0;
-    padding: 10px 0;
+    margin: 0 0 -10px;
+    padding: 10px 0 20px;
 
     overflow-x: auto;
     list-style: none;
