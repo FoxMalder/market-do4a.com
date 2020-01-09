@@ -1,4 +1,6 @@
-
+//body {
+//  background: url("../img/rm/search-page-1920.png") top center no-repeat;
+//}
 
 
 .search-results-product {
@@ -83,7 +85,12 @@
 }
 
 .search-results-history {
+  display: flex;
+  align-items: center;
   margin-bottom: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
 
   &__title {
     display: block;
@@ -99,7 +106,6 @@
     padding: 2px 10px 4px;
     border-radius: 2px;
     background: #e8e8e8;
-    font-size: 14px;
     letter-spacing: -0.01em;
     line-height: normal;
     text-align: center;
@@ -130,19 +136,35 @@
 }
 
 .search-results-category {
+  display: flex;
+  height: 110px;
   padding: 20px;
   background: #fff;
 
+  &__body {
+    flex: 1;
+  }
+
+  &__img {
+
+  }
+
   &__name {
+    margin-bottom: 8px;
     font-size: 16px;
+    font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 19px;
   }
 
   &__desc {
     opacity: .5;
+    font-size: 14px;
+    line-height: 17px;
   }
+
 }
+
 
 
 
@@ -158,11 +180,20 @@
 
   @include media-breakpoint-up(xl) {
     padding: 42px 0 57px;
+    margin-bottom: 37px;
+
+    .search-results-history {
+      margin-bottom: 48px;
+    }
+    .search-page-title {
+      margin-bottom: 19px;
+    }
   }
 }
 
 .search-page-section {
   margin-bottom: 40px;
+  overflow: hidden;
 
   @include media-breakpoint-up(md) {
     margin-bottom: 52px;
@@ -180,12 +211,50 @@
 
   span {
     opacity: 0.4;
+    margin-left: 6px;
   }
 
   @include media-breakpoint-up(md) {
     margin-bottom: 38px;
     font-size: 23px;
+    letter-spacing: -0.02em;
     line-height: 31px;
   }
 }
+
+.search-page-nav {
+  display: flex;
+
+  &__item {
+    margin-right: 35px;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 21px;
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__link {
+    display: inline-block;
+    padding: 2px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, .4);
+    color: #000;
+    margin-right: 7px;
+  }
+
+  &__num {
+    color: rgba(0, 0, 0, .5);
+  }
+}
+
+.search-page-slider {
+  overflow: visible;
+
+  .slider-button {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 
