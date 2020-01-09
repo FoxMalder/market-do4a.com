@@ -9,9 +9,6 @@ Swiper.use([Navigation, A11y]);
 
 ready(() => {
   new Swiper('.search-page-slider', {
-    // freeModeMomentum: false,
-    // spaceBetween: 24,
-
     touchEventsTarget: 'wrapper',
 
     containerModifierClass: 'slider_',
@@ -28,26 +25,13 @@ ready(() => {
     wrapperClass: 'slider__wrapper',
 
     slidesPerView: 'auto',
-    spaceBetween: 10,
+    // spaceBetween: 10,
 
     navigation: {
       nextEl: '.slider-button_next',
       prevEl: '.slider-button_prev',
       disabledClass: 'slider-button_disabled',
       hiddenClass: 'slider-button_hidden',
-    },
-
-    // Responsive breakpoints
-    breakpoints: {
-      768: {
-        slidesPerView: 'auto',
-        spaceBetween: 24,
-      },
-      1240: {
-        spaceBetween: 24,
-        slidesPerView: 4,
-        // slidesPerGroup: 4,
-      },
     },
   });
 });

@@ -151,21 +151,54 @@
 
   &__name {
     margin-bottom: 8px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
+
     letter-spacing: -0.01em;
-    line-height: 19px;
+    line-height: 17px;
+
+    @include media-breakpoint-up(md) {
+      font-size: 16px;
+      line-height: 19px;
+    }
   }
 
   &__desc {
     opacity: .5;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 12px;
+    line-height: 15px;
+
+    @include media-breakpoint-up(md) {
+      font-size: 14px;
+      line-height: 17px;
+    }
   }
 
 }
 
+.search-results-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: rgba(#101010, 0.5);
 
+  &__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    max-width: 130px;
+  }
+
+  &__text {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 18px;
+    //opacity: .5;
+  }
+}
 
 
 .search-page-header {
@@ -179,8 +212,8 @@
   }
 
   @include media-breakpoint-up(xl) {
-    padding: 42px 0 57px;
     margin-bottom: 37px;
+    padding: 42px 0 57px;
 
     .search-results-history {
       margin-bottom: 48px;
@@ -201,6 +234,10 @@
 
   @include media-breakpoint-up(xl) {
     margin-bottom: 68px;
+
+    .search-results-article {
+      font-size: 18px;
+    }
   }
 }
 
@@ -210,8 +247,8 @@
   line-height: 115%;
 
   span {
-    opacity: 0.4;
     margin-left: 6px;
+    opacity: 0.4;
   }
 
   @include media-breakpoint-up(md) {
@@ -226,21 +263,21 @@
   display: flex;
 
   &__item {
+    display: flex;
+    align-items: baseline;
     margin-right: 35px;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 21px;
-    display: flex;
-    align-items: baseline;
   }
 
   &__link {
     display: inline-block;
+    margin-right: 7px;
     padding: 2px 0;
     border-bottom: 1px dashed rgba(0, 0, 0, .4);
     color: #000;
-    margin-right: 7px;
   }
 
   &__num {
@@ -255,6 +292,21 @@
     width: 32px;
     height: 32px;
   }
+  .slider__slide {
+    width: 282px;
+    margin-right: 24px;
+  }
 }
 
+.search-page-brands {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  &__item {
+  }
+}
 
