@@ -122,18 +122,34 @@ const Utils = {
       .then(Utils.parseJSON);
   },
 
+
+  getOffset(el) {
+    const rect = el.getBoundingClientRect();
+
+    return {
+      top: rect.top
+        + (window.pageYOffset || document.documentElement.scrollTop),
+      left: rect.left
+        + (window.pageXOffset || document.documentElement.scrollLeft),
+    };
+  },
+
   /**
    * Плавная прокрутка к элементу
    * @param {HTMLElement} element - Элемент
    * @param {Number} duration - Длительность анимации прокрутки
    */
   scrollTo(element, duration = 1000) {
-    const offsetTop = element.getBoundingClientRect().top + window.pageYOffset;
-    const fixedContainer = document.querySelector('.h-navbar-fixed');
+    if (!element) {
+      return;
+    }
 
-    $('html, body').animate({
-      scrollTop: offsetTop - (fixedContainer ? fixedContainer.getBoundingClientRect().height : 0),
-    }, duration);
+    const header = document.querySelector('.h-navbar-fixed');
+
+    window.scrollTo({
+      top: Utils.getOffset(element).top - (header ? header.offsetHeight : 0),
+      behavior: 'smooth',
+    });
   },
 
   scrollToTop(to, scrollDuration = 1000) {

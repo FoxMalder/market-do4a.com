@@ -4,8 +4,15 @@
        @keydown="keyboardNav"
        v-click-outside="deactivate">
     <div class="checkout-location-search__field">
-      <label class="input-field input-field_primary"
-             :class="{'input-field_invalid': locationProperty.error}">
+      <CheckoutLocationLocked
+        v-if="disabled"
+        :value="value"
+      />
+      <label
+        v-else
+        class="input-field input-field_primary"
+        :class="{ 'input-field_invalid': locationProperty.error }"
+      >
         <span class="input-field__label"
               :class="{'input-field__label_active': value !== ''}"
         >{{ locationProperty.title + (locationProperty.required ? '*' : '') }}</span>
@@ -26,27 +33,27 @@
         role="listbox"
         class="checkout-location-search__list dropdown-menu"
         :class="{show: isActive}">
-      
+
       <li
         class="checkout-location-search__message"
         v-if="value.length < 2"
       >Начните вводить название...</li>
-      
+
       <li
         class="checkout-location-search__message"
         v-else-if="status === 'loading'"
       ><div class="spinner-border" role="status"></div></li>
-      
+
       <li
         class="checkout-location-search__message"
         v-else-if="error"
       >{{ error }}</li>
-      
+
       <li
         class="checkout-location-search__message"
         v-else-if="searchedItems.length === 0"
       >Не найдено</li>
-      
+
       <template v-else>
         <li v-for="(city, index) in searchedItems"
             role="option"
@@ -68,6 +75,7 @@
   import { locationSearch } from '../../api';
   import Utils from '../../utils/utils';
   import { param } from '../../store/modules/checkout';
+  import CheckoutLocationLocked from './CheckoutLocationLocked.vue';
 
 
   // if (!window.BX && top.BX)
@@ -125,6 +133,15 @@
 
   export default {
     name: "CheckoutLocationSearch",
+    props: {
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    components: {
+      CheckoutLocationLocked,
+    },
     data() {
       return {
         value: '',
@@ -166,7 +183,7 @@
           };
 
           this.status = 'loading';
-          
+
           locationSearch(request)
             .then(({ data = { ITEMS: [] } }) => {
               this.searchedItems = data.ITEMS.map((item) => ({
@@ -174,7 +191,7 @@
                 name: item.DISPLAY,
                 path: item.PATH.map(pathId => data.ETC.PATH_ITEMS[pathId].DISPLAY),
               }));
-              
+
               if (this.searchedItems.length) {
                 this.selectedIndex = 0;
                 this.value = [this.searchedItems[0].name, ...this.searchedItems[0].path].join(', ');

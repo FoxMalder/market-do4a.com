@@ -2,19 +2,19 @@
   <div id="order-props" class="order-props">
     <h3 class="order-props__title">Ваши данные</h3>
     <div class="order-props__form">
-      
+
       <ul class="order-props__error"
           v-if="errors.PROPERTY && errors.PROPERTY.length">
         <li v-for="error in errors.PROPERTY">{{ error }}</li>
       </ul>
-      
+
       <!-- Детали доставки -->
       <fieldset class="order-props__group" v-for="group in groups">
         <legend class="order-props__subtitle">{{ group.name }}</legend>
-        
+
         <template v-for="prop in group.props">
 <!--          <CheckoutAddress v-if="prop.type === 'location' && visibleAddress"/>-->
-          <CheckoutAddress v-if="prop.type === 'location'"/>
+          <CheckoutLocation v-if="prop.type === 'location'"/>
           <div class="n-form-group" v-else>
             <div class="n-form-group__field">
               <InputField :class="{'input-field_primary': breakpoint !== 'xs'}" :prop="prop"/>
@@ -23,13 +23,13 @@
           </div>
         </template>
       </fieldset>
-      
+
       <!--      &lt;!&ndash; Адрес доставки &ndash;&gt;-->
       <!--      <fieldset class="order-props__group" v-show="visibleAddress" v-if="breakpoint === 'xl'">-->
       <!--        <legend class="order-props__subtitle">Адрес доставки</legend>-->
       <!--        <CheckoutAddress/>-->
       <!--      </fieldset>-->
-      
+
       <fieldset class="order-props__description">
         <div class="form-group" v-skew="10">
           <div class="input-field" :class="{'input-field_primary': breakpoint !== 'xs'}">
@@ -49,7 +49,7 @@
         <div class="order-props__note">Например, уточнения по оформлению заказа, номер карты клиента или как найти ваш
           дом</div>
       </fieldset>
-      
+
       <!--      <div class="order-props__subtitle">Адрес доставки</div>-->
       <!--      <div class="order-props__container">-->
       <!--        <div class="form-group form-group_row">-->
@@ -69,12 +69,12 @@
       <!--        </div>-->
       <!--      </div>-->
     </div>
-    
+
     <!--    <input type="hidden"-->
     <!--           name="PERSON_TYPE"-->
     <!--           v-if="personTypeId"-->
     <!--           :value="personTypeId"/>-->
-    
+
     <div class="order-props__footer">
       <slot></slot>
     </div>
@@ -130,19 +130,19 @@
     watch: {
       filtredProps(newList, oldList) {
         console.log(newList, oldList);
-        
+
         if (this.breakpoint === 'xl') {
           if (newList.length !== oldList.length) {
             const f = newList.find(prop => {
               return prop.required && prop.value === '' && !this.$store.state.checkout.props[prop.code]
             });
-            
+
             if (f) {
               Utils.scrollTo(document.getElementById('order-props'));
             }
           }
         }
-        
+
         // if (newList.length > oldList.length && this.breakpoint === 'xl') {
         //   Utils.scrollTo(document.getElementById('order-props'));
         // }
@@ -154,7 +154,7 @@
         propertyGroups: 'propertyGroups',
         // Old
         // propertyDescription: state => state.propertyDescription,
-        
+
         propertyDescription: state => state.props.DESCRIPTION,
         errors: 'errors',
       }),

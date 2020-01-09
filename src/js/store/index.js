@@ -52,6 +52,13 @@ const getters = {
   getStoreListByCityId: (state) => (cityId) => {
     return state.storeList.filter(item => item.cityId === cityId);
   },
+
+  isRealCity: (state, getters) => {
+    if (getters.currentCity) {
+      return !getters.currentCity.isFake;
+    }
+    return true;
+  },
 };
 
 const actions = {
@@ -138,6 +145,7 @@ const mutations = {
     state.storeRemoteId = app.storeRemoteId;
 
     state.isLocaleStore = app.storeId !== app.storeRemoteId;
+    // state.isFakeCity = false;
 
     state.storeList = Object.values(app.storeManagerData.stores)
       .map(item => ({

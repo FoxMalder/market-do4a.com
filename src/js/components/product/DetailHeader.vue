@@ -1,6 +1,6 @@
 <template>
   <div class="p-detail__header">
-    <div class="p-detail__note" v-if="$store.state.isLocaleStore">
+    <div class="p-detail__note" v-if="$store.state.isLocaleStore && $store.getters.isRealCity">
       <div v-if="activeOffer.count_group > 0"
            class="p-delivery-badge p-delivery-badge_local">{{ textDeliveryLocal || 'Магазин рядом' }}</div>
       <div v-else-if="activeOffer.count_remote > 0"
