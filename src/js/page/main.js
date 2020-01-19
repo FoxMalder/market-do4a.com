@@ -1,29 +1,30 @@
-// import Sticky from 'sticky-js';
-// import 'owl.carousel';
 import {
-  // Autoplay,
-  // EffectFade,
+  Swiper,
   Mousewheel,
   Navigation,
   Pagination,
-  Swiper,
   Virtual,
   Scrollbar,
 } from 'swiper/js/swiper.esm';
 
-import HeaderSlider from '@/modules/HeaderSlider';
+
 import YandexMaps from '@/modules/Maps';
 import Parallax from '@/modules/Parallax';
 
 
-Swiper.use([Navigation, Pagination, Scrollbar, Mousewheel, Virtual]);
-Swiper.use([HeaderSlider]);
+Swiper.use([Navigation, Scrollbar, Mousewheel]);
 
 
 export default class MainPage {
   constructor() {
     MainPage.initHeroSlider();
     MainPage.initSetsSlider();
+
+    // TODO: Обновить шаблон в cms и убрать
+    const starsSlider = document.getElementById('stars-slider');
+    if (starsSlider) {
+      starsSlider.classList.add('slider_container');
+    }
 
     if (document.documentElement.clientWidth >= 768) {
       [].forEach.call(document.querySelectorAll('.arnold'), (el) => {
@@ -38,40 +39,62 @@ export default class MainPage {
   }
 
   static initSetsSlider() {
-    if (!document.querySelector('.set-block__slider')) {
-      return;
-    }
+    Array.prototype.forEach.call(document.querySelectorAll('.set-block__slider'), (el) => {
+      const buttonPrev = document.createElement('button');
+      buttonPrev.classList.add('btn', 'btn-red', 'slider-button', 'slider-button_prev');
+      buttonPrev.innerHTML = `<svg viewBox="0 0 9 6" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M9 3.26664L4.2 3.26664L4.2 5.17604L0.2 2.86664L4.2 0.557238L4.2 2.46664L9 2.46664L9 3.26664Z" />
+        </svg>`;
 
-    import('owl.carousel').then(() => {
-      // Слайдеры с содержимым наборов
-      $('.set-block__slider').owlCarousel({
+      const buttonNext = document.createElement('button');
+      buttonNext.classList.add('btn', 'btn-red', 'slider-button', 'slider-button_next');
+      buttonNext.innerHTML = `<svg viewBox="0 0 9 6" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M-1.66925e-07 2.73336L4.8 2.73336L4.8 0.82396L8.8 3.13336L4.8 5.44276L4.8 3.53336L-2.36863e-07 3.53336L-1.66925e-07 2.73336Z" />
+        </svg>`;
+
+
+      el.appendChild(buttonPrev);
+      el.appendChild(buttonNext);
+
+      new Swiper(el.querySelector('.slider'), {
+        touchEventsTarget: 'wrapper',
+
+        wrapperClass: 'slider__wrapper',
+        containerModifierClass: 'slider_',
+        slideClass: 'slider__slide',
+        slideBlankClass: 'slider__slide_invisible-blank',
+        slideActiveClass: 'slider__slide_active',
+        slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+        slideVisibleClass: 'slider__slide_visible',
+        slideDuplicateClass: 'slider__slide_duplicate',
+        slideNextClass: 'slider__slide_next',
+        slideDuplicateNextClass: 'slider__slide_duplicate-next',
+        slidePrevClass: 'slider__slide_prev',
+        slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+
+        slidesPerView: 'auto',
+        loopedSlides: 6,
+        spaceBetween: 10,
+        centeredSlides: true,
         loop: true,
-        items: 1,
-        center: true,
-        autoWidth: true,
-        // stagePadding: 10,
-        nav: false,
-        dots: false,
-        margin: 10,
-        navContainerClass: 'slider-nav',
-        navText: [
-          `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
-        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.5 5.96968L7.5 5.96968L7.5 9.5498L0 5.21968L7.5 0.88955L7.5 4.46968L16.5 4.46968L16.5 5.96968Z"/>
-      </svg>`,
-          `<svg width="17" height="10" viewBox="0 0 17 10" xmlns="http://www.w3.org/2000/svg">
-        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M0.5 3.96978L9.5 3.96978L9.5 0.389649L17 4.71978L9.5 9.0499L9.5 5.46978L0.5 5.46978L0.5 3.96978Z"/>
-      </svg>`,
-        ],
-        navClass: [
-          'btn slider-nav__button slider-nav__button_left',
-          'btn slider-nav__button slider-nav__button_right',
-        ],
-        responsive: {
+
+        navigation: {
+          nextEl: buttonNext,
+          prevEl: buttonPrev,
+          disabledClass: 'slider-button_disabled',
+          hiddenClass: 'slider-button_hidden',
+        },
+
+        a11y: {
+          prevSlideMessage: 'Предыдущий слайд',
+          nextSlideMessage: 'Следующий слайд',
+        },
+
+        breakpoints: {
           768: {
-            autoWidth: false,
-            center: false,
-            margin: 0,
-            nav: true,
+            loopedSlides: null,
+            slidesPerView: 1,
+            spaceBetween: 0,
           },
         },
       });
@@ -83,22 +106,12 @@ export default class MainPage {
     if (!mapEl) {
       return;
     }
-    // import('../modules/Maps').then((module) => {
-    //   const YandexMaps = module.default;
-    //   new YandexMaps(mapEl, window.app);
-    // });
 
     new YandexMaps(mapEl, window.app);
   }
 
-
   static initBestArticles() {
-    const mainBestArticlesEl = document.querySelector('.best-articles__slider');
-    if (!mainBestArticlesEl) {
-      return;
-    }
-
-    new Swiper(mainBestArticlesEl, {
+    new Swiper('.best-articles__slider', {
       slidesPerView: 'auto',
       freeMode: true,
       // freeModeMomentum: false,
@@ -119,7 +132,6 @@ export default class MainPage {
       slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
       wrapperClass: 'slider__wrapper',
 
-
       mousewheel: {
         forceToAxis: true,
         invert: true,
@@ -135,28 +147,25 @@ export default class MainPage {
         snapOnRelease: false,
       },
 
-      breakpointsInverse: true,
-      breakpoints: {
-        on: {
-          setTranslate(arg) {
-            const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-            this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
-            this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
-          },
+      on: {
+        setTranslate(arg) {
+          const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
+          this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
+          this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
+        },
 
-          touchStart() {
-            this.scrollbar.el.classList.add('active');
-          },
-          scrollbarDragStart() {
-            this.scrollbar.el.classList.add('active');
-          },
+        touchStart() {
+          this.scrollbar.el.classList.add('active');
+        },
+        scrollbarDragStart() {
+          this.scrollbar.el.classList.add('active');
+        },
 
-          touchEnd() {
-            this.scrollbar.el.classList.remove('active');
-          },
-          scrollbarDragEnd() {
-            this.scrollbar.el.classList.remove('active');
-          },
+        touchEnd() {
+          this.scrollbar.el.classList.remove('active');
+        },
+        scrollbarDragEnd() {
+          this.scrollbar.el.classList.remove('active');
         },
       },
     });
@@ -240,51 +249,53 @@ export default class MainPage {
     if (!heroSliderEl || heroSliderEl.querySelectorAll('.slider__slide').length < 2) {
       return;
     }
-
     heroSliderEl.classList.add('slider');
-    const heroSlider = new Swiper(heroSliderEl, {
-      init: false,
-      touchEventsTarget: 'wrapper',
-      effect: 'hero-slider',
 
-      containerModifierClass: 'slider_',
-      slideClass: 'slider__slide',
-      slideBlankClass: 'slider__slide_invisible-blank',
-      slideActiveClass: 'slider__slide_active',
-      slideDuplicateActiveClass: 'slider__slide_duplicate-active',
-      slideVisibleClass: 'slider__slide_visible',
-      slideDuplicateClass: 'slider__slide_duplicate',
-      slideNextClass: 'slider__slide_next',
-      slideDuplicateNextClass: 'slider__slide_duplicate-next',
-      slidePrevClass: 'slider__slide_prev',
-      slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
-      wrapperClass: 'slider__wrapper',
+    import('@/modules/HeaderSlider')
+      .then((module) => {
+        const HeaderSlider = module.default;
 
-      pagination: {
-        el: '.hero-slider-control',
-        clickable: true,
-        bulletClass: 'hero-slider-control__item',
-        bulletActiveClass: 'active',
+        Swiper.use([Pagination, HeaderSlider, Virtual]);
 
-        renderBullet(index, className) {
-          return `
+
+        const heroSlider = new Swiper(heroSliderEl, {
+          init: false,
+          touchEventsTarget: 'wrapper',
+          effect: 'hero-slider',
+
+          containerModifierClass: 'slider_',
+          slideClass: 'slider__slide',
+          slideBlankClass: 'slider__slide_invisible-blank',
+          slideActiveClass: 'slider__slide_active',
+          slideDuplicateActiveClass: 'slider__slide_duplicate-active',
+          slideVisibleClass: 'slider__slide_visible',
+          slideDuplicateClass: 'slider__slide_duplicate',
+          slideNextClass: 'slider__slide_next',
+          slideDuplicateNextClass: 'slider__slide_duplicate-next',
+          slidePrevClass: 'slider__slide_prev',
+          slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
+          wrapperClass: 'slider__wrapper',
+
+          pagination: {
+            el: '.hero-slider-control',
+            clickable: true,
+            bulletClass: 'hero-slider-control__item',
+            bulletActiveClass: 'active',
+
+            renderBullet(index, className) {
+              return `
             <div class="${className}">
               <div class="hero-slider-control__title">${this.slides[index].querySelector('.hero-slider__title').textContent}</div>
               <div class="hero-slider-control__loader">
                 <div class="hero-slider-control__loader-line"></div>
               </div>
             </div>`;
-        },
-      },
-    });
-    heroSlider.pagination.render();
+            },
+          },
+        });
+        heroSlider.pagination.render();
 
-    const onLoad = () => {
-      window.removeEventListener('load', onLoad);
-
-      heroSlider.init();
-    };
-
-    window.addEventListener('load', onLoad);
+        heroSlider.init();
+      });
   }
 }

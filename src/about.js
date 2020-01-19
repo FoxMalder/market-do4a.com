@@ -8,16 +8,14 @@ import {
 } from 'swiper/js/swiper.esm';
 import AOS from 'aos';
 
+import './simple';
+
 import 'aos/dist/aos.css';
 import './scss/about-page.scss';
 
-import './simple';
 
 import AboutCity from '@/components/about/AboutCities.vue';
 import store from '@/store';
-
-
-Swiper.use([Scrollbar, Mousewheel]);
 
 
 ready(() => {
@@ -35,6 +33,8 @@ ready(() => {
 
 
   if (document.documentElement.clientWidth > 1240) {
+    Swiper.use([Scrollbar, Mousewheel]);
+
     new Swiper(document.querySelector('.a-history-slider'), {
       slidesPerView: 'auto',
       freeMode: true,
@@ -105,5 +105,4 @@ ready(() => {
       // },
     });
   }
-
 });

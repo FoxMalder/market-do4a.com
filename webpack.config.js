@@ -577,7 +577,7 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(),
 
-    new webpack.BannerPlugin('Your copyright notice'),
+    new webpack.BannerPlugin('Front by Roman Meshcheryakov'),
 
     new CssUrlRelativePlugin(),
     new ExtractCssChunksPlugin({
@@ -633,7 +633,8 @@ const prodConfig = {
           // test: /\.js$/,
           filename: 'js/[name].bundle.js',
           chunks: 'initial',
-          minChunks: 3,
+          minChunks: 5,
+          // name: true,
         },
       },
     },
