@@ -1,20 +1,39 @@
-import {
-  Mousewheel,
-  Swiper,
-  Scrollbar,
-  A11y,
-} from 'swiper/js/swiper.esm';
 import ready from 'domready';
+import Vue from 'vue';
 
-// import '@/App';
-// import '@/common';
-// import './simple';
+import {
+  Swiper,
+  Mousewheel,
+  Scrollbar,
+} from 'swiper/js/swiper.esm';
+import AOS from 'aos';
+
+import 'aos/dist/aos.css';
+import './scss/about-page.scss';
+
+import './simple';
+
+import AboutCity from '@/components/about/AboutCities.vue';
+import store from '@/store';
 
 
-Swiper.use([Scrollbar, Mousewheel, A11y]);
+Swiper.use([Scrollbar, Mousewheel]);
 
 
 ready(() => {
+  new Vue({
+    store,
+    render: (h) => h(AboutCity),
+  }).$mount('#aboutCity');
+
+
+  AOS.init({
+    duration: 500,
+    easing: 'ease-in-out',
+    once: true,
+  });
+
+
   if (document.documentElement.clientWidth > 1240) {
     new Swiper(document.querySelector('.a-history-slider'), {
       slidesPerView: 'auto',
@@ -37,24 +56,30 @@ ready(() => {
       slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
       wrapperClass: 'slider__wrapper',
 
+      // simulateTouch: true,
 
       mousewheel: {
+        // enabled: true,
         forceToAxis: true,
         invert: true,
-        // releaseOnEdges: true,
+        // releaseOnEdges: false,
       },
-      grabCursor: true,
+      // grabCursor: true,
+
+      // preventClicks: false,
+      // freeModeSticky: false,
+      // watchSlidesVisibility: true,
 
       scrollbar: {
-        el: '.slider__scrollbar',
+        el: '.slider-scrollbar',
         hide: false,
         draggable: true,
         dragSize: 80,
-        dragClass: 'slider__track',
+        dragClass: 'slider-scrollbar-track',
         snapOnRelease: false,
       },
 
-      breakpointsInverse: true,
+      // breakpointsInverse: true,
       // breakpoints: {
       //   on: {
       //     setTranslate(arg) {
