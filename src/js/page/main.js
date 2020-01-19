@@ -135,38 +135,39 @@ export default class MainPage {
       mousewheel: {
         forceToAxis: true,
         invert: true,
-        releaseOnEdges: true,
       },
 
       scrollbar: {
-        el: '.slider__scrollbar',
+        el: '.slider-scrollbar',
         hide: false,
         draggable: true,
         dragSize: 80,
-        dragClass: 'slider__track',
+        dragClass: 'slider-scrollbar-track',
         snapOnRelease: false,
       },
 
       on: {
         setTranslate(arg) {
           const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-          this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
-          this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
+
+          Array.prototype.forEach.call(this.el.querySelectorAll('.slider-scrollbar-note'), (el) => {
+            el.style.opacity = opacity;
+          });
         },
 
-        touchStart() {
-          this.scrollbar.el.classList.add('active');
-        },
-        scrollbarDragStart() {
-          this.scrollbar.el.classList.add('active');
-        },
-
-        touchEnd() {
-          this.scrollbar.el.classList.remove('active');
-        },
-        scrollbarDragEnd() {
-          this.scrollbar.el.classList.remove('active');
-        },
+        // touchStart() {
+        //   this.scrollbar.el.classList.add('active');
+        // },
+        // scrollbarDragStart() {
+        //   this.scrollbar.el.classList.add('active');
+        // },
+        //
+        // touchEnd() {
+        //   this.scrollbar.el.classList.remove('active');
+        // },
+        // scrollbarDragEnd() {
+        //   this.scrollbar.el.classList.remove('active');
+        // },
       },
     });
   }

@@ -139,6 +139,7 @@
       .slider-button_prev {
         left: calc(50% - #{(map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / 2});
       }
+
       .slider-button_next {
         right: calc(50% - #{(map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl)) / 2});
       }
@@ -545,6 +546,30 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 20px;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &_tablet {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 20px;
+      height: 31px;
+      background: url("../img/svg-sprite/mouse.svg") center no-repeat;
+      background-size: contain;
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+    @include media-breakpoint-up(xl) {
+      display: none;
+    }
+  }
 
   &_desktop {
     &::before {

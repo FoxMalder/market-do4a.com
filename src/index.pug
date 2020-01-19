@@ -593,21 +593,12 @@ block wrapper
                                 span.article-preview__tags #спортпит #гейнеры #подборка
                                 span.article-preview__text
                                     | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                .slider__scrollbar
-                    button.slider__track
-                        +sprite('track-icon.svg')
-                .slider__explanation.slider__explanation_tablet
-                    +sprite('mouse.svg')(height='31px', width='20px')
-                    p
-                        | Задержи пальцем и тащи,
-                        br
-                        | чтобы увидеть больше.
-                .slider__explanation.slider__explanation_desktop
-                    +sprite('mouse.svg')(height='31px', width='20px')
-                    p
-                        | Задержи мышкой и тащи,
-                        br
-                        | чтобы увидеть больше.
+                .slider-scrollbar
+                    button.btn.btn-red.slider-scrollbar-track(aria-label="Track")
+                .slider-scrollbar-note.slider-scrollbar-note_tablet
+                    | Задержи пальцем и тащи, <br> чтобы увидеть больше.
+                .slider-scrollbar-note.slider-scrollbar-note_desktop
+                    | Задержи мышкой и тащи, <br> чтобы увидеть больше.
         section.section.banner
             .banner__block
                 h3.banner__title
