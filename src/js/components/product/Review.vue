@@ -39,9 +39,7 @@
           </div>
         </div>
         <div class="p-review-item__body">
-          <div class="p-review-item__text" itemprop="reviewBody">
-            {{ review.text }}
-          </div>
+          <div class="p-review-item__text" itemprop="reviewBody">{{ review.text }}</div>
           <div class="p-review-item__vote">
             <button
               class="btn p-review-item__down-vote"
@@ -61,6 +59,15 @@
             </button>
             <span class="p-review-item__up-vote-count">{{ review.countPlus }}</span>
           </div>
+          <div class="p-review-item__reply p-review-reply">
+            <div class="p-review-reply__title">
+              Ответ от MarketDo4a
+            </div>
+            <p class="p-review-reply__text">
+              Спасибо за вашу оценку! Мы бы тоже не назвали наш продукт устаревшим.
+              Скорее проверенным временем и доказавшим свою эффективность:)
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -68,7 +75,7 @@
 </template>
 
 <script>
-import Reviews from '../../api/reviews';
+import Reviews from '@/api/reviews';
 
 
 export default {
