@@ -100,7 +100,7 @@
 
       shipingPeriod() {
         const city = this.$store.getters.currentCity;
-        return city
+        return city && city.deliveryCountDays
           ? `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`
           : 'от 1 дня';
       }

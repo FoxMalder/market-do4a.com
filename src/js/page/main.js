@@ -20,12 +20,6 @@ export default class MainPage {
     MainPage.initHeroSlider();
     MainPage.initSetsSlider();
 
-    // TODO: Обновить шаблон в cms и убрать
-    const starsSlider = document.getElementById('stars-slider');
-    if (starsSlider) {
-      starsSlider.classList.add('slider_container');
-    }
-
     if (document.documentElement.clientWidth >= 768) {
       [].forEach.call(document.querySelectorAll('.arnold'), (el) => {
         Parallax.add(el.querySelector('.arnold__bg'), { y: -0.08, x: 0 });
@@ -174,9 +168,10 @@ export default class MainPage {
 
   static initStarSlider() {
     const mainStarSliderEl = document.querySelector('#stars-slider');
-    if (!mainStarSliderEl) {
-      return;
-    }
+    if (!mainStarSliderEl) return;
+
+    // TODO: Обновить шаблон в cms и убрать
+    mainStarSliderEl.classList.add('slider_container');
 
     import('sticky-js')
       .then((module) => {
@@ -187,6 +182,11 @@ export default class MainPage {
           stickyClass: 'is-sticky',
         });
       });
+
+    const starSliderOverlayEl = document.querySelector('.stars__info');
+
+    const starSliderExplanationTabletEl = mainStarSliderEl.querySelector('.slider__explanation_tablet');
+    const starSliderExplanationDesktopEl = mainStarSliderEl.querySelector('.slider__explanation_desktop');
 
 
     new Swiper(mainStarSliderEl, {
@@ -228,9 +228,10 @@ export default class MainPage {
       on: {
         setTranslate(arg) {
           const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-          document.querySelector('.stars__info').style.opacity = opacity;
-          this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
-          this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
+
+          if (starSliderOverlayEl) starSliderOverlayEl.style.opacity = opacity;
+          if (starSliderExplanationTabletEl) starSliderExplanationTabletEl.style.opacity = opacity;
+          if (starSliderExplanationDesktopEl) starSliderExplanationDesktopEl.style.opacity = opacity;
 
           if (this.scrollbar.el) {
             if (arg) {
