@@ -85,7 +85,7 @@
         class="product-control__favorites"
         type="button"
         title="Добавить в избранное"
-        :class="{ active: activePacking.isFavorite }"
+        :class="{ active: isFavorite }"
         @click="toggleFavorites"
       >
         <svg viewBox="0 0 31 27" xmlns="http://www.w3.org/2000/svg">
@@ -133,29 +133,32 @@ export default {
       'activePacking',
       'isAvailableOffer',
     ]),
+    isFavorite() {
+      return this.$store.state.favorites.indexOf(this.activePacking.id) !== -1;
+    },
   },
   methods: {
-    addToFavorites() {
-      this.activePacking.isFavorite = true;
-      this.$store.dispatch('removeFromFavorites', this.activePacking.id)
-        .catch(() => {
-          this.activePacking.isFavorite = false;
-        });
-    },
-
-    removeFromFavorites() {
-      this.activePacking.isFavorite = false;
-      this.$store.dispatch('addToFavorites', this.activePacking.id)
-        .catch(() => {
-          this.activePacking.isFavorite = true;
-        });
-    },
+    // addToFavorites() {
+    //   this.activePacking.isFavorite = true;
+    //   this.$store.dispatch('removeFromFavorites', this.activePacking.id)
+    //     .catch(() => {
+    //       this.activePacking.isFavorite = false;
+    //     });
+    // },
+    //
+    // removeFromFavorites() {
+    //   this.activePacking.isFavorite = false;
+    //   this.$store.dispatch('addToFavorites', this.activePacking.id)
+    //     .catch(() => {
+    //       this.activePacking.isFavorite = true;
+    //     });
+    // },
 
     toggleFavorites() {
-      if (this.activePacking.isFavorite) {
-        this.addToFavorites();
+      if (this.isFavorite) {
+        this.$store.dispatch('removeFromFavorites', this.activePacking.id);
       } else {
-        this.removeFromFavorites();
+        this.$store.dispatch('addToFavorites', this.activePacking.id);
       }
     },
   },
