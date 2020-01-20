@@ -1,5 +1,6 @@
 import ready from 'domready';
 import ModalsContainer from '@/components/ModalsContainer.vue';
+import store from '@/store';
 
 
 let instance = null;
@@ -41,7 +42,9 @@ const VueModal = {
 
     // Create component instance
     const Constr = Vue.extend(ModalsContainer);
-    const modal = new Constr();
+    const modal = new Constr({
+      store,
+    });
 
     // Mount it
     const vm = modal.$mount();
