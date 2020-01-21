@@ -211,7 +211,7 @@ export default class ProductCard {
       </div>
       <div class="product-card__footer">
         <div class="product-card__price">
-          <span class="small">от</span>
+          <span class="small">${this.data.pack_count && 'от'}</span>
           <span class="price">${this.data.price}</span>
           <span class="currency">₽</span>
         </div>
