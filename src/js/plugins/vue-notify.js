@@ -1,5 +1,6 @@
 import ready from 'domready';
 import Notifications from '@/components/Notifications.vue';
+import store from '@/store';
 
 
 const VueNotify = {
@@ -13,7 +14,9 @@ const VueNotify = {
 
     // Create component instance
     const Constr = Vue.extend(Notifications);
-    const notify = new Constr();
+    const notify = new Constr({
+      store,
+    });
 
     // // Apply configuration
     // notify.options = Object.assign(Notify.options, args);
