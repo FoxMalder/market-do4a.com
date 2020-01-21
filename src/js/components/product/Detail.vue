@@ -31,7 +31,7 @@
       v-else
       class="p-detail-availability p-detail-availability_not-available"
     >
-      Нет в наличии
+      Под заказ
     </div>
 
     <div v-show="isAvailableOffer" class="p-detail-delivery">
