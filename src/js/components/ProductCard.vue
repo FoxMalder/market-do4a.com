@@ -18,7 +18,7 @@
         <div class="product-card__price">
           <meta itemprop="price" :content="product.price">
           <meta itemprop="priceCurrency" content="RUB">
-          <span class="small">от</span>
+          <span v-if="product.pack_count" class="small">от</span>
           <span class="price">{{ product.price | formatPrice }}</span>
         </div>
         <div class="product-card__sale" v-if="product.price_benefit > 0">
