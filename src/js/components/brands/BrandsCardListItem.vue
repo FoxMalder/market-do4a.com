@@ -1,7 +1,7 @@
 <template>
   <div class="vendor-card">
     <div class="vendor-card__wrapper">
-      <a class="vendor-card__img stretched-link" :href="url">
+      <a class="vendor-card__img stretched-link" :href="url" :title="linkTitle">
         <img v-lazy="img" :alt="name">
       </a>
       <div class="vendor-card__body">
@@ -52,6 +52,10 @@ export default {
     quantity: {
       type: Number,
       default: 0,
+    },
+    linkTitle: {
+      type: String,
+      default: '',
     },
   },
   methods: {
