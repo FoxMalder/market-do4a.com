@@ -8,16 +8,14 @@ import {
 } from 'swiper/js/swiper.esm';
 import AOS from 'aos';
 
+import './simple';
+
 import 'aos/dist/aos.css';
 import './scss/about-page.scss';
 
-import './simple';
 
 import AboutCity from '@/components/about/AboutCities.vue';
 import store from '@/store';
-
-
-Swiper.use([Scrollbar, Mousewheel]);
 
 
 ready(() => {
@@ -35,7 +33,9 @@ ready(() => {
 
 
   if (document.documentElement.clientWidth > 1240) {
-    new Swiper(document.querySelector('.a-history-slider'), {
+    Swiper.use([Scrollbar, Mousewheel]);
+
+    new Swiper('.a-history-slider', {
       slidesPerView: 'auto',
       freeMode: true,
       // freeModeMomentum: false,
@@ -59,16 +59,9 @@ ready(() => {
       // simulateTouch: true,
 
       mousewheel: {
-        // enabled: true,
         forceToAxis: true,
         invert: true,
-        // releaseOnEdges: false,
       },
-      // grabCursor: true,
-
-      // preventClicks: false,
-      // freeModeSticky: false,
-      // watchSlidesVisibility: true,
 
       scrollbar: {
         el: '.slider-scrollbar',
@@ -79,31 +72,15 @@ ready(() => {
         snapOnRelease: false,
       },
 
-      // breakpointsInverse: true,
-      // breakpoints: {
-      //   on: {
-      //     setTranslate(arg) {
-      //       const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-      //       this.el.querySelector('.slider__explanation_tablet').style.opacity = opacity;
-      //       this.el.querySelector('.slider__explanation_desktop').style.opacity = opacity;
-      //     },
-      //
-      //     touchStart() {
-      //       this.scrollbar.el.classList.add('active');
-      //     },
-      //     scrollbarDragStart() {
-      //       this.scrollbar.el.classList.add('active');
-      //     },
-      //
-      //     touchEnd() {
-      //       this.scrollbar.el.classList.remove('active');
-      //     },
-      //     scrollbarDragEnd() {
-      //       this.scrollbar.el.classList.remove('active');
-      //     },
-      //   },
-      // },
+      on: {
+        setTranslate(arg) {
+          const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
+
+          Array.prototype.forEach.call(this.el.querySelectorAll('.slider-scrollbar-note'), (el) => {
+            el.style.opacity = opacity;
+          });
+        },
+      },
     });
   }
-
 });

@@ -38,13 +38,13 @@ export default {
       if (city.id === this.$store.state.cityId) {
         list.unshift({
           name: city.name,
-          img: 'https://marketdo4a.com' + store.gallery,
+          img: store.gallery,
           count: storeList.length,
         });
       } else {
         list.push({
           name: city.name,
-          img: 'https://marketdo4a.com' + store.gallery,
+          img: store.gallery,
           count: storeList.length,
         });
       }

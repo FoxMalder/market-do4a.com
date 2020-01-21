@@ -6,7 +6,6 @@
 @import 'mixins';
 
 
-
 .section-title {
   @include title;
   font-size: 24px;
@@ -586,6 +585,7 @@
           .a-shops-city__mask {
             transform-origin: bottom;
           }
+
           .a-shops-city__body,
           .a-shops-city__img::before {
             transition-delay: .2s;
@@ -633,12 +633,12 @@
     margin: 0;
     overflow: hidden;
     transform: $skew;
+    backface-visibility: hidden;
+
     box-shadow: (
       14px 0 0 -7px rgba(#101010, 0.8),
       28px 0 0 -14px rgba(#101010, 0.6)
     );
-
-    backface-visibility: hidden;
 
     img {
       position: relative;
@@ -706,8 +706,8 @@
     //$scale: (1 + tan(9deg) * 334px / $w);
     //transform: matrix($scale, 0, tan($angle), $scale, 0, 0);
     background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
+    background-size: cover;
 
     &.v-enter-active,
     &.v-leave-active {
@@ -778,9 +778,9 @@
   &__label {
     display: flex;
     margin-top: -20px;
+    overflow: hidden;
     transform: $skew;
     transition: all .5s ease;
-    overflow: hidden;
     background: #fff;
     box-shadow: 10px 10px 0 0 #101010;
     color: #101010;
@@ -1004,13 +1004,13 @@
 
   &.aos-init:not(.aos-animate) {
     .a-production-card__mask {
-      opacity: 0;
       transform: translateY(-10%) $skew;
+      opacity: 0;
     }
 
     .a-production-card__label {
-      opacity: 0;
       transform: translateY(-10%) $skew;
+      opacity: 0;
     }
   }
 
@@ -1025,8 +1025,8 @@
     overflow: hidden;
     //border: 1px solid red;
     transform: $skew;
-    background: #ccc;
     transition: all .5s ease;
+    background: #ccc;
 
     img {
       width: calc(100% + #{tan(9deg) * 250px});
@@ -1071,10 +1071,10 @@
     padding: 12px 15px;
 
     transform: $skew;
+    transition: all .5s ease .4s;
     background: $main-color;
     box-shadow: 10px 10px 0 0 #101010;
     color: #fff;
-    transition: all .5s ease .4s;
 
     @include media-breakpoint-up(md) {
       position: absolute;
@@ -1279,6 +1279,10 @@
   width: 280px;
   margin-right: 10px;
 
+  &:last-child {
+    margin-right: 0;
+  }
+
   @include media-breakpoint-up(md) {
     width: 380px;
     margin-right: 40px;
@@ -1286,8 +1290,9 @@
     transform-origin: bottom;
 
     &:nth-child(2n) {
-      transform: $skew translateY(85px);
-      margin-bottom: 85px;
+      //transform: $skew translateY(85px);
+      margin-top: 85px;
+      //margin-bottom: 85px;
     }
   }
 

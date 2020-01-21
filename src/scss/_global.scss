@@ -1153,21 +1153,21 @@ textarea.input-field__input {
   &::before {
     content: '';
     position: absolute;
-    width: (map_get($grid-gutter-width-map, xs) / 2);
-    height: 100%;
     top: 0;
     left: 0;
-    background: linear-gradient(90deg, #F5F5F5 0%, rgba(#F5F5F5, 0) 100%);
+    width: (map_get($grid-gutter-width-map, xs) / 2);
+    height: 100%;
+    background: linear-gradient(90deg, #f5f5f5 0%, rgba(#F5F5F5, 0) 100%);
   }
 
   &::after {
     content: '';
     position: absolute;
-    width: (map_get($grid-gutter-width-map, xs) / 2);
-    height: 100%;
     top: 0;
     right: 0;
-    background: linear-gradient(270deg, #F5F5F5 0%, rgba(#F5F5F5, 0) 100%);
+    width: (map_get($grid-gutter-width-map, xs) / 2);
+    height: 100%;
+    background: linear-gradient(270deg, #f5f5f5 0%, rgba(#F5F5F5, 0) 100%);
   }
 
   @include media-breakpoint-up(md) {
@@ -1787,179 +1787,50 @@ $custom-range-thumb-disabled-bg: #adb5bd !default;
   }
 }
 
-.vue-modal {
-  position: fixed;
-  z-index: 99999;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  max-width: 100vw;
-  height: 100%;
 
-  //.modal-close {
-  //  transform: none;
-  //}
-
-  &__overlay {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(16, 16, 16, 0.9);
-  }
-
-  &__close {
-    position: absolute;
-    z-index: 10;
-    top: -19px;
-    right: 20px;
-    width: 38px;
-    height: 38px;
-    //transform: translateY(-50%);
-    //background-color: $main-color;
-    //color: #fff;
-    border-radius: 50%;
-
-    svg {
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 20px;
-      transform: translate(-50%, -50%);
-    }
-
-    @include media-breakpoint-up(md) {
-      top: -18px;
-      right: -22px;
-      width: 61px;
-      height: 61px;
-      transform: $skew-reverse;
-      svg {
-        width: 26px;
-        height: 26px;
-      }
-    }
-  }
-
-  &__scroll {
-    position: absolute;
-    //top: 0;
-    //bottom: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    overflow: -moz-scrollbars-none;
-    //transform: $skew;
-    -webkit-backface-visibility: hidden;
-    cursor: pointer;
-
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-      width: 0 !important
-    }
-  }
-
-  &__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100%;
-    padding: 44px 0;
-    pointer-events: none;
-
-    @include media-breakpoint-up(md) {
-      padding: 30px;
-      .n-form-row {
-        margin-right: tan(9deg) * 62px / -2;
-        margin-left: tan(9deg) * 62px / -2;
-      }
-      .n-form-group__field {
-        //margin-right: 0;
-        //margin-left: 0;
-        transform: none;
-      }
-      .btn-skew {
-        margin-right: 0;
-        transform: none;
-
-        &.btn-block {
-          width: 100%;
-          margin-right: auto;
-          margin-left: auto;
-        }
-      }
-    }
-  }
-
-  &__inner {
-    //transform: $skew;
-    background: #fff;
-  }
-
-  &__outer {
-    position: relative;
-    max-width: 100%;
-    cursor: auto;
-    pointer-events: auto;
-    //padding-right: tan(9deg) * 768px / 2;
-    //padding-left: tan(9deg) * 768px / 2;
-  }
-}
-
-.test {
-  width: 270px;
-  @include media-breakpoint-up(md) {
-    width: 400px;
-  }
-  @include media-breakpoint-up(xl) {
-    width: 800px;
-  }
-
-  &__title {
-    height: 100px;
-    padding: 20px;
-    transform: $skew-reverse;
-  }
-
-  &__text {
-    margin-bottom: 50px;
-    padding: 50px 30px;
-    transform: $skew-reverse;
-  }
-
-  &__b {
-    &_n {
-      overflow: hidden;
-    }
-  }
-
-  &__map {
-    //background: darkseagreen url("../img/m.jpg") center no-repeat;
-    background: #ccc center no-repeat;
-    background-size: cover;
-    //width: calc(100% - #{tan(9deg) * 60px});
-
-
-    @include media-breakpoint-up(md) {
-      height: 500px;
-      //width: ;
-      margin-right: tan(9deg) * 500px / -2;
-      margin-left: tan(9deg) * 500px / -2;
-      transform: $skew-reverse;
-    }
-  }
-}
+//.test {
+//  width: 270px;
+//  @include media-breakpoint-up(md) {
+//    width: 400px;
+//  }
+//  @include media-breakpoint-up(xl) {
+//    width: 800px;
+//  }
+//
+//  &__title {
+//    height: 100px;
+//    padding: 20px;
+//    transform: $skew-reverse;
+//  }
+//
+//  &__text {
+//    margin-bottom: 50px;
+//    padding: 50px 30px;
+//    transform: $skew-reverse;
+//  }
+//
+//  &__b {
+//    &_n {
+//      overflow: hidden;
+//    }
+//  }
+//
+//  &__map {
+//    //background: darkseagreen url("../img/m.jpg") center no-repeat;
+//    background: #ccc center no-repeat;
+//    background-size: cover;
+//    //width: calc(100% - #{tan(9deg) * 60px});
+//
+//
+//    @include media-breakpoint-up(md) {
+//      height: 500px;
+//      //width: ;
+//      margin-right: tan(9deg) * 500px / -2;
+//      margin-left: tan(9deg) * 500px / -2;
+//      transform: $skew-reverse;
+//    }
+//  }
+//}
 
 
 .m-store-on-map {
