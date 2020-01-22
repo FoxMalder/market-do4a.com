@@ -4,7 +4,6 @@
 import 'simplebar';
 
 import '@/fancybox';
-// import '@/bootstrap';
 import '@/modules/Input';
 
 import './scss/main.scss';

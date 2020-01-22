@@ -11,6 +11,7 @@
       :img="brand.img"
       :description="brand.desc"
       :quantity="brand.count"
+      :link-title="brand.linkTitle"
     />
   </div>
 </template>

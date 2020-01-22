@@ -1,10 +1,11 @@
 // import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Vue from 'vue';
-import store from '../store';
-import HeaderBasket from '../components/HeaderBasket.vue';
-import HeaderCollapse from '../components/HeaderCollapse.vue';
-import HeaderControlFavorites from '../components/HeaderControlFavorites.vue';
+import store from '@/store';
+import HeaderBasket from '@/components/HeaderBasket.vue';
+import HeaderCollapse from '@/components/HeaderCollapse.vue';
+import HeaderControlFavorites from '@/components/HeaderControlFavorites.vue';
+import Utils from '@/utils';
 // import ready from 'domready';
 
 // import StickySidebar from '../plugins/sticky-sidebar';
@@ -85,13 +86,14 @@ class Menu {
     disableBodyScroll(this.scrollEl);
 
     this.el.classList.add('active');
-    [].forEach.call(this.controls, item => item.classList.add('active'));
+    Array.prototype.forEach.call(this.controls, item => item.classList.add('active'));
 
-    const offsetTop = document.querySelector('.h-navbar-fixed').getBoundingClientRect().top;
-
-    if (offsetTop > 0) {
-      $('html, body').animate({
-        scrollTop: offsetTop + window.pageYOffset,
+    const rect = document.querySelector('.h-navbar-fixed').getBoundingClientRect();
+    if (rect.top > 0) {
+      window.scrollTo({
+        top: rect.top
+          + (window.pageYOffset || document.documentElement.scrollTop),
+        behavior: 'smooth',
       });
     }
 
@@ -103,7 +105,7 @@ class Menu {
     enableBodyScroll(this.scrollEl);
 
     this.el.classList.remove('active');
-    [].forEach.call(this.controls, item => item.classList.remove('active'));
+    Array.prototype.forEach.call(this.controls, item => item.classList.remove('active'));
 
     this.isOpened = false;
   }
@@ -238,7 +240,7 @@ export default class Header {
       //   store.commit('SET_FAVORITES_COUNT', parseInt(favoritesNotifications.innerHTML, 10) || 0);
       // }
 
-      store.dispatch('getFavorites');
+      // store.dispatch('getFavorites');
 
       this.favoritesVM = new Vue({
         store,

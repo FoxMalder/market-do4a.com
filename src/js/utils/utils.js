@@ -123,6 +123,11 @@ const Utils = {
   },
 
 
+  /**
+   * Координаты элемента на странице
+   * @param el
+   * @returns {{top: *, left: *}}
+   */
   getOffset(el) {
     const rect = el.getBoundingClientRect();
 

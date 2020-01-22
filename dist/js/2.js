@@ -1,5 +1,5 @@
-/*! Front: Roman Meshcheryakov */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{173:function(t,i,e){var s=e(276);t.exports=s},276:function(t,i,e){function s(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}
+/*! Front by Roman Meshcheryakov */
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{173:function(t,i,e){var s=e(275);t.exports=s},275:function(t,i,e){function s(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}
 /**
  * Sticky.js
  * Library for sticky elements written in vanilla javascript. With this library you can easily set sticky elements on your website. It's also responsive.

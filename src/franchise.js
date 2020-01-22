@@ -30,18 +30,23 @@ function initStarSlider() {
   const mainStarSliderEl = document.querySelector('#stars-slider');
   if (!mainStarSliderEl) return;
 
-  const starSliderOverlayEl = document.querySelector('.f-section-stars__description');
-  const starSliderExplanationTabletEl = document.querySelector('.slider__explanation_tablet');
-  const starSliderExplanationDesktopEl = document.querySelector('.slider__explanation_desktop');
+  // TODO: Обновить шаблон в cms и убрать
+  mainStarSliderEl.classList.add('slider_container');
 
   import('sticky-js')
     .then((module) => {
       const Sticky = module.default;
+
       new Sticky('#stars-slider .slider__controls', {
         marginTop: 150,
         stickyClass: 'is-sticky',
       });
     });
+
+  const starSliderOverlayEl = document.querySelector('.f-section-stars__description');
+
+  const starSliderExplanationTabletEl = mainStarSliderEl.querySelector('.slider__explanation_tablet');
+  const starSliderExplanationDesktopEl = mainStarSliderEl.querySelector('.slider__explanation_desktop');
 
 
   new Swiper(mainStarSliderEl, {

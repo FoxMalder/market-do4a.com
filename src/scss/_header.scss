@@ -936,6 +936,7 @@
     height: 90px;
     margin-right: 0;
     margin-left: 0;
+    position: relative;
   }
 
   &__menu-btn {
@@ -1023,20 +1024,19 @@
     @include media-breakpoint-up(xl) {
       width: 150px;
       height: 45px;
-      margin-right: 57px;
+      margin-right: auto;
     }
   }
 
   &__search {
     position: absolute;
     z-index: -1;
-    //top: 100%;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
 
-    transition: transform .3s ease;
+    transition: all .3s ease;
 
     &.active,
     &_active {
@@ -1046,15 +1046,17 @@
     }
 
     @include media-breakpoint-up(xl) {
-      position: relative;
-      z-index: auto;
-      top: 0;
-      right: auto;
-      left: auto;
-      flex: 1 0;
+      position: absolute;
+      z-index: 1;
+      right: 332px;
+      left: 207px;
       height: 100%;
-      margin: 0;
-      transform: translateY(0);
+
+      &.active,
+      &_active {
+        left: 0;
+        transform: none;
+      }
     }
   }
 
@@ -1070,16 +1072,16 @@
     height: 100%;
     margin-right: 7px;
 
-    &:hover {
-      .header-cart {
-        display: block;
-      }
-
-      .button-cart {
-        background-color: #1b1b1b;
-        color: #fff;
-      }
-    }
+    //&:hover {
+    //  .header-cart {
+    //    display: block;
+    //  }
+    //
+    //  .button-cart {
+    //    background-color: #1b1b1b;
+    //    color: #fff;
+    //  }
+    //}
 
     @include media-breakpoint-up(xl) {
       display: block;
@@ -1178,13 +1180,16 @@
   }
 }
 
+.search-field,
 .search-fild {
   position: relative;
   width: 100%;
   height: 100%;
-  //@include media-breakpoint-up(xl) {
-  //  height: 100%;
-  //}
+
+  @include media-breakpoint-up(xl) {
+    //height: 100%;
+    padding-left: (tan(9deg) * 90px / 2);
+  }
 
   &__input {
     width: 100%;
@@ -1193,11 +1198,21 @@
     padding-right: calc(75px + var(--safe-area-inset-right));
     padding-left: calc(20px + var(--safe-area-inset-left));
 
-    border-color: #eee;
     background-color: #eee;
 
     font-size: 13px;
     font-style: italic;
+
+
+    border: 3px solid transparent;
+
+    &.active,
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      border: 3px solid #101010;
+    }
+
     @include media-breakpoint-up(xl) {
       padding-right: 75px;
       padding-left: 26px;
@@ -1215,6 +1230,7 @@
     height: 18px;
     margin-top: -9px;
     color: #bababa;
+
     @include media-breakpoint-up(xl) {
       right: 24px;
       width: 24px;
@@ -1224,6 +1240,7 @@
   }
 }
 
+button.search-field__loupe,
 button.search-fild__loupe {
   @extend %button-reset;
   transition: color .3s ease;
@@ -1239,6 +1256,7 @@ button.search-fild__loupe {
   }
 }
 
+
 .button-cart {
   display: flex;
   align-items: center;
@@ -1253,9 +1271,19 @@ button.search-fild__loupe {
   background-color: $main-color;
   color: #fff;
 
+  //&.active {
+  //  background-color: #1b1b1b;
+  //  color: #fff;
+  //}
+
+  &:hover,
   &.active {
     background-color: #1b1b1b;
     color: #fff;
+
+    + .header-cart {
+      display: block;
+    }
   }
 
   &__inner {
@@ -1317,6 +1345,7 @@ button.search-fild__loupe {
   background-color: #fff;
   color: #000;
 
+  &:hover,
   &.active {
     display: block;
   }

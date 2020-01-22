@@ -235,7 +235,7 @@ block wrapper
                         | фитнеса, так и профессиональные спортсмены. И мы гордимся своей аудиторией
                 // /.stars__info
             .stars__inner
-                #stars-slider.stars__slider.slider(data-sticky-container)
+                #stars-slider.stars__slider.slider.slider_container(data-sticky-container)
                     .slider__wrapper
                         .slider__slide.stars__col.star-card
                             .star-card__header
@@ -337,116 +337,114 @@ block wrapper
                 .set-block.set-block_reverse
                     .set-block__banner(style='background-image: url(' + require('./images/set-1-baner.jpg') + ')')
                         .set-block__title наращивание мышечной массы
-                    .set-block__slider.owl-carousel
-                        .set-item
-                            .set-item__title Набор 1
-                            .set-item__img
-                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                            .set-item__info
-                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                .set-item__price
-                                    | Цена
-                                    span.selection 1 750 ₽
-                                .set-item__control
-                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
-                        .set-item
-                            .set-item__title Набор 2
-                            .set-item__img
-                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                            .set-item__info
-                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                .set-item__price
-                                    | Цена
-                                    span.selection 1 750 ₽
-                                .set-item__control
-                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
-                        // /.set-item
+                    .set-block__slider
+                        .slider
+                            .slider__wrapper
+                                .slider__slide.set-item
+                                    .set-item__title Набор 1
+                                    .set-item__img
+                                        img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                                    .set-item__info
+                                        a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                        .set-item__price
+                                            | Цена <span class="red">1 750 ₽</span>
+                                        .set-item__control
+                                            button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                            button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#heart')
+                                .slider__slide.set-item
+                                    .set-item__title Набор 2
+                                    .set-item__img
+                                        img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                                    .set-item__info
+                                        a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                        .set-item__price
+                                            | Цена <span class="red">1 750 ₽</span>
+                                        .set-item__control
+                                            button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                            button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#heart')
                 .set-block
                     .set-block__banner(style='background-image: url(' + require('./images/set-2-baner.jpg') + ')')
                         .set-block__title
                             | Выносливость
                             br
                             |  и производительность
-                    .set-block__slider.owl-carousel
-                        .set-item
-                            .set-item__title Набор 1
-                            .set-item__img
-                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                            .set-item__info
-                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                .set-item__price
-                                    | Цена
-                                    span.selection 1 750 ₽
-                                .set-item__control
-                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
-                        // /.set-item
-                        .set-item
-                            .set-item__title Набор 1
-                            .set-item__img
-                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                            .set-item__info
-                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                .set-item__price
-                                    | Цена
-                                    span.selection 1 750 ₽
-                                .set-item__control
-                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
+                    .set-block__slider
+                        .slider
+                            .slider__wrapper
+                                .slider__slide.set-item
+                                    .set-item__title Набор 1
+                                    .set-item__img
+                                        img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                                    .set-item__info
+                                        a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                        .set-item__price
+                                            | Цена <span class="red">1 750 ₽</span>
+                                        .set-item__control
+                                            button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                            button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#heart')
+                                .slider__slide.set-item
+                                    .set-item__title Набор 2
+                                    .set-item__img
+                                        img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                                    .set-item__info
+                                        a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                        .set-item__price
+                                            | Цена <span class="red">1 750 ₽</span>
+                                        .set-item__control
+                                            button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                            button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#heart')
                 .set-block.set-block_reverse
                     .set-block__banner(style='background-image: url(' + require('./images/set-3-baner.jpg') + ')')
                         .set-block__title Похудение
-                    .set-block__slider.owl-carousel
-                        .set-item
-                            .set-item__title Набор 1
-                            .set-item__img
-                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                            .set-item__info
-                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                .set-item__price
-                                    | Цена
-                                    span.selection 1 750 ₽
-                                .set-item__control
-                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
-                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                        svg
-                                            use(xlink:href=require('./images/sprite.svg') + '#heart')
-                        .set-item
-                            .set-item__title Набор 1
-                            .set-item__img
-                                img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
-                            .set-item__info
-                                a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
-                                .set-item__price
-                                    | Цена
-                                    span.selection 1 750 ₽
-                                .set-item__control
-                                    button.set-item__button.btn.btn-red(title='Добавить в корзину')
-                                        +sprite('add-to-cart.svg')
-                                    button.set-item__button.btn.btn-gray(title='Добавить в избранное')
-                                        +sprite('heart.svg')
-                        // /.set-item
-                        // /.sets__inner
+                    .set-block__slider
+                        .slider
+                            .slider__wrapper
+                                .slider__slide.set-item
+                                    .set-item__title Набор 1
+                                    .set-item__img
+                                        img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                                    .set-item__info
+                                        a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                        .set-item__price
+                                            | Цена <span class="red">1 750 ₽</span>
+                                        .set-item__control
+                                            button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                            button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#heart')
+                                .slider__slide.set-item
+                                    .set-item__title Набор 2
+                                    .set-item__img
+                                        img(alt='Протеин, витамины, BCAA и аргинин', src=require('./images/set-1.png'))
+                                    .set-item__info
+                                        a.set-item__name(href='#') Протеин, казеин, рыбий жир, витамины, BCAA и аргинин
+                                        .set-item__price
+                                            | Цена <span class="red">1 750 ₽</span>
+                                        .set-item__control
+                                            button.set-item__button.btn.btn-red(title='Добавить в корзину')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#add-to-cart')
+                                            button.set-item__button.btn.btn-gray(title='Добавить в избранное')
+                                                svg
+                                                    use(xlink:href=require('./images/sprite.svg') + '#heart')
         section.section.shops
             .container
                 h1.shops__title
@@ -595,21 +593,12 @@ block wrapper
                                 span.article-preview__tags #спортпит #гейнеры #подборка
                                 span.article-preview__text
                                     | Огненная подборка лучших гейнеров 2018 года по версии журнала Sports Illustrator
-                .slider__scrollbar
-                    button.slider__track
-                        +sprite('track-icon.svg')
-                .slider__explanation.slider__explanation_tablet
-                    +sprite('mouse.svg')(height='31px', width='20px')
-                    p
-                        | Задержи пальцем и тащи,
-                        br
-                        | чтобы увидеть больше.
-                .slider__explanation.slider__explanation_desktop
-                    +sprite('mouse.svg')(height='31px', width='20px')
-                    p
-                        | Задержи мышкой и тащи,
-                        br
-                        | чтобы увидеть больше.
+                .slider-scrollbar
+                    button.btn.btn-red.slider-scrollbar-track(aria-label="Track")
+                .slider-scrollbar-note.slider-scrollbar-note_tablet
+                    | Задержи пальцем и тащи, <br> чтобы увидеть больше.
+                .slider-scrollbar-note.slider-scrollbar-note_desktop
+                    | Задержи мышкой и тащи, <br> чтобы увидеть больше.
         section.section.banner
             .banner__block
                 h3.banner__title

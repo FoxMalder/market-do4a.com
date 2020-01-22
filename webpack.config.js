@@ -46,6 +46,8 @@ const cummonConfig = {
     franchise: './src/franchise.js',
     shops: './src/shops.js',
     final: './src/final.js',
+    search: './src/search.js',
+    about: './src/about.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -302,6 +304,22 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'О нас',
+      filename: 'about.html',
+      template: path.resolve(__dirname, 'src/about.html'),
+      chunks: ['about', 'simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
+    new HtmlWebpackPlugin({
+      title: 'Поиск',
+      filename: 'search.html',
+      template: path.resolve(__dirname, 'src/search.html'),
+      chunks: ['search', 'simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',
@@ -510,7 +528,7 @@ const prodConfig = {
         test: /\.(gif|png|jpg|jpeg|svg)$/i,
         include: path.resolve(__dirname, 'src/img'),
         use: [
-          { loader: 'url-loader', options: { outputPath: './img', name: '[folder]-[name].[ext]', limit: 10 * 1024 } },
+          { loader: 'url-loader', options: { outputPath: './img', name: '[folder]-[name].[ext]', limit: 5 * 1024 } },
           { loader: 'image-webpack-loader' },
         ],
       },
@@ -559,7 +577,7 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(),
 
-    new webpack.BannerPlugin('Front: Roman Meshcheryakov'),
+    new webpack.BannerPlugin('Front by Roman Meshcheryakov'),
 
     new CssUrlRelativePlugin(),
     new ExtractCssChunksPlugin({
@@ -615,7 +633,8 @@ const prodConfig = {
           // test: /\.js$/,
           filename: 'js/[name].bundle.js',
           chunks: 'initial',
-          minChunks: 3,
+          minChunks: 5,
+          // name: true,
         },
       },
     },

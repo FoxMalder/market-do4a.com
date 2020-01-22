@@ -27,8 +27,10 @@
     >
       {{ $store.getters.isRealCity ? 'В наличии на складе в Санкт-Петербурге' : `Доставка в ${$store.getters.currentCity.name}` }}
     </div>
-    <div v-else
-         class="p-detail-availability p-detail-availability_not-available">
+    <div
+      v-else
+      class="p-detail-availability p-detail-availability_not-available"
+    >
       Под заказ
     </div>
 
