@@ -21,7 +21,7 @@
               <li class="change-city__item"
                   v-for="(city, i) in item.cityList"
                   :data-letter="i === 0 ? item.char : ''">
-                <a class="change-city__link" :href="getUrl(item.subDomain)"
+                <a class="change-city__link" :href="getUrl(city.subDomain)"
                    @click.prevent="setCity(city)"
                 >{{ city.name }}</a>
               </li>
