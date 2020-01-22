@@ -7,12 +7,9 @@ import Brands from '@/components/brands/Brands.vue';
 import BrandsFilter from '@/components/brands/BrandsFilter.vue';
 
 
-const plug = require('../../img/plug.svg');
-
-
 Vue.use(VueLazyload, {
-  error: plug,
-  loading: plug,
+  error: require('../../images/plug.svg'),
+  loading: require('../../images/plug.svg'),
 });
 
 

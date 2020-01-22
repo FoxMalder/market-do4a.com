@@ -528,7 +528,7 @@ const prodConfig = {
         test: /\.(gif|png|jpg|jpeg|svg)$/i,
         include: path.resolve(__dirname, 'src/img'),
         use: [
-          { loader: 'url-loader', options: { outputPath: './img', name: '[folder]-[name].[ext]', limit: 10 * 1024 } },
+          { loader: 'url-loader', options: { outputPath: './img', name: '[folder]-[name].[ext]', limit: 5 * 1024 } },
           { loader: 'image-webpack-loader' },
         ],
       },
