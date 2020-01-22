@@ -21,7 +21,7 @@
               <li class="change-city__item"
                   v-for="(city, i) in item.cityList"
                   :data-letter="i === 0 ? item.char : ''">
-                <a class="change-city__link" :href="item.subDomain ? `http://${item.subDomain}.marketdo4a.com/` : '#'"
+                <a class="change-city__link" :href="getUrl(item.subDomain)"
                    @click.prevent="setCity(city)"
                 >{{ city.name }}</a>
               </li>
@@ -154,6 +154,12 @@
       },
     },
     methods: {
+      getUrl(subdomain) {
+        if(!subdomain) {
+          return '#';
+        }
+        return `${location.protocol}//${subdomain}.marketdo4a.com${location.pathname}${location.search}`;
+      },
       setCity(city) {
         if (city.isMultipleStore) {
           this.currentCityId = city.id;
