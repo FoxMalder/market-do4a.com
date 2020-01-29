@@ -1,16 +1,9 @@
 import Vue from 'vue';
-import VueLazyload from 'vue-lazyload';
 
 import store from '@/store';
 
 import Brands from '@/components/brands/Brands.vue';
 import BrandsFilter from '@/components/brands/BrandsFilter.vue';
-
-
-Vue.use(VueLazyload, {
-  error: require('../../images/plug.svg'),
-  loading: require('../../images/plug.svg'),
-});
 
 
 export default class Vendors {

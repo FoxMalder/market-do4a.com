@@ -74,11 +74,9 @@ ready(() => {
 
       on: {
         setTranslate(arg) {
-          const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-
-          Array.prototype.forEach.call(this.el.querySelectorAll('.slider-scrollbar-note'), (el) => {
-            el.style.opacity = opacity;
-          });
+          this.$el
+            .find('.slider-scrollbar-note')
+            .css('opacity', Math.max(Math.min((arg / 90) + 1, 1), 0));
         },
       },
     });

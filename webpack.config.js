@@ -48,6 +48,7 @@ const cummonConfig = {
     final: './src/final.js',
     search: './src/search.js',
     about: './src/about.js',
+    target: './src/target.js',
 
 
     // headerStyle: './src/scss/header-style.scss',
@@ -320,6 +321,14 @@ const cummonConfig = {
       minify: false,
     }),
 
+    new HtmlWebpackPlugin({
+      title: 'Ваша цель',
+      filename: 'target.html',
+      template: path.resolve(__dirname, 'src/target.html'),
+      chunks: ['target', 'simple', 'common', 'runtime'],
+      minify: false,
+    }),
+
     // new HtmlWebpackPlugin({
     //   title: 'Шапка',
     //   filename: 'header.html',
@@ -528,7 +537,15 @@ const prodConfig = {
         test: /\.(gif|png|jpg|jpeg|svg)$/i,
         include: path.resolve(__dirname, 'src/img'),
         use: [
-          { loader: 'url-loader', options: { outputPath: './img', name: '[folder]-[name].[ext]', limit: 5 * 1024 } },
+          {
+            loader: 'url-loader',
+            options: {
+              outputPath: './img',
+              name: '[folder]-[name].[ext]',
+              limit: 5 * 1024,
+              esModule: false,
+            },
+          },
           { loader: 'image-webpack-loader' },
         ],
       },

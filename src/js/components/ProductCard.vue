@@ -1,71 +1,134 @@
 <template>
   <div class="product-card">
-    <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+    <div
+      class="product-card__wrapper"
+      itemscope
+      itemtype="http://schema.org/Product"
+    >
       <div class="product-card__img">
-        <img :src="product.img" :srcset="product.img2x + ' 2x'" :alt="product.name">
+        <img
+          v-lazy="product.img"
+          :data-srcset="`${product.img2x} 2x`"
+          :alt="product.name"
+        >
       </div>
       <div class="product-card__body">
-        <template v-if="product.isAvailable && isLocaleStore && $store.getters.isRealCity">
-          <div v-if="product.isDeliveryOneDay"
-               class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-          <div v-else
-               class="product-card__badge product-card__badge_central">Со склада в СПБ, {{ shipingPeriod }}</div>
+        <!-- Доставка -->
+        <template v-if="product.isAvailable && isLocaleStore && isRealCity">
+          <div
+            v-if="product.isDeliveryOneDay"
+            class="product-card__badge product-card__badge_local"
+            v-text="badgeTextLocal()"
+          />
+          <div
+            v-else
+            class="product-card__badge product-card__badge_central"
+            v-text="badgeTextCentral()"
+          />
         </template>
-        <a class="product-card__title stretched-link" :href="product.url" itemprop="name">{{product.name}}</a>
-        <div class="product-card__description" itemprop="description">{{product.section}}</div>
+        <!-- Название -->
+        <a
+          class="product-card__title stretched-link"
+          itemprop="name"
+          :href="product.url"
+          :title="product.urlTitle"
+          v-text="product.name"
+        />
+        <!-- Категория -->
+        <div
+          class="product-card__description"
+          itemprop="description"
+          v-text="product.section"
+        />
       </div>
-      <div class="product-card__footer" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+      <div
+        class="product-card__footer"
+        itemprop="offers"
+        itemscope
+        itemtype="http://schema.org/Offer"
+      >
         <div class="product-card__price">
           <meta itemprop="price" :content="product.price">
           <meta itemprop="priceCurrency" content="RUB">
           <span v-if="product.pack_count" class="small">от</span>
           <span class="price">{{ product.price | formatPrice }}</span>
         </div>
-        <div class="product-card__sale" v-if="product.price_benefit > 0">
+        <div v-if="product.price_benefit > 0" class="product-card__sale">
           Экономия до {{ product.price_benefit | formatPrice }}
         </div>
         <div class="product-card__row">
-          <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+          <div
+            class="product-card__reviews"
+            itemprop="aggregateRating"
+            itemscope
+            itemtype="http://schema.org/AggregateRating"
+          >
             <meta itemprop="ratingValue" :content="product.rating">
             <meta itemprop="bestRating" content="5">
             <meta itemprop="reviewCount" :content="product.review">
-            <span class="product-card__rating" v-if="product.rating >= 3">
-              <i class="i i-star"
-                 v-for="i in [1, 2, 3, 4, 5]"
-                 :class="{ red: i <= product.rating }"></i>
+            <span v-if="product.rating > 2" class="product-card__rating">
+              <i
+                v-for="i in [1, 2, 3, 4, 5]"
+                :key="i"
+                class="i i-star"
+                :class="{ red: i <= product.rating }"
+              />
             </span>
-            <span>{{ product.review ? getText(product.review, ['отзыв', 'отзыва', 'отзывов']) : '' }}</span>
+            <span
+              v-if="product.review > 0"
+              v-text="getText(product.review, ['отзыв', 'отзыва', 'отзывов'])"
+            />
           </div>
           <div class="product-card__stock">
-            <template v-if="product.isAvailable">
-              <link itemprop="availability" href="http://schema.org/InStock"/>
-              <div class="green">В наличии</div>
-            </template>
-            <template v-else>
-              <link itemprop="availability" href="http://schema.org/OutOfStock"/>
-              <div class="red">Нет в наличии</div>
-            </template>
-            <div v-if="product.pack_count > 0">{{getText(product.pack_count, ['фасовка', 'фасовки', 'фасовок'])}}</div>
+            <link
+              itemprop="availability"
+              :href="product.isAvailable ? 'http://schema.org/InStock' : 'http://schema.org/OutOfStock'"
+            >
+            <div
+              :class="[product.isAvailable ? 'green' : 'red']"
+              v-text="product.isAvailable ? 'В наличии' : 'Нет в наличии'"
+            />
+            <div
+              v-if="product.pack_count > 0"
+              v-text="getText(product.pack_count, ['фасовка', 'фасовки', 'фасовок'])"
+            />
           </div>
         </div>
       </div>
     </div>
     <div class="product-stickers">
-      <!--      <div class="product-stickers__item product-stickers__item_red product-stickers__item_delivery"-->
-      <!--           v-if="product.isDeliveryOneDay">Доставка <br>1 день</div>-->
-      <div class="product-stickers__item product-stickers__item_yellow"
-           v-if="product.isRecommend">Рекомендуем</div>
-      <div class="product-stickers__item product-stickers__item_green"
-           v-if="product.isNew">Новинка</div>
-      <div class="product-stickers__item product-stickers__item_red"
-           v-if="product.isHit">Хит!</div>
+      <div
+        v-if="product.isRecommend"
+        class="product-stickers__item product-stickers__item_yellow"
+        v-text="'Рекомендуем'"
+      />
+      <div
+        v-if="product.isNew"
+        class="product-stickers__item product-stickers__item_green"
+        v-text="'Новинка'"
+      />
+      <div
+        v-if="product.isHit"
+        class="product-stickers__item product-stickers__item_red"
+        v-text="'Хит!'"
+      />
     </div>
     <div class="product-control">
-      <button class="product-control__favorites" type="button" title="Добавить в избранное"
-              :class="{ active: product.isFavorite }"
-              @click.prevent="toggleFavorites(product)">
+      <button
+        class="product-control__favorites"
+        type="button"
+        :class="{ active: isFavorite }"
+        :title="isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'"
+        :aria-label="isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'"
+        @click.prevent="toggleFavorites"
+      >
         <svg viewBox="0 0 31 27" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14.1065 3.81673L15.213 4.99927L16.3074 3.80551C17.6287 2.36432 19.5549 1.5 21.6674 1.5C25.6637 1.5 28.9273 4.75892 28.9337 8.7695C28.9367 10.7119 28.182 12.5375 26.7977 13.9221C26.7972 13.9226 26.7967 13.9231 26.7962 13.9235L15.1759 25.4703L3.63848 13.9236L3.63848 13.9236L3.63448 13.9196C2.2583 12.5527 1.5 10.7308 1.5 8.77825C1.5 4.74155 4.78042 1.50409 8.7695 1.50409C10.8195 1.50409 12.7446 2.36126 14.1065 3.81673ZM15.2282 25.5227L15.2277 25.5222C15.2279 25.5223 15.228 25.5225 15.2282 25.5227Z" fill="currentColor" stroke="currentColor" stroke-width="3"/>
+          <path
+            d="M14.1065 3.81673L15.213 4.99927L16.3074 3.80551C17.6287 2.36432 19.5549 1.5 21.6674 1.5C25.6637 1.5 28.9273 4.75892 28.9337 8.7695C28.9367 10.7119 28.182 12.5375 26.7977 13.9221C26.7972 13.9226 26.7967 13.9231 26.7962 13.9235L15.1759 25.4703L3.63848 13.9236L3.63848 13.9236L3.63448 13.9196C2.2583 12.5527 1.5 10.7308 1.5 8.77825C1.5 4.74155 4.78042 1.50409 8.7695 1.50409C10.8195 1.50409 12.7446 2.36126 14.1065 3.81673ZM15.2282 25.5227L15.2277 25.5222C15.2279 25.5223 15.228 25.5225 15.2282 25.5227Z"
+            fill="currentColor"
+            stroke="currentColor"
+            stroke-width="3"
+          />
         </svg>
       </button>
       <!--      <button class="product-control__compare" type="button" title="Сравнить"-->
@@ -83,52 +146,60 @@
 </template>
 
 <script>
-  import { mapGetters, mapState, mapActions } from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 
-  import Utils from '../utils/utils';
+import Utils from '@/utils/utils';
 
 
-  export default {
-    name: "ProductCard",
-    props: {
-      product: Object,
+export default {
+  name: 'ProductCard',
+  props: {
+    product: {
+      type: Object,
+      requared: true,
     },
-    computed: {
-      ...mapState({
-        isLocaleStore: state => state.isLocaleStore
-      }),
+  },
+  computed: {
+    ...mapState({
+      isLocaleStore: 'isLocaleStore',
+    }),
+    ...mapGetters({
+      isRealCity: 'isRealCity',
+    }),
+    isFavorite() {
+      return this.$store.state.favorites.indexOf(this.product.id) !== -1;
+    },
+  },
+  methods: {
+    badgeTextCentral() {
+      let period = 'от 1';
+      let unit = 'дня';
 
-      shipingPeriod() {
-        const city = this.$store.getters.currentCity;
-        return city && city.deliveryCountDays
-          ? `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`
-          : 'от 1 дня';
+      const city = this.$store.getters.currentCity;
+
+      if (city && city.deliveryCountDays && city.deliveryCountDays.length > 1) {
+        period = `${city.deliveryCountDays[0]}-${city.deliveryCountDays[1]}`;
+        unit = Utils.declOfNum(city.deliveryCountDays[1], ['дня', 'дней', 'дней']);
+      }
+
+      return `Со склада в СПБ, ${period} ${unit}`;
+    },
+
+    badgeTextLocal() {
+      return 'Магазин рядом, 1 день';
+    },
+    getText(count, arr) {
+      return `${count} ${Utils.declOfNum(count, arr)}`;
+    },
+    toggleFavorites() {
+      if (this.isFavorite) {
+        this.$store.dispatch('removeFromFavorites', this.product.id);
+      } else {
+        this.$store.dispatch('addToFavorites', this.product.id);
       }
     },
-    methods: {
-      ...mapActions([
-        'addToCompare',
-      ]),
-      toggleFavorites(product) {
-        if (product.isFavorite) {
-          product.isFavorite = false;
-          this.$store.dispatch('removeFromFavorites', product.id)
-            .catch(() => {
-              product.isFavorite = true;
-            });
-        } else {
-          product.isFavorite = true;
-          this.$store.dispatch('addToFavorites', product.id)
-            .catch(() => {
-              product.isFavorite = false;
-            });
-        }
-      },
-      getText(count, arr) {
-        return `${count} ${Utils.declOfNum(count, arr)}`;
-      }
-    },
-  }
+  },
+};
 </script>
 
 <style scoped>

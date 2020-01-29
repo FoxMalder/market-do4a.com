@@ -353,6 +353,7 @@
 
 .cart-empty {
   &__title {
+    @include title;
     margin-bottom: 19px;
   }
 
@@ -1094,6 +1095,8 @@
   //}
   //
   &__title {
+    @include title;
+
     @include media-breakpoint-down(sm) {
       position: absolute;
       top: -39px;
@@ -1927,38 +1930,39 @@
   }
 
   &__list {
+    @extend .card-list;
     display: flex;
-
-    .product-card {
-      width: 152px;
-      border-top: 1px solid #e8e8e8;
-      border-right: 1px solid #e8e8e8;
-    }
-
-    @include media-breakpoint-up(md) {
-      .product-card {
-        width: 282px;
-        margin-right: 20px;
-        border: 0;
-      }
-    }
-
-    @include media-breakpoint-up(xl) {
-      flex-wrap: wrap;
-      margin-right: map_get($grid-gutter-width-map, xl) / -2;
-      margin-bottom: map_get($grid-gutter-width-map, xl) * -1;
-      margin-left: map_get($grid-gutter-width-map, xl) / -2;
-
-      .product-card {
-        flex: 1 0 0%;
-        margin-right: map_get($grid-gutter-width-map, xl) / 2;
-        margin-bottom: map_get($grid-gutter-width-map, xl);
-        margin-left: map_get($grid-gutter-width-map, xl) / 2;
-
-        //&:nth-child(n + 5) {
-        //  display: none;
-        //}
-      }
-    }
+    //
+    //.product-card {
+    //  width: 152px;
+    //  border-top: 1px solid #e8e8e8;
+    //  border-right: 1px solid #e8e8e8;
+    //}
+    //
+    //@include media-breakpoint-up(md) {
+    //  .product-card {
+    //    width: 282px;
+    //    margin-right: 20px;
+    //    border: 0;
+    //  }
+    //}
+    //
+    //@include media-breakpoint-up(xl) {
+    //  flex-wrap: wrap;
+    //  margin-right: map_get($grid-gutter-width-map, xl) / -2;
+    //  margin-bottom: map_get($grid-gutter-width-map, xl) * -1;
+    //  margin-left: map_get($grid-gutter-width-map, xl) / -2;
+    //
+    //  .product-card {
+    //    flex: 1 0 0%;
+    //    margin-right: map_get($grid-gutter-width-map, xl) / 2;
+    //    margin-bottom: map_get($grid-gutter-width-map, xl);
+    //    margin-left: map_get($grid-gutter-width-map, xl) / 2;
+    //
+    //    //&:nth-child(n + 5) {
+    //    //  display: none;
+    //    //}
+    //  }
+    //}
   }
 }

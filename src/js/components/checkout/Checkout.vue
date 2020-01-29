@@ -2,12 +2,21 @@
   <div>
     <header class="cart-section-header">
       <div class="container">
-        <div class="breadcumps">
-          <a href="/" class="breadcumps__link red">Главная</a>
-          <span class="breadcumps__delimiter"></span>
-          <span class="breadcumps__page">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</span>
-        </div>
-        <h2 class="cart-section-header__title">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа'}}</h2>
+        <nav class="mr-breadcumps" aria-label="Хлебные крошки">
+          <ol class="mr-breadcumps__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a itemprop="item" href="/"><span itemprop="name" class="red">Главная</span></a>
+              <meta itemprop="position" content="1" />
+            </li>
+            <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+              <span itemprop="name">{{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа' }}</span>
+              <meta itemprop="position" content="2" />
+            </li>
+          </ol>
+        </nav>
+        <h1 class="cart-section-header__title">
+          {{ currentStep === 'basket' ? 'Корзина' : 'Оформление заказа' }}
+        </h1>
       </div>
     </header>
 

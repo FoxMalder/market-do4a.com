@@ -62,19 +62,21 @@ export default class YandexMaps {
       // iconShape: { type: 'Rectangle', coordinates: [[0, 0], [58, 75]] },
       iconShape: {
         type: 'Polygon',
-        coordinates: [[
-          [40, 0],
-          [54, 11],
-          [58, 22],
-          [58, 34],
-          [50, 52],
-          [29, 75],
-          [8, 52],
-          [0, 34],
-          [0, 22],
-          [4, 11],
-          [18, 0],
-        ]],
+        coordinates: [
+          [
+            [40, 0],
+            [54, 11],
+            [58, 22],
+            [58, 34],
+            [50, 52],
+            [29, 75],
+            [8, 52],
+            [0, 34],
+            [0, 22],
+            [4, 11],
+            [18, 0],
+          ],
+        ],
       },
 
       balloonPanelMaxMapArea: 0,
@@ -197,11 +199,13 @@ export default class YandexMaps {
       balloonContent:
         `<div class="map-balloon__address">{{ properties.address }}</div>
            <a class="map-balloon__tel" href="tel:{{ properties.tel }}">{{ properties.tel }}</a>`,
-           // <div class="map-balloon__scheme">{{ properties.link }}</div>`,
+      // <div class="map-balloon__scheme">{{ properties.link }}</div>`,
     },
   };
 
-  createMap() {
+  createMap = (ymaps) => {
+    this.yandexMap = ymaps;
+
     // Создаем экземпляр карты
     this.map = new this.yandexMap.Map(this.el, {
       center: [55.76, 37.64],
@@ -231,19 +235,19 @@ export default class YandexMaps {
       document.querySelectorAll('[data-marker-id]'),
       item => item.addEventListener('click', (e) => {
         e.preventDefault();
-        this.openBalloon(e.target.dataset.markerId);
+        this.openBalloon(e.currentTarget.dataset.markerId);
       }),
     );
-  }
+  };
 
   loadMapApi() {
-    YandexMapsLoader.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
-      .then((maps) => {
-        this.yandexMap = maps;
-
-        this.createMap();
-      })
-      .catch(error => console.error('Failed to load Yandex Maps', error));
+    if (window.ymaps) {
+      window.ymaps.ready(this.createMap);
+    } else {
+      YandexMapsLoader.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
+        .then(this.createMap)
+        .catch((error) => console.error('Failed to load Yandex Maps', error));
+    }
   }
 
   openBalloon(objectId) {

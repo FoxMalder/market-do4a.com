@@ -31,7 +31,7 @@
               :key="i"
               class="i i-star"
               :class="{red: i <= review.raiting}"
-            ></i>
+            />
           </div>
 
           <div class="p-review-item__date">
@@ -39,9 +39,11 @@
           </div>
         </div>
         <div class="p-review-item__body">
-          <div class="p-review-item__text" itemprop="reviewBody">
-            {{ review.text }}
-          </div>
+          <div
+            class="p-review-item__text"
+            itemprop="reviewBody"
+            v-text="review.text"
+          />
           <div class="p-review-item__vote">
             <button
               class="btn p-review-item__down-vote"

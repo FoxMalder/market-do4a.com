@@ -3,44 +3,47 @@
     <div class="container">
       <h2 class="p-section-similar__title">Похожие товары</h2>
     </div>
-    <div class="p-section-similar__inner">
-      <div class="p-section-similar__list" :class="{ collapsed: collapsed }">
+    <div class="product-list product-list_slider">
+      <div class="product-list__wrapper">
         <template v-for="item in similar">
-          <ProductCard v-if="item.type === 'product'" :product="item.options"/>
+          <ProductCard v-if="item.type === 'product'" :product="item.options" />
         </template>
       </div>
-      <div class="load-more-block" v-if="similar.length > 4" v-show="collapsed">
-        <button class="load-more-block__link" type="button" @click.prevent="showMore">Показать еще</button>
-      </div>
+      <!--<div class="product-list__control">-->
+      <!--  <div class="load-more-block">-->
+      <!--    <button class="load-more-block__link" type="button" @click.prevent="showMore">Показать еще</button>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
   </section>
 </template>
 
 <script>
-  import { mapGetters, mapState, mapActions } from 'vuex';
-  import ProductCard from '../ProductCard.vue';
+import { mapGetters, mapState, mapActions } from 'vuex';
+import ProductCard from '../ProductCard.vue';
 
-  export default {
-    name: "Similar",
-    data() {
-      return {
-        collapsed: true,
-      }
-    },
-    components: {
-      ProductCard,
-    },
-    computed: mapState({
-      similar: state => state.product.similar,
-      loading: state => state.product.similarLoading,
-    }),
-    methods: {
-      showMore() {
-        this.collapsed = false;
-      }
-    },
-    created() {
-      this.$store.dispatch('product/updateSimilar');
+
+export default {
+  name: "Similar",
+  data() {
+    return {
+      collapsed: true,
     }
+  },
+  components: {
+    ProductCard,
+  },
+  computed: mapState({
+    similar: state => state.product.similar,
+    loading: state => state.product.similarLoading,
+  }),
+  methods: {
+    showMore() {
+      this.collapsed = false;
+    }
+  },
+  created() {
+    this.$store.dispatch('product/updateSimilar');
   }
+}
 </script>
