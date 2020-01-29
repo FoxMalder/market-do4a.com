@@ -59,14 +59,14 @@
             </button>
             <span class="p-review-item__up-vote-count">{{ review.countPlus }}</span>
           </div>
-          <div class="p-review-item__reply p-review-reply">
+          <div v-if="review.replytext" class="p-review-item__reply p-review-reply">
             <div class="p-review-reply__title">
               Ответ от MarketDo4a
             </div>
-            <p class="p-review-reply__text">
-              Спасибо за вашу оценку! Мы бы тоже не назвали наш продукт устаревшим.
-              Скорее проверенным временем и доказавшим свою эффективность:)
-            </p>
+            <p
+              class="p-review-reply__text"
+              v-text="review.replytext"
+            />
           </div>
         </div>
       </div>
