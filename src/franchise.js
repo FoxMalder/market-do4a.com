@@ -1,32 +1,20 @@
-// import { Mousewheel, Scrollbar, Swiper } from 'swiper/js/swiper.esm';
 import enableInlineVideo from 'iphone-inline-video';
-// import $$ from 'dom7';
-// import Sticky from 'sticky-js';
 import ready from 'domready';
 import AOS from 'aos';
-
+import $$ from 'dom7';
 
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/collapse';
 
+
 import 'aos/dist/aos.css';
-// import './scss/main.scss';
 import './scss/franchise.scss';
 
 
 import Parallax from '@/modules/Parallax';
 import MainPage from '@/page/main';
+import { handleForm } from '@/modules/Form';
 
-
-// if (process.env.NODE_ENV !== 'production') {
-//   require('./franchise.pug');
-// }
-
-
-// Swiper.use([
-//   Scrollbar,
-//   Mousewheel,
-// ]);
 
 function initVideo() {
   try {
@@ -120,52 +108,6 @@ function initProgramList() {
   });
 }
 
-function initForms() {
-  $('.form-body').parents('form').on('submit', (event) => {
-    event.preventDefault();
-
-    const formEl = event.currentTarget;
-
-    const $body = $(formEl).find('.form-body');
-    const $button = $(formEl).find('[type="submit"]');
-
-    $body.addClass('form-body_loading');
-    $button.attr('disabled', 'true');
-
-    if (global.demo) {
-      console.log(event);
-      setTimeout(() => {
-        $body.removeClass('form-body_loading');
-        $body.addClass('form-body_success');
-        $button.removeClass('btn-red');
-        $button.addClass('btn-green');
-        $button.html(`<i class="btn-icon icon icon-done"></i>${$button.data('success')}` || 'Заявка отправлена');
-      }, 2000);
-    } else {
-      $.ajax({
-        type: $(formEl).attr('method'),
-        url: $(formEl).attr('action'),
-        data: $(formEl).serialize(),
-      }).done(() => {
-        // success
-        $body.removeClass('form-body_loading');
-        $body.addClass('form-body_success');
-        $button.removeClass('btn-red');
-        $button.addClass('btn-green');
-        $button.html(`<i class="btn-icon icon icon-done"></i>${$button.data('success')}` || 'Заявка отправлена');
-      }).fail(() => {
-        // error
-        $body.removeClass('form-body_loading');
-        $body.addClass('form-body_error');
-        setTimeout(() => {
-          $body.removeClass('form-body_error');
-          $button.removeAttr('disabled');
-        }, 2000);
-      });
-    }
-  });
-}
-
 
 ready(() => {
   AOS.init({
@@ -176,7 +118,8 @@ ready(() => {
 
   initVideo();
   initProgramList();
-  initForms();
+
+  $$('.form-body').parents('form').on('submit', handleForm);
 
   const $top30TargetRow = $('.f-top30__row').eq(29);
 
