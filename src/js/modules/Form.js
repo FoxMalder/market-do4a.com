@@ -1,21 +1,22 @@
 import axios from 'axios';
 import $$ from 'dom7';
+import Vue from 'vue';
 
 
 /**
  * Отправка формы
  * @param url {String}
  * @param formData {FormData}
- * @returns {Promise<T>}
+ * @returns {Promise<Object|Error>}
  */
 export function sendForm(url, formData) {
-  if (global.demo) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 2000);
-    });
-  }
+  // if (global.demo) {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       resolve();
+  //     }, 2000);
+  //   });
+  // }
 
   return axios.post(url, formData)
     .then((response) => response.data)
@@ -44,6 +45,7 @@ export function handleForm(event) {
 
   $body.addClass('form-body_loading');
   $button.attr('disabled', 'true');
+  const buttonHtml = $button.html();
 
   sendForm(form.action, new FormData(form))
     .then(() => {
@@ -56,14 +58,20 @@ export function handleForm(event) {
         .addClass('btn-green')
         .html(`<i class="btn-icon icon icon-done"></i> ${$button.data('success') || 'Заявка отправлена'}`);
     })
-    .catch(() => {
+    .catch((error) => {
+      Vue.$notify.error(error.message);
+
       $body
         .removeClass('form-body_loading')
         .addClass('form-body_error');
+      $button
+        .html('Ошибка');
 
       setTimeout(() => {
         $body.removeClass('form-body_error');
-        $button.removeAttr('disabled');
+        $button
+          .removeAttr('disabled')
+          .html(buttonHtml);
       }, 2000);
     });
 }

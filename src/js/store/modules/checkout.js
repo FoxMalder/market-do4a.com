@@ -459,16 +459,12 @@ export default function createModule(options) {
       });
 
       if (order.deliveryItem) {
+        // Для самовывоза из пункта СДЭКа берем адрес пункта самовывоза
         if (order.deliveryItem.category === 'sdek.pickup') {
           data.ORDER_PROP_5 = state.props.sdekPickup;
-        } else if (order.deliveryItem.category === 'sdek') {
-          // const flat = state.propertyList.find(prop => prop.code === 'FLAT');
-          // const house = state.propertyList.find(prop => prop.code === 'HOUSE');
-          // const street = state.propertyList.find(prop => prop.code === 'STREET');
-          //
-          // // для сдек свои поля для улицы, кв, дом. ИХ нужно собрать для поля Адрес
-          // data.ORDER_PROP_5 = `${street && street.value}, ${house && house.value}, ${flat && flat.value}`;
-
+        }
+        // Для курьерской СДЭКа формируем адрес из полей Улица/Дом/Квартира
+        if (order.deliveryItem.category === 'sdek') {
           data.ORDER_PROP_5 = `${state.props.STREET}, ${state.props.HOUSE}, ${state.props.FLAT}`;
         }
       }
