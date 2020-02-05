@@ -1,5 +1,8 @@
 <template>
-  <div class="product-card">
+  <div
+    class="product-card"
+    :class="{ 'product-card_not-available': !product.isAvailable }"
+  >
     <div
       class="product-card__wrapper"
       itemscope
@@ -157,6 +160,7 @@ export default {
     product: {
       type: Object,
       requared: true,
+      default: () => {},
     },
   },
   computed: {

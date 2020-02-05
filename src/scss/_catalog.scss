@@ -1258,19 +1258,23 @@ $multifilter-menu-padding-x: 22px;
 //
 //
 
+/// @deprecated
 .catalog {
   &__container {
     position: relative;
     @include make-container(0);
     padding-bottom: 20px;
     @include media-breakpoint-up(sm) {
-      max-width: (map_get($container-max-widths, sm) - map_get($grid-gutter-width-map, sm));
+      //max-width: (map_get($container-max-widths, sm) - map_get($grid-gutter-width-map, sm));
+      max-width: map_get($container-max-widths, sm);
     }
     @include media-breakpoint-up(md) {
-      max-width: (map_get($container-max-widths, md) - map_get($grid-gutter-width-map, md));
+      //max-width: (map_get($container-max-widths, md) - map_get($grid-gutter-width-map, md));
+      max-width: map_get($container-max-widths, md);
     }
     @include media-breakpoint-up(xl) {
-      max-width: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl));
+      //max-width: (map_get($container-max-widths, xl) - map_get($grid-gutter-width-map, xl));
+      max-width: map_get($container-max-widths, xl);
       padding-bottom: 40px;
     }
   }
@@ -1421,8 +1425,10 @@ $multifilter-menu-padding-x: 22px;
   }
 
   > .vendor-card {
-    flex: 0 0 50%;
-    max-width: 50%;
+    @include make-col(6);
+    @include media-breakpoint-up(sm) {
+      @include make-col(4);
+    }
     @include media-breakpoint-up(md) {
       flex: 0 0 calc(33.333% - #{map_get($grid-gutter-width-map, md)});
       max-width: calc(33.333% - #{map_get($grid-gutter-width-map, md)});
@@ -1574,6 +1580,7 @@ $multifilter-menu-padding-x: 22px;
     right: 12px;
   }
 
+  &_not-available,
   &.removed {
     opacity: .25;
     //pointer-events: none;
