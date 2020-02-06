@@ -22,22 +22,24 @@
             </div>
             <!-- Список магазинов -->
             <ul class="s-city__store-list">
-              <li class="s-item"
-                  v-for="store in getStoreListByCityId(city.id)"
-                  :key="store.id"
-                  :class="{ active: store.id === currentStoreId }"
-                  @click="getStore(store.id)">
+              <li
+                v-for="store in getStoreListByCityId(city.id)"
+                :key="store.id"
+                class="s-item"
+                :class="{ active: store.id === currentStoreId }"
+                @click="getStore(store.id)"
+              >
                 <div class="s-item__header">
                   <div class="s-item__address">{{ store.name }}</div>
-                  <div class="s-item__info" v-if="isMobile">{{ store.shortAddress || '' }}</div>
-                  <div class="s-item__info" v-else v-html="(store.workTime || []).join('<br>')"></div>
+                  <div v-if="isMobile" class="s-item__info" v-html="store.shortAddress || ''" />
+                  <div v-else class="s-item__info" v-html="(store.workTime || []).join('<br>')" />
                 </div>
                 <div class="s-item__body">
-                  <a class="s-item__phone" v-for="phone in store.phone" :href="'tel:' + phone">{{ phone }}</a>
+                  <a v-for="phone in store.phone" class="s-item__phone" :href="'tel:' + normalizePhone(phone)">{{ phone }}</a>
                 </div>
                 <div class="s-item__bottom">
-                  <div class="s-item__info" v-if="!isMobile">{{ store.shortAddress || '' }}</div>
-                  <div class="s-item__info" v-else v-html="(store.workTime || []).join('<br>')"></div>
+                  <div v-if="!isMobile" class="s-item__info" v-html="store.shortAddress || ''" />
+                  <div v-else class="s-item__info" v-html="(store.workTime || []).join('<br>')" />
                   <div class="s-item__contacts">
                     <a v-if="store.instagram" class="s-item__link" :href="store.instagram" target="_blank">
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
