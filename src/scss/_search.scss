@@ -143,17 +143,19 @@
 .search-results-category {
   display: flex;
   width: 242px;
-  height: 110px;
+  height: 94px;
   margin-right: 10px;
   padding: 20px;
   transition: all .3s ease;
   background: #fff;
+  color: #101010;
 
   &:last-child {
     margin-right: 0;
   }
 
   @include media-breakpoint-up(md) {
+    height: 110px;
     width: map_get($container-max-widths, xl) / 4 - map_get($grid-gutter-width-map, xl);
     margin-right: map_get($grid-gutter-width-map, xl);
   }

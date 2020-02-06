@@ -6,7 +6,8 @@ import debounce from 'lodash.debounce';
 import Utils from '@/utils/utils';
 import { getFiltredCatalog } from '@/api';
 
-import ProductCard from '@/components/ProductCard';
+import '@/components/ProductCard';
+
 import {
   Multifilter,
   PriceFilter,
@@ -21,6 +22,10 @@ import CategoryListMobile from '@/components/CategoryListMobile.vue';
 import CatalogFilterMobile from '@/components/CatalogFilterMobile.vue';
 import CatalogFilter from '@/components/CatalogFilter.vue';
 
+import ProductCart from '@/components/ProductCard.vue';
+
+
+const ProductCartVue = Vue.extend(ProductCart);
 
 /**
  * Сворачивание строк
@@ -91,7 +96,7 @@ export default class CatalogControl {
     this.containerEl = elements.container || document.querySelector('.card-list');
     // this.Container = null;
 
-    this.breadcumps = document.querySelector('.breadcumps') || document.querySelector('.mr-breadcumps');
+    this.breadcumps = document.querySelector('.mr-breadcumps');
     this.title = document.querySelector('.page-header__title');
 
 
@@ -120,6 +125,8 @@ export default class CatalogControl {
     this.debouncedUpdate = debounce(this.update, 500);
 
     initCollapse();
+
+    this.arrow = [];
 
     this.init();
     this.initVue();
@@ -280,7 +287,7 @@ export default class CatalogControl {
 
   updateQuantity() {
     if (this.quantityEl) {
-      this.quantityEl.innerHTML = `${this.totalCards} ${Utils.declOfNum(this.totalCards, [
+      this.quantityEl.textContent = `${this.totalCards} ${Utils.declOfNum(this.totalCards, [
         'товар',
         'товара',
         'товаров',
@@ -288,13 +295,11 @@ export default class CatalogControl {
     }
 
     if (this.showMoreEl) {
-      this.showMoreTextEl.innerHTML = `Показано ${this.shownCards} из ${this.totalCards}`;
+      this.showMoreEl.style.display = this.shownCards < this.totalCards ? '' : 'none';
+    }
 
-      if (this.shownCards < this.totalCards) {
-        this.showMoreEl.style.display = this.shownCards < this.totalCards ? '' : 'none';
-      } else {
-        this.showMoreEl.style.display = 'none';
-      }
+    if (this.showMoreTextEl) {
+      this.showMoreTextEl.textContent = `Показано ${this.shownCards} из ${this.totalCards}`;
     }
   }
 
@@ -307,33 +312,20 @@ export default class CatalogControl {
   setBreadcumps(array, title = '', h1 = '') {
     let html = '';
 
-    if (this.breadcumps.classList.contains('mr-breadcumps')) {
-      // Новая версия
-      html += '<ol class="mr-breadcumps__list" itemscope itemtype="https://schema.org/BreadcrumbList">';
-      array.forEach((item, i) => {
-        html += '<li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
-        if (i === 0) {
-          html += `<a itemprop="item" href="${item.url}"><span itemprop="name" class="red">${item.name}</span></a>`;
-        } else if (i === array.length - 1) {
-          html += `<span itemprop="name" class="gray">${item.name}</span>`;
-        } else {
-          html += `<a itemprop="item" href="${item.url}"><span itemprop="name">${item.name}</span></a>`;
-        }
-        html += `<meta itemprop="position" content="${i + 1}"/></li>`;
-      });
-      html += '</ol>';
-    } else {
-      // Старая версия
-      array.forEach((item, i) => {
-        if (i === 0) {
-          html += `<a class="breadcumps__link red" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
-        } else if (i === array.length - 1) {
-          html += `<span class="breadcumps__page">${item.name}</span>`;
-        } else {
-          html += `<a class="breadcumps__link" href="${item.url}">${item.name}</a><span class="breadcumps__delimiter"></span>`;
-        }
-      });
-    }
+    // Новая версия
+    html += '<ol class="mr-breadcumps__list" itemscope itemtype="https://schema.org/BreadcrumbList">';
+    array.forEach((item, i) => {
+      html += '<li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">';
+      if (i === 0) {
+        html += `<a itemprop="item" href="${item.url}"><span itemprop="name" class="red">${item.name}</span></a>`;
+      } else if (i === array.length - 1) {
+        html += `<span itemprop="name" class="gray">${item.name}</span>`;
+      } else {
+        html += `<a itemprop="item" href="${item.url}"><span itemprop="name">${item.name}</span></a>`;
+      }
+      html += `<meta itemprop="position" content="${i + 1}"/></li>`;
+    });
+    html += '</ol>';
 
     this.breadcumps.innerHTML = html;
 
@@ -342,7 +334,7 @@ export default class CatalogControl {
     }
 
     if (h1 !== '' && this.title) {
-      this.title.innerHTML = h1;
+      this.title.textContent = h1;
     }
   }
 
@@ -396,7 +388,16 @@ export default class CatalogControl {
     items.forEach((item) => {
       if (item.type === 'product') {
         this.shownCards += 1;
-        this.containerEl.appendChild(new ProductCard(item.options).getElement());
+        // Понятия не имею, на сколько это адекватное решение
+        const vm = new ProductCartVue({
+          store,
+          propsData: {
+            product: item.options,
+          },
+        }).$mount();
+        this.arrow.push(vm);
+        this.containerEl.appendChild(vm.$el);
+        // this.containerEl.appendChild(new ProductCard(item.options).getElement());
       } else {
         this.containerEl.appendChild(Utils.htmlToElement(item.html));
       }
@@ -404,29 +405,6 @@ export default class CatalogControl {
 
     this.updateQuantity();
   }
-  //
-  // /**
-  //  * Создает нужные элементы на основе входных данных и вставляет их на страницу
-  //  *
-  //  * @param {Array} items - Массив вставляемых элементов
-  //  * @returns {Number} - Вставленное количество продуктов
-  //  */
-  // parse(items) {
-  //   return items.filter((item) => {
-  //     let element;
-  //
-  //     if (item.type === 'product') {
-  //       element = new ProductCard(item.options);
-  //       element = element.getElement();
-  //     } else {
-  //       element = Utils.htmlToElement(item.html);
-  //     }
-  //
-  //     this.containerEl.appendChild(element);
-  //
-  //     return item.type === 'product';
-  //   }).length;
-  // }
 
   /**
    * Заменить карточки товаров
@@ -434,9 +412,16 @@ export default class CatalogControl {
    */
   reload(data) {
     this.currentPage = 1;
-    this.containerEl.innerHTML = '';
     this.shownCards = 0;
     this.totalCards = data.count;
+
+    this.arrow.forEach((vm) => {
+      vm.$destroy();
+      vm = null;
+    });
+
+    this.arrow = [];
+    this.containerEl.innerHTML = '';
 
     this.appendItems(data.items);
 

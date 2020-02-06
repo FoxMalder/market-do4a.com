@@ -6,7 +6,7 @@
     <!--    >-->
     <div
       class="p-images-block__image"
-      :class="{ 'p-images-block__image_success': imgStatus === 'success' && activePacking.gallery && activePacking.gallery.length > 0 }"
+      :class="{ 'p-images-block__image_success': activePacking.gallery && activePacking.gallery.length > 0 }"
     >
       <!--      <img-->
       <!--        v-for="(image, index) in activePacking.gallery"-->
@@ -22,12 +22,10 @@
           v-if="isSupport"
           class="p-images-block__img"
           :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
-          :src="activePacking.gallery[0].img.src"
-          :srcset="`${activePacking.gallery[0].img.src2x} 2x`"
+          v-lazy="activePacking.gallery[0].img.src"
+          :data-srcset="`${activePacking.gallery[0].img.src2x} 2x`"
           :alt="activePacking.imgAlt || activePacking.name"
           :title="activePacking.imgTitle"
-          @load="imgStatus = 'success'"
-          @error="imgStatus = 'error'"
         >
         <CanvasImage
           v-else
@@ -84,9 +82,10 @@
       <button
         class="product-control__favorites"
         type="button"
-        title="Добавить в избранное"
         :class="{ active: isFavorite }"
-        @click="toggleFavorites"
+        :title="isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'"
+        :aria-label="isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'"
+        @click.prevent="toggleFavorites"
       >
         <svg viewBox="0 0 31 27" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -138,22 +137,6 @@ export default {
     },
   },
   methods: {
-    // addToFavorites() {
-    //   this.activePacking.isFavorite = true;
-    //   this.$store.dispatch('removeFromFavorites', this.activePacking.id)
-    //     .catch(() => {
-    //       this.activePacking.isFavorite = false;
-    //     });
-    // },
-    //
-    // removeFromFavorites() {
-    //   this.activePacking.isFavorite = false;
-    //   this.$store.dispatch('addToFavorites', this.activePacking.id)
-    //     .catch(() => {
-    //       this.activePacking.isFavorite = true;
-    //     });
-    // },
-
     toggleFavorites() {
       if (this.isFavorite) {
         this.$store.dispatch('removeFromFavorites', this.activePacking.id);

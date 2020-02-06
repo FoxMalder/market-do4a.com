@@ -19,7 +19,7 @@
 
 <script>
 import Modal from './Modal.vue';
-import { Bus } from '../plugins/vue-modal';
+import { Bus } from './index';
 
 
 const Id = (i => () => i += 1)(0);

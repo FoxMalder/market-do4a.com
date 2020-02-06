@@ -1,109 +1,20 @@
-import { Mousewheel, Scrollbar, Swiper } from 'swiper/js/swiper.esm';
 import enableInlineVideo from 'iphone-inline-video';
-// import Sticky from 'sticky-js';
 import ready from 'domready';
 import AOS from 'aos';
-
+import $$ from 'dom7';
 
 import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/collapse';
 
+
 import 'aos/dist/aos.css';
-// import './scss/main.scss';
 import './scss/franchise.scss';
 
 
 import Parallax from '@/modules/Parallax';
+import MainPage from '@/page/main';
+import { handleForm } from '@/modules/Form';
 
-
-// if (process.env.NODE_ENV !== 'production') {
-//   require('./franchise.pug');
-// }
-
-
-Swiper.use([
-  Scrollbar,
-  Mousewheel,
-]);
-
-function initStarSlider() {
-  const mainStarSliderEl = document.querySelector('#stars-slider');
-  if (!mainStarSliderEl) return;
-
-  // TODO: Обновить шаблон в cms и убрать
-  mainStarSliderEl.classList.add('slider_container');
-
-  import('sticky-js')
-    .then((module) => {
-      const Sticky = module.default;
-
-      new Sticky('#stars-slider .slider__controls', {
-        marginTop: 150,
-        stickyClass: 'is-sticky',
-      });
-    });
-
-  const starSliderOverlayEl = document.querySelector('.f-section-stars__description');
-
-  const starSliderExplanationTabletEl = mainStarSliderEl.querySelector('.slider__explanation_tablet');
-  const starSliderExplanationDesktopEl = mainStarSliderEl.querySelector('.slider__explanation_desktop');
-
-
-  new Swiper(mainStarSliderEl, {
-    slidesPerView: 'auto',
-    freeMode: true,
-    // freeModeMomentum: false,
-    // freeModeSticky: false,
-    runCallbacksOnInit: false,
-    touchEventsTarget: 'wrapper',
-
-    containerModifierClass: 'slider_',
-    slideClass: 'slider__slide',
-    slideBlankClass: 'slider__slide_invisible-blank',
-    slideActiveClass: 'slider__slide_active',
-    slideDuplicateActiveClass: 'slider__slide_duplicate-active',
-    slideVisibleClass: 'slider__slide_visible',
-    slideDuplicateClass: 'slider__slide_duplicate',
-    slideNextClass: 'slider__slide_next',
-    slideDuplicateNextClass: 'slider__slide_duplicate-next',
-    slidePrevClass: 'slider__slide_prev',
-    slideDuplicatePrevClass: 'slider__slide_duplicate-prev',
-    wrapperClass: 'slider__wrapper',
-
-    mousewheel: {
-      forceToAxis: true,
-      invert: true,
-      releaseOnEdges: true,
-    },
-
-    scrollbar: {
-      el: '.slider__scrollbar',
-      hide: false,
-      draggable: true,
-      dragSize: 80,
-      dragClass: 'slider__track',
-      snapOnRelease: false,
-    },
-
-    on: {
-      setTranslate(arg) {
-        const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-
-        if (starSliderOverlayEl) starSliderOverlayEl.style.opacity = opacity;
-        if (starSliderExplanationTabletEl) starSliderExplanationTabletEl.style.opacity = opacity;
-        if (starSliderExplanationDesktopEl) starSliderExplanationDesktopEl.style.opacity = opacity;
-
-        if (this.scrollbar.el) {
-          if (arg) {
-            this.scrollbar.el.classList.add('active');
-          } else {
-            this.scrollbar.el.classList.remove('active');
-          }
-        }
-      },
-    },
-  });
-}
 
 function initVideo() {
   try {
@@ -197,52 +108,6 @@ function initProgramList() {
   });
 }
 
-function initForms() {
-  $('.form-body').parents('form').on('submit', (event) => {
-    event.preventDefault();
-
-    const formEl = event.currentTarget;
-
-    const $body = $(formEl).find('.form-body');
-    const $button = $(formEl).find('[type="submit"]');
-
-    $body.addClass('form-body_loading');
-    $button.attr('disabled', 'true');
-
-    if (global.demo) {
-      console.log(event);
-      setTimeout(() => {
-        $body.removeClass('form-body_loading');
-        $body.addClass('form-body_success');
-        $button.removeClass('btn-red');
-        $button.addClass('btn-green');
-        $button.html(`<i class="btn-icon icon icon-done"></i>${$button.data('success')}` || 'Заявка отправлена');
-      }, 2000);
-    } else {
-      $.ajax({
-        type: $(formEl).attr('method'),
-        url: $(formEl).attr('action'),
-        data: $(formEl).serialize(),
-      }).done(() => {
-        // success
-        $body.removeClass('form-body_loading');
-        $body.addClass('form-body_success');
-        $button.removeClass('btn-red');
-        $button.addClass('btn-green');
-        $button.html(`<i class="btn-icon icon icon-done"></i>${$button.data('success')}` || 'Заявка отправлена');
-      }).fail(() => {
-        // error
-        $body.removeClass('form-body_loading');
-        $body.addClass('form-body_error');
-        setTimeout(() => {
-          $body.removeClass('form-body_error');
-          $button.removeAttr('disabled');
-        }, 2000);
-      });
-    }
-  });
-}
-
 
 ready(() => {
   AOS.init({
@@ -253,7 +118,8 @@ ready(() => {
 
   initVideo();
   initProgramList();
-  initForms();
+
+  $$('.form-body').parents('form').on('submit', handleForm);
 
   const $top30TargetRow = $('.f-top30__row').eq(29);
 
@@ -282,6 +148,7 @@ ready(() => {
       y: -0.08,
       x: 0,
     });
-    initStarSlider();
   }
+
+  MainPage.initStarSlider('#stars-slider', '.f-section-stars__description');
 });

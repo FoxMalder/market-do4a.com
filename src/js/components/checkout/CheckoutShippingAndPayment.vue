@@ -1,52 +1,57 @@
 <template>
   <div id="order-delivery" class="order-sap">
-    <CheckoutAlert v-if="multiple" :type="'multiple'"/>
-    <CheckoutAlert v-else-if="fromCentralStock" :type="'central'"/>
-    
-    <div class="order-shiping" v-for="order in orderList">
+    <CheckoutAlert v-if="multiple" :type="'multiple'" />
+    <CheckoutAlert v-else-if="fromCentralStock" :type="'central'" />
+
+    <div v-for="order in orderList" class="order-shiping">
       <template v-if="multiple">
         <div class="order-shiping__header">
           <div class="order-shiping__name">Отправление {{ order.index }}</div>
           <button
             class="order-shiping__btn-delete"
             type="button"
-            @click="removeOrder(order)">
-            <i class="icon icon-delete"></i>
+            @click="removeOrder(order)"
+          >
+            <i class="icon icon-delete" />
             {{ 'Удалить' + (breakpoint === 'xl' ? ' отправление' : '') }}
           </button>
         </div>
         <div class="order-shiping__quantity">{{ order.quantityText }}</div>
         <div class="order-shiping__list">
-          <div class="order-mini-product"
-               v-for="product in order.productList"
-               :key="product.basketItemId">
+          <div
+            v-for="product in order.productList"
+            :key="product.basketItemId"
+            class="order-mini-product"
+          >
             <div class="order-mini-product__photo">
-              <img class="order-mini-product__img"
-                   :src="product.picture"
-                   :srcset="product.picture2x + ' 2x'"
-                   :alt="product.name">
+              <img
+                v-lazy="product.picture"
+                class="order-mini-product__img"
+                :data-srcset="`${product.picture2x} 2x`"
+                :alt="product.name"
+              >
             </div>
             <div class="order-mini-product__caption">{{ `${product.quantity} ${product.measureName || 'шт'}` }}</div>
           </div>
         </div>
       </template>
-      
+
       <div class="order-shiping__shipping-type">
-        
+
         <template v-if="errors.DELIVERY && errors.DELIVERY.length">
           <div class="order-shiping__error"
                v-for="error in errors.DELIVERY">
             {{ error }}
           </div>
         </template>
-        
+
         <template v-if="order.errors && order.errors.length">
           <div class="order-shiping__error"
                v-for="error in order.errors">
             {{ error }}
           </div>
         </template>
-        
+
         <h3 class="order-shiping__title">Способ получения</h3>
         <div class="order-option"
              v-for="item in order.deliveryMethods"
@@ -82,37 +87,37 @@
           <div class="order-option__body">
             <div class="order-option__subtitle" v-if="item.period">Сроки доставки: {{ item.period }}</div>
             <p class="order-option__description" v-if="item.description" v-html="item.description"></p>
-            
+
             <template v-if="item.category !== 'pickup' && breakpoint !== 'xl'">
               <div class="order-option__subtitle">Адрес доставки</div>
-<!--              <CheckoutAddress :category="item.category"/>-->
+              <!--              <CheckoutAddress :category="item.category"/>-->
 
-<!--              <CheckoutAddress/>-->
+              <!--              <CheckoutAddress/>-->
               <div class="n-form-group" v-for="prop in getPropsByDeliveryId(item.id)">
                 <div class="n-form-group__field">
-                  <InputField :prop="prop"/>
+                  <InputField :prop="prop" />
                 </div>
                 <small class="n-form-group__description" v-if="prop.description">{{ prop.description }}</small>
               </div>
             </template>
-            
+
             <!-- Выбор пункта самовывоза СДЭК -->
-            <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'"/>
-            
+            <CheckoutShippingSDEK v-if="item.category === 'sdek.pickup'" />
+
             <!-- Выбор магазина для самовывоза -->
-            <CheckoutShippingPickup v-if="item.category === 'pickup'" :order="order"/>
-          
+            <CheckoutShippingPickup v-if="item.category === 'pickup'" :order="order" />
+
           </div>
         </div>
       </div>
-      
+
       <div class="order-shiping__payment-type">
-        
+
         <div
           class="order-shiping__error"
           v-for="error in errors.PAY_SYSTEM"
         >{{ error }}</div>
-        
+
         <h3 class="order-shiping__title">Способ оплаты</h3>
         <div class="order-option"
              v-for="item in order.paymentMethods"
@@ -148,11 +153,11 @@
         </div>
       </div>
     </div>
-    
+
     <div class="order-sap__amount">
-      <CheckoutAmount/>
+      <CheckoutAmount />
     </div>
-    
+
     <div class="order-sap__footer">
       <slot></slot>
       <!--      <button-->
@@ -170,72 +175,72 @@
 </template>
 
 <script>
-  import { mapGetters, mapState, mapActions } from 'vuex';
-  import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
-  import CheckoutAlert from './CheckoutAlert.vue';
-  import CheckoutAmount from './CheckoutAmount.vue';
-  import CheckoutAddress from './CheckoutAddress.vue';
-  import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
-  import CheckoutShippingPickup from './CheckoutShippingPickup.vue';
-  import InputField from './../InputField.vue';
+import { mapGetters, mapState, mapActions } from 'vuex';
+import { SET_SHIPPING_METHOD, SET_PAYMENT_METHOD, REMOVE_ORDER } from './../../store/modules/checkout';
+import CheckoutAlert from './CheckoutAlert.vue';
+import CheckoutAmount from './CheckoutAmount.vue';
+import CheckoutAddress from './CheckoutAddress.vue';
+import CheckoutShippingSDEK from './CheckoutShippingSDEK.vue';
+import CheckoutShippingPickup from './CheckoutShippingPickup.vue';
+import InputField from './../InputField.vue';
 
 
-  export default {
-    name: 'CheckoutShippingAndPayment',
-    components: {
-      InputField,
-      CheckoutAlert,
-      CheckoutAmount,
-      CheckoutAddress,
-      CheckoutShippingSDEK,
-      CheckoutShippingPickup,
-    },
-    props: {
-      breakpoint: {
-        type: String,
-      }
-    },
-    computed: {
-      ...mapState('checkout', {
-        // orderList: 'orderList',
-        // selectedShippingId: 'selectedShippingMethodId',
-        // selectedPaymentId: 'selectedPaymentMethodId',
-        // paymentMethods: 'paymentMethods',
-        errors: 'errors',
-        // props: 'props',
-        // propertyList: 'propertyList',
-        // currentStore: 'currentStore',
-      }),
-      ...mapGetters('checkout', {
-        orderList: 'orderList',
-        propertyList: 'propertyList',
-      }),
-      multiple() {
-        return this.orderList.length > 1;
-      },
-      fromCentralStock() {
-        return this.orderList.length === 1 && !this.orderList[0].isLocaleStore
-      },
-    },
-    methods: {
-      ...mapActions('checkout', {
-        selectPayment: SET_PAYMENT_METHOD,
-        selectShipping: SET_SHIPPING_METHOD,
-        removeOrder: REMOVE_ORDER,
-      }),
-
-      // selectShipping({ id, order }) {
-      //
-      // }
-
-      getPropsByDeliveryId(deliveryId) {
-        // return this.propertyList.filter(prop => prop.propsGroupId !== 2 && prop.relationDelivery.find(id => id === deliveryId))
-        return this.propertyList.filter(prop => prop.relationDelivery.find(id => id === deliveryId))
-      },
-
-      // nextStep() {
-      //   console.log('Next step');
-      // }
+export default {
+  name: 'CheckoutShippingAndPayment',
+  components: {
+    InputField,
+    CheckoutAlert,
+    CheckoutAmount,
+    CheckoutAddress,
+    CheckoutShippingSDEK,
+    CheckoutShippingPickup,
+  },
+  props: {
+    breakpoint: {
+      type: String,
     }
+  },
+  computed: {
+    ...mapState('checkout', {
+      // orderList: 'orderList',
+      // selectedShippingId: 'selectedShippingMethodId',
+      // selectedPaymentId: 'selectedPaymentMethodId',
+      // paymentMethods: 'paymentMethods',
+      errors: 'errors',
+      // props: 'props',
+      // propertyList: 'propertyList',
+      // currentStore: 'currentStore',
+    }),
+    ...mapGetters('checkout', {
+      orderList: 'orderList',
+      propertyList: 'propertyList',
+    }),
+    multiple() {
+      return this.orderList.length > 1;
+    },
+    fromCentralStock() {
+      return this.orderList.length === 1 && !this.orderList[0].isLocaleStore
+    },
+  },
+  methods: {
+    ...mapActions('checkout', {
+      selectPayment: SET_PAYMENT_METHOD,
+      selectShipping: SET_SHIPPING_METHOD,
+      removeOrder: REMOVE_ORDER,
+    }),
+
+    // selectShipping({ id, order }) {
+    //
+    // }
+
+    getPropsByDeliveryId(deliveryId) {
+      // return this.propertyList.filter(prop => prop.propsGroupId !== 2 && prop.relationDelivery.find(id => id === deliveryId))
+      return this.propertyList.filter(prop => prop.relationDelivery.find(id => id === deliveryId))
+    },
+
+    // nextStep() {
+    //   console.log('Next step');
+    // }
   }
+}
 </script>

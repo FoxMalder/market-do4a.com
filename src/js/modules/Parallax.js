@@ -1,8 +1,11 @@
+import { getOffset, getViewportSize } from '@/utils';
+
+
 class Parallax {
   constructor() {
     this.items = [];
     this.scrollTicking = false;
-    this.vp = Parallax.getViewportSize();
+    this.vp = getViewportSize();
 
     this.calculate();
     window.addEventListener('scroll', this.onScroll);
@@ -18,7 +21,7 @@ class Parallax {
   add(element, { x, y }) {
     this.items.push({
       el: element,
-      offset: $(element).offset(),
+      offset: getOffset(element),
       x,
       y,
     });
@@ -33,7 +36,7 @@ class Parallax {
   }
 
   onResize = () => {
-    this.vp = Parallax.getViewportSize();
+    this.vp = getViewportSize();
     // this.items.forEach((item) => {
     //   // item.offset = $(item).offset();
     //   // item.el.style.transition
@@ -68,13 +71,6 @@ class Parallax {
 
       item.el.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
     });
-  }
-
-  static getViewportSize() {
-    return {
-      width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-      height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
-    };
   }
 
   // /**

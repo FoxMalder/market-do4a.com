@@ -131,7 +131,8 @@ export default class ProductCard {
     const id = parseInt(el.getAttribute('data-product-id'), 10);
     return {
       id,
-      isFavorite: !!store.state.favorites.find(productId => productId === id),
+      isFavorite: store.state.favorites.indexOf(id) !== -1,
+      // isFavorite: !!store.state.favorites.find((productId) => productId === id),
       // isFavorite: el.querySelector('.product-control__favorites').classList.contains('active'),
     };
   }
@@ -162,11 +163,29 @@ export default class ProductCard {
   // }
 
 
-  static shipingPeriod() {
+  // static shipingPeriod() {
+  //   const city = store.getters.currentCity;
+  //   return city && city.deliveryCountDays
+  //     ? `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`
+  //     : 'от 1 дня';
+  // }
+
+  static badgeTextCentral() {
+    let period = 'от 1';
+    let unit = 'дня';
+
     const city = store.getters.currentCity;
-    return city
-      ? `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`
-      : 'от 1 дня';
+
+    if (city && city.deliveryCountDays && city.deliveryCountDays.length > 1) {
+      period = `${city.deliveryCountDays[0]}-${city.deliveryCountDays[1]}`;
+      unit = Utils.declOfNum(city.deliveryCountDays[1], ['дня', 'дней', 'дней']);
+    }
+
+    return `Со склада в СПБ, ${period} ${unit}`;
+  }
+
+  static badgeTextLocal() {
+    return 'Магазин рядом, 1 день';
   }
 
   getDeliveryLabelHTML() {
@@ -184,11 +203,10 @@ export default class ProductCard {
     }
 
     if (this.data.isDeliveryOneDay) {
-      return '<div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>';
+      return `<div class="product-card__badge product-card__badge_local">${ProductCard.badgeTextLocal()}</div>`;
     }
 
-    const shipingPeriod = `от ${city.deliveryCountDays[0]} ${Utils.declOfNum(city.deliveryCountDays[0], ['дня', 'дней', 'дней'])}`;
-    return `<div class="product-card__badge product-card__badge_central">Со склада в СПБ, от ${shipingPeriod}</div>`;
+    return `<div class="product-card__badge product-card__badge_central">${ProductCard.badgeTextCentral()}</div>`;
   }
 
   initDOM() {

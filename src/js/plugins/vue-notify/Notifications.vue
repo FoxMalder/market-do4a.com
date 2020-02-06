@@ -101,10 +101,11 @@ export default {
 <style scoped>
   .notifications {
     position: fixed;
-    z-index: 10000;
+    z-index: 100000;
     top: 10px;
     right: 10px;
     width: 520px;
+    max-width: 100%;
   }
 
   .notifications__wrapper {

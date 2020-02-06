@@ -1,5 +1,5 @@
 import ready from 'domready';
-import Notifications from '@/components/Notifications.vue';
+import Notifications from './Notifications.vue';
 import store from '@/store';
 
 

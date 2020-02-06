@@ -1,25 +1,37 @@
-import Vue from 'vue';
 import ready from 'domready';
 
+import Vue from 'vue';
+import Qs from 'qs';
+import axios from 'axios';
 
-// import VModal from 'vue-js-modal';
+import VueLazyload from 'vue-lazyload';
 
-import '@/common';
+// import '@/common';
 import store from '@/store';
 import Header from '@/modules/Header';
-
 import VueModal from '@/plugins/vue-modal';
 import VueNotify from '@/plugins/vue-notify';
+import ClickOutside from '@/directives/ClickOutside';
 
 import Platform from '@/plugins/Platform';
+import { Utils, formatNumber } from '@/utils';
 
-
-// Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 
 Vue.use(VueModal);
 Vue.use(VueNotify);
+Vue.use(VueLazyload, {
+  error: require('../img/plug.svg'),
+  loading: require('../img/plug.svg'),
+});
+
+Vue.filter('formatPrice', (value) => formatNumber(value, '₽'));
+
+Vue.directive('click-outside', ClickOutside);
 
 
+window.utils = Utils;
+window.axios = axios;
+window.qs = Qs;
 window.Vue = Vue;
 
 

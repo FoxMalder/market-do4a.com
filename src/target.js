@@ -1,30 +1,14 @@
 import ready from 'domready';
 
-import {
-  Swiper,
-  A11y,
-  Mousewheel,
-  Navigation,
-} from 'swiper/js/swiper.esm';
-
-import './simple';
-import CatalogControl from '@/page/catalog';
+// import './simple';
+import { Navigation, A11y, Swiper, Mousewheel } from 'swiper/js/swiper.esm';
 
 
 ready(() => {
-  global.PageCatalog = new CatalogControl({
-    filter: document.querySelector('.filter'),
-    sorting: document.querySelector('.sorting'),
-    quantity: document.querySelector('[data-total-find]'),
-    form: document.getElementById('catalog-filter'),
-  }, {
-    ajax: true,
-  });
-
   if (document.documentElement.clientWidth >= 1240) {
     Swiper.use([Navigation, A11y, Mousewheel]);
 
-    new Swiper('.search-page-slider', {
+    new Swiper('.target-category-slider', {
       touchEventsTarget: 'wrapper',
 
       wrapperClass: 'slider__wrapper',

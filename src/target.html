@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport">
-  <title>Поиск</title>
+  <title>Ваша цель</title>
 </head>
 <body>
 <div class="header-banner">
@@ -788,65 +788,36 @@
 </div>
 
 <main class="wrapper">
-  <header class="search-page-header">
+  <!-- Фон делаем через style="background-image: url(...);" -->
+  <div class="target-hero">
     <div class="container">
-      <div class="search-results-history">
-        <span class="search-results-history__title">Вы недавно искали:</span>
-        <a href="#" class="search-results-history__item">Протеин</a>
-        <a href="#" class="search-results-history__item">Гейнер</a>
-        <a href="#" class="search-results-history__item">Креатин</a>
-      </div>
 
-      <h1 class="search-page-title">Мы нашли по запросу «протеин»</h1>
+      <nav class="mr-breadcumps" aria-label="Хлебные крошки">
+        <ol class="mr-breadcumps__list" itemscope itemtype="https://schema.org/BreadcrumbList">
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/"><span itemprop="name" class="red">Главная</span></a>
+            <meta itemprop="position" content="1" />
+          </li>
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a itemprop="item" href="/"><span itemprop="name">Ваша цель</span></a>
+            <meta itemprop="position" content="2" />
+          </li>
+          <li class="mr-breadcumps__item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+            <span itemprop="name">Набор массы</span>
+            <meta itemprop="position" content="3" />
+          </li>
+        </ol>
+      </nav>
 
-      <!--<div class="search-page-nav">-->
-      <!--  <div class="search-page-nav__item">-->
-      <!--    <a class="search-page-nav__link" href="#category" data-anchor>Категории</a>-->
-      <!--    <span class="search-page-nav__num">8</span>-->
-      <!--  </div>-->
-      <!--  <div class="search-page-nav__item">-->
-      <!--    <a class="search-page-nav__link" href="#products" data-anchor>Товары</a>-->
-      <!--    <span class="search-page-nav__num">56</span>-->
-      <!--  </div>-->
-      <!--  <div class="search-page-nav__item">-->
-      <!--    <a class="search-page-nav__link" href="#articles" data-anchor>Статьи и акции</a>-->
-      <!--    <span class="search-page-nav__num">8</span>-->
-      <!--  </div>-->
-      <!--  <div class="search-page-nav__item">-->
-      <!--    <a class="search-page-nav__link" href="#brands" data-anchor>Найдено в брендах</a>-->
-      <!--    <span class="search-page-nav__num">12</span>-->
-      <!--  </div>-->
-      <!--</div>-->
+      <h1 class="target-hero__title">
+        НАБОР МАССЫ
+      </h1>
+      <p class="target-hero__subtitle">
+        ТОВАРЫ В НАЛИЧИИ В НИЖНЕМ НОВГОРОДЕ
+      </p>
     </div>
 
-    <div class="slider slider_container">
-      <div class="slider__wrapper">
-        <div class="slider__slide search-page-nav">
-          <a class="search-page-nav__link" href="#category" data-anchor>Категории</a>
-          <span class="search-page-nav__num">8</span>
-        </div>
-        <div class="slider__slide search-page-nav">
-          <a class="search-page-nav__link" href="#products" data-anchor>Товары</a>
-          <span class="search-page-nav__num">56</span>
-        </div>
-        <div class="slider__slide search-page-nav">
-          <a class="search-page-nav__link" href="#articles" data-anchor>Статьи и акции</a>
-          <span class="search-page-nav__num">8</span>
-        </div>
-        <div class="slider__slide search-page-nav">
-          <a class="search-page-nav__link" href="#brands" data-anchor>Найдено в брендах</a>
-          <span class="search-page-nav__num">12</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section class="search-page-section" id="category">
-    <div class="container">
-      <h2 class="search-page-title">Категории <span>8</span></h2>
-    </div>
-
-    <div class="search-page-slider slider slider_container">
+    <div class="target-category-slider slider slider_container">
       <div class="slider__wrapper">
         <div class="slider__slide search-results-category">
           <div class="search-results-category__body">
@@ -916,743 +887,956 @@
         </svg>
       </button>
     </div>
-  </section>
+  </div>
 
-  <section class="search-page-section" id="products">
-    <div class="container">
-      <h2 class="search-page-title">Товары <span>56</span></h2>
-    </div>
-    <form id="catalog-filter">
-      <div class="catalog-control">
-        <div class="catalog-control__menu catalog-control__menu_white">
-          <div class="container">
-            <div class="filter">
-              <div class="filter__list">
-                <fieldset class="multifilter active">
-                  <button class="multifilter__content" data-toggle="dropdown" type="button">
-                    <span class="multifilter__label">Категория:</span>
-                    <span class="multifilter__value">Сывороточный</span>
-                    <span class="multifilter__total" 1>1</span>
-                  </button>
-                  <button class="multifilter__btn-clear" type="reset">Сбросить</button>
-                  <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false" role="form">
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1032" name="category[]" value="1032">
-                      <label class="multifilter-checkbox__label" for="category1032">Говяжий</label>
-                    </div>
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1033" name="category[]" value="1033">
-                      <label class="multifilter-checkbox__label" for="category1033">Изоляты и гидролизаты</label>
-                    </div>
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1034" name="category[]" value="1034">
-                      <label class="multifilter-checkbox__label" for="category1034">Казеин и молочный</label>
-                    </div>
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1035" name="category[]" value="1035">
-                      <label class="multifilter-checkbox__label" for="category1035">Комплексный</label>
-                    </div>
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1031" name="category[]" value="1031">
-                      <label class="multifilter-checkbox__label" for="category1031">Растительный</label>
-                    </div>
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1036" name="category[]" value="1036" checked>
-                      <label class="multifilter-checkbox__label" for="category1036">Сывороточный</label>
-                    </div>
-                    <div class="multifilter-checkbox">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="category1037" name="category[]" value="1037">
-                      <label class="multifilter-checkbox__label" for="category1037">Яичный</label>
-                    </div>
-                  </div>
-                </fieldset>
-                <fieldset class="multifilter">
-                  <button class="multifilter__content" data-toggle="dropdown" type="button">
-                    <span class="multifilter__value">Бренд</span>
-                  </button>
-                  <div class="dropdown-menu" role="form">
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand53747" name="brand[]" value="53747" disabled>
-                      <label class="multifilter-checkbox__label" for="brand53747">Счастье Есть</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand80338" name="brand[]" value="80338" disabled>
-                      <label class="multifilter-checkbox__label" for="brand80338">Татис</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand42267" name="brand[]" value="42267" disabled>
-                      <label class="multifilter-checkbox__label" for="brand42267">Целебные Промыслы</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand49510" name="brand[]" value="49510" disabled>
-                      <label class="multifilter-checkbox__label" for="brand49510">Чистая Вода</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand51361" name="brand[]" value="51361" disabled>
-                      <label class="multifilter-checkbox__label" for="brand51361">Эко-Хлеб</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand92408" name="brand[]" value="92408" disabled>
-                      <label class="multifilter-checkbox__label" for="brand92408">Эпика</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand82134" name="brand[]" value="82134" disabled>
-                      <label class="multifilter-checkbox__label" for="brand82134">Южный Берег</label>
-                    </div>
-                    <div class="multifilter-checkbox" style="display:none;">
-                      <input class="multifilter-checkbox__input" type="checkbox" id="brand106999" name="brand[]" value="106999" disabled>
-                      <label class="multifilter-checkbox__label" for="brand106999">Ярость</label>
-                    </div>
-                  </div>
-                </fieldset>
-                <fieldset class="multifilter">
-                  <button class="multifilter__content" data-toggle="dropdown" type="button">
-                    <span class="multifilter__value">Цена</span>
-                  </button>
-                  <div class="dropdown-menu" role="form">
-                    <div class="multifilter-price">
-                      <input class="js-min-value" type="hidden" name="price[from]" value="0" />
-                      <input class="js-max-value" type="hidden" name="price[to]" value="0" />
-                      <div class="multifilter-price__title">
-                        <span class="multifilter-price__start">От</span>
-                        <span class="multifilter-price__end">До</span>
-                      </div>
-                      <div class="multifilter-price__range">
-                        <div class="input-range"></div>
-                      </div>
-                      <div class="multifilter-price__num">
-                        <span class="multifilter-price__start">60 ₽</span>
-                        <span class="multifilter-price__end">6 060 ₽</span>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
-              <button class="filter__btn-reset" type="reset">Сбросить</button>
-            </div>
-          </div>
+  <section class="target-section">
+    <div class="target-info">
+      <div class="container">
+        <div class="target-info__header">
+          <h2 class="target-info__title">ГЕЙНЕРЫ НА БЫСТРЫХ УГЛЕВОДАХ</h2>
+          <div class="target-info__count">8 товаров</div>
         </div>
-        <div class="catalog-control__menu">
-          <div class="container">
-            <div class="sorting">
-              <div class="sorting__list">
-                <fieldset class="multifilter">
-                  <div class="multifilter__content">
-                    <span class="multifilter__label">Найдено:</span>
-                    <span class="multifilter__value" data-total-find>66            товаров        </span>
-                  </div>
-                </fieldset>
-                <fieldset class="multifilter">
-                  <button class="multifilter__content" data-toggle="dropdown" type="button">
-                    <span class="multifilter__value">По популярности</span>
-                  </button>
-                  <div class="dropdown-menu" role="form">
-                    <div class="multifilter-radio">
-                      <input class="multifilter-radio__input" type="radio" id="1" name="sort" value="1" checked />
-                      <label class="multifilter-radio__label" for="1">По популярности</label>
-                    </div>
-                    <div class="multifilter-radio">
-                      <input class="multifilter-radio__input" type="radio" id="2" name="sort" value="2" />
-                      <label class="multifilter-radio__label" for="2">Сначала дешевые</label>
-                    </div>
-                    <div class="multifilter-radio">
-                      <input class="multifilter-radio__input" type="radio" id="3" name="sort" value="3" />
-                      <label class="multifilter-radio__label" for="3">Сначала дорогие</label>
-                    </div>
-                    <div class="multifilter-radio">
-                      <input class="multifilter-radio__input" type="radio" id="4" name="sort" value="4" />
-                      <label class="multifilter-radio__label" for="4">По названию (А-Я)</label>
-                    </div>
-                    <div class="multifilter-radio">
-                      <input class="multifilter-radio__input" type="radio" id="5" name="sort" value="5" />
-                      <label class="multifilter-radio__label" for="5">По названию (Я-A)</label>
-                    </div>
-                  </div>
-                </fieldset>
-                <div class="sorting__change-store">
-                  <fieldset class="multifilter">
-                    <button class="multifilter__content" data-toggle="dropdown" type="button">
-                      <span class="multifilter__label">В магазинах:</span>
-                      <span class="multifilter__value"></span>
-                      <span class="multifilter__total" style="display:none;">0</span>
-                    </button>
-                    <button class="multifilter__btn-clear" type="reset">Сбросить</button>
-                    <div class="multifilter__dropdown dropdown-menu" data-simplebar data-simplebar-auto-hide="false" role="form">
-                      <div class="multifilter-checkbox">
-                        <input class="multifilter-checkbox__input" type="checkbox" id="shops80430" name="shops[]" value="80430">
-                        <label class="multifilter-checkbox__label" for="shops80430">ул. Советская, д. 103А</label>
-                      </div>
-                    </div>
-                  </fieldset>
+        <div class="target-info__text">
+          <ul>
+            <li> Быстрая подпитка организма. Отлично подходит
+              для приемов после тренировки. </li>
+            <li> Ускоряет восстановление и набор массы. </li>
+            <li> Идеально подходит для спортсменов, испытывающих длительные
+              и высокие нагрузки (хоккеисты, борцы, боксеры и т.д.). </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-list product-list_slider">
+      <div class="product-list__wrapper">
+        <div class="product-card" data-product-id="49568">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/f9/74192_300x180_f96bb94f143f6d3ed0e66358e4bd4c92.jpg?1571926283" srcset="https://marketdo4a.com/upload/resizer/79/74192_600x360_792d519e5be85a2abbc6253aedc6c73a.jpg?1571926283 2x" alt="Do4a Lab Premium Whey 60% 900 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/do4a_lab_premium_whey_60_900_gr/" title="Перейти в карточку товара" itemprop="name">
+                Do4a Lab Premium Whey 60% 900 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1090">1 090</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.6">
+                  <meta itemprop="reviewCount" content="70">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>70 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-              <div class="sorting__checkbox-container">
-                <fieldset class="multifilter">
-                  <div class="multifilter__content">
-                    <div class="input-checkbox">
-                      <input class="input-checkbox__input" type="checkbox" value="on" name="has_discount" id="has_discount">
-                      <label class="input-checkbox__label" for="has_discount">Только со скидкой</label>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
             </div>
           </div>
-        </div>
-        <div class="catalog-control__menu catalog-control__menu_white">
-          <div class="catalog-control-mob">
-            <button class="catalog-control-mob__button justify-content-start" data-toggle="m-filter" data-target="#mobile-filter">
-              <svg class="catalog-control-mob__icon" height="21" width="19">
-                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-filter"></use>
-              </svg>
-              <span>Фильтр</span>
-            </button>
-            <button class="catalog-control-mob__button catalog-control-mob__button_gray justify-content-end" data-toggle="m-filter" data-target="#mobile-sort">
-              <span>Сортировка</span>
-              <svg class="catalog-control-mob__icon" height="22" width="14">
-                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-sort"></use>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
               </svg>
             </button>
           </div>
         </div>
-      </div>
-      <div class="product-list">
-        <div class="product-list__wrapper">
-          <div class="product-card" data-product-id="49568">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/f9/74192_300x180_f96bb94f143f6d3ed0e66358e4bd4c92.jpg?1571926283" srcset="https://marketdo4a.com/upload/resizer/79/74192_600x360_792d519e5be85a2abbc6253aedc6c73a.jpg?1571926283 2x" alt="Do4a Lab Premium Whey 60% 900 гр">
+        <div class="product-card" data-product-id="64537">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/0f/85811_300x180_0ffc75b1eb6169cbc1577b619d5dd706.jpg?1571926274" srcset="https://marketdo4a.com/upload/resizer/00/85811_600x360_002cea2a515c1e424bc71f4616bc60af.jpg?1571926274 2x" alt="Do4a Lab Premium Whey 80% 900 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/do4a_lab_premium_whey_80_900_gr/" title="Перейти в карточку товара" itemprop="name">
+                Do4a Lab Premium Whey 80% 900 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1350">1 350</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/do4a_lab_premium_whey_60_900_gr/" title="Перейти в карточку товара" itemprop="name">
-                  Do4a Lab Premium Whey 60% 900 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="1090">1 090</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="4.6">
-                    <meta itemprop="reviewCount" content="70">
-                    <span class="product-card__rating">
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.5">
+                  <meta itemprop="reviewCount" content="110">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star"></i>
                         </span>
-                    <span>70 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>110 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers"></div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="64537">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/0f/85811_300x180_0ffc75b1eb6169cbc1577b619d5dd706.jpg?1571926274" srcset="https://marketdo4a.com/upload/resizer/00/85811_600x360_002cea2a515c1e424bc71f4616bc60af.jpg?1571926274 2x" alt="Do4a Lab Premium Whey 80% 900 гр">
+          <div class="product-stickers">
+            <div class="product-stickers__item product-stickers__item_red">Хит!</div>
+          </div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="1286">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/ac/105737_300x180_ac61449f0f17331cfc946ec53cc53253.jpg?1574058784" srcset="https://marketdo4a.com/upload/resizer/95/105737_600x360_956e0deb4b0b75272434496f21413d7a.jpg?1574058784 2x" alt="ON Whey Gold Standard 2270 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/on_whey_gold_standart_2270_gr/" title="Перейти в карточку товара" itemprop="name">
+                ON Whey Gold Standard 2270 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="3760">3 760</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/do4a_lab_premium_whey_80_900_gr/" title="Перейти в карточку товара" itemprop="name">
-                  Do4a Lab Premium Whey 80% 900 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="1350">1 350</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="4.5">
-                    <meta itemprop="reviewCount" content="110">
-                    <span class="product-card__rating">
+              <div class="product-card__sale">Экономия 770 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.6">
+                  <meta itemprop="reviewCount" content="7">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star"></i>
                         </span>
-                    <span>110 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>7 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers">
-              <div class="product-stickers__item product-stickers__item_red">Хит!</div>
-            </div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="1286">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/ac/105737_300x180_ac61449f0f17331cfc946ec53cc53253.jpg?1574058784" srcset="https://marketdo4a.com/upload/resizer/95/105737_600x360_956e0deb4b0b75272434496f21413d7a.jpg?1574058784 2x" alt="ON Whey Gold Standard 2270 гр">
+          <div class="product-stickers">
+            <div class="product-stickers__item product-stickers__item_red">Хит!</div>
+          </div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="42356">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/5e/68617_300x180_5eb698009d3e2d5000df22a272e7d67b.jpg?1571928796" srcset="https://marketdo4a.com/upload/resizer/fe/68617_600x360_feea459777a9bc093bd4103922fab24f.jpg?1571928796 2x" alt="Maxler Golden Whey 908 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/maxler_100_golden_whey_908_gr/" title="Перейти в карточку товара" itemprop="name">
+                Maxler Golden Whey 908 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1295">1 295</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/on_whey_gold_standart_2270_gr/" title="Перейти в карточку товара" itemprop="name">
-                  ON Whey Gold Standard 2270 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="3760">3 760</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__sale">Экономия 770 ₽</div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="4.6">
-                    <meta itemprop="reviewCount" content="7">
-                    <span class="product-card__rating">
+              <div class="product-card__sale">Экономия 265 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.5">
+                  <meta itemprop="reviewCount" content="16">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star"></i>
                         </span>
-                    <span>7 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>16 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers">
-              <div class="product-stickers__item product-stickers__item_red">Хит!</div>
-            </div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="42356">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/5e/68617_300x180_5eb698009d3e2d5000df22a272e7d67b.jpg?1571928796" srcset="https://marketdo4a.com/upload/resizer/fe/68617_600x360_feea459777a9bc093bd4103922fab24f.jpg?1571928796 2x" alt="Maxler Golden Whey 908 гр">
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="42357">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/28/68618_300x180_286c2790ea3efb83d23570a790892851.jpg?1571926283" srcset="https://marketdo4a.com/upload/resizer/12/68618_600x360_123aec5d4827613f582bf143c486fe6a.jpg?1571926283 2x" alt="Maxler Golden Whey 2270 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/maxler_100_golden_whey_2270_gr/" title="Перейти в карточку товара" itemprop="name">
+                Maxler Golden Whey 2270 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="2903">2 903</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/maxler_100_golden_whey_908_gr/" title="Перейти в карточку товара" itemprop="name">
-                  Maxler Golden Whey 908 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="1295">1 295</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__sale">Экономия 265 ₽</div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="4.5">
-                    <meta itemprop="reviewCount" content="16">
-                    <span class="product-card__rating">
+              <div class="product-card__sale">Экономия 637 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.8">
+                  <meta itemprop="reviewCount" content="18">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star"></i>
                         </span>
-                    <span>16 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>18 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers"></div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="42357">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/28/68618_300x180_286c2790ea3efb83d23570a790892851.jpg?1571926283" srcset="https://marketdo4a.com/upload/resizer/12/68618_600x360_123aec5d4827613f582bf143c486fe6a.jpg?1571926283 2x" alt="Maxler Golden Whey 2270 гр">
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="1385">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/bb/105738_300x180_bbf2ced3899169f731981b8f677ad4c1.jpg?1574058993" srcset="https://marketdo4a.com/upload/resizer/a3/105738_600x360_a31455d6297492130271fd60fdf857e6.jpg?1574058993 2x" alt="ON Whey Gold Standard 908 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/on_whey_gold_standart_908_gr/" title="Перейти в карточку товара" itemprop="name">
+                ON Whey Gold Standard 908 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1768">1 768</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/maxler_100_golden_whey_2270_gr/" title="Перейти в карточку товара" itemprop="name">
-                  Maxler Golden Whey 2270 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="2903">2 903</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__sale">Экономия 637 ₽</div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="4.8">
-                    <meta itemprop="reviewCount" content="18">
-                    <span class="product-card__rating">
-                          <i class="i i-star red"></i>
+              <div class="product-card__sale">Экономия 362 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="3.4">
+                  <meta itemprop="reviewCount" content="5">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star"></i>
+                          <i class="i i-star"></i>
                         </span>
-                    <span>18 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>5 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers"></div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="1385">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/bb/105738_300x180_bbf2ced3899169f731981b8f677ad4c1.jpg?1574058993" srcset="https://marketdo4a.com/upload/resizer/a3/105738_600x360_a31455d6297492130271fd60fdf857e6.jpg?1574058993 2x" alt="ON Whey Gold Standard 908 гр">
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="33194">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/10/93293_300x180_10e3d5d6fc4e91c0ebb0f28d8d4374c2.jpg?1571927030" srcset="https://marketdo4a.com/upload/resizer/3f/93293_600x360_3f6cf484608a049c87b83b8b3bbff553.jpg?1571927030 2x" alt="Genetic lab Whey Pro 1000 г">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/genetic_lab_whey_pro_1000_g/" title="Перейти в карточку товара" itemprop="name">
+                Genetic lab Whey Pro 1000 г</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1490">1 490</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/on_whey_gold_standart_908_gr/" title="Перейти в карточку товара" itemprop="name">
-                  ON Whey Gold Standard 908 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="1768">1 768</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__sale">Экономия 362 ₽</div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="3.4">
-                    <meta itemprop="reviewCount" content="5">
-                    <span class="product-card__rating">
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="3.9">
+                  <meta itemprop="reviewCount" content="8">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star"></i>
                           <i class="i i-star"></i>
                         </span>
-                    <span>5 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>8 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers"></div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="33194">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/10/93293_300x180_10e3d5d6fc4e91c0ebb0f28d8d4374c2.jpg?1571927030" srcset="https://marketdo4a.com/upload/resizer/3f/93293_600x360_3f6cf484608a049c87b83b8b3bbff553.jpg?1571927030 2x" alt="Genetic lab Whey Pro 1000 г">
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="3155">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/8e/18082_300x180_8ecd33c5e276cfc59d3c3e12a7005000.jpg?1571926274" srcset="https://marketdo4a.com/upload/resizer/77/18082_600x360_7735ba1ef55415c63c223961dd9392cd.jpg?1571926274 2x" alt="Ultimate Prostar Whey 2390 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/ultimate_prostar_whey_2390_gr/" title="Перейти в карточку товара" itemprop="name">
+                Ultimate Prostar Whey 2390 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="2746">2 746</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
               </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/genetic_lab_whey_pro_1000_g/" title="Перейти в карточку товара" itemprop="name">
-                  Genetic lab Whey Pro 1000 г</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="1490">1 490</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="3.9">
-                    <meta itemprop="reviewCount" content="8">
-                    <span class="product-card__rating">
+              <div class="product-card__sale">Экономия 774 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.1">
+                  <meta itemprop="reviewCount" content="7">
+                  <span class="product-card__rating">
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
                           <i class="i i-star red"></i>
-                          <i class="i i-star"></i>
+                          <i class="i i-star red"></i>
                           <i class="i i-star"></i>
                         </span>
-                    <span>8 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
+                  <span>7 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
                 </div>
               </div>
-            </div>
-            <div class="product-stickers"></div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
             </div>
           </div>
-          <div class="product-card" data-product-id="3155">
-            <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
-              <div class="product-card__img">
-                <!--img(itemprop="image"-->
-                <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
-                <!--    alt="Название товара")-->
-                <img itemprop="image" src="https://marketdo4a.com/upload/resizer/8e/18082_300x180_8ecd33c5e276cfc59d3c3e12a7005000.jpg?1571926274" srcset="https://marketdo4a.com/upload/resizer/77/18082_600x360_7735ba1ef55415c63c223961dd9392cd.jpg?1571926274 2x" alt="Ultimate Prostar Whey 2390 гр">
-              </div>
-              <div class="product-card__body">
-                <!--            card__badge_central-->
-                <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
-                <!-- Ссылку назначаем на заголовок-->
-                <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
-                <!-- то добавляем класс .stretched-link-->
-                <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
-                <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
-                <a class="product-card__title stretched-link" href="/catalog/product/ultimate_prostar_whey_2390_gr/" title="Перейти в карточку товара" itemprop="name">
-                  Ultimate Prostar Whey 2390 гр</a>
-                <div class="product-card__description" itemprop="description">Сывороточный</div>
-              </div>
-              <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <div class="product-card__price">
-                  <span class="price" itemprop="price" content="2746">2 746</span>
-                  <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
-                </div>
-                <div class="product-card__sale">Экономия 774 ₽</div>
-                <div class="product-card__row">
-                  <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-                    <meta itemprop="ratingValue" content="4.1">
-                    <meta itemprop="reviewCount" content="7">
-                    <span class="product-card__rating">
-                          <i class="i i-star red"></i>
-                          <i class="i i-star red"></i>
-                          <i class="i i-star red"></i>
-                          <i class="i i-star red"></i>
-                          <i class="i i-star"></i>
-                        </span>
-                    <span>7 отзывов</span>
-                  </div>
-                  <div class="product-card__stock">
-                    <div class="green">В наличии</div>
-                    <link itemprop="availability" href="http://schema.org/InStock">
-                    <div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-stickers"></div>
-            <div class="product-control">
-              <button class="product-control__favorites">
-                <svg>
-                  <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
-                </svg>
-              </button>
-            </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
-      <div class="product-list__control">
-        <div class="load-more-block">
-          <button type="button" class="load-more-block__link">Показать еще</button>
-          <div class="load-more-block__value">Показано 24 из 66</div>
+    </div>
+  </section>
+
+  <section class="target-section">
+    <div class="target-info">
+      <div class="container">
+        <div class="target-info__header">
+          <h2 class="target-info__title">ГЕЙНЕРЫ НА БЫСТРЫХ УГЛЕВОДАХ</h2>
+          <div class="target-info__count">8 товаров</div>
+        </div>
+        <div class="target-info__text">
+          <ul>
+            <li> Быстрая подпитка организма. Отлично подходит
+              для приемов после тренировки. </li>
+            <li> Ускоряет восстановление и набор массы. </li>
+            <li> Идеально подходит для спортсменов, испытывающих длительные
+              и высокие нагрузки (хоккеисты, борцы, боксеры и т.д.). </li>
+          </ul>
         </div>
       </div>
-    </form>
-  </section>
+    </div>
 
-  <section class="search-page-section" id="articles">
-    <div class="container">
-      <h2 class="search-page-title">Статьи и акции <span>8</span></h2>
-
-      <article class="search-results-article">
-        <h3 class="search-results-article__title">
-          <a href="#">Какие бывают протеины</a>
-        </h3>
-        <p class="search-results-article__description">Рассказываем о протеинах просто и для всех.</p>
-      </article>
-
-      <article class="search-results-article">
-        <h3 class="search-results-article__title">
-          <a href="#">Какие бывают протеины</a>
-        </h3>
-        <p class="search-results-article__description">Рассказываем о протеинах просто и для всех.</p>
-      </article>
+    <div class="product-list product-list_slider">
+      <div class="product-list__wrapper">
+        <div class="product-card" data-product-id="49568">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/f9/74192_300x180_f96bb94f143f6d3ed0e66358e4bd4c92.jpg?1571926283" srcset="https://marketdo4a.com/upload/resizer/79/74192_600x360_792d519e5be85a2abbc6253aedc6c73a.jpg?1571926283 2x" alt="Do4a Lab Premium Whey 60% 900 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/do4a_lab_premium_whey_60_900_gr/" title="Перейти в карточку товара" itemprop="name">
+                Do4a Lab Premium Whey 60% 900 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1090">1 090</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.6">
+                  <meta itemprop="reviewCount" content="70">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>70 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="64537">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/0f/85811_300x180_0ffc75b1eb6169cbc1577b619d5dd706.jpg?1571926274" srcset="https://marketdo4a.com/upload/resizer/00/85811_600x360_002cea2a515c1e424bc71f4616bc60af.jpg?1571926274 2x" alt="Do4a Lab Premium Whey 80% 900 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/do4a_lab_premium_whey_80_900_gr/" title="Перейти в карточку товара" itemprop="name">
+                Do4a Lab Premium Whey 80% 900 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1350">1 350</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.5">
+                  <meta itemprop="reviewCount" content="110">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>110 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers">
+            <div class="product-stickers__item product-stickers__item_red">Хит!</div>
+          </div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="1286">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/ac/105737_300x180_ac61449f0f17331cfc946ec53cc53253.jpg?1574058784" srcset="https://marketdo4a.com/upload/resizer/95/105737_600x360_956e0deb4b0b75272434496f21413d7a.jpg?1574058784 2x" alt="ON Whey Gold Standard 2270 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/on_whey_gold_standart_2270_gr/" title="Перейти в карточку товара" itemprop="name">
+                ON Whey Gold Standard 2270 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="3760">3 760</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__sale">Экономия 770 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.6">
+                  <meta itemprop="reviewCount" content="7">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>7 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers">
+            <div class="product-stickers__item product-stickers__item_red">Хит!</div>
+          </div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="42356">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/5e/68617_300x180_5eb698009d3e2d5000df22a272e7d67b.jpg?1571928796" srcset="https://marketdo4a.com/upload/resizer/fe/68617_600x360_feea459777a9bc093bd4103922fab24f.jpg?1571928796 2x" alt="Maxler Golden Whey 908 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/maxler_100_golden_whey_908_gr/" title="Перейти в карточку товара" itemprop="name">
+                Maxler Golden Whey 908 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1295">1 295</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__sale">Экономия 265 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.5">
+                  <meta itemprop="reviewCount" content="16">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>16 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="42357">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/28/68618_300x180_286c2790ea3efb83d23570a790892851.jpg?1571926283" srcset="https://marketdo4a.com/upload/resizer/12/68618_600x360_123aec5d4827613f582bf143c486fe6a.jpg?1571926283 2x" alt="Maxler Golden Whey 2270 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/maxler_100_golden_whey_2270_gr/" title="Перейти в карточку товара" itemprop="name">
+                Maxler Golden Whey 2270 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="2903">2 903</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__sale">Экономия 637 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.8">
+                  <meta itemprop="reviewCount" content="18">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>18 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="1385">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/bb/105738_300x180_bbf2ced3899169f731981b8f677ad4c1.jpg?1574058993" srcset="https://marketdo4a.com/upload/resizer/a3/105738_600x360_a31455d6297492130271fd60fdf857e6.jpg?1574058993 2x" alt="ON Whey Gold Standard 908 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/on_whey_gold_standart_908_gr/" title="Перейти в карточку товара" itemprop="name">
+                ON Whey Gold Standard 908 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1768">1 768</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__sale">Экономия 362 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="3.4">
+                  <meta itemprop="reviewCount" content="5">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>5 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="33194">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/10/93293_300x180_10e3d5d6fc4e91c0ebb0f28d8d4374c2.jpg?1571927030" srcset="https://marketdo4a.com/upload/resizer/3f/93293_600x360_3f6cf484608a049c87b83b8b3bbff553.jpg?1571927030 2x" alt="Genetic lab Whey Pro 1000 г">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/genetic_lab_whey_pro_1000_g/" title="Перейти в карточку товара" itemprop="name">
+                Genetic lab Whey Pro 1000 г</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="1490">1 490</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="3.9">
+                  <meta itemprop="reviewCount" content="8">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>8 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card" data-product-id="3155">
+          <div class="product-card__wrapper" itemscope itemtype="http://schema.org/Product">
+            <div class="product-card__img">
+              <!--img(itemprop="image"-->
+              <!--    src="https://msk.marketdo4a.com/upload/resizer/15/99069_270x270_151b675ade5086be6aabcf932706bc81.jpg"-->
+              <!--    alt="Название товара")-->
+              <img itemprop="image" src="https://marketdo4a.com/upload/resizer/8e/18082_300x180_8ecd33c5e276cfc59d3c3e12a7005000.jpg?1571926274" srcset="https://marketdo4a.com/upload/resizer/77/18082_600x360_7735ba1ef55415c63c223961dd9392cd.jpg?1571926274 2x" alt="Ultimate Prostar Whey 2390 гр">
+            </div>
+            <div class="product-card__body">
+              <!--            card__badge_central-->
+              <div class="product-card__badge product-card__badge_local">Магазин рядом, 1 день</div>
+              <!-- Ссылку назначаем на заголовок-->
+              <!-- Если хотим, чтобы вся карточка была кликабельной, а не только заголовок-->
+              <!-- то добавляем класс .stretched-link-->
+              <!-- См. https://getbootstrap.com/docs/4.3/utilities/stretched-link/-->
+              <!-- Причина: соответствие стандартам, которые запрещают <div> внутри <a>-->
+              <a class="product-card__title stretched-link" href="/catalog/product/ultimate_prostar_whey_2390_gr/" title="Перейти в карточку товара" itemprop="name">
+                Ultimate Prostar Whey 2390 гр</a>
+              <div class="product-card__description" itemprop="description">Сывороточный</div>
+            </div>
+            <div class="product-card__footer" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+              <div class="product-card__price">
+                <span class="price" itemprop="price" content="2746">2 746</span>
+                <span class="currency" itemprop="priceCurrency" content="RUB">₽</span>
+              </div>
+              <div class="product-card__sale">Экономия 774 ₽</div>
+              <div class="product-card__row">
+                <div class="product-card__reviews" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                  <meta itemprop="ratingValue" content="4.1">
+                  <meta itemprop="reviewCount" content="7">
+                  <span class="product-card__rating">
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star red"></i>
+                          <i class="i i-star"></i>
+                        </span>
+                  <span>7 отзывов</span>
+                </div>
+                <div class="product-card__stock">
+                  <div class="green">В наличии</div>
+                  <link itemprop="availability" href="http://schema.org/InStock">
+                  <div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="product-stickers"></div>
+          <div class="product-control">
+            <button class="product-control__favorites">
+              <svg>
+                <use xlink:href="/static/dist/images/new-sprite.svg#sprite-product-card-heart"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="search-page-section" id="brands">
-    <div class="container">
-      <h2 class="search-page-title">Найдено в брендах <span>12</span></h2>
-      <ul class="search-page-brands">
-        <li class="search-page-brands__item">
-          <a class="search-results-brand" href="#">
-            <figure class="search-results-brand__img">
-              <img src="images/maxler.png" alt="Maxler">
-            </figure>
-            <span class="search-results-brand__text">5 товаров</span>
-          </a>
-        </li>
-        <li class="search-page-brands__item">
-          <a class="search-results-brand" href="#">
-            <figure class="search-results-brand__img">
-              <img src="images/ultimate-nutrition-logo.png" alt="Maxler">
-            </figure>
-            <span class="search-results-brand__text">5 товаров</span>
-          </a>
-        </li>
-        <li class="search-page-brands__item">
-          <a class="search-results-brand" href="#">
-            <figure class="search-results-brand__img">
-              <img src="images/on-logo.png" alt="Maxler">
-            </figure>
-            <span class="search-results-brand__text">5 товаров</span>
-          </a>
-        </li>
-        <li class="search-page-brands__item">
-          <a class="search-results-brand" href="#">
-            <figure class="search-results-brand__img">
-              <img src="images/maxler.png" alt="Maxler">
-            </figure>
-            <span class="search-results-brand__text">5 товаров</span>
-          </a>
-        </li>
-        <li class="search-page-brands__item">
-          <a class="search-results-brand" href="#">
-            <figure class="search-results-brand__img">
-              <img src="images/ultimate-nutrition-logo.png" alt="Maxler">
-            </figure>
-            <span class="search-results-brand__text">5 товаров</span>
-          </a>
-        </li>
-        <li class="search-page-brands__item">
-          <a class="search-results-brand" href="#">
-            <figure class="search-results-brand__img">
-              <img src="images/on-logo.png" alt="Maxler">
-            </figure>
-            <span class="search-results-brand__text">5 товаров</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
 </main>
 
 <footer class="footer">

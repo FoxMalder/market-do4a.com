@@ -32,6 +32,8 @@ const state = {
   textDelivery: '',
   textDeliveryCentral: '',
   textDeliveryLocal: '',
+  sectionTitle: '',
+  sectionLink: '',
 
   // reviewsRequestParam: {},
   reviewsLoading: false,
@@ -287,6 +289,8 @@ const mutations = {
 
     state.category = param.category;
     state.country = param.country;
+    state.sectionTitle = param.sectionTitle;
+    state.sectionLink = param.sectionLink;
   },
 
   SET_PACKING(state, { packing }) {

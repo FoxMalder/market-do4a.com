@@ -3,26 +3,26 @@ import 'bootstrap/js/dist/util';
 import 'bootstrap/js/dist/tooltip';
 
 import Vue from 'vue';
+// import VueLazyload from 'vue-lazyload';
 // import Sticky from 'sticky-js';
 
-import '../plugins/Anchor';
+import '@/plugins/Anchor';
 // import TextareaAutoHeight from '../plugins/TextareaAutoHeight';
-import Utils from '../utils/utils';
-import Reviews from '../api/reviews';
-import Product from '../api/product';
 
-import store from '../store';
-import productStore from '../store/modules/product';
-// import ControlCounter from '../components/product/ControlCounter.vue';
-// import ControlSelect from '../components/product/ControlSelect.vue';
+import store from '@/store';
+import productStore from '@/store/modules/product';
+
+import Utils from '@/utils/utils';
+import Reviews from '@/api/reviews';
+import Product from '@/api/product';
+
 import ProductImage from '@/components/product/DetailGallery.vue';
-// import StarRating from '../components/StarRating.vue';
-import ProductDetailHeader from '../components/product/DetailHeader.vue';
-import ProductDetailName from '../components/product/DetailName.vue';
-import ProductDetail from '../components/product/Detail.vue';
-import ProductReviews from '../components/product/Reviews.vue';
-import ReviewsHeader from '../components/product/ReviewsHeader.vue';
-import ProductSimilar from '../components/product/Similar.vue';
+import ProductDetailHeader from '@/components/product/DetailHeader.vue';
+import ProductDetailName from '@/components/product/DetailName.vue';
+import ProductDetail from '@/components/product/Detail.vue';
+import ProductReviews from '@/components/product/Reviews.vue';
+import ReviewsHeader from '@/components/product/ReviewsHeader.vue';
+import ProductSimilar from '@/components/product/Similar.vue';
 
 
 /**
@@ -149,7 +149,7 @@ export default class PageProduct {
   }
 
   init() {
-    $('[data-toggle="tooltip"]').tooltip();
+    // $('[data-toggle="tooltip"]').tooltip();
     // $('.p-control-select__header').dropdown({ display: 'static' });
 
 
@@ -283,9 +283,9 @@ export default class PageProduct {
     const activePacking = payload;
 
     document.title = activePacking.title;
-    if (!global.demo) {
-      window.history.replaceState(null, null, activePacking.url);
-    }
+    window.history.replaceState(null, null, activePacking.url);
+    // if (!global.demo) {
+    // }
 
     if (this.elements.breadcumpsThisPage) {
       this.elements.breadcumpsThisPage.innerHTML = activePacking.name;

@@ -1,18 +1,17 @@
+import { Swiper, Mousewheel, Scrollbar } from 'swiper/js/swiper.esm';
 import ready from 'domready';
+import AOS from 'aos';
+import $$ from 'dom7';
 import Vue from 'vue';
 
-import {
-  Swiper,
-  Mousewheel,
-  Scrollbar,
-} from 'swiper/js/swiper.esm';
-import AOS from 'aos';
-
-import './simple';
 
 import 'aos/dist/aos.css';
 import './scss/about-page.scss';
 
+
+import './simple';
+
+import { handleForm } from '@/modules/Form';
 
 import AboutCity from '@/components/about/AboutCities.vue';
 import store from '@/store';
@@ -30,6 +29,8 @@ ready(() => {
     easing: 'ease-in-out',
     once: true,
   });
+
+  $$('.form-body').parents('form').on('submit', handleForm);
 
 
   if (document.documentElement.clientWidth > 1240) {
@@ -74,11 +75,9 @@ ready(() => {
 
       on: {
         setTranslate(arg) {
-          const opacity = Math.max(Math.min((arg / 90) + 1, 1), 0);
-
-          Array.prototype.forEach.call(this.el.querySelectorAll('.slider-scrollbar-note'), (el) => {
-            el.style.opacity = opacity;
-          });
+          this.$el
+            .find('.slider-scrollbar-note')
+            .css('opacity', Math.max(Math.min((arg / 90) + 1, 1), 0));
         },
       },
     });
