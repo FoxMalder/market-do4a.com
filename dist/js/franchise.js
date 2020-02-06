@@ -1,4 +1,7 @@
-/*! Front by Roman Meshcheryakov */
+/*!
+ * Front for marketdo4a.com 1.3.1 
+ * (c) 2020 Roman Meshcheryakov
+ */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[7,12],{106:function(e,t,n){},15:function(e,t){e.exports=jQuery},177:function(e,t,n){"use strict";
 /*! npm.im/intervalometer */function i(e,t,n,i){var r,s;function o(n){r=t(o,i),e(n-(s||n)),s=n}return{start:function(){r||o(0)},stop:function(){n(r),r=null,s=0}}}
 /*! npm.im/iphone-inline-video 2.2.2 */

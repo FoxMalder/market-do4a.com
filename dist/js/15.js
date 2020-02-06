@@ -1,4 +1,7 @@
-/*! Front by Roman Meshcheryakov */
+/*!
+ * Front for marketdo4a.com 1.3.1 
+ * (c) 2020 Roman Meshcheryakov
+ */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[15],{178:function(t,i,e){var s=e(280);t.exports=s},280:function(t,i,e){function s(t,i){if(!(t instanceof i))throw new TypeError("Cannot call a class as a function")}
 /**
  * Sticky.js
