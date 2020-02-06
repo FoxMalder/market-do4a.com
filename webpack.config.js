@@ -13,6 +13,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const IconfontPlugin = require('iconfont-plugin-webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
+const PACKAGE = require('./package.json');
+
 const distPath = path.resolve(__dirname, 'dist');
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -594,7 +596,10 @@ const prodConfig = {
   plugins: [
     new CleanWebpackPlugin(),
 
-    new webpack.BannerPlugin('Front by Roman Meshcheryakov'),
+    new webpack.BannerPlugin(
+      `Front for marketdo4a.com ${PACKAGE.version} \n` +
+      '(c) 2020 Roman Meshcheryakov',
+    ),
 
     new CssUrlRelativePlugin(),
     new ExtractCssChunksPlugin({

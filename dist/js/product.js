@@ -1,4 +1,7 @@
-/*! Front by Roman Meshcheryakov */
+/*!
+ * Front for marketdo4a.com 1.3.1 
+ * (c) 2020 Roman Meshcheryakov
+ */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[9,12],{15:function(t,e){t.exports=jQuery},153:function(t,e,i){"use strict";i.r(e),function(t){
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
