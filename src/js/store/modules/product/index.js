@@ -1,8 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-shadow */
 
-import Reviews from '../../api/reviews';
-import Product from '../../api/product';
+// import Reviews from '../../api/reviews';
+// import Product from '@/api/product';
+
+import reviews from './reviews';
+import similar from './similar';
 
 
 let position = 0;
@@ -29,20 +32,10 @@ const state = {
   // name: '',
   category: '',
   country: '',
-  textDelivery: '',
   textDeliveryCentral: '',
   textDeliveryLocal: '',
   sectionTitle: '',
   sectionLink: '',
-
-  // reviewsRequestParam: {},
-  reviewsLoading: false,
-  reviewsPage: 1,
-  reviews: [],
-
-  // similarRequestParam: {},
-  similarLoading: false,
-  similar: [],
 };
 
 
@@ -95,19 +88,19 @@ const getters = {
 
 // actions
 const actions = {
-  init({ commit, getters, rootState, rootGetters }, product) {
+  init({ commit, getters, dispatch, rootGetters }, product) {
     if (!Array.isArray(product.packing)) {
       product.packing = Object.values(product.packing);
     }
 
-    product.packing.forEach((item) => {
-      if (!Array.isArray(item.sku)) {
-        // item.sku = Object.values(item.sku);
-        item.sku = Object.keys(item.sku).map(key => ({
-          id: parseInt(key, 10),
-          ...item.sku[key],
-        }));
+    product.packing.forEach((pack) => {
+      if (Array.isArray(pack.sku)) {
+        return;
       }
+      pack.sku = Object.keys(pack.sku).map((key) => ({
+        ...pack.sku[key],
+        id: parseFloat(key),
+      }));
     });
 
     // commit('SET_NAME', { name: global.product.name });
@@ -141,6 +134,10 @@ const actions = {
         },
       },
     });
+
+
+    // dispatch('reviews/update');
+    // dispatch('similar/update');
   },
 
   selectPacking({ dispatch, commit, rootState, rootGetters }, packing) {
@@ -180,8 +177,8 @@ const actions = {
       },
     });
 
-    dispatch('updateReviews');
-    dispatch('updateSimilar');
+    dispatch('reviews/update');
+    dispatch('similar/update');
   },
 
   selectOffer({ commit, getters, rootState, rootGetters }, offer) {
@@ -211,79 +208,11 @@ const actions = {
       },
     });
   },
-
-  getNextReviews({ state, dispatch }) {
-    dispatch('updateReviews', state.reviewsPage + 1);
-  },
-
-  addReview({ state, dispatch }, data) {
-    return new Promise((resolve, reject) => {
-      Reviews.addReview(state.packingId, data)
-        .then(() => {
-          resolve();
-          dispatch('updateReviews');
-        })
-        .catch((error) => {
-          reject();
-          alert(error.message || error.response.message);
-        });
-    });
-  },
-
-  updateReviews({ state, commit }, page = 1) {
-    commit('SET_REVIEWS_LOADING', true);
-    commit('SET_REVIEWS_PAGE', page);
-
-    Reviews.getReviews(state.packingId, page)
-      .then((response) => {
-        // console.log('getReviews then', response);
-        if (page > 1) {
-          commit('PUSH_REVIEW_TO_REVIEWS', response.data.items);
-        } else {
-          commit('SET_REVIEWS', response.data.items);
-        }
-        commit('SET_REVIEWS_COUNT', response.data.count);
-      })
-      .catch((error) => {
-        // console.log('getReviews catch', error);
-        // alert(error.message || error.response.message);
-        console.log(error.message || error.response.message);
-      })
-      .finally(() => {
-        commit('SET_REVIEWS_LOADING', false);
-      });
-  },
-
-  updateSimilar({ state, commit }) {
-    commit('SET_SIMILAR_LOADING', true);
-
-    Product.getSimilar(state.packingId)
-      .then((response) => {
-        // console.log('getSimilar then', response);
-        commit('SET_SIMILAR', response.data.items);
-      })
-      .catch((error) => {
-        // console.log('getSimilar catch', error);
-        // alert(error.message || error.response.message);
-      })
-      .finally(() => {
-        commit('SET_SIMILAR_LOADING', false);
-      });
-  },
 };
 
 // mutations
 const mutations = {
-  // SET_ALL(state, product) {
-  //   state = {
-  //     ...state,
-  //     ...product,
-  //   };
-  // },
-
   SET_PARAM(state, param) {
-    // console.log(param.category);
-    // state.textDelivery = param.textDelivery;
     state.textDeliveryCentral = param.textDeliveryCentral;
     state.textDeliveryLocal = param.textDeliveryLocal;
 
@@ -305,38 +234,9 @@ const mutations = {
     state.offerId = id;
   },
 
-  SET_REVIEWS(state, reviews) {
-    state.reviews = reviews;
-  },
-
   SET_FAVORITES_STATUS(state, { id, status }) {
     const packingItem = state.packing.find(item => item.id === id);
     packingItem.isFavorite = status;
-  },
-
-  PUSH_REVIEW_TO_REVIEWS(state, review) {
-    state.reviews.push(...review);
-  },
-
-  SET_REVIEWS_COUNT(state, count) {
-    const pack = state.packing.find(item => item.id === state.packingId);
-    pack.review = count;
-  },
-
-  SET_REVIEWS_PAGE(state, page) {
-    state.reviewsPage = page;
-  },
-
-  SET_REVIEWS_LOADING(state, isLoading) {
-    state.reviewsLoading = isLoading;
-  },
-
-  SET_SIMILAR(state, similar) {
-    state.similar = similar;
-  },
-
-  SET_SIMILAR_LOADING(state, isLoading) {
-    state.similarLoading = isLoading;
   },
 };
 
@@ -346,5 +246,9 @@ export default {
   getters,
   actions,
   mutations,
+
+  modules: {
+    similar,
+    reviews,
+  },
 };
-// }

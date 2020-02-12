@@ -4,7 +4,7 @@
   "version": "1.3.1",
   "repository": "https://github.com/Staremang/market-do4a.com.git",
   "author": "Roman Meshcheryakov <staremang@ya.ru> (https://canonical.site/)",
-  "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "NODE_ENV=production webpack --mode production",
     "start": "NODE_ENV=development webpack-dev-server --mode development --hot"

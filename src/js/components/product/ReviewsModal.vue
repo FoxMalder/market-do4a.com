@@ -127,7 +127,7 @@
       onSubmit() {
         this.status = 'loading';
 
-        this.$store.dispatch('product/addReview', this.props)
+        this.$store.dispatch('product/reviews/add', this.props)
           .then(() => {
             this.$emit('modal:close');
             this.status = null;

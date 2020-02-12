@@ -56,7 +56,7 @@ export default {
       .then(response => response.data)
       .then((response) => {
         if (response.success) {
-          return response;
+          return response.data;
         }
         const error = new Error(response.message);
         error.response = response;

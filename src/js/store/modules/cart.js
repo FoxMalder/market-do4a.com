@@ -3,7 +3,6 @@ import Vue from 'vue';
 // import Cart from '../../api/cart';
 import * as Api from '../../api';
 import Utils from '../../utils/utils';
-import { ADD_TOAST_MESSAGE } from './notifications';
 
 
 function gtmAddEvent(data) {
