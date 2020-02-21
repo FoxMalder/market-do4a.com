@@ -14,9 +14,7 @@ const IconfontPlugin = require('iconfont-plugin-webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 
-const distPath = path.resolve(__dirname, 'dist');
 const isDev = process.env.NODE_ENV === 'development';
-
 
 const cummonConfig = {
   entry: {
@@ -39,7 +37,7 @@ const cummonConfig = {
     // headerStyle: './src/scss/header-style.scss',
   },
   output: {
-    path: distPath,
+    path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
     // chunkFilename: 'js/[name].bundle.js',
     // publicPath: '',
@@ -93,6 +91,10 @@ const cummonConfig = {
     //   logLevel: 'WARNING',
     // }),
     new WebpackBar(),
+
+    new webpack.DefinePlugin({
+      'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
+    }),
 
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -420,7 +422,7 @@ const devConfig = {
   ],
 
   devServer: {
-    // contentBase: distPath,
+    // contentBase: path.resolve(__dirname, 'dist'),
     contentBase: path.resolve(__dirname, 'src/static'),
     index: 'main.html',
     quiet: true,
@@ -565,7 +567,7 @@ const prodConfig = {
 
     new webpack.BannerPlugin(
       `${process.env.npm_package_description} ${process.env.npm_package_version} \n`
-      + `(c) 2020 ${process.env.npm_package_author_name}`,
+      + `By ${process.env.npm_package_author_name} ${new Date().getFullYear()}`,
     ),
 
     // new CssUrlRelativePlugin(),

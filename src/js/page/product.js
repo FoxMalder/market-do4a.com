@@ -216,8 +216,13 @@ class PageProduct {
 
     const reviewsList = document.querySelector('#js-product-reviews');
     if (reviewsList) {
-      // const reviewsListParam = JSON.parse(reviewsList.dataset.request);
-      Reviews.requestParam = eval(`(${reviewsList.dataset.request})`);
+      try {
+        Reviews.requestParam = JSON.parse(reviewsList.dataset.request);
+      } catch (e) {
+        console.error(e);
+
+        Reviews.requestParam = eval(`(${reviewsList.dataset.request})`);
+      }
     }
 
     const similarSection = document.querySelector('.p-section-similar');

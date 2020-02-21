@@ -1,7 +1,7 @@
 {
   "name": "marketdo4a-front",
   "description": "Front for marketdo4a.com",
-  "version": "1.4.0-beta.1",
+  "version": "1.4.0-beta.2",
   "repository": "https://github.com/Staremang/market-do4a.com.git",
   "author": "Roman Meshcheryakov <staremang@ya.ru> (https://canonical.site/)",
   "private": true,
