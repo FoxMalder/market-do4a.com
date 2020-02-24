@@ -29,16 +29,15 @@ Vue.filter('formatPrice', (value) => formatNumber(value, '₽'));
 Vue.directive('click-outside', ClickOutside);
 
 
-window.utils = Utils;
-window.axios = axios;
-window.qs = Qs;
-window.Vue = Vue;
-
-
 class App {
   constructor() {
-    // this.fns = [];
-    // this.isInit = false;
+    console.log('[App] Initialization');
+
+    if (App.instance) {
+      console.error('[App]: App already initialized');
+
+      return App.instance;
+    }
 
     this.debug = true;
 
@@ -48,11 +47,13 @@ class App {
     ready(() => {
       this.init();
     });
+
+    App.instance = this;
   }
 
-  init() {
-    // global.App = this;
+  static version = process.env.VERSION;
 
+  init() {
     store.dispatch('init');
 
     this.Header = new Header();
@@ -61,19 +62,15 @@ class App {
     if (breadcumps) {
       breadcumps.scrollTo(1000, 0);
     }
-
-    // this.isInit = true;
-    // this.fns.forEach(fn => fn());
   }
-
-  // ready(fn) {
-  //   this.isInit ? setTimeout(fn, 0) : this.fns.push(fn);
-  // }
 }
 
+global.AppInstance = new App();
 
-if (!global.App) {
-  global.App = new App();
-}
 
+global.utils = Utils;
+global.axios = axios;
+global.qs = Qs;
+global.Vue = Vue;
+global.App = App;
 // export default app;

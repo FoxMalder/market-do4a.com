@@ -1,12 +1,13 @@
-let instance = null;
+// let instance = null;
 
 class EventBus {
   constructor() {
-    if (!instance) {
-      this.events = {};
-      instance = this;
+    if (EventBus.instance) {
+      return EventBus.instance;
     }
-    return instance;
+
+    this.events = {};
+    EventBus.instance = this;
   }
 
   $emit(event, message) {

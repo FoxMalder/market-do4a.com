@@ -1,5 +1,5 @@
 /*!
- * Front for marketdo4a.com 1.3.1 
- * (c) 2020 Roman Meshcheryakov
+ * Front for marketdo4a.com 1.4.0 
+ * By Roman Meshcheryakov 2020
  */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{15:function(n,o){n.exports=jQuery}},[[47,1,0]]]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{14:function(n,o){n.exports=jQuery}},[[47,1,0]]]);

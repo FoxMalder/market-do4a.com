@@ -1,13 +1,17 @@
 <template>
-  <section class="p-section-similar" v-show="similar.length > 0">
+  <section v-show="items.length > 0" class="p-section-similar">
     <div class="container">
-      <h2 class="p-section-similar__title">Похожие товары</h2>
+      <h2 class="p-section-similar__title">
+        Похожие товары
+      </h2>
     </div>
     <div class="product-list product-list_slider">
       <div class="product-list__wrapper">
-        <template v-for="item in similar">
-          <ProductCard v-if="item.type === 'product'" :product="item.options" />
-        </template>
+        <ProductCard
+          v-for="item in items"
+          :key="item.options.id"
+          :product="item.options"
+        />
       </div>
       <!--<div class="product-list__control">-->
       <!--  <div class="load-more-block">-->
@@ -24,26 +28,28 @@ import ProductCard from '../ProductCard.vue';
 
 
 export default {
-  name: "Similar",
-  data() {
-    return {
-      collapsed: true,
-    }
-  },
+  name: 'Similar',
   components: {
     ProductCard,
   },
-  computed: mapState({
-    similar: state => state.product.similar,
-    loading: state => state.product.similarLoading,
+  // data() {
+  //   return {
+  //     collapsed: true,
+  //   };
+  // },
+  computed: mapState('product/similar', {
+    items: (state) => state.items.filter((item) => item.type === 'product'),
+    loading: (state) => state.similarLoading,
   }),
-  methods: {
-    showMore() {
-      this.collapsed = false;
-    }
+  mounted() {
+    this.update();
   },
-  created() {
-    this.$store.dispatch('product/updateSimilar');
-  }
-}
+  methods: mapActions('product/similar', {
+    update: 'update',
+  }),
+};
 </script>
+
+<style scoped>
+
+</style>

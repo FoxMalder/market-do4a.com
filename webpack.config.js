@@ -13,27 +13,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const IconfontPlugin = require('iconfont-plugin-webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const PACKAGE = require('./package.json');
 
-const distPath = path.resolve(__dirname, 'dist');
 const isDev = process.env.NODE_ENV === 'development';
-
-// function generateHtmlPlugins(pageList) {
-//   return pageList.map(item => new HtmlWebpackPlugin({
-//     title: item.title,
-//     filename: `${item.filename}.html`,
-//     template: path.resolve(__dirname, `src/${item.filename}.pug`),
-//   }));
-// }
-//
-//
-// const pageList = [
-//   { title: 'Главная', filename: 'index' },
-//   { title: 'Каталог', filename: 'catalog' },
-// ];
-
-// let config = {
-// }
 
 const cummonConfig = {
   entry: {
@@ -56,7 +37,7 @@ const cummonConfig = {
     // headerStyle: './src/scss/header-style.scss',
   },
   output: {
-    path: distPath,
+    path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].js',
     // chunkFilename: 'js/[name].bundle.js',
     // publicPath: '',
@@ -110,6 +91,10 @@ const cummonConfig = {
     //   logLevel: 'WARNING',
     // }),
     new WebpackBar(),
+
+    new webpack.DefinePlugin({
+      'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
+    }),
 
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -437,7 +422,7 @@ const devConfig = {
   ],
 
   devServer: {
-    // contentBase: distPath,
+    // contentBase: path.resolve(__dirname, 'dist'),
     contentBase: path.resolve(__dirname, 'src/static'),
     index: 'main.html',
     quiet: true,
@@ -467,28 +452,12 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
   output: {
     publicPath: '/static/dist/',
   },
   module: {
     rules: [
-      // {
-      //   test: /\.pug$/,
-      //   use: [
-      //     { loader: 'pug-loader' },
-      //   ],
-      // },
-      // {
-      //   test: /\.(html)$/,
-      //   use: {
-      //     loader: 'html-loader-srcset',
-      //   },
-      // },
-      // {
-      //   test: /\.vue$/,
-      //   loader: 'vue-loader',
-      // },
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
@@ -597,19 +566,13 @@ const prodConfig = {
     new CleanWebpackPlugin(),
 
     new webpack.BannerPlugin(
-      `Front for marketdo4a.com ${PACKAGE.version} \n` +
-      '(c) 2020 Roman Meshcheryakov',
+      `${process.env.npm_package_description} ${process.env.npm_package_version} \n`
+      + `By ${process.env.npm_package_author_name} ${new Date().getFullYear()}`,
     ),
 
-    new CssUrlRelativePlugin(),
+    // new CssUrlRelativePlugin(),
     new ExtractCssChunksPlugin({
       filename: 'css/[name].css',
-      // filename: (chunkData) => {
-      //   return chunkData.chunk.name === 'simple' ? 'css/common.css' : 'css/[name].css';
-      // },
-      // chunkFilename: 'css/[id].css',
-      // filename: 'css/[name].css',
-      // chunkFilename: 'css/[id].333.css',
     }),
 
     // new webpack.HotModuleReplacementPlugin(),
