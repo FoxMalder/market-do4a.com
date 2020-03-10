@@ -7,8 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
-const CssUrlRelativePlugin = require('css-url-relative-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+// const CssUrlRelativePlugin = require('css-url-relative-plugin');
+// const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const IconfontPlugin = require('iconfont-plugin-webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
@@ -167,7 +167,7 @@ const cummonConfig = {
       title: 'Главная',
       filename: 'main.html',
       template: path.resolve(__dirname, 'src/index.pug'),
-      chunks: ['index', 'simple', 'common', 'runtime'],
+      chunks: ['index', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -175,7 +175,7 @@ const cummonConfig = {
       title: 'Каталог',
       filename: 'catalog.html',
       template: path.resolve(__dirname, 'src/catalog.pug'),
-      chunks: ['catalog', 'simple', 'common', 'runtime'],
+      chunks: ['catalog', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -183,7 +183,7 @@ const cummonConfig = {
       title: 'Каталог / Первый уровень',
       filename: 'first-level.html',
       template: path.resolve(__dirname, 'src/first-level.pug'),
-      chunks: ['catalog', 'simple', 'common', 'runtime'],
+      chunks: ['catalog', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -191,7 +191,7 @@ const cummonConfig = {
       title: 'Избранное',
       filename: 'favorites.html',
       template: path.resolve(__dirname, 'src/favorites.pug'),
-      chunks: ['favorites', 'simple', 'common', 'runtime'],
+      chunks: ['favorites', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -199,7 +199,7 @@ const cummonConfig = {
       title: 'Производители',
       filename: 'vendors.html',
       template: path.resolve(__dirname, 'src/vendors.pug'),
-      chunks: ['vendors', 'simple', 'common', 'runtime'],
+      chunks: ['vendors', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -207,7 +207,7 @@ const cummonConfig = {
       title: 'Производитель',
       filename: 'vendor-opened.html',
       template: path.resolve(__dirname, 'src/vendor-opened.pug'),
-      chunks: ['catalog', 'simple', 'common', 'runtime'],
+      chunks: ['catalog', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -215,7 +215,7 @@ const cummonConfig = {
       title: 'Карточка товара',
       filename: 'product.html',
       template: path.resolve(__dirname, 'src/product.pug'),
-      chunks: ['product', 'simple', 'common', 'runtime'],
+      chunks: ['product', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -223,8 +223,7 @@ const cummonConfig = {
       title: 'Корзина',
       filename: 'cart.html',
       template: path.resolve(__dirname, 'src/cart.pug'),
-      chunks: ['cart', 'simple', 'common', 'runtime'],
-      // chunks: ['cart', 'common', 'runtime'],
+      chunks: ['cart', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -232,7 +231,7 @@ const cummonConfig = {
       title: 'Франшиза',
       filename: 'franchise.html',
       template: path.resolve(__dirname, 'src/franchise.pug'),
-      chunks: ['franchise', 'simple', 'common', 'runtime'],
+      chunks: ['franchise', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -264,7 +263,7 @@ const cummonConfig = {
       title: 'Магазины',
       filename: 'shops.html',
       template: path.resolve(__dirname, 'src/shops.html'),
-      chunks: ['shops', 'simple', 'common', 'runtime'],
+      chunks: ['shops', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -272,7 +271,7 @@ const cummonConfig = {
       title: 'Финал заказа',
       filename: 'final.html',
       template: path.resolve(__dirname, 'src/final.html'),
-      chunks: ['final', 'simple', 'common', 'runtime'],
+      chunks: ['final', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -296,7 +295,7 @@ const cummonConfig = {
       title: 'О нас',
       filename: 'about.html',
       template: path.resolve(__dirname, 'src/about.html'),
-      chunks: ['about', 'simple', 'common', 'runtime'],
+      chunks: ['about', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -304,7 +303,7 @@ const cummonConfig = {
       title: 'Поиск',
       filename: 'search.html',
       template: path.resolve(__dirname, 'src/search.html'),
-      chunks: ['search', 'simple', 'common', 'runtime'],
+      chunks: ['search', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -312,7 +311,7 @@ const cummonConfig = {
       title: 'Ваша цель',
       filename: 'target.html',
       template: path.resolve(__dirname, 'src/target.html'),
-      chunks: ['target', 'simple', 'common', 'runtime'],
+      chunks: ['target', 'common', 'runtime'],
       minify: false,
     }),
 
@@ -567,7 +566,7 @@ const prodConfig = {
 
     new webpack.BannerPlugin(
       `${process.env.npm_package_description} ${process.env.npm_package_version} \n`
-      + `By ${process.env.npm_package_author_name} ${new Date().getFullYear()}`,
+      + `By ${process.env.npm_package_author_name}, Riverstart, ${new Date().getFullYear()}`,
     ),
 
     // new CssUrlRelativePlugin(),
