@@ -16,6 +16,7 @@ import ClickOutside from '@/directives/ClickOutside';
 import Platform from '@/plugins/Platform';
 import { Utils, formatNumber } from '@/utils';
 
+Vue.config.productionTip = false;
 
 Vue.use(VueModal);
 Vue.use(VueNotify);
@@ -31,11 +32,8 @@ Vue.directive('click-outside', ClickOutside);
 
 class App {
   constructor() {
-    console.log('[App] Initialization');
-
     if (App.instance) {
       console.error('[App]: App already initialized');
-
       return App.instance;
     }
 
@@ -43,6 +41,7 @@ class App {
 
     this.store = store;
     this.platform = Platform;
+    this.utils = Utils;
 
     ready(() => {
       this.init();
@@ -68,7 +67,6 @@ class App {
 global.AppInstance = new App();
 
 
-global.utils = Utils;
 global.axios = axios;
 global.qs = Qs;
 global.Vue = Vue;

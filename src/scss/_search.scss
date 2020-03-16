@@ -87,7 +87,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 25px;
+  //margin-bottom: 25px;
+  margin-bottom: 15px;
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
@@ -101,7 +102,7 @@
     @include media-breakpoint-up(md) {
       display: inline-block;
       flex: 0 0 auto;
-      margin-bottom: 0;
+      margin-bottom: 10px;
     }
   }
 
@@ -114,6 +115,7 @@
     letter-spacing: -0.01em;
     line-height: normal;
     text-align: center;
+    margin-bottom: 10px;
   }
 }
 
@@ -155,8 +157,8 @@
   }
 
   @include media-breakpoint-up(md) {
-    height: 110px;
     width: map_get($container-max-widths, xl) / 4 - map_get($grid-gutter-width-map, xl);
+    height: 110px;
     margin-right: map_get($grid-gutter-width-map, xl);
   }
 
@@ -336,12 +338,18 @@
 .search-page-brands {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  //justify-content: space-between;
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
 
   &__item {
+    @include make-col(6);
+    margin-bottom: 20px;
+
+    @include media-breakpoint-up(md) {
+      @include make-col(2);
+    }
   }
 }
 

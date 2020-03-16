@@ -20,4 +20,4 @@ import '@/App';
 
 
 console.log(module, module.hot);
-console.log(process);
+console.log('process:', process);

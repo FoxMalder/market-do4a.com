@@ -14,7 +14,7 @@ const IconfontPlugin = require('iconfont-plugin-webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 
-const isDev = process.env.NODE_ENV === 'development';
+// const isDev = process.env.NODE_ENV === 'development';
 
 const cummonConfig = {
   entry: {
@@ -46,9 +46,9 @@ const cummonConfig = {
   //   modules: [path.resolve(__dirname, 'src/js'), 'node_modules'],
   // },
 
-  performance: {
-    hints: isDev ? false : 'warning',
-  },
+  // performance: {
+  //   hints: isDev ? false : 'warning',
+  // },
 
   resolve: {
     alias: {
@@ -90,7 +90,7 @@ const cummonConfig = {
     //   reporter: 'consola',
     //   logLevel: 'WARNING',
     // }),
-    new WebpackBar(),
+    // new WebpackBar(),
 
     new webpack.DefinePlugin({
       'process.env.VERSION': JSON.stringify(process.env.npm_package_version),
@@ -350,8 +350,8 @@ const devConfig = {
           {
             loader: ExtractCssChunksPlugin.loader,
             options: {
-              hot: isDev,
-              reloadAll: isDev, // when desperation kicks in - this is a brute force HMR flag
+              hot: true,
+              reloadAll: true, // when desperation kicks in - this is a brute force HMR flag
             },
           },
           { loader: 'css-loader' },
@@ -438,9 +438,9 @@ const devConfig = {
 
     proxy: {
       '/ajax': {
-        // target: 'https://marketdo4a.com',
-        // secure: false,
-        target: 'http://dev.marketdo4a.com',
+        target: 'https://marketdo4a.com',
+        secure: false,
+        // target: 'https://dev2.marketdo4a.com',
         auth: '1:1',
         changeOrigin: true,
         cookieDomainRewrite: '',
@@ -451,7 +451,7 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
-  devtool: 'eval-source-map',
+  // devtool: 'eval-source-map',
   output: {
     publicPath: '/static/dist/',
   },
@@ -469,7 +469,7 @@ const prodConfig = {
         use: [
           {
             loader: ExtractCssChunksPlugin.loader,
-            options: { hot: isDev, reloadAll: isDev },
+            options: { hot: false, reloadAll: false },
           },
           { loader: 'css-loader', options: { importLoaders: 2, sourceMap: false } },
           { loader: 'postcss-loader', options: { sourceMap: false } },
@@ -480,7 +480,7 @@ const prodConfig = {
         use: [
           {
             loader: ExtractCssChunksPlugin.loader,
-            options: { hot: isDev, reloadAll: isDev },
+            options: { hot: false, reloadAll: false },
           },
           { loader: 'css-loader', options: { importLoaders: 2, sourceMap: false } },
           { loader: 'postcss-loader', options: { sourceMap: false } },
@@ -627,8 +627,13 @@ const prodConfig = {
 
 
 module.exports = (env, args) => {
-  if (args && args.mode !== 'development') {
-    return merge(cummonConfig, prodConfig);
+  if (env === 'development') {
+    return merge(cummonConfig, devConfig);
   }
-  return merge(cummonConfig, devConfig);
+  return merge(cummonConfig, prodConfig);
+
+  // if (args && args.mode !== 'development') {
+  //   return merge(cummonConfig, prodConfig);
+  // }
+  // return merge(cummonConfig, devConfig);
 };
