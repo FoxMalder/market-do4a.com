@@ -28,9 +28,13 @@
             {{ pack.price_benefit + '₽' }}
           </div>
         </div>
-        <div class="p-control-radio__label" @click="selectPacking(pack, $event)">
+        <a
+          :href="pack.url"
+          class="p-control-radio__label"
+          @click.prevent="selectPacking(pack, $event)"
+        >
           {{ pack.pack }}
-        </div>
+        </a>
       </div>
     </div>
     <!--    <div class="p-control-radio__shadow-right"-->

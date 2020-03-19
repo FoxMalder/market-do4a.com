@@ -438,9 +438,9 @@ const devConfig = {
 
     proxy: {
       '/ajax': {
-        target: 'https://marketdo4a.com',
+        // target: 'https://marketdo4a.com',
         secure: false,
-        // target: 'https://dev2.marketdo4a.com',
+        target: 'https://dev1.marketdo4a.com',
         auth: '1:1',
         changeOrigin: true,
         cookieDomainRewrite: '',
@@ -454,6 +454,7 @@ const prodConfig = {
   // devtool: 'eval-source-map',
   output: {
     publicPath: '/static/dist/',
+    // publicPath: '/',
   },
   module: {
     rules: [
