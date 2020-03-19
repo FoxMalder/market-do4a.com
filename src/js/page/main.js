@@ -5,6 +5,7 @@ import {
   Pagination,
   Virtual,
   Scrollbar,
+  Lazy,
 } from 'swiper/js/swiper.esm';
 import $$ from 'dom7';
 
@@ -13,7 +14,7 @@ import YandexMaps from '@/modules/Maps';
 import Parallax from '@/modules/Parallax';
 
 
-Swiper.use([Navigation, Scrollbar, Mousewheel]);
+Swiper.use([Navigation, Scrollbar, Mousewheel, Lazy]);
 
 
 export default class MainPage {
@@ -152,7 +153,7 @@ export default class MainPage {
     if (!mainStarSliderEl) return;
 
     // TODO: Обновить шаблон в cms и убрать
-    mainStarSliderEl.classList.add('slider_container');
+    // mainStarSliderEl.classList.add('slider_container');
 
 
     if (document.documentElement.clientWidth >= 768) {
@@ -169,6 +170,7 @@ export default class MainPage {
       new Swiper(mainStarSliderEl, {
         slidesPerView: 'auto',
         freeMode: true,
+        lazy: true,
         // freeModeMomentum: false,
         // freeModeSticky: false,
         runCallbacksOnInit: false,
