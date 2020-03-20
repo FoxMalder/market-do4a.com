@@ -318,6 +318,11 @@ class PageProduct {
 
     document.title = activePacking.title;
     window.history.replaceState(null, null, activePacking.url);
+
+    const breadcumpsItemLast = document.querySelector('.mr-breadcumps__item:last-child span');
+    if (breadcumpsItemLast) {
+      breadcumpsItemLast.textContent = activePacking.name;
+    }
   };
 
   /**
