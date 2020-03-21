@@ -2,7 +2,7 @@
  * Front for marketdo4a.com 1.5.0 
  * By Roman Meshcheryakov, Riverstart, 2020
  */
-(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{181:function(t,e,i){var s=i(281);t.exports=s},281:function(t,e,i){function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function n(t,e){for(var i=0;i<e.length;i++){var s=e[i];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(t,s.key,s)}}
+(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{181:function(t,e,i){var s=i(282);t.exports=s},282:function(t,e,i){function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function n(t,e){for(var i=0;i<e.length;i++){var s=e[i];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(t,s.key,s)}}
 /**
  * Sticky.js
  * Library for sticky elements written in vanilla javascript. With this library you can easily set sticky elements on your website. It's also responsive.
