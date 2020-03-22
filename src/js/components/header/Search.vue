@@ -12,13 +12,14 @@
       />
     </transition>
 
-    <form class="search-field">
+    <form class="search-field" action="/search/">
       <input
         v-model="searchField"
         class="search-field__input input-text"
         :class="{ 'active': fieldOpen }"
         placeholder="Поиск в каталоге"
         type="text"
+        name="q"
         @focus="open"
       >
       <button class="search-field__loupe" type="submit">
