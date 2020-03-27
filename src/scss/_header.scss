@@ -567,15 +567,15 @@
   &__title {
     @include title;
 
-    font-size: 20px;
-    line-height: 25px;
     margin-bottom: 30px;
     padding-right: 30px;
+    font-size: 20px;
+    line-height: 25px;
 
     @include media-breakpoint-up(xl) {
+      margin-bottom: 53px;
       font-size: 20px;
       line-height: 23px;
-      margin-bottom: 53px;
     }
   }
 
@@ -583,14 +583,14 @@
   &__second-title {
     @include title;
 
+    margin-bottom: 14px;
     font-size: 20px;
     line-height: 25px;
-    margin-bottom: 14px;
 
     @include media-breakpoint-up(xl) {
+      margin-bottom: 50px;
       font-size: 30px;
       line-height: 37px;
-      margin-bottom: 50px;
     }
   }
 
@@ -625,10 +625,10 @@
     }
 
     @include media-breakpoint-up(xl) {
-      width: 33px;
-      height: 33px;
       top: 36px;
       right: 0;
+      width: 33px;
+      height: 33px;
     }
   }
 
@@ -665,6 +665,7 @@
 
       @include title;
     }
+
     //@include media-breakpoint-up(xl) {
     //
     //  &::before {
@@ -681,8 +682,8 @@
       flex-direction: row-reverse;
       align-items: flex-end;
       justify-content: space-between;
-      padding-right: 46px;
       margin: 0;
+      padding-right: 46px;
     }
   }
 
@@ -710,9 +711,9 @@
 }
 
 .change-store-list {
+  margin: 0 -10px;
   padding-left: 0;
   list-style: none;
-  margin: 0 -10px;
 
   @include media-breakpoint-up(xl) {
     display: flex;
@@ -727,8 +728,8 @@
 
     @include media-breakpoint-up(xl) {
       @include make-col(4);
-      padding: 0 10px;
       margin-bottom: 33px;
+      padding: 0 10px;
     }
   }
 }
@@ -740,12 +741,12 @@
   height: 100px;
   //margin-bottom: 10px;
   padding: 15px 20px;
+  transition: all .3s ease;
   background: #292929;
   color: #fff;
   font-size: 14px;
   line-height: normal;
   text-align: left;
-  transition: all .3s ease;
 
   &:hover {
     box-shadow: 0 0 0 1px $main-color inset;
@@ -843,10 +844,10 @@
   height: 100px;
   margin-bottom: 10px;
   padding: 15px 20px;
+  transition: all .3s ease;
   background: #292929;
   font-size: 14px;
   line-height: normal;
-  transition: all .3s ease;
 
   &_active,
   &.active {
@@ -861,8 +862,8 @@
     transform: $skew;
 
     &:hover {
-      color: #fff;
       box-shadow: 0 0 0 1px $main-color inset;
+      color: #fff;
     }
   }
 
@@ -932,11 +933,11 @@
   }
 
   @include media-breakpoint-up(xl) {
+    position: relative;
     justify-content: space-between;
     height: 90px;
     margin-right: 0;
     margin-left: 0;
-    position: relative;
   }
 
   &__menu-btn {
@@ -1029,8 +1030,9 @@
   }
 
   &__search {
+    display: none;
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: 0;
     right: 0;
     bottom: 0;
@@ -1040,12 +1042,14 @@
 
     &.active,
     &_active {
+      display: block;
 
-      transform: translateY(100%);
+      //transform: translateY(100%);
       //transform: translateY(0);
     }
 
     @include media-breakpoint-up(xl) {
+      display: block;
       position: absolute;
       z-index: 1;
       right: 332px;
@@ -1203,22 +1207,26 @@
     font-size: 13px;
     font-style: italic;
 
-
-    border: 3px solid transparent;
-
     &.active,
     &:hover,
     &:focus {
       box-shadow: none;
-      border: 3px solid #101010;
     }
 
     @include media-breakpoint-up(xl) {
       padding-right: 75px;
       padding-left: 26px;
       transform: $skew;
+      border: 3px solid transparent;
       font-size: 17px;
+
       font-style: normal;
+
+      &.active,
+      &:hover,
+      &:focus {
+        border: 3px solid #101010;
+      }
     }
   }
 

@@ -242,6 +242,9 @@ export default {
   mounted() {
     // new SimpleBar(this.$refs.scrollbar1, { autoHide: false });
     // new SimpleBar(this.$refs.scrollbar2, { autoHide: false });
+
+    this.$root.$on('search:open', this.open);
+    this.$root.$on('search:close', this.close);
   },
   methods: {
     getResults() {
@@ -307,3 +310,7 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>

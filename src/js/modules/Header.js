@@ -153,7 +153,7 @@ export default class Header {
     }).$mount('.h-navbar-collapse');
 
     // Строка поиска
-    new Vue({
+    const search = new Vue({
       store,
       render: (h) => h(HeaderSearch),
     }).$mount('.header-control__search');
@@ -161,7 +161,13 @@ export default class Header {
     // Кнопка поиска на телефонах
     new Vue({
       store,
-      render: (h) => h(HeaderButtonSearch),
+      render: (h) => h(HeaderButtonSearch, {
+        on: {
+          click() {
+            search.$emit('search:open');
+          },
+        },
+      }),
     }).$mount('.header-control__button_search');
 
     // Количество избранного

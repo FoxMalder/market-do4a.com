@@ -7,3 +7,7 @@ export default {
   name: 'HeaderButtonMenu',
 };
 </script>
+
+<style scoped>
+
+</style>

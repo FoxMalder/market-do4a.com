@@ -1,5 +1,9 @@
 <template>
-  <a class="header-control__button header-control__button_search" href="#">
+  <a
+    class="header-control__button header-control__button_search"
+    href="/search/"
+    @click.prevent="$emit('click', $event)"
+  >
     <svg
       width="17"
       height="18"
@@ -22,3 +26,7 @@ export default {
   name: 'HeaderButtonSearch',
 };
 </script>
+
+<style scoped>
+
+</style>

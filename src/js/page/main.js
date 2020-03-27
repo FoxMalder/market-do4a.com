@@ -170,6 +170,8 @@ export default class MainPage {
       new Swiper(mainStarSliderEl, {
         slidesPerView: 'auto',
         freeMode: true,
+
+        watchSlidesVisibility: true,
         lazy: true,
         // freeModeMomentum: false,
         // freeModeSticky: false,

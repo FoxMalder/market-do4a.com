@@ -11,3 +11,7 @@ export default {
   name: 'HeaderButtonLogin',
 };
 </script>
+
+<style scoped>
+
+</style>
