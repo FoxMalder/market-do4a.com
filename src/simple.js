@@ -5,6 +5,7 @@ import 'simplebar';
 
 import '@/fancybox';
 import '@/modules/Input';
+import '@/modules/system.auth.form';
 
 import './scss/main.scss';
 
@@ -12,6 +13,35 @@ import './scss/main.scss';
 import '@/App';
 // import App from '@/App';
 
+// $(function () {
+//     $('form.js-form').submit(function (e) {
+//         e.preventDefault();
+//         let $form = $(this);
+//         let actionUrl = $form.attr('action');
+//         let $errorBlock = $form.find('.js-error-text');
+//         let $successBlock = $form.find('.js-success-text');
+
+//         $errorBlock.html('');
+//         $successBlock.html('');
+
+//         data = {
+//             type: "POST",
+//             dataType: "json",
+//             url: actionUrl,
+//             data: $form.serializeArray(),
+//             success: function (data) {
+//                 if (data.success) {
+//                     $successBlock.html(data.message);
+//                 } else {
+//                     $errorBlock.html(data.message);
+//                 }
+//             }
+//         };
+
+//         $.ajax(data);
+//         return false;
+//     })
+// });
 //
 // ready(() => {
 //   global.App = App;
@@ -20,4 +50,4 @@ import '@/App';
 
 
 console.log(module, module.hot);
-console.log(process);
+console.log('process:', process);

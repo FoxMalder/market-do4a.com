@@ -1,13 +1,14 @@
 {
   "name": "marketdo4a-front",
   "description": "Front for marketdo4a.com",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "repository": "https://github.com/Staremang/market-do4a.com.git",
   "author": "Roman Meshcheryakov <staremang@ya.ru> (https://canonical.site/)",
   "private": true,
   "scripts": {
-    "build": "NODE_ENV=production webpack --mode production",
-    "start": "NODE_ENV=development webpack-dev-server --mode development --hot"
+    "build": "webpack --env production",
+    "start": "webpack-dev-server --env development --hot",
+    "build:stats": "webpack --mode production --env production --profile --json > stats.json"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",

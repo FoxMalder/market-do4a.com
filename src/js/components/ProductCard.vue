@@ -89,7 +89,7 @@
             >
             <div
               :class="[product.isAvailable ? 'green' : 'red']"
-              v-text="product.isAvailable ? 'В наличии' : 'Нет в наличии'"
+              v-text="product.isAvailable ? 'В наличии' : 'Под заказ'"
             />
             <div
               v-if="product.pack_count > 0"

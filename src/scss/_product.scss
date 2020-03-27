@@ -1252,6 +1252,7 @@
 
   &__label {
     @include title;
+    display: block;
     position: relative;
     min-width: 71px;
     padding: 7px 12px;

@@ -9,14 +9,10 @@
 }
 
 .search-results {
-  display: flex;
+  display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
   align-items: stretch;
-  width: 1200px;
-  height: 580px;
-  max-height: calc(100vh - 100% - 10px);
+  max-width: 100%;
   overflow: hidden;
   background: #fff;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.05);
@@ -47,6 +43,16 @@
       border-radius: 10px;
       background-color: #dcdcdc;
     }
+  }
+
+  @include media-breakpoint-up(xl) {
+    display: flex;
+    top: 100%;
+    left: 0;
+    width: 1200px;
+    height: 580px;
+    max-height: calc(100vh - 100% - 10px);
+    max-width: 100vw;
   }
 
   &__col {
@@ -117,6 +123,7 @@
   }
 
   &__item {
+    display: block;
     position: relative;
     margin-right: -$padding-x;
     margin-left: -$padding-x;
@@ -149,6 +156,7 @@
 
     &:hover {
       background: #e5e5e5;
+      color: inherit;
     }
   }
 
@@ -157,5 +165,12 @@
     grid-column-gap: 60px;
     grid-row-gap: 40px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  &__status {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

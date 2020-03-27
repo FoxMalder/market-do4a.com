@@ -208,6 +208,24 @@ audio {
   color: $main-color;
 }
 
+a.container-link {
+  text-decoration: underline;
+}
+
+div[data-href],
+.link-sim {
+  border-bottom: 1px dashed $main-color;
+  color: $main-color;
+  font-weight: 600;
+  display: inline;
+  cursor: pointer;
+}
+
+.header-control__logo____image {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .link-underline,
 .text-link {
   border-bottom: 1px dashed $main-color;

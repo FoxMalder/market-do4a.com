@@ -28,9 +28,20 @@
             {{ pack.price_benefit + '₽' }}
           </div>
         </div>
-        <div class="p-control-radio__label" @click="selectPacking(pack, $event)">
+        <div
+          v-if="pack.id === activePacking.id"
+          class="p-control-radio__label"
+        >
           {{ pack.pack }}
         </div>
+        <a
+          v-else
+          :href="pack.url"
+          class="p-control-radio__label"
+          @click.prevent="selectPacking(pack, $event)"
+        >
+          {{ pack.pack }}
+        </a>
       </div>
     </div>
     <!--    <div class="p-control-radio__shadow-right"-->

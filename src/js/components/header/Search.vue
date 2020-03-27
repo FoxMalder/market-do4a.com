@@ -8,17 +8,19 @@
       <div
         v-show="fieldOpen"
         class="search-overlay"
+        @click="close"
       />
     </transition>
 
-    <form class="search-field">
+    <form class="search-field" action="/search/">
       <input
+        v-model="searchField"
         class="search-field__input input-text"
         :class="{ 'active': fieldOpen }"
         placeholder="Поиск в каталоге"
         type="text"
+        name="q"
         @focus="open"
-        @blur="close"
       >
       <button class="search-field__loupe" type="submit">
         <svg
@@ -43,82 +45,137 @@
       @after-leave="resultsAnimationEnd"
     >
       <section
-        v-show="resultsOpen"
+        v-show="resultsOpen && hasResults"
         class="search-results"
       >
         <div ref="scrollbar1" class="search-results__col search-results__col_left">
-          <ul class="search-results__list">
-            <li class="search-results__item"><strong>Прот</strong>еины</li>
-            <li class="search-results__item"><strong>Прот</strong>еин сывороточный</li>
-            <li class="search-results__item"><strong>Прот</strong>еин растительный </li>
-            <li class="search-results__item"><strong>Прот</strong>еин яичный</li>
+          <ul v-show="searches.length > 0" class="search-results__list">
+            <!--<li class="search-results__item"><strong>Прот</strong>еины</li>-->
+            <!--<li class="search-results__item"><strong>Прот</strong>еин сывороточный</li>-->
+            <!--<li class="search-results__item"><strong>Прот</strong>еин растительный </li>-->
+            <!--<li class="search-results__item"><strong>Прот</strong>еин яичный</li>-->
+            <li
+              v-for="search in searches"
+            >
+              <a
+                class="search-results__item"
+                :href="search.url"
+                v-html="find(search.name)"
+              />
+            </li>
           </ul>
 
-          <section class="search-results__section">
-            <h3 class="search-results__title">Популярные категории</h3>
+          <section v-show="sections.length > 0" class="search-results__section">
+            <h3 class="search-results__title">
+              Популярные категории
+            </h3>
             <ul class="search-results__list">
-              <li class="search-results__item">Протеины</li>
-              <li class="search-results__item">Гейнеры</li>
-              <li class="search-results__item">Жиросжигатели</li>
-              <li class="search-results__item">Аминокислоты</li>
-              <li class="search-results__item">Креатин</li>
+              <li
+                v-for="section in sections"
+                :key="section.id"
+              >
+                <a
+                  class="search-results__item"
+                  :href="section.url"
+                >{{ section.name }}</a>
+              </li>
             </ul>
           </section>
 
-          <section class="search-results__section">
-            <h3 class="search-results__title">Популярные бренды</h3>
+          <section v-show="brands.length > 0" class="search-results__section">
+            <h3 class="search-results__title">
+              Популярные бренды
+            </h3>
+            <ul class="search-results__list">
+              <li
+                v-for="brand in brands"
+                :key="brand.id"
+              >
+                <a
+                  class="search-results__item"
+                  :href="brand.url"
+                >{{ brand.name }}</a>
+              </li>
+            </ul>
           </section>
         </div>
 
         <div ref="scrollbar2" class="search-results__col search-results__col_right">
-          <div class="search-results-history">
-            <span class="search-results-history__title">Вы недавно искали:</span>
-            <span class="search-results-history__item">Протеин</span>
-            <span class="search-results-history__item">Гейнер</span>
-            <span class="search-results-history__item">Креатин</span>
+          <div v-if="status === 'loading'" class="search-results__status">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
           </div>
+          <template v-else>
+            <div v-show="queryHistory.length > 0" class="search-results-history">
+              <span class="search-results-history__title">Вы недавно искали:</span>
+              <span
+                v-for="query in queryHistory"
+                class="search-results-history__item"
+                v-text="query.name"
+              />
+            </div>
 
-          <section class="search-results__section">
-            <h3 class="search-results__title">Популярные товары</h3>
-            <div class="search-results__products">
-              <div class="search-results-product" v-for="i in 5">
-                <div class="search-results-product__image">
-                  <img src="https://marketdo4a.com/upload/resizer/0f/85811_300x180_0ffc75b1eb6169cbc1577b619d5dd706.jpg?1571926274">
-                </div>
-                <a href="#" class="search-results-product__title">
-                  Do4a Lab Premium Whey 80% 900 гр
-                </a>
-                <div class="search-results-product__description">
-                  Сывороточный
-                </div>
-                <div class="search-results-product__price">
-                  <small>от</small>
-                  1 350 ₽
+
+            <section
+              v-show="products.length > 0"
+              class="search-results__section"
+            >
+              <!--<h3 class="search-results__title">Популярные товары</h3>-->
+              <h3 class="search-results__title">
+                Найдено в товарах
+              </h3>
+              <div class="search-results__products">
+                <div
+                  v-for="product in products"
+                  :key="product.id"
+                  class="search-results-product"
+                >
+                  <div class="search-results-product__image">
+                    <img
+                      v-lazy="product.img"
+                      :data-srcset="`${product.img} 2x`"
+                      :alt="product.name"
+                    >
+                  </div>
+                  <a :href="product.url" class="search-results-product__title">
+                    {{ product.name }}
+                  </a>
+                  <div class="search-results-product__description">
+                    {{ product.section }}
+                  </div>
+                  <div class="search-results-product__price">
+                    <small>от</small>
+                    {{ `${product.price} ₽` }}
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
 
-          <section class="search-results__section">
-            <h3 class="search-results__title">Найдено в статьях и акциях</h3>
-            <div class="search-results-article">
-              <div class="search-results-article__title">
-                <a href="#">Скидка 10% на протеины</a>
-              </div>
-              <div class="search-results-article__description">Акция! Скидки на все виды протеинов</div>
-            </div>
-            <div class="search-results-article">
-              <div class="search-results-article__title">
-                <a href="#">Какие бывают протеины</a>
-              </div>
-              <div class="search-results-article__description">Рассказываем о протеинах просто и для всех.</div>
-            </div>
-          </section>
+            <!--<section class="search-results__section">-->
+            <!--  <h3 class="search-results__title">Найдено в статьях и акциях</h3>-->
+            <!--  <div class="search-results-article">-->
+            <!--    <div class="search-results-article__title">-->
+            <!--      <a href="#">Скидка 10% на протеины</a>-->
+            <!--    </div>-->
+            <!--    <div class="search-results-article__description">Акция! Скидки на все виды протеинов</div>-->
+            <!--  </div>-->
+            <!--  <div class="search-results-article">-->
+            <!--    <div class="search-results-article__title">-->
+            <!--      <a href="#">Какие бывают протеины</a>-->
+            <!--    </div>-->
+            <!--    <div class="search-results-article__description">Рассказываем о протеинах просто и для всех.</div>-->
+            <!--  </div>-->
+            <!--</section>-->
 
-          <section class="search-results__section">
-            <h3 class="search-results__title">Найдено в брендах</h3>
-          </section>
+            <!--<section class="search-results__section">-->
+            <!--  <h3 class="search-results__title">-->
+            <!--    Найдено в брендах-->
+            <!--  </h3>-->
+            <!--</section>-->
+
+          </template>
         </div>
       </section>
     </transition>
@@ -126,23 +183,105 @@
 </template>
 
 <script>
-import SimpleBar from 'simplebar';
+// import SimpleBar from 'simplebar';
+import debounce from 'lodash.debounce';
+import axios from 'axios';
 
+
+function getSearch(searchField) {
+  return axios
+    .get(`/ajax/search/autocomplete/?q=${searchField}`)
+    .then((response) => response.data)
+    .then((response) => {
+      if (response.success === 1) {
+        return response.data;
+      }
+      const error = new Error(response.message);
+      error.response = response;
+      throw error;
+    });
+}
 
 export default {
   name: 'Search',
   data() {
     return {
+      isOpen: false,
       fieldOpen: false,
       resultsOpen: false,
+      searchField: '',
+
+      status: null,
+
+      searches: [],
+      brands: [],
+      sections: [],
+      products: [],
+      banners: [],
+      queryHistory: [],
     };
+  },
+  computed: {
+    hasResults() {
+      return this.searchField.length >= 3;
+      // return this.searches.length > 0
+      //   || this.brands.length > 0
+      //   || this.sections.length > 0
+      //   || this.products.length > 0
+      //   || this.queryHistory.length > 0;
+    },
+  },
+  watch: {
+    searchField(value, oldValue) {
+      this.debouncedGetResults();
+    },
+  },
+  created() {
+    this.debouncedGetResults = debounce(this.getResults, 500);
   },
   mounted() {
     // new SimpleBar(this.$refs.scrollbar1, { autoHide: false });
     // new SimpleBar(this.$refs.scrollbar2, { autoHide: false });
+
+    this.$root.$on('search:open', this.open);
+    this.$root.$on('search:close', this.close);
   },
   methods: {
+    getResults() {
+      if (this.searchField.length < 3) {
+        // this.resultsOpen = false;
+        return;
+      }
+
+      this.resultsOpen = true;
+
+      this.status = 'loading';
+
+      getSearch(this.searchField)
+        .then((data) => {
+          this.status = 'success';
+
+          this.searches = data.searches;
+          this.brands = data.brands;
+          this.sections = data.sections;
+          this.products = data.products;
+          this.banners = data.banners;
+          this.queryHistory = data.queryHistory;
+        })
+      // .catch(() => {
+      //   this.status = 'error';
+      //
+      //   setTimeout(() => {
+      //     this.status = null;
+      //   }, 1000)
+      // });
+    },
+    find(value) {
+      return value.replace(this.searchField, '<strong>$&</strong>');
+    },
     open() {
+      this.isOpen = true;
+
       if (this.fieldOpen) {
         this.resultsOpen = true;
       } else {
@@ -150,6 +289,8 @@ export default {
       }
     },
     close() {
+      this.isOpen = false;
+
       if (!this.resultsOpen) {
         this.fieldOpen = false;
       } else {
@@ -157,15 +298,19 @@ export default {
       }
     },
     fieldAnimationEnd() {
-      if (this.fieldOpen) {
+      if (this.fieldOpen && this.hasResults) {
         this.resultsOpen = true;
       }
     },
     resultsAnimationEnd() {
-      if (!this.resultsOpen) {
+      if (!this.resultsOpen && !this.isOpen) {
         this.fieldOpen = false;
       }
     },
   },
 };
 </script>
+
+<style scoped>
+
+</style>

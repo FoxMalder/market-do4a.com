@@ -10,6 +10,7 @@ import 'bootstrap/js/dist/collapse';
 import 'aos/dist/aos.css';
 import './scss/franchise.scss';
 
+import './simple';
 
 import Parallax from '@/modules/Parallax';
 import MainPage from '@/page/main';
