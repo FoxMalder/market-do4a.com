@@ -9,15 +9,17 @@ import 'aos/dist/aos.css';
 import './scss/about-page.scss';
 
 
-import './simple';
+import App from '@/App';
 
 import { handleForm } from '@/modules/Form';
 
-import AboutCity from '@/components/about/AboutCities.vue';
 import store from '@/store';
+import AboutCity from '@/components/about/AboutCities.vue';
 
 
 ready(() => {
+  App.init();
+
   new Vue({
     store,
     render: (h) => h(AboutCity),

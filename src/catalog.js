@@ -1,15 +1,12 @@
 import ready from 'domready';
 
-import './simple';
-import CatalogControl from './js/page/catalog';
+import App from '@/App';
+import CatalogControl from '@/page/catalog';
 
-
-// if (process.env.NODE_ENV !== 'production') {
-//   require('./catalog.pug');
-// }
 
 ready(() => {
-  global.PageCatalog = new CatalogControl({
+  App.init();
+  App.components.catalog = new CatalogControl({
     filter: document.querySelector('.filter'),
     sorting: document.querySelector('.sorting'),
     quantity: document.querySelector('[data-total-find]'),

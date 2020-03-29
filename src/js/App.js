@@ -1,74 +1,66 @@
-import ready from 'domready';
+import '@/libs';
 
-import Vue from 'vue';
-import Qs from 'qs';
-import axios from 'axios';
+import '@/plugins/Anchor';
+import '@/modules/Input';
+import '@/modules/system.auth.form';
 
-import VueLazyload from 'vue-lazyload';
 
-// import '@/common';
+import '../scss/main.scss';
+
+
+// import ready from 'domready';
 import store from '@/store';
 import Header from '@/modules/Header';
-import VueModal from '@/plugins/vue-modal';
-import VueNotify from '@/plugins/vue-notify';
-import ClickOutside from '@/directives/ClickOutside';
+// import Platform from '@/plugins/Platform';
 
-import Platform from '@/plugins/Platform';
-import { Utils, formatNumber } from '@/utils';
-
-Vue.config.productionTip = false;
-
-Vue.use(VueModal);
-Vue.use(VueNotify);
-Vue.use(VueLazyload, {
-  error: require('../img/plug.svg'),
-  loading: require('../img/plug.svg'),
-});
-
-Vue.filter('formatPrice', (value) => formatNumber(value, '₽'));
-
-Vue.directive('click-outside', ClickOutside);
+// import { Utils } from '@/utils';
 
 
-class App {
-  constructor() {
-    if (App.instance) {
-      console.error('[App]: App already initialized');
-      return App.instance;
-    }
-
-    this.debug = true;
-
-    this.store = store;
-    this.platform = Platform;
-    this.utils = Utils;
-
-    ready(() => {
-      this.init();
-    });
-
-    App.instance = this;
-  }
-
-  static version = process.env.VERSION;
-
+const App = {
+  version: process.env.VERSION,
+  components: {},
   init() {
     store.dispatch('init');
 
-    this.Header = new Header();
+    this.components.header = new Header();
 
-    const breadcumps = document.querySelector('.mr-breadcumps__list');
-    if (breadcumps) {
+
+    [].forEach.call(document.querySelectorAll('.mr-breadcumps__list'), (breadcumps) => {
       breadcumps.scrollTo(1000, 0);
-    }
-  }
-}
+    });
+  },
+};
 
-global.AppInstance = new App();
+// export default class App {
+//   constructor() {
+//     if (App.instance) {
+//       console.error('[App]: App already initialized');
+//       return App.instance;
+//     }
+//
+//     this.debug = true;
+//
+//     this.store = store;
+//     // this.platform = Platform;
+//     this.utils = Utils;
+//
+//
+//     App.instance = this;
+//   }
+//
+//   static version = process.env.VERSION;
+//
+//   init() {
+//     store.dispatch('init');
+//
+//     this.header = new Header();
+//
+//     const breadcumps = document.querySelector('.mr-breadcumps__list');
+//     if (breadcumps) {
+//       breadcumps.scrollTo(1000, 0);
+//     }
+//   }
+// }
 
-
-global.axios = axios;
-global.qs = Qs;
-global.Vue = Vue;
 global.App = App;
-// export default app;
+export default App;

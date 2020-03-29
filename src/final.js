@@ -1,17 +1,16 @@
 import ready from 'domready';
 import Vue from 'vue';
 
-import './simple';
-import VueModal from '@/plugins/vue-modal';
+import App from '@/App';
+import store from '@/store';
+
 import AppModalMap from '@/components/AppModalMap.vue';
 import ShopListMap from '@/components/ShopListMap.vue';
 
-import store from '@/store';
-
-
-Vue.use(VueModal);
 
 ready(() => {
+  App.init();
+
   new Vue({
     store,
     render: h => h(ShopListMap),
