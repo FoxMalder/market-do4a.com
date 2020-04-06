@@ -151,6 +151,7 @@ const mutations = {
       .map(item => ({
         ...item,
         courier: item.courier === 'Y',
+        courierToday: item.courierToday === 'Y',
         coords: item.coords.split(',').map(num => parseFloat(num)),
         // city: parseInt(item.city, 10),
         cityId: parseInt(item.city, 10),
