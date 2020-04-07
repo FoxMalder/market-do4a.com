@@ -1,10 +1,23 @@
 import ready from 'domready';
 
-// import './simple';
-import { Navigation, A11y, Swiper, Mousewheel } from 'swiper/js/swiper.esm';
+import App from '@/App';
+
+import {
+  Navigation,
+  A11y,
+  Swiper,
+  Mousewheel,
+} from 'swiper/js/swiper.esm';
+
+
+// function initTargetCategorySlider () {
+//
+// }
 
 
 ready(() => {
+  App.init();
+
   if (document.documentElement.clientWidth >= 1240) {
     Swiper.use([Navigation, A11y, Mousewheel]);
 

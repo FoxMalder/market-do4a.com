@@ -1,10 +1,10 @@
 import ready from 'domready';
 import Vue from 'vue';
 
-// import VueShopListInfo from './js/components/ShopListInfo.vue';
-import './simple';
-import VueShopList from './js/components/ShopList.vue';
-import store from './js/store';
+import App from '@/App';
+
+import store from '@/store';
+import VueShopList from '@/components/ShopList.vue';
 
 
 // class StoreList {
@@ -52,6 +52,8 @@ import store from './js/store';
 
 
 ready(() => {
+  App.init();
+
   new Vue({
     store,
     render: h => h(VueShopList),

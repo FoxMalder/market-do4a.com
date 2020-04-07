@@ -1,15 +1,13 @@
 import ready from 'domready';
 
-import './simple';
+import App from '@/App';
 import CatalogControl from './js/page/catalog';
 
 
-// if (process.env.NODE_ENV !== 'production') {
-//   require('./favorites.pug');
-// }
-
 ready(() => {
-  global.PageFavorites = new CatalogControl({
+  App.init();
+
+  App.components.favorites = new CatalogControl({
     sorting: document.querySelector('.sorting'),
     quantity: document.querySelector('[data-total-find]'),
     form: document.getElementById('catalog-filter'),

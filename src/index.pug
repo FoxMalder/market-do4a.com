@@ -9,13 +9,13 @@ block wrapper
                     // - '_right' - располагает элементы справа
                     //
                     // Весь блок можно сделать ссылкой
-                    a.hero-slider__slide(href="#" style='background-image: url(' + require('./images/hero-slider-bg-1.jpg') + ')')
+                    a.hero-slider__slide.swiper-lazy(href="#" data-background=require('./images/hero-slider-bg-1.jpg'))
                         .hero-slider__inner.container
                             .hero-slider__title Доставка курьером
                             .hero-slider__subtitle бесплатно за 24 часа*
                             .hero-slider__note *доставка в отдалённые районы по согласованию
                 .slider__slide
-                    .hero-slider__slide(style='background-image: url(' + require('./images/hero-slider-bg-2.jpg') + ')')
+                    .hero-slider__slide.swiper-lazy(data-background=require('./images/hero-slider-bg-2.jpg'))
                         .hero-slider__inner.container
                             // Или только заголовок
                             a.hero-slider__title(href="#") Скидка <br> 10% на всё
@@ -26,7 +26,7 @@ block wrapper
                     .hero-slider__slide.hero-slider__slide_right
                         .hero-slider__left-line
                         .hero-slider__right-line
-                        .hero-slider__img(style='background-image: url(' + require('./images/man-girl.png') + ')')
+                        .hero-slider__img.swiper-lazy(data-background=require('./images/man-girl.png'))
                         .hero-slider__inner.container
                             .hero-slider__title Комбо-наборы
                             .hero-slider__subtitle -10% на питание для двоих
@@ -37,7 +37,7 @@ block wrapper
                     .hero-slider__slide
                         .hero-slider__left-line
                         .hero-slider__right-line
-                        .hero-slider__img(style='background-image: url(' + require('./images/pic-20-banner.png') + ')')
+                        .hero-slider__img.swiper-lazy(data-background=require('./images/pic-20-banner.png'))
                         .hero-slider__inner.container
                             .hero-slider__title Зарабатывай с do4a
                             .hero-slider__subtitle -10% на питание для двоих
@@ -85,12 +85,12 @@ block wrapper
             .m-catalog__inner
                 .m-catalog__item.order-xl-1
                     a.m-product(href='#')
-                        img.m-product__img(alt='Протеин', src=require('./images/protein.png'))
+                        img.m-product__img.lazyload(alt='Протеин', data-src=require('./images/protein.png'))
                         span.m-product__title Протеины
                         span.m-product__subtitle 45 в наличии
                 .m-catalog__item.order-xl-3
                     a.m-product(href='#')
-                        img.m-product__img(alt='Аминокислоты', src=require('./images/amino.png'))
+                        img.m-product__img.lazyload(alt='Аминокислоты', data-src=require('./images/amino.png'))
                         span.m-product__title Аминокислоты
                         span.m-product__subtitle 12 в наличии
                 .m-catalog__item.m-catalog__item_banner.order-xl-2.d-none.d-md-block
@@ -103,52 +103,52 @@ block wrapper
                         span.m-catalog-promotion__title На топовые протеины
                 .m-catalog__item.order-xl-last
                     a.m-product(href='#')
-                        img.m-product__img(alt='Гейнеры', src=require('./images/geiner.png'))
+                        img.m-product__img.lazyload(alt='Гейнеры', data-src=require('./images/geiner.png'))
                         span.m-product__title Гейнеры
                         span.m-product__subtitle 36 в наличии
                 .m-catalog__item.order-xl-last
                     a.m-product(href='#')
-                        img.m-product__img(alt='BCAA', src=require('./images/bcaa.png'))
+                        img.m-product__img.lazyload(alt='BCAA', data-src=require('./images/bcaa.png'))
                         span.m-product__title BCAA
                         span.m-product__subtitle 9 в наличии
                 .m-catalog__item.order-xl-last
                     a.m-product(href='#')
-                        img.m-product__img(alt='Жиросжигатели', src=require('./images/termo-speed.png'))
+                        img.m-product__img.lazyload(alt='Жиросжигатели', data-src=require('./images/termo-speed.png'))
                         span.m-product__title Жиросжигатели
                         span.m-product__subtitle 12 в наличии
                 .m-catalog__item.order-xl-last
                     a.m-product(href='#')
-                        img.m-product__img(alt='Продукты для здоровья', src=require('./images/omega3.png'))
+                        img.m-product__img.lazyload(alt='Продукты для здоровья', data-src=require('./images/omega3.png'))
                         span.m-product__title Продукты для здоровья
                         span.m-product__subtitle 36 в наличии
                 .m-catalog__item.order-xl-last.d-none.d-xl-block
                     a.m-product(href='#')
-                        img.m-product__img(alt='Креатин', src=require('./images/creatine.png'))
+                        img.m-product__img.lazyload(alt='Креатин', data-src=require('./images/creatine.png'))
                         span.m-product__title Креатин
                         span.m-product__subtitle 12 в наличии
                 .m-catalog__item.order-xl-last.d-none.d-xl-block
                     a.m-product(href='#')
-                        img.m-product__img(alt='Ореховые пасты', src=require('./images/pasta.png'))
+                        img.m-product__img.lazyload(alt='Ореховые пасты', data-src=require('./images/pasta.png'))
                         span.m-product__title Ореховые пасты
                         span.m-product__subtitle 9 в наличии
                 .m-catalog__item.order-xl-last.d-none.d-xl-block
                     a.m-product(href='#')
-                        img.m-product__img(alt='Выносливость и силовые', src=require('./images/no-xplode.png'))
+                        img.m-product__img.lazyload(alt='Выносливость и силовые', data-src=require('./images/no-xplode.png'))
                         span.m-product__title Выносливость и силовые
                         span.m-product__subtitle 36 в наличии
                 .m-catalog__item.order-xl-last.d-none.d-xl-block
                     a.m-product(href='#')
-                        img.m-product__img(alt='Диетическое питание', src=require('./images/diet.png'))
+                        img.m-product__img.lazyload(alt='Диетическое питание', data-src=require('./images/diet.png'))
                         span.m-product__title Диетическое питание
                         span.m-product__subtitle 9 в наличии
                 .m-catalog__item.order-xl-last.d-none.d-xl-block
                     a.m-product(href='#')
-                        img.m-product__img(alt='Батончики', src=require('./images/bar.png'))
+                        img.m-product__img.lazyload(alt='Батончики', data-src=require('./images/bar.png'))
                         span.m-product__title Батончики
                         span.m-product__subtitle 12 в наличии
                 .m-catalog__item.order-xl-last.d-none.d-xl-block
                     a.m-product(href='#')
-                        img.m-product__img(alt='Напитки', src=require('./images/drink.png'))
+                        img.m-product__img.lazyload(alt='Напитки', data-src=require('./images/drink.png'))
                         span.m-product__title Напитки
                         span.m-product__subtitle 36 в наличии
                 .m-catalog__item.m-catalog__item_open-catalog.order-xl-last

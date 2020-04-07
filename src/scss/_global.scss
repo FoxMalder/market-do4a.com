@@ -214,16 +214,16 @@ a.container-link {
 
 div[data-href],
 .link-sim {
+  display: inline;
   border-bottom: 1px dashed $main-color;
   color: $main-color;
   font-weight: 600;
-  display: inline;
   cursor: pointer;
 }
 
 .header-control__logo____image {
-  opacity: 0;
   visibility: hidden;
+  opacity: 0;
 }
 
 .link-underline,
@@ -234,6 +234,20 @@ div[data-href],
 
 .nowrap {
   white-space: nowrap;
+}
+
+img.lazyload:not([src]) {
+  visibility: hidden;
+}
+
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+
+.lazyloaded {
+  transition: opacity 300ms;
+  opacity: 1;
 }
 
 .inter-ui {

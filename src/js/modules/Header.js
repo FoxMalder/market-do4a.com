@@ -1,7 +1,12 @@
 // import Stickyfill from 'stickyfilljs/dist/stickyfill.es6';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+} from 'body-scroll-lock';
+
 import Vue from 'vue';
 import store from '@/store';
+
 import HeaderCollapse from '@/components/header/HeaderCollapse.vue';
 import HeaderBasket from '@/components/header/HeaderBasket.vue';
 import HeaderButtonBasket from '@/components/header/HeaderButtonBasket.vue';

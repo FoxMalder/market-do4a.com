@@ -1,7 +1,7 @@
 {
   "name": "marketdo4a-front",
   "description": "Front for marketdo4a.com",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "repository": "https://github.com/Staremang/market-do4a.com.git",
   "author": "Roman Meshcheryakov <staremang@ya.ru> (https://canonical.site/)",
   "private": true,
@@ -23,6 +23,7 @@
     "domready": "^1.0.8",
     "iphone-inline-video": "^2.2.2",
     "jquery": "^3.3.1",
+    "lazysizes": "^5.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "lodash.unionby": "^4.8.0",

@@ -41,7 +41,7 @@
           <span class="p-detail-delivery__value">Бесплатно</span>
         </div>
         <div class="p-detail-delivery__row">
-          <span class="p-detail-delivery__key">Курьером до двери завтра</span>
+          <span class="p-detail-delivery__key">Курьером до двери {{ currentStore && currentStore.courierToday ? 'сегодня' : 'завтра' }}</span>
           <span class="p-detail-delivery__value">Бесплатно от {{ freeShipingPrice }}</span>
         </div>
       </template>

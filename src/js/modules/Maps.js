@@ -1,16 +1,14 @@
 import YandexMapsLoader from 'ymaps';
-// import Utils from '../utils/utils';
-
-// import icon from '../../img/marker.svg';
-// import iconSelected from '../../img/marker-selected.svg';
 
 
 export default class YandexMaps {
-  constructor(element, app = window.app) {
-    if (!app || app === '') return;
+  constructor(arg) {
+    const element = typeof arg === 'string' ? document.querySelector(arg) : arg;
+    if (!element) return;
+
 
     this.el = element;
-    this.data = app.storeManagerData;
+    this.data = global.app.storeManagerData;
 
     this.map = null;
     this.yandexMap = null;
@@ -30,7 +28,11 @@ export default class YandexMaps {
     // this.options = YandexMaps.defaultOptions;
 
 
-    this.loadMapApi();
+    try {
+      this.init();
+    } catch (error) {
+      console.error('[Yandex Maps]', error);
+    }
   }
 
   /**
@@ -203,9 +205,10 @@ export default class YandexMaps {
     },
   };
 
-  createMap = (ymaps) => {
-    this.yandexMap = ymaps;
-
+  /**
+   * Создание карты
+   */
+  createMap() {
     // Создаем экземпляр карты
     this.map = new this.yandexMap.Map(this.el, {
       center: [55.76, 37.64],
@@ -221,7 +224,7 @@ export default class YandexMaps {
     this.map.geoObjects.add(this.objectManager);
 
 
-    this.objectManager.setFilter(object => object.properties.cityId === this.data.currentCityId);
+    this.objectManager.setFilter((object) => object.properties.cityId === this.data.currentCityId);
 
     this.map.setBounds(this.objectManager.getBounds(), {
       // Проверка возможности установить указанный коэффициент масштабирования
@@ -231,23 +234,27 @@ export default class YandexMaps {
 
     this.objectManager.setFilter('true');
 
-    Array.prototype.forEach.call(
-      document.querySelectorAll('[data-marker-id]'),
-      item => item.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.openBalloon(e.currentTarget.dataset.markerId);
-      }),
-    );
-  };
+    const clickHandle = (event) => {
+      event.preventDefault();
+      this.openBalloon(event.currentTarget.dataset.markerId);
+    };
 
-  loadMapApi() {
-    if (window.ymaps) {
-      window.ymaps.ready(this.createMap);
-    } else {
-      YandexMapsLoader.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU')
-        .then(this.createMap)
-        .catch((error) => console.error('Failed to load Yandex Maps', error));
-    }
+    [].forEach.call(
+      document.querySelectorAll('[data-marker-id]'),
+      (item) => item.addEventListener('click', clickHandle),
+    );
+  }
+
+  /**
+   * Загрузка карты
+   * @return {Promise<void>}
+   */
+  async init() {
+    this.yandexMap = global.ymaps
+      ? await global.ymaps.ready()
+      : await YandexMapsLoader.load(YandexMaps.defaultOptions.apiUrl);
+
+    this.createMap(this.yandexMap);
   }
 
   openBalloon(objectId) {

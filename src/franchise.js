@@ -10,10 +10,10 @@ import 'bootstrap/js/dist/collapse';
 import 'aos/dist/aos.css';
 import './scss/franchise.scss';
 
-import './simple';
+import App from '@/App';
 
 import Parallax from '@/modules/Parallax';
-import MainPage from '@/page/main';
+import { initStarSlider } from '@/components/sliders';
 import { handleForm } from '@/modules/Form';
 
 
@@ -111,6 +111,8 @@ function initProgramList() {
 
 
 ready(() => {
+  App.init();
+
   AOS.init({
     duration: 500,
     easing: 'ease-in-out',
@@ -119,6 +121,7 @@ ready(() => {
 
   initVideo();
   initProgramList();
+  initStarSlider({ slider: '#stars-slider', info: '.f-section-stars__description' });
 
   $$('.form-body').parents('form').on('submit', handleForm);
 
@@ -135,7 +138,7 @@ ready(() => {
     }, 200);
   });
 
-  $('.f-section-hero').addClass('animate');
+  $$('.f-section-hero').addClass('animate');
 
   [].forEach.call(document.querySelectorAll('.f-horizontal-gallery__wrapper'), (el) => {
     Parallax.add(el, {
@@ -150,6 +153,4 @@ ready(() => {
       x: 0,
     });
   }
-
-  MainPage.initStarSlider('#stars-slider', '.f-section-stars__description');
 });
