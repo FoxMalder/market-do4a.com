@@ -161,7 +161,7 @@ $section-padding-bottom: 30px;
     }
 
     @include media-breakpoint-up(xl) {
-      max-width: 50%;
+      max-width: 60%;
       margin-bottom: 18px;
       font-size: 70px;
       //margin-bottom: (18 / 1920 * 100vw);

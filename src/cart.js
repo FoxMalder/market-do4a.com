@@ -21,7 +21,11 @@ class Popular {
       return;
     }
 
-    this.request = JSON.parse(this.$el.dataset.request);
+    try {
+      this.request = JSON.parse(this.$el.dataset.request);
+    } catch (e) {
+      this.request = {};
+    }
 
     this.$container = this.$el.querySelector('.p-section-popular__list');
 
