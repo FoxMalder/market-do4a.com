@@ -1,8 +1,8 @@
-import catalogControlMobile from './catalogControlMobile';
+/* eslint-disable no-shadow,no-param-reassign */
 
 // initial state
 const state = {
-  items: [],
+  // items: [],
   filters: {},
   sort: {},
 };
@@ -100,7 +100,7 @@ const mutations = {
       ...state[container],
       [filter.name]: filter,
     };
-    state.items.push(filter);
+    // state.items.push(filter);
   },
   // filterReset() {
   //   console.log('reset');
@@ -116,7 +116,4 @@ export default {
   getters,
   actions,
   mutations,
-  modules: {
-    mobile: catalogControlMobile,
-  },
 };

@@ -277,7 +277,8 @@ export default class CatalogControl {
         this.add(data);
       })
       .catch((error) => {
-        alert(error.message);
+        Vue.$notify.error(error.message);
+        // alert(error.message);
         console.error(error);
       })
       .finally(() => {
@@ -377,10 +378,11 @@ export default class CatalogControl {
       } else {
         this.reloadPage(1);
       }
-    } catch (e) {
+    } catch (error) {
       this.containerEl.classList.remove(this.classNames.cardListLoading);
-      alert('Ошибка');
-      console.error(e);
+      // alert('Ошибка');
+      Vue.$notify.error(error.message);
+      console.error(error);
     }
   };
 
@@ -469,7 +471,8 @@ export default class CatalogControl {
         }
       })
       .catch((error) => {
-        alert(error.message);
+        // alert(error.message);
+        Vue.$notify.error(error.message);
         console.error(error);
       })
       .finally(() => {

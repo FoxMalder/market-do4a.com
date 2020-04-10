@@ -27,6 +27,11 @@
       },
     },
     computed: {
+      ...mapState('filters', {
+        filters: (state) => state.filters,
+        sort: (state) => state.sort,
+      }),
+
       items() {
         if (this.filter.parent) {
           // TODO: Как-то поправить эту хуйню с обновлениием наследника при изменении родителя, см. Multifilter.vue
@@ -34,12 +39,11 @@
 
 
           const parent = (typeof this.filter.parent === 'string')
-            ? this.$store.state.filters.filters[this.filter.parent]
+            ? this.filters[this.filter.parent]
             : this.filter.parent;
 
           const checkedParentItemIds = parent.data.filter(item => item.checked).map(item => item.value);
 
-          // TODO: Добавить полифилл для Array.prototype.includes()
           return this.filter.data.filter(item => checkedParentItemIds.includes(item.parent));
         }
         return this.filter.data;
