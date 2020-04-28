@@ -1,5 +1,5 @@
 /*!
- * Front for marketdo4a.com 1.7.0 
+ * Front for marketdo4a.com 1.8.0 
  * By Roman Meshcheryakov, Riverstart, 2020
  */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[9],{15:function(t,e){t.exports=jQuery},156:function(t,e,i){"use strict";i.r(e),function(t){
