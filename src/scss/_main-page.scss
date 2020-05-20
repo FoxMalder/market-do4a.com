@@ -97,6 +97,12 @@ $section-padding-bottom: 30px;
       background: linear-gradient(90deg, rgba(#000, 1), rgba(#000, 0));
     }
 
+    &_no-shadow {
+      &::before {
+        display: none
+      }
+    }
+
     @include media-breakpoint-up(md) {
       padding-top: 34px;
       padding-bottom: 100px;
