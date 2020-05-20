@@ -22,8 +22,8 @@
           v-if="isSupport"
           class="p-images-block__img"
           :style="{ opacity: isAvailableOffer ? 1 : '0.3' }"
-          v-lazy="activePacking.gallery[0].img.src"
-          :data-srcset="`${activePacking.gallery[0].img.src2x} 2x`"
+          :src="activePacking.gallery[0].img.src"
+          :srcset="`${activePacking.gallery[0].img.src2x} 2x`"
           :alt="activePacking.imgAlt || activePacking.name"
           :title="activePacking.imgTitle"
         >
