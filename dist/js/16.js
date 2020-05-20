@@ -1,5 +1,5 @@
 /*!
- * Front for marketdo4a.com 1.8.1 
+ * Front for marketdo4a.com 1.9.0 
  * By Roman Meshcheryakov, Riverstart, 2020
  */
 (window.webpackJsonp=window.webpackJsonp||[]).push([[16],{279:function(t,e,i){function s(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function n(t,e){for(var i=0;i<e.length;i++){var s=e[i];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(t,s.key,s)}}
